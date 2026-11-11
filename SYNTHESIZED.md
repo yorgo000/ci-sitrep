@@ -11,9 +11,11 @@ Watch list for Yorgo's business: software development of critical systems in fin
 **Last updated:** 2026-11-11.
 **Maintenance:** researched daily by the `watch-subjects-daily` cron (~07:45 ET). It updates this file in place (and the archive) only on significant change, and tells Yorgo only when something material changes. The separate agent-reliability watch was rejected 2026-11-09 and is NOT part of this file.
 
-**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [What's new](#whats-new) to jump to the latest changes.
+**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New this week](#new-this-week) to jump to the latest changes.
 
-## What's new
+## New this week
+
+Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
 - **2026-11-11 — SecureVibeBench, CWE-bench v2, SusVibes** (subjects 1, 2): a second independent peer-reviewed benchmark confirms roughly half of test-passing AI code is vulnerable; a public yardstick for remediation agents now exists. → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
 - **2026-11-11 — UK Cyber Security and Resilience Bill** (subject 3): "loss of control" named as a regulated incident class; evidence preservation now a named expectation in the making. → [3.4 Governance](#34-governance--finance)
