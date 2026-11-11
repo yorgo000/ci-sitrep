@@ -1,0 +1,273 @@
+#!/usr/bin/env python3
+"""Build a standalone reading page from a Markdown file.
+
+Generic page builder for the ci-sitrep site (explainer, theses paper, ...).
+Converts the markdown to a self-contained HTML page in the same visual
+language as the main report (index.html): sidebar TOC, collapsible
+headings, collapsible TOC sections, and a link back to the report.
+
+Usage: build_page.py <input.md> <output.html> [title]
+The title defaults to the document's first h1.
+"""
+
+import re
+import sys
+from pathlib import Path
+
+import markdown
+
+REPO = Path.home() / "workspace" / "ci-sitrep"
+
+
+def github_slugify(text, separator="-"):
+    """Match GitHub's heading-anchor algorithm."""
+    text = text.lower()
+    text = re.sub(r"[^\w\s-]", "", text)
+    return text.replace(" ", separator)
+
+
+def build(input_path, output_path, title=None):
+    src = Path(input_path).read_text(encoding="utf-8")
+    if title is None:
+        m = re.search(r"^#\s+(.+)$", src, re.MULTILINE)
+        title = m.group(1).strip() if m else Path(input_path).stem
+
+    md = markdown.Markdown(
+        extensions=["tables", "toc", "sane_lists"],
+        extension_configs={
+            "toc": {
+                "slugify": github_slugify,
+                "toc_depth": "2-4",
+            },
+        },
+    )
+    body = md.convert(src)
+    toc_html = md.toc
+
+    html = TEMPLATE.format(
+        title=title,
+        toc=toc_html,
+        body=body,
+    )
+    Path(output_path).write_text(html, encoding="utf-8")
+    print(f"Wrote {output_path} ({len(html)} bytes)")
+
+
+TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<style>
+  :root {{
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #e3e3e3;
+    --accent: #1f4e79;
+    --bg: #ffffff;
+    --side-bg: #f7f7f5;
+    --code-bg: #f4f4f2;
+  }}
+  * {{ box-sizing: border-box; }}
+  body {{
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }}
+  .layout {{ display: flex; min-height: 100vh; }}
+  nav.sidebar {{
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }}
+  nav.sidebar h2 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }}
+  nav.sidebar ul {{ list-style: none; padding: 0; margin: 0; }}
+  nav.sidebar li {{ margin: 2px 0; }}
+  nav.sidebar li li {{ padding-left: 14px; }}
+  nav.sidebar li li li {{ padding-left: 14px; }}
+  nav.sidebar a {{ color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }}
+  nav.sidebar a:hover {{ background: #ececea; }}
+  nav.sidebar .toc-controls {{ margin: 0 0 10px; }}
+  nav.sidebar .toc-controls button {{
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fff; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }}
+  nav.sidebar .toc-controls button:hover {{ background: #ececea; }}
+  nav.sidebar .toc li.has-children > a .toc-toggle {{
+    display: inline-block; cursor: pointer; color: var(--muted); font-size: 0.85em; margin-right: 2px;
+  }}
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle {{ transform: rotate(-90deg); }}
+  nav.sidebar .toc li.toc-collapsed > ul {{ display: none; }}
+  nav.sidebar .back {{ margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }}
+  nav.sidebar .back a {{ color: var(--accent); font-weight: 600; }}
+  main {{ flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }}
+  main h1 {{ font-size: 28px; margin: 0 0 8px; line-height: 1.25; }}
+  main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }}
+  main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
+  main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
+  h2 .toggle, h3 .toggle, h4 .toggle {{
+    cursor: pointer; color: var(--muted); font-size: 0.8em; margin-right: 6px;
+    user-select: none; display: inline-block; width: 1em; text-align: center;
+  }}
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
+  h2.collapsed .toggle::before, h3.collapsed .toggle::before, h4.collapsed .toggle::before {{ content: "\\25B8"; }}
+  h2:not(.collapsed) .toggle::before, h3:not(.collapsed) .toggle::before, h4:not(.collapsed) .toggle::before {{ content: "\\25BE"; }}
+  main p {{ margin: 8px 0; }}
+  main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
+  main li {{ margin: 4px 0; }}
+  main li > ul, main li > ol {{ margin: 4px 0; }}
+  main a {{ color: var(--accent); }}
+  main table {{ border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }}
+  main th, main td {{ border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }}
+  main th {{ background: var(--side-bg); font-weight: 600; }}
+  main hr {{ border: none; border-top: 1px solid var(--line); margin: 32px 0; }}
+  main blockquote {{ border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }}
+  main em {{ color: var(--muted); }}
+  @media (max-width: 900px) {{
+    .layout {{ flex-direction: column; }}
+    nav.sidebar {{ width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }}
+    main {{ padding: 24px 20px 48px; }}
+  }}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Contents</h2>
+    {toc}
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+  </nav>
+  <main>
+    {body}
+  </main>
+</div>
+<script>
+(function () {{
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {{
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {{
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {{
+        li.classList.toggle('toc-collapsed', collapse);
+      }});
+    }});
+    toc.querySelectorAll('li').forEach(function (li) {{
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      toggle.textContent = '\\25BE ';
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {{
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      }});
+    }});
+    var secControls = document.createElement('div');
+    secControls.className = 'toc-controls';
+    secControls.innerHTML = 'Sections: <button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(secControls, toc.nextSibling);
+    secControls.addEventListener('click', function (e) {{
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {{
+        h.classList.toggle('collapsed', collapse);
+      }});
+    }});
+  }}
+  // Make h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  var main = document.querySelector('main');
+  if (!main) return;
+  var headings = main.querySelectorAll('h2, h3, h4');
+  headings.forEach(function (h) {{
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {{
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {{
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }}
+      collected.push(node);
+      node = next;
+    }}
+    collected.forEach(function (n) {{ body.appendChild(n); }});
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {{
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    }});
+    if (level === 4) h.classList.add('collapsed');
+  }});
+  // Jumping to an anchor expands any collapsed ancestor section.
+  function expandForAnchor() {{
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var node = el;
+    while (node) {{
+      if (node.classList && node.classList.contains('section-body')) {{
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }}
+      node = node.parentElement;
+    }}
+    el.scrollIntoView();
+  }}
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+}})();
+</script>
+</body>
+</html>
+"""
+
+
+def main(argv):
+    if len(argv) < 3:
+        print("Usage: build_page.py <input.md> <output.html> [title]", file=sys.stderr)
+        sys.exit(2)
+    input_path = Path(argv[1])
+    output_path = Path(argv[2])
+    title = argv[3] if len(argv) > 3 else None
+    build(input_path, output_path, title)
+
+
+if __name__ == "__main__":
+    main(sys.argv)
