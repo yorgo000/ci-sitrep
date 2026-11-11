@@ -104,7 +104,9 @@ TEMPLATE = """<!DOCTYPE html>
   }}
   nav.sidebar .toc-controls button:hover {{ background: #ececea; }}
   nav.sidebar .toc li.has-children > a .toc-toggle {{
-    display: inline-block; cursor: pointer; color: var(--muted); font-size: 0.85em; margin-right: 2px;
+    display: inline-block; cursor: pointer; width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid var(--muted); vertical-align: middle; margin-right: 5px;
   }}
   nav.sidebar .toc li.toc-collapsed > a .toc-toggle {{ transform: rotate(-90deg); }}
   nav.sidebar .toc li.toc-collapsed > ul {{ display: none; }}
@@ -116,15 +118,16 @@ TEMPLATE = """<!DOCTYPE html>
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
   h2 .toggle, h3 .toggle, h4 .toggle {{
-    cursor: pointer; color: var(--muted); font-size: 0.8em; margin-right: 6px;
-    user-select: none; display: inline-block; width: 1em; text-align: center;
+    cursor: pointer; margin-right: 6px;
+    user-select: none; display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 6px solid var(--muted); vertical-align: middle;
   }}
   /* Content headings: the .section-body is the heading's next sibling
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
-  h2.collapsed .toggle::before, h3.collapsed .toggle::before, h4.collapsed .toggle::before {{ content: "\\25B8"; }}
-  h2:not(.collapsed) .toggle::before, h3:not(.collapsed) .toggle::before, h4:not(.collapsed) .toggle::before {{ content: "\\25BE"; }}
+  h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle {{ transform: rotate(-90deg); }}
   main p {{ margin: 8px 0; }}
   main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
   main li {{ margin: 4px 0; }}
@@ -180,7 +183,9 @@ TEMPLATE = """<!DOCTYPE html>
       if (!link) return;
       var toggle = document.createElement('span');
       toggle.className = 'toc-toggle';
-      toggle.textContent = '\\25BE ';
+      // No text content: the arrow is drawn with CSS borders (see .toc-toggle),
+      // so it renders identically on every system instead of depending on
+      // a font carrying the U+25B8/U+25BE triangle glyphs.
       link.insertBefore(toggle, link.firstChild);
       toggle.addEventListener('click', function (e) {{
         e.preventDefault();
