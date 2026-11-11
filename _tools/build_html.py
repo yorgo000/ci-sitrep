@@ -1,0 +1,353 @@
+#!/usr/bin/env python3
+"""Build SYNTHESIZED.html from SYNTHESIZED.md.
+
+Reads the knowledge-base markdown, converts it to a self-contained HTML
+reading surface with:
+- a sidebar table of contents (jump to any section),
+- collapsible sub-sections (click a heading to fold/unfold),
+- collapsible article headlines (native <details>, already in the markdown),
+- a "What's new" section at the top with jump links,
+- clean typography and table styling.
+
+Usage: build_html.py [input.md] [output.html]
+Defaults: ~/workspace/your_files/watches/SYNTHESIZED.md -> SYNTHESIZED.html
+"""
+
+import re
+import sys
+from pathlib import Path
+
+import markdown
+
+WATCHES = Path.home() / "workspace" / "your_files" / "watches"
+
+
+def github_slugify(text, separator="-"):
+    """Match GitHub's heading-anchor algorithm.
+
+    Lowercase, drop punctuation (anything that is not a word char, a space,
+    or a hyphen), replace each space with the separator (no collapsing).
+    """
+    text = text.lower()
+    text = re.sub(r"[^\w\s-]", "", text)
+    return text.replace(" ", separator)
+
+
+def convert_details_blocks(src):
+    """Convert the markdown inside <details> blocks to HTML.
+
+    The markdown library does not process markdown nested inside raw HTML
+    blocks, so a <details> whose facts are bullet lists would otherwise
+    render as raw "- ..." text. Convert each block's inner markdown to HTML
+    first; the outer conversion then passes the whole <details> through.
+    """
+    def repl(m):
+        inner = m.group(1)
+        sm = re.match(r"(\s*<summary>.*?</summary>)(.*)", inner, re.DOTALL)
+        if not sm:
+            return m.group(0)
+        summary, rest = sm.group(1), sm.group(2)
+        html_rest = markdown.markdown(
+            rest.strip(), extensions=["tables", "sane_lists"]
+        )
+        return "<details>\n" + summary.strip() + "\n" + html_rest + "\n</details>"
+
+    return re.sub(r"<details>(.*?)</details>", repl, src, flags=re.DOTALL)
+
+
+def strip_contents_section(src):
+    """Drop the markdown's own '## Contents' section.
+
+    The sidebar TOC (generated from the headings) replaces it, so keeping
+    the section would duplicate the TOC and leave a dangling #contents
+    anchor. Runs from the '## Contents' heading to the next '---' or '## '.
+    """
+    return re.sub(
+        r"^## Contents\n.*?(?=^---\s*$|^## )",
+        "",
+        src,
+        flags=re.DOTALL | re.MULTILINE,
+    )
+
+
+def build(input_path, output_path):
+    src = Path(input_path).read_text(encoding="utf-8")
+    src = strip_contents_section(src)
+    src = convert_details_blocks(src)
+
+    md = markdown.Markdown(
+        extensions=[
+            "tables",
+            "toc",
+            "sane_lists",
+        ],
+        extension_configs={
+            "toc": {
+                "slugify": github_slugify,
+                "toc_depth": "2-4",
+            },
+        },
+    )
+    body = md.convert(src)
+    toc_html = md.toc
+
+    # "Last updated" line, taken from the header of the markdown.
+    m = re.search(r"\*\*Last updated:\*\*\s*([0-9-]+)", src)
+    last_updated = m.group(1) if m else ""
+
+    html = TEMPLATE.format(
+        title="Synthesized — State of the art",
+        last_updated=last_updated,
+        toc=toc_html,
+        body=body,
+    )
+    Path(output_path).write_text(html, encoding="utf-8")
+    print(f"Wrote {output_path} ({len(html)} bytes)")
+
+
+TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<style>
+  :root {{
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #e3e3e3;
+    --accent: #1f4e79;
+    --bg: #ffffff;
+    --side-bg: #f7f7f5;
+    --code-bg: #f4f4f2;
+  }}
+  * {{ box-sizing: border-box; }}
+  body {{
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }}
+  .layout {{ display: flex; min-height: 100vh; }}
+  nav.sidebar {{
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }}
+  nav.sidebar h2 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }}
+  nav.sidebar ul {{ list-style: none; padding: 0; margin: 0; }}
+  nav.sidebar li {{ margin: 2px 0; }}
+  nav.sidebar li li {{ padding-left: 14px; }}
+  nav.sidebar li li li {{ padding-left: 14px; }}
+  nav.sidebar a {{ color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }}
+  nav.sidebar a:hover {{ background: #ececea; }}
+  nav.sidebar .new-badge {{
+    display: inline-block; font-size: 10px; font-weight: 700; color: #fff;
+    background: #b3261e; border-radius: 3px; padding: 0 4px; margin-left: 4px;
+    vertical-align: middle;
+  }}
+  nav.sidebar .toc-controls {{ margin: 0 0 10px; }}
+  nav.sidebar .toc-controls button {{
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fff; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }}
+  nav.sidebar .toc-controls button:hover {{ background: #ececea; }}
+  nav.sidebar .toc li.has-children > a .toc-toggle {{
+    display: inline-block; cursor: pointer; color: var(--muted); font-size: 0.85em; margin-right: 2px;
+  }}
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle {{ transform: rotate(-90deg); }}
+  nav.sidebar .toc li.toc-collapsed > ul {{ display: none; }}
+  main {{ flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }}
+  main h1 {{ font-size: 28px; margin: 0 0 8px; line-height: 1.25; }}
+  main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }}
+  main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
+  main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
+  h2 .toggle, h3 .toggle, h4 .toggle {{
+    cursor: pointer; color: var(--muted); font-size: 0.8em; margin-right: 6px;
+    user-select: none; display: inline-block; width: 1em; text-align: center;
+  }}
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
+  h2.collapsed .toggle::before, h3.collapsed .toggle::before, h4.collapsed .toggle::before {{ content: "\\25B8"; }}
+  h2:not(.collapsed) .toggle::before, h3:not(.collapsed) .toggle::before, h4:not(.collapsed) .toggle::before {{ content: "\\25BE"; }}
+  main p {{ margin: 8px 0; }}
+  main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
+  main li {{ margin: 4px 0; }}
+  main li > ul, main li > ol {{ margin: 4px 0; }}
+  main a {{ color: var(--accent); }}
+  main table {{ border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }}
+  main th, main td {{ border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }}
+  main th {{ background: var(--side-bg); font-weight: 600; }}
+  main hr {{ border: none; border-top: 1px solid var(--line); margin: 32px 0; }}
+  details {{ border: 1px solid var(--line); border-radius: 6px; margin: 10px 0; padding: 0; }}
+  details > summary {{
+    cursor: pointer; padding: 10px 14px; font-weight: 600; list-style: none;
+    border-radius: 6px;
+  }}
+  details > summary::-webkit-details-marker {{ display: none; }}
+  details > summary::before {{ content: "\\25B8  "; color: var(--muted); }}
+  details[open] > summary::before {{ content: "\\25BE  "; color: var(--muted); }}
+  details > summary:hover {{ background: var(--side-bg); }}
+  details[open] > summary {{ border-bottom: 1px solid var(--line); border-radius: 6px 6px 0 0; }}
+  details > ul, details > p {{ padding: 4px 14px 10px; margin: 0; }}
+  details > ul {{ padding-left: 38px; }}
+  blockquote {{ border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }}
+  .meta {{ color: var(--muted); font-size: 14px; margin: 0 0 24px; }}
+  .whats-new {{ background: #fdf6e3; border: 1px solid #f0d9a0; border-radius: 8px; padding: 16px 20px; margin: 0 0 24px; }}
+  .whats-new h2 {{ border: none; padding: 0; margin: 0 0 10px; font-size: 18px; }}
+  .whats-new ul {{ margin: 0; }}
+  @media (max-width: 900px) {{
+    .layout {{ flex-direction: column; }}
+    nav.sidebar {{ width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }}
+    main {{ padding: 24px 20px 48px; }}
+  }}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Contents</h2>
+    {toc}
+    <p class="meta" style="margin-top: 20px;">Last updated: {last_updated}<br>
+    Source: SYNTHESIZED.md (Markdown is the source of truth).<br>
+    Archive: <a href="archive/ARCHIVE.md">ARCHIVE.md</a></p>
+  </nav>
+  <main>
+    {body}
+  </main>
+</div>
+<script>
+(function () {{
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  // Each TOC entry with children gets a toggle arrow; Expand all /
+  // Collapse all buttons sit above the TOC, and a Sections control
+  // expands/collapses all content headings.
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {{
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {{
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {{
+        li.classList.toggle('toc-collapsed', collapse);
+      }});
+    }});
+    toc.querySelectorAll('li').forEach(function (li) {{
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      toggle.textContent = '\\25BE ';
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {{
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      }});
+    }});
+    // Sections control: expand/collapse all content headings.
+    var secControls = document.createElement('div');
+    secControls.className = 'toc-controls';
+    secControls.innerHTML = 'Sections: <button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(secControls, toc.nextSibling);
+    secControls.addEventListener('click', function (e) {{
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {{
+        h.classList.toggle('collapsed', collapse);
+      }});
+    }});
+  }}
+  // Make h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  // Article headlines are native <details> and already collapsible.
+  var main = document.querySelector('main');
+  if (!main) return;
+  var headings = main.querySelectorAll('h2, h3, h4');
+  headings.forEach(function (h) {{
+    // Skip the "What's new" heading (it is already highlighted) and the
+    // top-level h1.
+    if (h.textContent.trim().toLowerCase().indexOf("what's new") === 0) return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    // Wrap following siblings until the next heading of equal/higher level.
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {{
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {{
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }}
+      collected.push(node);
+      node = next;
+    }}
+    collected.forEach(function (n) {{ body.appendChild(n); }});
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {{
+      // Do not toggle when the click was on a link inside the heading.
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    }});
+    // Start with h4 sections collapsed, h2/h3 open.
+    if (level === 4) h.classList.add('collapsed');
+  }});
+  // Jumping to an anchor (from the sidebar or What's new) expands any
+  // collapsed ancestor section so the target is visible.
+  function expandForAnchor() {{
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var node = el;
+    while (node) {{
+      if (node.classList && node.classList.contains('section-body')) {{
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }}
+      node = node.parentElement;
+    }}
+    el.scrollIntoView();
+  }}
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+}})();
+</script>
+</body>
+</html>
+"""
+
+
+def main(argv):
+    input_path = Path(argv[1]) if len(argv) > 1 else WATCHES / "SYNTHESIZED.md"
+    output_path = Path(argv[2]) if len(argv) > 2 else WATCHES / "SYNTHESIZED.html"
+    build(input_path, output_path)
+
+
+if __name__ == "__main__":
+    main(sys.argv)
