@@ -179,6 +179,7 @@ TEMPLATE = """<!DOCTYPE html>
       var childUl = li.querySelector(':scope > ul');
       if (!childUl) return;
       li.classList.add('has-children');
+      li.classList.add('toc-collapsed');  // TOC starts collapsed: top-level only.
       var link = li.querySelector(':scope > a');
       if (!link) return;
       var toggle = document.createElement('span');
@@ -218,6 +219,7 @@ TEMPLATE = """<!DOCTYPE html>
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
+    h.classList.add('collapsed');  // Everything starts collapsed; drill in one section at a time.
     var body = document.createElement('div');
     body.className = 'section-body';
     var node = h.nextSibling;
