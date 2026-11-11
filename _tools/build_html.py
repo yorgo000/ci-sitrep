@@ -6,7 +6,7 @@ reading surface with:
 - a sidebar table of contents (jump to any section),
 - collapsible sub-sections (click a heading to fold/unfold),
 - collapsible article headlines (native <details>, already in the markdown),
-- a "What's new" section at the top with jump links,
+- a "New this week" section at the top with jump links (rolling 7-day window),
 - clean typography and table styling.
 
 Usage: build_html.py [input.md] [output.html]
@@ -211,9 +211,6 @@ TEMPLATE = """<!DOCTYPE html>
   details > ul {{ padding-left: 38px; }}
   blockquote {{ border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }}
   .meta {{ color: var(--muted); font-size: 14px; margin: 0 0 24px; }}
-  .whats-new {{ background: #fdf6e3; border: 1px solid #f0d9a0; border-radius: 8px; padding: 16px 20px; margin: 0 0 24px; }}
-  .whats-new h2 {{ border: none; padding: 0; margin: 0 0 10px; font-size: 18px; }}
-  .whats-new ul {{ margin: 0; }}
   @media (max-width: 900px) {{
     .layout {{ flex-direction: column; }}
     nav.sidebar {{ width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }}
@@ -259,6 +256,7 @@ TEMPLATE = """<!DOCTYPE html>
       var childUl = li.querySelector(':scope > ul');
       if (!childUl) return;
       li.classList.add('has-children');
+      li.classList.add('toc-collapsed');  // TOC starts collapsed: top-level only.
       var link = li.querySelector(':scope > a');
       if (!link) return;
       var toggle = document.createElement('span');
@@ -291,18 +289,18 @@ TEMPLATE = """<!DOCTYPE html>
   // Make h2/h3/h4 headings collapsible: clicking the heading toggles the
   // content that follows it (up to the next heading of equal or higher level).
   // Article headlines are native <details> and already collapsible.
+  // Everything starts COLLAPSED so the reader drills into one section at
+  // a time; Expand all (sidebar) opens the whole tree.
   var main = document.querySelector('main');
   if (!main) return;
   var headings = main.querySelectorAll('h2, h3, h4');
   headings.forEach(function (h) {{
-    // Skip the "What's new" heading (it is already highlighted) and the
-    // top-level h1.
-    if (h.textContent.trim().toLowerCase().indexOf("what's new") === 0) return;
     var level = parseInt(h.tagName.substring(1), 10);
     var toggle = document.createElement('span');
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
+    h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
@@ -327,7 +325,7 @@ TEMPLATE = """<!DOCTYPE html>
     // Start with h4 sections collapsed, h2/h3 open.
     if (level === 4) h.classList.add('collapsed');
   }});
-  // Jumping to an anchor (from the sidebar or What's new) expands any
+  // Jumping to an anchor (from the sidebar or New this week) expands any
   // collapsed ancestor section so the target is visible.
   function expandForAnchor() {{
     var id = location.hash && location.hash.slice(1);
