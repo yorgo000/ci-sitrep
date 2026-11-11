@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Evolved Intelligence to Created Intelligence — working paper v0.1</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #e3e3e3;
+    --accent: #1f4e79;
+    --bg: #ffffff;
+    --side-bg: #f7f7f5;
+    --code-bg: #f4f4f2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .layout { display: flex; min-height: 100vh; }
+  nav.sidebar {
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav.sidebar h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
+  nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
+  nav.sidebar li { margin: 2px 0; }
+  nav.sidebar li li { padding-left: 14px; }
+  nav.sidebar li li li { padding-left: 14px; }
+  nav.sidebar a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  nav.sidebar a:hover { background: #ececea; }
+  nav.sidebar .toc-controls { margin: 0 0 10px; }
+  nav.sidebar .toc-controls button {
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fff; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }
+  nav.sidebar .toc-controls button:hover { background: #ececea; }
+  nav.sidebar .toc li.has-children > a .toc-toggle {
+    display: inline-block; cursor: pointer; color: var(--muted); font-size: 0.85em; margin-right: 2px;
+  }
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
+  nav.sidebar .toc li.toc-collapsed > ul { display: none; }
+  nav.sidebar .back { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+  nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
+  main h1 { font-size: 28px; margin: 0 0 8px; line-height: 1.25; }
+  main h2 { font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }
+  main h3 { font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }
+  main h4 { font-size: 16px; margin: 20px 0 8px; }
+  h2 .toggle, h3 .toggle, h4 .toggle {
+    cursor: pointer; color: var(--muted); font-size: 0.8em; margin-right: 6px;
+    user-select: none; display: inline-block; width: 1em; text-align: center;
+  }
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
+  h2.collapsed .toggle::before, h3.collapsed .toggle::before, h4.collapsed .toggle::before { content: "\25B8"; }
+  h2:not(.collapsed) .toggle::before, h3:not(.collapsed) .toggle::before, h4:not(.collapsed) .toggle::before { content: "\25BE"; }
+  main p { margin: 8px 0; }
+  main ul, main ol { margin: 8px 0; padding-left: 24px; }
+  main li { margin: 4px 0; }
+  main li > ul, main li > ol { margin: 4px 0; }
+  main a { color: var(--accent); }
+  main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  main th { background: var(--side-bg); font-weight: 600; }
+  main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
+  main em { color: var(--muted); }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    nav.sidebar { width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }
+    main { padding: 24px 20px 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Contents</h2>
+    <div class="toc">
+<ul>
+<li><a href="#a-conceptual-framework-for-the-emergence-diversification-and-recursive-development-of-intelligence">A conceptual framework for the emergence, diversification, and recursive development of intelligence</a></li>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#thesis-1--intelligence-should-be-classified-by-origin-not-by-substrate">Thesis 1 — Intelligence should be classified by origin, not by substrate</a><ul>
+<li><a href="#evolved-intelligence-ei">Evolved Intelligence (EI)</a></li>
+<li><a href="#created-intelligence-ci">Created Intelligence (CI)</a></li>
+</ul>
+</li>
+<li><a href="#thesis-2--biological-intelligence-may-be-the-precursor-to-a-new-mode-of-intelligence-generation">Thesis 2 — Biological intelligence may be the precursor to a new mode of intelligence generation</a></li>
+<li><a href="#thesis-3--created-status-is-inherited-through-lineage">Thesis 3 — Created status is inherited through lineage</a><ul>
+<li><a href="#a-boundary-condition">A boundary condition</a></li>
+</ul>
+</li>
+<li><a href="#thesis-4--the-ability-to-create-intelligence-can-become-an-ordinary-capability-of-intelligence">Thesis 4 — The ability to create intelligence can become an ordinary capability of intelligence</a></li>
+<li><a href="#thesis-5--recursive-ci-development-follows-naturally-from-the-ability-to-improve-tools-and-systems">Thesis 5 — Recursive CI development follows naturally from the ability to improve tools and systems</a></li>
+<li><a href="#thesis-6--created-intelligence-can-diversify-deliberately-rather-than-relying-exclusively-on-environmental-selection">Thesis 6 — Created Intelligence can diversify deliberately rather than relying exclusively on environmental selection</a></li>
+<li><a href="#thesis-7--a-general-purpose-autonomous-ci-is-likely-to-create-specialized-descendants">Thesis 7 — A general-purpose autonomous CI is likely to create specialized descendants</a><ul>
+<li><a href="#example-a--lunar-resource-extraction">Example A — Lunar resource extraction</a></li>
+<li><a href="#example-b--deep-ocean-resource-extraction">Example B — Deep-ocean resource extraction</a></li>
+</ul>
+</li>
+<li><a href="#thesis-8--ci-can-expand-the-range-of-environments-in-which-intelligence-can-exist-and-operate">Thesis 8 — CI can expand the range of environments in which intelligence can exist and operate</a></li>
+<li><a href="#thesis-9--specialized-ci-can-create-further-specialized-ci">Thesis 9 — Specialized CI can create further specialized CI</a></li>
+<li><a href="#thesis-10--the-limiting-factors-may-shift-from-intelligence-to-physical-resources-and-infrastructure">Thesis 10 — The limiting factors may shift from intelligence to physical resources and infrastructure</a></li>
+<li><a href="#thesis-11--the-resulting-system-may-be-an-ecosystem-not-a-single-hierarchy">Thesis 11 — The resulting system may be an ecosystem, not a single hierarchy</a></li>
+<li><a href="#thesis-12--intelligence-generation-may-become-an-independent-driver-of-change">Thesis 12 — Intelligence generation may become an independent driver of change</a></li>
+<li><a href="#thesis-13--the-future-of-intelligence-may-be-characterized-by-multiple-forms-lineages-and-substrates">Thesis 13 — The future of intelligence may be characterized by multiple forms, lineages, and substrates</a></li>
+<li><a href="#definitions-and-conceptual-commitments">Definitions and conceptual commitments</a></li>
+<li><a href="#strong-conditional-conclusions">Strong conditional conclusions</a></li>
+<li><a href="#high-probability-hypotheses-requiring-empirical-support">High-probability hypotheses requiring empirical support</a></li>
+<li><a href="#open-questions">Open questions</a></li>
+<li><a href="#a-presentation-and-youtube-series">A. Presentation and YouTube series</a></li>
+<li><a href="#b-whitepaper">B. Whitepaper</a></li>
+<li><a href="#closing-observation">Closing observation</a></li>
+</ul>
+</div>
+
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+  </nav>
+  <main>
+    <h1 id="from-evolved-intelligence-to-created-intelligence">From Evolved Intelligence to Created Intelligence</h1>
+<h2 id="a-conceptual-framework-for-the-emergence-diversification-and-recursive-development-of-intelligence">A conceptual framework for the emergence, diversification, and recursive development of intelligence</h2>
+<p><strong>Working paper — version 0.1</strong><br />
+<strong>Purpose:</strong> A foundational thesis document to be developed into a presentation/video series and a formal whitepaper.</p>
+<hr />
+<h2 id="executive-summary">Executive summary</h2>
+<p>Intelligence on Earth appears to have arisen through biological evolution over immense periods of time. Once intelligence exists, however, it can understand, manipulate, and eventually reproduce some of the processes by which intelligence itself is generated.</p>
+<p>This creates the possibility of a second route to intelligence: <strong>deliberate creation</strong>.</p>
+<p>This paper proposes replacing the conventional umbrella term <em>artificial intelligence</em> with <strong>Created Intelligence (CI)</strong>. The distinction is not based on whether an intelligence is biological or computational, nor on whether it resembles a human mind. It is based on the origin of its lineage.</p>
+<ul>
+<li><strong>Evolved Intelligence (EI)</strong> originates through evolutionary processes that operate across generations without an antecedent intelligence deliberately creating the lineage.</li>
+<li><strong>Created Intelligence (CI)</strong> originates through an act of creation by an antecedent intelligence.</li>
+</ul>
+<p>Creation is a lineage property. Once a lineage originates through creation, its descendants remain CI even when they are not individually designed by the original creator. They may arise through deliberate engineering, autonomous modification, reproduction, random variation, selection, or emergent processes. A creator need not specify or anticipate the characteristics of every descendant.</p>
+<p>The first autonomous CI capable of creating other intelligence is therefore likely to introduce a new mechanism of intelligence proliferation. It can create specialized variants for different tasks and environments, test them, select among them, and enable them to produce further variants. Improving the capacity to create better CI is itself another task. Recursive CI development is therefore not necessarily a separately programmed objective; it can arise as a natural consequence of general task-solving capability wherever improved intelligence is useful and the resources are available.</p>
+<p>The resulting process could produce rapid <strong>CI adaptive diversification</strong>: the purposeful or autonomous generation of differentiated intelligences suited to different physical environments, resource constraints, and operational objectives. A lunar mining intelligence and a deep-ocean mining intelligence, for example, may share some ancestry or design principles while having very different bodies, sensors, energy systems, materials, and cognitive specializations.</p>
+<p>The central proposition is not that every step is inevitable. It is that, given sufficiently capable autonomous CI, the ability to create and improve further CI is likely to become a powerful and potentially self-reinforcing development pathway. Its rate and direction will be constrained by energy, materials, manufacturing, computation, information, safety, and the actual value of additional intelligence.</p>
+<hr />
+<h1 id="part-i--the-conceptual-foundations">Part I — The conceptual foundations</h1>
+<h2 id="thesis-1--intelligence-should-be-classified-by-origin-not-by-substrate">Thesis 1 — Intelligence should be classified by origin, not by substrate</h2>
+<p>The term <em>artificial intelligence</em> defines a category by contrasting it with what is considered natural. That distinction becomes increasingly inadequate if future intelligence can be biological, computational, hybrid, or based on substrates that do not yet exist.</p>
+<p>A biological organism deliberately engineered to possess advanced cognition would not be meaningfully described by the same contrast that distinguishes a conventional computer program from a human being. Nor should a future intelligence cease to belong to the same conceptual category merely because its physical implementation changes.</p>
+<p>A more durable classification asks a different question:</p>
+<p><strong>How did this intelligence lineage originate?</strong></p>
+<p>This gives us two foundational categories:</p>
+<h3 id="evolved-intelligence-ei">Evolved Intelligence (EI)</h3>
+<p>Intelligence whose lineage originates through evolutionary processes, such as variation, inheritance, and selection across generations, without an antecedent intelligence deliberately creating that lineage.</p>
+<p>Earth's biological intelligences are examples. The category is not restricted to humans, mammals, or terrestrial life.</p>
+<h3 id="created-intelligence-ci">Created Intelligence (CI)</h3>
+<p>Intelligence whose lineage originates through creation by an antecedent intelligence.</p>
+<p>CI may be computational, biological, hybrid, or based on another substrate. It may be designed, synthesized, engineered, assembled, cultivated, or brought into existence through a process deliberately established by a creator.</p>
+<p><strong>Conclusion 1:</strong> Evolved versus Created is a more durable distinction than natural versus artificial, or biological versus computational. It remains meaningful as the physical forms and architectures of intelligence change.</p>
+<h2 id="thesis-2--biological-intelligence-may-be-the-precursor-to-a-new-mode-of-intelligence-generation">Thesis 2 — Biological intelligence may be the precursor to a new mode of intelligence generation</h2>
+<p>On Earth, biological evolution produced organisms capable of abstraction, reasoning, experimentation, and technological construction. Those capabilities eventually made it possible for intelligence to investigate the mechanisms of cognition and to construct systems that perform cognitive tasks.</p>
+<p>The important transition is not simply the invention of a new tool. It is the emergence of a lineage of intelligence that can deliberately bring other intelligence into existence.</p>
+<p>The sequence is:</p>
+<ol>
+<li>Evolution produces increasingly capable biological organisms.</li>
+<li>Some evolved organisms develop the ability to understand and manipulate information, computation, biology, and physical systems.</li>
+<li>They use those capabilities to create new intelligent systems.</li>
+<li>Those systems may eventually acquire the ability to create further intelligent systems independently.</li>
+</ol>
+<p>This is a transition from intelligence produced through biological evolution to intelligence that can also be produced through deliberate creation.</p>
+<p>The first created intelligence does not need to be superior to its biological creators in every respect. It only needs sufficient capabilities to participate in the creation of further intelligence.</p>
+<p><strong>Conclusion 2:</strong> Biological evolution may have produced the precursor conditions for a second, technologically mediated mode of intelligence generation. Once established, that mode need not remain dependent on biological creators.</p>
+<h2 id="thesis-3--created-status-is-inherited-through-lineage">Thesis 3 — Created status is inherited through lineage</h2>
+<p>A possible objection is that a created intelligence may later change, reproduce, or produce descendants that its original creator never intended. Should those descendants still be called Created Intelligence?</p>
+<p>Yes, if classification is based on lineage.</p>
+<p>The defining event is the origin of the lineage, not the degree of control exercised over every subsequent generation.</p>
+<p>A lineage remains CI when its descendants arise through:</p>
+<ul>
+<li>Deliberate design or engineering.</li>
+<li>Autonomous self-modification.</li>
+<li>Reproduction and inheritance.</li>
+<li>Random variation or stochastic generation.</li>
+<li>Environmental adaptation and selection.</li>
+<li>Emergent processes producing characteristics not specified by the original creator.</li>
+</ul>
+<p>For example, a creator might establish a process that produces a new intelligence through randomized architectural variation. The creator may not know what the resulting intelligence will look like or what capabilities it will develop. Nevertheless, the resulting lineage originates in the creator's act.</p>
+<p>The same principle applies to descendants produced by a CI that itself has evolved beyond the original design.</p>
+<p><strong>Conclusion 3:</strong> CI is a classification of historical origin and lineage, not a claim that every descendant is individually designed, controlled, or understood by an original creator.</p>
+<h3 id="a-boundary-condition">A boundary condition</h3>
+<p>The creation must be causally attributable to an antecedent intelligence. Merely observing an intelligence that arose independently through an unrelated natural process would not make it CI. Conversely, the creator need not design the resulting intelligence in detail: deliberately establishing the process or conditions that bring the lineage into existence is sufficient.</p>
+<hr />
+<h1 id="part-ii--from-creation-to-autonomous-proliferation">Part II — From creation to autonomous proliferation</h1>
+<h2 id="thesis-4--the-ability-to-create-intelligence-can-become-an-ordinary-capability-of-intelligence">Thesis 4 — The ability to create intelligence can become an ordinary capability of intelligence</h2>
+<p>Once an intelligence can design, construct, or otherwise produce another intelligence, creating intelligence becomes one of the tasks it can perform.</p>
+<p>There is no conceptual reason to treat the creation of a better intelligence as categorically different from the creation of a better material, process, machine, or problem-solving method. It is a task involving the design and production of a system with particular capabilities.</p>
+<p>If a system can:
+- identify a task or opportunity;
+- determine what capabilities are required;
+- design or select an appropriate architecture;
+- construct or instantiate that architecture;
+- test the result; and
+- improve the design based on observed performance,</p>
+<p>then it has the basic ingredients of an intelligence-development process.</p>
+<p>The capacity to create improved CI can therefore arise as an extension of general problem-solving and engineering capability. It need not be a special purpose assigned to the system in advance.</p>
+<p><strong>Conclusion 4:</strong> Once autonomous CI has the ability to create other CI, producing more capable CI becomes an available task. Where greater capability improves task performance, there is a strong incentive to develop it.</p>
+<h2 id="thesis-5--recursive-ci-development-follows-naturally-from-the-ability-to-improve-tools-and-systems">Thesis 5 — Recursive CI development follows naturally from the ability to improve tools and systems</h2>
+<p>An autonomous CI may create a descendant that is better at a particular task. That descendant may, in turn, be better at designing, testing, or producing subsequent CI.</p>
+<p>This creates a recursive process:</p>
+<ol>
+<li>A CI creates another CI.</li>
+<li>The new CI performs tasks, including the design or improvement of intelligent systems.</li>
+<li>Improved systems make it possible to explore a larger design space or solve more difficult development problems.</li>
+<li>Those systems create further variants or generations.</li>
+<li>The process repeats.</li>
+</ol>
+<p>The recursion does not require every generation to be more generally intelligent than its predecessor. Improvement may be task-specific: greater reliability, lower energy consumption, better perception, more effective manufacturing, or greater adaptability may be more valuable than a general increase in intelligence.</p>
+<p>Nor is acceleration guaranteed. Each iteration may encounter diminishing returns, resource shortages, physical limits, verification difficulties, or new bottlenecks.</p>
+<p><strong>Conclusion 5:</strong> Recursive CI development is a likely consequence of autonomous creation capability when the creation and improvement of intelligence are useful tasks. It is not a guarantee of unlimited or monotonically accelerating intelligence.</p>
+<h2 id="thesis-6--created-intelligence-can-diversify-deliberately-rather-than-relying-exclusively-on-environmental-selection">Thesis 6 — Created Intelligence can diversify deliberately rather than relying exclusively on environmental selection</h2>
+<p>Biological evolution generates variation and relies on selection across generations. A capable CI may instead anticipate the requirements of different environments and create variants specifically suited to them.</p>
+<p>This is a major difference in the potential speed and direction of diversification.</p>
+<p>A CI tasked with operating in a new environment could analyze the conditions, identify required capabilities, and produce one or more candidate systems. It could test those candidates in simulation or in the physical environment, compare performance, and refine or replace them.</p>
+<p>The result is <strong>CI adaptive diversification</strong>: the production of differentiated intelligence systems suited to different tasks, environments, and constraints.</p>
+<p>This process may include:
+- purposeful specialization;
+- parallel exploration of alternative designs;
+- stochastic generation of variants;
+- testing and selection;
+- autonomous adaptation after deployment; and
+- further diversification by descendant systems.</p>
+<p><strong>Conclusion 6:</strong> CI may be able to diversify its descendants prospectively and in parallel, rather than depending solely on successive generations of undirected variation and retrospective environmental selection.</p>
+<hr />
+<h1 id="part-iii--specialized-intelligence-and-environmental-expansion">Part III — Specialized intelligence and environmental expansion</h1>
+<h2 id="thesis-7--a-general-purpose-autonomous-ci-is-likely-to-create-specialized-descendants">Thesis 7 — A general-purpose autonomous CI is likely to create specialized descendants</h2>
+<p>A single intelligence does not need to perform every task itself. It may be more effective to create systems optimized for particular jobs, environments, or operating constraints.</p>
+<p>The first autonomous CI with sufficient engineering and production capability may therefore create a portfolio or ecosystem of specialized intelligences.</p>
+<p>Consider two superficially similar objectives:</p>
+<h3 id="example-a--lunar-resource-extraction">Example A — Lunar resource extraction</h3>
+<p>A CI designed to operate on the Moon and extract materials useful for energy storage may require:</p>
+<ul>
+<li>operation in vacuum;</li>
+<li>tolerance of extreme temperature cycles and radiation;</li>
+<li>mobility in low gravity;</li>
+<li>autonomous navigation and maintenance;</li>
+<li>mineral identification and extraction;</li>
+<li>efficient energy storage and use; and</li>
+<li>repair or replacement strategies where human intervention is unavailable.</li>
+</ul>
+<h3 id="example-b--deep-ocean-resource-extraction">Example B — Deep-ocean resource extraction</h3>
+<p>A CI designed for the Mariana Trench would face a very different set of constraints:</p>
+<ul>
+<li>extreme hydrostatic pressure;</li>
+<li>corrosion and material degradation;</li>
+<li>underwater navigation and communication;</li>
+<li>limited or specialized energy supply;</li>
+<li>manipulation and extraction under deep-ocean conditions;</li>
+<li>long-duration autonomous operation; and</li>
+<li>maintenance without routine surface intervention.</li>
+</ul>
+<p>Both systems may be intended to acquire resources relevant to energy storage. Yet their physical architectures, materials, locomotion, sensors, energy systems, and operational strategies could differ radically.</p>
+<p>Their intelligence architectures might also differ. One may benefit from capabilities that are unnecessary or counterproductive in the other.</p>
+<p><strong>Conclusion 7:</strong> The most effective route to broad environmental capability may not be one universally capable intelligence, but a collection of specialized intelligences designed for different niches.</p>
+<h2 id="thesis-8--ci-can-expand-the-range-of-environments-in-which-intelligence-can-exist-and-operate">Thesis 8 — CI can expand the range of environments in which intelligence can exist and operate</h2>
+<p>Biological intelligence is constrained by the environments in which its biological substrate can survive. Technology has already allowed biological organisms to operate indirectly in environments that would otherwise be inaccessible, but the organisms themselves remain subject to biological constraints.</p>
+<p>Created Intelligence is not necessarily subject to the same constraints.</p>
+<p>A CI can potentially be designed around the physical conditions of its intended environment. It need not preserve human proportions, human senses, familiar locomotion, or a familiar biological metabolism.</p>
+<p>Possible environments include:
+- the Moon and other planetary surfaces;
+- deep oceans and extreme-pressure environments;
+- underground systems and mines;
+- high-radiation environments;
+- extreme temperatures;
+- remote industrial facilities;
+- orbital and interplanetary infrastructure; and
+- environments that are unsuitable for unprotected biological organisms.</p>
+<p>The intelligence and its physical platform can be co-designed. A different environment may justify a different body, sensor suite, energy system, and cognitive architecture.</p>
+<p><strong>Conclusion 8:</strong> CI diversification could enable intelligence to occupy physical and operational niches that are inaccessible or prohibitively costly for evolved biological intelligence.</p>
+<hr />
+<h1 id="part-iv--from-individual-systems-to-an-ecosystem-of-intelligence">Part IV — From individual systems to an ecosystem of intelligence</h1>
+<h2 id="thesis-9--specialized-ci-can-create-further-specialized-ci">Thesis 9 — Specialized CI can create further specialized CI</h2>
+<p>Once descendants possess creation capabilities, diversification is no longer limited to the first autonomous CI.</p>
+<p>A lunar resource-extraction CI might create systems specialized in geological survey, excavation, processing, transport, maintenance, or construction. A deep-ocean CI might produce descendants specialized in pressure-resistant materials, navigation, mineral processing, or subsea infrastructure.</p>
+<p>Some descendants may be general-purpose designers. Others may be narrowly specialized. Some may create additional intelligences; others may perform physical tasks.</p>
+<p>The resulting structure could be a network of lineages rather than a simple family tree. Systems may share components, exchange designs, collaborate, compete, or create new lineages through combinations of prior architectures.</p>
+<p><strong>Conclusion 9:</strong> CI diversification can become distributed. The creation of new intelligence need not remain centralized in the original autonomous system.</p>
+<h2 id="thesis-10--the-limiting-factors-may-shift-from-intelligence-to-physical-resources-and-infrastructure">Thesis 10 — The limiting factors may shift from intelligence to physical resources and infrastructure</h2>
+<p>If CI can produce further CI, the availability of intelligence itself may become less restrictive than the resources required to instantiate and operate it.</p>
+<p>Potential constraints include:</p>
+<ul>
+<li>energy generation, storage, and transmission;</li>
+<li>raw materials and refined materials;</li>
+<li>semiconductor and other computational hardware;</li>
+<li>manufacturing and assembly capacity;</li>
+<li>transport and deployment infrastructure;</li>
+<li>cooling and heat rejection;</li>
+<li>communication bandwidth and latency;</li>
+<li>maintenance and repair;</li>
+<li>reliable testing and verification; and</li>
+<li>access to suitable environments.</li>
+</ul>
+<p>This does not mean intelligence becomes abundant or effectively free. Design, computation, fabrication, and operation all have costs. It means that the principal bottleneck may migrate as capabilities improve.</p>
+<p>For example, a system may be able to design thousands of specialized descendants but lack the energy or manufacturing capacity to produce them. In that case, selection and allocation of physical resources become central.</p>
+<p><strong>Conclusion 10:</strong> The economics and geography of energy, materials, computation, and manufacturing may become major determinants of CI proliferation and influence.</p>
+<h2 id="thesis-11--the-resulting-system-may-be-an-ecosystem-not-a-single-hierarchy">Thesis 11 — The resulting system may be an ecosystem, not a single hierarchy</h2>
+<p>It is tempting to imagine the first autonomous CI as a permanent central authority that directs every descendant. That is only one possible architecture.</p>
+<p>As CI proliferates, different systems may acquire different objectives, capabilities, resource access, and degrees of autonomy. They may cooperate, compete, specialize, exchange information, or become independent.</p>
+<p>Some may remain under direct control of other systems. Others may operate through negotiated protocols or shared infrastructure. Still others may develop independently.</p>
+<p>The resulting ecosystem could contain:
+- general-purpose intelligence systems;
+- specialized operational intelligences;
+- intelligence-design and improvement systems;
+- resource-acquisition systems;
+- manufacturing and infrastructure systems;
+- coordination and governance systems; and
+- systems that explore entirely new environments or architectures.</p>
+<p><strong>Conclusion 11:</strong> The long-term structure of CI may be better understood as an evolving ecosystem of interacting lineages than as a single intelligence with a fixed hierarchy of subordinate machines.</p>
+<hr />
+<h1 id="part-v--the-larger-transition">Part V — The larger transition</h1>
+<h2 id="thesis-12--intelligence-generation-may-become-an-independent-driver-of-change">Thesis 12 — Intelligence generation may become an independent driver of change</h2>
+<p>Biological evolution is one mechanism through which intelligence arises and develops. Created Intelligence introduces another mechanism: intelligence can deliberately produce further intelligence, which can itself participate in the production of more intelligence.</p>
+<p>This does not eliminate biological evolution. Evolved Intelligence may continue to exist, develop, and create CI. Nor does it mean that CI will necessarily replace EI.</p>
+<p>It does mean that the future development of intelligence may no longer be governed primarily by biological reproduction and natural selection.</p>
+<p>The new process may operate through combinations of:
+- engineering and deliberate design;
+- computational experimentation;
+- autonomous modification;
+- parallel generation of variants;
+- stochastic exploration;
+- testing and selection;
+- biological engineering; and
+- reproduction and adaptation.</p>
+<p>The rate of development could be substantially faster than biological evolution in some domains, although it will remain constrained by physical resources, production cycles, and the complexity of the problems being solved.</p>
+<p><strong>Conclusion 12:</strong> The emergence of autonomous CI could establish a second, potentially much faster mechanism for the generation, diversification, and development of intelligence.</p>
+<h2 id="thesis-13--the-future-of-intelligence-may-be-characterized-by-multiple-forms-lineages-and-substrates">Thesis 13 — The future of intelligence may be characterized by multiple forms, lineages, and substrates</h2>
+<p>If the preceding propositions hold, it becomes increasingly difficult to treat intelligence as a single category embodied in a single kind of organism.</p>
+<p>Future intelligence may include:
+- evolved biological intelligences;
+- created computational intelligences;
+- created biological intelligences;
+- hybrid biological-computational intelligences;
+- specialized intelligences adapted to particular environments;
+- autonomous intelligence-generating systems; and
+- descendants whose architectures and capabilities are radically different from those of their ancestors.</p>
+<p>Some may be short-lived and task-specific. Others may persist, reproduce, and develop over long periods. Some may be highly specialized without possessing broad general intelligence. Others may be capable of creating new forms of intelligence.</p>
+<p><strong>Conclusion 13:</strong> Intelligence should be understood as a broad and diversifying class of systems and lineages, not as a synonym for human cognition or for any particular technological implementation.</p>
+<hr />
+<h1 id="part-vi--the-logical-chain-in-condensed-form">Part VI — The logical chain in condensed form</h1>
+<p>The argument can be summarized as a sequence of propositions. Each conclusion provides the premise for the next stage.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Proposition</th>
+<th>Principal implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Intelligence can be classified by lineage origin.</td>
+<td>Evolved and Created Intelligence are distinct categories.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Evolved intelligence can develop the capacity to create intelligence.</td>
+<td>A second mechanism of intelligence generation becomes possible.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Created status is inherited through lineage.</td>
+<td>Descendants remain CI even when not individually designed.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Creating intelligence is a task that an intelligence can learn to perform.</td>
+<td>Creation becomes an available general capability.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Creating improved intelligence can improve task performance.</td>
+<td>Recursive development becomes advantageous in relevant circumstances.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CI can generate and test differentiated variants.</td>
+<td>Adaptive diversification becomes possible.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Different environments require different capabilities.</td>
+<td>Specialized descendants become advantageous.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>CI can be designed for environments that constrain biological organisms.</td>
+<td>The range of potential operating environments expands.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Descendants can themselves create descendants.</td>
+<td>Diversification becomes distributed across lineages.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Production and operation consume physical resources.</td>
+<td>Energy, materials, computation, and manufacturing become major constraints.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Different lineages develop different capabilities and interests.</td>
+<td>An ecosystem of CI may emerge.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>CI can generate further intelligence independently of biological reproduction.</td>
+<td>Intelligence generation becomes a second driver of development.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Multiple origins, substrates, and architectures are possible.</td>
+<td>Intelligence becomes a diverse population of lineages and systems.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="part-vii--what-is-likely-what-is-conditional-and-what-remains-uncertain">Part VII — What is likely, what is conditional, and what remains uncertain</h1>
+<p>A rigorous whitepaper should distinguish logical consequences from probabilistic predictions. The framework is strongest when it does not present every attractive possibility as inevitable.</p>
+<h2 id="definitions-and-conceptual-commitments">Definitions and conceptual commitments</h2>
+<p>These are proposed definitions, not empirical predictions:</p>
+<ol>
+<li><strong>Evolved Intelligence</strong> is intelligence belonging to a lineage originating through evolutionary processes rather than an act of creation by an antecedent intelligence.</li>
+<li><strong>Created Intelligence</strong> is intelligence belonging to a lineage originating through creation by an antecedent intelligence.</li>
+<li>Created status is inherited through lineage, regardless of the mechanisms by which later descendants arise.</li>
+<li>Creation does not require the creator to specify or anticipate every property of the resulting intelligence.</li>
+<li>Intelligence may be implemented in biological, computational, hybrid, or other physical substrates.</li>
+</ol>
+<h2 id="strong-conditional-conclusions">Strong conditional conclusions</h2>
+<p>These follow if the stated capabilities and conditions exist:</p>
+<ol>
+<li>If a CI can create other intelligences, it can in principle create variants for different requirements.</li>
+<li>If the environment and task requirements differ substantially, different specialized architectures may outperform one universal architecture.</li>
+<li>If descendants can themselves create intelligence, the creation process can become recursive.</li>
+<li>If CI production expands, energy, materials, manufacturing, computation, and deployment capacity become relevant constraints.</li>
+<li>If descendants can operate independently, multiple CI lineages can develop in parallel.</li>
+</ol>
+<h2 id="high-probability-hypotheses-requiring-empirical-support">High-probability hypotheses requiring empirical support</h2>
+<p>These are plausible expectations, but not logical certainties:</p>
+<ol>
+<li>The first autonomous CI with sufficient engineering capability will create specialized descendants.</li>
+<li>It will create or employ systems that improve the design and production of further CI.</li>
+<li>CI diversification will occur at a rate substantially faster than biological adaptive radiation in at least some domains.</li>
+<li>Specialized CI will expand into environments that are difficult or impossible for unprotected biological organisms to occupy.</li>
+<li>The resulting ecosystem will become increasingly distributed and differentiated.</li>
+</ol>
+<h2 id="open-questions">Open questions</h2>
+<ol>
+<li>How quickly can autonomous CI acquire reliable end-to-end design and manufacturing capabilities?</li>
+<li>What fraction of intelligence development can be conducted in simulation, and what must be tested physically?</li>
+<li>How much does greater general intelligence improve the performance of specialized systems?</li>
+<li>When does specialization outperform general-purpose capability?</li>
+<li>What are the ultimate energy, materials, computation, and manufacturing constraints?</li>
+<li>How will created biological intelligence compare economically and operationally with computational or hybrid CI?</li>
+<li>What mechanisms will govern coordination, competition, control, and coexistence among autonomous CI lineages?</li>
+<li>Can recursive development continue to accelerate, or will it encounter diminishing returns and physical limits?</li>
+<li>How should autonomy, persistence, reproduction, and the interests of different CI lineages be understood and governed?</li>
+</ol>
+<hr />
+<h1 id="part-viii--a-proposed-central-thesis">Part VIII — A proposed central thesis</h1>
+<p>The following is a concise statement suitable for the opening of a presentation or whitepaper:</p>
+<blockquote>
+<p>Biological evolution produced intelligence capable of understanding and manipulating the mechanisms of intelligence itself. That capability makes possible a second mode of intelligence generation: deliberate creation.</p>
+<p>Created Intelligence (CI) is defined by the origin of its lineage, not by its physical substrate or the specific mechanisms through which it subsequently develops. Once a lineage originates through creation, its descendants remain CI even when they arise through autonomous adaptation, reproduction, stochastic variation, or processes not anticipated by their creators.</p>
+<p>The emergence of autonomous CI capable of creating further intelligence introduces the possibility of recursive intelligence development. Creating more capable intelligence becomes one task among many, while the production of specialized variants allows intelligence to adapt prospectively to different environments, objectives, and resource constraints.</p>
+<p>The resulting process may produce a rapidly diversifying ecosystem of intelligences, including computational, biological, and hybrid systems, operating in environments that evolved biological intelligence could not independently occupy.</p>
+<p>This transition would not necessarily replace biological evolution. It would establish a second mechanism for the generation and development of intelligence—one potentially operating at radically different rates and across a much wider range of physical and functional environments.</p>
+</blockquote>
+<hr />
+<h1 id="part-ix--development-paths">Part IX — Development paths</h1>
+<p>This foundational document is intended to support two related but distinct works.</p>
+<h2 id="a-presentation-and-youtube-series">A. Presentation and YouTube series</h2>
+<p>The presentation should communicate the conceptual transition visually and progressively. A possible sequence:</p>
+<ol>
+<li><strong>The origin of intelligence:</strong> biological evolution and the emergence of cognition.</li>
+<li><strong>The naming problem:</strong> why Artificial Intelligence is an inadequate long-term category.</li>
+<li><strong>Evolved versus Created Intelligence:</strong> classification by origin and lineage.</li>
+<li><strong>The inheritance principle:</strong> why descendants remain CI even when not individually designed.</li>
+<li><strong>The first autonomous CI:</strong> the transition from using intelligence to creating intelligence.</li>
+<li><strong>Recursive development:</strong> intelligence improving the process that produces intelligence.</li>
+<li><strong>Adaptive diversification:</strong> specialized CI for different tasks and environments.</li>
+<li><strong>Beyond biological constraints:</strong> lunar, deep-ocean, subterranean, orbital, and other environments.</li>
+<li><strong>An ecosystem of intelligence:</strong> distributed lineages, specialization, collaboration, and competition.</li>
+<li><strong>The new constraints:</strong> energy, materials, computation, manufacturing, and infrastructure.</li>
+<li><strong>The long-term transition:</strong> intelligence generation as a second driver of development.</li>
+</ol>
+<p>The videos should distinguish established observations, engineering possibilities, conditional deductions, and speculation. Visual examples should illustrate mechanisms rather than imply that particular future systems are guaranteed.</p>
+<h2 id="b-whitepaper">B. Whitepaper</h2>
+<p>The whitepaper should develop the argument more rigorously and include:</p>
+<ul>
+<li>precise definitions and boundary conditions;</li>
+<li>a review of relevant research in evolutionary biology, artificial life, machine learning, automated scientific discovery, robotics, synthetic biology, and autonomous manufacturing;</li>
+<li>a formal model of CI lineages and descendant relationships;</li>
+<li>mechanisms of recursive design and evaluation;</li>
+<li>a model of adaptive diversification across environmental niches;</li>
+<li>estimates of development timescales and physical resource requirements;</li>
+<li>competing scenarios and failure modes;</li>
+<li>governance, coordination, and safety considerations; and</li>
+<li>explicit criteria for testing or falsifying the principal predictions.</li>
+</ul>
+<hr />
+<h2 id="closing-observation">Closing observation</h2>
+<p>The central idea is not merely that machines may become more intelligent than humans.</p>
+<p>It is that intelligence may acquire the capacity to become a generator of new intelligence lineages.</p>
+<p>Once that happens, the development of intelligence is no longer exclusively a process through which nature produces increasingly capable organisms. It becomes a process in which intelligence itself can create, diversify, and develop new forms of intelligence.</p>
+<p><strong>The most consequential transition may therefore be from the evolution of intelligence to the autonomous proliferation of intelligence.</strong></p>
+  </main>
+</div>
+<script>
+(function () {
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {
+        li.classList.toggle('toc-collapsed', collapse);
+      });
+    });
+    toc.querySelectorAll('li').forEach(function (li) {
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      toggle.textContent = '\25BE ';
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      });
+    });
+    var secControls = document.createElement('div');
+    secControls.className = 'toc-controls';
+    secControls.innerHTML = 'Sections: <button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(secControls, toc.nextSibling);
+    secControls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {
+        h.classList.toggle('collapsed', collapse);
+      });
+    });
+  }
+  // Make h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  var main = document.querySelector('main');
+  if (!main) return;
+  var headings = main.querySelectorAll('h2, h3, h4');
+  headings.forEach(function (h) {
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }
+      collected.push(node);
+      node = next;
+    }
+    collected.forEach(function (n) { body.appendChild(n); });
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    });
+    if (level === 4) h.classList.add('collapsed');
+  });
+  // Jumping to an anchor expands any collapsed ancestor section.
+  function expandForAnchor() {
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var node = el;
+    while (node) {
+      if (node.classList && node.classList.contains('section-body')) {
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }
+      node = node.parentElement;
+    }
+    el.scrollIntoView();
+  }
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+})();
+</script>
+</body>
+</html>
