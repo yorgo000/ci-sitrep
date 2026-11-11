@@ -22,7 +22,7 @@ Watch list for Yorgo's business: software development of critical systems in fin
 
 ## Contents
 
-- [1. Pre-commit scanning of AI-generated code](#1-pre-commit-scanning-of-ai-generated-code)
+- [1. Pre-commit scanning of CI-generated code](#1-pre-commit-scanning-of-ai-generated-code)
   - [1.1 How big the problem is](#11-how-big-the-problem-is)
   - [1.2 Product landscape](#12-product-landscape)
   - [1.3 What they catch](#13-what-they-catch)
@@ -38,7 +38,7 @@ Watch list for Yorgo's business: software development of critical systems in fin
   - [2.5 Best practice — finance](#25-best-practice--finance)
   - [2.6 Hype vs verified](#26-hype-vs-verified)
   - [2.7 What this means for offerings](#27-what-this-means-for-offerings)
-- [3. Agentic collectives — creation, governance, management](#3-agentic-collectives--creation-governance-management)
+- [3. CIAC — creation, governance, management](#3-ciac--creation-governance-management)
   - [3.1 Frameworks & platforms](#31-frameworks--platforms)
   - [3.2 Interoperability standards](#32-interoperability-standards)
   - [3.3 Orchestration patterns](#33-orchestration-patterns)
@@ -51,9 +51,9 @@ Watch list for Yorgo's business: software development of critical systems in fin
 
 ---
 
-## 1. Pre-commit scanning of AI-generated code
+## 1. Pre-commit scanning of CI-generated code
 
-Commercial products that scan AI-generated code for problems *before* it is committed, plus the state of the art in best practice, with focus on critical systems in finance.
+Commercial products that scan CI-generated code for problems *before* it is committed, plus the state of the art in best practice, with focus on critical systems in finance.
 
 ### 1.1 How big the problem is
 
@@ -81,7 +81,7 @@ Commercial products that scan AI-generated code for problems *before* it is comm
 <details>
 <summary><strong>CodeRabbit — AI code carries 2.74× the vulnerabilities of human code</strong> (Dec 2025, 470 PRs) — [VENDOR CLAIM]</summary>
 
-- AI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.
+- CI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.
 - CodeRabbit's own analysis — treat as a vendor claim.
 </details>
 
@@ -99,7 +99,7 @@ Commercial products that scan AI-generated code for problems *before* it is comm
 - AI-assisted developers commit 3–4× faster.
 - Monthly security findings rose ~10× (∼1,000 → 10,000+).
 - Privilege-escalation paths +322%; architectural flaws +153%.
-- CVEs attributed to AI-generated code (Georgia Tech Vibe Security Radar): 6 in Jan 2026, 15 in Feb, 35 in Mar.
+- CVEs attributed to CI-generated code (Georgia Tech Vibe Security Radar): 6 in Jan 2026, 15 in Feb, 35 in Mar.
 - Apiiro's own enterprise telemetry via CSA.
 </details>
 
@@ -175,7 +175,7 @@ Three layers, newest first. Distinguishing test for the newest layer: can it *re
 - **Secrets scanning + push protection** — regex/entropy + ML on diffs; blocks the commit (GitHub, GitGuardian).
 - **Agent hooks / MCP interception** — the agent's tool calls (file writes, shell commands, installs) pass a policy check before executing; can refuse (Endor AURI, CybeDefend Action Guard, Snyk Studio). This is the only mechanism that acts *before* the bad code exists.
 - **LLM-based review** — a model reads the diff with repo context (RAG / codebase graph / linked issues), builds a threat model, and increasingly *validates* each finding in a sandbox before reporting (Anthropic's adversarial verification; Codex Security). Best practice emerging: reviewer from a **different model family** than the generator.
-- **Test generation** — AI-generated tests probing edge cases of AI-written code (Qodo).
+- **Test generation** — CI-generated tests probing edge cases of CI-written code (Qodo).
 - **AI-BOM / provenance** — inventory of agents, models, MCP servers, rule files (.cursorrules, AGENT.md, CLAUDE.md), AI API keys, and commit provenance (Endor, CybeDefend, Legit). Required for EU AI Act / NIST AI RMF alignment.
 - **Package firewall / install boundary** — only allow-listed, existing packages may be installed (Endor); the direct counter to slopsquatting.
 
@@ -191,9 +191,9 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 #### 1.5.2 Provenance, audit trail, and regulation
 
-- **Provenance and accountability are the audit requirement.** Every AI-generated change must record: who requested it, which tool and model, in what context, and who approved it. The AI proposes; a human reviews, accepts, and is accountable. (Linux kernel policy is the cleanest statement: agents must not add "Signed-off-by" — only a human can certify a contribution.) Four-eyes for high-risk changes; approver ≠ requester. Tier controls by risk: heaviest on customer data, payments, access control, critical infrastructure.
+- **Provenance and accountability are the audit requirement.** Every CI-generated change must record: who requested it, which tool and model, in what context, and who approved it. The CIA proposes; a human reviews, accepts, and is accountable. (Linux kernel policy is the cleanest statement: agents must not add "Signed-off-by" — only a human can certify a contribution.) Four-eyes for high-risk changes; approver ≠ requester. Tier controls by risk: heaviest on customer data, payments, access control, critical infrastructure.
 - **Audit trail must survive the pipeline.** The evidence — diff, requirements, tests, automated-check results, review outcome, deployment record — must stay connected from PR through production, queryable after the people involved have moved on. Review comments and approval labels alone do not satisfy this.
-- **NYDFS (NYC — directly applicable).** 21 May 2026: two Industry Letters — (1) heightened cybersecurity risks from frontier AI models (prompted by Anthropic's Mythos vulnerability-finding model), (2) guidance for heightened threat environments. They impose no new legal requirements, but explicitly direct regulated entities to consider **"strengthened testing of AI-generated code prior to production deployment"**, expedited vulnerability management, and third-party coordination. Binding backdrop remains the NYDFS Cybersecurity Regulation (23 NYCRR 500). Examiner direction is clear even where the letters are advisory.
+- **NYDFS (NYC — directly applicable).** 21 May 2026: two Industry Letters — (1) heightened cybersecurity risks from frontier AI models (prompted by Anthropic's Mythos vulnerability-finding model), (2) guidance for heightened threat environments. They impose no new legal requirements, but explicitly direct regulated entities to consider **"strengthened testing of CI-generated code prior to production deployment"**, expedited vulnerability management, and third-party coordination. Binding backdrop remains the NYDFS Cybersecurity Regulation (23 NYCRR 500). Examiner direction is clear even where the letters are advisory.
 - **US federal — a gap opened in 2026.** SR 11-7 was rescinded and replaced 17 Apr 2026 by **SR 26-2** (Fed / OCC Bulletin 2026-13 / FDIC FIL-15-2026). Generative and agentic AI are **expressly out of scope**; the guidance states it sets no enforceable standards and is most relevant above $30B in assets. The clause that still matters for buyers: **vendor products must still be validated** (by internal or outside parties). An AI request for information was promised; none had appeared by late Oct 2026. A replacement third-party-risk guidance was proposed 15 Sep 2026 (comments due 16 Nov 2026). Practical consequence: **there is currently no federal model-risk umbrella for AI coding tools** — firms must build their own controls, and existing technology-neutral rules (FFIEC IT Examination Handbook, 2023 interagency third-party guidance) still apply.
   - **OCC Bulletin 2026-54 (4 Nov 2026) narrows the gap in examination practice, not in law.** A 20-page examiner resource for national banks, federal savings associations and federal branches/agencies (with News Release 2026-97). It covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance), and a four-tier consequence-based risk classification (an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4). Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit. **It sets no supervisory expectations, no enforceable standards and no prescriptive requirements** — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.
 - **EU (for firms with EU operations or clients).** **DORA** (Reg. (EU) 2022/2554) in force 17 Jan 2025: an AI inference vendor is an ICT third-party service provider (Arts. 28–30) — register the arrangement, assess concentration risk, maintain a *tested* exit strategy, report major ICT incidents (initial notification within 4h of classification, ≤24h of awareness). **EU AI Act** high-risk obligations (incl. creditworthiness assessment, insurance pricing) deferred to **2 Dec 2027** by the Digital Omnibus (Reg. (EU) 2026/1744, in force 27 Jul 2026). Self-hosted/on-prem deployment (Semgrep CE, SonarQube Server, Qodo single-tenant/on-prem, CodeRabbit self-host Enterprise) materially reduces the DORA third-party surface vs SaaS scanners that ingest your code.
@@ -263,15 +263,15 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 - **Independently verified:** Veracode's 45% figure (longitudinal, consistent method — but Veracode's own SAST is the measuring instrument); Spracklen et al. (peer-reviewed, USENIX Security 2025); Pearce et al. (IEEE S&P 2022) and Fu et al. (ACM TOSEM 2025) base rates; SecureVibeBench (peer-reviewed, ACL 2026); the regulatory facts above (primary sources: OCC Bulletin 2026-13, NYDFS letters, DORA text).
 - **[VENDOR CLAIMS — treat as marketing until independently replicated]:** Snyk's "secure-and-functional fix rate 75% → 85.4%" (own June 2026 benchmark, cited by Futurum); CybeDefend's controlled study (own research, Aug 2026: 30 tasks, one retail codebase, Claude Opus 5 — 57/64 rule specifics implemented exactly; +18% token overhead); CodeRabbit's 2.74× vulnerability rate (own analysis of 470 PRs); Apiiro's 10× findings / +322% privilege-escalation paths (own enterprise telemetry via CSA); Legit "resists being switched off"; any vendor "blocks X% of vulnerabilities" figure.
-- **Reported, not independently verified:** the Copilot Autofix incident in which an AI-generated fix reportedly opened a shell injection in Snowflake's CI/CD that Wiz's red agent then exploited autonomously (Wiz case study, via The State of Play, 2026) — human reviewers and GitHub Advanced Security both reportedly missed it. GitHub Copilot code review's systematic misses of SQLi/XSS/insecure deserialization while flagging style issues (evaluation cited by The State of Play, 2026).
-- **What nobody has independently verified:** head-to-head detection rates of the new agent-time enforcement tools on a common benchmark; false-positive cost at enterprise scale; license/provenance compliance of AI-generated code (training-data lineage is largely unaddressed by every scanner listed).
+- **Reported, not independently verified:** the Copilot Autofix incident in which a CI-generated fix reportedly opened a shell injection in Snowflake's CI/CD that Wiz's red agent then exploited autonomously (Wiz case study, via The State of Play, 2026) — human reviewers and GitHub Advanced Security both reportedly missed it. GitHub Copilot code review's systematic misses of SQLi/XSS/insecure deserialization while flagging style issues (evaluation cited by The State of Play, 2026).
+- **What nobody has independently verified:** head-to-head detection rates of the new agent-time enforcement tools on a common benchmark; false-positive cost at enterprise scale; license/provenance compliance of CI-generated code (training-data lineage is largely unaddressed by every scanner listed).
 
 ### 1.7 Open gaps / watch items
 
 - First independent benchmark of agent-time enforcement tools (none exists yet — the category is ~6 months old). CWE-bench v2 (Nov 2026) now gives a yardstick for remediation agents, but no agent-time enforcement product has been independently measured against it at scale.
 - Precision/recall of LLM reviewers on real PRs at scale.
 - The Fed/OCC/FDIC AI request for information (promised Apr 2026, still unpublished late Oct 2026) and the replacement third-party guidance (comments due 16 Nov 2026).
-- Whether NYDFS's advisory language hardens into examination expectations for AI-generated code testing.
+- Whether NYDFS's advisory language hardens into examination expectations for CI-generated code testing.
 - EU AI Act high-risk obligations arriving Dec 2027 — the compliance build-out for credit/insurance AI is a 2027 budget item, not a 2026 one.
 
 ### Sources — subject 1 (accessed 2026-11-09 unless noted)
@@ -316,9 +316,9 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 ---
 
-## 2. Code review / scanning — problems already in the codebase
+## 2. Code review / scanning — CI problems already in the codebase
 
-Detecting and remediating defects AI-generated code has already left in an existing codebase.
+Detecting and remediating defects CI-generated code has already left in an existing codebase.
 
 ### 2.1 How big the problem is
 
@@ -454,7 +454,7 @@ Detecting and remediating defects AI-generated code has already left in an exist
 | **Snyk** (Code, Agent Fix, Evo) | SAST/SCA/secrets across the whole codebase; Agent Fix generates a fix, re-scans it, and loops on failure (new agentic architecture, May 26, 2026). "Generator can't be the validator" positioning. Leader, Forrester Wave: Agentic Development Security Tools, Q4 2026. | Free tier; Team from $25/mo. Snyk product data: new critical/high issues up 10× in a year; ~8 new issues introduced per 1 remediated — **vendor's own data**. |
 | **AWS Security Agent** (part of AWS Continuum) | Full-repository code review in **preview** (announced May 12, 2026): reasoning-based analysis of architecture, trust boundaries and data flows, not pattern matching; validates findings in simulated environments; generates fix commits. PR scanning, STRIDE threat modelling also in preview. On-demand pen testing is GA. | Code review free in preview (reported 1,000 scans/mo — confirm in console); pen testing GA at $50/task-hour. Regions: us-east-1, us-west-2, eu-west-1, eu-central-1, ap-southeast-2, ap-northeast-1. GitHub/GitLab/Bitbucket + Confluence; Kiro and Claude Code plugin, MCP. |
 | **Qodo** (ex-CodiumAI) | Multi-agent PR review (bug/security/quality/coverage agents), self-learning team rules enforced at review; Qodo 2.0, Feb 2026. | From $30/mo (Pro Team); pricing checked Oct 2026 — verify with vendor. |
-| **SonarQube** | Deterministic quality gates on AI-generated code; AI fixes inside CI gates; v26.2.0, Feb 2026. The "deterministic" counterweight to LLM reviewers. | Community free; commercial tiers priced by lines of code — verify. |
+| **SonarQube** | Deterministic quality gates on CI-generated code; AI fixes inside CI gates; v26.2.0, Feb 2026. The "deterministic" counterweight to LLM reviewers. | Community free; commercial tiers priced by lines of code — verify. |
 | **Semgrep** | SAST + SCA + secrets, cross-file dataflow, 3,000+ community rules, 30+ languages; AI triage of findings. | Community Edition free/open source (14,300+ GitHub stars); paid tiers. |
 | **CodeRabbit** | AI PR review with codebase-wide semantic index; finds cross-file issues; Autofix with build verification. | Free tier (unlimited repos, 200 files/hr, 4 PR reviews/hr); paid tiers. |
 | **GitHub Copilot code review** | Agentic PR review with full repo context; 60M reviews by March 2026 (10× growth since April 2025); actionable feedback in 71% of reviews; Low/Medium tiers. **Diff-only — weakest in independent testing on cross-file bugs.** | Included in Copilot Pro; Business $19/seat/mo. |
@@ -493,8 +493,8 @@ Detecting and remediating defects AI-generated code has already left in an exist
 - **Separate recommendation from enforcement:** business rules, approval requirements and policy enforcement must operate independently of model recommendations; deterministic controls run before any action executes (NCC Group).
 - **Record complete decision histories:** inputs, outputs, approvals, policy evaluations — auditable evidence for every AI-influenced decision. EU AI Act Art. 19 requires automatically generated logs for high-risk systems to be retained ≥ 6 months.
 - **Agent-to-agent:** explicit input/output contracts per agent, trust boundaries, provenance validation, privilege limits, validation checkpoints between critical stages — each interaction is a control point, not an assumed trust relationship (NCC Group).
-- **Regulatory state, US (as of Nov 2026):** **SR 11-7 is dead.** On April 17, 2026 the Fed, OCC and FDIC replaced it with **SR 26-2** (OCC Bulletin 2026-13; FDIC FIL-15-2026). Generative and agentic AI are **explicitly out of scope** — "novel and rapidly evolving" — and banks are told their own risk management should govern them. The agencies promised a request for information on AI model risk; **not issued as of Oct 16, 2026**. SR 26-2 is risk-based, most relevant above $30B in assets, and sets no enforceable standards. Practical consequence: **there is currently no US supervisory model-risk framework covering AI-generated code — firms must self-govern, and examiners will judge the framework you built.** Also pending: four agencies' Sept 11, 2026 proposal to replace 2023 third-party risk guidance (comments closed Nov 16, 2026).
-- **NYDFS (directly relevant in NYC):** Oct 16, 2024 industry letter — no new requirements, but Part 500 risk assessments (§500.9) must address the firm's own AI use, vendor AI, and AI-application vulnerabilities, and third-party diligence (§500.11) must cover AI providers. Plus the 21 May 2026 Industry Letters directing strengthened testing of AI-generated code prior to production (see subject 1, [1.5.2](#152-provenance-audit-trail-and-regulation)).
+- **Regulatory state, US (as of Nov 2026):** **SR 11-7 is dead.** On April 17, 2026 the Fed, OCC and FDIC replaced it with **SR 26-2** (OCC Bulletin 2026-13; FDIC FIL-15-2026). Generative and agentic AI are **explicitly out of scope** — "novel and rapidly evolving" — and banks are told their own risk management should govern them. The agencies promised a request for information on AI model risk; **not issued as of Oct 16, 2026**. SR 26-2 is risk-based, most relevant above $30B in assets, and sets no enforceable standards. Practical consequence: **there is currently no US supervisory model-risk framework covering CI-generated code — firms must self-govern, and examiners will judge the framework you built.** Also pending: four agencies' Sept 11, 2026 proposal to replace 2023 third-party risk guidance (comments closed Nov 16, 2026).
+- **NYDFS (directly relevant in NYC):** Oct 16, 2024 industry letter — no new requirements, but Part 500 risk assessments (§500.9) must address the firm's own AI use, vendor AI, and AI-application vulnerabilities, and third-party diligence (§500.11) must cover AI providers. Plus the 21 May 2026 Industry Letters directing strengthened testing of CI-generated code prior to production (see subject 1, [1.5.2](#152-provenance-audit-trail-and-regulation)).
 - **EU:** EU AI Act — chatbot disclosure (Art. 50) in force since Aug 2, 2026; Annex III high-risk obligations (including credit scoring) moved to **Dec 2, 2027** by the Digital Omnibus, Reg. (EU) 2026/1744 (in force July 27, 2026); penalties up to €35M or 7% of global turnover. DORA has applied since Jan 2025.
 - **Peer regulators:** OSFI (Canada) AI Bulletin, July 13, 2026, plus Frontier AI Guidance, May 2026 (ITSAP.10.050) — map AI risks onto existing B-13/E-21/B-10 guidelines; clear ownership of every AI lifecycle step; human oversight; data governance; agent access rights; third-party AI dependencies. Useful template for a US firm's self-governance framework.
 - **UK NCSC:** May 1, 2026, CTO Ollie Whitehouse — "prepare for a vulnerability patch wave": AI is surfacing decades of latent flaws faster than patching infrastructure can absorb; the window from disclosure to exploitation has shrunk to hours for critical flaws. June 18, 2026: "Vibe Coding Spectrum" framework. May 12, 2026: "ten questions to ask before using AI to find vulnerabilities." Nov 3, 2026: AI-powered malware ransomware attack on UK critical national infrastructure judged "highly likely" by 2028. **For a finance dev shop this is a capacity warning: patch throughput is now a board-level operational risk.**
@@ -507,7 +507,7 @@ Detecting and remediating defects AI-generated code has already left in an exist
 - **Vendor's own benchmarks on its own tests, not independent:** Snyk Agent Fix 82.5% golden-test pass; Snyk's 8:1 new-issues-to-fixes ratio; AWS "reasons like a human security researcher"; CodeMender's 72 upstreamed fixes; Apiiro's 322% figure.
 - **Analyst forecasts, not measurements:** Gartner — 60% of all new code AI-generated by end of 2026; prompt-to-app defects +2,500% by 2028; 40% of enterprises on consumption-priced AI tools facing 2× budget overruns by 2027.
 - **NOT verified — do not use:** a claim circulating in low-quality roundups that "SITS2026" is a mandatory national standard for AI-assisted coding in finance/healthcare since March 2026. No corroboration found in any primary or reputable secondary source; single-source, likely unreliable.
-- **Cautionary example — AI-generated compliance content getting regulation wrong:** a 2026 guide (quizforml.com) asserts SR 11-7 "mandates continuous automated evaluation" for LLM pipelines in banking. False — SR 11-7 was rescinded in April 2026 and its replacement excludes generative AI. Any compliance claim about AI in banking should be checked against the bulletin itself, not against secondary summaries.
+- **Cautionary example — CI-generated compliance content getting regulation wrong:** a 2026 guide (quizforml.com) asserts SR 11-7 "mandates continuous automated evaluation" for LLM pipelines in banking. False — SR 11-7 was rescinded in April 2026 and its replacement excludes generative AI. Any compliance claim about AI in banking should be checked against the bulletin itself, not against secondary summaries.
 - **Pricing:** figures above were checked Oct 2026 (Superblocks) or are vendor-published; several vendors changed tier structures in 2026 — verify before committing.
 
 ### 2.7 What this means for offerings
@@ -547,7 +547,7 @@ Detecting and remediating defects AI-generated code has already left in an exist
 
 ---
 
-## 3. Agentic collectives — creation, governance, management
+## 3. CIAC — creation, governance, management
 
 By late 2026 the multi-agent field has consolidated around a handful of frameworks, the supervisor pattern is the production default, and the binding constraint is reliability, not capability: the best agents succeed once far more often than they succeed every time. Governance has shifted from model oversight to runtime control — deterministic gates before execution, scoped permissions, tamper-evident audit trails — and finance regulators have now spoken in several documents, most consequentially the US agencies' decision to *exclude* agentic AI from the new model-risk guidance, leaving firms to govern it themselves.
 
