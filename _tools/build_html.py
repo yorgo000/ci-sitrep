@@ -96,7 +96,7 @@ def build(input_path, output_path):
     last_updated = m.group(1) if m else ""
 
     html = TEMPLATE.format(
-        title="Synthesized — State of the art",
+        title="CI Today — Code & Finance",
         last_updated=last_updated,
         toc=toc_html,
         body=body,
