@@ -15,6 +15,7 @@ Defaults: ~/workspace/your_files/watches/SYNTHESIZED.md -> SYNTHESIZED.html
 
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import markdown
@@ -94,6 +95,18 @@ def build(input_path, output_path):
     # "Last updated" line, taken from the header of the markdown.
     m = re.search(r"\*\*Last updated:\*\*\s*([0-9-]+)", src)
     last_updated = m.group(1) if m else ""
+    # Human-readable "As of" date for the prominent banner (e.g. "Thursday, November 12, 2026").
+    as_of = ""
+    if last_updated:
+        try:
+            as_of = datetime.strptime(last_updated, "%Y-%m-%d").strftime("%A, %B %d, %Y")
+        except ValueError:
+            as_of = last_updated
+    # Prominent timestamp banner directly under the H1, so a reader sees at a
+    # glance how current the report is.
+    if as_of:
+        banner = f'<p class="as-of-banner">As of {as_of}</p>'
+        body = body.replace("</h1>", "</h1>\n" + banner, 1)
 
     html = TEMPLATE.format(
         title="CI Today — Code & Finance",
@@ -129,6 +142,17 @@ TEMPLATE = """<!DOCTYPE html>
     background: var(--bg);
     line-height: 1.6;
     font-size: 16px;
+  }}
+  .as-of-banner {{
+    display: inline-block;
+    margin: 0 0 18px 0;
+    padding: 6px 12px;
+    background: #eef4fa;
+    border: 1px solid #c9d9e8;
+    border-radius: 4px;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 600;
   }}
   .layout {{ display: flex; min-height: 100vh; }}
   nav.sidebar {{
