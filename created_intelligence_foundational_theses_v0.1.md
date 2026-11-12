@@ -2,7 +2,7 @@
 ## A conceptual framework for the emergence, diversification, and recursive development of intelligence
 
 **Working paper — version 0.1**  
-**Purpose:** A foundational thesis document to be developed into a presentation/video series and a formal whitepaper.
+**Purpose:** A foundational thesis document to be developed into a presentation/video series.
 
 ---
 
@@ -354,7 +354,7 @@ The argument can be summarized as a sequence of propositions. Each conclusion pr
 
 # Part VII — What is likely, what is conditional, and what remains uncertain
 
-A rigorous whitepaper should distinguish logical consequences from probabilistic predictions. The framework is strongest when it does not present every attractive possibility as inevitable.
+A rigorous treatment should distinguish logical consequences from probabilistic predictions. The framework is strongest when it does not present every attractive possibility as inevitable.
 
 ## Definitions and conceptual commitments
 
@@ -402,7 +402,7 @@ These are plausible expectations, but not logical certainties:
 
 # Part VIII — A proposed central thesis
 
-The following is a concise statement suitable for the opening of a presentation or whitepaper:
+The following is a concise statement suitable for the opening of a presentation:
 
 > Biological evolution produced intelligence capable of understanding and manipulating the mechanisms of intelligence itself. That capability makes possible a second mode of intelligence generation: deliberate creation.
 >
@@ -416,11 +416,11 @@ The following is a concise statement suitable for the opening of a presentation 
 
 ---
 
-# Part IX — Development paths
+# Part IX — Development path
 
-This foundational document is intended to support two related but distinct works.
+This foundational document is intended to support a presentation and video series.
 
-## A. Presentation and YouTube series
+## Presentation and YouTube series
 
 The presentation should communicate the conceptual transition visually and progressively. A possible sequence:
 
@@ -437,20 +437,6 @@ The presentation should communicate the conceptual transition visually and progr
 11. **The long-term transition:** intelligence generation as a second driver of development.
 
 The videos should distinguish established observations, engineering possibilities, conditional deductions, and speculation. Visual examples should illustrate mechanisms rather than imply that particular future systems are guaranteed.
-
-## B. Whitepaper
-
-The whitepaper should develop the argument more rigorously and include:
-
-- precise definitions and boundary conditions;
-- a review of relevant research in evolutionary biology, artificial life, machine learning, automated scientific discovery, robotics, synthetic biology, and autonomous manufacturing;
-- a formal model of CI lineages and descendant relationships;
-- mechanisms of recursive design and evaluation;
-- a model of adaptive diversification across environmental niches;
-- estimates of development timescales and physical resource requirements;
-- competing scenarios and failure modes;
-- governance, coordination, and safety considerations; and
-- explicit criteria for testing or falsifying the principal predictions.
 
 ---
 
