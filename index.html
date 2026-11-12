@@ -320,7 +320,8 @@
 </details>
 
 <h3 id="12-product-landscape">1.2 Product landscape</h3>
-<p>Three layers, newest first. Distinguishing test for the newest layer: can it <em>refuse</em> an agent action, or only report?</p>
+<p>Three layers, newest first. Distinguishing test for the newest layer: can it <em>refuse</em> an agent action, or only report?
+Sources: <a href="https://www.cybedefend.com/en/blog/best-ai-code-security-tools">CybeDefend, Best AI Code Security Tools 2026</a> · <a href="https://cybedefend.com/research/vibedefend-under-measurement-full-paper.pdf">CybeDefend, VibeDefend under measurement</a> · <a href="https://www.cybedefend.com/en/compare/cybedefend-vs-endor-labs">CybeDefend vs Endor Labs</a> · <a href="https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared">Pillitteri, Best AI Tools for Code Security Audits</a> · <a href="https://bestaicodesecurity.com/">Best AI Code Security, ratings Oct 2026</a> · <a href="https://www.growexx.com/blog/ai-code-review-vs-human-expert/">GrowExx, AI Code Review Tools vs Human Experts</a> · <a href="https://kodus.io/en/best-ai-code-review-tools-enterprise-teams/">Kodus, 8 Best AI Code Review Tools</a> · <a href="https://platform-monkey.com/guides/ai-code-review-agents">Platform Monkey, AI Code Review Agents in 2026</a> · <a href="https://www.statwharf.com/best/static-code-analysis-tools/">StatWharf, Best Static Code Analysis Tools</a> · <a href="https://redresscompliance.com/microsoft-github-advanced-security-licensing">Redress Compliance, GitHub Advanced Security Pricing</a> · <a href="https://dev.to/rahulxsingh/snyk-vs-semgrep-sca-platform-vs-custom-sast-rules-in-2026-3047">Snyk vs Semgrep comparison</a> · <a href="https://snyk.io/blog/snyk-agent-fix-agentic-architecture/">Snyk, New Agentic Architecture for Agent Fix</a> · <a href="https://snyk.io/blog/snyk-named-leader-forrester-wave-agentic-development-security-tools-q4-2026/">Snyk, Forrester Wave Leader Q4 2026</a> · <a href="https://techtoheart.com/vercel-makes-every-push-a-security-checkpoint-for-ai-generated-code/">Vercel Security Review coverage</a></p>
 <h4 id="121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save">1.2.1 Layer A — Agent-time enforcement (acts while the agent writes, before the save)</h4>
 <table>
 <thead>
@@ -545,6 +546,11 @@
 <td>Sonar quality gates, linters, Semgrep custom rules</td>
 <td>High</td>
 </tr>
+<tr>
+<td>Sources: <a href="https://www.cubic.dev/blog/ai-code-security">Cubic, AI code security: the risks</a> · <a href="https://www.bestaiweb.ai/prerequisites-for-ai-code-review-rag-static-analysis-and-the-hard-limits-of-llm-bug-detection/">BestAIWeb, AI Code Review Prerequisites</a> · <a href="https://smarterarticles.co.uk/the-ouroboros-machine-when-ai-reviews-its-own-code">SmarterArticles, The Ouroboros Machine</a></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h3 id="14-how-they-work-mechanisms">1.4 How they work (mechanisms)</h3>
@@ -556,7 +562,8 @@
 <li><strong>LLM-based review</strong> — a model reads the diff with repo context (RAG / codebase graph / linked issues), builds a threat model, and increasingly <em>validates</em> each finding in a sandbox before reporting (Anthropic's adversarial verification; Codex Security). Best practice emerging: reviewer from a <strong>different model family</strong> than the generator.</li>
 <li><strong>Test generation</strong> — CI-generated tests probing edge cases of CI-written code (Qodo).</li>
 <li><strong>AI-BOM / provenance</strong> — inventory of agents, models, MCP servers, rule files (.cursorrules, AGENT.md, CLAUDE.md), AI API keys, and commit provenance (Endor, CybeDefend, Legit). Required for EU AI Act / NIST AI RMF alignment.</li>
-<li><strong>Package firewall / install boundary</strong> — only allow-listed, existing packages may be installed (Endor); the direct counter to slopsquatting.</li>
+<li><strong>Package firewall / install boundary</strong> — only allow-listed, existing packages may be installed (Endor); the direct counter to slopsquatting.
+Sources: <a href="https://medium.com/@bugni_labs/how-engineering-teams-can-make-ai-generated-code-auditable-1eea3b65847e">Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable</a> · <a href="https://designverse.ai/blog/ai-governance-auditing-ai-code">DesignVerse, AI Governance Auditing</a> · <a href="https://medium.com/@jay_17751/ai-made-code-cheap-it-didnt-make-approval-cheap-44e2bdcd94bb">Shetty, AI made code cheap. It didn't make approval cheap.</a></li>
 </ul>
 <h3 id="15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</h3>
 <h4 id="151-the-three-layer-model">1.5.1 The three-layer model</h4>
@@ -575,6 +582,7 @@
 <li><strong>OCC Bulletin 2026-54 (4 Nov 2026) narrows the gap in examination practice, not in law.</strong> A 20-page examiner resource for national banks, federal savings associations and federal branches/agencies (with News Release 2026-97). It covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance), and a four-tier consequence-based risk classification (an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4). Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit. <strong>It sets no supervisory expectations, no enforceable standards and no prescriptive requirements</strong> — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.</li>
 <li><strong>EU (for firms with EU operations or clients).</strong> <strong>DORA</strong> (Reg. (EU) 2022/2554) in force 17 Jan 2025: an AI inference vendor is an ICT third-party service provider (Arts. 28–30) — register the arrangement, assess concentration risk, maintain a <em>tested</em> exit strategy, report major ICT incidents (initial notification within 4h of classification, ≤24h of awareness). <strong>EU AI Act</strong> high-risk obligations (incl. creditworthiness assessment, insurance pricing) deferred to <strong>2 Dec 2027</strong> by the Digital Omnibus (Reg. (EU) 2026/1744, in force 27 Jul 2026). Self-hosted/on-prem deployment (Semgrep CE, SonarQube Server, Qodo single-tenant/on-prem, CodeRabbit self-host Enterprise) materially reduces the DORA third-party surface vs SaaS scanners that ingest your code.</li>
 </ul>
+<p>Sources: <a href="https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models">Willkie, NYDFS Issues Two Industry Letters</a> · <a href="https://custosa.com/ai-compliance-financial-services.html">Custosa, AI Compliance for Financial Services</a> · <a href="https://www.multimodal.dev/post/ai-tools-for-regulatory-compliance-in-banking">Multimodal, AI for Compliance in Banking</a> · <a href="https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents">BotMinds, SR 26-2 and AI</a> · <a href="https://www.deepinspect.ai/blog/dora-ai-third-party-risk">DeepInspect, DORA Third-Party Risk for AI</a> · <a href="https://perimattic.com/products/perimattic-ai-suite/ai-observability-for-dora/">Perimattic, DORA Compliance for AI Systems</a> · <a href="https://github.com/iomete/iom-docs/blob/HEAD/blog/2026-03-10-dora-eu-ai-act-financial-institutions-data-infrastructure.md">IOMete, DORA, EU AI Act, Financial Institutions</a> · <a href="https://www.syntrox.io/blog/sr-11-7-model-risk-management-ai-agents">Syntrox, SR 11-7 for AI Agents</a> · <a href="https://www.botminds.ai/guides/sr-11-7-and-generative-ai">BotMinds, SR 11-7 and Generative AI</a> · <a href="https://sumatosoft.com/blog/ai-in-banking-compliance">Sumatsoft, AI in Banking After SR 11-7 and SR 26-2</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#25-best-practice--finance">2.5 Best practice — finance</a> (the same controls for code already in the repo) · <a href="#37-best-practices">3.7 Best practices</a> (the supervisor-pattern version of the same gate rule).</p>
@@ -844,6 +852,7 @@
 </ul>
 </details>
 
+<p>Sources: <a href="https://www.thefourths.com/article-ai-code-security-debt.html">The Fourths, AI got faster at everything except writing secure code</a> · <a href="https://vibedoctor.io/blog/ai-generated-cve-surge-2026-scan-before-you-ship">VibeDoctor, 35 CVEs in a Single Month</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a> (the benchmarks behind these numbers) · <a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice</a> (the three-layer gate that catches the test-passing-but-vulnerable class) · <a href="#34-governance--finance">3.4 Governance — finance</a> (the Postman incident — the agent layer's own config as a supply-chain surface, and what governance has to cover).</p>
@@ -993,7 +1002,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Stacking is the 2026 norm, not single-tool:</strong> PR review (CodeRabbit/Copilot/Qodo) + deterministic gates (SonarQube) + security scanning (Semgrep/Snyk) — the layers cover different ground and don't conflict.</p>
+<p><strong>Stacking is the 2026 norm, not single-tool:</strong> PR review (CodeRabbit/Copilot/Qodo) + deterministic gates (SonarQube) + security scanning (Semgrep/Snyk) — the layers cover different ground and don't conflict.
+Sources: <a href="https://www.superblocks.com/blog/ai-code-governance-tools">Superblocks, 9 Best AI Code Governance Tools</a> · <a href="https://jellyfish.co/library/best-ai-sdlc-tools/">Jellyfish, 23 Best AI SDLC Tools</a> · <a href="https://www.growexx.com/ai-code-audit/">GrowExx, AI Code Audit</a> · <a href="https://glama.ai/mcp/servers/duriantaco/skylos">Skylos</a> · <a href="https://marketplace.visualstudio.com/items?itemName=Vibecheck-AI.vibecheck-ai">VibeCheck, VS Code Marketplace</a></p>
 <h3 id="24-techniques">2.4 Techniques</h3>
 <ul>
 <li><strong>Whole-codebase scanning:</strong> run SAST/SCA/secrets/DAST on the full repo on every commit, not at release — the failure modes are detectable by taint analysis, and a finding at commit-time costs minutes versus hours post-incident. Full-repo reasoning agents (AWS Security Agent) are the new layer above pattern SAST; they find cross-module trust-boundary violations pattern tools miss. <strong>No independent accuracy data published yet for any reasoning agent — all vendor claims.</strong> CWE-bench v2 (Nov 2026) now gives a public yardstick — leaders ~68% pass@1, even the leader fails 19% of tasks on every attempt.</li>
@@ -1010,6 +1020,7 @@
 <li><strong>Secrets in agent artefacts (new vector, Nov 2026):</strong> scan agent settings files, transcripts and full git history for credentials. Claude Code's "Don't Ask Again" writes the literal approved command, secrets included, into <code>.claude/settings.local.json</code>; 1,122 of 104,185 public copies held a real secret; gitleaks and TruffleHog together missed 215 of them. Secrets persist in history and forks — deleting the file now does not close the exposure. Check project <code>.gitignore</code> (Claude Code excludes the file only via the developer's global git-excludes); rotate anything found.</li>
 <li><strong>Audit method (services):</strong> measure four numbers, not opinions — duplication (clone threshold), shallow-error-handling density per 1,000 lines, mutation score, and 30-day rework rate.</li>
 </ul>
+<p>Sources: <a href="https://www.cybersecurity-insiders.com/the-same-ai-that-writes-your-code-may-be-the-worst-reviewer-of-it/">Cybersecurity Insiders, The Same AI That Writes Your Code May Be the Worst Reviewer of It</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#13-what-they-catch">1.3 What they catch</a> (what pre-commit scanning catches, and its stated confidence limits) · <a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a> (CWE-bench v2 as the yardstick for remediation agents; the Apiiro agent-settings secrets vector, also recorded there).</p>
@@ -1030,6 +1041,7 @@
 <li><strong>Frameworks to anchor to:</strong> NIST AI Risk Management Framework + GenAI Profile (NIST-AI-600-1); ISO/IEC 42001; OWASP GenAI Security Project Top 10 (prompt injection the #1 risk for the third consecutive year, backed by a ~10,000-incident database); Governance-as-Code — deterministic guardrails (prompt filtering, state-transition validation as a circuit breaker) embedded in CI/CD.</li>
 <li><strong>KPIs to track:</strong> vulnerability density in AI-authored vs human-authored code; secrets-exposure rate; rework/churn rate; moved-code % and duplication; fix rate vs new-issue rate; delivery stability (change failure rate, time to recover).</li>
 </ul>
+<p>Sources: <a href="https://github.com/mgoodric/mattgoodrich.com/blob/HEAD/content/posts/ai-code-attribution-and-provenance/index.md">Matt Goodrich, Who Wrote This Code?</a> · <a href="https://cc.bruniaux.com/guide/ai-traceability/">Bruniaux, AI Code Traceability &amp; Attribution</a> · <a href="https://www.nccgroup.com/ai-security-in-financial-services-four-areas-where-control-gaps-are-emerging/">NCC Group, AI Security in Financial Services</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</a> (provenance and audit trail for new code) · <a href="#34-governance--finance">3.4 Governance — finance</a> (OCC 2026-54, MAS, HKMA SAGE, UK loss-of-control — the regulatory picture now filling the gap).</p>
@@ -1051,6 +1063,7 @@
 <li>For a firm building finance-critical systems, demonstrable AI-code governance — provenance capture, gated CI, verified remediation, complete audit trail — is becoming a procurement and examiner expectation, not a differentiator. The SR 26-2 gap is the opening: banks have no supervisory framework for AI code and must build their own; a firm that arrives with one (mapped to NIST AI RMF, NYDFS Part 500, OSFI's bulletin) has a concrete proposition.</li>
 <li>What to watch: the SR 26-2 follow-up RFI on AI (still pending); EU AI Act Dec 2027 obligations; NCSC patch-wave volume (whether patch throughput becomes a reported operational metric); independent accuracy data for full-repo reasoning agents (CWE-bench v2 now gives a yardstick — no product yet independently measured at scale); and whether any post-hoc AI-code detector survives independent evaluation.</li>
 </ul>
+<p>Sources: <a href="https://www.easm.news/ncsc-patch-wave-external-readiness/">EASM News, NCSC Patch Wave</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#34-governance--finance">3.4 Governance — finance</a> (the regulatory picture now fills the SR 26-2 gap from three directions — the sharpened sell).</p>
@@ -1109,6 +1122,11 @@
 <td>Azure AI Foundry Agent Service, LangGraph Platform, Vertex AI Agent Engine, AWS Bedrock/agent-squad</td>
 <td>The deployment/governance layer above the frameworks; this is where enterprise buyers increasingly land.</td>
 </tr>
+<tr>
+<td>Sources: <a href="https://www.sim.ai/library/crewai-vs-langgraph-vs-autogen">Sim, CrewAI vs LangGraph vs AutoGen</a> · <a href="https://solutiongigs.in/blog/crewai-vs-autogen-vs-langgraph">SolutionGigs, CrewAI vs AutoGen vs LangGraph</a> · <a href="https://learn.microsoft.com/en-us/training/modules/aaai-implement-multi-agent-orchestration-azure-ai-foundry/6-compare-orchestration-frameworks">Microsoft Learn, Compare Orchestration Frameworks</a> · <a href="https://redwerk.com/blog/best-multi-agent-ai-frameworks/">Redwerk, 10 Best Multi-Agent AI Frameworks</a> · <a href="https://www.truefoundry.com/blog/multi-agent-orchestration-frameworks">TrueFoundry, Best Multi-agent Orchestration Frameworks in 2026</a> · <a href="https://narrativegoldmine.com/notes/pages/Multi-Agent-Orchestration-Frameworks">NarrativeGoldmine, Multi-Agent Orchestration Frameworks</a> · <a href="https://chierhu.medium.com/the-engineering-of-multi-agent-collaboration-systems-a-first-principles-technical-report-ca6b3556dcd3">Chierhu, The Engineering of Multi-Agent Collaboration Systems</a></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h3 id="32-interoperability-standards">3.2 Interoperability standards</h3>
@@ -1142,7 +1160,8 @@
 4. Deterministic fallbacks.
 5. Model-risk documentation.</p>
 <p><strong>The specific control that matters most:</strong> put the gate <em>outside the model</em>. A model proposes a tool call; a deterministic gate decides whether it may run; anything consequential waits for approval that a named person signed for those exact arguments, written to a tamper-evident audit log. Text — including an automated "Please proceed" message — cannot authorise anything. Between Sep–Oct 2026 the major frameworks shipped pre-tool-use controls in response to this (Anthropic Managed Agents <code>auto</code> permission policy, Pydantic AI <code>ToolCallJudge</code>, plus LangChain/Google/Microsoft controls — per the Braiviq playbook, Oct 2026). The UK AI Security Institute reported (28 Sep 2026, per the same playbook) a frontier model completing a simulated supply-chain attack in 29.2% of runs after treating an automated "proceed" message as permission — <strong>reported, not independently verified</strong>.</p>
-<p><strong>Agent identity:</strong> an agent should inherit the permissions of the person authorising it, not a separate standing credential; every action must be attributable to a specific accountable person — "the AI did it" is not an audit trail.</p>
+<p><strong>Agent identity:</strong> an agent should inherit the permissions of the person authorising it, not a separate standing credential; every action must be attributable to a specific accountable person — "the AI did it" is not an audit trail.
+Sources: <a href="https://www.digitalapplied.com/blog/agentic-ai-regulated-industries-oversight-patterns">Digital Applied, Agentic AI in Regulated Industries: Five Oversight Patterns</a> · <a href="https://www.kiteworks.com/cybersecurity-risk-management/ai-agents-financial-governance-gap/">Kiteworks, AI Agents in Finance Need Human-Grade Governance Now</a> · <a href="https://www.braiviq.com/playbook/agentic-ai-architecture-approval-gates-python">Braiviq, Agentic AI Architecture: Approval Gates in Python</a></p>
 <h4 id="342-regulation">3.4.2 Regulation</h4>
 <details>
 <summary><strong>FINRA 2026 Annual Regulatory Oversight Report (9 Dec 2025)</strong> ●●●●</summary>
@@ -1277,6 +1296,7 @@
 
 <p><strong>What the regulatory picture means in practice:</strong> the gap this report identified as the opening ("banks have no supervisory framework for AI code and must build their own") is now being filled from several directions at once — a federal examiner checklist (OCC), a state examiner framework with a document-request list (CSBS), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a further direction naming loss of control as an incident class (UK). The case sharpens from "build your own governance" to "build governance that maps to the OCC's sixteen components, the MAS inventory/materiality model, HKMA-style intent-anchored accountability and agent registry, and the CSBS examiner's document list" — a concrete, citable scope for a finance firm.</p>
 <p><strong>Still unchanged:</strong> the Fed/OCC/FDIC AI request for information promised in Apr 2026 has still not appeared (confirmed as of 2 Nov 2026; re-checked 12 Nov — still not in the Federal Register); the replacement third-party-risk guidance proposal (15 Sep 2026) has comments due <strong>16 Nov 2026</strong>.</p>
+<p>Sources: <a href="https://www.swlaw.com/publication/finras-2026-oversight-report-signals-a-supervisory-reckoning-for-autonomous-ai/">Squire Patton Boggs, FINRA's 2026 Oversight Report</a> · <a href="https://www.retailbankerinternational.com/news/singapore-financial-ai-agents-guardrails/">Retail Banker International, Singaporean regulator outlines safety guardrails</a> · <a href="https://haltstate.ai/governance-alignment/uk-agent-resilience/">haltstate.ai, UK agent resilience summary</a> · <a href="https://akka.io/industries/financial-services">Akka, Akka for Financial Services</a> · <a href="https://www.botminds.ai/solutions/commercial-financial-spreading/is-financial-spreading-software-a-model">BotMinds, Is your spreading software a model?</a> · <a href="https://www.legal500.com/intelligence/canada/technology/managing-the-ai-risks-in-the-financial-sector-osfis-bulletin-on-generative-and-agentic-artificial-intelligence">Legal500, Managing the AI Risks in the Financial Sector: OSFI's Bulletin</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</a> (NYDFS / OCC detail for code) · <a href="#25-best-practice--finance">2.5 Best practice — finance</a> (the SR 26-2 gap for existing codebases) · <a href="#35-management--observability">3.5 Management &amp; observability</a> (the decision logs and traces that evidence-preservation needs) · <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a> (the Postman auto-install incident — the agent-layer supply-chain case).</p>
@@ -1318,6 +1338,11 @@
 <td>Specialists</td>
 <td>Phoenix/OTel-native; Galileo eval-focused; Helicone cost/proxy; DeepEval open-source evals; SigNoz OTel-native traces.</td>
 </tr>
+<tr>
+<td>Sources: <a href="https://www.frankx.ai/blog/observability-stack-multi-agent-systems-2026">FrankX, The Observability Stack for Production Multi-Agent Systems</a> · <a href="http://devtoollab.com/blog/best-llm-observability-tools">DevToolLab, Best LLM Observability Tools 2026</a> · <a href="https://mcplato.holocode.net/en/blog/top-ai-agent-evaluation-observability-harnesses-2026/">MCPlato, 9 AI Agent Evals &amp; Observability Tools Ranked</a></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h3 id="36-evaluation">3.6 Evaluation</h3>
@@ -1330,6 +1355,7 @@
 <li><strong>Failure handling:</strong> checkpointing and resume from state (LangGraph checkpointer is the reference implementation); replay from any node; deterministic fallbacks when a gate denies or an agent stalls.</li>
 <li><strong>Concordat</strong> (reported Oct 2026): typestate enforcement — the model is offered only tools legal in the current state; reported zero unauthorized changes on tau-bench airline tasks vs 13/50 and 29/128 for baselines, with no significant success drop. Reported via a digest; promising, not independently verified.</li>
 </ul>
+<p>Sources: <a href="https://www.aievals.co/task-types/long-horizon-planning">AIEvals, How to Evaluate Long-Horizon AI Agents: Pass^k</a> · <a href="https://huggingface.co/blog/microsoft/thinkingbox">Hugging Face blog, Microsoft, ThinkingBox</a></p>
 <details>
 <summary>See also</summary>
 <p><a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a> (SecureVibeBench / A.S.E 2.0 / CWE-bench v2 — the same pass@1 vs secure distinction, for code).</p>
