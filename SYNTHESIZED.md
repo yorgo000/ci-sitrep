@@ -13,6 +13,8 @@ Watch list for Yorgo's business: software development of critical systems in fin
 
 **How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New this week](#new-this-week) to jump to the latest changes.
 
+**Credibility rating** — every article carries a dots rating for how much confidence you can place in its source. **●●●● Established:** peer-reviewed and independently confirmed, or a primary regulatory/government document — safe to act on. **●●●○ Corroborated:** peer-reviewed single study, or a credible primary source confirmed by independent reporting — good basis for a decision. **●●○○ Reported:** single credible source, not yet independently verified (preprints, well-documented vendor research) — directional; verify before committing significant budget. **●○○○ Claimed:** vendor claim or single uncorroborated report — treat as a lead, not a fact.
+
 ## New this week
 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
@@ -64,7 +66,7 @@ Commercial products that scan CI-generated code for problems *before* it is comm
 ### 1.1 How big the problem is
 
 <details>
-<summary><strong>Veracode — ~45% of AI code introduces a known security flaw</strong> (Spring 2026, longitudinal benchmark)</summary>
+<summary><strong>Veracode — ~45% of AI code introduces a known security flaw</strong> (Spring 2026, longitudinal benchmark) ●●●○</summary>
 
 - Security pass rate ~55%, essentially flat for two years (2024 → Mar 2026), while syntax correctness rose past 95%.
 - Best models (GPT-5 with extended reasoning) reach only 70–72%.
@@ -75,7 +77,7 @@ Commercial products that scan CI-generated code for problems *before* it is comm
 </details>
 
 <details>
-<summary><strong>Spracklen et al. — ~20% of package references are hallucinated</strong> (USENIX Security 2025, peer-reviewed)</summary>
+<summary><strong>Spracklen et al. — ~20% of package references are hallucinated</strong> (USENIX Security 2025, peer-reviewed) ●●●○</summary>
 
 - 19.7% of package references named packages that don't exist.
 - 205,474 unique invented names; 43% recur across all 10 re-runs.
@@ -85,14 +87,14 @@ Commercial products that scan CI-generated code for problems *before* it is comm
 </details>
 
 <details>
-<summary><strong>CodeRabbit — AI code carries 2.74× the vulnerabilities of human code</strong> (Dec 2025, 470 PRs) — [VENDOR CLAIM]</summary>
+<summary><strong>CodeRabbit — AI code carries 2.74× the vulnerabilities of human code</strong> (Dec 2025, 470 PRs) — [VENDOR CLAIM] ●○○○</summary>
 
 - CI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.
 - CodeRabbit's own analysis — treat as a vendor claim.
 </details>
 
 <details>
-<summary><strong>Tenzai — the failure mode moved up the stack</strong> (Dec 2025, 5 tools, 15 apps, 69 vulns incl. 6 critical)</summary>
+<summary><strong>Tenzai — the failure mode moved up the stack</strong> (Dec 2025, 5 tools, 15 apps, 69 vulns incl. 6 critical) ●●○○</summary>
 
 - No classic SQLi/XSS found.
 - Failures were business logic and authorisation: missing ownership checks, admin endpoints without admin checks, negative pricing.
@@ -100,7 +102,7 @@ Commercial products that scan CI-generated code for problems *before* it is comm
 </details>
 
 <details>
-<summary><strong>Apiiro / CSA — volume compounds it</strong> (Apr 2026, enterprise telemetry) — [VENDOR DATA]</summary>
+<summary><strong>Apiiro / CSA — volume compounds it</strong> (Apr 2026, enterprise telemetry) — [VENDOR DATA] ●●○○</summary>
 
 - AI-assisted developers commit 3–4× faster.
 - Monthly security findings rose ~10× (∼1,000 → 10,000+).
@@ -110,7 +112,7 @@ Commercial products that scan CI-generated code for problems *before* it is comm
 </details>
 
 <details>
-<summary><strong>Adoption is already majority-AI</strong> (2026 surveys)</summary>
+<summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
 
 - JetBrains Developer Ecosystem Survey 2026 (~15,000 devs): ~47% of code written fully by AI agents.
 - Sonar State of Code 2026: 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always verify it before committing; 65% expected by 2027.
@@ -221,7 +223,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 ### 1.6 Benchmarks & evidence
 
 <details>
-<summary><strong>A.S.E 2.0 / CASE-Bench — 55.6% passed every test while a working exploit succeeded</strong> (arXiv:2611.06294, submitted 4 Nov 2026; preprint, not peer-reviewed)</summary>
+<summary><strong>A.S.E 2.0 / CASE-Bench — 55.6% passed every test while a working exploit succeeded</strong> (arXiv:2611.06294, submitted 4 Nov 2026; preprint, not peer-reviewed) ●●○○</summary>
 
 - 145 repository-level tasks built from real CVEs in 51 projects.
 - A task counts as secure only if functional tests pass **and** a validated proof-of-concept exploit fails.
@@ -234,7 +236,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 </details>
 
 <details>
-<summary><strong>SecureVibeBench — best agent 23.8% correct-and-secure; 23% correct but exploitable</strong> (Chen et al., arXiv:2509.22097; ACL 2026 long paper, July 2026 — peer-reviewed)</summary>
+<summary><strong>SecureVibeBench — best agent 23.8% correct-and-secure; 23% correct but exploitable</strong> (Chen et al., arXiv:2509.22097; ACL 2026 long paper, July 2026 — peer-reviewed) ●●●○</summary>
 
 - 105 C/C++ tasks reconstructed from real OSS-Fuzz/ARVO vulnerabilities across 41 projects.
 - Each task replays the exact requirements that originally led a human developer to introduce the vulnerability.
@@ -248,7 +250,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 </details>
 
 <details>
-<summary><strong>CWE-bench v2 — public yardstick for remediation agents</strong> (Collinear AI, via Hugging Face blog, 3 Nov 2026)</summary>
+<summary><strong>CWE-bench v2 — public yardstick for remediation agents</strong> (Collinear AI, via Hugging Face blog, 3 Nov 2026) ●●○○</summary>
 
 - Public benchmark of 100 tasks (91 CWE classes) for agents finding and fixing security flaws in real open-source code.
 - Fully programmatic scoring, held-out private set. 11 models evaluated.
@@ -258,7 +260,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 </details>
 
 <details>
-<summary><strong>SusVibes re-run — a post-hoc review lifts working-and-secure to 47–56% at ~2.5× cost</strong> (independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED]</summary>
+<summary><strong>SusVibes re-run — a post-hoc review lifts working-and-secure to 47–56% at ~2.5× cost</strong> (independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED] ●●○○</summary>
 
 - Agents rebuilding features that originally shipped with a real vulnerability: functional success 83–95%, but only 24–36% both working and secure.
 - 65–75% of working solutions reintroduced the old vulnerability.
@@ -269,7 +271,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 </details>
 
 <details>
-<summary><strong>SecPRBench — best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> (arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed)</summary>
+<summary><strong>SecPRBench — best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> (arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
 
 - 265 tasks from nine critical systems (Firefox, V8, OpenSSL), each built from the real commit that introduced a vulnerability — not from its later fix — and paired with a repaired companion.
 - A finding counts only if it explains the vulnerability's root cause in the reviewed code (LLM-as-judge, Claude Opus 5.5).
@@ -280,7 +282,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 </details>
 
 <details>
-<summary><strong>Apiiro — agent settings files are a new secrets vector standard scanners miss</strong> (5 Nov 2026) — [VENDOR RESEARCH]</summary>
+<summary><strong>Apiiro — agent settings files are a new secrets vector standard scanners miss</strong> (5 Nov 2026) — [VENDOR RESEARCH] ●●○○</summary>
 
 - Claude Code's "Don't Ask Again" approval writes the literal approved command, secrets included, into `.claude/settings.local.json`.
 - Apiiro found 104,185 public copies; 1,122 (1.1%) held at least one real secret (1,379 distinct: 379 DB passwords, 122 Supabase service-role keys, 43 SSH logins, 23 AWS keys).
@@ -369,7 +371,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 ### 2.1 How big the problem is
 
 <details>
-<summary><strong>Veracode — ~45% of AI code introduces a known flaw</strong> (Spring 2026)</summary>
+<summary><strong>Veracode — ~45% of AI code introduces a known flaw</strong> (Spring 2026) ●●●○</summary>
 
 - Same benchmark as subject 1: only ~55% of AI code-generation tasks produce output free of a known flaw.
 - XSS handled securely 15% of the time; log injection 12–13%.
@@ -379,7 +381,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>Secure Code Warrior AI Trust Index — 15 confirmed vulnerabilities per codebase, 4.3 severe</strong> (July 22, 2026)</summary>
+<summary><strong>Secure Code Warrior AI Trust Index — 15 confirmed vulnerabilities per codebase, 4.3 severe</strong> (July 22, 2026) ●●○○</summary>
 
 - 16 models, 1,760 codebases, 11 frameworks; method built with RMIT University for the first 6 models.
 - Average **15 confirmed vulnerabilities per codebase, 4.3 severe**; 27,000+ confirmed findings; 86 unique CWEs.
@@ -389,7 +391,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>SecureVibeBench — roughly half of test-passing AI code is vulnerable</strong> (Chen et al., ACL 2026, peer-reviewed)</summary>
+<summary><strong>SecureVibeBench — roughly half of test-passing AI code is vulnerable</strong> (Chen et al., ACL 2026, peer-reviewed) ●●●○</summary>
 
 - Same benchmark as subject 1; for an audit of an existing codebase this is the quantification of what's already in there.
 - Of agent-written code: 23.0% of all tasks were functionally correct but exploitable, against only 23.8% correct-and-secure.
@@ -399,7 +401,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>A.S.E 2.0 — a green test suite on AI-written code is weak evidence of security</strong> (arXiv:2611.06294, Nov 2026; preprint)</summary>
+<summary><strong>A.S.E 2.0 — a green test suite on AI-written code is weak evidence of security</strong> (arXiv:2611.06294, Nov 2026; preprint) ●●○○</summary>
 
 - 145 repo-level tasks from real CVEs; secure = tests pass **and** a validated proof-of-concept exploit fails.
 - Claude Code (Sonnet 4.5): 74.0% functional pass, 18.4% secure — **55.6% passed every test while a working exploit still succeeded**.
@@ -408,7 +410,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>SecPRBench — agentic review misses 22–68% of vulnerability-introducing changes</strong> (arXiv:2610.33509, 24 Oct 2026; preprint)</summary>
+<summary><strong>SecPRBench — agentic review misses 22–68% of vulnerability-introducing changes</strong> (arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
 
 - Same benchmark as subject 1; for an audit of an existing codebase this is the measured miss rate of the review layer itself.
 - Best agents (Grok 4.6, GPT-6 sol, GLM 5.3, Claude Opus 5.5) find ~3 in 4 vuln-introducing changes; the weakest finds ~1 in 3.
@@ -417,27 +419,27 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>Independent PR analysis — AI code carries 2.74× the vulnerabilities</strong> (470 GitHub PRs, reported 2026)</summary>
+<summary><strong>Independent PR analysis — AI code carries 2.74× the vulnerabilities</strong> (470 GitHub PRs, reported 2026) ●○○○</summary>
 
 - AI-written code carries **2.74× the vulnerabilities** of human-written code and 1.7× more major issues.
 - *[Secondary reporting; indicative, not a named primary study.]*
 </details>
 
 <details>
-<summary><strong>Apiiro — 322% more privilege-escalation paths in AI-assisted repos</strong> (Fortune 50 codebases) — [VENDOR STUDY]</summary>
+<summary><strong>Apiiro — 322% more privilege-escalation paths in AI-assisted repos</strong> (Fortune 50 codebases) — [VENDOR STUDY] ●●○○</summary>
 
 - 322% more privilege-escalation paths and 40% more secrets exposure in AI-assisted repositories.
 </details>
 
 <details>
-<summary><strong>UTSA / Virginia Tech / Oklahoma — 19.7% of package references don't exist</strong> (academic, 576,000 samples)</summary>
+<summary><strong>UTSA / Virginia Tech / Oklahoma — 19.7% of package references don't exist</strong> (academic, 576,000 samples) ●●●○</summary>
 
 - **19.7% referenced a package that does not exist**, 205,000+ unique fictional names.
 - This is the hallucinated-dependency supply-chain vector.
 </details>
 
 <details>
-<summary><strong>Black Duck OSSRA 2026 — mean vulnerabilities per codebase 581, up 107% year-on-year</strong> (audit of 947 commercial codebases)</summary>
+<summary><strong>Black Duck OSSRA 2026 — mean vulnerabilities per codebase 581, up 107% year-on-year</strong> (audit of 947 commercial codebases) ●●●○</summary>
 
 - Mean vulnerabilities per codebase **581, up 107% year-on-year** — the sharpest jump in the report's history.
 - 68% of codebases have open-source license conflicts (highest ever).
@@ -447,7 +449,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>GitClear — "The Maintainability Gap"</strong> (Jan 2026, 623M code changes, 2023–2026)</summary>
+<summary><strong>GitClear — "The Maintainability Gap"</strong> (Jan 2026, 623M code changes, 2023–2026) ●●○○</summary>
 
 - Refactoring ("moved code") fell from 21% of changed lines (2022) to **3.8%**.
 - Copy/pasted lines rose 9.4% → 15.7%.
@@ -457,7 +459,7 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>Google DORA — the "verification tax"</strong> (2024–2026, survey-based, correlational)</summary>
+<summary><strong>Google DORA — the "verification tax"</strong> (2024–2026, survey-based, correlational) ●●●○</summary>
 
 - 2024: every +25% AI adoption associated with −1.5% throughput and −7.2% delivery stability.
 - 2025: 90% of professionals using AI (~2 h/day); adoption now correlates with *higher* throughput but still *lower* stability.
@@ -465,25 +467,25 @@ Detecting and remediating defects CI-generated code has already left in an exist
 </details>
 
 <details>
-<summary><strong>Sonar — 96% don't fully trust AI output, only 48% always review it</strong> (2026 State of Code survey, 1,100+ developers)</summary>
+<summary><strong>Sonar — 96% don't fully trust AI output, only 48% always review it</strong> (2026 State of Code survey, 1,100+ developers) ●●○○</summary>
 
 - 96% do not fully trust AI output, yet only 48% always review it before committing.
 </details>
 
 <details>
-<summary><strong>Georgia Tech Vibe Security Radar — 74 CVEs traced directly to AI coding tools</strong> (reported Sept 2026)</summary>
+<summary><strong>Georgia Tech Vibe Security Radar — 74 CVEs traced directly to AI coding tools</strong> (reported Sept 2026) ●●○○</summary>
 
 - 74 CVEs traced directly to AI coding tools; 35 logged in March 2026 alone.
 </details>
 
 <details>
-<summary><strong>Escape.tech — 2,038 critical vulnerabilities in 5,600+ publicly deployed AI-built apps</strong> — [VENDOR RESEARCH]</summary>
+<summary><strong>Escape.tech — 2,038 critical vulnerabilities in 5,600+ publicly deployed AI-built apps</strong> — [VENDOR RESEARCH] ●●○○</summary>
 
 - 2,038 critical vulnerabilities, 400+ leaked secrets, 175 instances of exposed personal data including medical records and IBANs.
 </details>
 
 <details>
-<summary><strong>Real incidents</strong></summary>
+<summary><strong>Real incidents</strong> ●●●○</summary>
 
 - Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.
 - March 2026: the GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets.
@@ -692,7 +694,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 #### 3.4.2 Regulation
 
 <details>
-<summary><strong>FINRA 2026 Annual Regulatory Oversight Report (9 Dec 2025)</strong></summary>
+<summary><strong>FINRA 2026 Annual Regulatory Oversight Report (9 Dec 2025)</strong> ●●●●</summary>
 
 - New standalone GenAI section names AI agents an emerging risk: autonomy without human validation, scope creep beyond intended authority, auditability of multi-step reasoning, sensitive-data handling, insufficient domain expertise, plus existing GenAI risks.
 - Ties deployment to supervisory controls under **Rule 3110**.
@@ -700,7 +702,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>Fed/OCC/FDIC SR 26-2 (17 Apr 2026) — generative and agentic AI expressly out of scope</strong></summary>
+<summary><strong>Fed/OCC/FDIC SR 26-2 (17 Apr 2026) — generative and agentic AI expressly out of scope</strong> ●●●●</summary>
 
 - Supersedes SR 11-7, the model-risk framework US banks ran for fifteen years.
 - **Footnote 3 explicitly places generative and agentic AI outside its scope** — "novel and rapidly evolving" — and points firms to their own governance for anything it does not cover.
@@ -709,7 +711,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>OCC Bulletin 2026-54 — "Super Intelligence: Supervisory Framework" (4 Nov 2026)</strong></summary>
+<summary><strong>OCC Bulletin 2026-54 — "Super Intelligence: Supervisory Framework" (4 Nov 2026)</strong> ●●●●</summary>
 
 - A 20-page examiner resource for OCC examiners at national banks, federal savings associations and federal branches/agencies, issued with News Release 2026-97.
 - Covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance).
@@ -720,7 +722,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>CSBS Artificial Intelligence Supervisory Framework (16 Sep 2026) — state examiners get written AI procedures</strong></summary>
+<summary><strong>CSBS Artificial Intelligence Supervisory Framework (16 Sep 2026) — state examiners get written AI procedures</strong> ●●●●</summary>
 
 - Published by the Conference of State Bank Supervisors for state-chartered banks and state-licensed nonbank financial institutions — state regulators supervise **79% of all US banks**.
 - Five documents: Core Examiner Guide, Examiner Work Program, non-bank supplements, an AI Use Case Risk-Tiering Worksheet, and sources.
@@ -730,14 +732,14 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>FCA Mills Review (6 Jul 2026)</strong></summary>
+<summary><strong>FCA Mills Review (6 Jul 2026)</strong> ●●●●</summary>
 
 - Five-level autonomy spectrum, Operator through Observer, for how far AI displaces human judgment.
 - A review, not a rulebook.
 </details>
 
 <details>
-<summary><strong>MAS SAFR v1.0 (3 Jul 2026) — Safeguards for Agentic Finance at Runtime</strong></summary>
+<summary><strong>MAS SAFR v1.0 (3 Jul 2026) — Safeguards for Agentic Finance at Runtime</strong> ●●●●</summary>
 
 - Developed under MAS BuildFin.ai with industry participants, building on Project MindForge.
 - Runtime governance checkpoints between every agent decision and its execution.
@@ -746,7 +748,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>MAS Guidelines on Artificial Intelligence Risk Management (7 Oct 2026; take effect 7 Oct 2027)</strong></summary>
+<summary><strong>MAS Guidelines on Artificial Intelligence Risk Management (7 Oct 2026; take effect 7 Oct 2027)</strong> ●●●●</summary>
 
 - The first binding-style supervisory expectations for AI agents in finance from a major regulator.
 - Applies to all MAS-regulated financial institutions; covers all AI including generative AI and AI agents.
@@ -757,7 +759,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>HKMA Project SAGE + Discussion Paper on Agentic A.I. Governance in the Banking Sector (2 Nov 2026)</strong></summary>
+<summary><strong>HKMA Project SAGE + Discussion Paper on Agentic A.I. Governance in the Banking Sector (2 Nov 2026)</strong> ●●●●</summary>
 
 - Project SAGE (Securing Agentic Finance with Governance and Enablement) with a 22-member cross-sector Agentic Finance Expert Group.
 - The discussion paper proposes "intent-anchored accountability": before deployment, an authorised institution must define each agent's authorised intent — business objective, authorised tasks and decisions, delegated authority, prohibited activities, escalation triggers — with accountability resting with named owners, not vendors or cloud providers.
@@ -768,7 +770,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>HK SFC Large Firm AI Readiness Survey (2 Nov 2026) — 30% of large firms already use agentic AI</strong></summary>
+<summary><strong>HK SFC Large Firm AI Readiness Survey (2 Nov 2026) — 30% of large firms already use agentic AI</strong> ●●○○</summary>
 
 - First survey of its kind from Hong Kong's Securities and Futures Commission: 20 large firms with 78 licensed affiliates, covering ~75% of securities turnover (Jul–Aug 2026).
 - **30% already use agentic AI in business operations, 25% piloting** (55% using or trialling); 95% expect AI use to accelerate over the next 12 months; 90% have connected AI tools to internal systems.
@@ -777,7 +779,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>UK Cyber Security and Resilience Bill — "loss of control" as a regulated incident class (GOV.UK factsheet, 3 Nov 2026)</strong></summary>
+<summary><strong>UK Cyber Security and Resilience Bill — "loss of control" as a regulated incident class (GOV.UK factsheet, 3 Nov 2026)</strong> ●●●●</summary>
 
 - Government added a clause ("Functions of the Secretary of State: loss of control of artificial intelligence agent") giving ministers power to make regulations for incidents where a regulated network is compromised by loss of oversight or control of an AI agent, and to investigate such incidents.
 - Lords clause agreed 26 Oct 2026. Four measures to be consulted on and introduced by secondary legislation after Royal Assent (none in force; no compliance dates yet):
@@ -792,7 +794,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 </details>
 
 <details>
-<summary><strong>FINOS AI Governance Framework v2.0</strong></summary>
+<summary><strong>FINOS AI Governance Framework v2.0</strong> ●●●○</summary>
 
 - Financial-services open standard for agentic AI.
 - Agentic additions cover prompt injection, memory poisoning, persistent agent compromise, chain-of-thought leakage, supply-chain tampering.
