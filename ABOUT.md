@@ -10,7 +10,7 @@ Responsible, applicable, actionable research, from the perspective of critical s
 
 ## What this report is
 
-CI Sitrep tracks the state of the art in Created Intelligence in code and finance: the tools and practices for scanning AI-generated code before it is committed, the problems AI-generated code has already introduced into existing codebases, and the architecture and management of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
+CI Sitrep tracks the state of the art in Created Intelligence in code and finance: the tools and practices for sanitizing and certifying AI-generated code before it is committed, the CI-generated problems already in existing codebases, and the architecture and management of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
 
 Every article carries a credibility rating — a dots score for how much confidence you can place in its source. See the legend on the main page for what each level means.
 
