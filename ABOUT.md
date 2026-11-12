@@ -16,4 +16,4 @@ Every article carries a credibility rating — a dots score for how much confide
 
 ## Contact
 
-CI Sitrep is a Confluence service. For enquiries, write to ci-sitrep@confluence1.com.
+CI Sitrep is a Confluence<1> service. For enquiries, write to ci-sitrep@confluence1.com.
