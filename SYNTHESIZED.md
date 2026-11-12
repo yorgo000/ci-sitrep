@@ -2,14 +2,13 @@
 
 Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.
 
-Watch list for Yorgo's business: software development of critical systems in finance, NYC. Three subjects. This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
+This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
 
 **New to the terms?** Read the [explainer: CI, CIA, and CIAC](explainer.html) — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
 
 **The bar for adding or changing anything:** it could change the business offerings. Routine news, vendor marketing, and minor updates do not qualify.
 
 **Last updated:** 2026-11-12.
-**Maintenance:** researched daily by the `watch-subjects-daily` cron (~07:45 ET). It updates this file in place (and the archive) only on significant change, and tells Yorgo only when something material changes. The separate agent-reliability watch was rejected 2026-11-09 and is NOT part of this file.
 
 **How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New this week](#new-this-week) to jump to the latest changes.
 
