@@ -134,11 +134,12 @@ TEMPLATE = """<!DOCTYPE html>
   :root {{
     --ink: #1a1a1a;
     --muted: #666;
-    --line: #e3e3e3;
-    --accent: #1f4e79;
-    --bg: #ffffff;
-    --side-bg: #f7f7f5;
-    --code-bg: #f4f4f2;
+    --line: #ddd5c2;
+    --accent: #283060;
+    --logo-navy: #283060;
+    --bg: #faf6ef;
+    --side-bg: #f1ebdd;
+    --code-bg: #f3ede0;
   }}
   * {{ box-sizing: border-box; }}
   body {{
@@ -153,8 +154,8 @@ TEMPLATE = """<!DOCTYPE html>
     display: inline-block;
     margin: 0 0 18px 0;
     padding: 6px 12px;
-    background: #eef4fa;
-    border: 1px solid #c9d9e8;
+    background: #e9eaf1;
+    border: 1px solid #c5c8dc;
     border-radius: 4px;
     color: var(--accent);
     font-size: 15px;
@@ -190,7 +191,7 @@ TEMPLATE = """<!DOCTYPE html>
   nav.sidebar li li {{ padding-left: 14px; }}
   nav.sidebar li li li {{ padding-left: 14px; }}
   nav.sidebar a {{ color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }}
-  nav.sidebar a:hover {{ background: #ececea; }}
+  nav.sidebar a:hover {{ background: #e8dfcc; }}
   nav.sidebar .new-badge {{
     display: inline-block; font-size: 10px; font-weight: 700; color: #fff;
     background: #b3261e; border-radius: 3px; padding: 0 4px; margin-left: 4px;
@@ -199,9 +200,9 @@ TEMPLATE = """<!DOCTYPE html>
   nav.sidebar .toc-controls {{ margin: 0 0 10px; }}
   nav.sidebar .toc-controls button {{
     font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
-    background: #fff; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+    background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
   }}
-  nav.sidebar .toc-controls button:hover {{ background: #ececea; }}
+  nav.sidebar .toc-controls button:hover {{ background: #e8dfcc; }}
   nav.sidebar .toc li.has-children > a .toc-toggle {{
     display: inline-block; cursor: pointer; width: 0; height: 0;
     border-left: 4px solid transparent; border-right: 4px solid transparent;
@@ -210,8 +211,8 @@ TEMPLATE = """<!DOCTYPE html>
   nav.sidebar .toc li.toc-collapsed > a .toc-toggle {{ transform: rotate(-90deg); }}
   nav.sidebar .toc li.toc-collapsed > ul {{ display: none; }}
   main {{ flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }}
-  main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 0 0 8px; line-height: 1.25; color: #283060; }}
-  main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }}
+  main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: -32px -48px 16px; padding: 28px 48px; line-height: 1.25; color: #fff; background: var(--logo-navy); }}
+  main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
   main h4 + .section-body {{ margin-left: 16px; }}
@@ -225,6 +226,7 @@ TEMPLATE = """<!DOCTYPE html>
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
+  #new-this-week + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle {{ transform: rotate(-90deg); }}
   main p {{ margin: 8px 0; }}
   main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
@@ -261,6 +263,7 @@ TEMPLATE = """<!DOCTYPE html>
     .layout {{ flex-direction: column; }}
     nav.sidebar {{ width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }}
     main {{ padding: 24px 20px 48px; }}
+    main h1 {{ margin: -24px -20px 16px; padding: 24px 20px; }}
   }}
 </style>
 </head>
