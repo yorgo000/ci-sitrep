@@ -10,8 +10,8 @@ Created Intelligence in code and finance — as of today. A living knowledge bas
 - **Superseded entries:** [archive/ARCHIVE.md](archive/ARCHIVE.md), dated and categorized.
 
 Three subjects:
-1. Pre-commit scanning of CI-generated code.
-2. Code review / scanning for CI problems already in a codebase.
+1. Pre-commit sanitizing / certification.
+2. Codebase sanitize / certification — CI-generated problems already in the codebase.
 3. CIAC (CIA collective) creation, governance, management.
 
 Editorial bar: an entry is added or changed only if it could change how a firm building critical systems in finance should act.
