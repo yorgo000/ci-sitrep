@@ -157,6 +157,13 @@ Three layers, newest first. Distinguishing test for the newest layer: can it *re
 | **Google DeepMind CodeMender** | Fix-only agent with vulnerability verification and exploit simulation in a sandbox/isolated VM; human-in-the-loop for local writes and command execution; scoped scans (single folder, whole repo, or only files changed since last scan); multi-model including Gemini 4 Argon | **In public preview since July 2026** (hundreds of customers, per Google). Thales evaluation cited by Google claims up to 95% reduction in vulnerability discovery time — vendor-cited, not independent. Still in preview; the verification-in-sandbox loop is the pattern to watch. |
 | **Vercel Security Review** | Push-time, diff-scoped security review inside Vercel Agent (missing auth checks, exposed secrets, logic flaws read in context); runs on every push including direct/force pushes to production, not just PRs | **Public beta 2 Nov 2026.** Free during beta until 10 Nov 2026, then usage-based. A new gate position (push-time, between agent-time and PR) — relevant for web-facing finance front ends, less so for core systems. |
 
+<details>
+<summary>See also</summary>
+
+[3.4 Governance — finance](#34-governance--finance) (the same gate-outside-the-model control, applied to agents rather than to code).
+</details>
+
+
 ### 1.3 What they catch
 
 | Problem class | Who catches it | Confidence |
@@ -199,6 +206,13 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 - **US federal — a gap opened in 2026.** SR 11-7 was rescinded and replaced 17 Apr 2026 by **SR 26-2** (Fed / OCC Bulletin 2026-13 / FDIC FIL-15-2026). Generative and agentic AI are **expressly out of scope**; the guidance states it sets no enforceable standards and is most relevant above $30B in assets. The clause that still matters for buyers: **vendor products must still be validated** (by internal or outside parties). An AI request for information was promised; none had appeared by late Oct 2026. A replacement third-party-risk guidance was proposed 15 Sep 2026 (comments due 16 Nov 2026). Practical consequence: **there is currently no federal model-risk umbrella for AI coding tools** — firms must build their own controls, and existing technology-neutral rules (FFIEC IT Examination Handbook, 2023 interagency third-party guidance) still apply.
   - **OCC Bulletin 2026-54 (4 Nov 2026) narrows the gap in examination practice, not in law.** A 20-page examiner resource for national banks, federal savings associations and federal branches/agencies (with News Release 2026-97). It covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance), and a four-tier consequence-based risk classification (an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4). Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit. **It sets no supervisory expectations, no enforceable standards and no prescriptive requirements** — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.
 - **EU (for firms with EU operations or clients).** **DORA** (Reg. (EU) 2022/2554) in force 17 Jan 2025: an AI inference vendor is an ICT third-party service provider (Arts. 28–30) — register the arrangement, assess concentration risk, maintain a *tested* exit strategy, report major ICT incidents (initial notification within 4h of classification, ≤24h of awareness). **EU AI Act** high-risk obligations (incl. creditworthiness assessment, insurance pricing) deferred to **2 Dec 2027** by the Digital Omnibus (Reg. (EU) 2026/1744, in force 27 Jul 2026). Self-hosted/on-prem deployment (Semgrep CE, SonarQube Server, Qodo single-tenant/on-prem, CodeRabbit self-host Enterprise) materially reduces the DORA third-party surface vs SaaS scanners that ingest your code.
+
+<details>
+<summary>See also</summary>
+
+[2.5 Best practice — finance](#25-best-practice--finance) (the same controls for code already in the repo) · [3.7 Best practices](#37-best-practices) (the supervisor-pattern version of the same gate rule).
+</details>
+
 
 ### 1.6 Benchmarks & evidence
 
@@ -268,6 +282,13 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 - **Reported, not independently verified:** the Copilot Autofix incident in which a CI-generated fix reportedly opened a shell injection in Snowflake's CI/CD that Wiz's red agent then exploited autonomously (Wiz case study, via The State of Play, 2026) — human reviewers and GitHub Advanced Security both reportedly missed it. GitHub Copilot code review's systematic misses of SQLi/XSS/insecure deserialization while flagging style issues (evaluation cited by The State of Play, 2026).
 - **What nobody has independently verified:** head-to-head detection rates of the new agent-time enforcement tools on a common benchmark; false-positive cost at enterprise scale; license/provenance compliance of CI-generated code (training-data lineage is largely unaddressed by every scanner listed).
 
+<details>
+<summary>See also</summary>
+
+[2.1 How big the problem is](#21-how-big-the-problem-is) (the same benchmarks, read as what's already in a codebase) · [2.4 Techniques](#24-techniques) (exploit-verification as the audit method) · [3.6 Evaluation](#36-evaluation) (pass^k, not pass@1 — why a single pass misleads).
+</details>
+
+
 ### 1.7 Open gaps / watch items
 
 - First independent benchmark of agent-time enforcement tools (none exists yet — the category is ~6 months old). CWE-bench v2 (Nov 2026) now gives a yardstick for remediation agents, but no agent-time enforcement product has been independently measured against it at scale.
@@ -275,6 +296,13 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 - The Fed/OCC/FDIC AI request for information (promised Apr 2026, still unpublished late Oct 2026) and the replacement third-party guidance (comments due 16 Nov 2026).
 - Whether NYDFS's advisory language hardens into examination expectations for CI-generated code testing.
 - EU AI Act high-risk obligations arriving Dec 2027 — the compliance build-out for credit/insurance AI is a 2027 budget item, not a 2026 one.
+
+<details>
+<summary>See also</summary>
+
+[3.4 Governance — finance](#34-governance--finance) (same watch items: the Fed/OCC/FDIC AI request for information, still unpublished; replacement third-party-risk guidance, comments due 16 Nov 2026).
+</details>
+
 
 ### Sources — subject 1 (accessed 2026-11-09 unless noted)
 
@@ -436,6 +464,13 @@ Detecting and remediating defects CI-generated code has already left in an exist
 - March 2026: the GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets.
 </details>
 
+<details>
+<summary>See also</summary>
+
+[1.6 Benchmarks & evidence](#16-benchmarks--evidence) (the benchmarks behind these numbers) · [1.5 Best practice](#15-best-practice--critical-systems-in-finance) (the three-layer gate that catches the test-passing-but-vulnerable class).
+</details>
+
+
 ### 2.2 Problem classes
 
 | Class | What it looks like | Detection |
@@ -488,6 +523,13 @@ Detecting and remediating defects CI-generated code has already left in an exist
 - **Secrets in agent artefacts (new vector, Nov 2026):** scan agent settings files, transcripts and full git history for credentials. Claude Code's "Don't Ask Again" writes the literal approved command, secrets included, into `.claude/settings.local.json`; 1,122 of 104,185 public copies held a real secret; gitleaks and TruffleHog together missed 215 of them. Secrets persist in history and forks — deleting the file now does not close the exposure. Check project `.gitignore` (Claude Code excludes the file only via the developer's global git-excludes); rotate anything found.
 - **Audit method (services):** measure four numbers, not opinions — duplication (clone threshold), shallow-error-handling density per 1,000 lines, mutation score, and 30-day rework rate.
 
+<details>
+<summary>See also</summary>
+
+[1.3 What they catch](#13-what-they-catch) (what pre-commit scanning catches, and its stated confidence limits) · [1.6 Benchmarks & evidence](#16-benchmarks--evidence) (CWE-bench v2 as the yardstick for remediation agents; the Apiiro agent-settings secrets vector, also recorded there).
+</details>
+
+
 ### 2.5 Best practice — finance
 
 - **Gate everything in CI as a required step:** SAST, SCA, DAST, secrets — blocked merge on failure for critical paths; pre-commit hooks with SAST + secret rules so the commit never lands.
@@ -503,6 +545,13 @@ Detecting and remediating defects CI-generated code has already left in an exist
 - **Frameworks to anchor to:** NIST AI Risk Management Framework + GenAI Profile (NIST-AI-600-1); ISO/IEC 42001; OWASP GenAI Security Project Top 10 (prompt injection the #1 risk for the third consecutive year, backed by a ~10,000-incident database); Governance-as-Code — deterministic guardrails (prompt filtering, state-transition validation as a circuit breaker) embedded in CI/CD.
 - **KPIs to track:** vulnerability density in AI-authored vs human-authored code; secrets-exposure rate; rework/churn rate; moved-code % and duplication; fix rate vs new-issue rate; delivery stability (change failure rate, time to recover).
 
+<details>
+<summary>See also</summary>
+
+[1.5 Best practice — critical systems in finance](#15-best-practice--critical-systems-in-finance) (provenance and audit trail for new code) · [3.4 Governance — finance](#34-governance--finance) (OCC 2026-54, MAS, HKMA SAGE, UK loss-of-control — the regulatory picture now filling the gap).
+</details>
+
+
 ### 2.6 Hype vs verified
 
 - **Vendor-published but methodologically transparent, treat as directional:** Veracode 45%, SCW 15/codebase (partly RMIT-partnered), Black Duck OSSRA (audit, not survey), GitClear (commit-history data), DORA (survey, correlational).
@@ -517,6 +566,13 @@ Detecting and remediating defects CI-generated code has already left in an exist
 - The audit/remediation market is real and monetisable now: services (GrowExx-style 4-tier audits, 48 h MVP turnaround), tooling integration, and "AI code audit as a service" for finance clients who must demonstrate control to examiners and counterparties.
 - For a finance-critical dev shop, demonstrable AI-code governance — provenance capture, gated CI, verified remediation, complete audit trail — is becoming a procurement and examiner expectation, not a differentiator. The SR 26-2 gap is the opening: banks have no supervisory framework for AI code and must build their own; a vendor who arrives with one (mapped to NIST AI RMF, NYDFS Part 500, OSFI's bulletin) has a concrete sell.
 - Watch items: the SR 26-2 follow-up RFI on AI (still pending); EU AI Act Dec 2027 obligations; NCSC patch-wave volume (whether patch throughput becomes a reported operational metric); independent accuracy data for full-repo reasoning agents (CWE-bench v2 now gives a yardstick — no product yet independently measured at scale); and whether any post-hoc AI-code detector survives independent evaluation.
+
+<details>
+<summary>See also</summary>
+
+[3.4 Governance — finance](#34-governance--finance) (the regulatory picture now fills the SR 26-2 gap from three directions — the sharpened sell).
+</details>
+
 
 ### Sources — subject 2 (accessed 2026-11-09 unless noted)
 
@@ -700,6 +756,13 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 
 **Still unchanged:** the Fed/OCC/FDIC AI request for information promised in Apr 2026 has still not appeared (confirmed as of 2 Nov 2026, checked 7 Nov); the replacement third-party-risk guidance proposal (15 Sep 2026) has comments due **16 Nov 2026**.
 
+<details>
+<summary>See also</summary>
+
+[1.5 Best practice — critical systems in finance](#15-best-practice--critical-systems-in-finance) (NYDFS / OCC detail for code) · [2.5 Best practice — finance](#25-best-practice--finance) (the SR 26-2 gap for existing codebases) · [3.5 Management & observability](#35-management--observability) (the decision logs and traces that evidence-preservation needs).
+</details>
+
+
 ### 3.5 Management & observability
 
 **Four-layer stack:** metrics, distributed traces, structured decision logs, continuous evaluations — on shared instrumentation, ideally OpenTelemetry `gen_ai.*` spans for portability.
@@ -721,6 +784,13 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 - **Never trust an agent's self-reported PASS**: a 2026 digest reports half of self-asserted "PASS" fix claims fail independent mechanical verification — reported, not independently verified; the remedy is independent mechanical re-verification of every claimed completion.
 - **Failure handling:** checkpointing and resume from state (LangGraph checkpointer is the reference implementation); replay from any node; deterministic fallbacks when a gate denies or an agent stalls.
 - **Concordat** (reported Oct 2026): typestate enforcement — the model is offered only tools legal in the current state; reported zero unauthorized changes on tau-bench airline tasks vs 13/50 and 29/128 for baselines, with no significant success drop. Reported via a digest; promising, not independently verified.
+
+<details>
+<summary>See also</summary>
+
+[1.6 Benchmarks & evidence](#16-benchmarks--evidence) (SecureVibeBench / A.S.E 2.0 / CWE-bench v2 — the same pass@1 vs secure distinction, for code).
+</details>
+
 
 ### 3.7 Best practices
 
