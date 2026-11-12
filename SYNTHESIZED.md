@@ -1,4 +1,4 @@
-# CI Today — Code & Finance
+# CI Sitrep — Code & Finance
 
 Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.
 
