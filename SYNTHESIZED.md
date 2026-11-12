@@ -1,5 +1,10 @@
 # CI Sitrep — Code & Finance
 
+**Last updated:** 2026-11-12.
+
+<details>
+<summary><strong>How to read this</strong></summary>
+
 Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.
 
 This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
@@ -8,11 +13,16 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 **The bar for adding or changing anything:** it could change the business offerings. Routine news, vendor marketing, and minor updates do not qualify.
 
-**Last updated:** 2026-11-12.
-
 **How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New this week](#new-this-week) to jump to the latest changes.
 
-**Credibility rating** — every article carries a dots rating for how much confidence you can place in its source. **●●●● Established:** peer-reviewed and independently confirmed, or a primary regulatory/government document — safe to act on. **●●●○ Corroborated:** peer-reviewed single study, or a credible primary source confirmed by independent reporting — good basis for a decision. **●●○○ Reported:** single credible source, not yet independently verified (preprints, well-documented vendor research) — directional; verify before committing significant budget. **●○○○ Claimed:** vendor claim or single uncorroborated report — treat as a lead, not a fact.
+**Credibility rating** — every article carries a dots rating for how much confidence you can place in its source.
+
+- **●●●● Established:** peer-reviewed and independently confirmed, or a primary regulatory/government document — safe to act on.
+- **●●●○ Corroborated:** peer-reviewed single study, or a credible primary source confirmed by independent reporting — good basis for a decision.
+- **●●○○ Reported:** single credible source, not yet independently verified (preprints, well-documented vendor research) — directional; verify before committing significant budget.
+- **●○○○ Claimed:** vendor claim or single uncorroborated report — treat as a lead, not a fact.
+
+</details>
 
 ## New this week
 
