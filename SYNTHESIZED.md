@@ -2,8 +2,8 @@
 
 **Last updated:** 2026-11-12.
 
-<details>
-<summary><strong>How to read this</strong></summary>
+<details class="how-to-read">
+<summary>How to read this</summary>
 
 Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.
 
