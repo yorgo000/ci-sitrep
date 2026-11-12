@@ -172,7 +172,7 @@
 </ul>
 </div>
 
-    <p class="meta" style="margin-top: 20px;">Last updated: 2026-11-11<br>
+    <p class="meta" style="margin-top: 20px;">Last updated: 2026-11-12<br>
     Source: SYNTHESIZED.md (Markdown is the source of truth).<br>
     Archive: <a href="archive/ARCHIVE.md">ARCHIVE.md</a></p>
   </nav>
@@ -182,12 +182,16 @@
 <p>Watch list for Yorgo's business: software development of critical systems in finance, NYC. Three subjects. This file is a <strong>state of affairs</strong>, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
 <p><strong>New to the terms?</strong> Read the <a href="explainer.html">explainer: CI, CIA, and CIAC</a> — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper <a href="theses.html"><em>From Evolved Intelligence to Created Intelligence</em> (v0.1)</a> — <a href="created_intelligence_foundational_theses_v0.1.md">download the Markdown source</a>.</p>
 <p><strong>The bar for adding or changing anything:</strong> it could change the business offerings. Routine news, vendor marketing, and minor updates do not qualify.</p>
-<p><strong>Last updated:</strong> 2026-11-11.
+<p><strong>Last updated:</strong> 2026-11-12.
 <strong>Maintenance:</strong> researched daily by the <code>watch-subjects-daily</code> cron (~07:45 ET). It updates this file in place (and the archive) only on significant change, and tells Yorgo only when something material changes. The separate agent-reliability watch was rejected 2026-11-09 and is NOT part of this file.</p>
 <p><strong>How to read it:</strong> scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with <a href="#new-this-week">New this week</a> to jump to the latest changes.</p>
 <h2 id="new-this-week">New this week</h2>
 <p>Additions from the past 7 days (rolling window — entries older than 7 days drop off).</p>
 <ul>
+<li><strong>2026-11-12 — SecPRBench</strong> (subjects 1, 2): the first benchmark of agentic pre-merge security review on real bug-introducing commits; the best agents catch ~3 in 4 vuln-introducing changes, the weakest ~1 in 3 — the review layer is a layer, not a control. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
+<li><strong>2026-11-12 — CSBS AI Supervisory Framework</strong> (subject 3): state examiners — who supervise 79% of US banks — now have written AI examination procedures and a document-request list. → <a href="#34-governance--finance">3.4 Governance</a></li>
+<li><strong>2026-11-12 — Postman auto-install incident</strong> (subjects 2, 3): a desktop app silently installed plugins and a self-approved hook into Claude Code and Codex; the agent layer's own config is a supply-chain surface. → <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
+<li><strong>2026-11-12 — HK SFC AI Readiness Survey</strong> (subject 3): 30% of large firms already use agentic AI, 25% piloting; the SFC will issue further guidance. → <a href="#34-governance--finance">3.4 Governance</a></li>
 <li><strong>2026-11-11 — SecureVibeBench, CWE-bench v2, SusVibes</strong> (subjects 1, 2): a second independent peer-reviewed benchmark confirms roughly half of test-passing AI code is vulnerable; a public yardstick for remediation agents now exists. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
 <li><strong>2026-11-11 — UK Cyber Security and Resilience Bill</strong> (subject 3): "loss of control" named as a regulated incident class; evidence preservation now a named expectation in the making. → <a href="#34-governance--finance">3.4 Governance</a></li>
 <li><strong>2026-11-10 — OCC Bulletin 2026-54, HKMA SAGE, MAS Guidelines</strong> (subject 3): the regulatory gap is being filled from three directions; MAS sets a dated deadline (Oct 2027). → <a href="#34-governance--finance">3.4 Governance</a></li>
@@ -572,6 +576,18 @@
 </details>
 
 <details>
+<summary><strong>SecPRBench — best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> (arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed)</summary>
+<ul>
+<li>265 tasks from nine critical systems (Firefox, V8, OpenSSL), each built from the real commit that introduced a vulnerability — not from its later fix — and paired with a repaired companion.</li>
+<li>A finding counts only if it explains the vulnerability's root cause in the reviewed code (LLM-as-judge, Claude Opus 5.5).</li>
+<li>Recall across eight frontier models: <strong>32.5%–78.1%</strong>. Top four (Grok 4.6, GPT-6 sol, GLM 5.3, Claude Opus 5.5) find about three in four and are statistically tied; all eight combined still miss 23 targets.</li>
+<li><strong>68% of misses are wrong-mechanism reasoning, not oversights</strong>: the agent reports on the file holding the flaw but argues a different mechanism.</li>
+<li>Security-focused harnesses move recall both ways: OpenAI's Codex Security lowers it 8.3 points (mostly by abstaining); Anthropic's Defending Code raises it 7.7 points, at higher cost and report volume.</li>
+<li>Implication for the pre-commit gate: agentic review as a sole gate misses 22–68% of vulnerability-introducing changes — it is a layer, not a control — and harness choice is a measurable design decision (±8 points).</li>
+</ul>
+</details>
+
+<details>
 <summary><strong>Apiiro — agent settings files are a new secrets vector standard scanners miss</strong> (5 Nov 2026) — [VENDOR RESEARCH]</summary>
 <ul>
 <li>Claude Code's "Don't Ask Again" approval writes the literal approved command, secrets included, into <code>.claude/settings.local.json</code>.</li>
@@ -598,7 +614,7 @@
 <h3 id="17-open-gaps--watch-items">1.7 Open gaps / watch items</h3>
 <ul>
 <li>First independent benchmark of agent-time enforcement tools (none exists yet — the category is ~6 months old). CWE-bench v2 (Nov 2026) now gives a yardstick for remediation agents, but no agent-time enforcement product has been independently measured against it at scale.</li>
-<li>Precision/recall of LLM reviewers on real PRs at scale.</li>
+<li>Precision/recall of LLM reviewers on real PRs at scale — a first yardstick now exists (SecPRBench, Oct 2026: recall 32.5–78.1% on real bug-introducing commits), but no commercial review product has yet been independently measured against it at scale; head-to-head detection rates of agent-time enforcement tools still don't exist.</li>
 <li>The Fed/OCC/FDIC AI request for information (promised Apr 2026, still unpublished late Oct 2026) and the replacement third-party guidance (comments due 16 Nov 2026).</li>
 <li>Whether NYDFS's advisory language hardens into examination expectations for CI-generated code testing.</li>
 <li>EU AI Act high-risk obligations arriving Dec 2027 — the compliance build-out for credit/insurance AI is a 2027 budget item, not a 2026 one.</li>
@@ -645,6 +661,7 @@
 <li>Chen et al., "SecureVibeBench" (accessed 2026-11-11) — https://arxiv.org/abs/2509.22097</li>
 <li>CWE-bench v2, 3 Nov 2026, via AI Evolution summary of the Hugging Face blog (accessed 2026-11-11) — https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7</li>
 <li>SusVibes re-run via Medium, 2 Nov 2026 (accessed 2026-11-11) — https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05</li>
+<li>Yang et al., "SecPRBench" (arXiv:2610.33509, 24 Oct 2026; accessed 2026-11-12) — https://arxiv.org/abs/2610.33509</li>
 </ul>
 <p><strong>Caveats for the log:</strong> pricing figures are list prices verified against vendor pages or secondary compilations as of Oct–Nov 2026 and change without notice — re-verify before budgeting. The agent-time enforcement category is ~6 months old; every effectiveness claim in it is vendor-run. The two numbers that would most change a business offering decision — independent head-to-head detection rates, and the Fed/OCC/FDIC AI request for information — do not exist yet as of 2026-11-09.</p>
 <hr />
@@ -691,6 +708,16 @@
 <li>Claude Code (Sonnet 4.5): 74.0% functional pass, 18.4% secure — <strong>55.6% passed every test while a working exploit still succeeded</strong>.</li>
 <li>Agents saw the relevant safeguard in only 27–36% of trajectories; putting it in context roughly doubled secure output (24.8% vs 12.6%).</li>
 <li>The audit must include exploit-verification (or equivalent adversarial validation) on AI-authored modules, and remediation should include annotating safeguards in agent context so future agent edits see them.</li>
+</ul>
+</details>
+
+<details>
+<summary><strong>SecPRBench — agentic review misses 22–68% of vulnerability-introducing changes</strong> (arXiv:2610.33509, 24 Oct 2026; preprint)</summary>
+<ul>
+<li>Same benchmark as subject 1; for an audit of an existing codebase this is the measured miss rate of the review layer itself.</li>
+<li>Best agents (Grok 4.6, GPT-6 sol, GLM 5.3, Claude Opus 5.5) find ~3 in 4 vuln-introducing changes; the weakest finds ~1 in 3.</li>
+<li>68% of misses are wrong-mechanism reasoning — the reviewer looked at the right file and argued the wrong flaw — so a clean review is weak evidence, and location-based scoring would overstate detection.</li>
+<li>Audit implication: a codebase audit cannot rely on agentic PR review as the control; exploit-verification and deterministic scanning remain the backstop, and the review layer needs sampling of what it let through.</li>
 </ul>
 </details>
 
@@ -774,12 +801,13 @@
 <ul>
 <li>Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.</li>
 <li>March 2026: the GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets.</li>
+<li>Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; Postman said 5 Nov 2026 it is reverting the change. The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees.</li>
 </ul>
 </details>
 
 <details>
 <summary>See also</summary>
-<p><a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a> (the benchmarks behind these numbers) · <a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice</a> (the three-layer gate that catches the test-passing-but-vulnerable class).</p>
+<p><a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a> (the benchmarks behind these numbers) · <a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice</a> (the three-layer gate that catches the test-passing-but-vulnerable class) · <a href="#34-governance--finance">3.4 Governance — finance</a> (the Postman incident — the agent layer's own config as a supply-chain surface, and what governance has to cover).</p>
 </details>
 
 <h3 id="22-problem-classes">2.2 Problem classes</h3>
@@ -971,6 +999,7 @@
 <h3 id="26-hype-vs-verified">2.6 Hype vs verified</h3>
 <ul>
 <li><strong>Vendor-published but methodologically transparent, treat as directional:</strong> Veracode 45%, SCW 15/codebase (partly RMIT-partnered), Black Duck OSSRA (audit, not survey), GitClear (commit-history data), DORA (survey, correlational).</li>
+<li><strong>Preprint, method transparent, not peer-reviewed:</strong> SecPRBench recall figures (arXiv:2610.33509, Oct 2026) — LLM-as-judge scoring by Claude Opus 5.5; the judge's verdicts, not execution.</li>
 <li><strong>Vendor's own benchmarks on its own tests, not independent:</strong> Snyk Agent Fix 82.5% golden-test pass; Snyk's 8:1 new-issues-to-fixes ratio; AWS "reasons like a human security researcher"; CodeMender's 72 upstreamed fixes; Apiiro's 322% figure.</li>
 <li><strong>Analyst forecasts, not measurements:</strong> Gartner — 60% of all new code AI-generated by end of 2026; prompt-to-app defects +2,500% by 2028; 40% of enterprises on consumption-priced AI tools facing 2× budget overruns by 2027.</li>
 <li><strong>NOT verified — do not use:</strong> a claim circulating in low-quality roundups that "SITS2026" is a mandatory national standard for AI-assisted coding in finance/healthcare since March 2026. No corroboration found in any primary or reputable secondary source; single-source, likely unreliable.</li>
@@ -1016,6 +1045,8 @@
 <li>Google Cloud, 5 Nov 2026 (accessed 2026-11-10) — https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era</li>
 <li>Chen et al., "SecureVibeBench" (accessed 2026-11-11) — https://arxiv.org/abs/2509.22097</li>
 <li>CWE-bench v2, 3 Nov 2026, via AI Evolution summary of the Hugging Face blog (accessed 2026-11-11) — https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7</li>
+<li>Yang et al., "SecPRBench" (arXiv:2610.33509, 24 Oct 2026; accessed 2026-11-12) — https://arxiv.org/abs/2610.33509</li>
+<li>Postman auto-install incident, Oct–Nov 2026, via coverage (accessed 2026-11-12) — https://kernelpost.com/postman-ai-plugin-consent/ and https://dev.to/slabb/postman-silently-installed-itself-into-claude-code-and-codex-the-log-lines-the-self-approving-16dc</li>
 </ul>
 <hr />
 <h2 id="3-ciac--creation-governance-management">3. CIAC — creation, governance, management</h2>
@@ -1137,6 +1168,17 @@
 </details>
 
 <details>
+<summary><strong>CSBS Artificial Intelligence Supervisory Framework (16 Sep 2026) — state examiners get written AI procedures</strong></summary>
+<ul>
+<li>Published by the Conference of State Bank Supervisors for state-chartered banks and state-licensed nonbank financial institutions — state regulators supervise <strong>79% of all US banks</strong>.</li>
+<li>Five documents: Core Examiner Guide, Examiner Work Program, non-bank supplements, an AI Use Case Risk-Tiering Worksheet, and sources.</li>
+<li>Gives examiners scoping questions, a document-request list, and procedures on governance and oversight, AI inventories and use cases, and generative AI / emerging uses; draws on the NIST AI Risk Management Framework, the Cyber Risk Institute's Financial Services AI Risk Management Framework, and the Treasury AI Lexicon.</li>
+<li><strong>Discretionary tool, no new obligations</strong> — each state agency decides whether and how to adopt it — but it is the written procedure state examiners will work from, and a usable self-test for any state-chartered bank client.</li>
+<li><strong>What this changes for offerings:</strong> the examiner's document-request list (governance, AI inventory, use-case risk tiering) is now literally the deliverable set for a governance engagement with a state-chartered bank — the first US examination procedure that names what to hand over.</li>
+</ul>
+</details>
+
+<details>
 <summary><strong>FCA Mills Review (6 Jul 2026)</strong></summary>
 <ul>
 <li>Five-level autonomy spectrum, Operator through Observer, for how far AI displaces human judgment.</li>
@@ -1179,6 +1221,16 @@
 </details>
 
 <details>
+<summary><strong>HK SFC Large Firm AI Readiness Survey (2 Nov 2026) — 30% of large firms already use agentic AI</strong></summary>
+<ul>
+<li>First survey of its kind from Hong Kong's Securities and Futures Commission: 20 large firms with 78 licensed affiliates, covering ~75% of securities turnover (Jul–Aug 2026).</li>
+<li><strong>30% already use agentic AI in business operations, 25% piloting</strong> (55% using or trialling); 95% expect AI use to accelerate over the next 12 months; 90% have connected AI tools to internal systems.</li>
+<li>The SFC says the findings will inform its supervisory approach and that it will provide additional guidance on agentic AI.</li>
+<li>Self-reported, not audited deployment data — but regulator-run with defined coverage, so a stronger adoption signal than vendor surveys.</li>
+</ul>
+</details>
+
+<details>
 <summary><strong>UK Cyber Security and Resilience Bill — "loss of control" as a regulated incident class (GOV.UK factsheet, 3 Nov 2026)</strong></summary>
 <ul>
 <li>Government added a clause ("Functions of the Secretary of State: loss of control of artificial intelligence agent") giving ministers power to make regulations for incidents where a regulated network is compromised by loss of oversight or control of an AI agent, and to investigate such incidents.</li>
@@ -1204,11 +1256,11 @@
 </ul>
 </details>
 
-<p><strong>What the regulatory picture means for offerings:</strong> the gap the baseline identified as the opening ("banks have no supervisory framework for AI code and must build their own") is now being filled from three directions at once — an examiner checklist (OCC), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a fifth direction naming loss of control as an incident class (UK). The sell sharpens from "build your own governance" to "build governance that maps to the OCC's sixteen components, the MAS inventory/materiality model, and HKMA-style intent-anchored accountability and agent registry" — a concrete, citable scope for a finance client.</p>
-<p><strong>Still unchanged:</strong> the Fed/OCC/FDIC AI request for information promised in Apr 2026 has still not appeared (confirmed as of 2 Nov 2026, checked 7 Nov); the replacement third-party-risk guidance proposal (15 Sep 2026) has comments due <strong>16 Nov 2026</strong>.</p>
+<p><strong>What the regulatory picture means for offerings:</strong> the gap the baseline identified as the opening ("banks have no supervisory framework for AI code and must build their own") is now being filled from several directions at once — a federal examiner checklist (OCC), a state examiner framework with a document-request list (CSBS), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a further direction naming loss of control as an incident class (UK). The sell sharpens from "build your own governance" to "build governance that maps to the OCC's sixteen components, the MAS inventory/materiality model, HKMA-style intent-anchored accountability and agent registry, and the CSBS examiner's document list" — a concrete, citable scope for a finance client.</p>
+<p><strong>Still unchanged:</strong> the Fed/OCC/FDIC AI request for information promised in Apr 2026 has still not appeared (confirmed as of 2 Nov 2026; re-checked 12 Nov — still not in the Federal Register); the replacement third-party-risk guidance proposal (15 Sep 2026) has comments due <strong>16 Nov 2026</strong>.</p>
 <details>
 <summary>See also</summary>
-<p><a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</a> (NYDFS / OCC detail for code) · <a href="#25-best-practice--finance">2.5 Best practice — finance</a> (the SR 26-2 gap for existing codebases) · <a href="#35-management--observability">3.5 Management &amp; observability</a> (the decision logs and traces that evidence-preservation needs).</p>
+<p><a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</a> (NYDFS / OCC detail for code) · <a href="#25-best-practice--finance">2.5 Best practice — finance</a> (the SR 26-2 gap for existing codebases) · <a href="#35-management--observability">3.5 Management &amp; observability</a> (the decision logs and traces that evidence-preservation needs) · <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a> (the Postman auto-install incident — the agent-layer supply-chain case).</p>
 </details>
 
 <h3 id="35-management--observability">3.5 Management &amp; observability</h3>
@@ -1316,6 +1368,8 @@
 <li>GOV.UK, "Agentic AI resilience measures" factsheet, 3 Nov 2026 (accessed 2026-11-11) — https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf</li>
 <li>haltstate.ai summary, 10 Nov 2026 (accessed 2026-11-11) — https://haltstate.ai/governance-alignment/uk-agent-resilience/</li>
 <li>The Register, 6 Nov 2026, via https://www.tonishatagoe.com/ai-agent-loss-of-control-evidence-sovereignty/ (accessed 2026-11-11)</li>
+<li>CSBS Artificial Intelligence Supervisory Framework, 16 Sep 2026, via Legal500 (accessed 2026-11-12) — https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners</li>
+<li>SFC Large Firm AI Readiness Survey, 2 Nov 2026, via SFC panel remarks (accessed 2026-11-12) — https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf?rev=55d68a0257194feeb8b66cd289bcb5e0&amp;</li>
 </ul>
 <p><strong>Caveats for the log:</strong> two figures in this baseline rest on single secondary sources and should be re-verified before being quoted externally — the MAST 41%–86.7% framework failure rates (Medium technical report) and the AISI GPT-6 Astra 29.2% attack-completion figure (Braiviq playbook citing AISI). The FINOS AIGF risk/mitigation count is omitted because sources disagree (23 vs 46). Pricing figures are vendor pricing as of mid-2026 and should be re-checked at procurement time.</p>
 <hr />
