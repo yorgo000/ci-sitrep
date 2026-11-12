@@ -1,4 +1,4 @@
-# CI Sitrep — *Code & Finance*
+# CI Sitrep *Code & Finance*
 
 **Last updated:** 2026-11-12.
 
