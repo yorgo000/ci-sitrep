@@ -39,7 +39,7 @@ Additions from the past 7 days (rolling window — entries older than 7 days dro
 
 ## Contents
 
-- [1. Pre-commit scanning of CI-generated code](#1-pre-commit-scanning-of-ai-generated-code)
+- [1. Pre-commit sanitizing / certification](#1-pre-commit-sanitizing--certification)
   - [1.1 How big the problem is](#11-how-big-the-problem-is)
   - [1.2 Product landscape](#12-product-landscape)
   - [1.3 What they catch](#13-what-they-catch)
@@ -47,7 +47,7 @@ Additions from the past 7 days (rolling window — entries older than 7 days dro
   - [1.5 Best practice — critical systems in finance](#15-best-practice--critical-systems-in-finance)
   - [1.6 Benchmarks & evidence](#16-benchmarks--evidence)
   - [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
-- [2. Code review / scanning — problems already in the codebase](#2-code-review--scanning--problems-already-in-the-codebase)
+- [2. Codebase sanitize / certification — CI-generated problems already in the codebase](#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase)
   - [2.1 How big the problem is](#21-how-big-the-problem-is)
   - [2.2 Problem classes](#22-problem-classes)
   - [2.3 Products & services](#23-products--services)
@@ -68,7 +68,7 @@ Additions from the past 7 days (rolling window — entries older than 7 days dro
 
 ---
 
-## 1. Pre-commit scanning of CI-generated code
+## 1. Pre-commit sanitizing / certification
 
 Commercial products that scan CI-generated code for problems *before* it is committed, plus the state of the art in best practice, with focus on critical systems in finance.
 
@@ -373,7 +373,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 ---
 
-## 2. Code review / scanning — CI problems already in the codebase
+## 2. Codebase sanitize / certification — CI-generated problems already in the codebase
 
 Detecting and remediating defects CI-generated code has already left in an existing codebase.
 
