@@ -1,8 +1,12 @@
 # About
 
-CI Today is published by Confluence, a software development firm founded in 1996 that builds critical systems for the finance industry — mostly for hedge funds and managing general agents — and for clients in other industries whose business models demand systems that cannot fail. Confluence's work has included the United Nations Situation Room.
+CI Today is published by Confluence<1>, a software development firm founded in 1996 that builds critical systems for the finance industry — mostly for hedge funds and managing general agents — and for clients in other industries whose business models demand systems that cannot fail. Confluence<1>'s work has included the United Nations Situation Room.
 
-The report is edited by Yorgo Bougás, Confluence's founder and managing partner. Before Confluence, Yorgo was at Sanford C. Bernstein. Bernstein began as a research company; Yorgo spent six months on the research side, but his main contribution was building the systems that allowed Bernstein to evolve from research into managing money — separately managed accounts with full tax awareness, daily portfolio optimization, and minimal need for hands-on portfolio managers.
+Confluence<1> has always taken the problems others would not or could not — the systems where failure is not an option, where the requirements are the hardest in the industry, and where the stakes are the highest. That is the firm's character: the special forces of software development, called in when the problem is too hard, too critical, or too consequential for anyone else.
+
+The report's chief editor is Yorgo Bougás, Confluence<1>'s founder and managing partner. Before Confluence<1>, Yorgo spent 9 years at Sanford C. Bernstein. Bernstein began as a research company; Yorgo's contribution was building the systems that allowed Bernstein to evolve from research into managing money — separately managed accounts with full tax awareness, daily portfolio optimization, and minimal need for hands-on portfolio managers. Those systems are still at the core of Bernstein's SMA business, within AllianceBernstein, which manages nearly $1 trillion in total assets. After having built those systems first on mainframes, then on VAX/DEC stations, and then on PCs, Yorgo also spent some time in Bernstein's Equity Strategy research department, working with the firm's Chief Investment Strategist, Michael Goldstein.
+
+Responsible, applicable, actionable research, from the perspective of critical systems, is in the Confluence<1> DNA.
 
 ## What this report is
 
