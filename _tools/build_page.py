@@ -67,7 +67,7 @@ TEMPLATE = """<!DOCTYPE html>
     --accent: #283060;
     --logo-navy: #283060;
     --bg: #faf6ef;
-    --side-bg: #f1ebdd;
+    --side-bg: #faf6ef;
     --code-bg: #f3ede0;
   }}
   * {{ box-sizing: border-box; }}
@@ -116,6 +116,7 @@ TEMPLATE = """<!DOCTYPE html>
   main {{ flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }}
   main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }}
   main h1:first-of-type {{ margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }}
+  main h1 em {{ display: block; font-size: 20px; margin-top: 2px; }}
   main h2 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; color: var(--logo-navy); }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
