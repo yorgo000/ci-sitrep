@@ -23,6 +23,11 @@ The pre-restructure append-only version of the file (baseline 2026-11-09 plus th
 - **Old claim (baseline 2026-11-09, §1.7):** "First independent benchmark of agent-time enforcement tools (none exists yet — the category is ~6 months old)."
 - **Superseded in part by:** CWE-bench v2 (Collinear AI, 3 Nov 2026) — a public, programmatically scored benchmark of 100 tasks (91 CWE classes) for agents finding and fixing security flaws, with 11 models evaluated. It is a yardstick for remediation agents; no agent-time enforcement product has yet been independently measured against it at scale, so the gap is narrowed, not closed. Current entry lives in [SYNTHESIZED.md §1.6](../SYNTHESIZED.md#16-benchmarks--evidence) and [§1.7](../SYNTHESIZED.md#17-open-gaps--watch-items).
 
+### 2026-11-12 — "No yardstick for LLM reviewer precision/recall" (partially superseded)
+
+- **Old claim (§1.7):** "Precision/recall of LLM reviewers on real PRs at scale." — listed as an open gap with no yardstick.
+- **Superseded in part by:** SecPRBench (Yang et al., arXiv:2610.33509, 24 Oct 2026) — the first benchmark of agentic pre-merge security review on validated real bug-introducing commits: 265 tasks from nine critical systems, recall 32.5–78.1% across eight frontier models, 68% of misses wrong-mechanism rather than oversights. No commercial review product has yet been independently measured against it at scale, so the gap is narrowed, not closed. Current entry lives in [SYNTHESIZED.md §1.6](../SYNTHESIZED.md#16-benchmarks--evidence), [§1.7](../SYNTHESIZED.md#17-open-gaps--watch-items) and [§2.1](../SYNTHESIZED.md#21-how-big-the-problem-is).
+
 ### 2026-11-11 — Standalone addendum blocks (merged into sections)
 
 - The "Update 2026-11-10 — addendum" and "Update 2026-11-11 — addendum" blocks that sat at the end of subject 1 in the append-only version have been merged into their proper sections (A.S.E 2.0, SecureVibeBench, CWE-bench v2, SusVibes and Apiiro into §1.6; CodeMender and Vercel Security Review into §1.2.3; OCC Bulletin 2026-54 into §1.5.2). Their content is preserved in place; the addendum blocks themselves are superseded as a format.
@@ -53,6 +58,11 @@ The pre-restructure append-only version of the file (baseline 2026-11-09 plus th
 
 - **Old claim (baseline 2026-11-09, §3.4):** "Finance regulation — four documents in under eight months" (FINRA, SR 26-2, FCA Mills Review, MAS SAFR, FINOS AIGF — five items under a "four documents" heading).
 - **Superseded by:** three further major documents dated before the baseline (OCC Bulletin 2026-54, HKMA Project SAGE, MAS Guidelines) plus the UK Cyber Security and Resilience Bill measures (Nov 2026). The regulation section is now a per-document collapsible list in [SYNTHESIZED.md §3.4.2](../SYNTHESIZED.md#342-regulation).
+
+### 2026-11-12 — "Regulatory picture filled from three directions" (superseded count)
+
+- **Old claim (§3.4):** "the gap … is now being filled from three directions at once — an examiner checklist (OCC), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a fifth direction naming loss of control as an incident class (UK)."
+- **Superseded by:** the CSBS Artificial Intelligence Supervisory Framework (16 Sep 2026) — state examiners, who supervise 79% of US banks, now have written AI examination procedures and a document-request list — and the HK SFC Large Firm AI Readiness Survey (2 Nov 2026) — 30% of large firms already use agentic AI, 25% piloting, with further SFC guidance to follow. Current entry lives in [SYNTHESIZED.md §3.4.2](../SYNTHESIZED.md#342-regulation).
 
 ### 2026-11-11 — Standalone addendum blocks (merged into sections)
 
