@@ -193,7 +193,7 @@
 <li><a href="#24-techniques">2.4 Techniques</a></li>
 <li><a href="#25-best-practice--finance">2.5 Best practice — finance</a></li>
 <li><a href="#26-hype-vs-verified">2.6 Hype vs verified</a></li>
-<li><a href="#27-what-this-means-for-offerings">2.7 What this means for offerings</a></li>
+<li><a href="#27-what-this-means-in-practice">2.7 What this means in practice</a></li>
 <li><a href="#sources--subject-2-accessed-2026-11-09-unless-noted">Sources — subject 2 (accessed 2026-11-09 unless noted)</a></li>
 </ul>
 </li>
@@ -228,7 +228,7 @@
 <p>Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.</p>
 <p>This file is a <strong>state of affairs</strong>, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
 <p><strong>New to the terms?</strong> Read the <a href="explainer.html">explainer: CI, CIA, and CIAC</a> — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper <a href="theses.html"><em>From Evolved Intelligence to Created Intelligence</em> (v0.1)</a> — <a href="created_intelligence_foundational_theses_v0.1.md">download the Markdown source</a>.</p>
-<p><strong>The bar for adding or changing anything:</strong> it could change the business offerings. Routine news, vendor marketing, and minor updates do not qualify.</p>
+<p><strong>The bar for adding or changing anything:</strong> it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.</p>
 <p><strong>How to read it:</strong> scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with <a href="#new-this-week">New this week</a> to jump to the latest changes.</p>
 <p><strong>Credibility rating</strong> — every article carries a dots rating for how much confidence you can place in its source.</p>
 <ul>
@@ -249,7 +249,7 @@
 <li><strong>2026-11-11 — SecureVibeBench, CWE-bench v2, SusVibes</strong> (subjects 1, 2): a second independent peer-reviewed benchmark confirms roughly half of test-passing AI code is vulnerable; a public yardstick for remediation agents now exists. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
 <li><strong>2026-11-11 — UK Cyber Security and Resilience Bill</strong> (subject 3): "loss of control" named as a regulated incident class; evidence preservation now a named expectation in the making. → <a href="#34-governance--finance">3.4 Governance</a></li>
 <li><strong>2026-11-10 — OCC Bulletin 2026-54, HKMA SAGE, MAS Guidelines</strong> (subject 3): the regulatory gap is being filled from three directions; MAS sets a dated deadline (Oct 2027). → <a href="#34-governance--finance">3.4 Governance</a></li>
-<li><strong>2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak</strong> (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects the baseline); agent settings files are a new secrets vector. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#12-product-landscape">1.2 Products</a> · <a href="#23-products--services">2.3 Products</a></li>
+<li><strong>2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak</strong> (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#12-product-landscape">1.2 Products</a> · <a href="#23-products--services">2.3 Products</a></li>
 </ul>
 <hr />
 <h2 id="1-pre-commit-scanning-of-ci-generated-code">1. Pre-commit scanning of CI-generated code</h2>
@@ -717,7 +717,7 @@
 <li>SusVibes re-run via Medium, 2 Nov 2026 (accessed 2026-11-11) — https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05</li>
 <li>Yang et al., "SecPRBench" (arXiv:2610.33509, 24 Oct 2026; accessed 2026-11-12) — https://arxiv.org/abs/2610.33509</li>
 </ul>
-<p><strong>Caveats for the log:</strong> pricing figures are list prices verified against vendor pages or secondary compilations as of Oct–Nov 2026 and change without notice — re-verify before budgeting. The agent-time enforcement category is ~6 months old; every effectiveness claim in it is vendor-run. The two numbers that would most change a business offering decision — independent head-to-head detection rates, and the Fed/OCC/FDIC AI request for information — do not exist yet as of 2026-11-09.</p>
+<p><strong>Caveats:</strong> pricing figures are list prices verified against vendor pages or secondary compilations as of Oct–Nov 2026 and change without notice — re-verify before budgeting. The agent-time enforcement category is ~6 months old; every effectiveness claim in it is vendor-run. The two numbers that would most change a buy-or-build decision — independent head-to-head detection rates, and the Fed/OCC/FDIC AI request for information — do not exist yet as of 2026-11-09.</p>
 <hr />
 <h2 id="2-code-review--scanning--ci-problems-already-in-the-codebase">2. Code review / scanning — CI problems already in the codebase</h2>
 <p>Detecting and remediating defects CI-generated code has already left in an existing codebase.</p>
@@ -1060,11 +1060,11 @@
 <li><strong>Cautionary example — CI-generated compliance content getting regulation wrong:</strong> a 2026 guide (quizforml.com) asserts SR 11-7 "mandates continuous automated evaluation" for LLM pipelines in banking. False — SR 11-7 was rescinded in April 2026 and its replacement excludes generative AI. Any compliance claim about AI in banking should be checked against the bulletin itself, not against secondary summaries.</li>
 <li><strong>Pricing:</strong> figures above were checked Oct 2026 (Superblocks) or are vendor-published; several vendors changed tier structures in 2026 — verify before committing.</li>
 </ul>
-<h3 id="27-what-this-means-for-offerings">2.7 What this means for offerings</h3>
+<h3 id="27-what-this-means-in-practice">2.7 What this means in practice</h3>
 <ul>
-<li>The audit/remediation market is real and monetisable now: services (GrowExx-style 4-tier audits, 48 h MVP turnaround), tooling integration, and "AI code audit as a service" for finance clients who must demonstrate control to examiners and counterparties.</li>
-<li>For a finance-critical dev shop, demonstrable AI-code governance — provenance capture, gated CI, verified remediation, complete audit trail — is becoming a procurement and examiner expectation, not a differentiator. The SR 26-2 gap is the opening: banks have no supervisory framework for AI code and must build their own; a vendor who arrives with one (mapped to NIST AI RMF, NYDFS Part 500, OSFI's bulletin) has a concrete sell.</li>
-<li>Watch items: the SR 26-2 follow-up RFI on AI (still pending); EU AI Act Dec 2027 obligations; NCSC patch-wave volume (whether patch throughput becomes a reported operational metric); independent accuracy data for full-repo reasoning agents (CWE-bench v2 now gives a yardstick — no product yet independently measured at scale); and whether any post-hoc AI-code detector survives independent evaluation.</li>
+<li>The audit/remediation market is real and available now: services (4-tier audits, 48 h MVP turnaround), tooling integration, and "AI code audit as a service" for finance firms who must demonstrate control to examiners and counterparties.</li>
+<li>For a firm building finance-critical systems, demonstrable AI-code governance — provenance capture, gated CI, verified remediation, complete audit trail — is becoming a procurement and examiner expectation, not a differentiator. The SR 26-2 gap is the opening: banks have no supervisory framework for AI code and must build their own; a firm that arrives with one (mapped to NIST AI RMF, NYDFS Part 500, OSFI's bulletin) has a concrete proposition.</li>
+<li>What to watch: the SR 26-2 follow-up RFI on AI (still pending); EU AI Act Dec 2027 obligations; NCSC patch-wave volume (whether patch throughput becomes a reported operational metric); independent accuracy data for full-repo reasoning agents (CWE-bench v2 now gives a yardstick — no product yet independently measured at scale); and whether any post-hoc AI-code detector survives independent evaluation.</li>
 </ul>
 <details>
 <summary>See also</summary>
@@ -1217,7 +1217,7 @@
 <li>Four-tier consequence-based risk classification: an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4.</li>
 <li>Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit.</li>
 <li><strong>Sets no supervisory expectations for banks, no enforceable standards and no prescriptive requirements</strong> — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI.</li>
-<li>The baseline's "no US model-risk umbrella" still holds as law; it no longer holds as examination practice. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.</li>
+<li>The original finding — "no US model-risk umbrella" — still holds as law; it no longer holds as examination practice. A firm that maps its agentic governance to the sixteen components has a concrete, examiner-shaped case to make to national banks.</li>
 </ul>
 </details>
 
@@ -1228,7 +1228,7 @@
 <li>Five documents: Core Examiner Guide, Examiner Work Program, non-bank supplements, an AI Use Case Risk-Tiering Worksheet, and sources.</li>
 <li>Gives examiners scoping questions, a document-request list, and procedures on governance and oversight, AI inventories and use cases, and generative AI / emerging uses; draws on the NIST AI Risk Management Framework, the Cyber Risk Institute's Financial Services AI Risk Management Framework, and the Treasury AI Lexicon.</li>
 <li><strong>Discretionary tool, no new obligations</strong> — each state agency decides whether and how to adopt it — but it is the written procedure state examiners will work from, and a usable self-test for any state-chartered bank client.</li>
-<li><strong>What this changes for offerings:</strong> the examiner's document-request list (governance, AI inventory, use-case risk tiering) is now literally the deliverable set for a governance engagement with a state-chartered bank — the first US examination procedure that names what to hand over.</li>
+<li><strong>What this changes in practice:</strong> the examiner's document-request list (governance, AI inventory, use-case risk tiering) is now literally the deliverable set for a governance engagement with a state-chartered bank — the first US examination procedure that names what to hand over.</li>
 </ul>
 </details>
 
@@ -1296,7 +1296,7 @@
 <li>Scope is essential and digital services under the NIS regime (healthcare, water, energy, digital providers, managed service providers, critical suppliers) — not banks directly.</li>
 <li>The factsheet states the measures are "not intended to establish a comprehensive framework for AI governance".</li>
 <li>Trigger, per The Register (6 Nov 2026): OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope.</li>
-<li><strong>What this changes for offerings:</strong> a fifth regulatory direction, and the first to name "loss of control" as an incident class rather than a design risk. The evidence-preservation measure maps directly onto the tamper-evident, replayable audit log already in the governance offering — it is now a named regulatory expectation in the making, not just best practice. The affected-party notification measure adds a new incident-response scope item (notify organisations your agent disrupted, not just your own customers). UK-only and pre-legislative, so this is a watch-and-position item, not a compliance deadline — but for any client with UK essential-services exposure it is a dated (3 Nov 2026) signal to build loss-of-control handling into the agent governance scope now.</li>
+<li><strong>What this changes in practice:</strong> a fifth regulatory direction, and the first to name "loss of control" as an incident class rather than a design risk. The evidence-preservation measure maps directly onto the tamper-evident, replayable audit log that a governance framework should already include — it is now a named regulatory expectation in the making, not just best practice. The affected-party notification measure adds a new incident-response scope item (notify organisations your agent disrupted, not just your own customers). UK-only and pre-legislative, so this is a watch-and-position item, not a compliance deadline — but for any firm with UK essential-services exposure it is a dated (3 Nov 2026) signal to build loss-of-control handling into the agent governance scope now.</li>
 </ul>
 </details>
 
@@ -1310,7 +1310,7 @@
 </ul>
 </details>
 
-<p><strong>What the regulatory picture means for offerings:</strong> the gap the baseline identified as the opening ("banks have no supervisory framework for AI code and must build their own") is now being filled from several directions at once — a federal examiner checklist (OCC), a state examiner framework with a document-request list (CSBS), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a further direction naming loss of control as an incident class (UK). The sell sharpens from "build your own governance" to "build governance that maps to the OCC's sixteen components, the MAS inventory/materiality model, HKMA-style intent-anchored accountability and agent registry, and the CSBS examiner's document list" — a concrete, citable scope for a finance client.</p>
+<p><strong>What the regulatory picture means in practice:</strong> the gap this report identified as the opening ("banks have no supervisory framework for AI code and must build their own") is now being filled from several directions at once — a federal examiner checklist (OCC), a state examiner framework with a document-request list (CSBS), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a further direction naming loss of control as an incident class (UK). The case sharpens from "build your own governance" to "build governance that maps to the OCC's sixteen components, the MAS inventory/materiality model, HKMA-style intent-anchored accountability and agent registry, and the CSBS examiner's document list" — a concrete, citable scope for a finance firm.</p>
 <p><strong>Still unchanged:</strong> the Fed/OCC/FDIC AI request for information promised in Apr 2026 has still not appeared (confirmed as of 2 Nov 2026; re-checked 12 Nov — still not in the Federal Register); the replacement third-party-risk guidance proposal (15 Sep 2026) has comments due <strong>16 Nov 2026</strong>.</p>
 <details>
 <summary>See also</summary>
@@ -1425,10 +1425,10 @@
 <li>CSBS Artificial Intelligence Supervisory Framework, 16 Sep 2026, via Legal500 (accessed 2026-11-12) — https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners</li>
 <li>SFC Large Firm AI Readiness Survey, 2 Nov 2026, via SFC panel remarks (accessed 2026-11-12) — https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf?rev=55d68a0257194feeb8b66cd289bcb5e0&amp;</li>
 </ul>
-<p><strong>Caveats for the log:</strong> two figures in this baseline rest on single secondary sources and should be re-verified before being quoted externally — the MAST 41%–86.7% framework failure rates (Medium technical report) and the AISI GPT-6 Astra 29.2% attack-completion figure (Braiviq playbook citing AISI). The FINOS AIGF risk/mitigation count is omitted because sources disagree (23 vs 46). Pricing figures are vendor pricing as of mid-2026 and should be re-checked at procurement time.</p>
+<p><strong>Caveats:</strong> two figures in this report rest on single secondary sources and should be treated with caution — the MAST 41%–86.7% framework failure rates (Medium technical report) and the AISI GPT-6 Astra 29.2% attack-completion figure (Braiviq playbook citing AISI). The FINOS AIGF risk/mitigation count is omitted because sources disagree (23 vs 46). Pricing figures are vendor pricing as of mid-2026 and should be re-checked at procurement time.</p>
 <hr />
 <h2 id="archive">Archive</h2>
-<p>Superseded text lives in <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized by subject — nothing is silently deleted. The pre-restructure append-only version of this file is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
+<p>Superseded text lives in <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized by subject — nothing is silently deleted. The original version of this file (before the November 11 restructure) is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
   </main>
 </div>
 <script>
