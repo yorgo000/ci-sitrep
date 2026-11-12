@@ -173,8 +173,8 @@ TEMPLATE = """<!DOCTYPE html>
   }}
   nav.sidebar h2 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }}
   .masthead {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
-  .masthead-title {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; color: var(--ink); }}
-  .masthead-vertical {{ font-size: 15px; font-weight: 600; color: var(--accent); margin: 2px 0 6px; }}
+  .masthead-title {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; color: #283060; }}
+  .masthead-vertical {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 6px; }}
   .masthead-tagline {{ font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }}
   .masthead-by {{ font-size: 13px; color: var(--muted); margin: 10px 0 0; }}
   .masthead-logo {{ height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }}
@@ -209,7 +209,7 @@ TEMPLATE = """<!DOCTYPE html>
   nav.sidebar .toc li.toc-collapsed > a .toc-toggle {{ transform: rotate(-90deg); }}
   nav.sidebar .toc li.toc-collapsed > ul {{ display: none; }}
   main {{ flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }}
-  main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 0 0 8px; line-height: 1.25; }}
+  main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 0 0 8px; line-height: 1.25; color: #283060; }}
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
