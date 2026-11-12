@@ -122,6 +122,9 @@
   details[open] > summary::before { transform: rotate(0deg); }
   details:not([open]) > summary::before { transform: rotate(-90deg); }
   details > summary:hover { background: var(--side-bg); }
+  details.how-to-read > summary {
+    font-weight: 400; font-style: italic; color: var(--muted);
+  }
   details[open] > summary { border-bottom: 1px solid var(--line); border-radius: 6px 6px 0 0; }
   details > ul, details > p { padding: 4px 14px 10px; margin: 0; }
   details > ul { padding-left: 38px; }
@@ -220,8 +223,8 @@
   <main>
     <h1 id="ci-sitrep--code--finance">CI Sitrep — <em>Code &amp; Finance</em></h1>
 <p class="as-of-banner">As of Thursday, November 12, 2026</p>
-<details>
-<summary><strong>How to read this</strong></summary>
+<details class="how-to-read">
+<summary>How to read this</summary>
 <p>Created Intelligence in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.</p>
 <p>This file is a <strong>state of affairs</strong>, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
 <p><strong>New to the terms?</strong> Read the <a href="explainer.html">explainer: CI, CIA, and CIAC</a> — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper <a href="theses.html"><em>From Evolved Intelligence to Created Intelligence</em> (v0.1)</a> — <a href="created_intelligence_foundational_theses_v0.1.md">download the Markdown source</a>.</p>
