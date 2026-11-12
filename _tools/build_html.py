@@ -109,7 +109,7 @@ def build(input_path, output_path):
         body = body.replace("</h1>", "</h1>\n" + banner, 1)
 
     html = TEMPLATE.format(
-        title="CI Today — Code & Finance",
+        title="CI Sitrep — Code & Finance",
         last_updated=last_updated,
         toc=toc_html,
         body=body,
@@ -171,6 +171,8 @@ TEMPLATE = """<!DOCTYPE html>
   .masthead-title {{ font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; color: var(--ink); }}
   .masthead-vertical {{ font-size: 15px; font-weight: 600; color: var(--accent); margin: 2px 0 6px; }}
   .masthead-tagline {{ font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }}
+  .masthead-by {{ font-size: 13px; color: var(--muted); margin: 10px 0 0; }}
+  .masthead-logo {{ height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }}
   .masthead-nav {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
   .masthead-nav a {{ font-weight: 600; }}
   .masthead-legend {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
@@ -256,9 +258,10 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="layout">
   <nav class="sidebar">
     <div class="masthead">
-      <p class="masthead-title">CI Today</p>
+      <p class="masthead-title">CI Sitrep</p>
       <p class="masthead-vertical">Code &amp; Finance</p>
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
+      <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
     <div class="masthead-nav">
       <a href="about.html">About</a>
