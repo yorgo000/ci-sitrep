@@ -275,7 +275,7 @@ TEMPLATE = """<!DOCTYPE html>
     </div>
     <h2>Contents</h2>
     {toc}
-    <p class="meta" style="margin-top: 20px;">© 2026 Confluence 1 Corp. All rights reserved.<br>
+    <p class="meta" style="margin-top: 20px;">© 2026 Confluence&lt;1&gt; Corp. All rights reserved.<br>
     Source: SYNTHESIZED.md (Markdown is the source of truth).</p>
   </nav>
   <main>
