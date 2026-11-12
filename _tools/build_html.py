@@ -43,17 +43,18 @@ def convert_details_blocks(src):
     first; the outer conversion then passes the whole <details> through.
     """
     def repl(m):
-        inner = m.group(1)
-        sm = re.match(r"(\s*<summary>.*?</summary>)(.*)", inner, re.DOTALL)
+        opening = m.group(1)  # the <details ...> opening tag, attributes preserved
+        inner = m.group(2)
+        sm = re.match(r"(\s*<summary[^>]*>.*?</summary>)(.*)", inner, re.DOTALL)
         if not sm:
             return m.group(0)
         summary, rest = sm.group(1), sm.group(2)
         html_rest = markdown.markdown(
             rest.strip(), extensions=["tables", "sane_lists"]
         )
-        return "<details>\n" + summary.strip() + "\n" + html_rest + "\n</details>"
+        return opening + "\n" + summary.strip() + "\n" + html_rest + "\n</details>"
 
-    return re.sub(r"<details>(.*?)</details>", repl, src, flags=re.DOTALL)
+    return re.sub(r"(<details[^>]*>)(.*?)</details>", repl, src, flags=re.DOTALL)
 
 
 def strip_contents_section(src):
@@ -247,6 +248,9 @@ TEMPLATE = """<!DOCTYPE html>
   details[open] > summary::before {{ transform: rotate(0deg); }}
   details:not([open]) > summary::before {{ transform: rotate(-90deg); }}
   details > summary:hover {{ background: var(--side-bg); }}
+  details.how-to-read > summary {{
+    font-weight: 400; font-style: italic; color: var(--muted);
+  }}
   details[open] > summary {{ border-bottom: 1px solid var(--line); border-radius: 6px 6px 0 0; }}
   details > ul, details > p {{ padding: 4px 14px 10px; margin: 0; }}
   details > ul {{ padding-left: 38px; }}
