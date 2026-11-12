@@ -1,6 +1,6 @@
 # About
 
-CI Today is published by Confluence<1>, a software development firm founded in 1996 that builds critical systems for the finance industry — mostly for hedge funds and managing general agents — and for clients in other industries whose business models demand systems that cannot fail. Confluence<1>'s work has included the United Nations Situation Room.
+CI Sitrep is published by Confluence<1>, a software development firm founded in 1996 that builds critical systems for the finance industry — mostly for hedge funds and managing general agents — and for clients in other industries whose business models demand systems that cannot fail. Confluence<1>'s work has included the United Nations Situation Room.
 
 Confluence<1> has always taken the problems others would not or could not — the systems where failure is not an option, where the requirements are the hardest in the industry, and where the stakes are the highest. That is the firm's character: the special forces of software development, called in when the problem is too hard, too critical, or too consequential for anyone else.
 
@@ -10,10 +10,10 @@ Responsible, applicable, actionable research, from the perspective of critical s
 
 ## What this report is
 
-CI Today tracks the state of the art in Created Intelligence in code and finance: the tools and practices for scanning AI-generated code before it is committed, the problems AI-generated code has already introduced into existing codebases, and the governance of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
+CI Sitrep tracks the state of the art in Created Intelligence in code and finance: the tools and practices for scanning AI-generated code before it is committed, the problems AI-generated code has already introduced into existing codebases, and the governance of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
 
 Every article carries a credibility rating — a dots score for how much confidence you can place in its source. See the legend on the main page for what each level means.
 
 ## Contact
 
-CI Today is a Confluence service. For enquiries, write to ci-sitrep@confluence1.com.
+CI Sitrep is a Confluence service. For enquiries, write to ci-sitrep@confluence1.com.
