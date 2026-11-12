@@ -786,7 +786,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - The factsheet states the measures are "not intended to establish a comprehensive framework for AI governance".
 - Trigger, per The Register (6 Nov 2026): OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope.
 - **What this changes in practice:** a fifth regulatory direction, and the first to name "loss of control" as an incident class rather than a design risk. The evidence-preservation measure maps directly onto the tamper-evident, replayable audit log that a governance framework should already include — it is now a named regulatory expectation in the making, not just best practice. The affected-party notification measure adds a new incident-response scope item (notify organisations your agent disrupted, not just your own customers). UK-only and pre-legislative, so this is a watch-and-position item, not a compliance deadline — but for any firm with UK essential-services exposure it is a dated (3 Nov 2026) signal to build loss-of-control handling into the agent governance scope now.
-- Source: [GOV.UK, Agentic AI resilience measures factsheet](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-a)
+- Source: [GOV.UK, Agentic AI resilience measures factsheet](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf)
 </details>
 
 <details>
