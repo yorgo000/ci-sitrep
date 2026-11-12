@@ -163,7 +163,7 @@
     <div class="toc">
 <ul>
 <li><a href="#new-this-week">New this week</a></li>
-<li><a href="#1-pre-commit-scanning-of-ci-generated-code">1. Pre-commit scanning of CI-generated code</a><ul>
+<li><a href="#1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</a><ul>
 <li><a href="#11-how-big-the-problem-is">1.1 How big the problem is</a></li>
 <li><a href="#12-product-landscape">1.2 Product landscape</a><ul>
 <li><a href="#121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save">1.2.1 Layer A — Agent-time enforcement (acts while the agent writes, before the save)</a></li>
@@ -186,7 +186,7 @@
 <li><a href="#sources--subject-1-accessed-2026-11-09-unless-noted">Sources — subject 1 (accessed 2026-11-09 unless noted)</a></li>
 </ul>
 </li>
-<li><a href="#2-code-review--scanning--ci-problems-already-in-the-codebase">2. Code review / scanning — CI problems already in the codebase</a><ul>
+<li><a href="#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</a><ul>
 <li><a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
 <li><a href="#22-problem-classes">2.2 Problem classes</a></li>
 <li><a href="#23-products--services">2.3 Products &amp; services</a></li>
@@ -252,7 +252,7 @@
 <li><strong>2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak</strong> (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#12-product-landscape">1.2 Products</a> · <a href="#23-products--services">2.3 Products</a></li>
 </ul>
 <hr />
-<h2 id="1-pre-commit-scanning-of-ci-generated-code">1. Pre-commit scanning of CI-generated code</h2>
+<h2 id="1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</h2>
 <p>Commercial products that scan CI-generated code for problems <em>before</em> it is committed, plus the state of the art in best practice, with focus on critical systems in finance.</p>
 <h3 id="11-how-big-the-problem-is">1.1 How big the problem is</h3>
 <details>
@@ -719,7 +719,7 @@
 </ul>
 <p><strong>Caveats:</strong> pricing figures are list prices verified against vendor pages or secondary compilations as of Oct–Nov 2026 and change without notice — re-verify before budgeting. The agent-time enforcement category is ~6 months old; every effectiveness claim in it is vendor-run. The two numbers that would most change a buy-or-build decision — independent head-to-head detection rates, and the Fed/OCC/FDIC AI request for information — do not exist yet as of 2026-11-09.</p>
 <hr />
-<h2 id="2-code-review--scanning--ci-problems-already-in-the-codebase">2. Code review / scanning — CI problems already in the codebase</h2>
+<h2 id="2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</h2>
 <p>Detecting and remediating defects CI-generated code has already left in an existing codebase.</p>
 <h3 id="21-how-big-the-problem-is">2.1 How big the problem is</h3>
 <details>
