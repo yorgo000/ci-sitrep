@@ -14,5 +14,4 @@ Three subjects:
 2. Code review / scanning for CI problems already in a codebase.
 3. CIAC (CIA collective) creation, governance, management.
 
-The bar for adding or changing anything: it could change the business
-offerings (software development of critical systems in finance, NYC).
+Editorial bar: an entry is added or changed only if it could change how a firm building critical systems in finance should act.
