@@ -213,7 +213,8 @@ TEMPLATE = """<!DOCTYPE html>
   main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 0 0 8px; line-height: 1.25; color: #283060; }}
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
-  main h4 {{ font-size: 16px; margin: 20px 0 8px; }}
+  main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
+  main h4 + .section-body {{ margin-left: 16px; }}
   h2 .toggle, h3 .toggle, h4 .toggle {{
     cursor: pointer; margin-right: 6px;
     user-select: none; display: inline-block; width: 0; height: 0;
