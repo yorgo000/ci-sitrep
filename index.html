@@ -101,7 +101,7 @@
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
-  #new-this-week + .section-body { background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }
+  #new-this-week + .section-body, #what-were-watching + .section-body { background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
   main p { margin: 8px 0; }
   main ul, main ol { margin: 8px 0; padding-left: 24px; }
@@ -169,6 +169,7 @@
     <div class="toc">
 <ul>
 <li><a href="#new-this-week">New this week</a></li>
+<li><a href="#what-were-watching">What we're watching</a></li>
 <li><a href="#1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</a><ul>
 <li><a href="#11-how-big-the-problem-is">1.1 How big the problem is</a></li>
 <li><a href="#12-product-landscape">1.2 Product landscape</a><ul>
@@ -260,6 +261,23 @@
 <li><strong>2026-11-11 — UK Cyber Security and Resilience Bill</strong> (subject 3): "loss of control" named as a regulated incident class; evidence preservation now a named expectation in the making. → <a href="#34-governance">3.4 Governance</a></li>
 <li><strong>2026-11-10 — OCC Bulletin 2026-54, HKMA SAGE, MAS Guidelines</strong> (subject 3): the regulatory gap is being filled from three directions; MAS sets a dated deadline (Oct 2027). → <a href="#34-governance">3.4 Governance</a></li>
 <li><strong>2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak</strong> (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → <a href="#16-benchmarks--evidence">1.6 Benchmarks</a> · <a href="#12-product-landscape">1.2 Products</a> · <a href="#23-products--services">2.3 Products</a></li>
+</ul>
+<h2 id="what-were-watching">What we're watching</h2>
+<p>What is coming up, and what we are looking for — the dated events on the horizon and the open questions the report is tracking. When an item lands, it moves into the report as an article and drops off this list.</p>
+<p><strong>Coming up:</strong></p>
+<ul>
+<li><strong>Mon 16 Nov 2026</strong> — Comments close on the replacement third-party-risk guidance (Fed/FDIC/OCC/NCUA). → <a href="#34-governance">3.4 Governance</a></li>
+<li><strong>Mon 16 Nov 2026</strong> — California's expert recommendations on a frontier-model kill switch are due. → <a href="#34-governance">3.4 Governance</a></li>
+<li><strong>1 Feb 2027</strong> — HKMA Project SAGE comments close. → <a href="#34-governance">3.4 Governance</a></li>
+<li><strong>7 Oct 2027</strong> — MAS AI Risk Management Guidelines take effect (Sections 5–6 by 7 Oct 2028). → <a href="#34-governance">3.4 Governance</a></li>
+<li><strong>Dec 2027</strong> — EU AI Act high-risk obligations arrive; the compliance build-out for credit/insurance AI is a 2027 budget item. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
+</ul>
+<p><strong>What we're looking for:</strong></p>
+<ul>
+<li>The Fed/OCC/FDIC AI request for information, promised April 2026 and still unpublished. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
+<li>The first independent benchmark of agent-time enforcement tools — the category is ~6 months old; no product has been independently measured at scale. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
+<li>Whether NYDFS advisory language hardens into examination expectations for CI-generated code testing. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
+<li>Head-to-head detection rates of agent-time enforcement tools on real PRs at scale. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
 </ul>
 <hr />
 <h2 id="1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</h2>
@@ -1628,7 +1646,8 @@ Sources: <a href="https://www.digitalapplied.com/blog/agentic-ai-regulated-indus
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
-    h.classList.add('collapsed');
+    // The two front-page sections start open; everything else starts collapsed.
+    if (h.id !== 'new-this-week' && h.id !== 'what-were-watching') h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
@@ -1650,8 +1669,7 @@ Sources: <a href="https://www.digitalapplied.com/blog/agentic-ai-regulated-indus
       if (e.target.closest('a')) return;
       h.classList.toggle('collapsed');
     });
-    // Start with h4 sections collapsed, h2/h3 open.
-    if (level === 4) h.classList.add('collapsed');
+    // (h4 sections were already collapsed above, like every other heading.)
   });
   // Jumping to an anchor (from the sidebar or New this week) expands any
   // collapsed ancestor section so the target is visible.
