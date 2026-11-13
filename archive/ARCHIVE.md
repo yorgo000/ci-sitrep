@@ -28,6 +28,11 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 - **Old claim (§1.7):** "Precision/recall of LLM reviewers on real PRs at scale." — listed as an open gap with no yardstick.
 - **Superseded in part by:** SecPRBench (Yang et al., arXiv:2610.33509, 24 Oct 2026) — the first benchmark of agentic pre-merge security review on validated real bug-introducing commits: 265 tasks from nine critical systems, recall 32.5–78.1% across eight frontier models, 68% of misses wrong-mechanism rather than oversights. No commercial review product has yet been independently measured against it at scale, so the gap is narrowed, not closed. Current entry lives in [SYNTHESIZED.md §1.6](../SYNTHESIZED.md#16-benchmarks--evidence), [§1.7](../SYNTHESIZED.md#17-open-gaps--watch-items) and [§2.1](../SYNTHESIZED.md#21-how-big-the-problem-is).
 
+### 2026-11-13 — Semgrep Layer A row (expanded)
+
+- **Old text (2026-11-09, §1.2.1 Layer A table):** "Semgrep (agent hooks) — Custom-rule SAST in the agent loop; Semgrep Assistant AI triage."
+- **Superseded by:** Semgrep Agentic AppSec Platform (announced 12 Nov 2026): Guardian fixes issues as agents write, before commit; Mandoline program-analysis engine returns only reachable code paths to agents; Agentic Security Workflows; MCP server; integration with OpenAI Codex Security / Daybreak Defense Factory. Vendor-claimed: agents found 2× more real vulnerabilities than frontier models alone, −65% token costs (method undisclosed). Current entry lives in [SYNTHESIZED.md §1.2](../SYNTHESIZED.md#12-product-landscape).
+
 ### 2026-11-11 — Standalone update blocks (merged into sections)
 
 - The standalone update blocks from 2026-11-10 and 2026-11-11 have been merged into their proper sections (A.S.E 2.0, SecureVibeBench, CWE-bench v2, SusVibes and Apiiro into §1.6; CodeMender and Vercel Security Review into §1.2.3; OCC Bulletin 2026-54 into §1.5.2). The updates themselves are preserved in place.
