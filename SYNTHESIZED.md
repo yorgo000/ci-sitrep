@@ -43,6 +43,25 @@ Additions from the past 7 days (rolling window — entries older than 7 days dro
 - **2026-11-10 — OCC Bulletin 2026-54, HKMA SAGE, MAS Guidelines** (subject 3): the regulatory gap is being filled from three directions; MAS sets a dated deadline (Oct 2027). → [3.4 Governance](#34-governance)
 - **2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak** (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → [1.6 Benchmarks](#16-benchmarks--evidence) · [1.2 Products](#12-product-landscape) · [2.3 Products](#23-products--services)
 
+## What we're watching
+
+What is coming up, and what we are looking for — the dated events on the horizon and the open questions the report is tracking. When an item lands, it moves into the report as an article and drops off this list.
+
+**Coming up:**
+
+- **Mon 16 Nov 2026** — Comments close on the replacement third-party-risk guidance (Fed/FDIC/OCC/NCUA). → [3.4 Governance](#34-governance)
+- **Mon 16 Nov 2026** — California's expert recommendations on a frontier-model kill switch are due. → [3.4 Governance](#34-governance)
+- **1 Feb 2027** — HKMA Project SAGE comments close. → [3.4 Governance](#34-governance)
+- **7 Oct 2027** — MAS AI Risk Management Guidelines take effect (Sections 5–6 by 7 Oct 2028). → [3.4 Governance](#34-governance)
+- **Dec 2027** — EU AI Act high-risk obligations arrive; the compliance build-out for credit/insurance AI is a 2027 budget item. → [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
+
+**What we're looking for:**
+
+- The Fed/OCC/FDIC AI request for information, promised April 2026 and still unpublished. → [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
+- The first independent benchmark of agent-time enforcement tools — the category is ~6 months old; no product has been independently measured at scale. → [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
+- Whether NYDFS advisory language hardens into examination expectations for CI-generated code testing. → [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
+- Head-to-head detection rates of agent-time enforcement tools on real PRs at scale. → [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
+
 ## Contents
 
 - [1. Pre-commit sanitizing / certification](#1-pre-commit-sanitizing--certification)
