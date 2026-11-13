@@ -314,7 +314,7 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="explainer.html">The names: CI, CIA, CIAC</a>
       <a href="theses.html">Foundational theses</a>
       <a href="archive.html">Archive</a>
-      <a href="audit.html">Audit</a>
+      <a href="audit.html">Self-Audit</a>
     </div>
     <div class="masthead-legend">
       <h3>Credibility rating</h3>
