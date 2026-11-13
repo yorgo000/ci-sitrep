@@ -109,10 +109,22 @@ def build(input_path, output_path):
     toc_html = md.toc
 
     # Prominent timestamp banner directly under the H1, so a reader sees at a
-    # glance how current the report is.
+    # glance how current the report is. Right after it, a mobile-only inline
+    # table of contents: on a phone the sidebar (with the TOC) sits below the
+    # content, so the reader needs navigation up top. It is a native <details>
+    # (one collapsed line, "Contents") and is hidden on desktop via CSS.
+    # It sits outside every section-body, so collapsing a section never hides it.
+    inline_toc = (
+        '<details class="toc-inline">\n'
+        '<summary>Contents</summary>\n'
+        + toc_html +
+        '\n</details>\n'
+    )
     if as_of:
         banner = f'<p class="as-of-banner">As of {as_of}</p>'
-        body = body.replace("</h1>", "</h1>\n" + banner, 1)
+        body = body.replace("</h1>", "</h1>\n" + banner + "\n" + inline_toc, 1)
+    else:
+        body = body.replace("</h1>", "</h1>\n" + inline_toc, 1)
 
     html = TEMPLATE.format(
         title="CI Sitrep — Code & Finance",
@@ -228,6 +240,14 @@ TEMPLATE = """<!DOCTYPE html>
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
   #new-this-week + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
+  /* Inline TOC: hidden on desktop (the sidebar has it); shown on mobile. */
+  .toc-inline {{ display: none; }}
+  .toc-inline ul {{ list-style: none; padding: 0; margin: 0; }}
+  .toc-inline li {{ margin: 2px 0; }}
+  .toc-inline li li {{ padding-left: 14px; }}
+  .toc-inline li li li {{ padding-left: 14px; }}
+  .toc-inline a {{ color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }}
+  .toc-inline a:hover {{ background: #e8dfcc; }}
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle {{ transform: rotate(-90deg); }}
   main p {{ margin: 8px 0; }}
   main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
@@ -264,6 +284,7 @@ TEMPLATE = """<!DOCTYPE html>
     .layout {{ flex-direction: column; }}
     /* On a phone the content comes first and the masthead/sidebar follows below it. */
     main {{ order: 1; padding: 24px 20px 48px; }}
+    .toc-inline {{ display: block; }}
     nav.sidebar {{ order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }}
     main h1 {{ margin: -24px -20px 16px; padding: 24px 20px; }}
   }}
