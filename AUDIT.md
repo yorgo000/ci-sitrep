@@ -10,13 +10,13 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 45 |
-| Source links (article + subsection) | 111 |
-| Total external links (incl. inline prose links) | 201 |
-| Unique source URLs | 110 |
+| Articles | 50 |
+| Source links (article + subsection) | 127 |
+| Total external links (incl. inline prose links) | 221 |
+| Unique source URLs | 121 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new this week | 9 |
-| Superseded entries in the archive | 11 |
+| Items new this week | 14 |
+| Superseded entries in the archive | 12 |
 | Report live since | 2026-11-09 |
 
 ---
@@ -27,12 +27,12 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 9 | 20% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 12 | 27% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 22 | 49% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 9 | 18% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 15 | 30% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 24 | 48% |
 | ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 2 | 4% |
 
-**47% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
+**48% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
 ---
 
@@ -40,10 +40,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Tracking began recently; funnel totals will accumulate with each daily run.
+Since tracking began on 2026-11-12, the daily watch has reviewed **27** sources and added **5** new articles (updating **1** existing ones). That is a 18.5% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
+| 2026-11-13 | 27 | 5 | 1 | 5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov. |
 | 2026-11-12 | 0 | 0 | 0 | Tracking begins. Baseline: 38 articles, 101 source links, 187 total external links, 101 unique URLs. Funnel counts start with the next daily run. |
 
 ---
@@ -54,7 +55,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 110 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 121 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
