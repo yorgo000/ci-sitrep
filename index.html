@@ -88,6 +88,9 @@
   main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: -32px -48px 16px; padding: 28px 48px; line-height: 1.25; color: #fff; background: var(--logo-navy); }
   main h1 em { display: block; font-size: 20px; margin-top: 2px; }
   main h2 { font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }
+  /* Meta sections (front-page features + archive) sit below the three
+     content sections: smaller, lighter, muted. */
+  main h2#new-this-week, main h2#what-were-watching, main h2#archive { font-size: 17px; font-weight: 600; color: var(--muted); }
   main h3 { font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }
   main h4 { font-size: 16px; margin: 20px 0 8px 16px; }
   main h4 + .section-body { margin-left: 16px; }
@@ -180,7 +183,7 @@
 <ul>
 <li><a href="#new-this-week">New this week</a></li>
 <li><a href="#what-were-watching">What we're watching</a></li>
-<li><a href="#1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</a><ul>
+<li><a href="#1-pre-commit-ci-generated-code-sanitizing">1. Pre-commit: CI-generated code sanitizing</a><ul>
 <li><a href="#11-how-big-the-problem-is">1.1 How big the problem is</a></li>
 <li><a href="#12-product-landscape">1.2 Product landscape</a><ul>
 <li><a href="#121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save">1.2.1 Layer A — Agent-time enforcement (acts while the agent writes, before the save)</a></li>
@@ -202,7 +205,7 @@
 <li><a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
 </ul>
 </li>
-<li><a href="#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</a><ul>
+<li><a href="#2-in-codebase-sanitizing-post-commit-of-ci-generated-code">2. In codebase: Sanitizing post-commit of CI-generated code</a><ul>
 <li><a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
 <li><a href="#22-problem-classes">2.2 Problem classes</a></li>
 <li><a href="#23-products--services">2.3 Products &amp; services</a></li>
@@ -212,7 +215,7 @@
 <li><a href="#27-what-this-means-in-practice">2.7 What this means in practice</a></li>
 </ul>
 </li>
-<li><a href="#3-ciac--creation-governance-management">3. CIAC — creation, governance, management</a><ul>
+<li><a href="#3-agentic-ciac-design-build-deployment">3. Agentic: CIAC Design, Build, Deployment</a><ul>
 <li><a href="#31-frameworks--platforms">3.1 Frameworks &amp; platforms</a></li>
 <li><a href="#32-interoperability-standards">3.2 Interoperability standards</a></li>
 <li><a href="#33-orchestration-patterns">3.3 Orchestration patterns</a></li>
@@ -244,7 +247,7 @@
 <ul>
 <li><a href="#new-this-week">New this week</a></li>
 <li><a href="#what-were-watching">What we're watching</a></li>
-<li><a href="#1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</a><ul>
+<li><a href="#1-pre-commit-ci-generated-code-sanitizing">1. Pre-commit: CI-generated code sanitizing</a><ul>
 <li><a href="#11-how-big-the-problem-is">1.1 How big the problem is</a></li>
 <li><a href="#12-product-landscape">1.2 Product landscape</a><ul>
 <li><a href="#121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save">1.2.1 Layer A — Agent-time enforcement (acts while the agent writes, before the save)</a></li>
@@ -266,7 +269,7 @@
 <li><a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
 </ul>
 </li>
-<li><a href="#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</a><ul>
+<li><a href="#2-in-codebase-sanitizing-post-commit-of-ci-generated-code">2. In codebase: Sanitizing post-commit of CI-generated code</a><ul>
 <li><a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
 <li><a href="#22-problem-classes">2.2 Problem classes</a></li>
 <li><a href="#23-products--services">2.3 Products &amp; services</a></li>
@@ -276,7 +279,7 @@
 <li><a href="#27-what-this-means-in-practice">2.7 What this means in practice</a></li>
 </ul>
 </li>
-<li><a href="#3-ciac--creation-governance-management">3. CIAC — creation, governance, management</a><ul>
+<li><a href="#3-agentic-ciac-design-build-deployment">3. Agentic: CIAC Design, Build, Deployment</a><ul>
 <li><a href="#31-frameworks--platforms">3.1 Frameworks &amp; platforms</a></li>
 <li><a href="#32-interoperability-standards">3.2 Interoperability standards</a></li>
 <li><a href="#33-orchestration-patterns">3.3 Orchestration patterns</a></li>
@@ -350,7 +353,7 @@
 <li>Head-to-head detection rates of agent-time enforcement tools on real PRs at scale. → <a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
 </ul>
 <hr />
-<h2 id="1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</h2>
+<h2 id="1-pre-commit-ci-generated-code-sanitizing">1. Pre-commit: CI-generated code sanitizing</h2>
 <p>Tools and best practices for addressing the problem of CI-generated code <em>before</em> it is committed — while it is being written and at the point of commit, before it enters the codebase. Covers commercial products, open-source tools, and the practices that make them effective, with focus on critical systems in finance. Confluence&lt;1&gt; builds its own tools in this space as well as advising on and deploying others'.</p>
 <h3 id="11-how-big-the-problem-is">1.1 How big the problem is</h3>
 <details>
@@ -816,7 +819,7 @@ Sources: <a href="https://medium.com/@bugni_labs/how-engineering-teams-can-make-
 </details>
 
 <hr />
-<h2 id="2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</h2>
+<h2 id="2-in-codebase-sanitizing-post-commit-of-ci-generated-code">2. In codebase: Sanitizing post-commit of CI-generated code</h2>
 <p>Tools, techniques, and best practices for detecting and remediating the defects CI-generated code has already left in an existing codebase.</p>
 <h3 id="21-how-big-the-problem-is">2.1 How big the problem is</h3>
 <details>
@@ -1200,7 +1203,7 @@ Sources: <a href="https://www.superblocks.com/blog/ai-code-governance-tools" tar
 </details>
 
 <hr />
-<h2 id="3-ciac--creation-governance-management">3. CIAC — creation, governance, management</h2>
+<h2 id="3-agentic-ciac-design-build-deployment">3. Agentic: CIAC Design, Build, Deployment</h2>
 <p>By late 2026 the multi-agent field has consolidated around a handful of frameworks, the supervisor pattern is the production default, and the binding constraint is reliability, not capability: the best agents succeed once far more often than they succeed every time. Governance has shifted from model oversight to runtime control — deterministic gates before execution, scoped permissions, tamper-evident audit trails — and finance regulators have now spoken in several documents, most consequentially the US agencies' decision to <em>exclude</em> agentic AI from the new model-risk guidance, leaving firms to govern it themselves. The evidence in §3.4.3 shows most firms are not governing their agents as well as they believe: policies exist but are bypassed, agent identities are ungoverned, actions are unattributable, and a third of companies have no way to stop a rogue agent.</p>
 <h3 id="31-frameworks--platforms">3.1 Frameworks &amp; platforms</h3>
 <table>
