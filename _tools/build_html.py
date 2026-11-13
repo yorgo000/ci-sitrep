@@ -233,6 +233,9 @@ TEMPLATE = """<!DOCTYPE html>
   main h1 {{ font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: -32px -48px 16px; padding: 28px 48px; line-height: 1.25; color: #fff; background: var(--logo-navy); }}
   main h1 em {{ display: block; font-size: 20px; margin-top: 2px; }}
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
+  /* Meta sections (front-page features + archive) sit below the three
+     content sections: smaller, lighter, muted. */
+  main h2#new-this-week, main h2#what-were-watching, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
   main h4 + .section-body {{ margin-left: 16px; }}
