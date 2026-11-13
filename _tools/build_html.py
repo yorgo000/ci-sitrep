@@ -227,7 +227,7 @@ TEMPLATE = """<!DOCTYPE html>
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
-  #new-this-week + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
+  #new-this-week + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle {{ transform: rotate(-90deg); }}
   main p {{ margin: 8px 0; }}
   main ul, main ol {{ margin: 8px 0; padding-left: 24px; }}
@@ -369,7 +369,8 @@ TEMPLATE = """<!DOCTYPE html>
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
-    h.classList.add('collapsed');
+    // The two front-page sections start open; everything else starts collapsed.
+    if (h.id !== 'new-this-week' && h.id !== 'what-were-watching') h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
@@ -391,8 +392,7 @@ TEMPLATE = """<!DOCTYPE html>
       if (e.target.closest('a')) return;
       h.classList.toggle('collapsed');
     }});
-    // Start with h4 sections collapsed, h2/h3 open.
-    if (level === 4) h.classList.add('collapsed');
+    // (h4 sections were already collapsed above, like every other heading.)
   }});
   // Jumping to an anchor (from the sidebar or New this week) expands any
   // collapsed ancestor section so the target is visible.
