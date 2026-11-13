@@ -102,6 +102,14 @@
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
   #new-this-week + .section-body, #what-were-watching + .section-body { background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }
+  /* Inline TOC: hidden on desktop (the sidebar has it); shown on mobile. */
+  .toc-inline { display: none; }
+  .toc-inline ul { list-style: none; padding: 0; margin: 0; }
+  .toc-inline li { margin: 2px 0; }
+  .toc-inline li li { padding-left: 14px; }
+  .toc-inline li li li { padding-left: 14px; }
+  .toc-inline a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  .toc-inline a:hover { background: #e8dfcc; }
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
   main p { margin: 8px 0; }
   main ul, main ol { margin: 8px 0; padding-left: 24px; }
@@ -138,6 +146,7 @@
     .layout { flex-direction: column; }
     /* On a phone the content comes first and the masthead/sidebar follows below it. */
     main { order: 1; padding: 24px 20px 48px; }
+    .toc-inline { display: block; }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1 { margin: -24px -20px 16px; padding: 24px 20px; }
   }
@@ -229,6 +238,66 @@
   <main>
     <h1 id="ci-sitrep-code--finance">CI Sitrep <em>Code &amp; Finance</em></h1>
 <p class="as-of-banner">As of Friday, November 13, 2026</p>
+<details class="toc-inline">
+<summary>Contents</summary>
+<div class="toc">
+<ul>
+<li><a href="#new-this-week">New this week</a></li>
+<li><a href="#what-were-watching">What we're watching</a></li>
+<li><a href="#1-pre-commit-sanitizing--certification">1. Pre-commit sanitizing / certification</a><ul>
+<li><a href="#11-how-big-the-problem-is">1.1 How big the problem is</a></li>
+<li><a href="#12-product-landscape">1.2 Product landscape</a><ul>
+<li><a href="#121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save">1.2.1 Layer A — Agent-time enforcement (acts while the agent writes, before the save)</a></li>
+<li><a href="#122-layer-b--pr--ci-gates-acts-at-pull-request-or-pipeline--the-established-market">1.2.2 Layer B — PR / CI gates (acts at pull request or pipeline — the established market)</a></li>
+<li><a href="#123-layer-c--llm-based-review--audit-reads-the-code-the-way-a-reviewer-would">1.2.3 Layer C — LLM-based review / audit (reads the code the way a reviewer would)</a></li>
+</ul>
+</li>
+<li><a href="#13-what-they-catch">1.3 What they catch</a></li>
+<li><a href="#14-how-they-work-mechanisms">1.4 How they work (mechanisms)</a></li>
+<li><a href="#15-best-practice--critical-systems-in-finance">1.5 Best practice — critical systems in finance</a><ul>
+<li><a href="#151-the-three-layer-model">1.5.1 The three-layer model</a></li>
+<li><a href="#152-provenance-audit-trail-and-regulation">1.5.2 Provenance, audit trail, and regulation</a></li>
+</ul>
+</li>
+<li><a href="#16-benchmarks--evidence">1.6 Benchmarks &amp; evidence</a><ul>
+<li><a href="#161-hype-vs-independently-verified">1.6.1 Hype vs independently verified</a></li>
+</ul>
+</li>
+<li><a href="#17-open-gaps--watch-items">1.7 Open gaps / watch items</a></li>
+</ul>
+</li>
+<li><a href="#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase">2. Codebase sanitize / certification — CI-generated problems already in the codebase</a><ul>
+<li><a href="#21-how-big-the-problem-is">2.1 How big the problem is</a></li>
+<li><a href="#22-problem-classes">2.2 Problem classes</a></li>
+<li><a href="#23-products--services">2.3 Products &amp; services</a></li>
+<li><a href="#24-techniques">2.4 Techniques</a></li>
+<li><a href="#25-best-practice--finance">2.5 Best practice — finance</a></li>
+<li><a href="#26-hype-vs-verified">2.6 Hype vs verified</a></li>
+<li><a href="#27-what-this-means-in-practice">2.7 What this means in practice</a></li>
+</ul>
+</li>
+<li><a href="#3-ciac--creation-governance-management">3. CIAC — creation, governance, management</a><ul>
+<li><a href="#31-frameworks--platforms">3.1 Frameworks &amp; platforms</a></li>
+<li><a href="#32-interoperability-standards">3.2 Interoperability standards</a></li>
+<li><a href="#33-orchestration-patterns">3.3 Orchestration patterns</a></li>
+<li><a href="#34-governance">3.4 Governance</a><ul>
+<li><a href="#341-the-converged-control-pattern">3.4.1 The converged control pattern</a></li>
+<li><a href="#342-regulation">3.4.2 Regulation</a></li>
+<li><a href="#343-the-governance-gap">3.4.3 The governance gap</a></li>
+</ul>
+</li>
+<li><a href="#35-management--observability">3.5 Management &amp; observability</a></li>
+<li><a href="#36-evaluation">3.6 Evaluation</a></li>
+<li><a href="#37-best-practices">3.7 Best practices</a></li>
+<li><a href="#38-hype-vs-verified">3.8 Hype vs verified</a></li>
+</ul>
+</li>
+<li><a href="#archive">Archive</a></li>
+</ul>
+</div>
+
+</details>
+
 <details class="how-to-read">
 <summary>How to read this</summary>
 <p><a href="explainer.html">Created Intelligence</a> in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.</p>
