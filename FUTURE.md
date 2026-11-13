@@ -65,6 +65,31 @@ In the self-audit section, keep a list of all the sources we track, follow, and 
 - **Suggestions:** a mailto link to ci-sitrep@confluence1.com. No form, no backend.
 - **Metadata version, collapsible:** each source carries metadata (what we take from it, how often it's checked, when it was last cited), but behind a collapsible section — the list will grow tremendously and must stay manageable. The collapsed view is the plain list; the detail is one click away.
 
+## F-04 — The funnel, the database, and the production backend
+
+**Status:** Proposed
+**Proposed:** 2026-11-13
+
+The architecture for the whole operation — how information gets in, how it gets vetted, how it sits in the database, and how sitreps get produced from it. This is a design decision to make, discuss, and build; the architecture itself is the deliverable. It complements F-02 (the single-database / filtered-sitreps product model): F-02 is the data model, F-04 is the pipeline that feeds it and produces from it.
+
+**The pipeline, as Yorgo described it:**
+
+1. **The radar / funnel.** Goes far and wide and looks at everything, all the time (or once a day). Two streams:
+   - Everything about the **development and application of CI systems** — code scanning before and after commit, agent architecting, developing, governing, deploying, etc.
+   - Everything about **AI in specific verticals** — insurance, oil shipping, and every other industry we cover.
+2. **Vetting on the fly (decided 2026-11-13).** We look at everything and gather everything relevant — but we only **collect** (admit to the database) what passes criteria. The vetting happens at intake, not in a separate later pass. The alternative — gather everything into the database first, vet later — was considered and rejected.
+3. **The database.** All vetted information sits in one pool (see F-02). Each piece collected, rated, vetted, tagged, summarised, and organised once.
+4. **The production backend (operator-side, not user-facing).** The ability to decide: produce a sitrep for any intersection of the data. Examples: all data about CI collectives × all data about the insurance industry → one sitrep; agent management and application (not development) × the oil shipping industry → another. The operator chooses the filters; the backend produces the sitrep.
+
+**Open questions (to discuss and design):**
+
+- **The intake criteria.** What passes the vetting bar at intake? The current report has a bar ("could change how a firm building critical systems in finance should act") — the funnel needs its own, broader criteria for what enters the database at all.
+- **Radar scope and cadence.** How far and wide — which sources, which industries, which languages? Continuous or once a day?
+- **Who/what vets on the fly.** Human, agent, or both? The current daily watch is agent-run with human review at the report level; intake vetting at scale may need a different split.
+- **Database schema.** What fields per item — the tagging taxonomy (subject, type, credibility, severity, jurisdiction, source-date) is the starting point, but intake may need more.
+- **The production interface.** What does the operator see and choose when producing a sitrep? How are filter intersections specified?
+- **Relationship to the current daily watch.** Does the daily watch cron become the radar, or is the radar something broader that the watch feeds into?
+
 ---
 
 ## Template for new features
