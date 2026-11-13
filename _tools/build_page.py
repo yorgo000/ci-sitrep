@@ -42,6 +42,13 @@ def build(input_path, output_path, title=None):
         },
     )
     body = md.convert(src)
+    # External links open in a new tab, so following a source never replaces
+    # the report. Internal links (anchors, .html pages, mailto) are untouched.
+    body = re.sub(
+        r'<a href="(https?://[^"]+)">',
+        r'<a href="\1" target="_blank" rel="noopener">',
+        body,
+    )
     toc_html = md.toc
 
     html = TEMPLATE.format(
