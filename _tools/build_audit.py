@@ -189,12 +189,7 @@ The rules the report is built and maintained under. These are not aspirations �
 
 **Covered:** three subjects, updated daily — (1) pre-commit sanitizing / certification of CI-generated code, (2) codebase sanitize / certification for CI-generated problems already in the codebase, (3) CIA collectives: creation, governance, management. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
 
-**Known gaps — things we are watching for that have not arrived yet:**
-
-- The Fed/OCC/FDIC AI request for information, promised April 2026 and still unpublished.
-- Replacement third-party-risk guidance (comments due 16 Nov 2026).
-- The first independent benchmark of agent-time enforcement tools (the category is ~6 months old; no product has been independently measured at scale).
-- Whether NYDFS advisory language hardens into examination expectations for CI-generated code testing.
+**Known gaps — things we are watching for that have not arrived yet:** the live list is on the report's front page, in [What we're watching](index.html#what-were-watching) — the dated events on the horizon (including the third-party-risk guidance comments due 16 Nov 2026) and the open questions the report is tracking (including the Fed/OCC/FDIC AI request for information, promised April 2026 and still unpublished). It is maintained in the open, in the same file as the report, so it never goes stale.
 
 **How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the three subjects every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
 """
