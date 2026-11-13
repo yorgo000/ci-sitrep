@@ -10,6 +10,8 @@ A biological organism deliberately engineered to possess advanced cognition woul
 
 A more durable classification asks a different question: **how did this intelligence lineage originate?**
 
+And the reason the distinction matters is speed. Intelligence that is created can be adapted, changed, and improved at tremendous speed compared to evolution. That is the fundamental difference between evolved intelligence and created intelligence — not whether it is biological or mechanical, but how fast it can change.
+
 ## Two kinds of intelligence, by origin
 
 ### Evolved Intelligence (EI)
