@@ -64,7 +64,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
 
 ## Contents
 
-- [1. Pre-commit sanitizing / certification](#1-pre-commit-sanitizing--certification)
+- [1. Pre-commit: CI-generated code sanitizing](#1-pre-commit-ci-generated-code-sanitizing)
   - [1.1 How big the problem is](#11-how-big-the-problem-is)
   - [1.2 Product landscape](#12-product-landscape)
   - [1.3 What they catch](#13-what-they-catch)
@@ -72,7 +72,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
   - [1.5 Best practice — critical systems in finance](#15-best-practice--critical-systems-in-finance)
   - [1.6 Benchmarks & evidence](#16-benchmarks--evidence)
   - [1.7 Open gaps / watch items](#17-open-gaps--watch-items)
-- [2. Codebase sanitize / certification — CI-generated problems already in the codebase](#2-codebase-sanitize--certification--ci-generated-problems-already-in-the-codebase)
+- [2. In codebase: Sanitizing post-commit of CI-generated code](#2-in-codebase-sanitizing-post-commit-of-ci-generated-code)
   - [2.1 How big the problem is](#21-how-big-the-problem-is)
   - [2.2 Problem classes](#22-problem-classes)
   - [2.3 Products & services](#23-products--services)
@@ -80,7 +80,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
   - [2.5 Best practice — finance](#25-best-practice--finance)
   - [2.6 Hype vs verified](#26-hype-vs-verified)
   - [2.7 What this means in practice](#27-what-this-means-in-practice)
-- [3. CIAC — creation, governance, management](#3-ciac--creation-governance-management)
+- [3. Agentic: CIAC Design, Build, Deployment](#3-agentic-ciac-design-build-deployment)
   - [3.1 Frameworks & platforms](#31-frameworks--platforms)
   - [3.2 Interoperability standards](#32-interoperability-standards)
   - [3.3 Orchestration patterns](#33-orchestration-patterns)
@@ -93,7 +93,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
 
 ---
 
-## 1. Pre-commit sanitizing / certification
+## 1. Pre-commit: CI-generated code sanitizing
 
 Tools and best practices for addressing the problem of CI-generated code *before* it is committed — while it is being written and at the point of commit, before it enters the codebase. Covers commercial products, open-source tools, and the practices that make them effective, with focus on critical systems in finance. Confluence<1> builds its own tools in this space as well as advising on and deploying others'.
 
@@ -390,7 +390,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 
 ---
 
-## 2. Codebase sanitize / certification — CI-generated problems already in the codebase
+## 2. In codebase: Sanitizing post-commit of CI-generated code
 
 Tools, techniques, and best practices for detecting and remediating the defects CI-generated code has already left in an existing codebase.
 
@@ -659,7 +659,7 @@ Sources: [EASM News, NCSC Patch Wave](https://www.easm.news/ncsc-patch-wave-exte
 
 ---
 
-## 3. CIAC — creation, governance, management
+## 3. Agentic: CIAC Design, Build, Deployment
 
 By late 2026 the multi-agent field has consolidated around a handful of frameworks, the supervisor pattern is the production default, and the binding constraint is reliability, not capability: the best agents succeed once far more often than they succeed every time. Governance has shifted from model oversight to runtime control — deterministic gates before execution, scoped permissions, tamper-evident audit trails — and finance regulators have now spoken in several documents, most consequentially the US agencies' decision to *exclude* agentic AI from the new model-risk guidance, leaving firms to govern it themselves. The evidence in §3.4.3 shows most firms are not governing their agents as well as they believe: policies exist but are bypassed, agent identities are ungoverned, actions are unattributable, and a third of companies have no way to stop a rogue agent.
 
