@@ -136,8 +136,9 @@
   .meta { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
   @media (max-width: 900px) {
     .layout { flex-direction: column; }
-    nav.sidebar { width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }
-    main { padding: 24px 20px 48px; }
+    /* On a phone the content comes first and the masthead/sidebar follows below it. */
+    main { order: 1; padding: 24px 20px 48px; }
+    nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1 { margin: -24px -20px 16px; padding: 24px 20px; }
   }
 </style>
