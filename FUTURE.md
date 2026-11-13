@@ -47,6 +47,24 @@ This resolves the split question: separate sitreps become *views* on one databas
 - Intersection reports (CIAC × finance) are the most commercially interesting filter — they serve the buyer who needs one slice, not the whole report.
 - Open question: when does the Markdown source become a bottleneck? The filter UI on the static site (planned after the taxonomy backfill) is the first step toward filtered views without a backend.
 
+## F-03 — Source directory + reader suggestions (in the audit section)
+
+**Status:** Proposed
+**Proposed:** 2026-11-13
+
+In the self-audit section, keep a list of all the sources we track, follow, and get information from — the full source base behind the report, not just the per-article citations. And give readers a way to send us suggestions for more sources.
+
+**What it should show:**
+
+- **The source directory:** every source the watch follows — regulators, standards bodies, benchmark authors, research groups, vendor research, news outlets — organised so a reader can see at a glance what the report's coverage rests on. The audit page already computes the counts (110 unique URLs as of 13 Nov 2026); this makes the list itself visible.
+- **Reader suggestions:** a way for users to propose sources we should be tracking. Every suggestion is a lead for the daily watch — and a signal about what the audience cares about.
+
+**Design notes (to be refined):**
+
+- The directory should be generated from the live report files (like the rest of the audit page), not hand-maintained — the source list is already in the Markdown, in the Source and Sources lines.
+- Open question: how to receive suggestions on a static site. Simplest is a mailto link to ci-sitrep@confluence1.com; a form needs a backend or a form service. A GitHub issue on the public repo is possible but exposes the repo to the public.
+- Open question: whether to show per-source metadata (what we take from it, how often it's checked, when it was last cited) or just the list. Metadata makes the directory a coverage tool; the plain list is simpler and still answers "what do you follow?"
+
 ---
 
 ## Template for new features
