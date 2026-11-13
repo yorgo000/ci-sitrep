@@ -28,6 +28,25 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 - Open question: which cuts (industry / institution / company / sector) have enough data to be meaningful. Start with what the report already covers; add cuts as the evidence base grows.
 - Open question: update cadence — live with the daily watch, or a weekly/monthly snapshot?
 
+## F-02 — Single database, filtered sitreps (the split, done right)
+
+**Status:** Proposed
+**Proposed:** 2026-11-13
+
+The long-term product architecture. One database of all CI news gathered each day, across all industries. Every piece of data is collected, rated, vetted, tagged, summarised, and organised **once**. Sitreps are then produced by filtering:
+
+- **Filter by industry** → a specific industry's sitrep (finance, healthcare, manufacturing, etc.).
+- **Combine filters** → intersection reports (e.g. CIAC + finance, code + healthcare).
+- **The same piece of information sells on multiple sitreps** — no duplication, no maintenance of parallel copies.
+
+This resolves the split question: separate sitreps become *views* on one database, not separate products to maintain. The tagging taxonomy (subject, type, credibility, severity, jurisdiction, source-date) is the filter mechanism — it already exists in draft. What remains: the database itself (structured storage for articles + tags + ratings), the filter/query layer, and per-filter rendering.
+
+**Design notes (to be refined):**
+
+- The current SYNTHESIZED.md is the single source of truth in Markdown form; the database is its structured successor.
+- Intersection reports (CIAC × finance) are the most commercially interesting filter — they serve the buyer who needs one slice, not the whole report.
+- Open question: when does the Markdown source become a bottleneck? The filter UI on the static site (planned after the taxonomy backfill) is the first step toward filtered views without a backend.
+
 ---
 
 ## Template for new features
