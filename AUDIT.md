@@ -2,7 +2,7 @@
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
-**As of:** 2026-11-14. **Report last updated:** 2026-11-13.
+**As of:** 2026-11-13. **Report last updated:** 2026-11-13.
 
 ---
 
@@ -12,8 +12,8 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 |---|---|
 | Articles | 50 |
 | Source links (article + subsection) | 128 |
-| Total external links (incl. inline prose links) | 222 |
-| Unique source URLs | 122 |
+| Total external links (incl. inline prose links) | 297 |
+| Unique source URLs | 123 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
 | Items new this week | 15 |
 | Superseded entries in the archive | 12 |
@@ -40,10 +40,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **29** sources and added **5** new articles (updating **1** existing ones). That is a 17.2% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Since tracking began on 2026-11-12, the daily watch has reviewed **30** sources and added **5** new articles (updating **1** existing ones). That is a 16.7% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
+| 2026-11-13 | 1 | 0 | 0 | Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200). |
 | 2026-11-13 | 2 | 0 | 0 | Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended). |
 | 2026-11-13 | 27 | 5 | 1 | 5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov. |
 | 2026-11-12 | 0 | 0 | 0 | Tracking begins. Baseline: 38 articles, 101 source links, 187 total external links, 101 unique URLs. Funnel counts start with the next daily run. |
@@ -56,7 +57,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 122 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 123 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
