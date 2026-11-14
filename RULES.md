@@ -250,6 +250,24 @@ the main content, right after the "As of" banner; it is hidden on desktop
 and shown on mobile, and sits outside every section-body so collapsing a
 section never hides it.
 
+**Navigation.** Three mechanisms, all unobtrusive (2026-11-14):
+- **Breadcrumbs.** At the top of every section body, a small muted trail
+  back up to any ancestor level or the top of the page — "↑ Top · §3
+  Agentic … · §3.4 Governance". Built in JS from the heading hierarchy,
+  so it stays correct as sections are added or renamed. Skipped on the
+  two front-page sections (they sit at the top of the page already) and
+  on the page title; the current section is not repeated (its heading is
+  directly above). Breadcrumb paragraphs never get share buttons.
+- **Back-to-top button.** A small round navy button, fixed bottom-right,
+  invisible until the reader has scrolled 500px down, then smooth-scrolls
+  to the top. The arrow is inline SVG. On all six pages.
+- **Back to the report.** On the masthead pages (About, Explainer,
+  Theses, Archive, Self-Audit): the sidebar opens with a linked "CI
+  Sitrep / Code & Finance" masthead, followed by a "← Back to the
+  report" link above the Contents list. On mobile the sidebar sits below
+  the content, so those pages also carry a mobile-only back link at the
+  top of the main content, right under the page title.
+
 **Share links.** Article headlines, substantive paragraphs, tables, and
 headings each carry a small link-icon button that copies a direct URL
 (page + #anchor) with a "Copied" confirmation. The icon is inline SVG —
@@ -391,3 +409,9 @@ The Self-Audit page records the date of the last full manual link audit
   watching" soonest first). Verification process adopted (Tier 1
   automated checks via `_tools/verify.py`, Tier 2 visual review).
   This rulebook created.
+- **2026-11-14** — Navigation adopted (breadcrumbs at the top of every
+  section body; floating back-to-top button on all pages; back-to-report
+  masthead + top-of-sidebar link on the sub-pages, with a mobile-only
+  back link at the top of the content). verify.py's anchor check now
+  strips `<script>` blocks before matching (JS string literals
+  false-positived it) and checks for the back-to-top button.
