@@ -65,6 +65,7 @@ HTML_MARKERS = [
     ("Credibility rating", "credibility legend heading"),
     ("Confluence<1> Corp. All rights reserved", "copyright line"),
     ("makeShareButton", "share-link buttons"),
+    ("back-to-top", "back-to-top button"),
     ("How to read this", "How-to-read block"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
@@ -347,20 +348,25 @@ def check_hygiene(md, html):
 
 def check_html(html):
     """Literal Markdown links, anchors, layout markers."""
-    literal = re.findall(r"\[[^\]]*\]\(https?://[^)]+\)", html)
+    # Strip <script> blocks first: JS string literals contain href="#..."
+    # fragments (e.g. the breadcrumb builder's '<a href="#' + a.id + '">')
+    # that are not real links and would false-positive the anchor check.
+    no_script = re.sub(r"<script>.*?</script>", "", html, flags=re.DOTALL)
+    literal = re.findall(r"\[[^\]]*\]\(https?://[^)]+\)", no_script)
     if not literal:
         ok("no literal Markdown links in HTML")
     else:
         fail("no literal Markdown links in HTML", f"{len(literal)} found, e.g. {literal[:2]}")
 
-    ids = set(re.findall(r'id="([^"]+)"', html))
-    hrefs = set(re.findall(r'href="#([^"]+)"', html))
+    ids = set(re.findall(r'id="([^"]+)"', no_script))
+    hrefs = set(re.findall(r'href="#([^"]+)"', no_script))
     missing = sorted(h for h in hrefs if h not in ids)
     if not missing:
         ok("all internal anchors resolve", f"{len(hrefs)} links, {len(ids)} ids")
     else:
         fail("all internal anchors resolve", f"missing: {missing}")
 
+    # Markers run on the full HTML: some (makeShareButton) live in the JS.
     for marker, label in HTML_MARKERS:
         if marker in html:
             ok(f"layout marker present: {label}")
