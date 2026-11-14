@@ -2,7 +2,7 @@
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
-**As of:** 2026-11-13. **Report last updated:** 2026-11-13.
+**As of:** 2026-11-14. **Report last updated:** 2026-11-14.
 
 ---
 
@@ -10,12 +10,12 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 50 |
-| Source links (article + subsection) | 128 |
-| Total external links (incl. inline prose links) | 298 |
-| Unique source URLs | 123 |
+| Articles | 56 |
+| Source links (article + subsection) | 144 |
+| Total external links (incl. inline prose links) | 330 |
+| Unique source URLs | 134 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new this week | 15 |
+| Items new this week | 21 |
 | Superseded entries in the archive | 12 |
 | Report live since | 2026-11-09 |
 
@@ -27,9 +27,9 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 9 | 18% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 15 | 30% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 24 | 48% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 20% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 16 | 29% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 27 | 48% |
 | ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 2 | 4% |
 
 **48% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
@@ -40,10 +40,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **32** sources and added **5** new articles (updating **1** existing ones). That is a 15.6% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Since tracking began on 2026-11-12, the daily watch has reviewed **123** sources and added **11** new articles (updating **1** existing ones). That is a 8.9% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
+| 2026-11-14 | 91 | 6 | 0 | 6 new articles: CrowdStrike AI Kill Switch (3 Nov, gateway-first stop; Fiddler/Dreadnode acquisitions), VulnCheck Glasswing audit (9 Nov, 37966 findings vs 217 fixed), FCA Wholesale Banks Supervision Insights 3 (2 Nov, AI code passed human review, untested kill switches), Canadian banks block third-party agents (28 Oct, RBC/TD/BMO/CIBC/Scotiabank), FCA CP26/38 Financial Crime Guide (23 Oct, comments due 24 Dec), BoE/FCA 2026 AI survey (26 Oct, 86% use AI, 80% agents, 2% broad autonomy). In-place: OSFI E-23 effective 1 May 2027 (WWW + §2.5), FCA agentic-finance framework open question (WWW), §2.5 human-review + §2.7 Glasswing bullets, §1.6.1 Anthropic TP-rate line, §3.4.2 synthesis sentence, §3.8 BoE/FCA verified line. Verify: 31 pass, 0 fail; 2 warnings reviewed (source-first flag is a false positive; link failures all known bot-protected or browser-verified, incl. FII 403). Reviewed but below bar: Cohere AISLE/cubic acquisitions (no product yet), KPMG AI Threat Management (services launch), OpenAI Codex Security CLI importers (minor), Multimodal-SEA preprint (consumer-fraud angle), CWE-bench arXiv paper (0.8pp version noise vs existing article), Reuters banks-AI-questions story (second-hand, Oct). California kill-switch recommendations still due Mon 16 Nov; Fed AI RFI still unpublished. |
 | 2026-11-13 | 2 | 0 | 0 | Evening verification pass: verify.py built and first-run (31 checks pass, 0 failures); content-order fixes (New this week now strict newest-first, Australia/UK entry re-dated 2026-11-10 -> 2026-11-13 as added that day; What we're watching now soonest-first); Kiteworks headline linked to LobeHub (figures confirmed in the article); 12 curl-blocked links browser-checked, all live. |
 | 2026-11-13 | 1 | 0 | 0 | Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200). |
 | 2026-11-13 | 2 | 0 | 0 | Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended). |
@@ -58,7 +59,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 123 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 134 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
