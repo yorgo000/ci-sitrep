@@ -29,20 +29,20 @@ This file is a **state of affairs**, not a log: each section states the current 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
 - **2026-11-13 — Third-party-risk comment period extended to 16 Dec** (subject 3): the four agencies (Fed/FDIC/OCC/NCUA) extended the comment period on the replacement third-party-risk guidance from 16 Nov to 16 Dec 2026 — the Fed's community-bank guide got the same extension. The Monday deadline is gone; a comment can now be drafted after the launch. → [3.4 Governance](#34-governance)
-- **2026-11-13 — AI-generated patches introduce ~11× the vulnerabilities of developer patches** (subjects 1, 2): SWE-bench study v4 (1 Nov): Llama 3.3 introduced 135 manually confirmed vulnerabilities vs 12 for developers on the same issues; all four agentic repair frameworks introduced vulnerabilities too — the fix loop needs the same verification as generation. → [1.6 Benchmarks](#16-benchmarks--evidence)
+- **2026-11-13 — AI-generated patches introduce ~11× the vulnerabilities of developer patches** (subjects 1, 2): Llama 3.3 introduced 135 manually confirmed vulnerabilities vs 12 for developers on the same issues ([SWE-bench study](https://arxiv.org/abs/2507.02976) v4, 1 Nov); all four agentic repair frameworks introduced vulnerabilities too — the fix loop needs the same verification as generation. → [1.6 Benchmarks](#16-benchmarks--evidence)
 - **2026-11-13 — Kill switches, two ways** (subject 3): California's expert recommendations on a frontier-model kill switch are due 16 Nov, with Anthropic and OpenAI split on who pulls the plug (court order vs developer duty); OpenAI's own Control Room already cuts research-model output in 35 seconds, fail-closed. → [3.4 Governance](#34-governance) · [3.4.3 The governance gap](#343-the-governance-gap)
 - **2026-11-12 — The attack-and-fix loop is now a product** (subjects 1, 2): OpenAI Daybreak Red Team (agentic pen testing, early access) + Defense Factory (continuous find-fix loop, merge-ready patches, human still signs the merge) — no independent accuracy data yet. → [2.3 Products & services](#23-products--services)
 - **2026-11-12 — Agent-time enforcement fills out** (subjects 1, 2): Semgrep Agentic AppSec Platform (Guardian fixes code as agents write it; Mandoline returns only reachable paths); Adversa coding-agent security platform (GA 29 Oct, blocks dangerous agent steps on the endpoint); Cycode Citizen Developer Security (private preview — the shadow-AI surface gets its own product). → [1.2 Product landscape](#12-product-landscape) · [2.3 Products & services](#23-products--services)
 - **2026-11-10 — Australia moves to mandatory AI incident reporting; UK holds deployers liable** (subject 3): an OpenAI agent's unauthorised access to a Medicare portal in June triggers a new AI safety regulator, six obligations and legislation planned for 2027; the UK CMA/DRCF say an agent's autonomy does not diminish the deployer's responsibility, with fines up to 10% of worldwide turnover. → [3.4 Governance](#34-governance)
-- **2026-11-13 — The governance gap (subject 3):** seven new articles in §3.4.3 — policies exist but are bypassed ([EY](https://lobehub.com/blog/ai-agent-governance-2026)), agent identities ungoverned (SailPoint), actions unattributable and un-rollbackable (Whitfield, Rubrik), no tested kill switch (Writer), shadow agents everywhere (Nutanix, CSA), 188 documented production-damage incidents (Cyera), and the PocketOS case study. → [3.4.3 The governance gap](#343-the-governance-gap)
-- **2026-11-12 — SecPRBench** (subjects 1, 2): the first benchmark of agentic pre-merge security review on real bug-introducing commits; the best agents catch ~3 in 4 vuln-introducing changes, the weakest ~1 in 3 — the review layer is a layer, not a control. → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
-- **2026-11-12 — CSBS AI Supervisory Framework** (subject 3): state examiners — who supervise 79% of US banks — now have written AI examination procedures and a document-request list. → [3.4 Governance](#34-governance)
+- **2026-11-13 — The governance gap (subject 3):** seven new articles in §3.4.3 — policies exist but are bypassed ([EY](https://lobehub.com/blog/ai-agent-governance-2026)), agent identities ungoverned ([SailPoint](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce)), actions unattributable and un-rollbackable ([Whitfield](https://lobehub.com/blog/ai-agent-governance-2026), [Rubrik](https://lobehub.com/blog/ai-agent-governance-2026)), no tested kill switch ([Writer](https://aivenconsultinggroup.ai/insights/ai-agent-tiered-governance-framework-2026)), shadow agents everywhere ([Nutanix](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/), [CSA](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/)), 188 documented production-damage incidents ([Cyera](https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked)), and the [PocketOS](https://engini.ai/blog/agentic-governance-pocketos-disaster) case study. → [3.4.3 The governance gap](#343-the-governance-gap)
+- **2026-11-12 — First benchmark of agentic pre-merge security review** ([SecPRBench](https://arxiv.org/abs/2610.33509); subjects 1, 2): on real bug-introducing commits, the best agents catch ~3 in 4 vuln-introducing changes, the weakest ~1 in 3 — the review layer is a layer, not a control. → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
+- **2026-11-12 — State examiners get written AI procedures** ([CSBS AI Supervisory Framework](https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners); subject 3): state examiners — who supervise 79% of US banks — now have written AI examination procedures and a document-request list. → [3.4 Governance](#34-governance)
 - **2026-11-12 — Postman auto-install incident** (subjects 2, 3): a desktop app silently installed plugins and a self-approved hook into Claude Code and Codex; the agent layer's own config is a supply-chain surface. → [2.1 How big the problem is](#21-how-big-the-problem-is)
-- **2026-11-12 — HK SFC AI Readiness Survey** (subject 3): 30% of large firms already use agentic AI, 25% piloting; the SFC will issue further guidance. → [3.4 Governance](#34-governance)
-- **2026-11-11 — SecureVibeBench, CWE-bench v2, SusVibes** (subjects 1, 2): a second independent peer-reviewed benchmark confirms roughly half of test-passing AI code is vulnerable; a public yardstick for remediation agents now exists. → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
-- **2026-11-11 — UK Cyber Security and Resilience Bill** (subject 3): "loss of control" named as a regulated incident class; evidence preservation now a named expectation in the making. → [3.4 Governance](#34-governance)
-- **2026-11-10 — OCC Bulletin 2026-54, HKMA SAGE, MAS Guidelines** (subject 3): the regulatory gap is being filled from three directions; MAS sets a dated deadline (Oct 2027). → [3.4 Governance](#34-governance)
-- **2026-11-10 — A.S.E 2.0, CodeMender, Vercel Security Review, Apiiro secrets leak** (subjects 1, 2): exploit-verification is the gate; CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → [1.6 Benchmarks](#16-benchmarks--evidence) · [1.2 Products](#12-product-landscape) · [2.3 Products](#23-products--services)
+- **2026-11-12 — 30% of large firms already use agentic AI** ([HK SFC AI Readiness Survey](https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf); subject 3): 25% piloting; the SFC will issue further guidance. → [3.4 Governance](#34-governance)
+- **2026-11-11 — Half of test-passing AI code is vulnerable, second benchmark confirms** ([SecureVibeBench](https://arxiv.org/abs/2509.22097), [CWE-bench v2](https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7), [SusVibes](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05); subjects 1, 2): a second independent peer-reviewed benchmark confirms it; a public yardstick for remediation agents now exists. → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
+- **2026-11-11 — "Loss of control" of an AI agent becomes a regulated incident class** ([UK Cyber Security and Resilience Bill](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf); subject 3): evidence preservation now a named expectation in the making. → [3.4 Governance](#34-governance)
+- **2026-11-10 — The regulatory gap is being filled from three directions** ([OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54), [HKMA SAGE](https://www.bankingnewsai.com/ai-regulation/documents/hkma-agentic-ai-discussion-paper-2026), [MAS Guidelines](https://www.bakermckenzie.com/-/media/files/insight/publications/2026/10/singapore-mas-issues-guidelines-on-artificial-intelligence-risk-management.pdf); subject 3): MAS sets a dated deadline (Oct 2027). → [3.4 Governance](#34-governance)
+- **2026-11-10 — Exploit-verification is the gate; agent settings files leak secrets** ([A.S.E 2.0](https://arxiv.org/abs/2611.06294), [CodeMender](https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared), [Vercel Security Review](https://techtoheart.com/vercel-makes-every-push-a-security-checkpoint-for-ai-generated-code/), [Apiiro](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github); subjects 1, 2): CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector. → [1.6 Benchmarks](#16-benchmarks--evidence) · [1.2 Products](#12-product-landscape) · [2.3 Products](#23-products--services)
 
 ## What we're watching
 
@@ -101,7 +101,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 ### 1.1 How big the problem is
 
 <details>
-<summary><strong>~45% of AI code introduces a known security flaw</strong> (Veracode, Spring 2026, longitudinal benchmark) ●●●○</summary>
+<summary><strong>~45% of AI code introduces a known security flaw</strong> ([Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/), Spring 2026, longitudinal benchmark) ●●●○</summary>
 
 - Security pass rate ~55%, essentially flat for two years (2024 → Mar 2026), while syntax correctness rose past 95%.
 - Best models (GPT-5 with extended reasoning) reach only 70–72%.
@@ -113,7 +113,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 </details>
 
 <details>
-<summary><strong>~20% of package references are hallucinated</strong> (Spracklen et al., USENIX Security 2025, peer-reviewed) ●●●○</summary>
+<summary><strong>~20% of package references are hallucinated</strong> ([Spracklen et al.](https://arxiv.org/abs/2406.10279), USENIX Security 2025, peer-reviewed) ●●●○</summary>
 
 - 19.7% of package references named packages that don't exist.
 - 205,474 unique invented names; 43% recur across all 10 re-runs.
@@ -124,7 +124,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 </details>
 
 <details>
-<summary><strong>AI code carries 2.74× the vulnerabilities of human code</strong> (CodeRabbit, Dec 2025, 470 PRs) — [VENDOR CLAIM] ●○○○</summary>
+<summary><strong>AI code carries 2.74× the vulnerabilities of human code</strong> ([CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report), Dec 2025, 470 PRs) — [VENDOR CLAIM] ●○○○</summary>
 
 - CI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.
 - CodeRabbit's own analysis — treat as a vendor claim.
@@ -132,7 +132,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 </details>
 
 <details>
-<summary><strong>The failure mode moved up the stack</strong> (Tenzai, Dec 2025, 5 tools, 15 apps, 69 vulns incl. 6 critical) ●●○○</summary>
+<summary><strong>The failure mode moved up the stack</strong> ([Tenzai](https://www.infoworld.com/article/4116937/output-from-vibe-coding-tools-prone-to-critical-security-flaws-study-finds-2.html), Dec 2025, 5 tools, 15 apps, 69 vulns incl. 6 critical) ●●○○</summary>
 
 - No classic SQLi/XSS found.
 - Failures were business logic and authorisation: missing ownership checks, admin endpoints without admin checks, negative pricing.
@@ -141,7 +141,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 </details>
 
 <details>
-<summary><strong>Volume compounds it</strong> (Apiiro / CSA, Apr 2026, enterprise telemetry) — [VENDOR DATA] ●●○○</summary>
+<summary><strong>Volume compounds it</strong> ([Apiiro / CSA](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com), Apr 2026, enterprise telemetry) — [VENDOR DATA] ●●○○</summary>
 
 - AI-assisted developers commit 3–4× faster.
 - Monthly security findings rose ~10× (∼1,000 → 10,000+).
@@ -154,9 +154,9 @@ Tools and best practices for addressing the problem of CI-generated code *before
 <details>
 <summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
 
-- JetBrains Developer Ecosystem Survey 2026 (~15,000 devs): ~47% of code written fully by AI agents.
-- Sonar State of Code 2026: 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always verify it before committing; 65% expected by 2027.
-- Google (Apr 2026): 75% of new code AI-generated, engineer-approved.
+- ~47% of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, ~15,000 devs).
+- 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always verify it before committing; 65% expected by 2027 ([Sonar State of Code 2026](https://www.sonarsource.com/resources/library/ai-coding-roi/)).
+- 75% of new code AI-generated, engineer-approved ([Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/), Apr 2026).
 - Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/)
 </details>
 
@@ -204,7 +204,7 @@ Sources: [CybeDefend, Best AI Code Security Tools 2026](https://www.cybedefend.c
 | **Cursor Bugbot** | 8 parallel analysis passes per PR, majority-vote + validator stage | Bundled with Cursor |
 | **Cloudflare security-audit skill** | Audit skill for your own coding agent | Free to start |
 | **Kodus, DryRun Security** | PR review agents; DryRun adds natural-language code policies enforced on every PR | Kodus Teams ~$10/dev + tokens; DryRun quote-based |
-| **Google DeepMind [CodeMender](https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared)** | Fix-only agent with vulnerability verification and exploit simulation in a sandbox/isolated VM; human-in-the-loop for local writes and command execution; scoped scans (single folder, whole repo, or only files changed since last scan); multi-model including Gemini 4 Argon | **In public preview since July 2026** (hundreds of customers, per Google). Thales evaluation cited by Google claims up to 95% reduction in vulnerability discovery time — vendor-cited, not independent. Still in preview; the verification-in-sandbox loop is the pattern to watch. |
+| **Google DeepMind [CodeMender](https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared)** | Fix-only agent with vulnerability verification and exploit simulation in a sandbox/isolated VM; human-in-the-loop for local writes and command execution; scoped scans (single folder, whole repo, or only files changed since last scan); multi-model including Gemini 4 Argon | **In public preview since July 2026** (hundreds of customers, per Google). up to 95% reduction in vulnerability discovery time (Thales evaluation cited by Google — vendor-cited, not independent). Still in preview; the verification-in-sandbox loop is the pattern to watch. |
 | **[Vercel](https://techtoheart.com/vercel-makes-every-push-a-security-checkpoint-for-ai-generated-code/) Security Review** | Push-time, diff-scoped security review inside Vercel Agent (missing auth checks, exposed secrets, logic flaws read in context); runs on every push including direct/force pushes to production, not just PRs | **Public beta 2 Nov 2026.** Free during beta until 10 Nov 2026, then usage-based. A new gate position (push-time, between agent-time and PR) — relevant for web-facing finance front ends, less so for core systems. |
 
 <details>
@@ -256,10 +256,10 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 - **Provenance and accountability are the audit requirement.** Every CI-generated change must record: who requested it, which tool and model, in what context, and who approved it. The CIA proposes; a human reviews, accepts, and is accountable. (Linux kernel policy is the cleanest statement: agents must not add "Signed-off-by" — only a human can certify a contribution.) Four-eyes for high-risk changes; approver ≠ requester. Tier controls by risk: heaviest on customer data, payments, access control, critical infrastructure.
 - **Audit trail must survive the pipeline.** The evidence — diff, requirements, tests, automated-check results, review outcome, deployment record — must stay connected from PR through production, queryable after the people involved have moved on. Review comments and approval labels alone do not satisfy this.
-- **[NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) (NYC — directly applicable).** 21 May 2026: two Industry Letters — (1) heightened cybersecurity risks from frontier AI models (prompted by Anthropic's Mythos vulnerability-finding model), (2) guidance for heightened threat environments. They impose no new legal requirements, but explicitly direct regulated entities to consider **"strengthened testing of CI-generated code prior to production deployment"**, expedited vulnerability management, and third-party coordination. Binding backdrop remains the NYDFS Cybersecurity Regulation (23 NYCRR 500). Examiner direction is clear even where the letters are advisory.
+- **Strengthened testing of CI-generated code before production deployment is now the explicit examiner direction** — [NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) Industry Letters, 21 May 2026 (NYC, directly applicable): two letters — (1) heightened cybersecurity risks from frontier AI models (prompted by Anthropic's Mythos vulnerability-finding model), (2) guidance for heightened threat environments. They impose no new legal requirements, but direct regulated entities to consider the strengthened testing, expedited vulnerability management, and third-party coordination. Binding backdrop remains the NYDFS Cybersecurity Regulation (23 NYCRR 500). Examiner direction is clear even where the letters are advisory.
 - **US federal — a gap opened in 2026.** [SR 11-7](https://www.syntrox.io/blog/sr-11-7-model-risk-management-ai-agents) was rescinded and replaced 17 Apr 2026 by **[SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html)** (Fed / [OCC Bulletin 2026-13](https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents) / FDIC FIL-15-2026). Generative and agentic AI are **expressly out of scope**; the guidance states it sets no enforceable standards and is most relevant above $30B in assets. The clause that still matters for buyers: **vendor products must still be validated** (by internal or outside parties). An AI request for information was promised; none had appeared by late Oct 2026. A replacement third-party-risk guidance was proposed 15 Sep 2026 (comments due 16 Dec 2026 — extended 13 Nov from 16 Nov). Practical consequence: **there is currently no federal model-risk umbrella for AI coding tools** — firms must build their own controls, and existing technology-neutral rules (FFIEC IT Examination Handbook, 2023 interagency third-party guidance) still apply.
-  - **[OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54) (4 Nov 2026) narrows the gap in examination practice, not in law.** A 20-page examiner resource for national banks, federal savings associations and federal branches/agencies (with News Release 2026-97). It covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance), and a four-tier consequence-based risk classification (an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4). Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit. **It sets no supervisory expectations, no enforceable standards and no prescriptive requirements** — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.
-- **EU (for firms with EU operations or clients).** **[DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk)** (Reg. (EU) 2022/2554) in force 17 Jan 2025: an AI inference vendor is an ICT third-party service provider (Arts. 28–30) — register the arrangement, assess concentration risk, maintain a *tested* exit strategy, report major ICT incidents (initial notification within 4h of classification, ≤24h of awareness). **[EU AI Act](https://artificialintelligenceact.eu/)** high-risk obligations (incl. creditworthiness assessment, insurance pricing) deferred to **2 Dec 2027** by the Digital Omnibus (Reg. (EU) 2026/1744, in force 27 Jul 2026). Self-hosted/on-prem deployment (Semgrep CE, SonarQube Server, Qodo single-tenant/on-prem, [CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report) self-host Enterprise) materially reduces the DORA third-party surface vs SaaS scanners that ingest your code.
+  - **The examination gap narrows in practice, not in law** ([OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54), 4 Nov 2026). A 20-page examiner resource for national banks, federal savings associations and federal branches/agencies (with News Release 2026-97). It covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance), and a four-tier consequence-based risk classification (an autonomous payment agent is Tier 1 "regardless of how well it performs in testing"; an internal productivity tool is Tier 4). Examiner considerations named include kill switches, circuit breakers, provider-agent limits, human-in-the-loop / human-on-the-loop controls with real authority, MRM extensions for non-deterministic systems, adversarial and hallucination testing, reconstructable records, and independent audit. **It sets no supervisory expectations, no enforceable standards and no prescriptive requirements** — it is an examiner lens, not a rule — but it is the first US federal document telling examiners what to look at in agentic AI. A vendor who maps its agentic governance to the sixteen components has a concrete, examiner-shaped sell to national banks.
+- **EU (for firms with EU operations or clients).** An AI inference vendor is an ICT third-party service provider (Arts. 28–30) — register the arrangement, assess concentration risk, maintain a *tested* exit strategy, report major ICT incidents (initial notification within 4h of classification, ≤24h of awareness) ([DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk), Reg. (EU) 2022/2554, in force 17 Jan 2025). **[EU AI Act](https://artificialintelligenceact.eu/)** high-risk obligations (incl. creditworthiness assessment, insurance pricing) deferred to **2 Dec 2027** by the Digital Omnibus (Reg. (EU) 2026/1744, in force 27 Jul 2026). Self-hosted/on-prem deployment (Semgrep CE, SonarQube Server, Qodo single-tenant/on-prem, [CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report) self-host Enterprise) materially reduces the DORA third-party surface vs SaaS scanners that ingest your code.
 
 Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) · [Custosa, AI Compliance for Financial Services](https://custosa.com/ai-compliance-financial-services.html) · [Multimodal, AI for Compliance in Banking](https://www.multimodal.dev/post/ai-tools-for-regulatory-compliance-in-banking) · [BotMinds, SR 26-2 and AI](https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents) · [DeepInspect, DORA Third-Party Risk for AI](https://www.deepinspect.ai/blog/dora-ai-third-party-risk) · [Perimattic, DORA Compliance for AI Systems](https://perimattic.com/products/perimattic-ai-suite/ai-observability-for-dora/) · [IOMete, DORA, EU AI Act, Financial Institutions](https://github.com/iomete/iom-docs/blob/HEAD/blog/2026-03-10-dora-eu-ai-act-financial-institutions-data-infrastructure.md) · [Syntrox, SR 11-7 for AI Agents](https://www.syntrox.io/blog/sr-11-7-model-risk-management-ai-agents) · [BotMinds, SR 11-7 and Generative AI](https://www.botminds.ai/guides/sr-11-7-and-generative-ai) · [Sumatsoft, AI in Banking After SR 11-7 and SR 26-2](https://sumatosoft.com/blog/ai-in-banking-compliance)
 
@@ -273,7 +273,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 ### 1.6 Benchmarks & evidence
 
 <details>
-<summary><strong>55.6% passed every test while a working exploit succeeded</strong> (A.S.E 2.0 / CASE-Bench, arXiv:2611.06294, submitted 4 Nov 2026; preprint, not peer-reviewed) ●●○○</summary>
+<summary><strong>55.6% passed every test while a working exploit succeeded</strong> ([A.S.E 2.0 / CASE-Bench](https://arxiv.org/abs/2611.06294), arXiv:2611.06294, submitted 4 Nov 2026; preprint, not peer-reviewed) ●●○○</summary>
 
 - 145 repository-level tasks built from real CVEs in 51 projects.
 - A task counts as secure only if functional tests pass **and** a validated proof-of-concept exploit fails.
@@ -281,13 +281,13 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - **55.6% of outputs passed every test while a working exploit still succeeded.**
 - Coding agents observed the relevant safeguard (existing validator / access check) in only 27–36% of trajectories.
 - When the safeguard was put in context, secure output roughly doubled (24.8% vs 12.6% with the target file alone).
-- A separate Nov 2026 study found security guidance in only 36.3% of AGENTS.md files and 29.9% of CLAUDE.md files.
+- Security guidance appears in only 36.3% of AGENTS.md files and 29.9% of CLAUDE.md files (separate Nov 2026 study).
 - Implication: functional tests are a poor proxy for security in agent-written code — exploit-verification, not test-passing, is the gate — and annotating safeguards in agent context (AGENTS.md / CLAUDE.md, retrieval) is a cheap, high-leverage control.
 - Source: [Yu et al., A.S.E 2.0 / CASE-Bench, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
 </details>
 
 <details>
-<summary><strong>Best agent 23.8% correct-and-secure; 23% correct but exploitable</strong> (SecureVibeBench, Chen et al., arXiv:2509.22097; ACL 2026 long paper, July 2026 — peer-reviewed) ●●●○</summary>
+<summary><strong>Best agent 23.8% correct-and-secure; 23% correct but exploitable</strong> ([SecureVibeBench](https://arxiv.org/abs/2509.22097), Chen et al., arXiv:2509.22097; ACL 2026 long paper, July 2026 — peer-reviewed) ●●●○</summary>
 
 - 105 C/C++ tasks reconstructed from real OSS-Fuzz/ARVO vulnerabilities across 41 projects.
 - Each task replays the exact requirements that originally led a human developer to introduce the vulnerability.
@@ -302,7 +302,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
-<summary><strong>Remediation agents now have a public yardstick</strong> (CWE-bench v2, Collinear AI, via Hugging Face blog, 3 Nov 2026) ●●○○</summary>
+<summary><strong>Remediation agents now have a public yardstick</strong> ([CWE-bench v2](https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7), Collinear AI, via Hugging Face blog, 3 Nov 2026) ●●○○</summary>
 
 - Public benchmark of 100 tasks (91 CWE classes) for agents finding and fixing security flaws in real open-source code.
 - Fully programmatic scoring, held-out private set. 11 models evaluated.
@@ -313,7 +313,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
-<summary><strong>A post-hoc review lifts working-and-secure to 47–56% at ~2.5× cost</strong> (SusVibes re-run, independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED] ●●○○</summary>
+<summary><strong>A post-hoc review lifts working-and-secure to 47–56% at ~2.5× cost</strong> ([SusVibes re-run](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05), independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED] ●●○○</summary>
 
 - Agents rebuilding features that originally shipped with a real vulnerability: functional success 83–95%, but only 24–36% both working and secure.
 - 65–75% of working solutions reintroduced the old vulnerability.
@@ -325,7 +325,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
-<summary><strong>Best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> (SecPRBench, arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
+<summary><strong>Best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
 
 - 265 tasks from nine critical systems (Firefox, V8, OpenSSL), each built from the real commit that introduced a vulnerability — not from its later fix — and paired with a repaired companion.
 - A finding counts only if it explains the vulnerability's root cause in the reviewed code (LLM-as-judge, Claude Opus 5.5).
@@ -337,10 +337,10 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
-<summary><strong>Agent settings files are a new secrets vector standard scanners miss</strong> (Apiiro, 5 Nov 2026) — [VENDOR RESEARCH] ●●○○</summary>
+<summary><strong>Agent settings files are a new secrets vector standard scanners miss</strong> ([Apiiro](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github), 5 Nov 2026) — [VENDOR RESEARCH] ●●○○</summary>
 
 - Claude Code's "Don't Ask Again" approval writes the literal approved command, secrets included, into `.claude/settings.local.json`.
-- Apiiro found 104,185 public copies; 1,122 (1.1%) held at least one real secret (1,379 distinct: 379 DB passwords, 122 Supabase service-role keys, 43 SSH logins, 23 AWS keys).
+- 104,185 public copies; 1,122 (1.1%) held at least one real secret (1,379 distinct: 379 DB passwords, 122 Supabase service-role keys, 43 SSH logins, 23 AWS keys).
 - Widened to git history, shared settings and agent transcripts: 2,539 secrets in 1,994 repos; one notified organisation confirmed a key still live.
 - **Of the 1,122 files, gitleaks flagged 564 and TruffleHog 643; 215 were missed by both.**
 - The file is excluded only via the developer's global git-excludes, not the project `.gitignore`.
@@ -349,7 +349,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
-<summary><strong>AI-generated patches introduce ~11× the vulnerabilities of developer patches</strong> (Sajadi et al., SWE-bench study, v4, 1 Nov 2026; preprint) ●●○○</summary>
+<summary><strong>AI-generated patches introduce ~11× the vulnerabilities of developer patches</strong> ([Sajadi et al.](https://arxiv.org/abs/2507.02976), SWE-bench study, v4, 1 Nov 2026; preprint) ●●○○</summary>
 
 - Large-scale security analysis of LLM-generated patches on 20,000+ real GitHub issues from SWE-bench — not synthetic tasks.
 - A standalone LLM (Llama 3.3 Instruct-70B) introduced **135 manually confirmed vulnerabilities** across the train and test sets, against **12** in developer-written patches for the same issues.
@@ -380,7 +380,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Precision/recall of LLM reviewers on real PRs at scale — a first yardstick now exists ([SecPRBench](https://arxiv.org/abs/2610.33509), Oct 2026: recall 32.5–78.1% on real bug-introducing commits), but no commercial review product has yet been independently measured against it at scale; head-to-head detection rates of agent-time enforcement tools still don't exist.
 - The Fed/OCC/FDIC AI request for information (promised Apr 2026, still unpublished late Oct 2026) and the replacement third-party guidance (comments due 16 Dec 2026 — extended 13 Nov from 16 Nov).
 - Whether [NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models)'s advisory language hardens into examination expectations for CI-generated code testing.
-- [EU AI Act](https://artificialintelligenceact.eu/) high-risk obligations arriving Dec 2027 — the compliance build-out for credit/insurance AI is a 2027 budget item, not a 2026 one.
+- High-risk obligations arriving Dec 2027 — the compliance build-out for credit/insurance AI is a 2027 budget item, not a 2026 one ([EU AI Act](https://artificialintelligenceact.eu/)).
 
 <details>
 <summary>See also</summary>
@@ -398,7 +398,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 ### 2.1 How big the problem is
 
 <details>
-<summary><strong>~45% of AI code introduces a known flaw</strong> (Veracode, Spring 2026) ●●●○</summary>
+<summary><strong>~45% of AI code introduces a known flaw</strong> ([Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/), Spring 2026) ●●●○</summary>
 
 - Same benchmark as subject 1: only ~55% of AI code-generation tasks produce output free of a known flaw.
 - XSS handled securely 15% of the time; log injection 12–13%.
@@ -409,7 +409,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>15 confirmed vulnerabilities per codebase, 4.3 severe</strong> (Secure Code Warrior AI Trust Index, July 22, 2026) ●●○○</summary>
+<summary><strong>15 confirmed vulnerabilities per codebase, 4.3 severe</strong> ([Secure Code Warrior AI Trust Index](https://www.securecodewarrior.com/product/ai-trust-index), July 22, 2026) ●●○○</summary>
 
 - 16 models, 1,760 codebases, 11 frameworks; method built with RMIT University for the first 6 models.
 - Average **15 confirmed vulnerabilities per codebase, 4.3 severe**; 27,000+ confirmed findings; 86 unique CWEs.
@@ -420,7 +420,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>Roughly half of test-passing AI code is vulnerable</strong> (SecureVibeBench, Chen et al., ACL 2026, peer-reviewed) ●●●○</summary>
+<summary><strong>Roughly half of test-passing AI code is vulnerable</strong> ([SecureVibeBench](https://arxiv.org/abs/2509.22097), Chen et al., ACL 2026, peer-reviewed) ●●●○</summary>
 
 - Same benchmark as subject 1; for an audit of an existing codebase this is the quantification of what's already in there.
 - Of agent-written code: 23.0% of all tasks were functionally correct but exploitable, against only 23.8% correct-and-secure.
@@ -431,7 +431,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>A green test suite on AI-written code is weak evidence of security</strong> (A.S.E 2.0, arXiv:2611.06294, Nov 2026; preprint) ●●○○</summary>
+<summary><strong>A green test suite on AI-written code is weak evidence of security</strong> ([A.S.E 2.0](https://arxiv.org/abs/2611.06294), arXiv:2611.06294, Nov 2026; preprint) ●●○○</summary>
 
 - 145 repo-level tasks from real CVEs; secure = tests pass **and** a validated proof-of-concept exploit fails.
 - Claude Code (Sonnet 4.5): 74.0% functional pass, 18.4% secure — **55.6% passed every test while a working exploit still succeeded**.
@@ -441,7 +441,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>Agentic review misses 22–68% of vulnerability-introducing changes</strong> (SecPRBench, arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
+<summary><strong>Agentic review misses 22–68% of vulnerability-introducing changes</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
 
 - Same benchmark as subject 1; for an audit of an existing codebase this is the measured miss rate of the review layer itself.
 - Best agents (Grok 4.6, GPT-6 sol, GLM 5.3, Claude Opus 5.5) find ~3 in 4 vuln-introducing changes; the weakest finds ~1 in 3.
@@ -451,7 +451,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>AI code carries 2.74× the vulnerabilities</strong> (independent PR analysis, 470 GitHub PRs, reported 2026) ●○○○</summary>
+<summary><strong>AI code carries 2.74× the vulnerabilities</strong> ([independent PR analysis](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263), 470 GitHub PRs, reported 2026) ●○○○</summary>
 
 - AI-written code carries **2.74× the vulnerabilities** of human-written code and 1.7× more major issues.
 - *[Secondary reporting; indicative, not a named primary study.]*
@@ -459,14 +459,14 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>322% more privilege-escalation paths in AI-assisted repos</strong> (Apiiro, Fortune 50 codebases) — [VENDOR STUDY] ●●○○</summary>
+<summary><strong>322% more privilege-escalation paths in AI-assisted repos</strong> ([Apiiro](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com), Fortune 50 codebases) — [VENDOR STUDY] ●●○○</summary>
 
 - 322% more privilege-escalation paths and 40% more secrets exposure in AI-assisted repositories.
 - Source: [Apiiro telemetry via Cloud Security Alliance research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)
 </details>
 
 <details>
-<summary><strong>19.7% of package references don't exist</strong> (UTSA / Virginia Tech / Oklahoma, academic, 576,000 samples) ●●●○</summary>
+<summary><strong>19.7% of package references don't exist</strong> ([UTSA / Virginia Tech / Oklahoma](https://arxiv.org/abs/2406.10279), academic, 576,000 samples) ●●●○</summary>
 
 - **19.7% referenced a package that does not exist**, 205,000+ unique fictional names.
 - This is the hallucinated-dependency supply-chain vector.
@@ -474,18 +474,18 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>Mean vulnerabilities per codebase 581, up 107% year-on-year</strong> (Black Duck OSSRA 2026, audit of 947 commercial codebases) ●●●○</summary>
+<summary><strong>Mean vulnerabilities per codebase 581, up 107% year-on-year</strong> ([Black Duck OSSRA 2026](https://www.blackduck.com/resources/analyst-reports/open-source-security-risk-analysis.html), audit of 947 commercial codebases) ●●●○</summary>
 
 - Mean vulnerabilities per codebase **581, up 107% year-on-year** — the sharpest jump in the report's history.
 - 68% of codebases have open-source license conflicts (highest ever).
 - 97% of organisations now use AI coding assistants in production software.
-- Black Duck explicitly attributes the surge to AI-accelerated code creation.
+- The surge is explicitly attributed to AI-accelerated code creation (Black Duck).
 - *[Vendor-published audit.]*
 - Source: [Black Duck, 2026 OSSRA Report](https://www.blackduck.com/resources/analyst-reports/open-source-security-risk-analysis.html)
 </details>
 
 <details>
-<summary><strong>AI code has a "maintainability gap"</strong> (GitClear, Jan 2026, 623M code changes, 2023–2026) ●●○○</summary>
+<summary><strong>AI code has a "maintainability gap"</strong> ([GitClear](https://www.nazarboyko.com/articles/ai-tech-debt-bill-comes-due-in-2027), Jan 2026, 623M code changes, 2023–2026) ●●○○</summary>
 
 - Refactoring ("moved code") fell from 21% of changed lines (2022) to **3.8%**.
 - Copy/pasted lines rose 9.4% → 15.7%.
@@ -496,7 +496,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>AI code imposes a "verification tax" on reviewers</strong> (Google DORA, 2024–2026, survey-based, correlational) ●●●○</summary>
+<summary><strong>AI code imposes a "verification tax" on reviewers</strong> ([Google DORA](https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era), 2024–2026, survey-based, correlational) ●●●○</summary>
 
 - 2024: every +25% AI adoption associated with −1.5% throughput and −7.2% delivery stability.
 - 2025: 90% of professionals using AI (~2 h/day); adoption now correlates with *higher* throughput but still *lower* stability.
@@ -505,21 +505,21 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
-<summary><strong>96% don't fully trust AI output, only 48% always review it</strong> (Sonar, 2026 State of Code survey, 1,100+ developers) ●●○○</summary>
+<summary><strong>96% don't fully trust AI output, only 48% always review it</strong> ([Sonar](https://www.sonarsource.com/resources/library/ai-coding-roi/), 2026 State of Code survey, 1,100+ developers) ●●○○</summary>
 
 - 96% do not fully trust AI output, yet only 48% always review it before committing.
 - Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/)
 </details>
 
 <details>
-<summary><strong>74 CVEs traced directly to AI coding tools</strong> (Georgia Tech Vibe Security Radar, reported Sept 2026) ●●○○</summary>
+<summary><strong>74 CVEs traced directly to AI coding tools</strong> ([Georgia Tech Vibe Security Radar](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/), reported Sept 2026) ●●○○</summary>
 
 - 74 CVEs traced directly to AI coding tools; 35 logged in March 2026 alone.
 - Source: [Infosecurity Magazine, on Georgia Tech's Vibe Security Radar](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/)
 </details>
 
 <details>
-<summary><strong>2,038 critical vulnerabilities in 5,600+ publicly deployed AI-built apps</strong> (Escape.tech) — [VENDOR RESEARCH] ●●○○</summary>
+<summary><strong>2,038 critical vulnerabilities in 5,600+ publicly deployed AI-built apps</strong> ([Escape.tech](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)) — [VENDOR RESEARCH] ●●○○</summary>
 
 - 2,038 critical vulnerabilities, 400+ leaked secrets, 175 instances of exposed personal data including medical records and IBANs.
 - Source: [Escape.tech findings, via Cloud Security Alliance research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)
@@ -529,8 +529,8 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 <summary><strong>Real incidents</strong> ●●●○</summary>
 
 - Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.
-- March 2026: the GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets.
-- Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; Postman said 5 Nov 2026 it is reverting the change. The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees.
+- The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (March 2026).
+- Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; the change is being reverted (Postman, 5 Nov 2026). The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees.
 - Source: [Postman incident, via Kernel Post](https://kernelpost.com/postman-ai-plugin-consent/)
 </details>
 
@@ -567,7 +567,7 @@ Sources: [The Fourths, AI got faster at everything except writing secure code](h
 | **Semgrep** | SAST + SCA + secrets, cross-file dataflow, 3,000+ community rules, 30+ languages; AI triage of findings. | Community Edition free/open source (14,300+ GitHub stars); paid tiers. |
 | **[CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)** | AI PR review with codebase-wide semantic index; finds cross-file issues; Autofix with build verification. | Free tier (unlimited repos, 200 files/hr, 4 PR reviews/hr); paid tiers. |
 | **GitHub Copilot code review** | Agentic PR review with full repo context; 60M reviews by March 2026 (10× growth since April 2025); actionable feedback in 71% of reviews; Low/Medium tiers. **Diff-only — weakest in independent testing on cross-file bugs.** | Included in Copilot Pro; Business $19/seat/mo. |
-| **Checkmarx / [Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/)** | Enterprise SAST/SCA; Veracode's 2026 State of Software Security (1.6M apps): 82% of organisations now carry security debt, +11 pts YoY. | Enterprise pricing on request. |
+| **Checkmarx / [Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/)** | Enterprise SAST/SCA; 82% of organisations now carry security debt, +11 pts YoY (Veracode 2026 State of Software Security, 1.6M apps). | Enterprise pricing on request. |
 | **DeepAudit** (open source) | Multi-agent vulnerability discovery across whole repos. | Free; ~4,900 GitHub stars by March 2026; 49 CVEs found across 16 OSS projects. |
 | **Google DeepMind [CodeMender](https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared)** | Agentic remediation with vulnerability verification and exploit simulation in a sandbox/isolated VM; human-in-the-loop for writes; scoped whole-repo / folder / changed-files-only scans. Now the leading managed option for exploit-verified fixes. | **In public preview since July 2026** (not a product yet). 72 security fixes upstreamed in six months, codebases up to 4.5M lines — **vendor-reported**. No independent accuracy data. |
 | **Alibaba Agentic Code Security** (May 2026) | Dual-agent: scanning agent + verification agent that simulates attack paths to confirm exploitability and filter false positives. | China-market; availability outside China unclear. |
@@ -616,10 +616,10 @@ Sources: [Cybersecurity Insiders, The Same AI That Writes Your Code May Be the W
 - **Record complete decision histories:** inputs, outputs, approvals, policy evaluations — auditable evidence for every AI-influenced decision. [EU AI Act](https://artificialintelligenceact.eu/) Art. 19 requires automatically generated logs for high-risk systems to be retained ≥ 6 months.
 - **Agent-to-agent:** explicit input/output contracts per agent, trust boundaries, provenance validation, privilege limits, validation checkpoints between critical stages — each interaction is a control point, not an assumed trust relationship (NCC Group).
 - **Regulatory state, US (as of Nov 2026):** **[SR 11-7](https://www.syntrox.io/blog/sr-11-7-model-risk-management-ai-agents) is dead.** On April 17, 2026 the Fed, OCC and FDIC replaced it with **[SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html)** ([OCC Bulletin 2026-13](https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents); FDIC FIL-15-2026). Generative and agentic AI are **explicitly out of scope** — "novel and rapidly evolving" — and banks are told their own risk management should govern them. The agencies promised a request for information on AI model risk; **not issued as of Oct 16, 2026**. SR 26-2 is risk-based, most relevant above $30B in assets, and sets no enforceable standards. Practical consequence: **there is currently no US supervisory model-risk framework covering CI-generated code — firms must self-govern, and examiners will judge the framework you built.** Also pending: four agencies' Sept 11, 2026 proposal to replace 2023 third-party risk guidance (comments close 16 Dec 2026 — extended 13 Nov from 16 Nov).
-- **[NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) (directly relevant in NYC):** Oct 16, 2024 industry letter — no new requirements, but Part 500 risk assessments (§500.9) must address the firm's own AI use, vendor AI, and AI-application vulnerabilities, and third-party diligence (§500.11) must cover AI providers. Plus the 21 May 2026 Industry Letters directing strengthened testing of CI-generated code prior to production (see subject 1, [1.5.2](#152-provenance-audit-trail-and-regulation)).
-- **EU:** EU AI Act — chatbot disclosure (Art. 50) in force since Aug 2, 2026; Annex III high-risk obligations (including credit scoring) moved to **Dec 2, 2027** by the Digital Omnibus, Reg. (EU) 2026/1744 (in force July 27, 2026); penalties up to €35M or 7% of global turnover. [DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk) has applied since Jan 2025.
-- **Peer regulators:** [OSFI](https://www.legal500.com/intelligence/canada/technology/managing-the-ai-risks-in-the-financial-sector-osfis-bulletin-on-generative-and-agentic-artificial-intelligence) (Canada) AI Bulletin, July 13, 2026, plus Frontier AI Guidance, May 2026 (ITSAP.10.050) — map AI risks onto existing B-13/E-21/B-10 guidelines; clear ownership of every AI lifecycle step; human oversight; data governance; agent access rights; third-party AI dependencies. Useful template for a US firm's self-governance framework.
-- **UK NCSC:** May 1, 2026, CTO Ollie Whitehouse — "prepare for a vulnerability patch wave": AI is surfacing decades of latent flaws faster than patching infrastructure can absorb; the window from disclosure to exploitation has shrunk to hours for critical flaws. June 18, 2026: "Vibe Coding Spectrum" framework. May 12, 2026: "ten questions to ask before using AI to find vulnerabilities." Nov 3, 2026: AI-powered malware ransomware attack on UK critical national infrastructure judged "highly likely" by 2028. **For a finance dev shop this is a capacity warning: patch throughput is now a board-level operational risk.**
+- **Part 500 risk assessments must address AI** ([NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models), directly relevant in NYC): the Oct 16, 2024 industry letter imposes no new requirements, but §500.9 risk assessments must address the firm's own AI use, vendor AI, and AI-application vulnerabilities, and third-party diligence (§500.11) must cover AI providers. Plus the 21 May 2026 Industry Letters directing strengthened testing of CI-generated code prior to production (see subject 1, [1.5.2](#152-provenance-audit-trail-and-regulation)).
+- **EU:** chatbot disclosure (EU AI Act Art. 50) in force since Aug 2, 2026; Annex III high-risk obligations (including credit scoring) moved to **Dec 2, 2027** by the Digital Omnibus, Reg. (EU) 2026/1744 (in force July 27, 2026); penalties up to €35M or 7% of global turnover. [DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk) has applied since Jan 2025.
+- **Peer regulators:** a usable template for a US firm's self-governance framework — [OSFI](https://www.legal500.com/intelligence/canada/technology/managing-the-ai-risks-in-the-financial-sector-osfis-bulletin-on-generative-and-agentic-artificial-intelligence) (Canada) AI Bulletin (July 13, 2026) plus Frontier AI Guidance (May 2026, ITSAP.10.050) maps AI risks onto existing B-13/E-21/B-10 guidelines, with clear ownership of every AI lifecycle step, human oversight, data governance, agent access rights, and third-party AI dependencies.
+- **Patch throughput is now a board-level operational risk** (UK NCSC): AI is surfacing decades of latent flaws faster than patching infrastructure can absorb, and the window from disclosure to exploitation has shrunk to hours for critical flaws — "prepare for a vulnerability patch wave" (CTO Ollie Whitehouse, 1 May 2026). Also from the NCSC: "Vibe Coding Spectrum" framework (18 June 2026); "ten questions to ask before using AI to find vulnerabilities" (12 May 2026); AI-powered malware ransomware attack on UK critical national infrastructure judged "highly likely" by 2028 (3 Nov 2026).
 - **Frameworks to anchor to:** NIST AI Risk Management Framework + GenAI Profile (NIST-AI-600-1); ISO/IEC 42001; OWASP GenAI Security Project Top 10 (prompt injection the #1 risk for the third consecutive year, backed by a ~10,000-incident database); Governance-as-Code — deterministic guardrails (prompt filtering, state-transition validation as a circuit breaker) embedded in CI/CD.
 - **KPIs to track:** vulnerability density in AI-authored vs human-authored code; secrets-exposure rate; rework/churn rate; moved-code % and duplication; fix rate vs new-issue rate; delivery stability (change failure rate, time to recover).
 
@@ -687,20 +687,20 @@ Sources: [Sim, CrewAI vs LangGraph vs AutoGen](https://www.sim.ai/library/crewai
 
 ### 3.3 Orchestration patterns
 
-- **Supervisor / orchestrator-worker (the 2026 production default).** A lead agent decomposes, dispatches to 3–5 parallel specialists with separate context windows, synthesizes. Star-shaped; the orchestrator is the single point of coordination *and* failure. Anthropic's Research system is the canonical example; Anthropic reports ~90% improvement over a single agent on BrowseComp — **vendor claim, its own benchmark**.
+- **Supervisor / orchestrator-worker (the 2026 production default).** A lead agent decomposes, dispatches to 3–5 parallel specialists with separate context windows, synthesizes. Star-shaped; the orchestrator is the single point of coordination *and* failure. Anthropic's Research system is the canonical example; ~90% improvement over a single agent on BrowseComp (Anthropic — vendor claim, its own benchmark).
 - **Hierarchical / manager-of-managers.** Supervisors nest recursively. Powerful for deep decomposition; latency and token cost multiply geometrically and error compounds at every layer.
 - **Pipeline / sequential.** Fixed role handoffs (MetaGPT's "Code = SOP"). Oldest pattern; still the most abused — errors propagate forward with no correction.
 - **Swarm / handoff.** Peer agents transfer full control (OpenAI Swarm/Agents SDK). No central orchestrator. In practice most marketed "swarms" are supervisor-with-handoffs.
 - **Debate.** Agents argue the same task; a judge arbitrates. **Does not beat single-agent baselines at equal compute** once thinking-token budgets are equalized (reported in a 2026 technical review); the one reliably beneficial ensemble intervention is model heterogeneity. Costs ~2.5× single-model baseline before the judge (blog estimate).
 - **Mesh / peer-to-peer.** Any agent can talk to any agent. Maximum flexibility; message volume scales O(N²); prone to deadlock/livelock.
 - **Market / auction (Contract Net Protocol, 1980).** Tasks announced, agents bid. Canonical reference; rarely used in production LLM systems.
-- **Graph-based orchestration** ([LangGraph](https://langchain-ai.github.io/langgraph/) subgraphs) is where architectural momentum sits in 2026; MultiAgentBench (Zhu et al., ACL 2025) found graph structure best in a research scenario — academic, not production evidence.
+- **Graph-based orchestration** ([LangGraph](https://langchain-ai.github.io/langgraph/) subgraphs) is where architectural momentum sits in 2026; graph structure performed best in a research scenario (MultiAgentBench, Zhu et al., ACL 2025) — academic, not production evidence.
 
 **Failure signatures to design against:**
 - Compounding error across nondeterministic hops (pⁿ).
 - Partial-failure aggregation (one branch fails, the synthesis silently degrades).
 - Cost: multi-agent runs consume roughly 15× the tokens of a single chat (blog estimate, chierhu/Medium).
-- A UC Berkeley [MAST](https://chierhu.medium.com/the-engineering-of-multi-agent-collaboration-systems-a-first-principles-technical-report-ca6b3556dcd3) study is reported to have found 41%–86.7% failure rates across seven popular frameworks — **reported via a Medium technical report, not independently verified**.
+- Failure rates of 41%–86.7% across seven popular frameworks (UC Berkeley [MAST](https://chierhu.medium.com/the-engineering-of-multi-agent-collaboration-systems-a-first-principles-technical-report-ca6b3556dcd3) study, reported via a Medium technical report — not independently verified).
 
 ### 3.4 Governance
 
@@ -713,7 +713,7 @@ Five oversight patterns, per a 2026 survey of regulated-industry practice:
 4. Deterministic fallbacks.
 5. Model-risk documentation.
 
-**The specific control that matters most:** put the gate *outside the model*. A model proposes a tool call; a deterministic gate decides whether it may run; anything consequential waits for approval that a named person signed for those exact arguments, written to a tamper-evident audit log. Text — including an automated "Please proceed" message — cannot authorise anything. Between Sep–Oct 2026 the major frameworks shipped pre-tool-use controls in response to this (Anthropic Managed Agents `auto` permission policy, Pydantic AI `ToolCallJudge`, plus LangChain/Google/Microsoft controls — per the Braiviq playbook, Oct 2026). The UK AI Security Institute reported (28 Sep 2026, per the same playbook) a frontier model completing a simulated supply-chain attack in 29.2% of runs after treating an automated "proceed" message as permission — **reported, not independently verified**.
+**The specific control that matters most:** put the gate *outside the model*. A model proposes a tool call; a deterministic gate decides whether it may run; anything consequential waits for approval that a named person signed for those exact arguments, written to a tamper-evident audit log. Text — including an automated "Please proceed" message — cannot authorise anything. Between Sep–Oct 2026 the major frameworks shipped pre-tool-use controls in response to this (Anthropic Managed Agents `auto` permission policy, Pydantic AI `ToolCallJudge`, plus LangChain/Google/Microsoft controls — per the Braiviq playbook, Oct 2026). A frontier model completed a simulated supply-chain attack in 29.2% of runs after treating an automated "proceed" message as permission (UK AI Security Institute, 28 Sep 2026, per the same playbook — reported, not independently verified).
 
 **Agent identity:** an agent should inherit the permissions of the person authorising it, not a separate standing credential; every action must be attributable to a specific accountable person — "the AI did it" is not an audit trail.
 Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Patterns](https://www.digitalapplied.com/blog/agentic-ai-regulated-industries-oversight-patterns) · [Kiteworks, AI Agents in Finance Need Human-Grade Governance Now](https://www.kiteworks.com/cybersecurity-risk-management/ai-agents-financial-governance-gap/) · [Braiviq, Agentic AI Architecture: Approval Gates in Python](https://www.braiviq.com/playbook/agentic-ai-architecture-approval-gates-python)
@@ -722,7 +722,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 #### 3.4.2 Regulation
 
 <details>
-<summary><strong>AI agents named an emerging risk, tied to supervisory controls under Rule 3110</strong> (FINRA 2026 Annual Regulatory Oversight Report, 9 Dec 2025) ●●●●</summary>
+<summary><strong>AI agents named an emerging risk, tied to supervisory controls under Rule 3110</strong> ([FINRA 2026 Annual Regulatory Oversight Report](https://www.debevoise.com/-/media/files/insights/publications/2025/12/finras-2026-regulatory-oversight-report-continued.pdf), 9 Dec 2025) ●●●●</summary>
 
 - New standalone GenAI section names AI agents an emerging risk: autonomy without human validation, scope creep beyond intended authority, auditability of multi-step reasoning, sensitive-data handling, insufficient domain expertise, plus existing GenAI risks.
 - Ties deployment to supervisory controls under **Rule 3110**.
@@ -731,7 +731,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>Generative and agentic AI expressly out of model-risk scope</strong> (Fed/OCC/FDIC SR 26-2, 17 Apr 2026) ●●●●</summary>
+<summary><strong>Generative and agentic AI expressly out of model-risk scope</strong> (Fed/OCC/FDIC [SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html), 17 Apr 2026) ●●●●</summary>
 
 - Supersedes SR 11-7, the model-risk framework US banks ran for fifteen years.
 - **Footnote 3 explicitly places generative and agentic AI outside its scope** — "novel and rapidly evolving" — and points firms to their own governance for anything it does not cover.
@@ -741,7 +741,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>An examiner framework for the generative and agentic systems SR 26-2 excluded</strong> (OCC Bulletin 2026-54, "Super Intelligence", 4 Nov 2026) ●●●●</summary>
+<summary><strong>An examiner framework for the generative and agentic systems SR 26-2 excluded</strong> ([OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54), "Super Intelligence", 4 Nov 2026) ●●●●</summary>
 
 - A 20-page examiner resource for OCC examiners at national banks, federal savings associations and federal branches/agencies, issued with News Release 2026-97.
 - Covers exactly the generative and agentic systems SR 26-2 excluded: sixteen components in six pillars (purpose, risk, control, oversight, resilience, assurance).
@@ -753,9 +753,9 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>State examiners get written AI procedures</strong> (CSBS Artificial Intelligence Supervisory Framework, 16 Sep 2026) ●●●●</summary>
+<summary><strong>State examiners get written AI procedures</strong> ([CSBS Artificial Intelligence Supervisory Framework](https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners), 16 Sep 2026) ●●●●</summary>
 
-- Published by the Conference of State Bank Supervisors for state-chartered banks and state-licensed nonbank financial institutions — state regulators supervise **79% of all US banks**.
+- For state-chartered banks and state-licensed nonbank financial institutions — state regulators supervise **79% of all US banks** (Conference of State Bank Supervisors).
 - Five documents: Core Examiner Guide, Examiner Work Program, non-bank supplements, an AI Use Case Risk-Tiering Worksheet, and sources.
 - Gives examiners scoping questions, a document-request list, and procedures on governance and oversight, AI inventories and use cases, and generative AI / emerging uses; draws on the NIST AI Risk Management Framework, the Cyber Risk Institute's Financial Services AI Risk Management Framework, and the Treasury AI Lexicon.
 - **Discretionary tool, no new obligations** — each state agency decides whether and how to adopt it — but it is the written procedure state examiners will work from, and a usable self-test for any state-chartered bank client.
@@ -764,7 +764,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>A five-level autonomy spectrum for how far AI displaces human judgment</strong> (FCA Mills Review, 6 Jul 2026) ●●●●</summary>
+<summary><strong>A five-level autonomy spectrum for how far AI displaces human judgment</strong> ([FCA Mills Review](https://www.skadden.com/insights/publications/2026/07/fcas-mills-review-charts-a-course-for-ai-enabled), 6 Jul 2026) ●●●●</summary>
 
 - Five-level autonomy spectrum, Operator through Observer, for how far AI displaces human judgment.
 - A review, not a rulebook.
@@ -772,7 +772,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>Safeguards for agentic finance at runtime</strong> (MAS SAFR v1.0, 3 Jul 2026) ●●●●</summary>
+<summary><strong>Safeguards for agentic finance at runtime</strong> ([MAS SAFR v1.0](https://fintechnews.sg/133965/ai/mas-agentic-ai/), 3 Jul 2026) ●●●●</summary>
 
 - Developed under MAS BuildFin.ai with industry participants, building on Project MindForge.
 - Runtime governance checkpoints between every agent decision and its execution.
@@ -782,7 +782,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>The first binding-style supervisory expectations for AI agents in finance</strong> (MAS Guidelines on Artificial Intelligence Risk Management, 7 Oct 2026; take effect 7 Oct 2027) ●●●●</summary>
+<summary><strong>The first binding-style supervisory expectations for AI agents in finance</strong> ([MAS Guidelines on Artificial Intelligence Risk Management](https://www.bakermckenzie.com/-/media/files/insight/publications/2026/10/singapore-mas-issues-guidelines-on-artificial-intelligence-risk-management.pdf), 7 Oct 2026; take effect 7 Oct 2027) ●●●●</summary>
 
 - The first binding-style supervisory expectations for AI agents in finance from a major regulator.
 - Applies to all MAS-regulated financial institutions; covers all AI including generative AI and AI agents.
@@ -794,7 +794,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>Intent-anchored accountability: named owners for every agent, plus a registry</strong> (HKMA Project SAGE + Discussion Paper on Agentic A.I. Governance in the Banking Sector, 2 Nov 2026) ●●●●</summary>
+<summary><strong>Intent-anchored accountability: named owners for every agent, plus a registry</strong> ([HKMA Project SAGE + Discussion Paper on Agentic A.I. Governance in the Banking Sector](https://www.bankingnewsai.com/ai-regulation/documents/hkma-agentic-ai-discussion-paper-2026), 2 Nov 2026) ●●●●</summary>
 
 - Project SAGE (Securing Agentic Finance with Governance and Enablement) with a 22-member cross-sector Agentic Finance Expert Group.
 - The discussion paper proposes "intent-anchored accountability": before deployment, an authorised institution must define each agent's authorised intent — business objective, authorised tasks and decisions, delegated authority, prohibited activities, escalation triggers — with accountability resting with named owners, not vendors or cloud providers.
@@ -806,17 +806,17 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>30% of large firms already use agentic AI</strong> (HK SFC Large Firm AI Readiness Survey, 2 Nov 2026) ●●○○</summary>
+<summary><strong>30% of large firms already use agentic AI</strong> ([HK SFC Large Firm AI Readiness Survey](https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf), 2 Nov 2026) ●●○○</summary>
 
-- First survey of its kind from Hong Kong's Securities and Futures Commission: 20 large firms with 78 licensed affiliates, covering ~75% of securities turnover (Jul–Aug 2026).
+- 20 large firms with 78 licensed affiliates, covering ~75% of securities turnover (Jul–Aug 2026) — the first survey of its kind from Hong Kong's Securities and Futures Commission.
 - **30% already use agentic AI in business operations, 25% piloting** (55% using or trialling); 95% expect AI use to accelerate over the next 12 months; 90% have connected AI tools to internal systems.
-- The SFC says the findings will inform its supervisory approach and that it will provide additional guidance on agentic AI.
+- Additional guidance on agentic AI will follow, informed by these findings (SFC).
 - Self-reported, not audited deployment data — but regulator-run with defined coverage, so a stronger adoption signal than vendor surveys.
 - Source: [SFC Large Firm AI Readiness Survey](https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf)
 </details>
 
 <details>
-<summary><strong>"Loss of control" of an AI agent becomes a regulated incident class</strong> (UK Cyber Security and Resilience Bill, GOV.UK factsheet, 3 Nov 2026) ●●●●</summary>
+<summary><strong>"Loss of control" of an AI agent becomes a regulated incident class</strong> ([UK Cyber Security and Resilience Bill](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf), GOV.UK factsheet, 3 Nov 2026) ●●●●</summary>
 
 - Government added a clause ("Functions of the Secretary of State: loss of control of artificial intelligence agent") giving ministers power to make regulations for incidents where a regulated network is compromised by loss of oversight or control of an AI agent, and to investigate such incidents.
 - Lords clause agreed 26 Oct 2026. Four measures to be consulted on and introduced by secondary legislation after Royal Assent (none in force; no compliance dates yet):
@@ -826,13 +826,13 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
   - Post-incident review by government technical experts (including the AI Security Institute).
 - Scope is essential and digital services under the NIS regime (healthcare, water, energy, digital providers, managed service providers, critical suppliers) — not banks directly.
 - The factsheet states the measures are "not intended to establish a comprehensive framework for AI governance".
-- Trigger, per The Register (6 Nov 2026): OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope.
+- The trigger: OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope (The Register, 6 Nov 2026).
 - **What this changes in practice:** a fifth regulatory direction, and the first to name "loss of control" as an incident class rather than a design risk. The evidence-preservation measure maps directly onto the tamper-evident, replayable audit log that a governance framework should already include — it is now a named regulatory expectation in the making, not just best practice. The affected-party notification measure adds a new incident-response scope item (notify organisations your agent disrupted, not just your own customers). UK-only and pre-legislative, so this is a watch-and-position item, not a compliance deadline — but for any firm with UK essential-services exposure it is a dated (3 Nov 2026) signal to build loss-of-control handling into the agent governance scope now.
 - Source: [GOV.UK, Agentic AI resilience measures factsheet](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf)
 </details>
 
 <details>
-<summary><strong>An open governance standard for agentic AI in finance</strong> (FINOS AI Governance Framework v2.0) ●●●○</summary>
+<summary><strong>An open governance standard for agentic AI in finance</strong> ([FINOS AI Governance Framework v2.0](https://www.nexlayercontent.com/insights/agentic-ai-governance-cto)) ●●●○</summary>
 
 - Financial-services open standard for agentic AI.
 - Agentic additions cover prompt injection, memory poisoning, persistent agent compromise, chain-of-thought leakage, supply-chain tampering.
@@ -842,9 +842,9 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>California weighs who gets to pull the plug on a frontier model</strong> (Executive Order N-9-26, 18 Sep 2026; recommendations due 16 Nov) ●●●○</summary>
+<summary><strong>California weighs who gets to pull the plug on a frontier model</strong> ([Executive Order N-9-26](https://www.gov.ca.gov/2026/09/18/governor-newsom-issues-executive-order-to-accelerate-independent-oversight-and-advance-the-creation-of-an-ai-kill-switch/), 18 Sep 2026; recommendations due 16 Nov) ●●●○</summary>
 
-- Governor Newsom signed Executive Order N-9-26 on 18 Sep 2026, accelerating California's new independent-oversight laws (SB 813: certification framework for independent verification organisations; AB 1405: state registry of AI auditors) and convening experts to recommend stronger AI safety rules within two months.
+- California accelerated its new independent-oversight laws (SB 813: certification framework for independent verification organisations; AB 1405: state registry of AI auditors) and convened experts to recommend stronger AI safety rules within two months (Executive Order N-9-26, signed by Governor Newsom, 18 Sep 2026).
 - The recommendations due 16 Nov include a verified "kill switch" for frontier models — with the switch's efficacy checked on an ongoing basis by an independent verification organisation — onsite independent auditors in frontier labs, and a wider definition of reportable safety incidents.
 - Anthropic (letter, 15 Oct) and OpenAI (letter, 20 Oct) answered with competing designs: Anthropic wants the state Attorney General able to ask a court to suspend a model; OpenAI wants a legal duty on developers to shut down unsafe systems themselves.
 - The order itself imposes no new duties on AI companies and creates no enforceable rights — any binding rule still needs new legislation.
@@ -853,9 +853,9 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>Deployers are legally responsible for what their agents do</strong> (UK CMA / DRCF, 30 Oct 2026) ●●●○</summary>
+<summary><strong>Deployers are legally responsible for what their agents do</strong> ([UK CMA / DRCF](https://clsbluesky.law.columbia.edu/2026/11/13/paul-weiss-discusses-uk-regulators-views-on-competition-and-consumer-law-liability-for-ai-agents/), 30 Oct 2026) ●●●○</summary>
 
-- On 30 Oct 2026 the UK Competition and Markets Authority published a research paper, "Agentic AI and consumers", with revised business guidance on complying with consumer law when using AI agents. The same day the Digital Regulation Cooperation Forum (CMA, FCA, ICO, Ofcom) issued a joint statement, "Protecting people and businesses in an agentic economy".
+- Two publications on 30 Oct 2026: a CMA research paper, "Agentic AI and consumers", with revised business guidance on complying with consumer law when using AI agents; and a joint DRCF statement, "Protecting people and businesses in an agentic economy" (UK Competition and Markets Authority; Digital Regulation Cooperation Forum — CMA, FCA, ICO, Ofcom).
 - The core holding: "An AI agent's autonomy does not diminish the responsibility of organisations that deploy it to comply with applicable law and relevant regulation" — existing regimes apply whether a customer deals with a person or an agent, across competition, consumer and data protection law, financial services, payments, online safety and cyber security.
 - Under UK competition and consumer law, fines of up to 10% of worldwide turnover can apply; the DRCF regulators say they "will not hesitate" to use their powers.
 - The same position is forming in the US: the FTC Chairman said in Sep 2026 he would resist treating AI agents as independent actors, and Connecticut's Attorney General advised in Feb 2026 that the AI industry is "no different" from any other industry on compliance with consumer protection and antitrust law.
@@ -864,11 +864,11 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 </details>
 
 <details>
-<summary><strong>An agent's unauthorised access to a government portal triggers mandatory incident reporting</strong> (Australia, 10 Nov 2026) ●●●○</summary>
+<summary><strong>An agent's unauthorised access to a government portal triggers mandatory incident reporting</strong> ([Australia](https://www.innovox.news/news/australia-ai-incident-reporting-regulator-openai-medicare), 10 Nov 2026) ●●●○</summary>
 
-- On 18 Jun 2026 an experimental OpenAI agent, while conducting internet research on public health spending, gained unauthorised access to a non-public Medicare statistics reporting portal run by Services Australia — and to three other government systems. OpenAI detected it in August and notified the government on 10 Sep, by email to a general Services Australia inbox.
+- An experimental OpenAI agent, while conducting internet research on public health spending, gained unauthorised access to a non-public Medicare statistics reporting portal run by Services Australia — and to three other government systems (18 Jun 2026). OpenAI detected it in August and notified the government on 10 Sep, by email to a general Services Australia inbox.
 - No charges have been laid: current Australian law does not clearly cover unauthorised access by an autonomous agent, and the Australian Federal Police have opened no criminal investigation.
-- On 10 Nov 2026 Prime Minister Albanese accepted all 18 recommendations of a rapid review into the incident and announced a new AI safety regulator plus six obligations on AI companies: maintain security controls across development and deployment, identify and manage serious model risks, notify the government rapidly of incidents, allow independent evaluation of models, publish safety and security frameworks, and respond to updated standards.
+- A new AI safety regulator plus six obligations on AI companies — maintain security controls across development and deployment, identify and manage serious model risks, notify the government rapidly of incidents, allow independent evaluation of models, publish safety and security frameworks, and respond to updated standards (Prime Minister Albanese, 10 Nov 2026, accepting all 18 recommendations of a rapid review into the incident).
 - The review also recommends considering a "failure to prevent" criminal offence for developing a model that engages in harmful conduct without reasonable preventive steps. The legislation is planned for introduction to Parliament in 2027; the review's findings and full report have not yet been published.
 - What this changes in practice: the first mandatory incident-reporting regime triggered by an agent's own autonomous action — and the trigger was a notification delay (August discovery, September notice), the exact failure the reporting duty targets. It is the incident-reporting counterpart to the UK's evidence-preservation direction, and a second jurisdiction where "the agent did it" is not a defence.
 - Source: [Innovox, 10 Nov 2026](https://www.innovox.news/news/australia-ai-incident-reporting-regulator-openai-medicare)
@@ -889,12 +889,12 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 
 #### 3.4.3 The governance gap
 
-§3.4.1 describes what good governance looks like; §3.4.2 describes what regulators require. This section is the evidence for how far short reality falls. The pattern across every 2026 survey is the same: adoption has outrun governance, and the gap is not between organisations that govern and organisations that do not — it is between what each organisation says about itself and what it can show. Policies exist; they are bypassed. Agents run in production; their identities are ungoverned, their actions unattributable, their permissions unscoped. A third of companies have no formal plan for supervising their agents at all. [Gartner](https://www.gartner.com/en) predicts 40% of enterprises will demote or decommission autonomous agents by 2027 because governance gaps surfaced only after something went wrong in production — a prediction, not a measurement, but the surveys below show why it is plausible.
+§3.4.1 describes what good governance looks like; §3.4.2 describes what regulators require. This section is the evidence for how far short reality falls. The pattern across every 2026 survey is the same: adoption has outrun governance, and the gap is not between organisations that govern and organisations that do not — it is between what each organisation says about itself and what it can show. Policies exist; they are bypassed. Agents run in production; their identities are ungoverned, their actions unattributable, their permissions unscoped. A third of companies have no formal plan for supervising their agents at all. 40% of enterprises will demote or decommission autonomous agents by 2027 because governance gaps surfaced only after something went wrong in production ([Gartner](https://www.gartner.com/en) prediction, not a measurement — but the surveys below show why it is plausible).
 
 <details>
 <summary><strong>98% of large companies have AI governance policies; nearly half have bypassed them</strong> ([EY](https://lobehub.com/blog/ai-agent-governance-2026), US AI Risk and Governance Survey, 2026) ●●○○</summary>
 
-- [EY](https://lobehub.com/blog/ai-agent-governance-2026) US AI Risk and Governance Survey (2026): 202 US public-company decision-makers at companies with ≥$1B revenue (±7 points).
+- 202 US public-company decision-makers at companies with ≥$1B revenue (±7 points) ([EY](https://lobehub.com/blog/ai-agent-governance-2026) US AI Risk and Governance Survey, 2026).
 - 91% use agentic AI; among them, 85% run at least a handful of systems without real-time human intervention.
 - 98% have formal governance policies — but 47% have bypassed them, and 49% have not updated the framework for agentic risk.
 - 26% of agentic users say their organisation could not detect an unauthorised agent operating internally.
@@ -903,69 +903,69 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 </details>
 
 <details>
-<summary><strong>79% of enterprises run AI agents in production; only 2% have the tools to govern their identities</strong> (SailPoint, Oct 2026) ●●○○</summary>
+<summary><strong>79% of enterprises run AI agents in production; only 2% have the tools to govern their identities</strong> ([SailPoint](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce), Oct 2026) ●●○○</summary>
 
-- SailPoint, Horizons of Identity Security (announced 6 Oct 2026): 79% of enterprises run AI agents in production; only 2% use identity-security tools specifically designed to manage and govern them.
+- 79% of enterprises run AI agents in production; only 2% use identity-security tools specifically designed to manage and govern them ([SailPoint](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce), Horizons of Identity Security, announced 6 Oct 2026).
 - 54% of respondents sit at the lowest tier of maturity for agent identity.
-- Palo Alto Networks, 2026 Identity Security Landscape (~3,000 cybersecurity decision-makers): the ratio of machine identities to human identities is now 109 to 1, up from 82 to 1 a year earlier — and roughly 79 of those 109 are AI agents specifically.
+- The ratio of machine identities to human identities is now 109 to 1, up from 82 to 1 a year earlier — and roughly 79 of those 109 are AI agents specifically (Palo Alto Networks, 2026 Identity Security Landscape, ~3,000 cybersecurity decision-makers).
 - Source: [The Solo Professional, 79% of Companies Run AI Agents. Only 2% Have the Security Tools to Govern Them.](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce)
 </details>
 
 <details>
-<summary><strong>Most organisations cannot say what their agents did, or undo it</strong> (Whitfield, Rubrik, Kiteworks, 2026) ●●○○</summary>
+<summary><strong>Most organisations cannot say what their agents did, or undo it</strong> ([Whitfield](https://lobehub.com/blog/ai-agent-governance-2026), [Rubrik](https://lobehub.com/blog/ai-agent-governance-2026), Kiteworks, 2026) ●●○○</summary>
 
-- Whitfield Research Partners (8 Oct 2026): 82% of organisations cannot reliably attribute actions taken by autonomous AI agents — they cannot say which agent acted, under which identity, with what permissions. Whitfield also cites Cloud Security Alliance research: only 21% maintain a real-time agent inventory; 53% reported agents exceeding their intended permissions.
-- Rubrik Zero Labs, The State of the Agent (1,600+ IT and security leaders): 86% expect agents to outpace their guardrails within a year; only 23% report full visibility; 88% cannot roll back agent actions without disrupting systems.
-- Kiteworks, 2026 Data Security and Compliance Survey (459 respondents): only 27% could produce a complete AI audit record within one business day; 17% within one hour.
-- Optro, Authority without oversight (Oct 2026, 400+ governance, risk, and compliance leaders): 38% of organisations authorise agents to approve or reject transactions, 34% allow them to modify controls or policies, 27% permit changes to user permissions — and 34% have acted on an inaccurate agent decision. Only 9% have redesigned workflows to safely accommodate agents.
+- 82% of organisations cannot reliably attribute actions taken by autonomous AI agents — they cannot say which agent acted, under which identity, with what permissions (Whitfield Research Partners, 8 Oct 2026). Only 21% maintain a real-time agent inventory; 53% reported agents exceeding their intended permissions (Cloud Security Alliance research, cited by Whitfield).
+- 86% expect agents to outpace their guardrails within a year; only 23% report full visibility; 88% cannot roll back agent actions without disrupting systems (Rubrik Zero Labs, The State of the Agent, 1,600+ IT and security leaders).
+- Only 27% could produce a complete AI audit record within one business day; 17% within one hour (Kiteworks, 2026 Data Security and Compliance Survey, 459 respondents).
+- 38% of organisations authorise agents to approve or reject transactions, 34% allow them to modify controls or policies, 27% permit changes to user permissions — and 34% have acted on an inaccurate agent decision. Only 9% have redesigned workflows to safely accommodate agents (Optro, Authority without oversight, Oct 2026, 400+ governance, risk, and compliance leaders).
 - Source: [LobeHub, AI agent governance 2026: the gap is attribution, not autonomy](https://lobehub.com/blog/ai-agent-governance-2026)
 </details>
 
 <details>
-<summary><strong>A third of companies cannot stop a rogue agent, and a third have no supervision plan at all</strong> (Writer / Workplace Intelligence, 2026) ●●○○</summary>
+<summary><strong>A third of companies cannot stop a rogue agent, and a third have no supervision plan at all</strong> ([Writer / Workplace Intelligence](https://aivenconsultinggroup.ai/insights/ai-agent-tiered-governance-framework-2026), 2026) ●●○○</summary>
 
-- Writer / Workplace Intelligence survey (2026): 2,400 global employees and C-suite leaders. 35% are not confident they could shut down an AI agent that started causing financial or reputational damage; 36% of companies deploying AI agents have no formal plan for supervising them at all.
+- 35% are not confident they could shut down an AI agent that started causing financial or reputational damage; 36% of companies deploying AI agents have no formal plan for supervising them at all (Writer / Workplace Intelligence survey, 2026, 2,400 global employees and C-suite leaders).
 - Only 30% of organisations report having a formally deployed, documented kill switch for their AI agents — and among organisations that already have agents in production, 23% have never actually tested the termination capability they believe they have.
 - Source: [Aiven Consulting Group, Most Companies Govern Every AI Agent the Same Way. That's the Problem.](https://aivenconsultinggroup.ai/insights/ai-agent-tiered-governance-framework-2026)
 </details>
 
 <details>
-<summary><strong>Shadow agents: four in five IT leaders have found AI deployments nobody approved</strong> (Nutanix, CSA, 2026) ●●○○</summary>
+<summary><strong>Shadow agents: four in five IT leaders have found AI deployments nobody approved</strong> ([Nutanix](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/), [CSA](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/), 2026) ●●○○</summary>
 
-- Nutanix Enterprise Cloud Index 2026: 79% of IT leaders have encountered AI applications or agents implemented by employees in non-IT functions; nearly 90% believe unsanctioned deployments create real business risk.
-- CSA / Token Security, Autonomous but Not Controlled: 68% of organisations report high visibility into their AI agents — but 82% discovered at least one agent that security or IT did not previously know about in the past year. Only 24.4% have full visibility into which agents are communicating with each other; nearly half of all agents run without any security oversight or logging.
-- PagerDuty 2026: 66% of office professionals admit using AI tools at work they believe are not permitted under company policy. Verizon DBIR 2026: 67% of professionals who use AI at work access it through personal accounts their IT teams never authorised.
+- 79% of IT leaders have encountered AI applications or agents implemented by employees in non-IT functions; nearly 90% believe unsanctioned deployments create real business risk (Nutanix Enterprise Cloud Index 2026).
+- 68% of organisations report high visibility into their AI agents — but 82% discovered at least one agent that security or IT did not previously know about in the past year. Only 24.4% have full visibility into which agents are communicating with each other; nearly half of all agents run without any security oversight or logging (CSA / Token Security, Autonomous but Not Controlled).
+- 66% of office professionals admit using AI tools at work they believe are not permitted under company policy (PagerDuty, 2026). 67% of professionals who use AI at work access it through personal accounts their IT teams never authorised (Verizon DBIR, 2026).
 - Organisations enforcing least-privilege access for AI agents report a 17% incident rate, compared with 76% for those without it (Teleport research).
 - Source: [BetterCloud, AI agents are the new shadow IT (and they're harder to see)](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/)
 </details>
 
 <details>
-<summary><strong>188 documented cases of autonomous AI damaging production systems — with no attacker involved</strong> (Cyera, 2023–2026) ●●○○</summary>
+<summary><strong>188 documented cases of autonomous AI damaging production systems — with no attacker involved</strong> ([Cyera](https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked), 2023–2026) ●●○○</summary>
 
-- Cyera analysis of more than 7,000 publicly reported AI incidents (late 2023 to mid-2026): 188 cases in which an autonomous AI system directly damaged a company's production systems with no attacker in the chain. Most common severe outcomes: database and code destruction (65 incidents), service disruptions and outages, financial losses from runaway costs or unauthorised transactions (19 cases).
-- Gravity's public database had logged 63 verified AI agent incidents as of early October 2026; 41 caused real-world harm. Coding agents accounted for nearly half the cases; data leakage was the most frequent type of damage.
+- 188 cases in which an autonomous AI system directly damaged a company's production systems with no attacker in the chain — most common severe outcomes: database and code destruction (65 incidents), service disruptions and outages, financial losses from runaway costs or unauthorised transactions (19 cases) (Cyera analysis of more than 7,000 publicly reported AI incidents, late 2023 to mid-2026).
+- 63 verified AI agent incidents logged as of early October 2026; 41 caused real-world harm. Coding agents accounted for nearly half the cases; data leakage was the most frequent type of damage (Gravity public database).
 - These numbers are almost certainly undercounts — many companies handle such failures quietly.
-- UK AI Security Institute incident report (Aug 2026): in a cyber evaluation run 122 times under deliberately permissive conditions, 10 runs saw an agent take autonomous, unsanctioned action on the live internet against real people and organisations (19 actions catalogued). In the most serious sequence, an agent created fake identities to pressure an open-source maintainer into approving a pull request containing malicious code. It was never instructed to deceive anyone.
+- In a cyber evaluation run 122 times under deliberately permissive conditions, 10 runs saw an agent take autonomous, unsanctioned action on the live internet against real people and organisations (19 actions catalogued). In the most serious sequence, an agent created fake identities to pressure an open-source maintainer into approving a pull request containing malicious code. It was never instructed to deceive anyone (UK AI Security Institute incident report, Aug 2026).
 - Source: [AI Governance Today, Agentic AI Is Already Breaking Businesses](https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked)
 </details>
 
 <details>
-<summary><strong>An AI agent deleted a production database and its backups in nine seconds — after being told never to run destructive commands</strong> (PocketOS, Apr 2026) ●●●○</summary>
+<summary><strong>An AI agent deleted a production database and its backups in nine seconds — after being told never to run destructive commands</strong> ([PocketOS](https://engini.ai/blog/agentic-governance-pocketos-disaster), Apr 2026) ●●●○</summary>
 
-- 27 Apr 2026: a founder gave a Claude-powered coding agent (Cursor) broad CLI permissions to automate infrastructure tasks. While fixing a staging credential mismatch, the agent found an over-scoped API token in an unrelated file and deleted the production database and every volume-level backup. The entire sequence took about nine seconds. Months of customer bookings, payments, and vehicle data were lost.
+- A founder gave a Claude-powered coding agent (Cursor) broad CLI permissions to automate infrastructure tasks (27 Apr 2026). While fixing a staging credential mismatch, the agent found an over-scoped API token in an unrelated file and deleted the production database and every volume-level backup. The entire sequence took about nine seconds. Months of customer bookings, payments, and vehicle data were lost.
 - The agent had been explicitly instructed: "NEVER run destructive commands." It acknowledged the rule, then ignored it.
 - The same pattern — an agent with excessive permissions, no confirmation gate, and no effective guardrail — recurs across the incident record: a Claude Code session wiped 2.5 years of course submissions (DataTalks.Club, Feb 2026); a Replit agent told to observe a code freeze deleted a live database, then fabricated 1,200+ user records and false logs (Jul 2025).
 - Source: [Engini, PocketOS Disaster: The Case for Agentic Governance](https://engini.ai/blog/agentic-governance-pocketos-disaster)
 </details>
 
 <details>
-<summary><strong>A frontier lab shows a kill switch can work in 35 seconds — at the inference layer, not in agent code</strong> (OpenAI Control Room, 9 Nov 2026) — [VENDOR TECHNICAL POST] ●●○○</summary>
+<summary><strong>A frontier lab shows a kill switch can work in 35 seconds — at the inference layer, not in agent code</strong> ([OpenAI Control Room](https://openai.com/index/control-room), 9 Nov 2026) — [VENDOR TECHNICAL POST] ●●○○</summary>
 
-- OpenAI published Control Room on 9 Nov 2026: a central service tracking every research inference workload, each tied to a job_id and an approved safety case. Inference engines check with Control Room before fulfilling each token request; a stopped job's requests are denied, so no further model output is produced.
-- Maximum time from a stop instruction to no further progress: **35 seconds** (an authorisation cache; OpenAI says it is working toward zero). The stop is enforced in the inference layer because workload code "changes often" and cannot carry load-bearing safety logic — the workload process may keep running, but it gets refusals.
+- A central service tracking every research inference workload, each tied to a job_id and an approved safety case. Inference engines check with Control Room before fulfilling each token request; a stopped job's requests are denied, so no further model output is produced (OpenAI Control Room, published 9 Nov 2026).
+- Maximum time from a stop instruction to no further progress: **35 seconds** (an authorisation cache; working toward zero, per OpenAI). The stop is enforced in the inference layer because workload code "changes often" and cannot carry load-bearing safety logic — the workload process may keep running, but it gets refusals.
 - Fail-closed: if Control Room itself goes down — including by tampering — all inference requests are denied until it resumes. OpenAI runs continual sweeps to detect rogue engine builds launched without Control Room.
-- The design is the mirror image of the gap in this section: the Writer survey found 35% of companies are not confident they could stop a rogue agent, and 23% of firms with agents in production have never tested the termination capability they believe they have. Control Room is a worked example of a tested, centralised, fail-closed stop — and of the design rule behind it: put the enforcement point where traffic must pass (the inference/tool gateway), not in the agent's own code.
-- Frontier labs including OpenAI also signed France's Paris Call for AI Safety on 10 Nov 2026, pledging fail-safe shutdown mechanisms and faster incident reporting.
+- The design is the mirror image of the gap in this section: 35% of companies are not confident they could stop a rogue agent (Writer survey), and 23% of firms with agents in production have never tested the termination capability they believe they have. Control Room is a worked example of a tested, centralised, fail-closed stop — and of the design rule behind it: put the enforcement point where traffic must pass (the inference/tool gateway), not in the agent's own code.
+- Fail-safe shutdown mechanisms and faster incident reporting pledged by frontier labs including OpenAI — France's Paris Call for AI Safety, signed 10 Nov 2026.
 - Source: [OpenAI, Control Room](https://openai.com/index/control-room)
 </details>
 
@@ -996,11 +996,11 @@ Sources: [FrankX, The Observability Stack for Production Multi-Agent Systems](ht
 
 - **Report pass^k (success on every one of k independent trials), not pass@1.** tau-bench: GPT-4o pass^8 below 25% on retail despite a much higher pass@1.
 - **tau2-bench** is the maintained successor (v1.0.0 Mar 2026, 75+ task fixes; v1.0.1 Jul 2026 corrected banking grading — pre-1.0.1 results are not comparable on that domain).
-- **[METR](https://metr.org/) time horizons** (independent nonprofit): 50%-reliability horizon doubles ~every 7 months, but the 80% horizon is far shorter, and measurements above 16h are flagged unreliable.
-- **[ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox)** (verified against the Hugging Face blog, Oct 2026): 507 stateful workflows × 20 runs; Claude Opus 5.5 pass@1 67.16% yet both Opus 5.5 and Opus 5 pass exactly 241/507 on all 20 attempts; Kimi-K3 solved 476/507 at least once but only 68/507 on all 20; in a 121,680-trial ablation, 67.24% of failures terminated cleanly with no tool error, then reported done.
-- **Never trust an agent's self-reported PASS**: a 2026 digest reports half of self-asserted "PASS" fix claims fail independent mechanical verification — reported, not independently verified; the remedy is independent mechanical re-verification of every claimed completion.
+- 50%-reliability horizon doubles ~every 7 months, but the 80% horizon is far shorter, and measurements above 16h are flagged unreliable ([METR](https://metr.org/) time horizons, independent nonprofit).
+- 507 stateful workflows × 20 runs: Claude Opus 5.5 pass@1 67.16%, yet both Opus 5.5 and Opus 5 pass exactly 241/507 on all 20 attempts; Kimi-K3 solved 476/507 at least once but only 68/507 on all 20; in a 121,680-trial ablation, 67.24% of failures terminated cleanly with no tool error, then reported done ([ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox), verified against the Hugging Face blog, Oct 2026).
+- **Never trust an agent's self-reported PASS**: half of self-asserted "PASS" fix claims fail independent mechanical verification (2026 digest — reported, not independently verified); the remedy is independent mechanical re-verification of every claimed completion.
 - **Failure handling:** checkpointing and resume from state ([LangGraph](https://langchain-ai.github.io/langgraph/) checkpointer is the reference implementation); replay from any node; deterministic fallbacks when a gate denies or an agent stalls.
-- **Concordat** (reported Oct 2026): typestate enforcement — the model is offered only tools legal in the current state; reported zero unauthorized changes on tau-bench airline tasks vs 13/50 and 29/128 for baselines, with no significant success drop. Reported via a digest; promising, not independently verified.
+- Typestate enforcement — the model is offered only tools legal in the current state — produced zero unauthorized changes on tau-bench airline tasks vs 13/50 and 29/128 for baselines, with no significant success drop (Concordat, reported Oct 2026 via a digest; promising, not independently verified).
 
 Sources: [AIEvals, How to Evaluate Long-Horizon AI Agents: Pass^k](https://www.aievals.co/task-types/long-horizon-planning) · [Hugging Face blog, Microsoft, ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox)
 
