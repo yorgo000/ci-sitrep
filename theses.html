@@ -56,8 +56,18 @@
   }
   nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
   nav.sidebar .toc li.toc-collapsed > ul { display: none; }
-  nav.sidebar .back { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+  /* Masthead: the CI Sitrep wordmark, linking back to the report. */
+  .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
+  nav.sidebar .masthead-title a { color: #283060; text-decoration: none; display: inline; padding: 0; }
+  nav.sidebar .masthead-title a:hover { background: none; }
+  .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
+  nav.sidebar .back { margin: 0 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
   nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  /* Mobile-only back link at the top of the content: on a phone the
+     sidebar sits below the content, so the reader needs a way back to
+     the report without scrolling to the bottom of the page. */
+  .back-inline { display: none; }
   main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
   main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }
   main h1:first-of-type { margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }
@@ -101,6 +111,40 @@
   p:hover .share-link, summary:hover .share-link { opacity: 1; }
   .table-share { text-align: right; margin: 2px 0 12px; }
   table:hover + .table-share .share-link { opacity: 1; }
+  /* Breadcrumbs: a small trail at the top of every section body, back up
+     to any ancestor level or the top of the page. Muted, one line. */
+  .crumbs {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .crumbs a { color: var(--muted); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); text-decoration: underline; }
+  .crumbs .crumb-sep { color: var(--line); margin: 0 3px; }
+  /* Back-to-top button: fixed, bottom-right, invisible until the reader
+     has scrolled down the page. The arrow is inline SVG, not a font glyph. */
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--logo-navy);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .back-to-top.visible { opacity: 0.85; pointer-events: auto; }
+  .back-to-top:hover { opacity: 1; }
   main p { margin: 8px 0; }
   main ul, main ol { margin: 8px 0; padding-left: 24px; }
   main li { margin: 4px 0; }
@@ -117,6 +161,8 @@
     /* On a phone the content comes first and the masthead/sidebar follows below it. */
     main { order: 1; padding: 24px 20px 48px; }
     .share-link { opacity: 1; }
+    .back-to-top { right: 16px; bottom: 16px; }
+    .back-inline { display: block; margin: 0 0 16px; font-size: 14px; }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
   }
@@ -125,6 +171,11 @@
 <body>
 <div class="layout">
   <nav class="sidebar">
+    <div class="masthead">
+      <p class="masthead-title"><a href="index.html">CI Sitrep</a></p>
+      <p class="masthead-vertical">Code &amp; Finance</p>
+    </div>
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
     <h2>Contents</h2>
     <div class="toc">
 <ul>
@@ -163,10 +214,10 @@
 </ul>
 </div>
 
-    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
   </nav>
   <main>
     <h1 id="from-evolved-intelligence-to-created-intelligence">From Evolved Intelligence to Created Intelligence</h1>
+<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
 <h2 id="a-conceptual-framework-for-the-emergence-diversification-and-recursive-development-of-intelligence">A conceptual framework for the emergence, diversification, and recursive development of intelligence</h2>
 <p><strong>Working paper — version 0.1</strong><br />
 <strong>Purpose:</strong> A foundational thesis document to be developed into a presentation/video series.</p>
@@ -626,6 +677,48 @@
     });
     if (level === 4) h.classList.add('collapsed');
   });
+  // Breadcrumbs: at the top of every section body, a small trail back up
+  // to any ancestor level or the top of the page ("Top · Part I …" on the
+  // theses page; "Top · §3 Agentic … · §3.4 Governance" on the report).
+  // A reader who drilled down jumps back without scrolling. Built from
+  // the heading hierarchy, so it stays correct as sections are added or
+  // renamed. Skips the two front-page sections of the report (they sit at
+  // the top of the page already) and the page title.
+  var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  var firstH1 = main.querySelector('h1');
+  crumbHeads.forEach(function (h) {
+    if (h.tagName === 'H1') return;
+    if (h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var ancestors = [];
+    var idx = crumbHeads.indexOf(h);
+    var need = level - 1;
+    for (var k = idx - 1; k >= 0 && need >= 1; k--) {
+      var cand = crumbHeads[k];
+      var cl = parseInt(cand.tagName.substring(1), 10);
+      if (cl === need) {
+        if (cand !== firstH1) ancestors.unshift(cand);
+        need--;
+      }
+    }
+    var sbody = h.nextElementSibling;
+    if (!sbody || !sbody.classList.contains('section-body')) return;
+    var crumbs = document.createElement('p');
+    crumbs.className = 'crumbs';
+    var chtml = '<a href="#" class="crumb-top" title="Back to the top of the page">↑ Top</a>';
+    ancestors.forEach(function (a) {
+      chtml += ' <span class="crumb-sep">·</span> <a href="#' + a.id + '">' + a.textContent.trim() + '</a>';
+    });
+    crumbs.innerHTML = chtml;
+    sbody.insertBefore(crumbs, sbody.firstChild);
+  });
+  // The "Top" crumb smooth-scrolls to the top (no hash change).
+  main.addEventListener('click', function (e) {
+    var t = e.target.closest('a.crumb-top');
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   // Share links: every section heading, article headline, substantive
   // paragraph, and table gets a small link button that copies the direct
   // URL to that unit (page + #anchor). The icon is inline SVG, not a font
@@ -743,6 +836,7 @@
   main.querySelectorAll('p').forEach(function (p) {
     if (p.closest('details')) return;
     if (p.classList.contains('as-of-banner')) return;
+    if (p.classList.contains('crumbs')) return;
     var text = p.textContent.trim();
     if (text.length < 80) return;
     if (text.indexOf('Sources:') === 0) return;
@@ -750,6 +844,17 @@
     p.appendChild(makeShareButton(p.id, 'Copy link to this paragraph'));
   });
 
+  // Back-to-top button: appears once the reader has scrolled down the
+  // page, smooth-scrolls back to the top. Invisible until needed.
+  var toTop = document.querySelector('.back-to-top');
+  if (toTop) {
+    window.addEventListener('scroll', function () {
+      toTop.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
   // Jumping to an anchor expands any collapsed ancestor section.
   function expandForAnchor() {
     var id = location.hash && location.hash.slice(1);
@@ -771,5 +876,6 @@
   expandForAnchor();
 })();
 </script>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
 </body>
 </html>
