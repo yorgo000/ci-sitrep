@@ -49,6 +49,18 @@ def convert_details_blocks(src):
         if not sm:
             return m.group(0)
         summary, rest = sm.group(1), sm.group(2)
+        # The summary passes through untouched by the outer conversion too, so
+        # Markdown inside it (e.g. a linked source name in a headline) would
+        # render as literal "[text](url)". Convert the summary's inner content
+        # and strip the <p> wrapper markdown adds around a single paragraph.
+        sm2 = re.match(r"(\s*<summary[^>]*>)(.*?)(</summary>)", summary, re.DOTALL)
+        if sm2:
+            html_sum = markdown.markdown(
+                sm2.group(2).strip(), extensions=["tables", "sane_lists"]
+            )
+            if html_sum.startswith("<p>") and html_sum.endswith("</p>"):
+                html_sum = html_sum[3:-4]
+            summary = sm2.group(1) + html_sum + sm2.group(3)
         html_rest = markdown.markdown(
             rest.strip(), extensions=["tables", "sane_lists"]
         )
