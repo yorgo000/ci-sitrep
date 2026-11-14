@@ -12,7 +12,7 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 |---|---|
 | Articles | 50 |
 | Source links (article + subsection) | 128 |
-| Total external links (incl. inline prose links) | 297 |
+| Total external links (incl. inline prose links) | 298 |
 | Unique source URLs | 123 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
 | Items new this week | 15 |
@@ -40,10 +40,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **30** sources and added **5** new articles (updating **1** existing ones). That is a 16.7% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Since tracking began on 2026-11-12, the daily watch has reviewed **32** sources and added **5** new articles (updating **1** existing ones). That is a 15.6% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
+| 2026-11-13 | 2 | 0 | 0 | Evening verification pass: verify.py built and first-run (31 checks pass, 0 failures); content-order fixes (New this week now strict newest-first, Australia/UK entry re-dated 2026-11-10 -> 2026-11-13 as added that day; What we're watching now soonest-first); Kiteworks headline linked to LobeHub (figures confirmed in the article); 12 curl-blocked links browser-checked, all live. |
 | 2026-11-13 | 1 | 0 | 0 | Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200). |
 | 2026-11-13 | 2 | 0 | 0 | Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended). |
 | 2026-11-13 | 27 | 5 | 1 | 5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov. |
