@@ -1,6 +1,6 @@
 # Created Intelligence — a note on the names
 
-This site uses a small set of terms — **CI**, **CIA**, **CIAC** — instead of the usual "AI". This page explains what they mean, and why.
+This site uses a small set of terms — **CI**, **CIA**, **CIAC** — instead of the usual "AI". They are Confluence<1>'s internal nomenclature: our working convention for talking about intelligence that is created rather than evolved. This page explains what they mean, and why we use them.
 
 ## Why not just "AI"?
 
@@ -10,7 +10,11 @@ A biological organism deliberately engineered to possess advanced cognition woul
 
 A more durable classification asks a different question: **how did this intelligence lineage originate?**
 
+That is why we use these terms. The trajectory of our business is necessarily further into this domain — created intelligence, what the world calls AI — and the types of intelligence within it will evolve, branch, and diversify rapidly: computed, biological, hybrid, mechanical, and forms that do not yet exist. A vocabulary that can only say "artificial" cannot keep up with that.
+
 And the reason the distinction matters is speed. Intelligence that is created can be adapted, changed, and improved at tremendous speed compared to evolution. That is the fundamental difference between evolved intelligence and created intelligence — not whether it is biological or mechanical, but how fast it can change.
+
+Speed is also why the vocabulary has to be precise now. The information we need to do our work — new technologies, best practices, lessons learned — is arriving faster, and buried in more noise. Everything we need to know to keep delivering what we have delivered for three decades — business advantage to our clients through critical systems — will come faster still. As the field diversifies, it will matter that we can tell one kind of created intelligence from another: language-model CI from geometric-reasoning CI from biologically implemented CI, and whatever else the future brings. The names are the start of that.
 
 ## Two kinds of intelligence, by origin
 
