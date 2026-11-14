@@ -76,6 +76,28 @@
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
   h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
+  /* Share link: a small link icon at the end of every section heading.
+     Copies the direct URL to that section. Hidden until hover on desktop;
+     always visible on mobile (no hover on touch). The icon is inline SVG,
+     not a font glyph. */
+  .share-link {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    vertical-align: middle;
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .share-link svg { display: block; }
+  h1:hover .share-link, h2:hover .share-link, h3:hover .share-link, h4:hover .share-link,
+  .share-link:focus { opacity: 1; }
+  .share-link:hover { color: var(--accent); background: #efe9da; }
+  .share-link.copied { font-size: 12px; font-weight: 600; color: var(--accent); opacity: 1; }
   main p { margin: 8px 0; }
   main ul, main ol { margin: 8px 0; padding-left: 24px; }
   main li { margin: 4px 0; }
@@ -91,6 +113,7 @@
     .layout { flex-direction: column; }
     /* On a phone the content comes first and the masthead/sidebar follows below it. */
     main { order: 1; padding: 24px 20px 48px; }
+    .share-link { opacity: 1; }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
   }
@@ -238,6 +261,55 @@
       h.classList.toggle('collapsed');
     });
     if (level === 4) h.classList.add('collapsed');
+  });
+  // Share links: every section heading gets a small link button that copies
+  // the direct URL to that section (page + #anchor). The icon is inline SVG,
+  // not a font glyph, so it renders identically everywhere. On desktop the
+  // button appears on heading hover; on touch devices it is always visible
+  // (see the .share-link CSS). Clicking it never toggles the section.
+  var LINK_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  var shareHeads = main.querySelectorAll('h1, h2, h3, h4');
+  shareHeads.forEach(function (h, i) {
+    if (!h.id) return;
+    if (i === 0 && h.tagName === 'H1') return;  // the page title is not a section
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'share-link';
+    btn.setAttribute('aria-label', 'Copy link to this section');
+    btn.title = 'Copy link to this section';
+    btn.innerHTML = LINK_SVG;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      var origin = location.origin || (location.protocol + '//' + location.host);
+      var path = location.pathname.replace(/\/index\.html$/, '/');
+      var url = origin + path + '#' + h.id;
+      function done() {
+        btn.classList.add('copied');
+        btn.textContent = 'Copied';
+        setTimeout(function () {
+          btn.classList.remove('copied');
+          btn.innerHTML = LINK_SVG;
+        }, 1500);
+      }
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(ta);
+        done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); });
+      } else {
+        fallbackCopy(url);
+      }
+    });
+    h.appendChild(btn);
   });
   // Jumping to an anchor expands any collapsed ancestor section.
   function expandForAnchor() {
