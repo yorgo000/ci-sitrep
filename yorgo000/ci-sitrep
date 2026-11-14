@@ -1,86 +1,546 @@
-# Self-Audit — CI Sitrep
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Audit — CI Sitrep</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #ddd5c2;
+    --accent: #283060;
+    --logo-navy: #283060;
+    --bg: #faf6ef;
+    --side-bg: #faf6ef;
+    --code-bg: #f3ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .layout { display: flex; min-height: 100vh; }
+  nav.sidebar {
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav.sidebar h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
+  nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
+  nav.sidebar li { margin: 2px 0; }
+  nav.sidebar li li { padding-left: 14px; }
+  nav.sidebar li li li { padding-left: 14px; }
+  nav.sidebar a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  nav.sidebar a:hover { background: #e8dfcc; }
+  nav.sidebar .toc-controls { margin: 0 0 10px; }
+  nav.sidebar .toc-controls button {
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }
+  nav.sidebar .toc-controls button:hover { background: #e8dfcc; }
+  nav.sidebar .toc li.has-children > a .toc-toggle {
+    display: inline-block; cursor: pointer; width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid var(--muted); vertical-align: middle; margin-right: 5px;
+  }
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
+  nav.sidebar .toc li.toc-collapsed > ul { display: none; }
+  nav.sidebar .back { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+  nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
+  main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }
+  main h1:first-of-type { margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }
+  main h1 em { display: block; font-size: 20px; margin-top: 2px; }
+  main h2 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }
+  main h3 { font-size: 18px; margin: 28px 0 10px; line-height: 1.35; color: var(--logo-navy); }
+  main h4 { font-size: 16px; margin: 20px 0 8px; }
+  h2 .toggle, h3 .toggle, h4 .toggle {
+    cursor: pointer; margin-right: 6px;
+    user-select: none; display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 6px solid var(--muted); vertical-align: middle;
+  }
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
+  h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
+  /* Share link: a small link icon at the end of every section heading.
+     Copies the direct URL to that section. Hidden until hover on desktop;
+     always visible on mobile (no hover on touch). The icon is inline SVG,
+     not a font glyph. */
+  .share-link {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    vertical-align: middle;
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .share-link svg { display: block; }
+  h1:hover .share-link, h2:hover .share-link, h3:hover .share-link, h4:hover .share-link,
+  .share-link:focus { opacity: 1; }
+  .share-link:hover { color: var(--accent); background: #efe9da; }
+  .share-link.copied { font-size: 12px; font-weight: 600; color: var(--accent); opacity: 1; }
+  p:hover .share-link, summary:hover .share-link { opacity: 1; }
+  .table-share { text-align: right; margin: 2px 0 12px; }
+  table:hover + .table-share .share-link { opacity: 1; }
+  main p { margin: 8px 0; }
+  main ul, main ol { margin: 8px 0; padding-left: 24px; }
+  main li { margin: 4px 0; }
+  main li > ul, main li > ol { margin: 4px 0; }
+  main a { color: var(--accent); }
+  main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  main th { background: var(--side-bg); font-weight: 600; }
+  main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
+  main em { color: var(--muted); }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    /* On a phone the content comes first and the masthead/sidebar follows below it. */
+    main { order: 1; padding: 24px 20px 48px; }
+    .share-link { opacity: 1; }
+    nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
+    main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Contents</h2>
+    <div class="toc">
+<ul>
+<li><a href="#at-a-glance">At a glance</a></li>
+<li><a href="#credibility-distribution">Credibility distribution</a></li>
+<li><a href="#source-review-funnel">Source review funnel</a></li>
+<li><a href="#link-health">Link health</a></li>
+<li><a href="#how-we-vet">How we vet</a></li>
+<li><a href="#coverage--what-we-track-and-what-we-might-be-missing">Coverage — what we track and what we might be missing</a></li>
+</ul>
+</div>
 
-A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+  </nav>
+  <main>
+    <h1 id="self-audit--ci-sitrep">Self-Audit — CI Sitrep</h1>
+<p>A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.</p>
+<p><strong>As of:</strong> 2026-11-14. <strong>Report last updated:</strong> 2026-11-14.</p>
+<hr />
+<h2 id="at-a-glance">At a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Articles</td>
+<td>56</td>
+</tr>
+<tr>
+<td>Source links (article + subsection)</td>
+<td>144</td>
+</tr>
+<tr>
+<td>Total external links (incl. inline prose links)</td>
+<td>330</td>
+</tr>
+<tr>
+<td>Unique source URLs</td>
+<td>134</td>
+</tr>
+<tr>
+<td>Sections</td>
+<td>3 top-level · 22 subsections · 9 sub-subsections</td>
+</tr>
+<tr>
+<td>Items new this week</td>
+<td>21</td>
+</tr>
+<tr>
+<td>Superseded entries in the archive</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Report live since</td>
+<td>2026-11-09</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="credibility-distribution">Credibility distribution</h2>
+<p>Every article carries a dots rating for how much confidence a reader can place in its source. The distribution below shows how much of the report rests on strong evidence and how much is still single-source.</p>
+<table>
+<thead>
+<tr>
+<th>Rating</th>
+<th>Meaning</th>
+<th>Articles</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>●●●● Established</td>
+<td>Peer-reviewed and independently confirmed, or a primary regulatory/government document</td>
+<td>11</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>●●●○ Corroborated</td>
+<td>Peer-reviewed single study, or a credible primary source confirmed by independent reporting</td>
+<td>16</td>
+<td>29%</td>
+</tr>
+<tr>
+<td>●●○○ Reported</td>
+<td>Single credible source, not yet independently verified</td>
+<td>27</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>●○○○ Claimed</td>
+<td>Vendor claim without disclosed methodology, or a single uncorroborated report</td>
+<td>2</td>
+<td>4%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>48% of articles are Established or Corroborated.</strong> The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.</p>
+<hr />
+<h2 id="source-review-funnel">Source review funnel</h2>
+<p>The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.</p>
+<p>Since tracking began on 2026-11-12, the daily watch has reviewed <strong>123</strong> sources and added <strong>11</strong> new articles (updating <strong>1</strong> existing ones). That is a 8.9% acceptance rate — most of what is reviewed does not clear the bar for entry.</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Sources reviewed</th>
+<th>Articles added</th>
+<th>Articles updated</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-11-14</td>
+<td>91</td>
+<td>6</td>
+<td>0</td>
+<td>6 new articles: CrowdStrike AI Kill Switch (3 Nov, gateway-first stop; Fiddler/Dreadnode acquisitions), VulnCheck Glasswing audit (9 Nov, 37966 findings vs 217 fixed), FCA Wholesale Banks Supervision Insights 3 (2 Nov, AI code passed human review, untested kill switches), Canadian banks block third-party agents (28 Oct, RBC/TD/BMO/CIBC/Scotiabank), FCA CP26/38 Financial Crime Guide (23 Oct, comments due 24 Dec), BoE/FCA 2026 AI survey (26 Oct, 86% use AI, 80% agents, 2% broad autonomy). In-place: OSFI E-23 effective 1 May 2027 (WWW + §2.5), FCA agentic-finance framework open question (WWW), §2.5 human-review + §2.7 Glasswing bullets, §1.6.1 Anthropic TP-rate line, §3.4.2 synthesis sentence, §3.8 BoE/FCA verified line. Verify: 31 pass, 0 fail; 2 warnings reviewed (source-first flag is a false positive; link failures all known bot-protected or browser-verified, incl. FII 403). Reviewed but below bar: Cohere AISLE/cubic acquisitions (no product yet), KPMG AI Threat Management (services launch), OpenAI Codex Security CLI importers (minor), Multimodal-SEA preprint (consumer-fraud angle), CWE-bench arXiv paper (0.8pp version noise vs existing article), Reuters banks-AI-questions story (second-hand, Oct). California kill-switch recommendations still due Mon 16 Nov; Fed AI RFI still unpublished.</td>
+</tr>
+<tr>
+<td>2026-11-13</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>Evening verification pass: verify.py built and first-run (31 checks pass, 0 failures); content-order fixes (New this week now strict newest-first, Australia/UK entry re-dated 2026-11-10 -&gt; 2026-11-13 as added that day; What we're watching now soonest-first); Kiteworks headline linked to LobeHub (figures confirmed in the article); 12 curl-blocked links browser-checked, all live.</td>
+</tr>
+<tr>
+<td>2026-11-13</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200).</td>
+</tr>
+<tr>
+<td>2026-11-13</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended).</td>
+</tr>
+<tr>
+<td>2026-11-13</td>
+<td>27</td>
+<td>5</td>
+<td>1</td>
+<td>5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov.</td>
+</tr>
+<tr>
+<td>2026-11-12</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Tracking begins. Baseline: 38 articles, 101 source links, 187 total external links, 101 unique URLs. Funnel counts start with the next daily run.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="link-health">Link health</h2>
+<p>Every source link on the site is a live link to the source — verified, not assumed.</p>
+<ul>
+<li><strong>Last full link audit:</strong> 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).</li>
+<li><strong>New links:</strong> every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.</li>
+<li><strong>Current unique URLs:</strong> 134 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).</li>
+</ul>
+<hr />
+<h2 id="how-we-vet">How we vet</h2>
+<p>The rules the report is built and maintained under. These are not aspirations — they are the working instructions for the daily watch.</p>
+<ul>
+<li><strong>Information first.</strong> Article headlines lead with the finding, never the source name. The source goes in the parenthetical with the date; the full citation is the Source link at the bottom of the article. This is a knowledge base, not a bibliography.</li>
+<li><strong>Sources live with the content.</strong> Every article ends with a Source link to its primary source. Subsections that draw on multiple references carry a Sources line. There are no bibliography dumps — a reader verifies each claim at the point where they read it.</li>
+<li><strong>Inline links.</strong> When prose mentions a source, benchmark, regulation, framework, or product by name, the first mention in each subsection is hyperlinked to its source, so every section is self-contained for a reader who jumps straight to it.</li>
+<li><strong>Credibility rating.</strong> Every article is rated ●●●● to ●○○○ (see above). When in doubt, the lower level is assigned.</li>
+<li><strong>Link verification.</strong> Every new link is verified live before publishing (see Link health above).</li>
+<li><strong>No silent deletion.</strong> When new information supersedes old text, the old text moves to the <a href="archive.html">archive</a>, dated and categorized. The pre-restructure version of the report is preserved in full.</li>
+<li><strong>The bar for entry.</strong> Something is added or changed only if it could change how a firm building critical systems in finance should act.</li>
+</ul>
+<hr />
+<h2 id="coverage--what-we-track-and-what-we-might-be-missing">Coverage — what we track and what we might be missing</h2>
+<p><strong>Covered:</strong> three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIAC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).</p>
+<p><strong>Known gaps — things we are watching for that have not arrived yet:</strong> the live list is on the report's front page, in <a href="index.html#what-were-watching">What we're watching</a> — the dated events on the horizon and the open questions the report is tracking. It is maintained in the open, in the same file as the report, so it never goes stale.</p>
+<p><strong>How sure are we that we are not missing anything?</strong> Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the three subjects every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is <a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a>.</p>
+  </main>
+</div>
+<script>
+(function () {
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {
+        li.classList.toggle('toc-collapsed', collapse);
+      });
+    });
+    toc.querySelectorAll('li').forEach(function (li) {
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      li.classList.add('toc-collapsed');  // TOC starts collapsed: top-level only.
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      // No text content: the arrow is drawn with CSS borders (see .toc-toggle),
+      // so it renders identically on every system instead of depending on
+      // a font carrying the U+25B8/U+25BE triangle glyphs.
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      });
+    });
+    var secControls = document.createElement('div');
+    secControls.className = 'toc-controls';
+    secControls.innerHTML = 'Sections: <button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(secControls, toc.nextSibling);
+    secControls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {
+        h.classList.toggle('collapsed', collapse);
+      });
+    });
+  }
+  // Make h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  var main = document.querySelector('main');
+  if (!main) return;
+  var headings = main.querySelectorAll('h2, h3, h4');
+  headings.forEach(function (h) {
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    h.classList.add('collapsed');  // Everything starts collapsed; drill in one section at a time.
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }
+      collected.push(node);
+      node = next;
+    }
+    collected.forEach(function (n) { body.appendChild(n); });
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    });
+    if (level === 4) h.classList.add('collapsed');
+  });
+  // Share links: every section heading, article headline, substantive
+  // paragraph, and table gets a small link button that copies the direct
+  // URL to that unit (page + #anchor). The icon is inline SVG, not a font
+  // glyph, so it renders identically everywhere. On desktop the button
+  // appears on hover of its unit; on touch devices it is always visible
+  // (see the .share-link CSS). Clicking it never toggles its unit.
+  var LINK_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  function slugify(text) {
+    var s = text.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    if (s.length > 60) {
+      s = s.slice(0, 60);
+      var cut = s.lastIndexOf('-');
+      if (cut > 20) s = s.slice(0, cut);
+    }
+    return s;
+  }
+  var usedIds = {};
+  document.querySelectorAll('[id]').forEach(function (el) { usedIds[el.id] = true; });
+  function uniqueId(base) {
+    if (!base) base = 'item';
+    var id = base, n = 2;
+    while (usedIds[id]) { id = base + '-' + n; n++; }
+    usedIds[id] = true;
+    return id;
+  }
+  function copyUrl(id, btn) {
+    var origin = location.origin || (location.protocol + '//' + location.host);
+    var path = location.pathname.replace(/\/index\.html$/, '/');
+    var url = origin + path + '#' + id;
+    function done() {
+      btn.classList.add('copied');
+      btn.textContent = 'Copied';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = LINK_SVG;
+      }, 1500);
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+  function makeShareButton(id, label) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'share-link';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+    btn.innerHTML = LINK_SVG;
+    btn.addEventListener('click', function (e) {
+      // Never toggle the enclosing heading or <details>: the click is
+      // only for copying. preventDefault cancels the <summary> toggle,
+      // stopPropagation keeps the heading collapse handler out of it.
+      e.stopPropagation();
+      e.preventDefault();
+      copyUrl(id, btn);
+    });
+    return btn;
+  }
+  // Headings (all except the page title).
+  var shareHeads = main.querySelectorAll('h1, h2, h3, h4');
+  shareHeads.forEach(function (h, i) {
+    if (!h.id) return;
+    if (i === 0 && h.tagName === 'H1') return;  // the page title is not a section
+    h.appendChild(makeShareButton(h.id, 'Copy link to this section'));
+  });
+  // Articles: the <details> blocks. Skips the How-to-read block, the
+  // mobile Contents block, and the See-also cross-link blocks. The id
+  // goes on the <details> itself; the button goes in its <summary>.
+  main.querySelectorAll('details').forEach(function (d) {
+    if (d.classList.contains('how-to-read') || d.classList.contains('toc-inline')) return;
+    var sum = d.querySelector(':scope > summary');
+    if (!sum) return;
+    var text = sum.textContent.trim();
+    if (text === 'See also') return;
+    if (!d.id) d.id = uniqueId(slugify(text));
+    sum.appendChild(makeShareButton(d.id, 'Copy link to this article'));
+  });
+  // Tables: id from the nearest preceding heading, button in a small
+  // right-aligned row just below the table.
+  var allHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  main.querySelectorAll('table').forEach(function (tbl) {
+    var head = null;
+    for (var k = 0; k < allHeads.length; k++) {
+      if (allHeads[k].compareDocumentPosition(tbl) & Node.DOCUMENT_POSITION_FOLLOWING) head = allHeads[k];
+      else break;
+    }
+    var base = (head && head.id ? head.id + '-table' : 'table');
+    if (!tbl.id) tbl.id = uniqueId(base);
+    var row = document.createElement('div');
+    row.className = 'table-share';
+    row.appendChild(makeShareButton(tbl.id, 'Copy link to this table'));
+    tbl.parentNode.insertBefore(row, tbl.nextSibling);
+  });
+  // Substantive paragraphs: prose outside any <details>, long enough to be
+  // worth sharing, not a Sources line or the As-of banner. The button goes
+  // inline at the end of the paragraph.
+  main.querySelectorAll('p').forEach(function (p) {
+    if (p.closest('details')) return;
+    if (p.classList.contains('as-of-banner')) return;
+    var text = p.textContent.trim();
+    if (text.length < 80) return;
+    if (text.indexOf('Sources:') === 0) return;
+    if (!p.id) p.id = uniqueId(slugify(text));
+    p.appendChild(makeShareButton(p.id, 'Copy link to this paragraph'));
+  });
 
-**As of:** 2026-11-14. **Report last updated:** 2026-11-14.
-
----
-
-## At a glance
-
-| Measure | Value |
-|---|---|
-| Articles | 56 |
-| Source links (article + subsection) | 144 |
-| Total external links (incl. inline prose links) | 330 |
-| Unique source URLs | 134 |
-| Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new this week | 21 |
-| Superseded entries in the archive | 12 |
-| Report live since | 2026-11-09 |
-
----
-
-## Credibility distribution
-
-Every article carries a dots rating for how much confidence a reader can place in its source. The distribution below shows how much of the report rests on strong evidence and how much is still single-source.
-
-| Rating | Meaning | Articles | Share |
-|---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 20% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 16 | 29% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 27 | 48% |
-| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 2 | 4% |
-
-**48% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
-
----
-
-## Source review funnel
-
-The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
-
-Since tracking began on 2026-11-12, the daily watch has reviewed **123** sources and added **11** new articles (updating **1** existing ones). That is a 8.9% acceptance rate — most of what is reviewed does not clear the bar for entry.
-
-| Date | Sources reviewed | Articles added | Articles updated | Notes |
-|---|---|---|---|---|
-| 2026-11-14 | 91 | 6 | 0 | 6 new articles: CrowdStrike AI Kill Switch (3 Nov, gateway-first stop; Fiddler/Dreadnode acquisitions), VulnCheck Glasswing audit (9 Nov, 37966 findings vs 217 fixed), FCA Wholesale Banks Supervision Insights 3 (2 Nov, AI code passed human review, untested kill switches), Canadian banks block third-party agents (28 Oct, RBC/TD/BMO/CIBC/Scotiabank), FCA CP26/38 Financial Crime Guide (23 Oct, comments due 24 Dec), BoE/FCA 2026 AI survey (26 Oct, 86% use AI, 80% agents, 2% broad autonomy). In-place: OSFI E-23 effective 1 May 2027 (WWW + §2.5), FCA agentic-finance framework open question (WWW), §2.5 human-review + §2.7 Glasswing bullets, §1.6.1 Anthropic TP-rate line, §3.4.2 synthesis sentence, §3.8 BoE/FCA verified line. Verify: 31 pass, 0 fail; 2 warnings reviewed (source-first flag is a false positive; link failures all known bot-protected or browser-verified, incl. FII 403). Reviewed but below bar: Cohere AISLE/cubic acquisitions (no product yet), KPMG AI Threat Management (services launch), OpenAI Codex Security CLI importers (minor), Multimodal-SEA preprint (consumer-fraud angle), CWE-bench arXiv paper (0.8pp version noise vs existing article), Reuters banks-AI-questions story (second-hand, Oct). California kill-switch recommendations still due Mon 16 Nov; Fed AI RFI still unpublished. |
-| 2026-11-13 | 2 | 0 | 0 | Evening verification pass: verify.py built and first-run (31 checks pass, 0 failures); content-order fixes (New this week now strict newest-first, Australia/UK entry re-dated 2026-11-10 -> 2026-11-13 as added that day; What we're watching now soonest-first); Kiteworks headline linked to LobeHub (figures confirmed in the article); 12 curl-blocked links browser-checked, all live. |
-| 2026-11-13 | 1 | 0 | 0 | Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200). |
-| 2026-11-13 | 2 | 0 | 0 | Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended). |
-| 2026-11-13 | 27 | 5 | 1 | 5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov. |
-| 2026-11-12 | 0 | 0 | 0 | Tracking begins. Baseline: 38 articles, 101 source links, 187 total external links, 101 unique URLs. Funnel counts start with the next daily run. |
-
----
-
-## Link health
-
-Every source link on the site is a live link to the source — verified, not assumed.
-
-- **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
-- **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 134 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
-
----
-
-## How we vet
-
-The rules the report is built and maintained under. These are not aspirations — they are the working instructions for the daily watch.
-
-- **Information first.** Article headlines lead with the finding, never the source name. The source goes in the parenthetical with the date; the full citation is the Source link at the bottom of the article. This is a knowledge base, not a bibliography.
-- **Sources live with the content.** Every article ends with a Source link to its primary source. Subsections that draw on multiple references carry a Sources line. There are no bibliography dumps — a reader verifies each claim at the point where they read it.
-- **Inline links.** When prose mentions a source, benchmark, regulation, framework, or product by name, the first mention in each subsection is hyperlinked to its source, so every section is self-contained for a reader who jumps straight to it.
-- **Credibility rating.** Every article is rated ●●●● to ●○○○ (see above). When in doubt, the lower level is assigned.
-- **Link verification.** Every new link is verified live before publishing (see Link health above).
-- **No silent deletion.** When new information supersedes old text, the old text moves to the [archive](archive.html), dated and categorized. The pre-restructure version of the report is preserved in full.
-- **The bar for entry.** Something is added or changed only if it could change how a firm building critical systems in finance should act.
-
----
-
-## Coverage — what we track and what we might be missing
-
-**Covered:** three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIAC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
-
-**Known gaps — things we are watching for that have not arrived yet:** the live list is on the report's front page, in [What we're watching](index.html#what-were-watching) — the dated events on the horizon and the open questions the report is tracking. It is maintained in the open, in the same file as the report, so it never goes stale.
-
-**How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the three subjects every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
+  // Jumping to an anchor expands any collapsed ancestor section.
+  function expandForAnchor() {
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var node = el;
+    while (node) {
+      if (node.classList && node.classList.contains('section-body')) {
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }
+      if (node.tagName === 'DETAILS') node.open = true;
+      node = node.parentElement;
+    }
+    el.scrollIntoView();
+  }
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+})();
+</script>
+</body>
+</html>
