@@ -13,6 +13,7 @@ Usage: build_html.py [input.md] [output.html]
 Defaults: ~/workspace/your_files/watches/SYNTHESIZED.md -> SYNTHESIZED.html
 """
 
+import json
 import re
 import sys
 from datetime import datetime
@@ -82,6 +83,88 @@ def strip_contents_section(src):
         src,
         flags=re.DOTALL | re.MULTILINE,
     )
+
+
+# Terms excluded from tooltip wrapping (they stay in the glossary page): they
+# are so frequent that a marker on first mention per subsection would be noise.
+GLOSSARY_NO_TIP = {"agent", "agentic"}
+
+# Match-pattern overrides: term short form -> (JS regex source, flags).
+# Anything not listed gets the default: terms starting uppercase match
+# case-sensitively with word boundaries; lowercase phrases match
+# case-insensitively, with a space matching either a space or a hyphen.
+GLOSSARY_MATCH = {
+    "CI": (r"CI-generated|\bCI\b", ""),
+    "PR": (r"\bPRs?\b", ""),
+    "CVE": (r"\bCVEs?\b", ""),
+    "pass@1 and pass^k": (r"pass@1|pass\^k", "i"),
+    "human-in-the-loop / human-on-the-loop": (r"human-in-the-loop|human-on-the-loop", "i"),
+    "secret": (r"secrets?", "i"),
+    "consultation paper": (r"consultation paper|CP\d{2}/\d{2}", "i"),
+    "Project SAGE": (r"Project SAGE|\bSAGE\b", ""),
+    "four-eyes principle": (r"four-eyes", "i"),
+    "frontier model": (r"frontier models?", "i"),
+    "kill switch": (r"kill switches?", "i"),
+    "circuit breaker": (r"circuit breakers?", "i"),
+    "hallucination": (r"hallucinat\w*", "i"),
+    "slopsquatting": (r"slopsquat\w*", "i"),
+    "shadow AI": (r"shadow (AI|agents?)", "i"),
+    "red team": (r"red[- ]team\w*", "i"),
+    "pen test": (r"pen[- ]test\w*", "i"),
+    "deterministic": (r"deterministic\w*", "i"),
+    "dependency": (r"dependenc\w+", "i"),
+    "orchestration": (r"orchestrat\w*", "i"),
+    "guardrail": (r"guardrails?", "i"),
+}
+
+
+def glossary_slug(term):
+    """Slug for a glossary entry (twin of the one in build_page.py)."""
+    short = term.split(" (")[0]
+    return re.sub(r"[^a-z0-9]+", "-", short.lower()).strip("-")
+
+
+def _js_escape(s):
+    """Escape only true regex metacharacters (spaces and hyphens stay literal)."""
+    return re.sub(r"([\\^$.|?*+()\[\]{}])", r"\\\1", s)
+
+
+def parse_glossary(path):
+    """Parse GLOSSARY.md into tooltip entries: term, short form, plain-text
+    definition, slug, JS match pattern + flags, and whether it gets a tooltip."""
+    src = Path(path).read_text(encoding="utf-8")
+    entries = []
+    for block in re.split(r"\n\n+", src):
+        block = block.strip()
+        if not block.startswith("**"):
+            continue
+        m = re.match(r"\*\*(.+?)\*\*\s*—\s*(.*)", block, re.DOTALL)
+        if not m:
+            continue
+        term = m.group(1).strip()
+        definition = re.sub(r"\s+", " ", m.group(2)).strip()
+        # Strip inline markdown so the tooltip shows plain text.
+        definition = re.sub(r"\*\*(.+?)\*\*", r"\1", definition)
+        definition = re.sub(r"\*(.+?)\*", r"\1", definition)
+        definition = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", definition)
+        short = term.split(" (")[0]
+        if short in GLOSSARY_MATCH:
+            pattern, flags = GLOSSARY_MATCH[short]
+        elif short and short[0].isupper():
+            pattern, flags = r"\b" + _js_escape(short) + r"\b", ""
+        else:
+            pattern = _js_escape(short).replace(" ", "[- ]")
+            pattern, flags = pattern, "i"
+        entries.append({
+            "term": term,
+            "short": short,
+            "def": definition,
+            "slug": glossary_slug(term),
+            "pattern": pattern,
+            "flags": flags,
+            "tip": short not in GLOSSARY_NO_TIP,
+        })
+    return entries
 
 
 def build(input_path, output_path):
@@ -162,11 +245,23 @@ def build(input_path, output_path):
     else:
         body = body.replace("</h1>", "</h1>\n" + search_box + "\n" + inline_toc, 1)
 
+    # Glossary data for tooltips: parsed from GLOSSARY.md in the same
+    # directory as the report source. The tooltip JS wraps first mentions
+    # per subsection at runtime from this data, so index.html must be
+    # regenerated whenever GLOSSARY.md changes.
+    glossary_path = Path(input_path).parent / "GLOSSARY.md"
+    if glossary_path.exists():
+        glossary_data = json.dumps(parse_glossary(glossary_path)).replace("</", "<\\/")
+    else:
+        print(f"WARNING: {glossary_path} not found — tooltips will be empty")
+        glossary_data = "[]"
+
     html = TEMPLATE.format(
         title="CI Sitrep — Code & Finance",
         last_updated=last_updated,
         toc=toc_html,
         body=body,
+        glossary_data=glossary_data,
     )
     Path(output_path).write_text(html, encoding="utf-8")
     print(f"Wrote {output_path} ({len(html)} bytes)")
@@ -228,6 +323,12 @@ TEMPLATE = """<!DOCTYPE html>
   .search-result-snippet mark {{ background: #f5e6a3; color: inherit; padding: 0 1px; border-radius: 2px; }}
   .search-no-results {{ padding: 12px; font-size: 14px; color: var(--muted); }}
   .visually-hidden {{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }}
+  .def {{ text-decoration: underline dotted var(--muted); text-underline-offset: 2px; cursor: help; }}
+  #def-tip {{ position: absolute; z-index: 1000; max-width: 320px; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); }}
+  #def-tip .def-tip-text {{ margin: 0; padding-right: 18px; }}
+  #def-tip .def-tip-link {{ display: block; margin-top: 6px; font-size: 13px; font-weight: 600; }}
+  #def-tip .def-tip-close {{ position: absolute; top: 2px; right: 6px; border: none; background: none; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 2px 4px; }}
+  #def-tip .def-tip-close:hover {{ color: var(--ink); }}
   .layout {{ display: flex; min-height: 100vh; }}
   nav.sidebar {{
     width: 300px;
@@ -404,6 +505,7 @@ TEMPLATE = """<!DOCTYPE html>
     main {{ order: 1; padding: 24px 20px 48px; }}
     .share-link {{ opacity: 1; }}
     .back-to-top {{ right: 16px; bottom: 16px; }}
+    #def-tip {{ max-width: calc(100vw - 32px); }}
     .toc-inline {{ display: block; }}
     nav.sidebar {{ order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }}
     main h1 {{ margin: -24px -20px 16px; padding: 24px 20px; }}
@@ -423,6 +525,7 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="about.html">About</a>
       <a href="explainer.html">The names: CI, CIA, CIAC</a>
       <a href="theses.html">Foundational theses</a>
+      <a href="glossary.html">Glossary</a>
       <a href="archive.html">Archive</a>
       <a href="audit.html">Self-Audit</a>
       <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
@@ -940,6 +1043,134 @@ TEMPLATE = """<!DOCTYPE html>
       if (!searchBox.contains(e.target)) closeSearchResults();
     }});
   }}
+
+  // Glossary tooltips: the first mention of a glossary term in each
+  // subsection gets a dotted underline; hovering (desktop) or tapping
+  // (mobile) shows the one-line definition with a link to the full
+  // glossary entry. The data comes from GLOSSARY.md at build time (see
+  // parse_glossary), so the tooltips and the glossary page can never
+  // drift apart.
+  var GLOSSARY = {glossary_data};
+  var glossaryBySlug = {{}};
+  GLOSSARY.forEach(function (e) {{ glossaryBySlug[e.slug] = e; }});
+  var tipEl = null;
+  var tipTrigger = null;
+  var tipHideTimer = null;
+  function buildTipEl() {{
+    tipEl = document.createElement('div');
+    tipEl.id = 'def-tip';
+    tipEl.setAttribute('role', 'tooltip');
+    tipEl.hidden = true;
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'def-tip-close';
+    closeBtn.setAttribute('aria-label', 'Close definition');
+    closeBtn.textContent = '×';
+    closeBtn.addEventListener('click', hideTip);
+    var text = document.createElement('p');
+    text.className = 'def-tip-text';
+    var link = document.createElement('a');
+    link.className = 'def-tip-link';
+    link.textContent = 'Glossary →';
+    tipEl.appendChild(closeBtn);
+    tipEl.appendChild(text);
+    tipEl.appendChild(link);
+    document.body.appendChild(tipEl);
+  }}
+  function showTip(trigger) {{
+    var entry = glossaryBySlug[trigger.getAttribute('data-term')];
+    if (!entry) return;
+    if (!tipEl) buildTipEl();
+    clearTimeout(tipHideTimer);
+    tipTrigger = trigger;
+    tipEl.querySelector('.def-tip-text').textContent = entry.def;
+    var link = tipEl.querySelector('.def-tip-link');
+    link.href = 'glossary.html#' + entry.slug;
+    tipEl.hidden = false;
+    trigger.setAttribute('aria-describedby', 'def-tip');
+    // Position below the trigger when there is room, else above; clamp
+    // horizontally so the tip never leaves the viewport.
+    var r = trigger.getBoundingClientRect();
+    var w = Math.min(320, window.innerWidth - 16);
+    tipEl.style.width = w + 'px';
+    var h = tipEl.offsetHeight;
+    var top = r.bottom + window.scrollY + 6;
+    if (r.bottom + h + 12 > window.innerHeight) top = r.top + window.scrollY - h - 6;
+    var left = Math.max(8, Math.min(r.left + window.scrollX, window.innerWidth - w - 8));
+    tipEl.style.top = Math.max(8, top) + 'px';
+    tipEl.style.left = left + 'px';
+  }}
+  function hideTip() {{
+    if (tipEl) tipEl.hidden = true;
+    if (tipTrigger) tipTrigger.removeAttribute('aria-describedby');
+    tipTrigger = null;
+  }}
+  function hideTipSoon() {{
+    clearTimeout(tipHideTimer);
+    tipHideTimer = setTimeout(hideTip, 250);
+  }}
+  function wrapGlossaryTerms() {{
+    if (!GLOSSARY.length) return;
+    var terms = GLOSSARY.filter(function (e) {{ return e.tip; }});
+    // Longest pattern first, so a compound (CI/CD) wins over its prefix (CI).
+    terms.sort(function (a, b) {{ return b.pattern.length - a.pattern.length; }});
+    var scopes = document.querySelectorAll('main .section-body, main .how-to-read');
+    scopes.forEach(function (scope) {{
+      terms.forEach(function (entry) {{
+        var re;
+        try {{ re = new RegExp(entry.pattern, entry.flags); }} catch (err) {{ return; }}
+        var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {{
+          acceptNode: function (node) {{
+            var p = node.parentElement;
+            if (!p) return NodeFilter.FILTER_REJECT;
+            if (p.closest('a, code, script, style, button, .def, .crumbs, .share-link, .table-share')) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }}
+        }});
+        var node;
+        while ((node = walker.nextNode())) {{
+          var m = re.exec(node.textContent);
+          if (!m) continue;
+          var after = node.splitText(m.index);
+          after.splitText(m[0].length);
+          var span = document.createElement('span');
+          span.className = 'def';
+          span.setAttribute('data-term', entry.slug);
+          span.setAttribute('tabindex', '0');
+          span.textContent = m[0];
+          after.parentNode.replaceChild(span, after);
+          return;
+        }}
+      }});
+    }});
+  }}
+  wrapGlossaryTerms();
+  // Hover shows the definition; moving into the tip itself keeps it open
+  // (so the Glossary link is clickable). Tap shows it on touch; Escape,
+  // scrolling, or tapping elsewhere closes it.
+  document.addEventListener('mouseover', function (e) {{
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) {{ clearTimeout(tipHideTimer); if (tipTrigger !== t) showTip(t); }}
+    else if (tipEl && !tipEl.contains(e.target)) hideTipSoon();
+  }});
+  document.addEventListener('click', function (e) {{
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) {{ showTip(t); return; }}
+    if (tipEl && !tipEl.contains(e.target)) hideTip();
+  }});
+  document.addEventListener('focusin', function (e) {{
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) showTip(t);
+  }});
+  document.addEventListener('focusout', function (e) {{
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t && !(e.relatedTarget && tipEl && tipEl.contains(e.relatedTarget))) hideTip();
+  }});
+  document.addEventListener('keydown', function (e) {{
+    if (e.key === 'Escape') hideTip();
+  }});
+  window.addEventListener('scroll', hideTip, {{ passive: true }});
+  window.addEventListener('resize', hideTip);
 
   // Back-to-top button: appears once the reader has scrolled down the
   // page, smooth-scrolls back to the top. Invisible until needed.
