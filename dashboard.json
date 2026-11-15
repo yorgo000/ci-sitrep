@@ -1,0 +1,646 @@
+{
+  "as_of": "2026-11-15",
+  "as_of_label": "Sunday, November 15, 2026",
+  "deadlines": [
+    {
+      "date": "2026-11-16",
+      "display": "Mon 16 Nov 2026",
+      "label": "California kill-switch recommendations due"
+    },
+    {
+      "date": "2026-12-16",
+      "display": "Wed 16 Dec 2026",
+      "label": "TPRM guidance comments close"
+    },
+    {
+      "date": "2026-12-24",
+      "display": "Wed 24 Dec 2026",
+      "label": "FCA CP26/38 comments close"
+    },
+    {
+      "date": "2027-05-01",
+      "display": "1 May 2027",
+      "label": "OSFI E-23 takes effect"
+    }
+  ],
+  "note": "Every number below is drawn from the CI Sitrep report and links to the section that evidences it. The rating shows how much confidence to place in the source — the dots are the report's credibility rating, not the dashboard's opinion.",
+  "panels": [
+    {
+      "blocks": [
+        {
+          "items": [
+            {
+              "date": "2026",
+              "display": "~47%",
+              "kind": "bar",
+              "label": "of code written fully by AI agents",
+              "link": "index.html#11-how-big-the-problem-is",
+              "rating": "corroborated",
+              "source": "JetBrains Developer Ecosystem Survey 2026",
+              "source_note": "~15,000 developers",
+              "value": 47
+            },
+            {
+              "date": "2026",
+              "display": "42%",
+              "kind": "bar",
+              "label": "of committed code AI-generated or assisted",
+              "link": "index.html#11-how-big-the-problem-is",
+              "note": "65% expected by 2027",
+              "rating": "corroborated",
+              "source": "Sonar State of Code 2026",
+              "value": 42
+            },
+            {
+              "date": "Apr 2026",
+              "display": "75%",
+              "kind": "bar",
+              "label": "of new code AI-generated, engineer-approved",
+              "link": "index.html#11-how-big-the-problem-is",
+              "rating": "corroborated",
+              "source": "Google",
+              "value": 75
+            },
+            {
+              "date": "2026",
+              "display": "97%",
+              "kind": "bar",
+              "label": "of organisations use AI coding assistants in production",
+              "link": "index.html#21-how-big-the-problem-is",
+              "rating": "corroborated",
+              "source": "Black Duck OSSRA 2026",
+              "source_note": "947 codebases",
+              "value": 97
+            }
+          ],
+          "kind": "bars"
+        },
+        {
+          "items": [
+            {
+              "date": "2026",
+              "display": "86%",
+              "kind": "stat",
+              "label": "of UK financial firms use AI",
+              "link": "index.html#342-regulation",
+              "rating": "corroborated",
+              "source": "Bank of England / FCA 2026 AI survey",
+              "source_note": "196 firms"
+            },
+            {
+              "date": "2026",
+              "display": "80%",
+              "kind": "stat",
+              "label": "have deployed agents",
+              "link": "index.html#342-regulation",
+              "rating": "corroborated",
+              "source": "Bank of England / FCA 2026 AI survey",
+              "source_note": "196 firms"
+            },
+            {
+              "date": "2026",
+              "display": "2%",
+              "kind": "stat",
+              "label": "allow broad autonomy",
+              "link": "index.html#342-regulation",
+              "rating": "corroborated",
+              "source": "Bank of England / FCA 2026 AI survey",
+              "source_note": "196 firms"
+            },
+            {
+              "date": "2 Nov 2026",
+              "display": "30%",
+              "kind": "stat",
+              "label": "of large firms already use agentic AI",
+              "link": "index.html#342-regulation",
+              "note": "25% piloting",
+              "rating": "reported",
+              "source": "HK SFC Large Firm AI Readiness Survey"
+            }
+          ],
+          "kind": "stats",
+          "label": "Finance cut"
+        }
+      ],
+      "id": "code-share",
+      "lede": "How much code is AI-produced — and how fast the share is growing.",
+      "title": "AI code share"
+    },
+    {
+      "blocks": [
+        {
+          "items": [
+            {
+              "date": "2026",
+              "display": "98%",
+              "kind": "bar",
+              "label": "of large companies have AI governance policies",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "EY US AI Risk and Governance Survey 2026",
+              "source_note": "202 decision-makers, ≥$1B revenue",
+              "value": 98
+            },
+            {
+              "date": "2026",
+              "display": "47%",
+              "kind": "bar",
+              "label": "have bypassed those policies",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "EY US AI Risk and Governance Survey 2026",
+              "tone": "gap",
+              "value": 47
+            },
+            {
+              "date": "2026",
+              "display": "49%",
+              "kind": "bar",
+              "label": "of policies not updated for agentic risk",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "EY US AI Risk and Governance Survey 2026",
+              "tone": "gap",
+              "value": 49
+            },
+            {
+              "date": "Oct 2026",
+              "display": "79%",
+              "kind": "bar",
+              "label": "of enterprises run AI agents in production",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "SailPoint Horizons of Identity Security",
+              "value": 79
+            },
+            {
+              "date": "Oct 2026",
+              "display": "2%",
+              "kind": "bar",
+              "label": "have the identity tools to govern them",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "SailPoint Horizons of Identity Security",
+              "tone": "gap",
+              "value": 2
+            },
+            {
+              "date": "Oct 2026",
+              "display": "82%",
+              "kind": "bar",
+              "label": "cannot reliably attribute agent actions",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Whitfield",
+              "tone": "gap",
+              "value": 82
+            },
+            {
+              "date": "Oct 2026",
+              "display": "88%",
+              "kind": "bar",
+              "label": "cannot roll back agent actions without disruption",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Rubrik",
+              "tone": "gap",
+              "value": 88
+            },
+            {
+              "date": "Oct 2026",
+              "display": "38%",
+              "kind": "bar",
+              "label": "authorise agents to approve or reject transactions",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Optro",
+              "tone": "gap",
+              "value": 38
+            },
+            {
+              "date": "2026",
+              "display": "35%",
+              "kind": "bar",
+              "label": "not confident they could shut down a rogue agent",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Writer / Workplace Intelligence",
+              "tone": "gap",
+              "value": 35
+            },
+            {
+              "date": "2026",
+              "display": "36%",
+              "kind": "bar",
+              "label": "have no formal supervision plan",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Writer / Workplace Intelligence",
+              "tone": "gap",
+              "value": 36
+            },
+            {
+              "date": "2026",
+              "display": "30%",
+              "kind": "bar",
+              "label": "have a formally deployed, documented kill switch",
+              "link": "index.html#343-the-governance-gap",
+              "note": "23% of those in production never tested it",
+              "rating": "reported",
+              "source": "Writer / Workplace Intelligence",
+              "value": 30
+            },
+            {
+              "date": "2026",
+              "display": "79%",
+              "kind": "bar",
+              "label": "of IT leaders encountered unauthorised AI deployments",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Nutanix",
+              "tone": "gap",
+              "value": 79
+            },
+            {
+              "date": "2026",
+              "display": "82%",
+              "kind": "bar",
+              "label": "discovered at least one agent IT didn't know about in the past year",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Cloud Security Alliance",
+              "tone": "gap",
+              "value": 82
+            }
+          ],
+          "kind": "bars"
+        },
+        {
+          "items": [
+            {
+              "date": "2023–mid-2026",
+              "display": "188",
+              "kind": "stat",
+              "label": "documented cases of autonomous AI damaging production systems, no attacker involved",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "Cyera analysis of 7,000+ public AI incidents"
+            },
+            {
+              "date": "Oct 2026",
+              "display": "109:1",
+              "kind": "stat",
+              "label": "machine-to-human identity ratio",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "SailPoint / Palo Alto Networks"
+            }
+          ],
+          "kind": "stats"
+        },
+        {
+          "items": [
+            {
+              "date": "2 Nov 2026",
+              "kind": "text",
+              "link": "index.html#342-regulation",
+              "rating": "established",
+              "source": "FCA Wholesale Banks Supervision Insights 3",
+              "text": "Supervisors document AI code passing human review and kill switches going untested at wholesale banks."
+            },
+            {
+              "date": "9 Nov 2026",
+              "kind": "text",
+              "link": "index.html#343-the-governance-gap",
+              "rating": "reported",
+              "source": "OpenAI Control Room",
+              "text": "The worked counter-example: a frontier lab's kill switch cuts research-model output in 35 seconds, fail-closed."
+            }
+          ],
+          "kind": "notes"
+        }
+      ],
+      "id": "governance-gap",
+      "lede": "Policies exist. Control doesn't. Every figure here is survey-grade except the FCA finding — the ratings are the point.",
+      "title": "The governance gap"
+    },
+    {
+      "blocks": [
+        {
+          "date": "2026",
+          "kind": "stacked",
+          "link": "index.html#16-benchmarks--evidence",
+          "rating": "corroborated",
+          "segments": [
+            {
+              "label": "correct and secure",
+              "tone": "navy",
+              "value": 23.8
+            },
+            {
+              "label": "correct but exploitable",
+              "tone": "gap",
+              "value": 23.0
+            },
+            {
+              "label": "incorrect",
+              "tone": "muted",
+              "value": 53.3
+            }
+          ],
+          "source": "SecureVibeBench",
+          "source_note": "peer-reviewed, ACL 2026",
+          "title": "Best agent–model pair on security tasks"
+        },
+        {
+          "items": [
+            {
+              "date": "4 Nov 2026",
+              "display": "74.0%",
+              "kind": "bar",
+              "label": "functional pass — Claude Code (Sonnet 4.5), repo-level CVE tasks",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "A.S.E 2.0 / CASE-Bench",
+              "source_note": "preprint, 145 tasks",
+              "value": 74.0
+            },
+            {
+              "date": "4 Nov 2026",
+              "display": "18.4%",
+              "kind": "bar",
+              "label": "secure — same model, same tasks",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "A.S.E 2.0 / CASE-Bench",
+              "source_note": "preprint, 145 tasks",
+              "tone": "gap",
+              "value": 18.4
+            },
+            {
+              "date": "Nov 2026",
+              "display": "~68%",
+              "kind": "bar",
+              "label": "pass@1 — leading remediation agents",
+              "link": "index.html#16-benchmarks--evidence",
+              "note": "the leader still fails 19% of tasks on every attempt",
+              "rating": "reported",
+              "source": "CWE-bench v2",
+              "source_note": "100 tasks, 91 CWE classes",
+              "value": 68
+            },
+            {
+              "date": "24 Oct 2026",
+              "display": "78.1%",
+              "kind": "bar",
+              "label": "recall — best frontier model, agentic pre-merge review",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "SecPRBench",
+              "source_note": "preprint, 265 tasks",
+              "value": 78.1
+            },
+            {
+              "date": "24 Oct 2026",
+              "display": "32.5%",
+              "kind": "bar",
+              "label": "recall — weakest frontier model, same benchmark",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "SecPRBench",
+              "source_note": "preprint, 265 tasks",
+              "tone": "gap",
+              "value": 32.5
+            }
+          ],
+          "kind": "bars"
+        },
+        {
+          "items": [
+            {
+              "date": "2 Nov 2026",
+              "display": "45–70%",
+              "kind": "stat",
+              "label": "of working agent solutions reintroduce the original vulnerability",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "BugLedger Bench",
+              "source_note": "51 real advisories, 7 models, 1,428 attempts; execution-graded"
+            },
+            {
+              "date": "2 Nov 2026",
+              "display": "0.35 → 0.71",
+              "kind": "stat",
+              "label": "secure output, Claude Opus 5.5, with one line of security instruction in the ticket",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "BugLedger Bench"
+            },
+            {
+              "date": "4 Nov 2026",
+              "display": "55.6%",
+              "kind": "stat",
+              "label": "passed every test while a working exploit succeeded",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "A.S.E 2.0 / CASE-Bench"
+            },
+            {
+              "date": "Oct 2026",
+              "display": "67.16%",
+              "kind": "stat",
+              "label": "pass@1 — but only 241 of 507 workflows pass on all 20 attempts",
+              "link": "index.html#36-evaluation",
+              "rating": "corroborated",
+              "source": "ThinkingBox",
+              "source_note": "Microsoft × Hugging Face"
+            },
+            {
+              "date": "Oct 2026",
+              "display": "67.24%",
+              "kind": "stat",
+              "label": "of failures terminate cleanly, then report done",
+              "link": "index.html#36-evaluation",
+              "rating": "corroborated",
+              "source": "ThinkingBox"
+            },
+            {
+              "date": "2026",
+              "display": "~7 months",
+              "kind": "stat",
+              "label": "for the 50%-reliability time horizon to double",
+              "link": "index.html#36-evaluation",
+              "note": "the 80% horizon is far shorter",
+              "rating": "corroborated",
+              "source": "METR"
+            }
+          ],
+          "kind": "stats"
+        }
+      ],
+      "id": "right-vs-wrong",
+      "lede": "How often agents get it right — and how often they get it wrong while reporting success.",
+      "title": "Agentic right vs wrong"
+    },
+    {
+      "blocks": [
+        {
+          "footnote": "No hours-or-dollars net figure exists anywhere in the evidence base. The ledger is the honest picture until one does.",
+          "kind": "ledger",
+          "left": {
+            "items": [
+              {
+                "date": "2026",
+                "kind": "text",
+                "link": "index.html#11-how-big-the-problem-is",
+                "rating": "corroborated",
+                "source": "Sonar State of Code 2026",
+                "text": "42% of committed code is AI-generated or assisted; 65% expected by 2027."
+              },
+              {
+                "date": "2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "corroborated",
+                "source": "Google DORA 2024–2026",
+                "text": "By 2025, higher AI adoption correlates with higher throughput — but still lower delivery stability."
+              }
+            ],
+            "title": "Output up"
+          },
+          "right": {
+            "items": [
+              {
+                "date": "Jan 2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "reported",
+                "source": "GitClear",
+                "source_note": "623M code changes",
+                "text": "Duplicate code blocks +81%; code churn within two weeks +15%; refactoring down from 21% to 3.8% of changed lines."
+              },
+              {
+                "date": "2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "corroborated",
+                "source": "Google DORA 2024–2026",
+                "text": "Every +25% of AI adoption cost −1.5% throughput and −7.2% delivery stability in 2024 — the verification tax."
+              },
+              {
+                "date": "2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "corroborated",
+                "source": "Black Duck OSSRA 2026",
+                "text": "Mean vulnerabilities per codebase 581, up 107% year-on-year."
+              },
+              {
+                "date": "2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "reported",
+                "source": "Sonar State of Code 2026",
+                "text": "96% of developers don't fully trust AI output, yet only 48% always verify before committing."
+              },
+              {
+                "date": "9 Nov 2026",
+                "kind": "text",
+                "link": "index.html#16-benchmarks--evidence",
+                "rating": "reported",
+                "source": "VulnCheck / Anthropic Glasswing",
+                "text": "AI-discovered vulnerabilities outpace fixes ~175-to-1: 37,966 findings vs 217 fixed."
+              },
+              {
+                "date": "1 Nov 2026",
+                "kind": "text",
+                "link": "index.html#16-benchmarks--evidence",
+                "rating": "reported",
+                "source": "Sajadi et al., SWE-bench study",
+                "text": "AI-generated patches introduce ~11× the vulnerabilities of developer patches: 135 vs 12 on the same issues."
+              },
+              {
+                "date": "8 Nov 2026",
+                "kind": "text",
+                "link": "index.html#21-how-big-the-problem-is",
+                "rating": "reported",
+                "source": "Sun et al., ETH Zurich",
+                "text": "Insecure neighbouring code cuts correct-and-secure output by 35.4 points — the flaws in a codebase are the template the next agent copies."
+              },
+              {
+                "date": "2 Nov 2026",
+                "kind": "text",
+                "link": "index.html#342-regulation",
+                "rating": "established",
+                "source": "FCA Wholesale Banks Supervision Insights 3",
+                "text": "Supervisors document AI code passing human review and causing a loss of service."
+              }
+            ],
+            "title": "Cleanup up"
+          }
+        }
+      ],
+      "id": "net-impact",
+      "lede": "Output is up. So is the debt. There is no single net number yet — here are both sides of the ledger.",
+      "title": "Net impact: more code vs more cleanup"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "bignote",
+          "text": "No credible dollar figure exists yet for money saved or lost to AI code and agents. The figures below are cost multipliers and rate ratios, not dollars."
+        },
+        {
+          "items": [
+            {
+              "date": "Nov 2026",
+              "display": "2.5×",
+              "kind": "stat",
+              "label": "cost of a post-hoc security review that lifts working-and-secure output to 47–56%",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "SusVibes re-run",
+              "source_note": "vendor-commissioned"
+            },
+            {
+              "date": "Nov 2026",
+              "display": "3.4×",
+              "kind": "stat",
+              "label": "vulnerable-code rate at 81–100% AI-generated code vs 1–20%",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "reported",
+              "source": "SusVibes"
+            },
+            {
+              "date": "Dec 2025",
+              "display": "2.74×",
+              "kind": "stat",
+              "label": "vulnerability rate, AI vs human code",
+              "link": "index.html#16-benchmarks--evidence",
+              "rating": "claimed",
+              "source": "CodeRabbit",
+              "source_note": "own analysis of 470 PRs"
+            }
+          ],
+          "kind": "stats"
+        },
+        {
+          "items": [
+            {
+              "date": "30 Oct 2026",
+              "kind": "text",
+              "link": "index.html#342-regulation",
+              "rating": "corroborated",
+              "source": "UK CMA / DRCF",
+              "text": "Exposure context, not a loss: under UK CMA/DRCF, an agent's autonomy does not diminish the deployer's responsibility — fines up to 10% of worldwide turnover."
+            }
+          ],
+          "kind": "notes"
+        }
+      ],
+      "id": "money",
+      "lede": "The thinnest panel — and the most honest one.",
+      "title": "Money saved vs lost"
+    }
+  ]
+}
