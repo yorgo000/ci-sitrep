@@ -245,7 +245,11 @@ Code & Finance wordmark + tagline, the "by Confluence<1>" wordmark
 (the "Confluence <1>" text from the logo, cube cropped out), nav links
 (About, Explainer, Theses, Archive, Self-Audit), the credibility rating
 legend (heading: "Credibility rating"), the Contents index, and the
-copyright line "© 2026 Confluence<1> Corp. All rights reserved."
+copyright line "© 2026 Confluence<1> Corp. All rights reserved." The
+nav ends with one restrained conversion link — "Work with
+Confluence<1>", jumping to About's Contact section — set apart from the
+content links by a separator line. It is the only conversion element on
+the report page; no CTAs inside the content (see F-12, Dropped).
 
 **Section headings.** The three content sections are the visual top of
 the hierarchy. The meta-section headings ("State of the market",
@@ -441,4 +445,6 @@ The Self-Audit page records the date of the last full manual link audit
   summary, F-07 plain-English NTW tags, F-08 "in practice" extension to
   §1, F-09 one findable contact point; F-10 (per-pillar Business Impact
   module), F-11 (per-link Strategic Implication sentences) and F-12
-  (embedded CTAs) recorded as Dropped, with reasons.
+  (embedded CTAs) recorded as Dropped, with reasons. F-09 built the same
+  evening: a "Work with Confluence<1>" masthead nav link to About's
+  Contact section, the only conversion element on the report page.
