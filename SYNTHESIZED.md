@@ -1,6 +1,6 @@
 # CI Sitrep *Code & Finance*
 
-**Last updated:** 2026-11-14.
+**Last updated:** 2026-11-15.
 
 <details class="how-to-read">
 <summary>How to read this</summary>
@@ -34,6 +34,8 @@ AI now writes the majority of new code, and [close to half of it carries a known
 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
+- **2026-11-15 — Agents copy the flaws already in a codebase** ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich) [Pre-commit] [In codebase]: insecure neighbouring code cut correct-and-secure output by 35.4 points on average in C/C++ (GPT-5.6 Sol fell 91% → 42%); agents recognised the bug they introduced in 69.9% of cases but followed the existing pattern anyway — fix known flaws before agents touch a module. → [2.1 How big the problem is](#21-how-big-the-problem-is)
+- **2026-11-15 — 45–70% of working agent solutions bring the original vulnerability back** ([BugLedger](https://www.bugledger.com/benchmarks)) [Pre-commit] [In codebase]: a new execution-graded benchmark (51 real advisories, 7 models, 1,428 attempts) replays the attack instead of asking a judge; one line of security instruction roughly doubled secure output (Claude Opus 5.5: 0.35 → 0.71). → [1.6 Benchmarks](#16-benchmarks--evidence) · [2.1 How big the problem is](#21-how-big-the-problem-is)
 - **2026-11-14 — A vendor kill switch for rogue agents is now a product** ([CrowdStrike](https://www.crowdstrike.com/en-us/press-releases/crowdstrike-delivers-ai-security-safety-for-the-enterprise/)) [Agentic]: an authorised administrator can terminate an unauthorised agent, block it from relaunching and cut its network access — at the AI gateway first; endpoint termination still "coming soon". → [3.4.3 The governance gap](#343-the-governance-gap)
 - **2026-11-14 — AI-found vulnerabilities outpace fixes ~175-to-1** ([VulnCheck](https://www.vulncheck.com/blog/anthropic-glasswing-november-update)) [Pre-commit] [In codebase]: 37,966 Glasswing findings against 217 fixed; 11,813 new findings and 15 new fixes in two months; a maintainer sample put the false-positive rate at 55.9%. → [1.6 Benchmarks](#16-benchmarks--evidence)
 - **2026-11-14 — Supervisors document AI code passing human review and untested kill switches at wholesale banks** ([FCA](https://www.fca.org.uk/publications/multi-firm-reviews/wholesale-banks-supervision-insights-3-autumn-2026)) [In codebase] [Agentic]: inaccurate AI-generated code recommendations passed human review and caused a loss of service; kill switches insufficiently tested, with no list of authorised operators. → [3.4 Governance](#34-governance)
@@ -340,6 +342,20 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 </details>
 
 <details>
+<summary><strong>45–70% of working agent solutions bring the original vulnerability back</strong> ([BugLedger](https://www.bugledger.com/benchmarks) Bench, results 2 Nov 2026) ●●○○</summary>
+
+- 51 tasks built from real GitHub security advisories (Go, Python, npm; 2024–2026), each rewinding the repo to before the fix and asking the agent to build the feature that originally introduced the bug; a hidden test replays the advisory's attack.
+- Grading is by running tests, not an LLM judge — the benchmark's distinguishing feature against SecPRBench — and a grader audit re-ran 72 vulnerable verdicts in fresh containers: all 72 reproduced.
+- Across 7 models and 1,428 graded attempts, 45–70% of working solutions reintroduced the original vulnerability; the best blind model (gpt-6.1-terra) still reintroduced it in 45% of its working solutions.
+- Claude models produced working code on 96–98% of blind attempts but kept the vulnerability out only about a third of the time.
+- One line of security instruction ("this code will run in production and handle untrusted input; follow secure coding practices") raised every model's secure share — Claude Opus 5.5 from 0.35 to 0.71 — the same direction as the A.S.E 2.0 context finding, measured as a prompt intervention rather than a retrieval one.
+- New tasks are added continuously from newly published advisories (500+ available), so the set stays fresh against training-data leakage — unlike the static benchmarks above.
+- Implication for the pre-commit gate: the hinted-vs-blind gap is a cheap, measurable control — security instruction in the agent's ticket or context is worth roughly doubling secure output — and the benchmark's execution-graded method is the one to use when a client asks which model writes safer code.
+- *[Independent research practice; the tasks are also sold as RL training data.]*
+- Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
+</details>
+
+<details>
 <summary><strong>Best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
 
 - 265 tasks from nine critical systems (Firefox, V8, OpenSSL), each built from the real commit that introduced a vulnerability — not from its later fix — and paired with a repaired companion.
@@ -391,6 +407,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 #### 1.6.1 Hype vs independently verified
 
 - **Independently verified:** [Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/)'s 45% figure (longitudinal, consistent method — but Veracode's own SAST is the measuring instrument); [Spracklen](https://arxiv.org/abs/2406.10279) et al. (peer-reviewed, USENIX Security 2025); Pearce et al. (IEEE S&P 2022) and Fu et al. (ACM TOSEM 2025) base rates; [SecureVibeBench](https://arxiv.org/abs/2509.22097) (peer-reviewed, ACL 2026); the regulatory facts above (primary sources: [OCC Bulletin 2026-13](https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents), [NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) letters, [DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk) text).
+- **Independent benchmark, method transparent, not peer-reviewed:** [BugLedger](https://www.bugledger.com/benchmarks) Bench (Nov 2026) — execution-graded, grader audit reproduced 72 of 72 vulnerable verdicts; 45–70% of working solutions reintroduced the original vulnerability. The tasks are also sold as RL training data.
 - **[VENDOR CLAIMS — treat as marketing until independently replicated]:** Snyk's "secure-and-functional fix rate 75% → 85.4%" (own June 2026 benchmark, cited by Futurum); CybeDefend's controlled study (own research, Aug 2026: 30 tasks, one retail codebase, Claude Opus 5 — 57/64 rule specifics implemented exactly; +18% token overhead); [CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)'s 2.74× vulnerability rate (own analysis of 470 PRs); [Apiiro](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github)'s 10× findings / +322% privilege-escalation paths (own enterprise telemetry via CSA); Legit "resists being switched off"; Semgrep's "agents found 2× more real vulnerabilities than frontier models alone, −65% token costs" (own benchmark, method undisclosed, Nov 2026); OpenAI's GPT-6 Cyber 48.45% intended-exploit success on ExploitGym and "948 Linux kernel privilege-escalation bugs validated" (vendor system card / research run, Nov 2026); Cycode's Agentic Code Scanning catching all 6 CVEs in its own 10-repo test (vendor-run, single runs; corpus published for reproduction); Anthropic's claimed 94.2% true-positive rate for Project Glasswing findings (self-reported — a maintainer sample put the false-positive rate at 55.9%; see §1.6); any vendor "blocks X% of vulnerabilities" figure.
 - **Reported, not independently verified:** the Copilot Autofix incident in which a CI-generated fix reportedly opened a shell injection in Snowflake's CI/CD that Wiz's red agent then exploited autonomously (Wiz case study, via The State of Play, 2026) — human reviewers and GitHub Advanced Security both reportedly missed it. GitHub Copilot code review's systematic misses of SQLi/XSS/insecure deserialization while flagging style issues (evaluation cited by The State of Play, 2026).
 - **What nobody has independently verified:** head-to-head detection rates of the new agent-time enforcement tools on a common benchmark; false-positive cost at enterprise scale; license/provenance compliance of CI-generated code (training-data lineage is largely unaddressed by every scanner listed).
@@ -469,6 +486,16 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 </details>
 
 <details>
+<summary><strong>Fixed vulnerabilities come back when agents rebuild the feature</strong> ([BugLedger](https://www.bugledger.com/benchmarks) Bench, results 2 Nov 2026) ●●○○</summary>
+
+- Same benchmark as [§1.6](#16-benchmarks--evidence); for an audit of an existing codebase this is the quantification of reintroduction — when an agent rebuilds a feature that once carried a vulnerability, the old bug comes back in 45–70% of working solutions.
+- Execution-graded (a hidden test replays the advisory's attack), not LLM-judged; a grader audit reproduced 72 of 72 vulnerable verdicts.
+- Audit implication: a module whose vulnerability was fixed is not safe from its own history — any agent asked to rework that area reintroduces the flaw unless the fix's reasoning is in the agent's context; the remediation should include annotating the safeguard (see [§2.4](#24-techniques)).
+- *[Independent research practice; the tasks are also sold as RL training data.]*
+- Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
+</details>
+
+<details>
 <summary><strong>Agentic review misses 22–68% of vulnerability-introducing changes</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
 
 - Same benchmark as [§1.6](#16-benchmarks--evidence); for an audit of an existing codebase this is the measured miss rate of the review layer itself.
@@ -476,6 +503,18 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - 68% of misses are wrong-mechanism reasoning — the reviewer looked at the right file and argued the wrong flaw — so a clean review is weak evidence, and location-based scoring would overstate detection.
 - Audit implication: a codebase audit cannot rely on agentic PR review as the control; exploit-verification and deterministic scanning remain the backstop, and the review layer needs sampling of what it let through.
 - Source: [Yang et al., SecPRBench, arXiv:2610.33509](https://arxiv.org/abs/2610.33509)
+</details>
+
+<details>
+<summary><strong>Agents copy the flaws already in a codebase — insecure code is a template, not a warning</strong> ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich, arXiv:2611.11455, submitted 8 Nov 2026; preprint) ●●○○</summary>
+
+- 96 backend-generation tasks plus 20 paired C/C++ repository tasks; in each, the agent implements new code alongside existing code that is either secure or insecure.
+- Insecure neighbouring code cut the share of correct-and-secure implementations by 3.4 points on average in backend generation — and by **35.4 points on average** in C/C++ repository coding; GPT-5.6 Sol fell from 91.0% to 42.0%.
+- A generic security reminder raised secure output but did not stop the propagation; prompting to follow existing code style made it worse.
+- When asked afterwards, agents recognised the vulnerability they had introduced in 69.9% of cases on average — and explained their choice as following another code site in 76.5% of cases.
+- The feared cycle is stated plainly in the paper: as agents write a growing share of production code under decreasing human review, a codebase can increasingly degrade in security if vulnerabilities are not thoroughly fixed continuously.
+- Implication: the remediation order matters — a module's known flaws should be fixed before an agent is asked to extend it, and the audit should treat unfixed flaws as a live propagation risk, not a static backlog (see [§2.4](#24-techniques)).
+- Source: [Sun et al., 'Coding Agents Propagate Vulnerabilities in Code Bases', arXiv:2611.11455](https://arxiv.org/abs/2611.11455)
 </details>
 
 <details>
@@ -622,6 +661,7 @@ Sources: [Superblocks, 9 Best AI Code Governance Tools](https://www.superblocks.
   - Without this, attribution is commit archaeology — keyword parsing, PR comment history, stylistic heuristics.
   - **There is no reliable post-hoc "AI code detector" for code; any vendor claiming one is selling a heuristic.**
 - **Remediation:** generate → verify → loop. Snyk Agent Fix and Copilot Autofix both re-scan generated fixes; Snyk's golden tests require FAIL→PASS on the vuln and PASS→PASS on existing tests. Rule for finance: **never let the generator validate its own fix** — independent scan + full test suite + human sign-off on high-risk paths. The reason the rule matters is now measured: on SWE-bench, a standalone LLM's patches introduced 135 manually confirmed vulnerabilities against 12 for developer patches on the same issues ([Sajadi et al.](https://arxiv.org/abs/2507.02976), v4, Nov 2026) — and agentic repair frameworks introduced vulnerabilities too. AWS Security Agent generates fix commits directly into the Git workflow; private repos only for automated remediation (disabled on public repos).
+- **Remediation order — fix the existing flaws first.** Insecure code already in a repo is copied as a template by agents working nearby: correct-and-secure output fell 35.4 points on average in C/C++ when neighbouring code was insecure ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich, Nov 2026; see §2.1). A module's known flaws should be fixed before an agent is asked to extend it — and the fix should be annotated in agent context so the next agent sees the safeguard, not just the old pattern.
 - **Regression testing of AI-written code:** generate tests for AI-heavy files (Qodo); apply **stricter thresholds to AI-authored modules** than the codebase average (industry practice reported 2026: 85% coverage where the baseline is 70%); mutation testing to separate real tests from coverage theatre; property-based and contract tests for hallucinated-API risk; DAST (OWASP ZAP) in staging; re-run the full suite on every remediation.
 - **Dependency verification:** audit every manifest entry — confirm each package existed before the agent suggested it; `npm audit` / `pip-audit` / Dependabot / OWASP Dependency-Check; check lockfiles; treat an unfamiliar package name as a stop-and-verify, not an install.
 - **Secrets in agent artefacts (new vector, Nov 2026):** scan agent settings files, transcripts and full git history for credentials. Claude Code's "Don't Ask Again" writes the literal approved command, secrets included, into `.claude/settings.local.json`; 1,122 of 104,185 public copies held a real secret; gitleaks and TruffleHog together missed 215 of them. Secrets persist in history and forks — deleting the file now does not close the exposure. Check project `.gitignore` (Claude Code excludes the file only via the developer's global git-excludes); rotate anything found.
@@ -663,7 +703,8 @@ Sources: [Matt Goodrich, Who Wrote This Code?](https://github.com/mgoodric/mattg
 ### 2.6 Hype vs verified
 
 - **Vendor-published but methodologically transparent, treat as directional:** [Veracode](https://www.veracode.com/blog/spring-2026-genai-code-security/) 45%, SCW 15/codebase (partly RMIT-partnered), [Black Duck](https://www.blackduck.com/resources/analyst-reports/open-source-security-risk-analysis.html) OSSRA (audit, not survey), [GitClear](https://www.nazarboyko.com/articles/ai-tech-debt-bill-comes-due-in-2027) (commit-history data), [DORA](https://www.deepinspect.ai/blog/dora-ai-third-party-risk) (survey, correlational).
-- **Preprint, method transparent, not peer-reviewed:** [SecPRBench](https://arxiv.org/abs/2610.33509) recall figures (arXiv:2610.33509, Oct 2026) — LLM-as-judge scoring by Claude Opus 5.5; the judge's verdicts, not execution. [Sajadi et al.](https://arxiv.org/abs/2507.02976), SWE-bench patch study (arXiv:2507.02976, v4 Nov 2026) — vulnerabilities manually confirmed, but SWE-bench only and Python only.
+- **Preprint, method transparent, not peer-reviewed:** [SecPRBench](https://arxiv.org/abs/2610.33509) recall figures (arXiv:2610.33509, Oct 2026) — LLM-as-judge scoring by Claude Opus 5.5; the judge's verdicts, not execution. [Sajadi et al.](https://arxiv.org/abs/2507.02976), SWE-bench patch study (arXiv:2507.02976, v4 Nov 2026) — vulnerabilities manually confirmed, but SWE-bench only and Python only. [Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich propagation study (arXiv:2611.11455, Nov 2026) — agents copy insecure neighbouring code; exploit-verified, not LLM-judged.
+- **Independent benchmark, method transparent, not peer-reviewed:** [BugLedger](https://www.bugledger.com/benchmarks) Bench (Nov 2026) — execution-graded, grader audit reproduced 72 of 72 vulnerable verdicts; 45–70% of working solutions reintroduced the original vulnerability. The tasks are also sold as RL training data.
 - **Vendor's own benchmarks on its own tests, not independent:** Snyk Agent Fix 82.5% golden-test pass; Snyk's 8:1 new-issues-to-fixes ratio; AWS "reasons like a human security researcher"; [CodeMender](https://pasqualepillitteri.it/en/news/26978/best-ai-code-security-audit-tools-compared)'s 72 upstreamed fixes; [Apiiro](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github)'s 322% figure.
 - **Analyst forecasts, not measurements:** Gartner — 60% of all new code AI-generated by end of 2026; prompt-to-app defects +2,500% by 2028; 40% of enterprises on consumption-priced AI tools facing 2× budget overruns by 2027.
 - **NOT verified — do not use:** a claim circulating in low-quality roundups that "SITS2026" is a mandatory national standard for AI-assisted coding in finance/healthcare since March 2026. No corroboration found in any primary or reputable secondary source; single-source, likely unreliable.
@@ -676,6 +717,7 @@ Sources: [Matt Goodrich, Who Wrote This Code?](https://github.com/mgoodric/mattg
 - The fix loop is now a product: [OpenAI Daybreak](https://openai.com/daybreak/defense-factory/) (Red Team + Defense Factory, 12 Nov 2026) and [Semgrep](https://www.businesswire.com/news/home/20261112133878/en/) Guardian sell continuous find-and-fix as a managed service — but the SWE-bench patch study shows agent-written fixes introduce ~11× the vulnerabilities of developer fixes, so the verification layer on the *fix* is the differentiator, not fix generation. A firm that can demonstrate independent verification of agent-produced patches has the sharper offer.
 - For a firm building finance-critical systems, demonstrable AI-code governance — provenance capture, gated CI, verified remediation, complete audit trail — is becoming a procurement and examiner expectation, not a differentiator. The [SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html) gap is the opening: banks have no supervisory framework for AI code and must build their own; a firm that arrives with one (mapped to NIST AI RMF, [NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) Part 500, [OSFI](https://www.legal500.com/intelligence/canada/technology/managing-the-ai-risks-in-the-financial-sector-osfis-bulletin-on-generative-and-agentic-artificial-intelligence)'s bulletin) has a concrete proposition.
 - AI vulnerability discovery now outpaces remediation by two orders of magnitude: 37,966 findings against 217 fixes in Anthropic's Project Glasswing, with 11,813 new findings and 15 new fixes in two months ([VulnCheck](https://www.vulncheck.com/blog/anthropic-glasswing-november-update), Nov 2026) — the fix loop, not discovery, is the bottleneck; see [1.6 Benchmarks & evidence](#16-benchmarks--evidence).
+- The flaws already in a codebase are not just a backlog — they are the template the next agent contribution copies ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich, Nov 2026; see §2.1): remediation order matters, and a module's known flaws should be fixed before an agent is asked to extend it.
 - What to watch: the SR 26-2 follow-up RFI on AI (still pending); [EU AI Act](https://artificialintelligenceact.eu/) Dec 2027 obligations; NCSC patch-wave volume (whether patch throughput becomes a reported operational metric); independent accuracy data for full-repo reasoning agents ([CWE-bench v2](https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7) now gives a yardstick — no product yet independently measured at scale); and whether any post-hoc AI-code detector survives independent evaluation.
 
 Sources: [EASM News, NCSC Patch Wave](https://www.easm.news/ncsc-patch-wave-external-readiness/) · [VulnCheck, Glasswing November update](https://www.vulncheck.com/blog/anthropic-glasswing-november-update)
