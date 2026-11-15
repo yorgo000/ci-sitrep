@@ -139,11 +139,28 @@ def build(input_path, output_path):
         + toc_html +
         '\n</details>\n'
     )
+    # Search box, right under the "As of" banner: the report is reference
+    # material, and readers need to find their way back to something they
+    # saw. It indexes the live page at runtime (see the search JS), so it
+    # needs no build-time index and stays fresh with every publish. It
+    # sits outside every section-body, so collapsing a section never
+    # hides it.
+    search_box = (
+        '<div class="search-box" id="search-box">\n'
+        '<div class="search-field">\n'
+        '<svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>\n'
+        '<input type="search" id="search-input" placeholder="Search the report\u2026" aria-label="Search the report" autocomplete="off" spellcheck="false">\n'
+        '<button type="button" id="search-clear" aria-label="Clear search" hidden><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11"/></svg></button>\n'
+        '</div>\n'
+        '<div id="search-results" hidden></div>\n'
+        '<p id="search-status" class="visually-hidden" aria-live="polite"></p>\n'
+        '</div>\n'
+    )
     if as_of:
         banner = f'<p class="as-of-banner">As of {as_of}</p>'
-        body = body.replace("</h1>", "</h1>\n" + banner + "\n" + inline_toc, 1)
+        body = body.replace("</h1>", "</h1>\n" + banner + "\n" + search_box + "\n" + inline_toc, 1)
     else:
-        body = body.replace("</h1>", "</h1>\n" + inline_toc, 1)
+        body = body.replace("</h1>", "</h1>\n" + search_box + "\n" + inline_toc, 1)
 
     html = TEMPLATE.format(
         title="CI Sitrep — Code & Finance",
@@ -192,6 +209,25 @@ TEMPLATE = """<!DOCTYPE html>
     font-size: 15px;
     font-weight: 600;
   }}
+  .search-box {{ margin: 0 0 16px; position: relative; }}
+  .search-field {{ position: relative; }}
+  .search-field svg.search-icon {{ position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }}
+  #search-input {{ width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 9px 34px 9px 34px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); }}
+  #search-input::-webkit-search-cancel-button {{ display: none; }}
+  #search-input:focus {{ outline: none; border-color: var(--logo-navy); box-shadow: 0 0 0 2px rgba(40, 48, 96, 0.15); }}
+  .search-box.open #search-input {{ border-bottom-left-radius: 0; border-bottom-right-radius: 0; }}
+  #search-clear {{ position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: none; background: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 4px; line-height: 0; }}
+  #search-clear:hover {{ color: var(--ink); background: #eee8d8; }}
+  #search-results {{ border: 1px solid var(--line); border-top: none; border-radius: 0 0 6px 6px; background: #fff; max-height: 420px; overflow-y: auto; box-shadow: 0 8px 20px rgba(40, 48, 96, 0.12); }}
+  .search-results-count {{ font-size: 12px; color: var(--muted); padding: 8px 12px 4px; }}
+  .search-result {{ display: block; padding: 8px 12px; text-decoration: none; color: var(--ink); border-top: 1px solid #efe9d8; }}
+  .search-result:hover, .search-result.active {{ background: #f0f1f7; }}
+  .search-result-title {{ display: block; font-weight: 600; font-size: 14px; line-height: 1.4; }}
+  .search-result-path {{ display: block; font-size: 12px; color: var(--muted); margin-top: 1px; }}
+  .search-result-snippet {{ display: block; font-size: 13px; color: #444; margin-top: 3px; line-height: 1.45; }}
+  .search-result-snippet mark {{ background: #f5e6a3; color: inherit; padding: 0 1px; border-radius: 2px; }}
+  .search-no-results {{ padding: 12px; font-size: 14px; color: var(--muted); }}
+  .visually-hidden {{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }}
   .layout {{ display: flex; min-height: 100vh; }}
   nav.sidebar {{
     width: 300px;
@@ -667,6 +703,223 @@ TEMPLATE = """<!DOCTYPE html>
     if (!p.id) p.id = uniqueId(slugify(text));
     p.appendChild(makeShareButton(p.id, 'Copy link to this paragraph'));
   }});
+
+  // Search: a client-side index built from the live page the first time
+  // the reader types. No build step, no index file — the page IS the
+  // index, so it is always in sync with what the daily watch published.
+  // Searchable units are the same units the share buttons cover
+  // (articles, headings, substantive paragraphs, tables), so every
+  // result links to a stable anchor that expandForAnchor opens.
+  var searchInput = document.getElementById('search-input');
+  var searchResults = document.getElementById('search-results');
+  var searchClear = document.getElementById('search-clear');
+  var searchStatus = document.getElementById('search-status');
+  var searchBox = document.getElementById('search-box');
+  var searchIndex = null;
+  var searchActive = -1;
+  var searchTimer = null;
+  function cleanText(el) {{
+    var c = el.cloneNode(true);
+    c.querySelectorAll('button').forEach(function (b) {{ b.remove(); }});
+    return c.textContent.replace(/\\s+/g, ' ').trim();
+  }}
+  function escapeHtml(s) {{
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }}
+  function escapeRegExp(s) {{
+    return s.replace(/[.*+?^${{}}()|[\\]\\\\]/g, '\\\\$&');
+  }}
+  function buildSearchIndex() {{
+    var items = [];
+    var cur2 = null, cur3 = null, cur4 = null;
+    function pathOf() {{
+      var parts = [];
+      if (cur2) parts.push(cur2);
+      if (cur3) parts.push(cur3);
+      if (cur4) parts.push(cur4);
+      return parts.join(' · ');
+    }}
+    var nodes = main.querySelectorAll('h2, h3, h4, details, p, table');
+    nodes.forEach(function (n) {{
+      var tag = n.tagName;
+      if (tag === 'H2' || tag === 'H3' || tag === 'H4') {{
+        var label = cleanText(n);
+        if (!label || !n.id) return;
+        var path = '';
+        if (tag === 'H3') path = cur2 || '';
+        else if (tag === 'H4') path = [cur2, cur3].filter(Boolean).join(' · ');
+        if (tag === 'H2') {{ cur2 = label; cur3 = null; cur4 = null; }}
+        else if (tag === 'H3') {{ cur3 = label; cur4 = null; }}
+        else {{ cur4 = label; }}
+        items.push({{ id: n.id, title: label, text: label, path: path, kind: 'section' }});
+        return;
+      }}
+      if (tag === 'DETAILS') {{
+        if (n.classList.contains('how-to-read') || n.classList.contains('toc-inline')) return;
+        var sum = n.querySelector(':scope > summary');
+        if (!sum || !n.id) return;
+        var stext = cleanText(sum);
+        if (stext === 'See also') return;
+        items.push({{ id: n.id, title: stext, text: cleanText(n), path: pathOf(), kind: 'article' }});
+        return;
+      }}
+      if (tag === 'P') {{
+        if (n.closest('details')) return;
+        if (n.closest('#search-box')) return;
+        if (n.classList.contains('as-of-banner')) return;
+        if (n.classList.contains('crumbs')) return;
+        var ptext = cleanText(n);
+        if (ptext.length < 80) return;
+        if (ptext.indexOf('Sources:') === 0) return;
+        if (!n.id) return;
+        var t = ptext.slice(0, 90);
+        var sp = t.lastIndexOf(' ');
+        if (sp > 40) t = t.slice(0, sp);
+        items.push({{ id: n.id, title: t + '…', text: ptext, path: pathOf(), kind: 'paragraph' }});
+        return;
+      }}
+      if (tag === 'TABLE') {{
+        if (!n.id) return;
+        items.push({{ id: n.id, title: (cur4 || cur3 || cur2 || 'Table') + ' — table', text: cleanText(n), path: pathOf(), kind: 'table' }});
+        return;
+      }}
+    }});
+    return items;
+  }}
+  function searchScore(item, tokens) {{
+    var title = item.title.toLowerCase();
+    var text = item.text.toLowerCase();
+    var titleHits = 0, textHits = 0;
+    tokens.forEach(function (t) {{
+      if (title.indexOf(t) !== -1) titleHits++;
+      if (text.indexOf(t) !== -1) textHits++;
+    }});
+    if (textHits === 0) return -1;
+    var score = textHits * 10 + titleHits * 50;
+    if (textHits === tokens.length) score += 30;
+    if (titleHits === tokens.length) score += 100;
+    return score;
+  }}
+  function searchSnippet(item, tokens) {{
+    var lower = item.text.toLowerCase();
+    var pos = -1;
+    tokens.forEach(function (t) {{
+      var i = lower.indexOf(t);
+      if (i !== -1 && (pos === -1 || i < pos)) pos = i;
+    }});
+    if (pos === -1) return escapeHtml(item.text.slice(0, 140)) + '…';
+    var start = Math.max(0, pos - 60);
+    var end = Math.min(item.text.length, pos + 100);
+    var s = item.text.slice(start, end);
+    if (start > 0) {{ var w = s.indexOf(' '); if (w !== -1) s = s.slice(w + 1); }}
+    if (end < item.text.length) {{ var w2 = s.lastIndexOf(' '); if (w2 !== -1) s = s.slice(0, w2); }}
+    s = escapeHtml(s);
+    tokens.forEach(function (t) {{
+      if (/[&<>"]/.test(t)) return;
+      s = s.replace(new RegExp('(' + escapeRegExp(t) + ')', 'gi'), '<mark>$1</mark>');
+    }});
+    return (start > 0 ? '…' : '') + s + (end < item.text.length ? '…' : '');
+  }}
+  function renderSearchResults(matches, query, total) {{
+    searchResults.innerHTML = '';
+    searchActive = -1;
+    if (matches.length === 0) {{
+      var none = document.createElement('div');
+      none.className = 'search-no-results';
+      none.textContent = 'No matches in the report for "' + query + '".';
+      searchResults.appendChild(none);
+      searchStatus.textContent = 'No matches for ' + query;
+    }} else {{
+      var count = document.createElement('div');
+      count.className = 'search-results-count';
+      count.textContent = total > matches.length
+        ? ('Top ' + matches.length + ' of ' + total + ' matches — refine your search to narrow it down.')
+        : (total + (total === 1 ? ' match' : ' matches'));
+      searchResults.appendChild(count);
+      matches.forEach(function (m) {{
+        var a = document.createElement('a');
+        a.href = '#' + m.item.id;
+        a.className = 'search-result';
+        var t = document.createElement('span');
+        t.className = 'search-result-title';
+        t.textContent = m.item.title;
+        a.appendChild(t);
+        if (m.item.path) {{
+          var p = document.createElement('span');
+          p.className = 'search-result-path';
+          p.textContent = m.item.path;
+          a.appendChild(p);
+        }}
+        var s = document.createElement('span');
+        s.className = 'search-result-snippet';
+        s.innerHTML = searchSnippet(m.item, m.tokens);
+        a.appendChild(s);
+        searchResults.appendChild(a);
+      }});
+      searchStatus.textContent = total + (total === 1 ? ' result' : ' results') + ' for ' + query;
+    }}
+    searchResults.hidden = false;
+    searchBox.classList.add('open');
+  }}
+  function closeSearchResults() {{
+    searchResults.hidden = true;
+    searchBox.classList.remove('open');
+    searchActive = -1;
+  }}
+  function runSearch() {{
+    var q = searchInput.value.trim();
+    searchClear.hidden = q.length === 0;
+    if (q.length < 2) {{ closeSearchResults(); searchStatus.textContent = ''; return; }}
+    if (!searchIndex) searchIndex = buildSearchIndex();
+    var tokens = q.toLowerCase().split(/\\s+/).filter(Boolean);
+    var scored = [];
+    searchIndex.forEach(function (item) {{
+      var score = searchScore(item, tokens);
+      if (score >= 0) scored.push({{ item: item, score: score, tokens: tokens }});
+    }});
+    scored.sort(function (a, b) {{ return b.score - a.score; }});
+    renderSearchResults(scored.slice(0, 10), q, scored.length);
+  }}
+  if (searchInput && searchResults && searchClear && searchStatus && searchBox) {{
+    searchInput.addEventListener('input', function () {{
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(runSearch, 150);
+    }});
+    searchInput.addEventListener('keydown', function (e) {{
+      if (e.key === 'Escape') {{ closeSearchResults(); searchInput.blur(); return; }}
+      if (searchResults.hidden) return;
+      var links = searchResults.querySelectorAll('a.search-result');
+      if (!links.length) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {{
+        e.preventDefault();
+        searchActive = e.key === 'ArrowDown'
+          ? (searchActive + 1) % links.length
+          : (searchActive - 1 + links.length) % links.length;
+        links.forEach(function (l, i) {{ l.classList.toggle('active', i === searchActive); }});
+        links[searchActive].scrollIntoView({{ block: 'nearest' }});
+      }} else if (e.key === 'Enter') {{
+        if (searchActive >= 0) {{ e.preventDefault(); links[searchActive].click(); }}
+        else if (links.length) {{ e.preventDefault(); links[0].click(); }}
+      }}
+    }});
+    searchInput.addEventListener('focus', function () {{
+      if (searchInput.value.trim().length >= 2) runSearch();
+    }});
+    searchClear.addEventListener('click', function () {{
+      searchInput.value = '';
+      searchClear.hidden = true;
+      closeSearchResults();
+      searchStatus.textContent = '';
+      searchInput.focus();
+    }});
+    searchResults.addEventListener('click', function (e) {{
+      var a = e.target.closest('a.search-result');
+      if (a) closeSearchResults();
+    }});
+    document.addEventListener('click', function (e) {{
+      if (!searchBox.contains(e.target)) closeSearchResults();
+    }});
+  }}
 
   // Back-to-top button: appears once the reader has scrolled down the
   // page, smooth-scrolls back to the top. Invisible until needed.
