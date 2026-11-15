@@ -1,4 +1,4 @@
-# Self-Audit — CI Sitrep
+# Self-Audit — CI SITREP
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
