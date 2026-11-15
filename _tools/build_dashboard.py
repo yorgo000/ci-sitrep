@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""Build the executive dashboard page (dashboard.html) from dashboard.json.
+"""Render the executive dashboard (F-01) from dashboard.json.
 
-F-01: at-a-glance numbers for executives, every figure traceable to the
-report. dashboard.json is the single source of truth; this generator
-renders it into the site's page shell by reusing build_page.py's TEMPLATE,
-so the dashboard always matches the site's design. The dashboard's own
-CSS and JS are inserted after TEMPLATE.format() (they contain braces, so
-they must not pass through .format()).
+The dashboard lives EMBEDDED in the report page (index.html) as its first
+top-level section — it is not a standalone page anymore (dashboard.html is
+a redirect to index.html#executive-dashboard). build_html.py imports this
+module: render_embedded() returns the section's inner HTML (as-of line,
+intro, countdown, panels), DASH_CSS / COUNTDOWN_JS are the dashboard's
+own styles and countdown script, and validate() checks every figure
+against the generated index.html.
 
-Validation: every figure needs label/display (or text), source, rating,
-date, and a link whose #anchor exists in index.html. A failure exits 1
-with the problem listed — fix the data, don't weaken the check.
+dashboard.json is the single source of truth. Validation: every figure
+needs label/display (or text), source, rating, date, and a link whose
+#anchor exists in index.html. A failure exits 1 with the problem listed
+— fix the data, don't weaken the check.
 
-Usage: build_dashboard.py [dashboard.json] [dashboard.html]
-Defaults: dashboard.json / dashboard.html in the repo root.
+Usage: build_dashboard.py [dashboard.json] [index.html]
+Validates dashboard.json against index.html; exits 1 on any failure.
+Defaults: dashboard.json / index.html in the repo root.
 """
 
 import html
@@ -21,9 +24,6 @@ import json
 import re
 import sys
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import build_page  # noqa: E402  (TEMPLATE only — the shell and base CSS)
 
 REPO = Path(__file__).resolve().parent.parent
 RATINGS = {
@@ -150,10 +150,10 @@ def render_block(b):
     raise ValueError(f"unknown block kind: {kind}")
 
 
-def render_panel(p):
+def render_panel(p, level=3):
     blocks = "".join(render_block(b) for b in p["blocks"])
     return (
-        f'<h2 id="{esc(p["id"])}" class="dash-panel">{esc(p["title"])}</h2>'
+        f'<h{level} id="{esc(p["id"])}" class="dash-panel">{esc(p["title"])}</h{level}>'
         f'<p class="panel-lede">{esc(p["lede"])}</p>'
         f"{blocks}"
     )
@@ -161,7 +161,7 @@ def render_panel(p):
 
 def render_countdown(deadlines):
     cards = "".join(
-        '<div class="cd-card"><a href="index.html#what-were-watching">'
+        '<div class="cd-card"><a href="#what-were-watching">'
         f'<p class="cd-label">{esc(d["label"])}</p>'
         f'<p class="cd-date">{esc(d["display"])}</p>'
         f'<p class="cd-days" data-deadline="{esc(d["date"])}"></p>'
@@ -169,6 +169,22 @@ def render_countdown(deadlines):
         for d in deadlines
     )
     return f'<div class="countdown-strip">{cards}</div>'
+
+
+def render_embedded(data):
+    """The dashboard section's inner HTML, for embedding in index.html.
+
+    Panels render as H3s under the section's H2 ("Executive dashboard").
+    The as-of line is a small muted line, not a second banner — the
+    page's own As-of banner (row 1) is the page-level date.
+    """
+    parts = [
+        f'<p class="dash-asof">Dashboard figures as of {esc(data["as_of_label"])}</p>',
+        f'<p class="dash-intro">{esc(data["note"])}</p>',
+        render_countdown(data["deadlines"]),
+    ]
+    parts += [render_panel(p, level=3) for p in data["panels"]]
+    return "".join(parts)
 
 
 def iter_figures(data):
@@ -195,9 +211,15 @@ def validate(data, index_html):
         if f.get("rating") not in RATINGS:
             errors.append(f"{src}: bad rating {f.get('rating')!r}")
         link = f.get("link", "")
-        if not link.startswith("index.html#"):
+        # Same-page anchors ("#...") or legacy "index.html#..." links.
+        if link.startswith("#"):
+            frag = link[1:]
+        elif link.startswith("index.html#"):
+            frag = link.split("#", 1)[1]
+        else:
             errors.append(f"{src}: bad link {link!r}")
-        elif link.split("#", 1)[1] not in anchors:
+            frag = None
+        if frag is not None and frag not in anchors:
             errors.append(f"{src}: anchor missing in index.html: {link}")
         if f.get("kind") == "bar":
             v = f.get("value")
@@ -212,49 +234,9 @@ def validate(data, index_html):
     return errors
 
 
-def build(data_path, output_path):
-    data = json.loads(Path(data_path).read_text(encoding="utf-8"))
-    index_html = (REPO / "index.html").read_text(encoding="utf-8")
-    errors = validate(data, index_html)
-    if errors:
-        print("dashboard.json validation FAILED:")
-        for e in errors:
-            print("  -", e)
-        sys.exit(1)
-
-    toc_items = "".join(
-        f'<li><a href="#{esc(p["id"])}">{esc(p["title"])}</a></li>'
-        for p in data["panels"]
-    )
-    toc = f'<div class="toc"><ul>{toc_items}</ul></div>'
-
-    body = (
-        "<h1>Executive dashboard"
-        "<em>CI Sitrep — Code &amp; Finance</em></h1>"
-        '<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>'
-        '<div class="as-of-banner">As of <strong>'
-        f"{esc(data['as_of_label'])}</strong></div>"
-        f'<p class="dash-intro">{esc(data["note"])}</p>'
-        f"{render_countdown(data['deadlines'])}"
-        + "".join(render_panel(p) for p in data["panels"])
-    )
-
-    html_out = build_page.TEMPLATE.format(
-        title="Executive dashboard — CI Sitrep",
-        toc=toc,
-        body=body,
-    )
-    # Dashboard CSS/JS are inserted AFTER .format() — they contain braces.
-    html_out = html_out.replace("</style>", DASH_CSS + "\n</style>", 1)
-    html_out = html_out.replace("</body>", DASH_JS + "\n</body>", 1)
-    Path(output_path).write_text(html_out, encoding="utf-8")
-    print(f"Wrote {output_path} ({len(html_out)} bytes)")
-
-
 DASH_CSS = """
   /* Executive dashboard (F-01): at-a-glance figures, same palette. */
-  .as-of-banner { background: #E9EAF1; border: 1px solid #C5C8DC; border-radius: 6px; padding: 10px 14px; margin: 0 0 16px; font-size: 15px; }
-  .as-of-banner strong { color: var(--logo-navy); }
+  .dash-asof { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
   .dash-intro { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
   .countdown-strip { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
   .cd-card { flex: 1 1 180px; border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 10px 12px; background: #fdfbf7; }
@@ -296,7 +278,7 @@ DASH_CSS = """
   @media (max-width: 900px) { .ledger { grid-template-columns: 1fr; } }
 """
 
-DASH_JS = """
+COUNTDOWN_JS = """
 <script>
 (function () {
   // Countdown: days remaining for each dated item, computed at load.
@@ -309,22 +291,25 @@ DASH_JS = """
     else if (days === 1) el.textContent = 'tomorrow';
     else el.textContent = 'in ' + days + ' days';
   });
-  // Dashboard panels start open (the page template collapses every
-  // heading); the reader can still collapse one by clicking its heading.
-  document.querySelectorAll('main h2.dash-panel').forEach(function (h) {
-    h.classList.remove('collapsed');
-  });
-  // Breadcrumbs are noise on a one-screen dashboard.
-  document.querySelectorAll('main .crumbs').forEach(function (el) {
-    el.remove();
-  });
 })();
 </script>
 """
 
+
+def main(argv):
+    data_path = argv[1] if len(argv) > 1 else str(REPO / "dashboard.json")
+    index_path = argv[2] if len(argv) > 2 else str(REPO / "index.html")
+    data = json.loads(Path(data_path).read_text(encoding="utf-8"))
+    index_html = Path(index_path).read_text(encoding="utf-8")
+    errors = validate(data, index_html)
+    if errors:
+        print("dashboard.json validation FAILED:")
+        for e in errors:
+            print("  -", e)
+        sys.exit(1)
+    print(f"dashboard.json OK ({len(list(iter_figures(data)))} figures, "
+          f"{len(data['panels'])} panels)")
+
+
 if __name__ == "__main__":
-    data_path = sys.argv[1] if len(sys.argv) > 1 else str(REPO / "dashboard.json")
-    output_path = (
-        sys.argv[2] if len(sys.argv) > 2 else str(REPO / "dashboard.html")
-    )
-    build(data_path, output_path)
+    main(sys.argv)
