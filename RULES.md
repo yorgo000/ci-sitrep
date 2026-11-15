@@ -36,6 +36,18 @@ and minor updates do not qualify.
 3. Agentic: CIAC Design, Build, Deployment — the creation, governance,
    and management of ci agent collectives.
 
+**Geography and audience focus (2026-11-15).** The report's focus is the
+US — New York City in particular — and the firms Confluence<1> serves:
+investment management, hedge funds, and managing general agents (MGAs).
+Gather and prioritise US evidence: US surveys, US regulators (federal and
+state), US firms. UK, EU, and APAC items enter when they bear on US firms
+— EU rules that bind firms with EU operations or clients, UK supervision
+as a leading indicator, APAC frameworks US firms will be measured
+against — but they do not lead: the dashboard's finance cut and the
+front-page synthesis lead with US figures, and non-US figures are
+labelled with their jurisdiction. A missing US figure is a gap to note
+and to seek, not a reason to lead with a UK one.
+
 **Nomenclature.** Our own framing uses CI (created intelligence), CIA (ci
 agent), CIAC (cia collective) — in the title, the explainer, the theses,
 the section headings, and the culture framework. The field's own words
@@ -319,23 +331,29 @@ sections (§1, §2, §3) sit inside Report. The meta-section headings
 ("State of the market", "New this week", "What we're watching",
 "Archive") are de-emphasized: smaller, lighter weight, muted color.
 
-**Collapse behaviour.** The two top-level sections, the three
-front-page sections ("State of the market", "New this week", "What
-we're watching"), and the dashboard panels start OPEN; everything
-else starts collapsed. Article headlines are native `<details>` and
+**Collapse behaviour.** Only the two top-level sections start OPEN;
+everything inside them — the three front-page sections ("State of the
+market", "New this week", "What we're watching"), the dashboard panels,
+the content sections — starts collapsed, as one line each. (Before
+2026-11-15 the front-page sections and dashboard panels also started
+open; Yorgo reversed that — the page opens as a clean outline, and the
+reader drills in.) Article headlines are native `<details>` and
 start collapsed. Jumping to an anchor auto-expands its ancestors —
-including the target heading itself. "How to read this" is regular
-weight, italic, muted — not attracting attention. On the content
-pages (About, Explainer, Theses, Archive, Self-Audit, Glossary)
-everything starts collapsed, including the theses page's Part
-headings (H1s other than the page title). The Sections
+including the target heading itself. "Collapse all" returns the page to
+its initial state: it closes everything except the two top-level
+sections. "How to read this" is regular weight, italic, muted — not
+attracting attention; it sits centered in row 1, between the As-of
+banner and the Sections controls, and drops to a full-width line when
+opened. On the content pages (About, Explainer, Theses, Archive,
+Self-Audit, Glossary) everything starts collapsed, including the theses
+page's Part headings (H1s other than the page title). The Sections
 expand/collapse control lives in the main content — row 1 on the
 report page, under the H1 on the content pages — never in the
 sidebar, where it was lost.
 
 **Mobile.** Content comes before the masthead (CSS `order`: main first,
 sidebar second). A native `<details>` "Contents" line sits in the main
-content between the search box (row 2) and "How to read this" (row 3);
+content between the search box (row 2) and the dashboard section;
 it is hidden on desktop and shown on mobile, and sits outside every
 section-body so collapsing a section never hides it.
 
@@ -608,3 +626,21 @@ The Self-Audit page records the date of the last full manual link audit
   (a Python replica of the share JS's slugify + uniqueId) and validates
   article links against it; verify.py's anchor check accepts the same
   computed ids.
+- **2026-11-15 (evening)** — Row 1 revised: "How to read this" moved
+  into row 1, centered between the As-of banner and the Sections
+  controls (row 3 is gone); when opened it drops to a full-width line
+  below the row. First-open state reversed: only the two top-level
+  sections start open — the front-page sections and dashboard panels
+  now start collapsed, as one line each (they started open since
+  2026-11-13/14). "Collapse all" returns the page to that initial
+  state: it closes everything except the two top-level sections — this
+  also fixes a real defect Yorgo found, that Collapse did nothing on
+  first load (the only open headings were the ones the handler
+  skipped). Geography focus adopted (§1): US, NYC, investment
+  management, hedge funds, MGAs — US evidence leads; UK/EU/APAC items
+  enter when they bear on US firms and are labelled with their
+  jurisdiction. First application: the ACA/NSCP 2026 AI Benchmarking
+  Survey article (§3.4, 60th article) and a US-led dashboard finance
+  cut (86% of US firms use AI, 1 in 4 experimenting with agentic AI,
+  38% formally test outputs; the UK BoE/FCA 80% deployed-agents figure
+  kept as the comparison point).
