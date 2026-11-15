@@ -67,6 +67,8 @@ HTML_MARKERS = [
     ("makeShareButton", "share-link buttons"),
     ("back-to-top", "back-to-top button"),
     ("state-of-the-market", "State of the market section"),
+    ("search-box", "Search box"),
+    ("search-input", "Search input"),
     ("How to read this", "How-to-read block"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
