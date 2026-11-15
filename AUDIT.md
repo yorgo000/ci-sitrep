@@ -10,12 +10,12 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 59 |
-| Source links (article + subsection) | 147 |
-| Total external links (incl. inline prose links) | 343 |
-| Unique source URLs | 136 |
+| Articles | 60 |
+| Source links (article + subsection) | 149 |
+| Total external links (incl. inline prose links) | 347 |
+| Unique source URLs | 137 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new this week | 23 |
+| Items new this week | 24 |
 | Superseded entries in the archive | 12 |
 | Report live since | 2026-11-09 |
 
@@ -27,12 +27,12 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 19% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 18% |
 | ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 16 | 27% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 30 | 51% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 31 | 52% |
 | ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 2 | 3% |
 
-**46% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
+**45% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
 ---
 
@@ -61,7 +61,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 136 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 137 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
