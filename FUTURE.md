@@ -240,6 +240,30 @@ Let readers save items to a personal reading list and come back to them later �
 - The list itself is a view the reader returns to (own page, linked from the masthead nav): each entry links back to its anchor in the report (opens expanded) and carries its share button, so sharing from the list works exactly like sharing from the report.
 - **Open questions:** the list's home — own page vs a panel; ordering (most recent first, or report order); remove/clear; what happens when a saved article is superseded and archived — its anchor may disappear from the live report, so stale entries need graceful handling (link to the Archive, or a note that the item moved); local-storage limits for heavy readers.
 
+## F-17 — Human baselines: every CI figure compared to human performance
+
+**Status:** Proposed
+**Proposed:** 2026-11-15 (Yorgo — "we need to compare all the CI-based code and agent performance to humans — it's meaningless on its own for an executive")
+
+A benchmark score on its own tells an executive nothing: 74.0 on A.S.E, 67% on ThinkingBox, 45–70% on BugLedger — good or bad? The answer only exists against the human baseline for the same task. Every CI performance figure in the report and the dashboard should carry its human comparison next to it, wherever one exists — and where none exists, say so plainly (a gap in the evidence, not a number to guess).
+
+**Already in the report, in scattered form (the seed of this feature):**
+
+- CodeRabbit: CI code carries 2.74× the vulnerabilities of human-written code for equivalent tasks (§1.1, §2.1) — vendor claim, ●○○○.
+- Sajadi et al. (v4, Nov 2026): on SWE-bench, a standalone LLM's patches introduced 135 manually confirmed vulnerabilities against 12 for developer patches on the same issues (§2.1) — peer-reviewed, the strongest human-comparison evidence in the report.
+- METR time horizons (§3.6): agent task-completion time vs human task time on the same tasks — the agent-performance equivalent.
+- SusVibes re-run (§1.6): human review as the control that reduces the vulnerability share — the human as the intervention, not just the baseline.
+- GitClear (§2.1): the maintainability gap, measured against human-authored code's churn patterns.
+
+**What F-17 adds — making it systematic:**
+
+- **A baseline audit.** Walk every performance figure in the report and the dashboard and record, per figure, whether a human baseline exists in the cited source (same task, same metric) or not. The audit itself is a finding: most benchmarks publish no human baseline at all, and that absence is worth stating.
+- **Baseline next to the figure.** Where a baseline exists, it travels with the figure — in the article (a bullet: "human baseline on the same task: X"), and in the dashboard (a second value or a "vs human" line on the figure). The comparison must be same-task, same-metric; a human number from a different task is not a baseline.
+- **No baseline, no guess.** Where the source publishes no human comparison, the figure carries a "no human baseline published" note rather than an invented one. Over time this becomes a pressure point: benchmarks that publish baselines are more useful to executives, and the report can say so.
+- **A human-baseline view (later).** Once baselines are structured data (a natural field for the F-02 database), a dedicated view — every CI-vs-human comparison in one place — becomes possible. That is a later step; the audit and the per-figure baselines come first.
+
+**Open questions:** how the dashboard shows a baseline without doubling the figure count (second value, ratio, or a toggle); whether to score benchmarks partly on whether they publish a human baseline (a credibility-adjacent signal, not the credibility rating itself); which human population is the baseline for agent tasks — median developer, senior developer, specialist — since the answer changes the comparison.
+
 ---
 
 ## Template for new features
