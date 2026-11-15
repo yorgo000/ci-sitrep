@@ -8,6 +8,10 @@ The acronyms and jargon in the CI SITREP, in plain language. In the report, dott
 vendors talk to each other and hand off work. One of the two interop standards
 the report tracks (with MCP).
 
+**ACA (ACA Group)** — A governance, risk, and compliance firm serving financial
+services; co-runs the annual AI Benchmarking Survey with NSCP. Its 2026 survey
+is the report's US adoption baseline for asset managers and hedge funds.
+
 **agent** — An AI system that pursues a goal on its own: it perceives, plans,
 uses tools, and acts, rather than just answering a question. The field's word
 for what Confluence<1> calls a CIA.
@@ -209,6 +213,10 @@ unions. Co-issuing interagency TPRM guidance for the first time.
 standards agency. Its AI Risk Management Framework (AI RMF) is the most-cited
 voluntary AI governance standard.
 
+**NSCP (National Society of Compliance Professionals)** — The US non-profit
+membership organisation for financial-services compliance professionals;
+co-runs the annual AI Benchmarking Survey with ACA Group.
+
 **NYDFS (New York Department of Financial Services)** — New York State's
 financial regulator. Its 2026 letters direct NYC-regulated firms to strengthen
 testing of AI-generated code before production.
@@ -255,6 +263,10 @@ attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.
 
 ## R
+
+**RAUM (regulatory assets under management)** — The asset figure US investment
+advisers report to the SEC on Form ADV. The ACA/NSCP survey's typical
+respondent firm reports $1B–$10B in RAUM.
 
 **RBAC (role-based access control)** — Permissions by job, not by person: each
 role gets exactly the access its job needs, nothing more. Applies to agents as
