@@ -70,11 +70,22 @@ the file is hierarchical, with a table of contents.
 1. **How to read this** — one collapsed block holding everything before
    "New this week" (the intro line, the credibility legend, the caveats).
    It is the first thing on the page but must not attract attention.
-2. **New this week** — a rolling 7-day window. Entries older than 7 days
+2. **State of the market** — a 2–4 sentence macro synthesis, the first
+   thing a new reader actually reads. Every claim in it is grounded in
+   the report's own findings and traceable via an internal link to the
+   section that evidences it (the flaw rate to §1.6, the governance gap
+   to §3.4.3, the regulatory picture to §3.4.2). Revise it whenever a
+   material shift lands that changes the macro picture; never let it go
+   stale or contradict the sections below it. No generic marketing
+   claims — every sentence must be defensible from the report.
+3. **New this week** — a rolling 7-day window. Entries older than 7 days
    drop off. Every entry is dated with the date it was ADDED to the
-   report, carries a finding-first title (§3), and links to the section
-   where the article lives. Entries are in strict newest-first order.
-3. **What we're watching** — dated upcoming events (comment deadlines,
+   report, carries a finding-first title (§3), carries plain-English
+   section tags ([Pre-commit], [In codebase], [Agentic] — one per
+   section the entry touches, never the old "(subject 1/2/3)"
+   parentheticals), and links to the section where the article lives.
+   Entries are in strict newest-first order.
+4. **What we're watching** — dated upcoming events (comment deadlines,
    effective dates) and open questions the report is tracking (things
    promised but not yet published, benchmarks that don't exist yet,
    regulatory language that may harden). Dated items are in soonest-first
@@ -82,10 +93,10 @@ the file is hierarchical, with a table of contents.
    new item when research surfaces one; remove an item the day it lands
    (it becomes an article and a "New this week" entry instead). A past
    date or a landed item still listed is a defect.
-4. **Contents** — the table of contents. Anchor links must match the
+5. **Contents** — the table of contents. Anchor links must match the
    headings (GitHub-style anchors; the double hyphens are correct).
-5. **§1, §2, §3** — the three content sections, in that order.
-6. **Archive** — a pointer to the archive page.
+6. **§1, §2, §3** — the three content sections, in that order.
+7. **Archive** — a pointer to the archive page.
 
 **Articles.** Each article is a collapsible headline (`<details>` /
 `<summary>`) with one fact per bullet inside. The headline carries the
@@ -129,9 +140,12 @@ to "What we're watching" rather than maintaining its own known-gaps list.
   for dated calendar items (the "What we're watching" list); in article
   bullets, a date goes at the end with the attribution.
 - "New this week" entry titles are findings, never names — "First
-  benchmark of agentic pre-merge security review (SecPRBench; subjects 1,
-  2)", never "SecPRBench (subjects 1, 2): the first benchmark…". Link the
-  source name in the entry to its primary source URL.
+  benchmark of agentic pre-merge security review (SecPRBench)
+  [Pre-commit] [In codebase]", never "SecPRBench [Pre-commit] [In
+  codebase]: the first benchmark…". Link the source name in the entry to
+  its primary source URL. Tag every entry with plain-English section
+  tags — [Pre-commit], [In codebase], [Agentic] — never the old
+  "(subject 1/2/3)" parentheticals.
 - Exceptions (the only ones): lists organized BY verification status
   (§1.6.1, §2.6, §3.8) where the source's reliability IS the point;
   tables, where the product/framework is the row subject; and bullets
@@ -234,12 +248,13 @@ legend (heading: "Credibility rating"), the Contents index, and the
 copyright line "© 2026 Confluence<1> Corp. All rights reserved."
 
 **Section headings.** The three content sections are the visual top of
-the hierarchy. The meta-section headings ("New this week", "What we're
-watching", "Archive") are de-emphasized: smaller, lighter weight, muted
-color.
+the hierarchy. The meta-section headings ("State of the market",
+"New this week", "What we're watching", "Archive") are de-emphasized:
+smaller, lighter weight, muted color.
 
-**Collapse behaviour.** The two front-page sections ("New this week",
-"What we're watching") start OPEN; everything else starts collapsed.
+**Collapse behaviour.** The three front-page sections ("State of the
+market", "New this week", "What we're watching") start OPEN; everything
+else starts collapsed.
 Article headlines are native `<details>` and start collapsed. Jumping to
 an anchor auto-expands its ancestors. "How to read this" is regular
 weight, italic, muted — first on the page, not attracting attention.
@@ -255,7 +270,7 @@ section never hides it.
   back up to any ancestor level or the top of the page — "↑ Top · §3
   Agentic … · §3.4 Governance". Built in JS from the heading hierarchy,
   so it stays correct as sections are added or renamed. Skipped on the
-  two front-page sections (they sit at the top of the page already) and
+  three front-page sections (they sit at the top of the page already) and
   on the page title; the current section is not repeated (its heading is
   directly above). Breadcrumb paragraphs never get share buttons.
 - **Back-to-top button.** A small round navy button, fixed bottom-right,
@@ -415,3 +430,15 @@ The Self-Audit page records the date of the last full manual link audit
   back link at the top of the content). verify.py's anchor check now
   strips `<script>` blocks before matching (JS string literals
   false-positived it) and checks for the back-to-top button.
+- **2026-11-14 (evening)** — "State of the market" adopted (front-page
+  macro synthesis above "New this week", 2–4 sentences, every claim
+  grounded in the report's findings and linked to its evidencing
+  section; revised when a material shift lands). Three front-page
+  sections now start open. "New this week" entries carry plain-English
+  section tags ([Pre-commit], [In codebase], [Agentic]) instead of
+  "(subject 1/2/3)" parentheticals. FUTURE.md gained F-05–F-12 from an
+  external reviewer's feedback: F-05 State of the market, F-06 monthly
+  summary, F-07 plain-English NTW tags, F-08 "in practice" extension to
+  §1, F-09 one findable contact point; F-10 (per-pillar Business Impact
+  module), F-11 (per-link Strategic Implication sentences) and F-12
+  (embedded CTAs) recorded as Dropped, with reasons.
