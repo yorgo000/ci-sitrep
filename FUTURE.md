@@ -221,6 +221,25 @@ A glossary page (alphabetical, one line per term, each term linkable) built from
 
 **Browser-tested live 2026-11-14 (5/5 pass):** dotted terms present (TPRM, SAST, inference); hovering TPRM shows the tooltip with the glossary's definition verbatim; the tooltip's "Glossary →" link lands on glossary.html#tprm with the T section auto-expanded; the glossary page renders all 19 letter headings with entries (incl. the CI vs CI/CD collision note); a tooltip deep in §3.4.3 works. Two notes from the test, both non-defects: the TPRM tooltip wording differed from the test brief's paraphrase but matched the glossary entry verbatim (the brief was wrong, not the site); the "Expand all" click that seemed not to work was the sidebar's TOC control, not the "Sections: Expand all" control — the glossary TOC is flat, so there was nothing for it to expand, while individual headings and anchor auto-expand both work.
 
+## F-16 — Reading list
+
+**Status:** Proposed
+**Proposed:** 2026-11-15 (Yorgo)
+
+Let readers save items to a personal reading list and come back to them later — to read, or to share from there. An executive skims the report or the dashboard, saves the three findings that matter to their P&L, and reads them properly later instead of losing them in the 59-article report.
+
+**Storage, in two stages:**
+
+- **V1 — browser/device-local.** The list lives in the reader's own browser (localStorage): no backend, no account, works on GitHub Pages as-is. The reader's list stays on that device.
+- **V2 — user database.** Once a user DB exists (the membership/commercialization work), the list is saved in perpetuity, tied to the account, and follows the reader across devices. V1 should offer to import the local list into the account when V2 arrives.
+
+**Design notes:**
+
+- It builds on the share infrastructure: every article, paragraph, table, and heading already has a deterministic runtime id and a stable anchor URL that opens expanded. A list entry stores the anchor URL, the item's title, its section, its credibility rating, and the date saved.
+- The "add to reading list" control sits beside the share button on each item (articles at minimum; the same control works on the other shareable units since they share the anchor machinery).
+- The list itself is a view the reader returns to (own page, linked from the masthead nav): each entry links back to its anchor in the report (opens expanded) and carries its share button, so sharing from the list works exactly like sharing from the report.
+- **Open questions:** the list's home — own page vs a panel; ordering (most recent first, or report order); remove/clear; what happens when a saved article is superseded and archived — its anchor may disappear from the live report, so stale entries need graceful handling (link to the Archive, or a note that the item moved); local-storage limits for heavy readers.
+
 ---
 
 ## Template for new features
