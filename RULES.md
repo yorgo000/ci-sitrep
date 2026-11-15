@@ -126,6 +126,23 @@ alphabetical place under the right letter heading. Changing
 `GLOSSARY.md` means regenerating BOTH `glossary.html` and `index.html`
 (the tooltip data is generated from it at build time).
 
+**Dashboard.** `dashboard.json` is the single source of truth for the
+executive dashboard (F-01): five panels of at-a-glance figures, every
+figure carrying its value, label, source, rating, date, and a link to
+the report section that evidences it, plus a deadlines list for the
+countdown strip. It builds to `dashboard.html` via
+`_tools/build_dashboard.py`, which reuses `build_page.py`'s template so
+the dashboard always matches the site's design, and validates every
+figure (required fields, rating in the four levels, bar values 0–100,
+link anchors exist in `index.html`) — a bad entry exits 1; fix the
+data, never weaken the check. **Never add a figure the report does not
+evidence, and never invent a dollar figure for the money panel** — its
+honest statement is "no credible dollar figure exists yet". The daily
+watch updates a figure when a new article moves a headline number, and
+updates the deadlines list the day a What-we're-watching date lands, so
+the countdown strip never shows a passed date. Panel order is editorial
+(audience-first), not numeric.
+
 ---
 
 ## 3. Style — how it reads
@@ -505,3 +522,13 @@ The Self-Audit page records the date of the last full manual link audit
   removed; the daily watch adds new terms as part of its editorial pass.
   verify.py now checks the glossary (existence, alphabetical order,
   unique slugs, naming, tooltip data completeness, glossary-page ids).
+- **2026-11-15** — Executive dashboard adopted (F-01): `dashboard.json`
+  as the single source of truth (five panels, 51 figures, four deadline
+  countdowns), built to `dashboard.html` by `_tools/build_dashboard.py`
+  reusing the page template; every figure carries its credibility rating
+  and links to the report section that evidences it; the generator
+  validates every figure and exits 1 on a bad entry. Linked from the
+  report page's masthead nav and the "How to read this" block. The daily
+  watch maintains it (DASHBOARD step in the cron): update a figure when
+  a headline number moves, update the deadlines the day a watched date
+  lands, never invent a dollar figure for the money panel.
