@@ -90,6 +90,91 @@ The architecture for the whole operation — how information gets in, how it get
 - **The production interface.** What does the operator see and choose when producing a sitrep? How are filter intersections specified?
 - **Relationship to the current daily watch.** Does the daily watch cron become the radar, or is the radar something broader that the watch feeds into?
 
+## F-05 — State of the market (front-page synthesis)
+
+**Status:** Done
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+**Built:** 2026-11-14
+
+A short synthesis — 2–4 sentences — at the very top of the report, above "New this week", giving a new reader the macro narrative before the granular updates: where AI code generation and agentic deployment stand, where governance lags, and where regulation is heading. The executive reader's first paragraph.
+
+**Design notes (decided 2026-11-14):**
+
+- Evidence-grounded in the report's own findings (the 45% flaw rate, the governance gap, the regulatory timeline) — no generic marketing lines.
+- A named front-page section (H2), starting OPEN like "New this week" and "What we're watching", sharing the tinted navy panel and the de-emphasized meta-heading style.
+- Maintenance rule: the daily watch revises it when a material shift lands; it must never go stale, or it contradicts the "up to date" promise. Recorded in RULES.md and the daily watch cron.
+- This is the cheap version of F-01 — the dashboard is the fuller, visual version, later.
+
+## F-06 — Monthly summary ("This month")
+
+**Status:** Proposed
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+
+A monthly synthesis below "New this week": the 3–4 biggest shifts of the month, so a reader checking in monthly instantly grasps the momentum without parsing individual tactical updates or digging through the Archive. Monthly, not quarterly — this field moves too fast for a quarterly cadence.
+
+**Design notes:**
+
+- First edition at the end of November 2026 (a strong first month: the governance gap, the TPRM extension, FCA supervision insights, the Glasswing 175-to-1 finding, the BoE/FCA survey).
+- Natural raw material for the weekly newsletter (which synthesizes the week; this synthesizes the month).
+- Open question: maintained by a month-end step in the daily watch cron, or a separate monthly job?
+
+## F-07 — Plain-English tags in "New this week"
+
+**Status:** Done
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+**Built:** 2026-11-14
+
+Replace the academic "(subject 1/2/3)" parentheticals in the "New this week" entries with plain tags — [Pre-commit], [In codebase], [Agentic]. The section names are already plain English; the parentheticals were the only place the numbered-subject language reached the public page.
+
+**Design notes:**
+
+- A display-label change only — it does not replace the tagging taxonomy (subject/type/severity/jurisdiction), which is the deeper tagging system and still awaits Yorgo's approval.
+- The daily watch cron uses the plain tags for all new entries.
+
+## F-08 — "What this means in practice" extended to §1
+
+**Status:** Proposed
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day — the narrower version of the reviewer's per-link implication proposal)
+
+The report already carries implication synthesis where it matters most: §2.7 is "What this means in practice", §3.4.2 has "What the regulatory picture means in practice", and several articles carry "What this changes in practice" bullets. §1 has no equivalent. Extend the existing pattern to §1 (and the rest of §3 where absent) — a synthesis paragraph per subsection that needs one, in the report's own voice, not a "Confluence<1> says" line under every link.
+
+**Design notes:**
+
+- Lower priority than F-05/F-07. Build when a §1 synthesis paragraph has something to say that the articles don't already say between them.
+
+## F-09 — One findable contact point (the restrained conversion step)
+
+**Status:** Proposed
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day — the narrower version of the reviewer's CTA proposal)
+
+The report page has no conversion path; the only contact point is one line on the About page ("For enquiries, write to ci-sitrep@confluence1.com"). Add exactly one restrained, findable entry point — not CTAs scattered through the text.
+
+**Design notes:**
+
+- Placement undecided: a masthead nav link to About's Contact section, or a single line at the bottom of the report. Yorgo to pick.
+- The real conversion engine remains the newsletter funnel (subscribe → site → value-add → Confluence<1> service), which still needs Yorgo's yes to start.
+
+## F-10 — Business Impact & Risk module in each pillar
+
+**Status:** Dropped
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+
+**Why dropped:** the gap the reviewer identified is real (the report is technical, not P&L-framed), but the fix is the wrong shape. A Business Impact module in each of the three pillars would be either vague or duplicative — the F-01 data inventory already found the money panel is the thinnest, with no credible dollar figure, so sourced business-impact claims barely exist yet. The business layer belongs in F-01 (the dashboard, sourced numbers only) and in the newsletter (plain language for P&L readers), both already planned. F-05 (State of the market) carries the macro business framing in the meantime.
+
+## F-11 — "Strategic Implication" sentence under major external links
+
+**Status:** Dropped
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+
+**Why dropped:** the proposal misreads where the report's authority comes from — it is the curation (selection, vetting, rating, organization), not per-link editorializing. A "Confluence<1> says" line under every major link would slow the daily watch, turn an evidence-based knowledge base into opinionated commentary, and duplicate what already exists (see F-08: the "in practice" synthesis pattern is already in §2.7, §3.4.2, and several articles). F-08 is the narrower version of this proposal.
+
+## F-12 — Context-specific CTAs embedded in the text
+
+**Status:** Dropped
+**Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
+
+**Why dropped:** embedding sales CTAs at the end of sections ("Connect with Confluence<1> to architect your pre-commit gates") would spend the exact credibility the report is built on — a knowledge base that pitches reads as a sales document, and the ratings and citations are what make a P&L reader trust it. The reviewer's premise is also overstated: the intelligence is not proprietary (it is curated public sources); the moat is the ongoing curation, the ratings, and the certification framework, which a reader cannot take to a competitor. The conversion path was designed to run through the newsletter funnel, not the report page. F-09 is the restrained alternative.
+
 ---
 
 ## Template for new features
