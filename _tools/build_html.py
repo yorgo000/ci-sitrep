@@ -239,11 +239,77 @@ def build(input_path, output_path):
         '<p id="search-status" class="visually-hidden" aria-live="polite"></p>\n'
         '</div>\n'
     )
+    # Page structure (2026-11-15 restructure):
+    #   Row 1: As-of banner + Sections expand/collapse controls (same row).
+    #   Row 2: search box.
+    #   Row 3: "How to read this" (right-justified when collapsed).
+    #   Then the two top-level sections: EXECUTIVE DASHBOARD (the F-01
+    #   dashboard, embedded from dashboard.json) and REPORT (the report
+    #   body). The report's headings keep their levels — the H2s stay H2s
+    #   — so every anchor survives the move.
+    # "How to read this" comes out of the body and into row 3.
+    htr_match = re.search(r'<details class="how-to-read">.*?</details>', body, re.DOTALL)
+    htr = htr_match.group(0) if htr_match else ""
+    if htr_match:
+        body = body[:htr_match.start()] + body[htr_match.end():]
+    htr_row = f'<div class="how-to-read-row">\n{htr}\n</div>\n' if htr else ""
+
+    # Row 1: As-of banner + Sections expand/collapse controls.
+    sec_controls = (
+        '<div class="sec-controls">Sections: '
+        '<button type="button" data-act="expand">Expand all</button>'
+        '<button type="button" data-act="collapse">Collapse all</button></div>'
+    )
     if as_of:
         banner = f'<p class="as-of-banner">As of {as_of}</p>'
-        body = body.replace("</h1>", "</h1>\n" + banner + "\n" + search_box + "\n" + inline_toc, 1)
+        row1 = f'<div class="top-row">\n{banner}\n{sec_controls}\n</div>\n'
     else:
-        body = body.replace("</h1>", "</h1>\n" + search_box + "\n" + inline_toc, 1)
+        row1 = f'<div class="top-row">\n{sec_controls}\n</div>\n'
+
+    # Split the H1 from the rest; the rest becomes the REPORT section.
+    h1_part, sep, rest = body.partition("</h1>")
+    h1_part += sep
+
+    # Dashboard (F-01), embedded as the first top-level section.
+    dash_path = Path(input_path).parent / "dashboard.json"
+    dash_section = ""
+    dash_data = None
+    toc = toc_html
+    if dash_path.exists():
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import build_dashboard
+        dash_data = json.loads(dash_path.read_text(encoding="utf-8"))
+        dash_inner = build_dashboard.render_embedded(dash_data)
+        dash_section = (
+            '<h2 id="executive-dashboard">Executive dashboard</h2>\n'
+            f'<div class="dash-embed">\n{dash_inner}\n</div>\n'
+        )
+        # TOC: dashboard first (with its panels), report sections nested
+        # under "Report" — mirroring the page's two top-level sections.
+        panel_items = "".join(
+            f'<li><a href="#{build_dashboard.esc(p["id"])}">'
+            f'{build_dashboard.esc(p["title"])}</a></li>'
+            for p in dash_data["panels"]
+        )
+        ul_start = toc_html.find("<ul>")
+        ul_end = toc_html.rfind("</ul>") + len("</ul>")
+        report_ul = toc_html[ul_start:ul_end]
+        toc = (
+            '<div class="toc">\n<ul>\n'
+            '<li><a href="#executive-dashboard">Executive dashboard</a>\n<ul>\n'
+            + panel_items + '\n</ul>\n</li>\n'
+            '<li><a href="#report">Report</a>\n'
+            + report_ul + '\n</li>\n</ul>\n</div>\n'
+        )
+    else:
+        print(f"WARNING: {dash_path} not found — dashboard section omitted")
+
+    body = (
+        h1_part + "\n" + row1 + search_box + "\n" + inline_toc + htr_row
+        + dash_section
+        + '<h2 id="report">Report</h2>\n'
+        + '<div class="report-embed">\n' + rest + '\n</div>\n'
+    )
 
     # Glossary data for tooltips: parsed from GLOSSARY.md in the same
     # directory as the report source. The tooltip JS wraps first mentions
@@ -257,12 +323,23 @@ def build(input_path, output_path):
         glossary_data = "[]"
 
     html = TEMPLATE.format(
-        title="CI Sitrep — Code & Finance",
+        title="CI SITREP — Code & Finance",
         last_updated=last_updated,
-        toc=toc_html,
+        toc=toc,
         body=body,
         glossary_data=glossary_data,
     )
+    if dash_data is not None:
+        # Dashboard CSS/JS are inserted AFTER .format() — they contain braces.
+        html = html.replace("</style>", build_dashboard.DASH_CSS + "\n</style>", 1)
+        html = html.replace("</body>", build_dashboard.COUNTDOWN_JS + "\n</body>", 1)
+        # Validate the dashboard data against the final HTML.
+        errors = build_dashboard.validate(dash_data, html)
+        if errors:
+            print("dashboard.json validation FAILED:")
+            for e in errors:
+                print("  -", e)
+            sys.exit(1)
     Path(output_path).write_text(html, encoding="utf-8")
     print(f"Wrote {output_path} ({len(html)} bytes)")
 
@@ -304,6 +381,16 @@ TEMPLATE = """<!DOCTYPE html>
     font-size: 15px;
     font-weight: 600;
   }}
+  /* Row 1: As-of banner + Sections controls, one row. Row 3: "How to
+     read this", right-justified when collapsed, full width when open. */
+  .top-row {{ display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin: 0 0 16px; }}
+  .top-row .as-of-banner {{ margin: 0; }}
+  .sec-controls {{ font-size: 13px; color: var(--muted); white-space: nowrap; }}
+  .sec-controls button {{ font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }}
+  .sec-controls button:hover {{ background: #e8dfcc; }}
+  .how-to-read-row {{ display: flex; justify-content: flex-end; margin: 0 0 16px; }}
+  details.how-to-read {{ width: fit-content; max-width: 100%; }}
+  details.how-to-read[open] {{ width: 100%; }}
   .search-box {{ margin: 0 0 16px; position: relative; }}
   .search-field {{ position: relative; }}
   .search-field svg.search-icon {{ position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }}
@@ -516,19 +603,18 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="layout">
   <nav class="sidebar">
     <div class="masthead">
-      <p class="masthead-title">CI Sitrep</p>
+      <p class="masthead-title">CI SITREP</p>
       <p class="masthead-vertical">Code &amp; Finance</p>
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
     <div class="masthead-nav">
-      <a href="about.html">About</a>
+      <a href="audit.html">Self-Audit</a>
+      <a href="glossary.html">Glossary</a>
       <a href="explainer.html">The names: CI, CIA, CIAC</a>
       <a href="theses.html">Foundational theses</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="dashboard.html">Executive dashboard</a>
       <a href="archive.html">Archive</a>
-      <a href="audit.html">Self-Audit</a>
+      <a href="about.html">About</a>
       <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
     </div>
     <div class="masthead-legend">
@@ -588,12 +674,11 @@ TEMPLATE = """<!DOCTYPE html>
         li.classList.toggle('toc-collapsed');
       }});
     }});
-    // Sections control: expand/collapse all content headings.
-    var secControls = document.createElement('div');
-    secControls.className = 'toc-controls';
-    secControls.innerHTML = 'Sections: <button type="button" data-act="expand">Expand all</button>' +
-      '<button type="button" data-act="collapse">Collapse all</button>';
-    toc.parentNode.insertBefore(secControls, toc.nextSibling);
+  }}
+  // Sections control (in the main content, row 1): expand/collapse all
+  // content headings. It used to live in the sidebar; it was lost there.
+  var secControls = document.querySelector('.sec-controls');
+  if (secControls) {{
     secControls.addEventListener('click', function (e) {{
       var btn = e.target.closest('button');
       if (!btn) return;
@@ -607,7 +692,7 @@ TEMPLATE = """<!DOCTYPE html>
   // content that follows it (up to the next heading of equal or higher level).
   // Article headlines are native <details> and already collapsible.
   // Everything starts COLLAPSED so the reader drills into one section at
-  // a time; Expand all (sidebar) opens the whole tree.
+  // a time; Expand all (row 1) opens the whole tree.
   var main = document.querySelector('main');
   if (!main) return;
   var headings = main.querySelectorAll('h2, h3, h4');
@@ -617,8 +702,9 @@ TEMPLATE = """<!DOCTYPE html>
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
-    // The three front-page sections start open; everything else starts collapsed.
-    if (h.id !== 'state-of-the-market' && h.id !== 'new-this-week' && h.id !== 'what-were-watching') h.classList.add('collapsed');
+    // The two top-level sections, the three front-page sections, and
+    // the dashboard panels start open; everything else starts collapsed.
+    if (h.id !== 'state-of-the-market' && h.id !== 'new-this-week' && h.id !== 'what-were-watching' && h.id !== 'executive-dashboard' && h.id !== 'report' && !h.classList.contains('dash-panel')) h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
@@ -647,12 +733,13 @@ TEMPLATE = """<!DOCTYPE html>
   // · §3.4 Governance"). A reader who drilled down jumps back without
   // scrolling. Built from the heading hierarchy, so it stays correct as
   // sections are added or renamed. Skips the three front-page sections
-  // (they sit at the top of the page already) and the page title.
+  // (they sit at the top of the page already), the two top-level
+  // sections, the dashboard panels, and the page title.
   var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {{
     if (h.tagName === 'H1') return;
-    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching' || h.id === 'executive-dashboard' || h.id === 'report' || h.classList.contains('dash-panel')) return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
