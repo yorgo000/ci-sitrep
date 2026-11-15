@@ -198,6 +198,17 @@ A way for readers to ask questions and get answers grounded in the report. Asses
 - Grounding rules in detail (citation format, rating-aware answering, refusal behaviour).
 - The retrieval index rebuilds on each daily publish — automatable via the existing cron or a GitHub Action.
 
+## F-15 — Glossary + tooltips
+
+**Status:** In progress
+**Proposed:** 2026-11-14 (Yorgo — the report's acronyms and jargon need a dictionary for the executive audience)
+
+A glossary page (alphabetical, one line per term, each term linkable) built from a single Markdown source of truth, plus tooltips on the report itself: first mention of a term in each subsection gets a dotted underline; hovering (desktop) or tapping (mobile) shows the one-line definition with a link to the full glossary entry. The generator derives both from the same file, so the tooltip and the glossary can never drift apart. Draft: 71 entries mined from the report (GLOSSARY_DRAFT.md, delivered 2026-11-14 for Yorgo's review — edit, cut, or add before building).
+
+**Notes / open questions:**
+- Daily maintenance (Yorgo, 2026-11-14): the daily watch adds any new term or acronym introduced in the report to the glossary as part of its editorial pass. The step goes into the daily watch cron when the glossary goes live.
+- Build after Yorgo approves the entries: GLOSSARY.md in the repo as the source; glossary.html via build_page.py + masthead nav link; tooltip injection in build_html.py (first mention per subsection); browser test (hover + tap).
+
 ---
 
 ## Template for new features
