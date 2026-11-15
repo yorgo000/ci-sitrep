@@ -302,15 +302,21 @@ See also blocks, the How-to-read block, the mobile Contents block.
 find their way back to information they saw. It indexes the live page
 at runtime on first keystroke: no build step, no index file, no
 backend, no cost, and always in sync with the daily watch (it reads the
-page, so it needs no cron step). Searchable units are the same units
-the share buttons cover (articles, headings, substantive paragraphs,
-tables); results link to the same stable anchors and open expanded.
-Ranking: title matches above body matches, all-token matches above
-partial; top 10 shown with a count. Minimum 2 characters; Escape
-closes; arrow keys + Enter navigate; clear button; click-outside
-closes; aria-live result status. V1 searches the report page only;
-"New this week" / "What we're watching" list items are not indexed as
-separate units (the articles they point to are). Icons are inline SVG.
+page, so it needs no cron step). Searchable units are the share-button
+units (articles, headings, substantive paragraphs, tables) plus
+standalone list items in a section body — the best-practice bullets and
+the "New this week" / "What we're watching" entries (top-level `<li>`
+outside `<details>`, ≥80 chars; nested items are covered by their
+parent's text; items inside an article are covered by the article).
+List items have no share-button id, so the indexer assigns one with the
+same deterministic slugify. Results link to the same stable anchors and
+open expanded. Ranking: title matches above body matches, all-token
+matches above partial; top 10 shown with a count. Minimum 2 characters;
+Escape closes; arrow keys + Enter navigate; clear button; click-outside
+closes; aria-live result status. V1 searches the report page only.
+Acronyms a reader would search for (e.g. TPRM) must be defined in the
+prose at first mention — the search matches literal text, and an
+acronym that never appears returns nothing. Icons are inline SVG.
 
 **No font-glyph dependency for UI.** Expand/collapse arrows are pure CSS
 borders; icons are inline SVG. A glyph that renders as a weird character
