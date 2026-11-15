@@ -684,6 +684,11 @@ TEMPLATE = """<!DOCTYPE html>
       if (!btn) return;
       var collapse = btn.getAttribute('data-act') === 'collapse';
       document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {{
+        // Collapse all returns the page to its initial state: it leaves
+        // the always-open headings open — the two top-level sections,
+        // the three front-page sections, and the dashboard panels.
+        // Expand all still opens everything.
+        if (collapse && (h.id === 'executive-dashboard' || h.id === 'report' || h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching' || h.classList.contains('dash-panel'))) return;
         h.classList.toggle('collapsed', collapse);
       }});
     }});
