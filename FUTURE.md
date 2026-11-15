@@ -18,7 +18,7 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 
 **What v1 shows (5 panels, 51 figures, 4 deadline countdowns):**
 
-- **AI code share** — bars: ~47% of code written fully by AI agents (JetBrains), 42% of committed code AI-generated or assisted (Sonar, 65% expected by 2027), 75% of new code AI-generated (Google), 97% of organisations use AI coding assistants (Black Duck); finance cut: 86% of UK financial firms use AI, 80% deployed agents, 2% broad autonomy (BoE/FCA), 30% of large firms already use agentic AI (HK SFC).
+- **AI code share** — bars: ~47% of code written fully by AI agents (JetBrains), 42% of committed code AI-generated or assisted (Sonar, 65% expected by 2027), 75% of new code AI-generated (Google), 97% of organisations use AI coding assistants (Black Duck); finance cut (US-led from 2026-11-15): 86% of US financial firms formally use AI, 1 in 4 experimenting with agentic AI, only 38% formally test outputs (ACA/NSCP, 261 firms); UK comparison: 80% have deployed agents (BoE/FCA).
 - **The governance gap** — 13 bars (98% have policies / 47% bypassed them; 79% run agents / 2% have identity tools; 82% can't attribute actions; 88% can't roll back; 35% can't stop a rogue agent; 30% have a documented kill switch — 23% of those never tested), plus 188 documented damage cases and the 109:1 machine-to-human identity ratio; the FCA supervision finding (●●●●) as the Established anchor and the OpenAI 35-second kill switch as the counter-example.
 - **Agentic right vs wrong** — SecureVibeBench stacked bar (23.8% correct-and-secure / 23.0% correct-but-exploitable / 53.3% incorrect); A.S.E 2.0 functional 74.0% vs secure 18.4%; CWE-bench ~68% pass@1; SecPRBench recall 32.5–78.1%; BugLedger 45–70% reintroduce, hint 0.35 → 0.71; ThinkingBox 67.16% pass@1 but only 241/507 on all 20 attempts; METR horizon doubles ~every 7 months.
 - **Net impact: more code vs more cleanup** — a two-sided ledger (output up: Sonar 42%→65%, DORA throughput; cleanup up: GitClear duplication/churn, DORA stability, Black Duck 581 vulns +107%, Glasswing 175-to-1, Sajadi 11×, ETH Zurich 35.4-pt propagation, FCA outage). No single net number — the ledger says so honestly.
@@ -228,7 +228,7 @@ A glossary page (alphabetical, one line per term, each term linkable) built from
 **Status:** Proposed
 **Proposed:** 2026-11-15 (Yorgo)
 
-Let readers save items to a personal reading list and come back to them later — to read, or to share from there. An executive skims the report or the dashboard, saves the three findings that matter to their P&L, and reads them properly later instead of losing them in the 59-article report.
+Let readers save items to a personal reading list and come back to them later — to read, or to share from there. An executive skims the report or the dashboard, saves the three findings that matter to their P&L, and reads them properly later instead of losing them in the 60-article report.
 
 **Storage, in two stages:**
 
