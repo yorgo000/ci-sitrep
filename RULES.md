@@ -92,9 +92,11 @@ desktop); the sidebar Contents lives in the masthead (§4).
 Then the two top-level sections, both starting OPEN:
 
 1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
-   `dashboard.json`: the bottom-line strip (seven items, Yorgo's pick,
-   in his order — the profitability item reads "Insufficient data" and
-   links to the money panel), the countdown strip and the five panels,
+   `dashboard.json`: the bottom-line strip (seven items in a 3+3+1
+   grid — six charted cards in two rows of three, then the
+   profitability item full-width, reading "Insufficient data" and
+   linking to the money panel), the countdown strip (labelled
+   "COUNTDOWN") and the five panels,
    every figure linked to the report article that evidences it. (The
    standalone dashboard page is gone; `dashboard.html` redirects to
    `index.html#executive-dashboard`.)
@@ -158,7 +160,10 @@ executive dashboard (F-01): five panels of at-a-glance figures, every
 figure carrying its value, label, source, rating, date, and a link to
 the report article that evidences it, plus a `bottom_line` list (seven
 items rendered as a strip above the countdown — rating and date
-optional, since the profitability item has neither) and a deadlines
+optional, since the profitability item has neither; each item carries
+a chart where its figure has one — a donut for the AI code share, a
+bar for the adoption rates, comparison bars for the multipliers — and
+the profitability item is full-width, last, with `"full": true`) and a deadlines
 list for the countdown strip. The link is the article's runtime id (assigned by the
 share JS from the headline) — a section anchor is not specific enough:
 the reader must land on the article itself, where its Source line
@@ -662,3 +667,16 @@ The Self-Audit page records the date of the last full manual link audit
   damage cases (Cyera) — each linked to its evidencing article, each
   carrying its rating except the profitability item. verify.py gained
   a layout marker for the strip (53 checks).
+- **2026-11-15 (late evening)** — Bottom-line strip charted (F-01):
+  the cards now carry graphics where the figure has one — a donut for
+  the ~47% AI code share (AI 47% vs human 53%), bars for the 86% and
+  79% adoption rates, comparison bars for the multipliers (Sajadi 135
+  vs 12 vulnerabilities; SusVibes 2.5× vs 1× review cost); the 188
+  count has no chartable comparison in the report, so it keeps the big
+  number. Layout is 3+3+1: six cards in two rows of three, then the
+  profitability item full-width last (dashed border, bignote
+  background) — which also fixes the "Insufficient" text spilling out
+  of its card at the old width. The countdown strip got a heading in
+  the same style ("COUNTDOWN"). Strip charts are inline SVG and CSS
+  bars, no library; the build validates chart kinds, values, and bar
+  tones.
