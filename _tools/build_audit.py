@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build AUDIT.md — the CI Sitrep self-audit page — from SYNTHESIZED.md and the audit log.
+"""Build AUDIT.md — the CI SITREP self-audit page — from SYNTHESIZED.md and the audit log.
 
 Usage: python3 build_audit.py [repo_root]
   repo_root defaults to the parent of this script's directory (the repo root).
@@ -112,7 +112,7 @@ def main():
             "Totals will appear here as runs accumulate."
         )
 
-    md = f"""# Self-Audit — CI Sitrep
+    md = f"""# Self-Audit — CI SITREP
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
