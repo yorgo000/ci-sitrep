@@ -78,44 +78,42 @@
         {
           "items": [
             {
-              "date": "2026",
+              "date": "12 Nov 2026",
               "display": "86%",
               "kind": "stat",
-              "label": "of UK financial firms use AI",
-              "link": "#86-of-uk-financial-firms-use-ai-80-have-deployed-agents-2",
-              "rating": "corroborated",
-              "source": "Bank of England / FCA 2026 AI survey",
-              "source_note": "196 firms"
+              "label": "of US financial firms formally use AI",
+              "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+              "rating": "reported",
+              "source": "ACA/NSCP 2026 AI Benchmarking Survey",
+              "source_note": "261 firms"
+            },
+            {
+              "date": "12 Nov 2026",
+              "display": "1 in 4",
+              "kind": "stat",
+              "label": "are experimenting with agentic AI",
+              "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+              "rating": "reported",
+              "source": "ACA/NSCP 2026 AI Benchmarking Survey"
+            },
+            {
+              "date": "12 Nov 2026",
+              "display": "38%",
+              "kind": "stat",
+              "label": "have a formal program to test or validate AI outputs",
+              "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+              "rating": "reported",
+              "source": "ACA/NSCP 2026 AI Benchmarking Survey"
             },
             {
               "date": "2026",
               "display": "80%",
               "kind": "stat",
-              "label": "have deployed agents",
+              "label": "of UK firms have deployed agents",
               "link": "#86-of-uk-financial-firms-use-ai-80-have-deployed-agents-2",
               "rating": "corroborated",
               "source": "Bank of England / FCA 2026 AI survey",
               "source_note": "196 firms"
-            },
-            {
-              "date": "2026",
-              "display": "2%",
-              "kind": "stat",
-              "label": "allow broad autonomy",
-              "link": "#86-of-uk-financial-firms-use-ai-80-have-deployed-agents-2",
-              "rating": "corroborated",
-              "source": "Bank of England / FCA 2026 AI survey",
-              "source_note": "196 firms"
-            },
-            {
-              "date": "2 Nov 2026",
-              "display": "30%",
-              "kind": "stat",
-              "label": "of large firms already use agentic AI",
-              "link": "#30-of-large-firms-already-use-agentic-ai-hk-sfc-large-firm",
-              "note": "25% piloting",
-              "rating": "reported",
-              "source": "HK SFC Large Firm AI Readiness Survey"
             }
           ],
           "kind": "stats",
