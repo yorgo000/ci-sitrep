@@ -176,6 +176,28 @@ The report page has no conversion path; the only contact point is one line on th
 
 **Why dropped:** embedding sales CTAs at the end of sections ("Connect with Confluence<1> to architect your pre-commit gates") would spend the exact credibility the report is built on — a knowledge base that pitches reads as a sales document, and the ratings and citations are what make a P&L reader trust it. The reviewer's premise is also overstated: the intelligence is not proprietary (it is curated public sources); the moat is the ongoing curation, the ratings, and the certification framework, which a reader cannot take to a competitor. The conversion path was designed to run through the newsletter funnel, not the report page. F-09 is the restrained alternative.
 
+## F-13 — Search the report
+
+**Status:** Done
+**Proposed:** 2026-11-14 (Yorgo — the report is reference material kept up to date; readers need to find their way back to information they saw)
+**Built:** 2026-11-14
+
+A search box at the top of the report page, right under the "As of" banner. Client-side: the page indexes its own text the first time the reader types — no build step, no index file, no backend, no cost, and always in sync with what the daily watch published. Searchable units are the same units the share buttons cover (articles, headings, substantive paragraphs, tables), so every result links to a stable anchor and clicking it opens the article expanded. Ranking: title matches above body matches, all-token matches above partial; top 10 shown with a count. Minimum 2 characters, 150ms debounce, Escape closes, arrow keys + Enter navigate, clear button, click-outside closes, aria-live result status. Icons are inline SVG (magnifier, clear ×).
+
+**V1 scope (deliberate):** report page only. "New this week" / "What we're watching" list items are not indexed as separate units — the articles they point to are. Possible follow-ups: cross-page search via a generated index file; a floating search button for readers deep in the page.
+
+## F-14 — AI answers over the report
+
+**Status:** Proposed
+**Proposed:** 2026-11-14 (Yorgo — "the day will come when we will set up a link to have AI answer questions for the user")
+
+A way for readers to ask questions and get answers grounded in the report. Assessment (2026-11-14): very doable, but a real project — days to a week for a solid v1, not an afternoon. Three pieces: (1) retrieval — finding the right passages for a question (search + ranking; F-13 is the foundation); (2) a language model to compose the answer; (3) a backend — GitHub Pages cannot run server code, so it needs a small serverless function plus an LLM API key (cost small, cents per question at this scale). The plumbing is standard; the hard part is editorial, not technical: answers must cite the report's articles, respect the credibility ratings, and say "not in the report" when the answer isn't there — otherwise it becomes a hallucination machine on top of a credibility-rated knowledge base.
+
+**Notes / open questions:**
+- Which backend host (serverless function); whose LLM API key pays; public vs subscriber-only — Q&A over the vetted database is a natural subscriber feature (fits the commercialization direction).
+- Grounding rules in detail (citation format, rating-aware answering, refusal behaviour).
+- The retrieval index rebuilds on each daily publish — automatable via the existing cron or a GitHub Action.
+
 ---
 
 ## Template for new features
