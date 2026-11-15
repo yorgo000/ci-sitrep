@@ -1,4 +1,4 @@
-# CI Sitrep — Editorial Rules
+# CI SITREP — Editorial Rules
 
 The single source of truth for how this report is made: what gets in, how
 it is written, how it looks, and how it is checked. The daily watch cron
@@ -67,36 +67,49 @@ the file is hierarchical, with a table of contents.
 
 **Front page, in order:**
 
-1. **How to read this** — one collapsed block holding everything before
-   "New this week" (the intro line, the credibility legend, the caveats).
-   It is the first thing on the page but must not attract attention.
-2. **State of the market** — a 2–4 sentence macro synthesis, the first
-   thing a new reader actually reads. Every claim in it is grounded in
-   the report's own findings and traceable via an internal link to the
-   section that evidences it (the flaw rate to §1.6, the governance gap
-   to §3.4.3, the regulatory picture to §3.4.2). Revise it whenever a
-   material shift lands that changes the macro picture; never let it go
-   stale or contradict the sections below it. No generic marketing
-   claims — every sentence must be defensible from the report.
-3. **New this week** — a rolling 7-day window. Entries older than 7 days
-   drop off. Every entry is dated with the date it was ADDED to the
-   report, carries a finding-first title (§3), carries plain-English
-   section tags ([Pre-commit], [In codebase], [Agentic] — one per
-   section the entry touches, never the old "(subject 1/2/3)"
-   parentheticals), and links to the section where the article lives.
-   Entries are in strict newest-first order.
-4. **What we're watching** — dated upcoming events (comment deadlines,
-   effective dates) and open questions the report is tracking (things
-   promised but not yet published, benchmarks that don't exist yet,
-   regulatory language that may harden). Dated items are in soonest-first
-   order. Every item links to its section. Maintain it every run: add a
-   new item when research surfaces one; remove an item the day it lands
-   (it becomes an article and a "New this week" entry instead). A past
-   date or a landed item still listed is a defect.
-5. **Contents** — the table of contents. Anchor links must match the
-   headings (GitHub-style anchors; the double hyphens are correct).
-6. **§1, §2, §3** — the three content sections, in that order.
-7. **Archive** — a pointer to the archive page.
+**Row 1** — the As-of banner and the Sections expand/collapse controls,
+on one row (banner left, controls right).
+**Row 2** — the search box (§4).
+**Row 3** — **How to read this**, one collapsed block holding everything
+before "New this week" (the intro line, the credibility legend, the
+caveats). Right-justified when collapsed; full width when open. It must
+not attract attention.
+The mobile inline Contents sits between row 2 and row 3 (hidden on
+desktop); the sidebar Contents lives in the masthead (§4).
+
+Then the two top-level sections, both starting OPEN:
+
+1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
+   `dashboard.json`: the countdown strip and the five panels, every
+   figure linked to the report section that evidences it. (The
+   standalone dashboard page is gone; `dashboard.html` redirects to
+   `index.html#executive-dashboard`.)
+2. **REPORT** — the report itself, in this order:
+   - **State of the market** — a 2–4 sentence macro synthesis, the first
+     thing a new reader actually reads. Every claim in it is grounded in
+     the report's own findings and traceable via an internal link to the
+     section that evidences it (the flaw rate to §1.6, the governance gap
+     to §3.4.3, the regulatory picture to §3.4.2). Revise it whenever a
+     material shift lands that changes the macro picture; never let it go
+     stale or contradict the sections below it. No generic marketing
+     claims — every sentence must be defensible from the report.
+   - **New this week** — a rolling 7-day window. Entries older than 7 days
+     drop off. Every entry is dated with the date it was ADDED to the
+     report, carries a finding-first title (§3), carries plain-English
+     section tags ([Pre-commit], [In codebase], [Agentic] — one per
+     section the entry touches, never the old "(subject 1/2/3)"
+     parentheticals), and links to the section where the article lives.
+     Entries are in strict newest-first order.
+   - **What we're watching** — dated upcoming events (comment deadlines,
+     effective dates) and open questions the report is tracking (things
+     promised but not yet published, benchmarks that don't exist yet,
+     regulatory language that may harden). Dated items are in soonest-first
+     order. Every item links to its section. Maintain it every run: add a
+     new item when research surfaces one; remove an item the day it lands
+     (it becomes an article and a "New this week" entry instead). A past
+     date or a landed item still listed is a defect.
+   - **§1, §2, §3** — the three content sections, in that order.
+   - **Archive** — a pointer to the archive page.
 
 **Articles.** Each article is a collapsible headline (`<details>` /
 `<summary>`) with one fact per bullet inside. The headline carries the
@@ -130,12 +143,14 @@ alphabetical place under the right letter heading. Changing
 executive dashboard (F-01): five panels of at-a-glance figures, every
 figure carrying its value, label, source, rating, date, and a link to
 the report section that evidences it, plus a deadlines list for the
-countdown strip. It builds to `dashboard.html` via
-`_tools/build_dashboard.py`, which reuses `build_page.py`'s template so
-the dashboard always matches the site's design, and validates every
-figure (required fields, rating in the four levels, bar values 0–100,
-link anchors exist in `index.html`) — a bad entry exits 1; fix the
-data, never weaken the check. **Never add a figure the report does not
+countdown strip. It is embedded in the report page as the first
+top-level section (EXECUTIVE DASHBOARD): `build_html.py` imports
+`_tools/build_dashboard.py` to render it, and validates every figure
+against the generated `index.html` (required fields, rating in the
+four levels, bar values 0–100, link anchors exist in `index.html`) —
+a bad entry exits 1; fix the data, never weaken the check. The
+standalone `dashboard.html` is a redirect to
+`index.html#executive-dashboard`. **Never add a figure the report does not
 evidence, and never invent a dollar figure for the money panel** — its
 honest statement is "no credible dollar figure exists yet". The daily
 watch updates a figure when a new article moves a headline number, and
@@ -265,38 +280,52 @@ before calling it done.
 **Palette and type.** Warm paper background everywhere (#FAF6EF); logo
 navy #283060 (sampled from the Confluence<1> wordmark); links logo navy.
 H1 is a full-width navy masthead band with white serif text; "Code &
-Finance" sits on its own line under "CI Sitrep", italic. H1 and masthead
+Finance" sits on its own line under "CI SITREP", italic. H1 and masthead
 title use a serif stack to match the Confluence<1> logo font. Body text
 is sans-serif. The design is FT-inspired: upscale, quiet, paper-like.
 
-**Masthead.** The left sidebar is a publication masthead: the CI Sitrep /
-Code & Finance wordmark + tagline, the "by Confluence<1>" wordmark
-(the "Confluence <1>" text from the logo, cube cropped out), nav links
-(About, Explainer, Theses, Archive, Self-Audit), the credibility rating
-legend (heading: "Credibility rating"), the Contents index, and the
-copyright line "© 2026 Confluence<1> Corp. All rights reserved." The
-nav ends with one restrained conversion link — "Work with
-Confluence<1>", jumping to About's Contact section — set apart from the
-content links by a separator line. It is the only conversion element on
-the report page; no CTAs inside the content (see F-12, Dropped).
+**Masthead.** The left sidebar is a publication masthead. The heading
+is identical on every page: the CI SITREP / Code & Finance wordmark +
+tagline ("Created Intelligence in code and finance — as of today."),
+and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
+the logo, cube cropped out) — the logo stays in the masthead
+everywhere, all the time. On the report page the heading is followed
+by the nav links, in this order: Self-Audit, Glossary, The names: CI,
+CIA, CIAC, Foundational theses, Archive, About — then the credibility
+rating legend (heading: "Credibility rating"), the Contents index,
+and the copyright line "© 2026 Confluence<1> Corp. All rights
+reserved." The nav ends with one restrained conversion link — "Work
+with Confluence<1>", jumping to About's Contact section — set apart
+from the content links by a separator line. It is the only conversion
+element on the report page; no CTAs inside the content (see F-12,
+Dropped). On the sub-pages the heading is followed by a "← Back to
+the report" link and the Contents index (see Navigation).
 
-**Section headings.** The three content sections are the visual top of
-the hierarchy. The meta-section headings ("State of the market",
-"New this week", "What we're watching", "Archive") are de-emphasized:
-smaller, lighter weight, muted color.
+**Section headings.** The two top-level sections (Executive dashboard,
+Report) are the visual top of the hierarchy; the three content
+sections (§1, §2, §3) sit inside Report. The meta-section headings
+("State of the market", "New this week", "What we're watching",
+"Archive") are de-emphasized: smaller, lighter weight, muted color.
 
-**Collapse behaviour.** The three front-page sections ("State of the
-market", "New this week", "What we're watching") start OPEN; everything
-else starts collapsed.
-Article headlines are native `<details>` and start collapsed. Jumping to
-an anchor auto-expands its ancestors. "How to read this" is regular
-weight, italic, muted — first on the page, not attracting attention.
+**Collapse behaviour.** The two top-level sections, the three
+front-page sections ("State of the market", "New this week", "What
+we're watching"), and the dashboard panels start OPEN; everything
+else starts collapsed. Article headlines are native `<details>` and
+start collapsed. Jumping to an anchor auto-expands its ancestors —
+including the target heading itself. "How to read this" is regular
+weight, italic, muted — not attracting attention. On the content
+pages (About, Explainer, Theses, Archive, Self-Audit, Glossary)
+everything starts collapsed, including the theses page's Part
+headings (H1s other than the page title). The Sections
+expand/collapse control lives in the main content — row 1 on the
+report page, under the H1 on the content pages — never in the
+sidebar, where it was lost.
 
 **Mobile.** Content comes before the masthead (CSS `order`: main first,
-sidebar second). A native `<details>` "Contents" line sits at the top of
-the main content, right after the "As of" banner; it is hidden on desktop
-and shown on mobile, and sits outside every section-body so collapsing a
-section never hides it.
+sidebar second). A native `<details>` "Contents" line sits in the main
+content between the search box (row 2) and "How to read this" (row 3);
+it is hidden on desktop and shown on mobile, and sits outside every
+section-body so collapsing a section never hides it.
 
 **Navigation.** Three mechanisms, all unobtrusive (2026-11-14):
 - **Breadcrumbs.** At the top of every section body, a small muted trail
@@ -309,12 +338,14 @@ section never hides it.
 - **Back-to-top button.** A small round navy button, fixed bottom-right,
   invisible until the reader has scrolled 500px down, then smooth-scrolls
   to the top. The arrow is inline SVG. On all six pages.
-- **Back to the report.** On the masthead pages (About, Explainer,
-  Theses, Archive, Self-Audit): the sidebar opens with a linked "CI
-  Sitrep / Code & Finance" masthead, followed by a "← Back to the
-  report" link above the Contents list. On mobile the sidebar sits below
-  the content, so those pages also carry a mobile-only back link at the
-  top of the main content, right under the page title.
+- **Back to the report.** On the content pages (About, Explainer,
+  Theses, Archive, Self-Audit, Glossary): the sidebar opens with the
+  same masthead heading as the report page (linked "CI SITREP / Code
+  & Finance" wordmark + tagline + "by Confluence<1>" logo), followed
+  by a "← Back to the report" link above the Contents list. On mobile
+  the sidebar sits below the content, so those pages also carry a
+  mobile-only back link at the top of the main content, right under
+  the page title.
 
 **Share links.** Article headlines, substantive paragraphs, tables, and
 headings each carry a small link-icon button that copies a direct URL
@@ -326,9 +357,9 @@ identically on any later load. Clicking an article's button never toggles
 the article; a shared article link opens the article expanded. Excluded:
 See also blocks, the How-to-read block, the mobile Contents block.
 
-**Search.** A search box at the top of the report page, right under the
-"As of" banner — the report is reference material, and readers need to
-find their way back to information they saw. It indexes the live page
+**Search.** A search box on the report page (row 2, under the As-of
++ controls row) — the report is reference material, and readers need
+to find their way back to information they saw. It indexes the live page
 at runtime on first keystroke: no build step, no index file, no
 backend, no cost, and always in sync with the daily watch (it reads the
 page, so it needs no cron step). Searchable units are the share-button
@@ -387,9 +418,11 @@ week" entry older than 7 days; no past date in "What we're watching";
 "Last updated" not in the future), order ("New this week" newest first;
 "What we're watching" soonest first; section and subsection order),
 naming (Confluence<1> everywhere, with the one documented Atlassian
-exception; current section names), hygiene (no internal-process strings
-on the public page), and layout markers (As-of banner, mobile Contents,
-credibility legend, copyright line, share buttons, How-to-read block).
+exception; brand all-caps CI SITREP; current section names), hygiene
+(no internal-process strings on the public page), and layout markers
+(As-of banner, mobile Contents, credibility legend, copyright line,
+share buttons, How-to-read block, the two top-level sections, the
+Sections control in the main content, the embedded dashboard panels).
 It also curl-checks every external link.
 
 - A **FAIL blocks the push.** Fix the cause, regenerate, re-run until it
@@ -444,7 +477,7 @@ The Self-Audit page records the date of the last full manual link audit
 3. Regenerate the HTML with the repo's generators (`build_html.py` for
    the report; `build_page.py` for the other pages; `build_audit.py`
    then `build_page.py` for the Self-Audit page, title "Self-Audit —
-   CI Sitrep"). If ARCHIVE.md changed, rebuild archive.html too
+   CI SITREP"). If ARCHIVE.md changed, rebuild archive.html too
    (rewrite its links to repo-root-relative form first).
 4. Run the Tier 1 verification (§5). Do not push a failing build.
 5. Push the changed files with the API helper
@@ -532,3 +565,22 @@ The Self-Audit page records the date of the last full manual link audit
   watch maintains it (DASHBOARD step in the cron): update a figure when
   a headline number moves, update the deadlines the day a watched date
   lands, never invent a dollar figure for the money panel.
+- **2026-11-15 (restructure)** — Brand in all-caps: "CI SITREP"
+  everywhere on the site (repo and email address stay lowercase
+  `ci-sitrep`). Main page restructured into rows + two top-level
+  sections: row 1 As-of banner + Sections controls, row 2 search,
+  row 3 "How to read this" (right-justified when collapsed), then
+  EXECUTIVE DASHBOARD (the F-01 dashboard embedded from
+  `dashboard.json`; `dashboard.html` is now a redirect to
+  `index.html#executive-dashboard`) and REPORT (State of the market,
+  New this week, What we're watching, §1–§3, Archive). The report's
+  headings keep their levels, so every anchor survives. Masthead nav
+  reordered (Self-Audit, Glossary, The names, Foundational theses,
+  Archive, About, Work with Confluence<1>); the masthead heading
+  (wordmark + tagline + Confluence<1> logo) is identical on every
+  page. The Sections expand/collapse control moved out of the sidebar
+  into the main content (row 1 on the report page, under the H1 on
+  the content pages). Content pages start all-collapsed, including
+  the theses page's Part headings (H1s). verify.py now checks the
+  top-level section order, the new layout markers, and the all-caps
+  brand (52 checks).
