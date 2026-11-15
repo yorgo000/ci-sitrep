@@ -26,6 +26,22 @@ def github_slugify(text, separator="-"):
     return text.replace(" ", separator)
 
 
+def glossary_slug(term):
+    """Slug for a glossary entry: short form (before any parenthetical),
+    lowercased, non-alphanumerics collapsed to hyphens. Twin of the one in
+    build_html.py — the report's tooltip links point at these ids."""
+    short = term.split(" (")[0]
+    return re.sub(r"[^a-z0-9]+", "-", short.lower()).strip("-")
+
+
+def add_glossary_ids(body):
+    """Give each glossary entry paragraph a stable id from its term, so
+    tooltips (and readers) can link straight to an entry."""
+    def repl(m):
+        return f'<p id="{glossary_slug(m.group(1))}"><strong>{m.group(1)}</strong> —'
+    return re.sub(r"<p><strong>([^<]+)</strong> —", repl, body)
+
+
 def build(input_path, output_path, title=None):
     src = Path(input_path).read_text(encoding="utf-8")
     if title is None:
@@ -49,6 +65,9 @@ def build(input_path, output_path, title=None):
         r'<a href="\1" target="_blank" rel="noopener">',
         body,
     )
+    # Glossary entries get stable ids, so tooltips link straight to them.
+    if Path(input_path).name == "GLOSSARY.md":
+        body = add_glossary_ids(body)
     # Mobile-only back link at the top of the content (see .back-inline):
     # on a phone the sidebar sits below the content, so the reader needs a
     # way back to the report without scrolling to the bottom of the page.
