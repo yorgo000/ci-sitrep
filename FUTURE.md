@@ -1,6 +1,6 @@
-# Future Features — CI Sitrep
+# Future Features — CI SITREP
 
-A running list of features to build into CI Sitrep. Yorgo adds features here; we review them together and decide what to build next. Each feature carries a status: **Proposed** (on the list, not yet started), **In progress**, **Done**, or **Dropped** (decided against, with the reason recorded).
+A running list of features to build into CI SITREP. Yorgo adds features here; we review them together and decide what to build next. Each feature carries a status: **Proposed** (on the list, not yet started), **In progress**, **Done**, or **Dropped** (decided against, with the reason recorded).
 
 To add a feature: append a new section at the bottom with the next number, status Proposed, today's date, and the description. Do not renumber existing features.
 
@@ -14,7 +14,7 @@ To add a feature: append a new section at the bottom with the next number, statu
 
 A graphic / countdown / visual dashboard that gives high-level executives making service and product decisions an immediate, at-a-glance view of the things that will affect their decisions — the pragmatic facts that get lost in the fluff of the news cycle. The kind of thing the special forces keep their eye on: the actual undeniable realities, not which way the hype is blowing.
 
-**Live at:** https://yorgo000.github.io/ci-sitrep/dashboard.html — linked from the report page's masthead nav ("Executive dashboard", between Glossary and Archive) and from the "How to read this" block ("Short on time?").
+**Live at:** https://yorgo000.github.io/ci-sitrep/#executive-dashboard — the first top-level section of the main report page. **Moved into the main page 2026-11-15** (Yorgo's restructure): it was a standalone page at dashboard.html from its build that morning until the restructure that evening; `dashboard.html` now redirects to `index.html#executive-dashboard`, so the link sent out earlier still lands on the dashboard. Linked from the "How to read this" block ("Short on time?").
 
 **What v1 shows (5 panels, 51 figures, 4 deadline countdowns):**
 
@@ -27,12 +27,12 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 
 **Design (as built):**
 
-- `dashboard.json` is the single source of truth (figures with value, label, source, source note, rating, date, and a link to the report section that evidences it); `_tools/build_dashboard.py` renders `dashboard.html`, reusing `build_page.py`'s TEMPLATE so the dashboard always matches the site's design. Pure CSS bars and stat cards — no chart library, no backend, no cost.
+- `dashboard.json` is the single source of truth (figures with value, label, source, source note, rating, date, and a link to the report section that evidences it); `_tools/build_dashboard.py` renders the section and `build_html.py` imports it, embedding the panels in `index.html` as H3s under the section's H2 ("Executive dashboard"), with the dashboard's CSS and countdown JS inserted after the template format step. Pure CSS bars and stat cards — no chart library, no backend, no cost.
 - Every figure carries its credibility rating (dots + word) and links to the report section behind it. The generator validates every figure (required fields, rating in the four levels, bar values 0–100, link anchors exist in index.html) and exits 1 on a bad entry.
 - Panels start open (the template collapses every heading; the dashboard's JS re-opens them); breadcrumbs removed as noise on a one-screen page; share buttons on panel headings work as on the other pages.
 - Panel order is editorial (audience-first): code share, governance gap, right vs wrong, net impact, money.
 
-**Maintenance:** a DASHBOARD step in the daily watch cron (added 2026-11-15) — when a new article moves a headline number, update dashboard.json and regenerate; when a What-we're-watching date lands, update the deadlines list the same day. Never add a figure the report doesn't evidence; never invent a dollar figure for the money panel.
+**Maintenance:** a DASHBOARD step in the daily watch cron (added 2026-11-15) — when a new article moves a headline number, update dashboard.json and regenerate index.html (which embeds and validates the dashboard); when a What-we're-watching date lands, update the deadlines list the same day. Never add a figure the report doesn't evidence; never invent a dollar figure for the money panel.
 
 **Open questions (from the proposal, resolved):** cuts — a UK finance-sector cut exists (BoE/FCA) plus HK large firms; nothing below sector level yet. Cadence — updated with the daily watch when a headline number moves (the inventory's weekly-snapshot suggestion was superseded: the data file carries dates per figure, so either cadence works mechanically, and the daily watch already owns the numbers).
 
