@@ -8,25 +8,37 @@ To add a feature: append a new section at the bottom with the next number, statu
 
 ## F-01 — Executive dashboard: the undeniable realities at a glance
 
-**Status:** Proposed
+**Status:** Done (v1, 2026-11-15)
 **Proposed:** 2026-11-12
+**Built:** 2026-11-15 (Yorgo's pick — "work on graphics" while he reviewed the taxonomy)
 
 A graphic / countdown / visual dashboard that gives high-level executives making service and product decisions an immediate, at-a-glance view of the things that will affect their decisions — the pragmatic facts that get lost in the fluff of the news cycle. The kind of thing the special forces keep their eye on: the actual undeniable realities, not which way the hype is blowing.
 
-**What it should show:**
+**Live at:** https://yorgo000.github.io/ci-sitrep/dashboard.html — linked from the report page's masthead nav ("Executive dashboard", between Glossary and Archive) and from the "How to read this" block ("Short on time?").
 
-- **AI code share:** what percentage of code is produced via AI — and how that share is trending.
-- **AI code impact on development:** more code is being produced, but with bigger technical debt and more time spent cleaning it up. Net gain or net loss? Quantified where the evidence supports it.
-- **Breakdowns by industry, institution, company, sector** — where the data exists to support them.
-- **Agentic performance:** how much agents are getting right, how much they're getting wrong. Pass rates, failure rates, reliability over time.
-- **Money:** how much companies are saving with AI/agentic tools, how much they're losing (rework, incidents, technical debt, security fixes).
+**What v1 shows (5 panels, 51 figures, 4 deadline countdowns):**
 
-**Design notes (to be refined):**
+- **AI code share** — bars: ~47% of code written fully by AI agents (JetBrains), 42% of committed code AI-generated or assisted (Sonar, 65% expected by 2027), 75% of new code AI-generated (Google), 97% of organisations use AI coding assistants (Black Duck); finance cut: 86% of UK financial firms use AI, 80% deployed agents, 2% broad autonomy (BoE/FCA), 30% of large firms already use agentic AI (HK SFC).
+- **The governance gap** — 13 bars (98% have policies / 47% bypassed them; 79% run agents / 2% have identity tools; 82% can't attribute actions; 88% can't roll back; 35% can't stop a rogue agent; 30% have a documented kill switch — 23% of those never tested), plus 188 documented damage cases and the 109:1 machine-to-human identity ratio; the FCA supervision finding (●●●●) as the Established anchor and the OpenAI 35-second kill switch as the counter-example.
+- **Agentic right vs wrong** — SecureVibeBench stacked bar (23.8% correct-and-secure / 23.0% correct-but-exploitable / 53.3% incorrect); A.S.E 2.0 functional 74.0% vs secure 18.4%; CWE-bench ~68% pass@1; SecPRBench recall 32.5–78.1%; BugLedger 45–70% reintroduce, hint 0.35 → 0.71; ThinkingBox 67.16% pass@1 but only 241/507 on all 20 attempts; METR horizon doubles ~every 7 months.
+- **Net impact: more code vs more cleanup** — a two-sided ledger (output up: Sonar 42%→65%, DORA throughput; cleanup up: GitClear duplication/churn, DORA stability, Black Duck 581 vulns +107%, Glasswing 175-to-1, Sajadi 11×, ETH Zurich 35.4-pt propagation, FCA outage). No single net number — the ledger says so honestly.
+- **Money saved vs lost** — the honest panel: "No credible dollar figure exists yet" as the headline, with the cost multipliers (2.5× review cost, 3.4× vuln rate, 2.74× claimed) and the CMA 10%-of-turnover exposure context.
+- **Countdown strip** — California kill-switch recommendations (Mon 16 Nov 2026), TPRM comments (Wed 16 Dec 2026), FCA CP26/38 (Wed 24 Dec 2026), OSFI E-23 (1 May 2027); days-remaining computed in the browser at load.
 
-- At-a-glance: a dashboard, not a report. One screen, the numbers that matter.
-- Every number traceable to a source in the report — same credibility discipline as the articles.
-- Open question: which cuts (industry / institution / company / sector) have enough data to be meaningful. Start with what the report already covers; add cuts as the evidence base grows.
-- Open question: update cadence — live with the daily watch, or a weekly/monthly snapshot?
+**Design (as built):**
+
+- `dashboard.json` is the single source of truth (figures with value, label, source, source note, rating, date, and a link to the report section that evidences it); `_tools/build_dashboard.py` renders `dashboard.html`, reusing `build_page.py`'s TEMPLATE so the dashboard always matches the site's design. Pure CSS bars and stat cards — no chart library, no backend, no cost.
+- Every figure carries its credibility rating (dots + word) and links to the report section behind it. The generator validates every figure (required fields, rating in the four levels, bar values 0–100, link anchors exist in index.html) and exits 1 on a bad entry.
+- Panels start open (the template collapses every heading; the dashboard's JS re-opens them); breadcrumbs removed as noise on a one-screen page; share buttons on panel headings work as on the other pages.
+- Panel order is editorial (audience-first): code share, governance gap, right vs wrong, net impact, money.
+
+**Maintenance:** a DASHBOARD step in the daily watch cron (added 2026-11-15) — when a new article moves a headline number, update dashboard.json and regenerate; when a What-we're-watching date lands, update the deadlines list the same day. Never add a figure the report doesn't evidence; never invent a dollar figure for the money panel.
+
+**Open questions (from the proposal, resolved):** cuts — a UK finance-sector cut exists (BoE/FCA) plus HK large firms; nothing below sector level yet. Cadence — updated with the daily watch when a headline number moves (the inventory's weekly-snapshot suggestion was superseded: the data file carries dates per figure, so either cadence works mechanically, and the daily watch already owns the numbers).
+
+**Follow-ups (not in v1):** trend lines (the data file stores each figure with its date, so a second data round can draw the slope); verify.py dashboard checks (the generator validates the data, but verify.py doesn't yet check dashboard.html); a money panel with real dollar evidence when it exists.
+
+**Browser test (live, 2026-11-15):** 5 checks — page loads with the "As of Sunday, November 15, 2026" banner and countdown strip ("tomorrow", "in 31 days", "in 39 days", "in 167 days"); all five panels open on load with the ~47% bar, the SecureVibeBench stacked bar (23.8/23.0/53.3), and the money panel's "No credible dollar figure exists yet" statement confirmed; panel share button shows "Copied"; sidebar navigation both ways works. One defect found: a dashboard figure's source link landed on the right report section but left it collapsed — the report's anchor handler only opened ANCESTOR sections, never the target heading itself. Fixed the same day in both generators (expandForAnchor now also un-collapses the target heading itself), all 8 pages regenerated and pushed. The first re-test failed on a stale CDN copy minutes after deploy; the second re-test passed both checks (the §1.1 link opens §1.1 expanded with all six articles visible; the State-of-the-market link opens §3.4.3 expanded). Lesson: browser re-tests right after a deploy can hit a stale CDN edge — use a cache-busting query (?fresh=...) to force a fresh fetch. Note: view-source: URLs cannot be opened in the cloud browser, so a source check has to go through curl instead.
 
 ## F-02 — Single database, filtered sitreps (the split, done right)
 
