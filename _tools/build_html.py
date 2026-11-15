@@ -247,7 +247,7 @@ TEMPLATE = """<!DOCTYPE html>
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
   /* Meta sections (front-page features + archive) sit below the three
      content sections: smaller, lighter, muted. */
-  main h2#new-this-week, main h2#what-were-watching, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
+  main h2#new-this-week, main h2#what-were-watching, main h2#state-of-the-market, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
   main h4 + .section-body {{ margin-left: 16px; }}
@@ -261,7 +261,7 @@ TEMPLATE = """<!DOCTYPE html>
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
-  #new-this-week + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
+  #state-of-the-market + .section-body, #new-this-week + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
   /* Inline TOC: hidden on desktop (the sidebar has it); shown on mobile. */
   .toc-inline {{ display: none; }}
   .toc-inline ul {{ list-style: none; padding: 0; margin: 0; }}
@@ -475,8 +475,8 @@ TEMPLATE = """<!DOCTYPE html>
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
-    // The two front-page sections start open; everything else starts collapsed.
-    if (h.id !== 'new-this-week' && h.id !== 'what-were-watching') h.classList.add('collapsed');
+    // The three front-page sections start open; everything else starts collapsed.
+    if (h.id !== 'state-of-the-market' && h.id !== 'new-this-week' && h.id !== 'what-were-watching') h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
@@ -504,13 +504,13 @@ TEMPLATE = """<!DOCTYPE html>
   // to any ancestor level or the top of the page ("Top · §3 Agentic …
   // · §3.4 Governance"). A reader who drilled down jumps back without
   // scrolling. Built from the heading hierarchy, so it stays correct as
-  // sections are added or renamed. Skips the two front-page sections
+  // sections are added or renamed. Skips the three front-page sections
   // (they sit at the top of the page already) and the page title.
   var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {{
     if (h.tagName === 'H1') return;
-    if (h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
