@@ -239,22 +239,23 @@ def build(input_path, output_path):
         '<p id="search-status" class="visually-hidden" aria-live="polite"></p>\n'
         '</div>\n'
     )
-    # Page structure (2026-11-15 restructure):
-    #   Row 1: As-of banner + Sections expand/collapse controls (same row).
+    # Page structure (2026-11-15 restructure; row 1 revised 2026-11-15):
+    #   Row 1: As-of banner (left) + "How to read this" (centered) +
+    #     Sections expand/collapse controls (right). When "How to read
+    #     this" is opened it drops to a full-width line below the row.
     #   Row 2: search box.
-    #   Row 3: "How to read this" (right-justified when collapsed).
     #   Then the two top-level sections: EXECUTIVE DASHBOARD (the F-01
     #   dashboard, embedded from dashboard.json) and REPORT (the report
     #   body). The report's headings keep their levels — the H2s stay H2s
     #   — so every anchor survives the move.
-    # "How to read this" comes out of the body and into row 3.
+    # "How to read this" comes out of the body and into row 1, centered
+    # between the As-of banner and the Sections controls.
     htr_match = re.search(r'<details class="how-to-read">.*?</details>', body, re.DOTALL)
     htr = htr_match.group(0) if htr_match else ""
     if htr_match:
         body = body[:htr_match.start()] + body[htr_match.end():]
-    htr_row = f'<div class="how-to-read-row">\n{htr}\n</div>\n' if htr else ""
 
-    # Row 1: As-of banner + Sections expand/collapse controls.
+    # Row 1: As-of banner + "How to read this" + Sections controls.
     sec_controls = (
         '<div class="sec-controls">Sections: '
         '<button type="button" data-act="expand">Expand all</button>'
@@ -262,9 +263,9 @@ def build(input_path, output_path):
     )
     if as_of:
         banner = f'<p class="as-of-banner">As of {as_of}</p>'
-        row1 = f'<div class="top-row">\n{banner}\n{sec_controls}\n</div>\n'
+        row1 = f'<div class="top-row">\n{banner}\n{htr}\n{sec_controls}\n</div>\n'
     else:
-        row1 = f'<div class="top-row">\n{sec_controls}\n</div>\n'
+        row1 = f'<div class="top-row">\n{htr}\n{sec_controls}\n</div>\n'
 
     # Split the H1 from the rest; the rest becomes the REPORT section.
     h1_part, sep, rest = body.partition("</h1>")
@@ -305,7 +306,7 @@ def build(input_path, output_path):
         print(f"WARNING: {dash_path} not found — dashboard section omitted")
 
     body = (
-        h1_part + "\n" + row1 + search_box + "\n" + inline_toc + htr_row
+        h1_part + "\n" + row1 + search_box + "\n" + inline_toc
         + dash_section
         + '<h2 id="report">Report</h2>\n'
         + '<div class="report-embed">\n' + rest + '\n</div>\n'
@@ -388,7 +389,11 @@ TEMPLATE = """<!DOCTYPE html>
   .sec-controls {{ font-size: 13px; color: var(--muted); white-space: nowrap; }}
   .sec-controls button {{ font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }}
   .sec-controls button:hover {{ background: #e8dfcc; }}
-  .how-to-read-row {{ display: flex; justify-content: flex-end; margin: 0 0 16px; }}
+  /* "How to read this" lives in row 1, centered between the As-of banner
+     and the Sections controls; when opened it drops to a full-width line
+     below the row (the row wraps). */
+  .top-row details.how-to-read {{ flex: 1 1 auto; text-align: center; }}
+  .top-row details.how-to-read[open] {{ flex-basis: 100%; text-align: left; }}
   details.how-to-read {{ width: fit-content; max-width: 100%; }}
   details.how-to-read[open] {{ width: 100%; }}
   .search-box {{ margin: 0 0 16px; position: relative; }}
@@ -684,11 +689,10 @@ TEMPLATE = """<!DOCTYPE html>
       if (!btn) return;
       var collapse = btn.getAttribute('data-act') === 'collapse';
       document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {{
-        // Collapse all returns the page to its initial state: it leaves
-        // the always-open headings open — the two top-level sections,
-        // the three front-page sections, and the dashboard panels.
+        // Collapse all returns the page to its initial state: everything
+        // closes except the two top-level sections, which stay open.
         // Expand all still opens everything.
-        if (collapse && (h.id === 'executive-dashboard' || h.id === 'report' || h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching' || h.classList.contains('dash-panel'))) return;
+        if (collapse && (h.id === 'executive-dashboard' || h.id === 'report')) return;
         h.classList.toggle('collapsed', collapse);
       }});
     }});
@@ -707,9 +711,10 @@ TEMPLATE = """<!DOCTYPE html>
     toggle.className = 'toggle';
     h.prepend(toggle);
     h.style.cursor = 'pointer';
-    // The two top-level sections, the three front-page sections, and
-    // the dashboard panels start open; everything else starts collapsed.
-    if (h.id !== 'state-of-the-market' && h.id !== 'new-this-week' && h.id !== 'what-were-watching' && h.id !== 'executive-dashboard' && h.id !== 'report' && !h.classList.contains('dash-panel')) h.classList.add('collapsed');
+    // Only the two top-level sections start open; everything inside
+    // them — dashboard panels, front-page sections, report sections —
+    // starts collapsed, as one line each.
+    if (h.id !== 'executive-dashboard' && h.id !== 'report') h.classList.add('collapsed');
     // Wrap following siblings until the next heading of equal/higher level.
     var body = document.createElement('div');
     body.className = 'section-body';
