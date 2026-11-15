@@ -142,14 +142,26 @@ alphabetical place under the right letter heading. Changing
 **Dashboard.** `dashboard.json` is the single source of truth for the
 executive dashboard (F-01): five panels of at-a-glance figures, every
 figure carrying its value, label, source, rating, date, and a link to
-the report section that evidences it, plus a deadlines list for the
-countdown strip. It is embedded in the report page as the first
+the report article that evidences it, plus a deadlines list for the
+countdown strip. The link is the article's runtime id (assigned by the
+share JS from the headline) — a section anchor is not specific enough:
+the reader must land on the article itself, where its Source line
+takes them to the primary source. Where a conclusion draws on a second
+headline article in another subsection, the figure carries an "also"
+list ({anchor, label}) rendered after the source name. The one
+exception is §3.6 (Evaluation), which is prose, not articles: its
+figures link to the section anchor until the content becomes articles.
+It is embedded in the report page as the first
 top-level section (EXECUTIVE DASHBOARD): `build_html.py` imports
 `_tools/build_dashboard.py` to render it, and validates every figure
 against the generated `index.html` (required fields, rating in the
-four levels, bar values 0–100, link anchors exist in `index.html`) —
-a bad entry exits 1; fix the data, never weaken the check. The
-standalone `dashboard.html` is a redirect to
+four levels, bar values 0–100, link anchors exist in `index.html` or
+among the computed article ids) —
+a bad entry exits 1; fix the data, never weaken the check.
+`compute_article_ids()` in `_tools/build_dashboard.py` replicates the
+share JS's slugify + uniqueId — the two implementations must stay in
+sync, or dashboard links will point at ids the page never assigns.
+The standalone `dashboard.html` is a redirect to
 `index.html#executive-dashboard`. **Never add a figure the report does not
 evidence, and never invent a dollar figure for the money panel** — its
 honest statement is "no credible dollar figure exists yet". The daily
@@ -413,7 +425,9 @@ python3 _tools/verify.py SYNTHESIZED.md index.html
 It checks structure (every article has a Source bullet and exactly one
 credibility rating; every headline parenthetical links its source, with
 the documented exceptions; no duplicate headlines; no literal Markdown
-links in the HTML; all internal anchors resolve), freshness (no "New this
+links in the HTML; all internal anchors resolve — article ids
+assigned at runtime by the share JS are accepted via the computed id
+set, see §2 Dashboard), freshness (no "New this
 week" entry older than 7 days; no past date in "What we're watching";
 "Last updated" not in the future), order ("New this week" newest first;
 "What we're watching" soonest first; section and subsection order),
@@ -584,3 +598,13 @@ The Self-Audit page records the date of the last full manual link audit
   the theses page's Part headings (H1s). verify.py now checks the
   top-level section order, the new layout markers, and the all-caps
   brand (52 checks).
+- **2026-11-15 (deep links)** — Dashboard figures now link to the
+  report article that evidences each figure (the article's runtime id),
+  not the section top — Yorgo's correction: section links were nebulous
+  and the round trip to the primary source must complete. Six figures
+  carry an "also" link to a second evidencing article in another
+  subsection. The three §3.6 figures keep the section anchor (§3.6 is
+  prose, not articles). `build_dashboard.py` gained `compute_article_ids()`
+  (a Python replica of the share JS's slugify + uniqueId) and validates
+  article links against it; verify.py's anchor check accepts the same
+  computed ids.
