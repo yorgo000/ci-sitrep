@@ -3,13 +3,11 @@
   "as_of_label": "Sunday, November 15, 2026",
   "bottom_line": [
     {
-      "display": "Insufficient data",
-      "label": "profitability gained from AI",
-      "link": "#money",
-      "note": "No credible dollar figure exists yet",
-      "source": "CI SITREP money panel"
-    },
-    {
+      "chart": {
+        "kind": "donut",
+        "legend": "AI agents 47% · human-written 53%",
+        "value": 47
+      },
       "date": "2026",
       "display": "~47%",
       "label": "of code is written fully by AI agents",
@@ -18,6 +16,10 @@
       "source": "JetBrains Developer Ecosystem Survey 2026"
     },
     {
+      "chart": {
+        "kind": "bar",
+        "value": 86
+      },
       "date": "12 Nov 2026",
       "display": "86%",
       "label": "of US financial firms formally use AI",
@@ -26,6 +28,21 @@
       "source": "ACA/NSCP 2026 AI Benchmarking Survey"
     },
     {
+      "chart": {
+        "a": {
+          "display": "135",
+          "label": "AI patches",
+          "tone": "gap",
+          "value": 135
+        },
+        "b": {
+          "display": "12",
+          "label": "Human patches",
+          "tone": "navy",
+          "value": 12
+        },
+        "kind": "compare"
+      },
       "date": "1 Nov 2026",
       "display": "11×",
       "label": "more vulnerabilities in AI patches than in human patches",
@@ -34,6 +51,21 @@
       "source": "Sajadi et al., SWE-bench study v4"
     },
     {
+      "chart": {
+        "a": {
+          "display": "2.5×",
+          "label": "With post-hoc review",
+          "tone": "navy",
+          "value": 2.5
+        },
+        "b": {
+          "display": "1×",
+          "label": "Generation alone",
+          "tone": "muted",
+          "value": 1
+        },
+        "kind": "compare"
+      },
       "date": "2 Nov 2026",
       "display": "2.5×",
       "label": "the cost of a post-hoc review that still leaves about half insecure",
@@ -42,6 +74,10 @@
       "source": "SusVibes re-run"
     },
     {
+      "chart": {
+        "kind": "bar",
+        "value": 79
+      },
       "date": "2026",
       "display": "79%",
       "label": "of enterprises run AI agents in production",
@@ -56,6 +92,14 @@
       "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
       "rating": "reported",
       "source": "Cyera"
+    },
+    {
+      "display": "Insufficient data",
+      "full": true,
+      "label": "profitability gained from AI",
+      "link": "#money",
+      "note": "No credible dollar figure exists yet",
+      "source": "CI SITREP money panel"
     }
   ],
   "deadlines": [
