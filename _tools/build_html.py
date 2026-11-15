@@ -282,7 +282,7 @@ def build(input_path, output_path):
         dash_data = json.loads(dash_path.read_text(encoding="utf-8"))
         dash_inner = build_dashboard.render_embedded(dash_data)
         dash_section = (
-            '<h2 id="executive-dashboard">Executive dashboard</h2>\n'
+            '<h2 id="executive-dashboard">EXECUTIVE DASHBOARD</h2>\n'
             f'<div class="dash-embed">\n{dash_inner}\n</div>\n'
         )
         # TOC: dashboard first (with its panels), report sections nested
@@ -297,9 +297,9 @@ def build(input_path, output_path):
         report_ul = toc_html[ul_start:ul_end]
         toc = (
             '<div class="toc">\n<ul>\n'
-            '<li><a href="#executive-dashboard">Executive dashboard</a>\n<ul>\n'
+            '<li><a href="#executive-dashboard">EXECUTIVE DASHBOARD</a>\n<ul>\n'
             + panel_items + '\n</ul>\n</li>\n'
-            '<li><a href="#report">Report</a>\n'
+            '<li><a href="#report">REPORT</a>\n'
             + report_ul + '\n</li>\n</ul>\n</div>\n'
         )
     else:
@@ -308,7 +308,7 @@ def build(input_path, output_path):
     body = (
         h1_part + "\n" + row1 + search_box + "\n" + inline_toc
         + dash_section
-        + '<h2 id="report">Report</h2>\n'
+        + '<h2 id="report">REPORT</h2>\n'
         + '<div class="report-embed">\n' + rest + '\n</div>\n'
     )
 
