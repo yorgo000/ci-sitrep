@@ -54,6 +54,12 @@
   .search-result-snippet mark { background: #f5e6a3; color: inherit; padding: 0 1px; border-radius: 2px; }
   .search-no-results { padding: 12px; font-size: 14px; color: var(--muted); }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .def { text-decoration: underline dotted var(--muted); text-underline-offset: 2px; cursor: help; }
+  #def-tip { position: absolute; z-index: 1000; max-width: 320px; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 10px 12px; font-size: 14px; line-height: 1.5; color: var(--ink); }
+  #def-tip .def-tip-text { margin: 0; padding-right: 18px; }
+  #def-tip .def-tip-link { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; }
+  #def-tip .def-tip-close { position: absolute; top: 2px; right: 6px; border: none; background: none; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 2px 4px; }
+  #def-tip .def-tip-close:hover { color: var(--ink); }
   .layout { display: flex; min-height: 100vh; }
   nav.sidebar {
     width: 300px;
@@ -230,6 +236,7 @@
     main { order: 1; padding: 24px 20px 48px; }
     .share-link { opacity: 1; }
     .back-to-top { right: 16px; bottom: 16px; }
+    #def-tip { max-width: calc(100vw - 32px); }
     .toc-inline { display: block; }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1 { margin: -24px -20px 16px; padding: 24px 20px; }
@@ -249,6 +256,7 @@
       <a href="about.html">About</a>
       <a href="explainer.html">The names: CI, CIA, CIAC</a>
       <a href="theses.html">Foundational theses</a>
+      <a href="glossary.html">Glossary</a>
       <a href="archive.html">Archive</a>
       <a href="audit.html">Self-Audit</a>
       <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
@@ -400,6 +408,7 @@
 <p><a href="explainer.html">Created Intelligence</a> in code and finance — as of today. A living knowledge base: the state of the art in AI code scanning and agentic collectives, for critical systems in finance.</p>
 <p>This file is a <strong>state of affairs</strong>, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to <a href="archive/ARCHIVE.md">ARCHIVE.md</a>, dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at <a href="archive/SYNTHESIZED-2026-11-11-append-only.md">archive/SYNTHESIZED-2026-11-11-append-only.md</a>.</p>
 <p><strong>New to the terms?</strong> Read the <a href="explainer.html">explainer: CI, CIA, and CIAC</a> — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper <a href="theses.html"><em>From Evolved Intelligence to Created Intelligence</em> (v0.1)</a> — <a href="created_intelligence_foundational_theses_v0.1.md">download the Markdown source</a>.</p>
+<p><strong>Terms:</strong> the <a href="glossary.html">Glossary</a> defines every acronym and piece of jargon in plain language. In the report, dotted-underlined terms show their definition on hover or tap.</p>
 <p><strong>The bar for adding or changing anything:</strong> it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.</p>
 <p><strong>How to read it:</strong> scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with <a href="#new-this-week">New this week</a> to jump to the latest changes.</p>
 <p><strong>Credibility rating</strong> — every article carries a dots rating for how much confidence you can place in its source.</p>
@@ -2327,6 +2336,134 @@ Sources: <a href="https://www.digitalapplied.com/blog/agentic-ai-regulated-indus
       if (!searchBox.contains(e.target)) closeSearchResults();
     });
   }
+
+  // Glossary tooltips: the first mention of a glossary term in each
+  // subsection gets a dotted underline; hovering (desktop) or tapping
+  // (mobile) shows the one-line definition with a link to the full
+  // glossary entry. The data comes from GLOSSARY.md at build time (see
+  // parse_glossary), so the tooltips and the glossary page can never
+  // drift apart.
+  var GLOSSARY = [{"term": "A2A (Agent2Agent)", "short": "A2A", "def": "A protocol that lets AI agents built by different vendors talk to each other and hand off work. One of the two interop standards the report tracks (with MCP).", "slug": "a2a", "pattern": "\\bA2A\\b", "flags": "", "tip": true}, {"term": "agent", "short": "agent", "def": "An AI system that pursues a goal on its own: it perceives, plans, uses tools, and acts, rather than just answering a question. The field's word for what Confluence<1> calls a CIA.", "slug": "agent", "pattern": "agent", "flags": "i", "tip": false}, {"term": "agentic", "short": "agentic", "def": "Of an AI system: acting autonomously toward a goal, using tools and making decisions, rather than only responding to prompts. Agentic AI does things, not just says things.", "slug": "agentic", "pattern": "agentic", "flags": "i", "tip": false}, {"term": "AI-BOM (AI bill of materials)", "short": "AI-BOM", "def": "An inventory of everything inside an AI system: the models, data, agents, tools, and MCP servers it depends on. The record you need to audit, patch, or roll back an agent.", "slug": "ai-bom", "pattern": "\\bAI-BOM\\b", "flags": "", "tip": true}, {"term": "AIGF (AI Governance Framework)", "short": "AIGF", "def": "FINOS's open framework for governing AI in financial services. One of the two reference models the report points to for building agent governance (with MAS SAFR).", "slug": "aigf", "pattern": "\\bAIGF\\b", "flags": "", "tip": true}, {"term": "CI (created intelligence)", "short": "CI", "def": "Confluence<1>'s term for intelligence that is built rather than evolved: AI systems, and in principle biological or hybrid ones too. See the explainer, \"Created Intelligence \u2014 a note on the names\". Not to be confused with CI/CD (below).", "slug": "ci", "pattern": "CI-generated|\\bCI\\b", "flags": "", "tip": true}, {"term": "CIA (ci agent)", "short": "CIA", "def": "Confluence<1>'s term for an individual created-intelligence agent: one AI system acting autonomously toward a goal. The field's word is \"agent\".", "slug": "cia", "pattern": "\\bCIA\\b", "flags": "", "tip": true}, {"term": "CIAC (cia collective)", "short": "CIAC", "def": "Confluence<1>'s term for a team of CI agents working together \u2014 a swarm or collective with shared goals, roles, and governance.", "slug": "ciac", "pattern": "\\bCIAC\\b", "flags": "", "tip": true}, {"term": "CI/CD (continuous integration / continuous delivery)", "short": "CI/CD", "def": "The automated pipeline that tests and ships code changes: every change is built, tested, and (if it passes) deployed. Unrelated to \"CI\" as Confluence<1> uses it (created intelligence).", "slug": "ci-cd", "pattern": "\\bCI/CD\\b", "flags": "", "tip": true}, {"term": "circuit breaker", "short": "circuit breaker", "def": "A control that stops an agent (or a system) automatically when something looks wrong \u2014 too many errors, unusual volume, an action outside its mandate \u2014 and holds it for human review. Named after the electrical device.", "slug": "circuit-breaker", "pattern": "circuit breakers?", "flags": "i", "tip": true}, {"term": "CLI (command-line interface)", "short": "CLI", "def": "A way of driving a program by typing commands in a terminal, rather than through buttons and windows. Coding agents such as Claude Code and Codex run as CLIs.", "slug": "cli", "pattern": "\\bCLI\\b", "flags": "", "tip": true}, {"term": "CMA (Competition and Markets Authority)", "short": "CMA", "def": "The UK's competition regulator. Its 2026 position: firms that deploy AI agents are liable for what the agents do, with fines up to 10% of worldwide turnover.", "slug": "cma", "pattern": "\\bCMA\\b", "flags": "", "tip": true}, {"term": "consultation paper (CP)", "short": "consultation paper", "def": "A regulator's draft proposal published for public comment before it becomes final. FCA CP26/38 is the FCA's consultation paper on the Financial Crime Guide.", "slug": "consultation-paper", "pattern": "consultation paper|CP\\d{2}/\\d{2}", "flags": "i", "tip": true}, {"term": "CSA (Cloud Security Alliance)", "short": "CSA", "def": "An industry body for cloud and AI security; its research is cited for shadow-AI and agent-governance findings.", "slug": "csa", "pattern": "\\bCSA\\b", "flags": "", "tip": true}, {"term": "CSBS (Conference of State Bank Supervisors)", "short": "CSBS", "def": "The US body of state banking regulators, who supervise 79% of US banks. Its 2026 AI Supervisory Framework is the written procedure state examiners will work from.", "slug": "csbs", "pattern": "\\bCSBS\\b", "flags": "", "tip": true}, {"term": "CVE (Common Vulnerabilities and Exposures)", "short": "CVE", "def": "The standard catalogue of publicly known security flaws, each with an ID (e.g. CVE-2025-48757). When a flaw gets a CVE number, it is officially on the record.", "slug": "cve", "pattern": "\\bCVEs?\\b", "flags": "", "tip": true}, {"term": "CWE (Common Weakness Enumeration)", "short": "CWE", "def": "The standard catalogue of kinds of software weakness (e.g. CWE-89, SQL injection) \u2014 the types, where CVE lists the instances.", "slug": "cwe", "pattern": "\\bCWE\\b", "flags": "", "tip": true}, {"term": "DAST (dynamic application security testing)", "short": "DAST", "def": "Security testing of a running application: probing it from the outside, the way an attacker would. Complements SAST, which reads the code.", "slug": "dast", "pattern": "\\bDAST\\b", "flags": "", "tip": true}, {"term": "dependency", "short": "dependency", "def": "A piece of someone else's code your code relies on: a library or package pulled in to do a job (handle dates, talk to a database). Dependencies are where most supply-chain risk enters a codebase.", "slug": "dependency", "pattern": "dependenc\\w+", "flags": "i", "tip": true}, {"term": "deterministic", "short": "deterministic", "def": "Producing the same output every time for the same input \u2014 a rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are the report's first line of defence precisely because AI output is not deterministic.", "slug": "deterministic", "pattern": "deterministic\\w*", "flags": "i", "tip": true}, {"term": "DORA (Digital Operational Resilience Act)", "short": "DORA", "def": "EU regulation (in force Jan 2025) requiring financial firms to manage ICT and third-party risk, test resilience, and report major incidents. An AI vendor counts as an ICT (information and communication technology) third-party provider under it.", "slug": "dora", "pattern": "\\bDORA\\b", "flags": "", "tip": true}, {"term": "DRCF (Digital Regulation Cooperation Forum)", "short": "DRCF", "def": "The UK forum where the FCA, CMA, Ofcom, and ICO coordinate on digital regulation.", "slug": "drcf", "pattern": "\\bDRCF\\b", "flags": "", "tip": true}, {"term": "exploit verification", "short": "exploit verification", "def": "Checking a fix by running a real attack against it: the vulnerability counts as fixed only if a working exploit now fails. The report's standard for a trustworthy gate \u2014 passing tests is not enough.", "slug": "exploit-verification", "pattern": "exploit[- ]verification", "flags": "i", "tip": true}, {"term": "FCA (Financial Conduct Authority)", "short": "FCA", "def": "The UK's financial regulator. Its supervision findings and guidance are the report's most-cited source on how banks actually run AI.", "slug": "fca", "pattern": "\\bFCA\\b", "flags": "", "tip": true}, {"term": "FDIC (Federal Deposit Insurance Corporation)", "short": "FDIC", "def": "The US agency that insures bank deposits and supervises state-chartered banks. Co-author of the SR 26-2 model-risk letter and the proposed TPRM guidance.", "slug": "fdic", "pattern": "\\bFDIC\\b", "flags": "", "tip": true}, {"term": "FINRA (Financial Industry Regulatory Authority)", "short": "FINRA", "def": "The US self-regulatory body for broker-dealers. Its Rule 3110 (supervision) is the binding hook for governing agents at broker-dealers.", "slug": "finra", "pattern": "\\bFINRA\\b", "flags": "", "tip": true}, {"term": "four-eyes principle", "short": "four-eyes principle", "def": "Two people must approve a high-risk action: the requester and a different approver. The report's rule for high-risk CI-generated changes.", "slug": "four-eyes-principle", "pattern": "four-eyes", "flags": "i", "tip": true}, {"term": "frontier model", "short": "frontier model", "def": "The most capable AI model available at a given time \u2014 the leading edge (e.g. the newest Claude, GPT, Gemini). Frontier labs are the companies that build them.", "slug": "frontier-model", "pattern": "frontier models?", "flags": "i", "tip": true}, {"term": "guardrail", "short": "guardrail", "def": "A constraint built around an AI system to keep it inside safe behaviour: what it may and may not do, say, or touch. Guardrails can be rules, filters, or code.", "slug": "guardrail", "pattern": "guardrails?", "flags": "i", "tip": true}, {"term": "hallucination", "short": "hallucination", "def": "When an AI model confidently produces something false or invented: a fact, a citation, or (in code) a package or function that does not exist. The dangerous form in code is the hallucinated dependency: a package the tool invents and imports \u2014 see slopsquatting.", "slug": "hallucination", "pattern": "hallucinat\\w*", "flags": "i", "tip": true}, {"term": "HKMA (Hong Kong Monetary Authority)", "short": "HKMA", "def": "Hong Kong's central bank and banking regulator. Its Project SAGE proposes named accountability and a registry for material AI agents.", "slug": "hkma", "pattern": "\\bHKMA\\b", "flags": "", "tip": true}, {"term": "human-in-the-loop / human-on-the-loop", "short": "human-in-the-loop / human-on-the-loop", "def": "Two levels of human oversight. In the loop: a human approves each action before it happens. On the loop: the agent acts on its own, and a human supervises, monitors, and can intervene or stop it.", "slug": "human-in-the-loop-human-on-the-loop", "pattern": "human-in-the-loop|human-on-the-loop", "flags": "i", "tip": true}, {"term": "IaC (infrastructure as code)", "short": "IaC", "def": "Managing servers, networks, and cloud settings by writing them as code files rather than clicking through consoles \u2014 so infrastructure gets the same review, testing, and version control as software.", "slug": "iac", "pattern": "\\bIaC\\b", "flags": "", "tip": true}, {"term": "IDOR (insecure direct object reference)", "short": "IDOR", "def": "A flaw where an application lets a user reach another user's data just by changing an ID in a request (e.g. changing \"order 123\" to \"order 124\").", "slug": "idor", "pattern": "\\bIDOR\\b", "flags": "", "tip": true}, {"term": "inference", "short": "inference", "def": "Running a trained AI model to produce an output \u2014 as opposed to training it. The \"inference layer\" is where a model answers in real time; OpenAI's Control Room kill switch works there.", "slug": "inference", "pattern": "inference", "flags": "i", "tip": true}, {"term": "kill switch", "short": "kill switch", "def": "A control that stops an AI agent (or system) immediately and completely when it goes wrong \u2014 and proves it stopped. A kill switch that has never been tested is a claim, not a control.", "slug": "kill-switch", "pattern": "kill switches?", "flags": "i", "tip": true}, {"term": "LLM (large language model)", "short": "LLM", "def": "An AI model trained on vast amounts of text to predict and generate language (and code). The engine inside coding assistants and agents.", "slug": "llm", "pattern": "\\bLLM\\b", "flags": "", "tip": true}, {"term": "MAS (Monetary Authority of Singapore)", "short": "MAS", "def": "Singapore's central bank and financial regulator. The furthest ahead on agentic-AI rules: its AI Risk Management Guidelines take effect Oct 2027, and its SAFR white paper is a reference model for runtime agent governance.", "slug": "mas", "pattern": "\\bMAS\\b", "flags": "", "tip": true}, {"term": "MCP (Model Context Protocol)", "short": "MCP", "def": "An open protocol (from Anthropic) that lets an AI agent connect to tools and data sources \u2014 files, databases, services \u2014 in a standard way. One of the two interop standards the report tracks (with A2A).", "slug": "mcp", "pattern": "\\bMCP\\b", "flags": "", "tip": true}, {"term": "METR (Model Evaluation & Threat Research)", "short": "METR", "def": "An independent research organisation that measures AI capabilities, including how long a task an agent can complete (\"time horizons\").", "slug": "metr", "pattern": "\\bMETR\\b", "flags": "", "tip": true}, {"term": "model risk", "short": "model risk", "def": "The risk that a model is wrong, misused, or misunderstood \u2014 and the firm loses money or breaks the law because it relied on the model. Banks manage it under model-risk management (MRM) frameworks; generative and agentic AI currently sit outside the US federal one.", "slug": "model-risk", "pattern": "model[- ]risk", "flags": "i", "tip": true}, {"term": "NCSC (National Cyber Security Centre)", "short": "NCSC", "def": "The UK's national authority on cyber security (part of GCHQ). Its warnings on the AI-driven \"vulnerability patch wave\" are cited in \u00a72.5.", "slug": "ncsc", "pattern": "\\bNCSC\\b", "flags": "", "tip": true}, {"term": "NCUA (National Credit Union Administration)", "short": "NCUA", "def": "The US regulator for credit unions. Co-issuing interagency TPRM guidance for the first time.", "slug": "ncua", "pattern": "\\bNCUA\\b", "flags": "", "tip": true}, {"term": "NIST (National Institute of Standards and Technology)", "short": "NIST", "def": "The US federal standards agency. Its AI Risk Management Framework (AI RMF) is the most-cited voluntary AI governance standard.", "slug": "nist", "pattern": "\\bNIST\\b", "flags": "", "tip": true}, {"term": "NYDFS (New York Department of Financial Services)", "short": "NYDFS", "def": "New York State's financial regulator. Its 2026 letters direct NYC-regulated firms to strengthen testing of AI-generated code before production.", "slug": "nydfs", "pattern": "\\bNYDFS\\b", "flags": "", "tip": true}, {"term": "OCC (Office of the Comptroller of the Currency)", "short": "OCC", "def": "The US regulator for national banks. Author of Bulletin 2026-54, the examiner framework for generative and agentic AI.", "slug": "occ", "pattern": "\\bOCC\\b", "flags": "", "tip": true}, {"term": "orchestration", "short": "orchestration", "def": "Coordinating a team of agents: who does what, in what order, who checks whom, and how work and information flow between them. The supervisor pattern is the production-default orchestration.", "slug": "orchestration", "pattern": "orchestrat\\w*", "flags": "i", "tip": true}, {"term": "OSFI (Office of the Superintendent of Financial Institutions)", "short": "OSFI", "def": "Canada's federal financial regulator. Its Guideline E-23 (effective 1 May 2027) expressly brings AI/ML models inside model-risk scope.", "slug": "osfi", "pattern": "\\bOSFI\\b", "flags": "", "tip": true}, {"term": "OWASP (Open Web Application Security Project)", "short": "OWASP", "def": "An open community that publishes the standard lists of web and AI security risks (the OWASP Top 10).", "slug": "owasp", "pattern": "\\bOWASP\\b", "flags": "", "tip": true}, {"term": "pass@1 and pass^k", "short": "pass@1 and pass^k", "def": "Two ways of scoring an agent. pass@1: it succeeds on the first try. pass^k: it succeeds on all k tries. An agent can pass once by luck; pass^k measures whether it is reliable \u2014 the report's standard for judging agents.", "slug": "pass-1-and-pass-k", "pattern": "pass@1|pass\\^k", "flags": "i", "tip": true}, {"term": "pen test (penetration test)", "short": "pen test", "def": "Authorised hacking: security specialists attack a system the way a real attacker would, to find the holes before criminals do.", "slug": "pen-test", "pattern": "pen[- ]test\\w*", "flags": "i", "tip": true}, {"term": "PR (pull request)", "short": "PR", "def": "A proposed code change submitted for review before it is merged into the main codebase. The point where pre-commit checks run. (Not public relations.)", "slug": "pr", "pattern": "\\bPRs?\\b", "flags": "", "tip": true}, {"term": "Project SAGE", "short": "Project SAGE", "def": "HKMA's proposal for agentic-AI accountability: named owners for agents, Know Your Agent (KYA) identity, and a registry of material AI agents. Comments close 1 Feb 2027.", "slug": "project-sage", "pattern": "Project SAGE|\\bSAGE\\b", "flags": "", "tip": true}, {"term": "prompt injection", "short": "prompt injection", "def": "An attack that hides instructions in data an AI system reads (a web page, a document, a code comment) so the model follows the attacker's orders instead of its own. OWASP's #1 GenAI risk three years running.", "slug": "prompt-injection", "pattern": "prompt[- ]injection", "flags": "i", "tip": true}, {"term": "RBAC (role-based access control)", "short": "RBAC", "def": "Permissions by job, not by person: each role gets exactly the access its job needs, nothing more. Applies to agents as well as people.", "slug": "rbac", "pattern": "\\bRBAC\\b", "flags": "", "tip": true}, {"term": "red team", "short": "red team", "def": "A group that attacks a system (or an AI) on purpose, playing the adversary, to find weaknesses before a real attacker does. The counterpart of the \"blue team\" that defends.", "slug": "red-team", "pattern": "red[- ]team\\w*", "flags": "i", "tip": true}, {"term": "RFI (request for information)", "short": "RFI", "def": "A regulator's formal call for public input before it writes a rule. The Fed/OCC/FDIC AI RFI, promised in April 2026, still has not appeared.", "slug": "rfi", "pattern": "\\bRFI\\b", "flags": "", "tip": true}, {"term": "SAFR (Safeguards for Agentic Finance at Runtime)", "short": "SAFR", "def": "MAS's industry white paper (Jul 2026, v1.1 Oct 2026): a runtime governance layer that checks an agent's proposed actions \u2014 identity, controls, disposition, audit log \u2014 before anything executes. A reference model, not a rule.", "slug": "safr", "pattern": "\\bSAFR\\b", "flags": "", "tip": true}, {"term": "SAST (static application security testing)", "short": "SAST", "def": "Security testing by reading the code without running it: scanning for known flaw patterns. Fast and automatable; misses flaws that only appear when the code runs.", "slug": "sast", "pattern": "\\bSAST\\b", "flags": "", "tip": true}, {"term": "SCA (software composition analysis)", "short": "SCA", "def": "Scanning the dependencies a codebase pulls in, to find known vulnerabilities in them. Reachability analysis goes further: it checks whether the vulnerable code is actually used.", "slug": "sca", "pattern": "\\bSCA\\b", "flags": "", "tip": true}, {"term": "secret (in code)", "short": "secret", "def": "A credential embedded in code or configuration: an API key, a password, a token. Secrets in code are a classic leak \u2014 and agents now write them into settings files too.", "slug": "secret", "pattern": "secrets?", "flags": "i", "tip": true}, {"term": "SFC (Securities and Futures Commission)", "short": "SFC", "def": "Hong Kong's securities regulator. Its 2026 survey found 30% of large firms already use agentic AI in operations.", "slug": "sfc", "pattern": "\\bSFC\\b", "flags": "", "tip": true}, {"term": "shadow AI", "short": "shadow AI", "def": "AI tools (or agents) running inside a firm without IT knowing about them: installed by employees, outside governance, invisible until something goes wrong.", "slug": "shadow-ai", "pattern": "shadow (AI|agents?)", "flags": "i", "tip": true}, {"term": "slopsquatting", "short": "slopsquatting", "def": "Registering the package name an AI coding tool hallucinated, then publishing malicious code under it \u2014 so the next developer (or agent) who trusts the hallucination installs the attacker's package.", "slug": "slopsquatting", "pattern": "slopsquat\\w*", "flags": "i", "tip": true}, {"term": "SR 11-7", "short": "SR 11-7", "def": "The Fed's model-risk letter (2011\u20132026), the old US rulebook for governing models. Rescinded April 2026 and replaced by SR 26-2.", "slug": "sr-11-7", "pattern": "\\bSR 11-7\\b", "flags": "", "tip": true}, {"term": "SR 26-2", "short": "SR 26-2", "def": "The Fed/OCC/FDIC letter (17 Apr 2026) that replaced SR 11-7. It expressly places generative and agentic AI outside model-risk scope \u2014 the US federal gap the report is built around.", "slug": "sr-26-2", "pattern": "\\bSR 26-2\\b", "flags": "", "tip": true}, {"term": "supervisor pattern", "short": "supervisor pattern", "def": "The production-default way to run a team of agents: one supervisor agent plans, assigns work to specialist agents, checks their output, and decides what ships.", "slug": "supervisor-pattern", "pattern": "supervisor[- ]pattern", "flags": "i", "tip": true}, {"term": "SWE-bench", "short": "SWE-bench", "def": "A benchmark built from real GitHub issues: can an AI fix the bug the way the human developer did? The source of the \"11\u00d7 the vulnerabilities\" finding.", "slug": "swe-bench", "pattern": "\\bSWE-bench\\b", "flags": "", "tip": true}, {"term": "TPRM (third-party risk management)", "short": "TPRM", "def": "Managing the risk of outside vendors: the firms whose software, data, or services you depend on. The proposed interagency guidance would rewrite the US rules for it; comments close 16 Dec 2026.", "slug": "tprm", "pattern": "\\bTPRM\\b", "flags": "", "tip": true}, {"term": "vibe coding", "short": "vibe coding", "def": "Writing software by describing what you want to an AI in plain language and accepting what it produces, with little or no reading of the code. Fast; Veracode's finding is that ~45% of AI-generated code carries a known security flaw.", "slug": "vibe-coding", "pattern": "vibe[- ]coding", "flags": "i", "tip": true}, {"term": "XSS (cross-site scripting)", "short": "XSS", "def": "A flaw where an attacker injects malicious script into a web page other people view \u2014 so the victim's browser runs the attacker's code.", "slug": "xss", "pattern": "\\bXSS\\b", "flags": "", "tip": true}];
+  var glossaryBySlug = {};
+  GLOSSARY.forEach(function (e) { glossaryBySlug[e.slug] = e; });
+  var tipEl = null;
+  var tipTrigger = null;
+  var tipHideTimer = null;
+  function buildTipEl() {
+    tipEl = document.createElement('div');
+    tipEl.id = 'def-tip';
+    tipEl.setAttribute('role', 'tooltip');
+    tipEl.hidden = true;
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'def-tip-close';
+    closeBtn.setAttribute('aria-label', 'Close definition');
+    closeBtn.textContent = '×';
+    closeBtn.addEventListener('click', hideTip);
+    var text = document.createElement('p');
+    text.className = 'def-tip-text';
+    var link = document.createElement('a');
+    link.className = 'def-tip-link';
+    link.textContent = 'Glossary →';
+    tipEl.appendChild(closeBtn);
+    tipEl.appendChild(text);
+    tipEl.appendChild(link);
+    document.body.appendChild(tipEl);
+  }
+  function showTip(trigger) {
+    var entry = glossaryBySlug[trigger.getAttribute('data-term')];
+    if (!entry) return;
+    if (!tipEl) buildTipEl();
+    clearTimeout(tipHideTimer);
+    tipTrigger = trigger;
+    tipEl.querySelector('.def-tip-text').textContent = entry.def;
+    var link = tipEl.querySelector('.def-tip-link');
+    link.href = 'glossary.html#' + entry.slug;
+    tipEl.hidden = false;
+    trigger.setAttribute('aria-describedby', 'def-tip');
+    // Position below the trigger when there is room, else above; clamp
+    // horizontally so the tip never leaves the viewport.
+    var r = trigger.getBoundingClientRect();
+    var w = Math.min(320, window.innerWidth - 16);
+    tipEl.style.width = w + 'px';
+    var h = tipEl.offsetHeight;
+    var top = r.bottom + window.scrollY + 6;
+    if (r.bottom + h + 12 > window.innerHeight) top = r.top + window.scrollY - h - 6;
+    var left = Math.max(8, Math.min(r.left + window.scrollX, window.innerWidth - w - 8));
+    tipEl.style.top = Math.max(8, top) + 'px';
+    tipEl.style.left = left + 'px';
+  }
+  function hideTip() {
+    if (tipEl) tipEl.hidden = true;
+    if (tipTrigger) tipTrigger.removeAttribute('aria-describedby');
+    tipTrigger = null;
+  }
+  function hideTipSoon() {
+    clearTimeout(tipHideTimer);
+    tipHideTimer = setTimeout(hideTip, 250);
+  }
+  function wrapGlossaryTerms() {
+    if (!GLOSSARY.length) return;
+    var terms = GLOSSARY.filter(function (e) { return e.tip; });
+    // Longest pattern first, so a compound (CI/CD) wins over its prefix (CI).
+    terms.sort(function (a, b) { return b.pattern.length - a.pattern.length; });
+    var scopes = document.querySelectorAll('main .section-body, main .how-to-read');
+    scopes.forEach(function (scope) {
+      terms.forEach(function (entry) {
+        var re;
+        try { re = new RegExp(entry.pattern, entry.flags); } catch (err) { return; }
+        var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
+          acceptNode: function (node) {
+            var p = node.parentElement;
+            if (!p) return NodeFilter.FILTER_REJECT;
+            if (p.closest('a, code, script, style, button, .def, .crumbs, .share-link, .table-share')) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        var node;
+        while ((node = walker.nextNode())) {
+          var m = re.exec(node.textContent);
+          if (!m) continue;
+          var after = node.splitText(m.index);
+          after.splitText(m[0].length);
+          var span = document.createElement('span');
+          span.className = 'def';
+          span.setAttribute('data-term', entry.slug);
+          span.setAttribute('tabindex', '0');
+          span.textContent = m[0];
+          after.parentNode.replaceChild(span, after);
+          return;
+        }
+      });
+    });
+  }
+  wrapGlossaryTerms();
+  // Hover shows the definition; moving into the tip itself keeps it open
+  // (so the Glossary link is clickable). Tap shows it on touch; Escape,
+  // scrolling, or tapping elsewhere closes it.
+  document.addEventListener('mouseover', function (e) {
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) { clearTimeout(tipHideTimer); if (tipTrigger !== t) showTip(t); }
+    else if (tipEl && !tipEl.contains(e.target)) hideTipSoon();
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) { showTip(t); return; }
+    if (tipEl && !tipEl.contains(e.target)) hideTip();
+  });
+  document.addEventListener('focusin', function (e) {
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t) showTip(t);
+  });
+  document.addEventListener('focusout', function (e) {
+    var t = e.target.closest ? e.target.closest('.def') : null;
+    if (t && !(e.relatedTarget && tipEl && tipEl.contains(e.relatedTarget))) hideTip();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hideTip();
+  });
+  window.addEventListener('scroll', hideTip, { passive: true });
+  window.addEventListener('resize', hideTip);
 
   // Back-to-top button: appears once the reader has scrolled down the
   // page, smooth-scrolls back to the top. Invisible until needed.
