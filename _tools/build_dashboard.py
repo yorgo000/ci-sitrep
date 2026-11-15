@@ -28,6 +28,7 @@ Defaults: dashboard.json / index.html in the repo root.
 
 import html
 import json
+import math
 import re
 import sys
 from html.parser import HTMLParser
@@ -280,34 +281,109 @@ def render_countdown(deadlines):
         "</a></div>"
         for d in deadlines
     )
-    return f'<div class="countdown-strip">{cards}</div>'
+    return (
+        '<p class="dash-strip-label">Countdown</p>'
+        f'<div class="countdown-strip">{cards}</div>'
+    )
+
+
+def render_donut(it):
+    """Inline SVG donut for a share figure (the ~47% AI-written code
+    card): the navy arc is the share, the grey remainder is the rest,
+    the value sits in the centre. No JS, no library — plain SVG.
+    """
+    chart = it["chart"]
+    v = chart["value"]
+    circ = 2 * math.pi * 40
+    arc = circ * v / 100
+    legend = (
+        f'<p class="bl-legend">{esc(chart["legend"])}</p>'
+        if chart.get("legend")
+        else ""
+    )
+    return (
+        '<svg class="bl-donut" viewBox="0 0 100 100" role="img" '
+        f'aria-label="{esc(it["label"])}">'
+        '<circle cx="50" cy="50" r="40" fill="none" stroke="#c9c2b0" '
+        'stroke-width="16"/>'
+        '<circle cx="50" cy="50" r="40" fill="none" stroke="#283060" '
+        'stroke-width="16" '
+        f'stroke-dasharray="{arc:.1f} {circ - arc:.1f}" '
+        'transform="rotate(-90 50 50)"/>'
+        f'<text x="50" y="56" text-anchor="middle" class="bl-donut-value">'
+        f'{esc(it["display"])}</text>'
+        "</svg>" + legend
+    )
+
+
+def render_compare(chart):
+    """Two horizontal bars for a head-to-head figure (Sajadi 135 vs 12
+    vulnerabilities; SusVibes 2.5× vs 1× review cost). Widths are
+    proportional to the values; the larger side is always 100%.
+    """
+    top = max(chart["a"]["value"], chart["b"]["value"])
+    rows = []
+    for side in ("a", "b"):
+        s = chart[side]
+        w = 100 * s["value"] / top
+        rows.append(
+            '<div class="bar-row">'
+            '<div class="bar-head">'
+            f'<span class="bar-label">{esc(s["label"])}</span>'
+            f'<span class="bar-value">{esc(s["display"])}</span>'
+            "</div>"
+            '<div class="bar-track">'
+            f'<div class="bar-fill {esc(s["tone"])}" '
+            f'style="width: {w:.1f}%"></div>'
+            "</div></div>"
+        )
+    return '<div class="bl-compare">' + "".join(rows) + "</div>"
 
 
 def render_bottom_line(items):
     """The bottom-line strip (2026-11-15): seven at-a-glance items above
-    the countdown, each linked to its evidencing article — Yorgo's pick,
-    in his order. The profitability item has no figure: its display IS
-    the finding ("Insufficient data"), it carries no rating or date, and
-    it links to the money panel, which states the gap honestly.
+    the countdown, each linked to its evidencing article — Yorgo's pick.
+    Layout is 3+3+1: six cards in two rows of three, then the
+    profitability item full-width (it has no figure — its display IS
+    the finding, "Insufficient data", with no rating or date, linking
+    to the money panel). Cards carry a chart where the figure has one:
+    a donut for the AI code share, a bar for the two adoption rates,
+    comparison bars for the two multipliers; the 188 count has no
+    chartable comparison in the report, so it keeps the big number.
     """
     cards = []
     for it in items:
+        chart = it.get("chart")
+        if chart and chart["kind"] == "donut":
+            # The value lives in the donut's centre — no stat-value.
+            visual = render_donut(it)
+        else:
+            visual = f'<p class="stat-value">{esc(it["display"])}</p>'
+            if chart and chart["kind"] == "bar":
+                visual += (
+                    '<div class="bl-bar"><div class="bar-track">'
+                    f'<div class="bar-fill" style="width: {chart["value"]}%">'
+                    "</div></div></div>"
+                )
+            elif chart and chart["kind"] == "compare":
+                visual += render_compare(chart)
         parts = [f'<a href="{esc(it["link"])}">{esc(it["source"])}</a>']
         if it.get("date"):
             parts.append(esc(it["date"]))
         if it.get("rating"):
             parts.append(rating_html(it["rating"]))
         note = f'<p class="fig-note">{esc(it["note"])}</p>' if it.get("note") else ""
+        cls = "stat-card bl-full" if it.get("full") else "stat-card"
         cards.append(
-            '<div class="stat-card">'
-            f'<p class="stat-value">{esc(it["display"])}</p>'
+            f'<div class="{cls}">'
+            f"{visual}"
             f'<p class="stat-label">{esc(it["label"])}</p>'
             '<p class="fig-source">' + " · ".join(parts) + "</p>"
             f"{note}</div>"
         )
     return (
-        '<p class="bottom-line-label">The bottom line</p>'
-        '<div class="bottom-line-strip stats-grid">' + "".join(cards) + "</div>"
+        '<p class="dash-strip-label">The bottom line</p>'
+        '<div class="bottom-line-strip">' + "".join(cards) + "</div>"
     )
 
 
@@ -391,6 +467,36 @@ def validate(data, index_html):
         if it.get("rating") is not None and it["rating"] not in RATINGS:
             errors.append(f"bottom line {src}: bad rating {it.get('rating')!r}")
         check_link(src, it.get("link", ""))
+        chart = it.get("chart")
+        if chart is not None:
+            kind = chart.get("kind")
+            if kind in ("donut", "bar"):
+                v = chart.get("value")
+                if not isinstance(v, (int, float)) or not 0 <= v <= 100:
+                    errors.append(f"bottom line {src}: bad chart value {v!r}")
+            elif kind == "compare":
+                for side in ("a", "b"):
+                    s = chart.get(side) or {}
+                    for field in ("label", "value", "display", "tone"):
+                        if field not in s:
+                            errors.append(
+                                f"bottom line {src}: compare {side} missing {field}"
+                            )
+                    if not isinstance(s.get("value"), (int, float)) or (
+                        isinstance(s.get("value"), (int, float))
+                        and s["value"] <= 0
+                    ):
+                        errors.append(
+                            f"bottom line {src}: compare {side} bad value "
+                            f"{s.get('value')!r}"
+                        )
+                    if s.get("tone") not in ("navy", "gap", "muted"):
+                        errors.append(
+                            f"bottom line {src}: compare {side} bad tone "
+                            f"{s.get('tone')!r}"
+                        )
+            else:
+                errors.append(f"bottom line {src}: bad chart kind {kind!r}")
     if "what-were-watching" not in anchors:
         errors.append("countdown link target #what-were-watching missing")
     return errors
@@ -400,8 +506,16 @@ DASH_CSS = """
   /* Executive dashboard (F-01): at-a-glance figures, same palette. */
   .dash-asof { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
   .dash-intro { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
-  .bottom-line-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
-  .bottom-line-strip { margin: 0 0 20px; }
+  .dash-strip-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+  .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
+  .bottom-line-strip .stat-value { overflow-wrap: break-word; }
+  .bl-full { grid-column: 1 / -1; border-style: dashed; background: #f0f1f7; }
+  .bl-donut { width: 110px; height: 110px; display: block; margin: 0 auto 8px; }
+  .bl-donut-value { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 19px; font-weight: 700; fill: #283060; }
+  .bl-legend { font-size: 12px; color: var(--muted); margin: 0 0 6px; text-align: center; }
+  .bl-bar { margin: 0 0 8px; }
+  .bl-compare .bar-row { margin-bottom: 8px; }
+  .bar-fill.muted { background: #c9c2b0; }
   .countdown-strip { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
   .cd-card { flex: 1 1 180px; border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 10px 12px; background: #fdfbf7; }
   .cd-card a { text-decoration: none; color: inherit; display: block; }
@@ -439,7 +553,8 @@ DASH_CSS = """
   .note-card { border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 12px 14px; margin: 0 0 12px; background: #fdfbf7; }
   .note-card p { margin: 0; }
   .bignote { border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 16px; background: #f0f1f7; font-size: 17px; margin: 0 0 16px; }
-  @media (max-width: 900px) { .ledger { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .ledger { grid-template-columns: 1fr; } .bottom-line-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .bottom-line-strip { grid-template-columns: 1fr; } }
 """
 
 COUNTDOWN_JS = """
