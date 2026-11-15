@@ -1,6 +1,6 @@
 # Glossary
 
-The acronyms and jargon in the CI Sitrep, in plain language. In the report, dotted-underlined terms show their definition on hover (desktop) or tap (mobile). Entries are never removed, so this dictionary only grows.
+The acronyms and jargon in the CI SITREP, in plain language. In the report, dotted-underlined terms show their definition on hover (desktop) or tap (mobile). Entries are never removed, so this dictionary only grows.
 
 ## A
 
