@@ -200,14 +200,14 @@ A way for readers to ask questions and get answers grounded in the report. Asses
 
 ## F-15 — Glossary + tooltips
 
-**Status:** In progress
+**Status:** Done 2026-11-14
 **Proposed:** 2026-11-14 (Yorgo — the report's acronyms and jargon need a dictionary for the executive audience)
 
-A glossary page (alphabetical, one line per term, each term linkable) built from a single Markdown source of truth, plus tooltips on the report itself: first mention of a term in each subsection gets a dotted underline; hovering (desktop) or tapping (mobile) shows the one-line definition with a link to the full glossary entry. The generator derives both from the same file, so the tooltip and the glossary can never drift apart. Draft: 71 entries mined from the report (GLOSSARY_DRAFT.md, delivered 2026-11-14 for Yorgo's review — edit, cut, or add before building).
+A glossary page (alphabetical, one line per term, each term linkable) built from a single Markdown source of truth, plus tooltips on the report itself: first mention of a term in each subsection gets a dotted underline; hovering (desktop) or tapping (mobile) shows the one-line definition with a link to the full glossary entry. The generator derives both from the same file, so the tooltip and the glossary can never drift apart. Draft: 71 entries mined from the report (GLOSSARY_DRAFT.md, delivered 2026-11-14). Yorgo approved the draft as-is the same evening ("better to have some of the lingo translated in a dictionary than none") and asked for it built that night, so he could send the link to executives the next morning; he will flag missing terms as he reads.
 
-**Notes / open questions:**
-- Daily maintenance (Yorgo, 2026-11-14): the daily watch adds any new term or acronym introduced in the report to the glossary as part of its editorial pass. The step goes into the daily watch cron when the glossary goes live.
-- Build after Yorgo approves the entries: GLOSSARY.md in the repo as the source; glossary.html via build_page.py + masthead nav link; tooltip injection in build_html.py (first mention per subsection); browser test (hover + tap).
+**Built 2026-11-14 (late evening):** GLOSSARY.md in the repo (71 entries, 19 letter headings) → glossary.html via build_page.py (each entry anchored by slug); tooltip data injected into index.html at build time by build_html.py (runtime wrapping, first mention per subsection; `agent`/`agentic` in the glossary but never tooltip-wrapped — too frequent); nav link "Glossary" in the report masthead; "Terms:" line in the How-to-read block. verify.py gained 10 glossary checks (45 total). **Rule (Yorgo): terms are never removed — even if the text that referred to a term drops out of the report, the entry stays; the dictionary only grows.** Recorded in RULES.md §2/§4 and in the daily watch cron (GLOSSARY step added 2026-11-14): the daily watch adds any new term or acronym introduced in the report, one line, plain language, alphabetical placement, regenerating both glossary.html and index.html.
+
+**Browser-tested live 2026-11-14 (5/5 pass):** dotted terms present (TPRM, SAST, inference); hovering TPRM shows the tooltip with the glossary's definition verbatim; the tooltip's "Glossary →" link lands on glossary.html#tprm with the T section auto-expanded; the glossary page renders all 19 letter headings with entries (incl. the CI vs CI/CD collision note); a tooltip deep in §3.4.3 works. Two notes from the test, both non-defects: the TPRM tooltip wording differed from the test brief's paraphrase but matched the glossary entry verbatim (the brief was wrong, not the site); the "Expand all" click that seemed not to work was the sidebar's TOC control, not the "Sections: Expand all" control — the glossary TOC is flat, so there was nothing for it to expand, while individual headings and anchor auto-expand both work.
 
 ---
 
