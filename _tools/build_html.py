@@ -739,7 +739,7 @@ TEMPLATE = """<!DOCTYPE html>
       if (cur4) parts.push(cur4);
       return parts.join(' · ');
     }}
-    var nodes = main.querySelectorAll('h2, h3, h4, details, p, table');
+    var nodes = main.querySelectorAll('h2, h3, h4, details, p, table, li');
     nodes.forEach(function (n) {{
       var tag = n.tagName;
       if (tag === 'H2' || tag === 'H3' || tag === 'H4') {{
@@ -781,6 +781,26 @@ TEMPLATE = """<!DOCTYPE html>
       if (tag === 'TABLE') {{
         if (!n.id) return;
         items.push({{ id: n.id, title: (cur4 || cur3 || cur2 || 'Table') + ' — table', text: cleanText(n), path: pathOf(), kind: 'table' }});
+        return;
+      }}
+      if (tag === 'LI') {{
+        // Standalone list items in a section body: the best-practice
+        // bullets (§1.5.2, §2.5) and the "New this week" / "What we're
+        // watching" entries live here, not in <p> or <details>. Items
+        // inside a <details> are already covered by their article unit;
+        // nested items are covered by their parent's text. Unlike the
+        // other units these have no share-button id, so the indexer
+        // assigns one with the same deterministic slugify — a
+        // search-result link resolves identically on a later load.
+        if (n.closest('details')) return;
+        if (n.parentElement.closest('li')) return;
+        var ltext = cleanText(n);
+        if (ltext.length < 80) return;
+        if (!n.id) n.id = uniqueId(slugify(ltext));
+        var lt = ltext.slice(0, 90);
+        var lsp = lt.lastIndexOf(' ');
+        if (lsp > 40) lt = lt.slice(0, lsp);
+        items.push({{ id: n.id, title: lt + '…', text: ltext, path: pathOf(), kind: 'list' }});
         return;
       }}
     }});
