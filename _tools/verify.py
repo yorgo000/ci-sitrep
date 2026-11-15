@@ -69,6 +69,8 @@ HTML_MARKERS = [
     ("state-of-the-market", "State of the market section"),
     ("search-box", "Search box"),
     ("search-input", "Search input"),
+    ("glossary.html", "Glossary nav link"),
+    ("def-tip", "Tooltip element"),
     ("How to read this", "How-to-read block"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
@@ -316,6 +318,87 @@ def check_structure(md):
         fail("§3.4 subsection order", f"found: {h4s}")
 
 
+def glossary_key(short):
+    """Alphabetical sort key for a glossary term: lowercased, punctuation
+    stripped (so CI/CD sorts as 'cicd', after CIAC)."""
+    return re.sub(r"[^a-z0-9]", "", short.lower())
+
+
+def parse_glossary_terms(src):
+    """(term, short, slug) for each **Term** — definition entry."""
+    terms = []
+    for block in re.split(r"\n\n+", src):
+        block = block.strip()
+        if not block.startswith("**"):
+            continue
+        m = re.match(r"\*\*(.+?)\*\*\s*—\s*(.*)", block, re.DOTALL)
+        if not m:
+            continue
+        term = m.group(1).strip()
+        short = term.split(" (")[0]
+        slug = re.sub(r"[^a-z0-9]+", "-", short.lower()).strip("-")
+        terms.append((term, short, slug))
+    return terms
+
+
+def check_glossary(md_path, html):
+    """GLOSSARY.md exists, is alphabetical, has no naming slips, and every
+    term is present both in the tooltip data (index.html) and as an anchored
+    entry on the glossary page (glossary.html)."""
+    repo = md_path.parent
+    g_path = repo / "GLOSSARY.md"
+    if not g_path.exists():
+        fail("GLOSSARY.md exists", f"missing: {g_path} — tooltips would be empty")
+        return
+    ok("GLOSSARY.md exists")
+    g_src = g_path.read_text()
+    terms = parse_glossary_terms(g_src)
+    if not terms:
+        fail("glossary has entries", "no **Term** — definition blocks found")
+        return
+    ok("glossary has entries", f"{len(terms)} terms")
+    shorts = [s for _, s, _ in terms]
+    if shorts == sorted(shorts, key=glossary_key):
+        ok("glossary is alphabetical")
+    else:
+        ordered = sorted(shorts, key=glossary_key)
+        first_bad = next(i for i, (a, b) in enumerate(zip(shorts, ordered)) if a != b)
+        fail("glossary is alphabetical",
+             f"'{shorts[first_bad]}' should come after '{ordered[first_bad]}'")
+    slugs = [s for _, _, s in terms]
+    dupes = sorted({s for s in slugs if slugs.count(s) > 1})
+    if not dupes:
+        ok("glossary slugs unique")
+    else:
+        fail("glossary slugs unique", f"duplicates: {dupes}")
+    if "Confluence 1" in g_src:
+        fail("Glossary: no 'Confluence 1'", "found 'Confluence 1'")
+    else:
+        ok("Glossary: no 'Confluence 1'")
+    bare = list(re.finditer(r"Confluence(?!<1>)", g_src))
+    if not bare:
+        ok("Glossary: no bare 'Confluence'")
+    else:
+        fail("Glossary: no bare 'Confluence'", f"{len(bare)} occurrences")
+    # Tooltip data in index.html must carry every term.
+    missing_data = [s for s in slugs if f'"slug": "{s}"' not in html]
+    if not missing_data:
+        ok("tooltip data carries every term", f"{len(slugs)} slugs in index.html")
+    else:
+        fail("tooltip data carries every term", f"missing: {missing_data[:5]}")
+    # The glossary page must anchor every entry.
+    g_html_path = repo / "glossary.html"
+    if not g_html_path.exists():
+        fail("glossary.html exists", "missing — rebuild with build_page.py")
+        return
+    g_html = g_html_path.read_text()
+    missing_ids = [s for s in slugs if f'<p id="{s}">' not in g_html]
+    if not missing_ids:
+        ok("glossary page anchors every entry", f"{len(slugs)} ids in glossary.html")
+    else:
+        fail("glossary page anchors every entry", f"missing: {missing_ids[:5]}")
+
+
 def check_naming(md, html):
     """Confluence<1> everywhere (one documented exception); no 'Confluence 1'."""
     for label, text in (("Markdown", md), ("HTML", html)):
@@ -451,6 +534,7 @@ def main():
     check_naming(md, html_unescaped)
     check_hygiene(md, html)
     check_html(html_unescaped)
+    check_glossary(md_path, html)
     check_source_first(md)
     check_links(md)
 
