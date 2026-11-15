@@ -144,14 +144,15 @@ The report already carries implication synthesis where it matters most: §2.7 is
 
 ## F-09 — One findable contact point (the restrained conversion step)
 
-**Status:** Proposed
+**Status:** Done
 **Proposed:** 2026-11-14 (external reviewer feedback; assessed same day — the narrower version of the reviewer's CTA proposal)
+**Built:** 2026-11-14
 
 The report page has no conversion path; the only contact point is one line on the About page ("For enquiries, write to ci-sitrep@confluence1.com"). Add exactly one restrained, findable entry point — not CTAs scattered through the text.
 
 **Design notes:**
 
-- Placement undecided: a masthead nav link to About's Contact section, or a single line at the bottom of the report. Yorgo to pick.
+- Placement decided 2026-11-14 (Yorgo): a **masthead nav link** — "Work with Confluence<1>" as the last link in the report page's masthead nav, jumping to About's Contact section (about.html#contact). Set apart from the content links by a separator line. The footer-line alternative was not chosen.
 - The real conversion engine remains the newsletter funnel (subscribe → site → value-add → Confluence<1> service), which still needs Yorgo's yes to start.
 
 ## F-10 — Business Impact & Risk module in each pillar
