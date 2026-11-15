@@ -543,6 +543,10 @@
     if (!id) return;
     var el = document.getElementById(id);
     if (!el) return;
+    // If the anchor IS a collapsible heading, open it too: the walk
+    // below only opens ancestors, so a deep link to a subsection
+    // heading would otherwise land on a collapsed section.
+    if (el.classList) el.classList.remove('collapsed');
     var node = el;
     while (node) {
       if (node.classList && node.classList.contains('section-body')) {
