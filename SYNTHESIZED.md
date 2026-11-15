@@ -1,4 +1,4 @@
-# CI Sitrep *Code & Finance*
+# CI SITREP *Code & Finance*
 
 **Last updated:** 2026-11-15.
 
@@ -13,7 +13,7 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 **Terms:** the [Glossary](glossary.html) defines every acronym and piece of jargon in plain language. In the report, dotted-underlined terms show their definition on hover or tap.
 
-**Short on time?** The [Executive dashboard](dashboard.html) gives the key numbers at a glance — every figure linked to the report section behind it.
+**Short on time?** The [Executive dashboard](#executive-dashboard) gives the key numbers at a glance — every figure linked to the report section behind it.
 
 **The bar for adding or changing anything:** it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.
 
