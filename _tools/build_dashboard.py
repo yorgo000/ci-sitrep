@@ -509,7 +509,7 @@ DASH_CSS = """
   .dash-strip-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
   .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
   .bottom-line-strip .stat-value { overflow-wrap: break-word; }
-  .bl-full { grid-column: 1 / -1; border-style: dashed; background: #f0f1f7; }
+  .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; background: #f0f1f7; }
   .bl-donut { width: 110px; height: 110px; display: block; margin: 0 auto 8px; }
   .bl-donut-value { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 19px; font-weight: 700; fill: #283060; }
   .bl-legend { font-size: 12px; color: var(--muted); margin: 0 0 6px; text-align: center; }
