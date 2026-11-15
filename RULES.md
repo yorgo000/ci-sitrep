@@ -114,6 +114,18 @@ similarity.
 `_tools/build_audit.py` — never hand-edit it. Its Coverage section links
 to "What we're watching" rather than maintaining its own known-gaps list.
 
+**Glossary.** `GLOSSARY.md` is the single source of truth for the
+report's acronyms and jargon: one line per term, plain language,
+alphabetical under letter headings. It builds to `glossary.html` via
+`build_page.py` (each entry gets a stable id from its term) and feeds
+the report's tooltips (§4). **Terms are never removed** — even if the
+text that referred to a term drops out of the report, the entry stays,
+so the dictionary only grows. The daily watch adds any new term or
+acronym a new article introduces, as part of its editorial pass, in
+alphabetical place under the right letter heading. Changing
+`GLOSSARY.md` means regenerating BOTH `glossary.html` and `index.html`
+(the tooltip data is generated from it at build time).
+
 ---
 
 ## 3. Style — how it reads
@@ -318,6 +330,17 @@ Acronyms a reader would search for (e.g. TPRM) must be defined in the
 prose at first mention — the search matches literal text, and an
 acronym that never appears returns nothing. Icons are inline SVG.
 
+**Tooltips.** The first mention of a glossary term in each subsection
+gets a dotted underline; hovering (desktop) or tapping (mobile) shows
+the one-line definition with a link to the full glossary entry. The
+wrapping happens at runtime in the browser from the glossary data
+injected at build time — it skips links, code, buttons, breadcrumbs,
+and share buttons, and it never wraps the same term twice in one
+subsection. Two terms are in the glossary but never tooltip-wrapped:
+"agent" and "agentic" — too frequent; a marker on every first mention
+would be noise. The tooltip data is generated from `GLOSSARY.md`, so
+`index.html` must be regenerated whenever the glossary changes.
+
 **No font-glyph dependency for UI.** Expand/collapse arrows are pure CSS
 borders; icons are inline SVG. A glyph that renders as a weird character
 on a reader's device is a defect, even if the behaviour works.
@@ -474,3 +497,11 @@ The Self-Audit page records the date of the last full manual link audit
   step, no index file, no backend; searchable units are the share-button
   units (articles, headings, paragraphs, tables); report page only in
   v1. FUTURE.md gained F-14 (AI answers over the report, Proposed).
+- **2026-11-14 (late evening)** — Glossary + tooltips adopted (F-15):
+  `GLOSSARY.md` as the single source of truth (one line per term,
+  alphabetical, letter headings), built to `glossary.html` with stable
+  per-entry ids, and tooltips on first mention per subsection (dotted
+  underline; hover/tap; link to the glossary entry). Terms are never
+  removed; the daily watch adds new terms as part of its editorial pass.
+  verify.py now checks the glossary (existence, alphabetical order,
+  unique slugs, naming, tooltip data completeness, glossary-page ids).
