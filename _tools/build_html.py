@@ -526,6 +526,7 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="explainer.html">The names: CI, CIA, CIAC</a>
       <a href="theses.html">Foundational theses</a>
       <a href="glossary.html">Glossary</a>
+      <a href="dashboard.html">Executive dashboard</a>
       <a href="archive.html">Archive</a>
       <a href="audit.html">Self-Audit</a>
       <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
