@@ -76,6 +76,7 @@ HTML_MARKERS = [
     ('id="report"', "Report top-level section"),
     ("sec-controls", "Sections control in main content"),
     ("dash-panel", "dashboard panels embedded"),
+    ("bottom-line-strip", "dashboard bottom-line strip"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
 REGULATOR_DOMAINS = [
