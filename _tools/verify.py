@@ -475,6 +475,12 @@ def check_html(html):
         fail("no literal Markdown links in HTML", f"{len(literal)} found, e.g. {literal[:2]}")
 
     ids = set(re.findall(r'id="([^"]+)"', no_script))
+    # Article ids are assigned at runtime by the share JS (from the
+    # headline), so they are not in the static HTML — accept the ids the
+    # page will assign, computed the same way build_dashboard does.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_dashboard
+    ids |= set(build_dashboard.compute_article_ids(no_script))
     hrefs = set(re.findall(r'href="#([^"]+)"', no_script))
     missing = sorted(h for h in hrefs if h not in ids)
     if not missing:
