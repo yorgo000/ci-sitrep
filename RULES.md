@@ -297,6 +297,21 @@ identically on any later load. Clicking an article's button never toggles
 the article; a shared article link opens the article expanded. Excluded:
 See also blocks, the How-to-read block, the mobile Contents block.
 
+**Search.** A search box at the top of the report page, right under the
+"As of" banner — the report is reference material, and readers need to
+find their way back to information they saw. It indexes the live page
+at runtime on first keystroke: no build step, no index file, no
+backend, no cost, and always in sync with the daily watch (it reads the
+page, so it needs no cron step). Searchable units are the same units
+the share buttons cover (articles, headings, substantive paragraphs,
+tables); results link to the same stable anchors and open expanded.
+Ranking: title matches above body matches, all-token matches above
+partial; top 10 shown with a count. Minimum 2 characters; Escape
+closes; arrow keys + Enter navigate; clear button; click-outside
+closes; aria-live result status. V1 searches the report page only;
+"New this week" / "What we're watching" list items are not indexed as
+separate units (the articles they point to are). Icons are inline SVG.
+
 **No font-glyph dependency for UI.** Expand/collapse arrows are pure CSS
 borders; icons are inline SVG. A glyph that renders as a weird character
 on a reader's device is a defect, even if the behaviour works.
@@ -448,3 +463,8 @@ The Self-Audit page records the date of the last full manual link audit
   (embedded CTAs) recorded as Dropped, with reasons. F-09 built the same
   evening: a "Work with Confluence<1>" masthead nav link to About's
   Contact section, the only conversion element on the report page.
+- **2026-11-14 (late evening)** — Search adopted (F-13): a search box
+  under the "As of" banner indexing the live page at runtime — no build
+  step, no index file, no backend; searchable units are the share-button
+  units (articles, headings, paragraphs, tables); report page only in
+  v1. FUTURE.md gained F-14 (AI answers over the report, Proposed).
