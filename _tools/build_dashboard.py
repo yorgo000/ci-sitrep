@@ -5,7 +5,7 @@ The dashboard lives EMBEDDED in the report page (index.html) as its first
 top-level section — it is not a standalone page anymore (dashboard.html is
 a redirect to index.html#executive-dashboard). build_html.py imports this
 module: render_embedded() returns the section's inner HTML (as-of line,
-intro, countdown, panels), DASH_CSS / COUNTDOWN_JS are the dashboard's
+intro, bottom-line strip, countdown, panels), DASH_CSS / COUNTDOWN_JS are the dashboard's
 own styles and countdown script, and validate() checks every figure
 against the generated index.html.
 
@@ -283,6 +283,34 @@ def render_countdown(deadlines):
     return f'<div class="countdown-strip">{cards}</div>'
 
 
+def render_bottom_line(items):
+    """The bottom-line strip (2026-11-15): seven at-a-glance items above
+    the countdown, each linked to its evidencing article — Yorgo's pick,
+    in his order. The profitability item has no figure: its display IS
+    the finding ("Insufficient data"), it carries no rating or date, and
+    it links to the money panel, which states the gap honestly.
+    """
+    cards = []
+    for it in items:
+        parts = [f'<a href="{esc(it["link"])}">{esc(it["source"])}</a>']
+        if it.get("date"):
+            parts.append(esc(it["date"]))
+        if it.get("rating"):
+            parts.append(rating_html(it["rating"]))
+        note = f'<p class="fig-note">{esc(it["note"])}</p>' if it.get("note") else ""
+        cards.append(
+            '<div class="stat-card">'
+            f'<p class="stat-value">{esc(it["display"])}</p>'
+            f'<p class="stat-label">{esc(it["label"])}</p>'
+            '<p class="fig-source">' + " · ".join(parts) + "</p>"
+            f"{note}</div>"
+        )
+    return (
+        '<p class="bottom-line-label">The bottom line</p>'
+        '<div class="bottom-line-strip stats-grid">' + "".join(cards) + "</div>"
+    )
+
+
 def render_embedded(data):
     """The dashboard section's inner HTML, for embedding in index.html.
 
@@ -293,6 +321,7 @@ def render_embedded(data):
     parts = [
         f'<p class="dash-asof">Dashboard figures as of {esc(data["as_of_label"])}</p>',
         f'<p class="dash-intro">{esc(data["note"])}</p>',
+        render_bottom_line(data["bottom_line"]),
         render_countdown(data["deadlines"]),
     ]
     parts += [render_panel(p, level=3) for p in data["panels"]]
@@ -352,6 +381,16 @@ def validate(data, index_html):
             total = sum(s["value"] for s in f["segments"])
             if not 99.5 <= total <= 100.5:
                 errors.append(f"{src}: stacked segments sum to {total}")
+    # Bottom-line strip: same link check; rating and date are optional
+    # (the profitability item has neither — its display is the finding).
+    for it in data.get("bottom_line", []):
+        src = it.get("source", "?")
+        for field in ("display", "label", "source", "link"):
+            if field not in it:
+                errors.append(f"bottom line {src}: missing {field}")
+        if it.get("rating") is not None and it["rating"] not in RATINGS:
+            errors.append(f"bottom line {src}: bad rating {it.get('rating')!r}")
+        check_link(src, it.get("link", ""))
     if "what-were-watching" not in anchors:
         errors.append("countdown link target #what-were-watching missing")
     return errors
@@ -361,6 +400,8 @@ DASH_CSS = """
   /* Executive dashboard (F-01): at-a-glance figures, same palette. */
   .dash-asof { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
   .dash-intro { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
+  .bottom-line-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+  .bottom-line-strip { margin: 0 0 20px; }
   .countdown-strip { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
   .cd-card { flex: 1 1 180px; border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 10px 12px; background: #fdfbf7; }
   .cd-card a { text-decoration: none; color: inherit; display: block; }
@@ -431,7 +472,8 @@ def main(argv):
             print("  -", e)
         sys.exit(1)
     print(f"dashboard.json OK ({len(list(iter_figures(data)))} figures, "
-          f"{len(data['panels'])} panels)")
+          f"{len(data['panels'])} panels, "
+          f"{len(data.get('bottom_line', []))} bottom-line items)")
 
 
 if __name__ == "__main__":
