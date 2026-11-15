@@ -10,8 +10,15 @@ own styles and countdown script, and validate() checks every figure
 against the generated index.html.
 
 dashboard.json is the single source of truth. Validation: every figure
-needs label/display (or text), source, rating, date, and a link whose
-#anchor exists in index.html. A failure exits 1 with the problem listed
+needs label/display (or text), source, rating, date, and a link to the
+report article that evidences it — the article's runtime id (assigned
+by the share JS at page load from the headline), or a section anchor
+where no article exists (e.g. §3.6, which is prose, not articles).
+compute_article_ids() replicates the share JS's slugify + uniqueId so
+validation can check article links against the ids the page will
+actually assign. A figure may also carry an "also" list of further
+evidencing articles ({anchor, label}) when its conclusion draws on
+more than one subsection. A failure exits 1 with the problem listed
 — fix the data, don't weaken the check.
 
 Usage: build_dashboard.py [dashboard.json] [index.html]
@@ -23,6 +30,7 @@ import html
 import json
 import re
 import sys
+from html.parser import HTMLParser
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -44,9 +52,113 @@ def rating_html(rating):
     )
 
 
+def slugify(text):
+    """Python replica of the share JS's slugify() in build_html.py.
+
+    Lowercase, strip anything but ASCII word chars/whitespace/hyphens,
+    collapse whitespace and hyphen runs, strip edge hyphens; if the
+    result is over 60 chars, cut to 60 and back off to the last hyphen
+    (when it is past position 20). Keep in sync with the JS — the
+    dashboard's article links depend on the two agreeing.
+    """
+    s = text.lower()
+    s = re.sub(r"[^\w\s-]", "", s, flags=re.ASCII)
+    s = s.strip()
+    s = re.sub(r"\s+", "-", s)
+    s = re.sub(r"-+", "-", s)
+    s = s.strip("-")
+    if len(s) > 60:
+        s = s[:60]
+        cut = s.rfind("-")
+        if cut > 20:
+            s = s[:cut]
+    return s
+
+
+class _ArticleIdWalker(HTMLParser):
+    """Walk the generated page collecting static ids and article headlines.
+
+    Mirrors the share JS: articles are the <details> blocks (skipping the
+    How-to-read block, the mobile Contents block, and "See also" blocks),
+    in document order, with the id assigned from the summary's text.
+    """
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.static_ids = set()
+        self.headlines = []
+        self._in_details = False
+        self._details_class = ""
+        self._in_summary = False
+        self._summary_text = ""
+
+    def handle_starttag(self, tag, attrs):
+        d = dict(attrs)
+        if "id" in d:
+            self.static_ids.add(d["id"])
+        if tag == "details":
+            self._in_details = True
+            self._details_class = d.get("class", "")
+            self._summary_text = ""
+        elif tag == "summary" and self._in_details:
+            self._in_summary = True
+
+    def handle_endtag(self, tag):
+        if tag == "summary":
+            self._in_summary = False
+        elif tag == "details":
+            self._in_details = False
+            if "how-to-read" in self._details_class:
+                return
+            if "toc-inline" in self._details_class:
+                return
+            text = re.sub(r"\s+", " ", self._summary_text).strip()
+            if text == "See also":
+                return
+            self.headlines.append(text)
+
+    def handle_data(self, data):
+        if self._in_summary:
+            self._summary_text += data
+
+
+def compute_article_ids(index_html):
+    """The article ids the share JS will assign on this page.
+
+    Returns {id: headline}. Replicates the JS uniqueId seeding (every
+    static id in the document) and document-order assignment — articles
+    run before tables and paragraphs in the share code, so nothing else
+    can claim an article's id.
+    """
+    walker = _ArticleIdWalker()
+    walker.feed(index_html)
+    used = dict.fromkeys(walker.static_ids)
+    out = {}
+    for headline in walker.headlines:
+        base = slugify(headline) or "item"
+        ident, n = base, 2
+        while ident in used:
+            ident = f"{base}-{n}"
+            n += 1
+        used[ident] = True
+        out[ident] = headline
+    return out
+
+
 def source_html(f):
-    """Linked source name + date + rating, the traceability line."""
+    """Linked source name + date + rating, the traceability line.
+
+    The source name links to the report article that evidences the
+    figure; the article's Source line takes the reader to the primary
+    source. A figure with an "also" list links its further evidencing
+    articles after the source name.
+    """
     parts = [f'<a href="{esc(f["link"])}">{esc(f["source"])}</a>']
+    for extra in f.get("also") or []:
+        parts.append(
+            f'also in <a href="{esc(extra["anchor"])}">'
+            f'{esc(extra["label"])}</a>'
+        )
     if f.get("source_note"):
         parts.append(esc(f["source_note"]))
     parts.append(esc(f["date"]))
@@ -203,14 +315,11 @@ def iter_figures(data):
 def validate(data, index_html):
     errors = []
     anchors = set(re.findall(r'id="([^"]+)"', index_html))
-    for f in iter_figures(data):
-        src = f.get("source", f.get("title", "?"))
-        for field in ("source", "rating", "date", "link"):
-            if field not in f:
-                errors.append(f"{src}: missing {field}")
-        if f.get("rating") not in RATINGS:
-            errors.append(f"{src}: bad rating {f.get('rating')!r}")
-        link = f.get("link", "")
+    # Article ids are assigned at runtime by the share JS, so they are
+    # not in the static HTML — accept the ids the page will assign.
+    anchors |= set(compute_article_ids(index_html))
+
+    def check_link(src, link):
         # Same-page anchors ("#...") or legacy "index.html#..." links.
         if link.startswith("#"):
             frag = link[1:]
@@ -218,9 +327,23 @@ def validate(data, index_html):
             frag = link.split("#", 1)[1]
         else:
             errors.append(f"{src}: bad link {link!r}")
-            frag = None
-        if frag is not None and frag not in anchors:
+            return
+        if frag not in anchors:
             errors.append(f"{src}: anchor missing in index.html: {link}")
+
+    for f in iter_figures(data):
+        src = f.get("source", f.get("title", "?"))
+        for field in ("source", "rating", "date", "link"):
+            if field not in f:
+                errors.append(f"{src}: missing {field}")
+        if f.get("rating") not in RATINGS:
+            errors.append(f"{src}: bad rating {f.get('rating')!r}")
+        check_link(src, f.get("link", ""))
+        for extra in f.get("also") or []:
+            if "anchor" not in extra or "label" not in extra:
+                errors.append(f"{src}: malformed also entry {extra!r}")
+                continue
+            check_link(src, extra["anchor"])
         if f.get("kind") == "bar":
             v = f.get("value")
             if not isinstance(v, (int, float)) or not 0 <= v <= 100:
