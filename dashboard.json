@@ -1,6 +1,63 @@
 {
   "as_of": "2026-11-15",
   "as_of_label": "Sunday, November 15, 2026",
+  "bottom_line": [
+    {
+      "display": "Insufficient data",
+      "label": "profitability gained from AI",
+      "link": "#money",
+      "note": "No credible dollar figure exists yet",
+      "source": "CI SITREP money panel"
+    },
+    {
+      "date": "2026",
+      "display": "~47%",
+      "label": "of code is written fully by AI agents",
+      "link": "#adoption-is-already-majority-ai-2026-surveys",
+      "rating": "corroborated",
+      "source": "JetBrains Developer Ecosystem Survey 2026"
+    },
+    {
+      "date": "12 Nov 2026",
+      "display": "86%",
+      "label": "of US financial firms formally use AI",
+      "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+      "rating": "reported",
+      "source": "ACA/NSCP 2026 AI Benchmarking Survey"
+    },
+    {
+      "date": "1 Nov 2026",
+      "display": "11×",
+      "label": "more vulnerabilities in AI patches than in human patches",
+      "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
+      "rating": "reported",
+      "source": "Sajadi et al., SWE-bench study v4"
+    },
+    {
+      "date": "2 Nov 2026",
+      "display": "2.5×",
+      "label": "the cost of a post-hoc review that still leaves about half insecure",
+      "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+      "rating": "reported",
+      "source": "SusVibes re-run"
+    },
+    {
+      "date": "2026",
+      "display": "79%",
+      "label": "of enterprises run AI agents in production",
+      "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
+      "rating": "reported",
+      "source": "SailPoint Horizons of Identity Security"
+    },
+    {
+      "date": "2026",
+      "display": "188",
+      "label": "documented cases of autonomous AI damaging production",
+      "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
+      "rating": "reported",
+      "source": "Cyera"
+    }
+  ],
   "deadlines": [
     {
       "date": "2026-11-16",
