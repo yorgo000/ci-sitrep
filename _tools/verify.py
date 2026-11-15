@@ -66,6 +66,7 @@ HTML_MARKERS = [
     ("Confluence<1> Corp. All rights reserved", "copyright line"),
     ("makeShareButton", "share-link buttons"),
     ("back-to-top", "back-to-top button"),
+    ("state-of-the-market", "State of the market section"),
     ("How to read this", "How-to-read block"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
@@ -282,14 +283,14 @@ def check_structure(md):
             fail(f"section {num} name",
                  f"expected '{want}'; H2s found: {[h for h in h2s if h.startswith(num + '.')]}")
 
-    order = ["New this week", "What we're watching", "Contents",
+    order = ["State of the market", "New this week", "What we're watching", "Contents",
              "1. ", "2. ", "3. ", "Archive"]
     pos = []
     for o in order:
         i = md.find(f"## {o}")
         pos.append(i)
     if all(p >= 0 for p in pos) and pos == sorted(pos):
-        ok("section order", "New this week < What we're watching < Contents < §1 < §2 < §3 < Archive")
+        ok("section order", "State of the market < New this week < What we're watching < Contents < §1 < §2 < §3 < Archive")
     else:
         fail("section order", f"positions: {dict(zip(order, pos))}")
 
