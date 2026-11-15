@@ -341,13 +341,13 @@ TEMPLATE = """<!DOCTYPE html>
   // theses page; "Top · §3 Agentic … · §3.4 Governance" on the report).
   // A reader who drilled down jumps back without scrolling. Built from
   // the heading hierarchy, so it stays correct as sections are added or
-  // renamed. Skips the two front-page sections of the report (they sit at
+  // renamed. Skips the three front-page sections of the report (they sit at
   // the top of the page already) and the page title.
   var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {{
     if (h.tagName === 'H1') return;
-    if (h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
