@@ -92,8 +92,10 @@ desktop); the sidebar Contents lives in the masthead (§4).
 Then the two top-level sections, both starting OPEN:
 
 1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
-   `dashboard.json`: the countdown strip and the five panels, every
-   figure linked to the report section that evidences it. (The
+   `dashboard.json`: the bottom-line strip (seven items, Yorgo's pick,
+   in his order — the profitability item reads "Insufficient data" and
+   links to the money panel), the countdown strip and the five panels,
+   every figure linked to the report article that evidences it. (The
    standalone dashboard page is gone; `dashboard.html` redirects to
    `index.html#executive-dashboard`.)
 2. **REPORT** — the report itself, in this order:
@@ -154,8 +156,10 @@ alphabetical place under the right letter heading. Changing
 **Dashboard.** `dashboard.json` is the single source of truth for the
 executive dashboard (F-01): five panels of at-a-glance figures, every
 figure carrying its value, label, source, rating, date, and a link to
-the report article that evidences it, plus a deadlines list for the
-countdown strip. The link is the article's runtime id (assigned by the
+the report article that evidences it, plus a `bottom_line` list (seven
+items rendered as a strip above the countdown — rating and date
+optional, since the profitability item has neither) and a deadlines
+list for the countdown strip. The link is the article's runtime id (assigned by the
 share JS from the headline) — a section anchor is not specific enough:
 the reader must land on the article itself, where its Source line
 takes them to the primary source. Where a conclusion draws on a second
@@ -325,8 +329,10 @@ element on the report page; no CTAs inside the content (see F-12,
 Dropped). On the sub-pages the heading is followed by a "← Back to
 the report" link and the Contents index (see Navigation).
 
-**Section headings.** The two top-level sections (Executive dashboard,
-Report) are the visual top of the hierarchy; the three content
+**Section headings.** The two top-level sections (EXECUTIVE DASHBOARD,
+REPORT) are the visual top of the hierarchy, their heading text in
+all-caps so they read as different from their constituents (title case
+until 2026-11-15, when Yorgo asked for caps); the three content
 sections (§1, §2, §3) sit inside Report. The meta-section headings
 ("State of the market", "New this week", "What we're watching",
 "Archive") are de-emphasized: smaller, lighter weight, muted color.
@@ -644,3 +650,15 @@ The Self-Audit page records the date of the last full manual link audit
   cut (86% of US firms use AI, 1 in 4 experimenting with agentic AI,
   38% formally test outputs; the UK BoE/FCA 80% deployed-agents figure
   kept as the comparison point).
+- **2026-11-15 (late evening)** — Top-level headings in all-caps text
+  (EXECUTIVE DASHBOARD, REPORT) on the page and in the TOC, so they
+  read as different from their constituents; the anchor ids stay
+  lowercase, so every link survives. Bottom-line strip built (F-01):
+  seven items above the countdown, in Yorgo's order — profitability
+  ("Insufficient data", no rating, links to the money panel), AI
+  writes ~half the code (JetBrains ~47%), 86% of US firms use AI
+  (ACA/NSCP), AI patches 11× the vulnerabilities (Sajadi), verification
+  costs 2.5× (SusVibes), 79% run agents (SailPoint), 188 documented
+  damage cases (Cyera) — each linked to its evidencing article, each
+  carrying its rating except the profitability item. verify.py gained
+  a layout marker for the strip (53 checks).
