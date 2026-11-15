@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""verify.py — post-change verification for the CI Sitrep report.
+"""verify.py — post-change verification for the CI SITREP report.
 
 Run after regenerating index.html and BEFORE pushing. Checks the Markdown
 source (SYNTHESIZED.md) and the generated HTML against the editorial rules
@@ -72,6 +72,10 @@ HTML_MARKERS = [
     ("glossary.html", "Glossary nav link"),
     ("def-tip", "Tooltip element"),
     ("How to read this", "How-to-read block"),
+    ("executive-dashboard", "Executive dashboard top-level section"),
+    ('id="report"', "Report top-level section"),
+    ("sec-controls", "Sections control in main content"),
+    ("dash-panel", "dashboard panels embedded"),
 ]
 # Primary regulator/government domains (for the rating-consistency warning).
 REGULATOR_DOMAINS = [
@@ -318,6 +322,24 @@ def check_structure(md):
         fail("§3.4 subsection order", f"found: {h4s}")
 
 
+def check_top_level(html):
+    """Two top-level sections, dashboard first, report second."""
+    no_script = re.sub(r"<script>.*?</script>", "", html, flags=re.DOTALL)
+    ed = no_script.find('id="executive-dashboard"')
+    rep = no_script.find('id="report"')
+    sotm = no_script.find('id="state-of-the-market"')
+    if ed == -1 or rep == -1 or sotm == -1:
+        fail("top-level sections present",
+             f"executive-dashboard={ed}, report={rep}, state-of-the-market={sotm}")
+    elif ed < rep < sotm:
+        ok("top-level sections order",
+           "Executive dashboard < Report < State of the market")
+    else:
+        fail("top-level sections order",
+             f"positions: executive-dashboard={ed}, report={rep}, "
+             f"state-of-the-market={sotm}")
+
+
 def glossary_key(short):
     """Alphabetical sort key for a glossary term: lowercased, punctuation
     stripped (so CI/CD sorts as 'cicd', after CIAC)."""
@@ -400,12 +422,20 @@ def check_glossary(md_path, html):
 
 
 def check_naming(md, html):
-    """Confluence<1> everywhere (one documented exception); no 'Confluence 1'."""
+    """Confluence<1> everywhere (one documented exception); no 'Confluence 1';
+    the brand is all-caps 'CI SITREP' (no mixed-case 'CI Sitrep').
+    NOTE: the mixed-case literal below is intentional — it is the string
+    this check looks for. Do not 'fix' it in a global rename."""
     for label, text in (("Markdown", md), ("HTML", html)):
         if "Confluence 1" in text:
             fail(f"{label}: no 'Confluence 1'", "found 'Confluence 1'")
         else:
             ok(f"{label}: no 'Confluence 1'")
+        if "CI Sitrep" in text:
+            fail(f"{label}: brand is all-caps 'CI SITREP'",
+                 "found mixed-case 'CI Sitrep'")
+        else:
+            ok(f"{label}: brand is all-caps 'CI SITREP'")
         bare = [(m.start(), text[max(0, m.start() - 40):m.start() + 30])
                 for m in re.finditer(r"Confluence(?!<1>)", text)]
         # Remove the one allowed Atlassian mention.
@@ -531,6 +561,7 @@ def main():
     check_rating_consistency(articles)
     check_freshness(md)
     check_structure(md)
+    check_top_level(html)
     check_naming(md, html_unescaped)
     check_hygiene(md, html)
     check_html(html_unescaped)
