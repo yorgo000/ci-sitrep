@@ -2,7 +2,7 @@
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
-**As of:** 2026-11-15. **Report last updated:** 2026-11-15.
+**As of:** 2026-11-16. **Report last updated:** 2026-11-16.
 
 ---
 
@@ -10,13 +10,13 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 60 |
-| Source links (article + subsection) | 149 |
-| Total external links (incl. inline prose links) | 347 |
-| Unique source URLs | 137 |
+| Articles | 76 |
+| Source links (article + subsection) | 183 |
+| Total external links (incl. inline prose links) | 419 |
+| Unique source URLs | 157 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new in the last 7 days | 24 |
-| Superseded entries in the archive | 12 |
+| Items new in the last 7 days | 41 |
+| Superseded entries in the archive | 15 |
 | Report live since | 2026-11-09 |
 
 ---
@@ -27,12 +27,12 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 18% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 16 | 27% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 31 | 52% |
-| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 2 | 3% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 11 | 14% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 20 | 26% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 40 | 53% |
+| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 5 | 7% |
 
-**45% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
+**41% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
 ---
 
@@ -40,10 +40,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **126** sources and added **14** new articles (updating **1** existing ones). That is a 11.1% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Since tracking began on 2026-11-12, the daily watch has reviewed **157** sources and added **30** new articles (updating **2** existing ones). That is a 19.1% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
+| 2026-11-16 | 31 | 16 | 1 | 16 new articles: LSCBench (Oct, best model 25.1% functional-and-secure; 57/150 scenarios secured by no model) + OpenAI kernel exploits (4 Nov, 948 working LPE flaws, $1,279 each; 61 patched in 10 days) in §1.6; Sesame (14 Oct), MCPhantom (3 Nov), GitGuardian (9 Nov, 31,088 secrets), Corelight (10 Nov), Forescout (12 Nov, 99 flaws, 90 hours), Cursor supply-chain incident (13 Nov) in §2.1; NY RAISE Portal (10 Nov, registration by 1 Jan 2027, DFS/DIGIT) in §3.4.2; AISI/Anthropic Mythos attack (23 Oct), BDO (4 Nov, 47% agentic in finance), Komodor (4 Nov), SailPoint kill switch (4 Nov), Leidos HeadWay (4 Nov), Capgemini (5 Nov, 59%/10%), WorkOS ARTEX escape (6 Nov) in §3.4.3. In-place: State of the market (NY regime), §1.6.1, §2.4, §2.6, §3.4.2 synthesis + California status + RFI re-check 16 Nov, §3.4.3 intro, §3.6 METR freeze + R&D acceleration, §3.8 Menlo spend line. Glossary +6 terms (AECI, ARTEX, DIGIT, MCPhantom, NYCAIRR, RAISE). Dashboard +6 figures, NY RAISE deadline added. Verify: 53 pass, 0 fail; 4 warnings reviewed (2 pre-existing verb-opener flags, 1 false positive on SailPoint bullet; link failures all known bot-protected, new links 200 + browser-verified). Reviewed but below bar: federal AI Kill Switch Act (no movement), CA special session floated only, Wiener to Congress, DFSA survey, FCA trusted framework, framework version bumps, Zenity AgentCorruption, OpenAI misalignment update, Claude Code sandbox fix, Copilot JetBrains CVE, Qodo/Codex review, Codex Security CLI importers, Cloudflare skill surge, Snyk Forrester, SonarQube 2026.1, SecureAgentBench, IOActive, CPython/Jinja escape, EMBRACE, CybeDefend launch, Copilot Xcode/JetBrains Air, wfx-loot claim (unverified). California kill-switch recommendations due today — not publicly released as of the morning of 16 Nov; Fed AI RFI still unpublished. |
 | 2026-11-15 | 3 | 3 | 0 | 3 new articles: BugLedger Bench (2 Nov, execution-graded, 45-70% of working solutions reintroduce the original vulnerability; hinted track doubles secure output) in §1.6 + §2.1; ETH Zurich propagation study (arXiv:2611.11455, 8 Nov, insecure neighbouring code cuts correct-and-secure output 35.4 pts in C/C++; agents recognise the bug in 69.9% of cases but copy the pattern anyway) in §2.1. In-place: §2.4 remediation-order bullet, §2.6 preprint + benchmark lines, §2.7 propagation bullet, §1.6.1 benchmark line. Verify: 45 pass, 0 fail; 3 warnings reviewed (line-323 verb-opener flag is a false positive; line-1064 pre-existing; link failures all known bot-protected, new links 200 + browser-verified). Reviewed but below bar: Adversa Oct agent-vuln roundup (niche tool vulns, no new control implication), GitHub Copilot security extension (minor feature), GPT-6 Cyber release (already noted in §1.6.1). California kill-switch recommendations still due Mon 16 Nov; Fed AI RFI still unpublished. |
 | 2026-11-14 | 0 | 0 | 0 | F-05/F-07 rollout: State of the market section added (front-page macro synthesis); NTW entries re-tagged with plain-English tags [Pre-commit]/[In codebase]/[Agentic]; generators, verify.py, RULES.md and daily-watch cron updated |
 | 2026-11-14 | 91 | 6 | 0 | 6 new articles: CrowdStrike AI Kill Switch (3 Nov, gateway-first stop; Fiddler/Dreadnode acquisitions), VulnCheck Glasswing audit (9 Nov, 37966 findings vs 217 fixed), FCA Wholesale Banks Supervision Insights 3 (2 Nov, AI code passed human review, untested kill switches), Canadian banks block third-party agents (28 Oct, RBC/TD/BMO/CIBC/Scotiabank), FCA CP26/38 Financial Crime Guide (23 Oct, comments due 24 Dec), BoE/FCA 2026 AI survey (26 Oct, 86% use AI, 80% agents, 2% broad autonomy). In-place: OSFI E-23 effective 1 May 2027 (WWW + §2.5), FCA agentic-finance framework open question (WWW), §2.5 human-review + §2.7 Glasswing bullets, §1.6.1 Anthropic TP-rate line, §3.4.2 synthesis sentence, §3.8 BoE/FCA verified line. Verify: 31 pass, 0 fail; 2 warnings reviewed (source-first flag is a false positive; link failures all known bot-protected or browser-verified, incl. FII 403). Reviewed but below bar: Cohere AISLE/cubic acquisitions (no product yet), KPMG AI Threat Management (services launch), OpenAI Codex Security CLI importers (minor), Multimodal-SEA preprint (consumer-fraud angle), CWE-bench arXiv paper (0.8pp version noise vs existing article), Reuters banks-AI-questions story (second-hand, Oct). California kill-switch recommendations still due Mon 16 Nov; Fed AI RFI still unpublished. |
@@ -51,7 +52,6 @@ Since tracking began on 2026-11-12, the daily watch has reviewed **126** sources
 | 2026-11-13 | 1 | 0 | 0 | Evening editorial pass: information-first rewrite of 55 source-first segments (bullets, prose, New-this-week titles) + source hyperlinked in 48 of 50 article headlines; Google 75% figure now linked to Pichai Cloud Next 2026 post (verified 200). |
 | 2026-11-13 | 2 | 0 | 0 | Evening update: TPRM comment period extended to 16 Dec 2026 (OCC News Release 2026-100; OCC Bulletin 2026-57) - 6 date mentions corrected, New-this-week entry added. California kill-switch recommendations still due 16 Nov (not extended). |
 | 2026-11-13 | 27 | 5 | 1 | 5 new articles: SWE-bench patches study (arXiv:2507.02976 v4), Australia mandatory AI incident reporting, UK CMA/DRCF deployer liability, California EO N-9-26 kill switch, OpenAI Control Room. Updated: Semgrep Layer A row expanded (old row archived); Daybreak + Cycode rows in §2.3; Adversa row in §1.2.1; §3.4.2 summary extended; Fed AI RFI re-checked 13 Nov — still unpublished; TPRM comments due 16 Nov. |
-| 2026-11-12 | 0 | 0 | 0 | Tracking begins. Baseline: 38 articles, 101 source links, 187 total external links, 101 unique URLs. Funnel counts start with the next daily run. |
 
 ---
 
@@ -61,7 +61,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 137 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 157 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
