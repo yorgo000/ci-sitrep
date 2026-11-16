@@ -33,6 +33,11 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 - **Old text (2026-11-09, §1.2.1 Layer A table):** "Semgrep (agent hooks) — Custom-rule SAST in the agent loop; Semgrep Assistant AI triage."
 - **Superseded by:** Semgrep Agentic AppSec Platform (announced 12 Nov 2026): Guardian fixes issues as agents write, before commit; Mandoline program-analysis engine returns only reachable code paths to agents; Agentic Security Workflows; MCP server; integration with OpenAI Codex Security / Daybreak Defense Factory. Vendor-claimed: agents found 2× more real vulnerabilities than frontier models alone, −65% token costs (method undisclosed). Current entry lives in [SYNTHESIZED.md §1.2](../SYNTHESIZED.md#12-product-landscape).
 
+### 2026-11-16 — OpenAI 948 kernel exploits (one-liner → full article)
+
+- **Old text (§1.6.1 vendor-claims list):** "OpenAI's GPT-6 Cyber 48.45% intended-exploit success on ExploitGym and "948 Linux kernel privilege-escalation bugs validated" (vendor system card / research run, Nov 2026);"
+- **Superseded by:** a full article in §1.6 (OpenAI, 4 Nov 2026): 2,308 candidates → 948 distinct LPE flaws with candidate patches, ~$1,279 per flaw; 61 patched upstream in ten days. The one-liner now points to the article. Current entry lives in [SYNTHESIZED.md §1.6](../SYNTHESIZED.md#16-benchmarks--evidence).
+
 ### 2026-11-11 — Standalone update blocks (merged into sections)
 
 - The standalone update blocks from 2026-11-10 and 2026-11-11 have been merged into their proper sections (A.S.E 2.0, SecureVibeBench, CWE-bench v2, SusVibes and Apiiro into §1.6; CodeMender and Vercel Security Review into §1.2.3; OCC Bulletin 2026-54 into §1.5.2). The updates themselves are preserved in place.
@@ -72,3 +77,13 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 ### 2026-11-11 — Standalone update blocks (merged into sections)
 
 - The standalone update blocks from 2026-11-10 and 2026-11-11 have been merged into their proper sections (OCC Bulletin 2026-54, HKMA SAGE and MAS Guidelines into §3.4.2; UK loss-of-control measures into §3.4.2). The updates themselves are preserved in place.
+
+### 2026-11-16 — Regulatory picture synthesis (NY registration added)
+
+- **Old text (§3.4.2 synthesis paragraph):** "the gap … is now being filled from several directions at once — a federal examiner checklist (OCC), a state examiner framework with a document-request list (CSBS), a dated supervisory deadline (MAS Oct 2027), and an identity/accountability model (HKMA SAGE) — plus a further direction naming loss of control as an incident class (UK)."
+- **Superseded by:** the same sentence with a state registration regime added — "a state registration regime run by a financial regulator (New York, in force 1 Jan 2027)" — after the NY RAISE Portal opened 10 Nov 2026 (large frontier developers must register by 1 Jan 2027; 72-hour incident reporting; DIGIT inside DFS). Current entry lives in [SYNTHESIZED.md §3.4.2](../SYNTHESIZED.md#342-regulation).
+
+### 2026-11-16 — State of the market, regulatory sentence (NY registration added)
+
+- **Old text (State of the market):** "Regulators are closing in from several directions at once — examiner frameworks in the US, a dated deadline in Singapore, incident reporting in Australia — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared."
+- **Superseded by:** the same sentence with "a state registration regime in New York" added to the list of directions, after the NY RAISE Portal opened 10 Nov 2026. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
