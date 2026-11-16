@@ -330,10 +330,15 @@ and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
 the logo, cube cropped out) — the logo stays in the masthead
 everywhere, all the time. On the report page the heading is followed
 by the nav links, in this order: Self-Audit, Glossary, The names: CI,
-CIA, CIAC, Foundational theses, Archive, About — then the credibility
+CIA, CIAC, Foundational theses, Archive, About — then the Contact
+section (heading "Contact": errors, omissions, and feature requests
+to ci-sitrep@confluence1.com; working with Confluence<1> to
+hello@confluence1.com — both mailto links), then the credibility
 rating legend (a collapsed `<details>`, summary "Credibility rating";
 starts closed — the dots are also explained in "How to read this" and
-carry their words in the dashboard), the Contents index,
+carry their words in the dashboard; its padding-bottom and the
+summary's margin apply only when open, so the closed line has no
+blank space under it), the Contents index,
 and the copyright line "© 2026 Confluence<1> Corp. All rights
 reserved." The nav ends with one restrained conversion link — "Work
 with Confluence<1>", jumping to About's Contact section — set apart
@@ -756,3 +761,14 @@ The Self-Audit page records the date of the last full manual link audit
   link), the same pattern as the countdown cards. Panel figures keep
   the source-name link (their "also" second links rule out a
   whole-card wrap).
+- **2026-11-15 (late evening)** — Masthead contact section (F-09
+  rework, Yorgo): the "Work with Confluence<1>" nav link is gone,
+  replaced by a small Contact section in its place (after the nav,
+  before the legend) with two mailto addresses — ci-sitrep@ for
+  errors, omissions, and feature requests; hello@confluence1.com for
+  working with Confluence<1> (picked for the classy feel; the
+  catch-all routes to Yorgo, so it can change in one line). The About
+  page's Contact section lists both in the same words. The legend's
+  closed state was also fixed the same evening: its padding-bottom
+  and the summary's margin now apply only when open, so the collapsed
+  line has no blank space under it and reads as expandable.
