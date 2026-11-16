@@ -83,7 +83,7 @@ the file is hierarchical, with a table of contents.
 on one row (banner left, controls right).
 **Row 2** — the search box (§4).
 **Row 3** — **How to read this**, one collapsed block holding everything
-before "New this week" (the intro line, the credibility legend, the
+before "New in the last 7 days" (the intro line, the credibility legend, the
 caveats). Right-justified when collapsed; full width when open. It must
 not attract attention.
 The mobile inline Contents sits between row 2 and row 3 (hidden on
@@ -112,7 +112,7 @@ Then the two top-level sections, both starting OPEN:
      material shift lands that changes the macro picture; never let it go
      stale or contradict the sections below it. No generic marketing
      claims — every sentence must be defensible from the report.
-   - **New this week** — a rolling 7-day window. Entries older than 7 days
+   - **New in the last 7 days** — a rolling 7-day window. Entries older than 7 days
      drop off. Every entry is dated with the date it was ADDED to the
      report, carries a finding-first title (§3), carries plain-English
      section tags ([Pre-commit], [In codebase], [Agentic] — one per
@@ -125,7 +125,7 @@ Then the two top-level sections, both starting OPEN:
      regulatory language that may harden). Dated items are in soonest-first
      order. Every item links to its section. Maintain it every run: add a
      new item when research surfaces one; remove an item the day it lands
-     (it becomes an article and a "New this week" entry instead). A past
+     (it becomes an article and a "New in the last 7 days" entry instead). A past
      date or a landed item still listed is a defect.
    - **§1, §2, §3** — the three content sections, in that order.
    - **Archive** — a pointer to the archive page.
@@ -222,7 +222,7 @@ the countdown strip never shows a passed date. Panel order is editorial
   found…", no "The UK AI Security Institute reported…". Dates lead only
   for dated calendar items (the "What we're watching" list); in article
   bullets, a date goes at the end with the attribution.
-- "New this week" entry titles are findings, never names — "First
+- "New in the last 7 days" entry titles are findings, never names — "First
   benchmark of agentic pre-merge security review (SecPRBench)
   [Pre-commit] [In codebase]", never "SecPRBench [Pre-commit] [In
   codebase]: the first benchmark…". Link the source name in the entry to
@@ -352,12 +352,12 @@ REPORT) are the visual top of the hierarchy, their heading text in
 all-caps so they read as different from their constituents (title case
 until 2026-11-15, when Yorgo asked for caps); the three content
 sections (§1, §2, §3) sit inside Report. The meta-section headings
-("State of the market", "New this week", "What we're watching",
+("State of the market", "New in the last 7 days", "What we're watching",
 "Archive") are de-emphasized: smaller, lighter weight, muted color.
 
 **Collapse behaviour.** Only the two top-level sections start OPEN;
 everything inside them — the three front-page sections ("State of the
-market", "New this week", "What we're watching"), the dashboard panels,
+market", "New in the last 7 days", "What we're watching"), the dashboard panels,
 the content sections — starts collapsed, as one line each. (Before
 2026-11-15 the front-page sections and dashboard panels also started
 open; Yorgo reversed that — the page opens as a clean outline, and the
@@ -427,7 +427,7 @@ backend, no cost, and always in sync with the daily watch (it reads the
 page, so it needs no cron step). Searchable units are the share-button
 units (articles, headings, substantive paragraphs, tables) plus
 standalone list items in a section body — the best-practice bullets and
-the "New this week" / "What we're watching" entries (top-level `<li>`
+the "New in the last 7 days" / "What we're watching" entries (top-level `<li>`
 outside `<details>`, ≥80 chars; nested items are covered by their
 parent's text; items inside an article are covered by the article).
 List items have no share-button id, so the indexer assigns one with the
@@ -479,7 +479,7 @@ links in the HTML; all internal anchors resolve — article ids
 assigned at runtime by the share JS are accepted via the computed id
 set, see §2 Dashboard), freshness (no "New this
 week" entry older than 7 days; no past date in "What we're watching";
-"Last updated" not in the future), order ("New this week" newest first;
+"Last updated" not in the future), order ("New in the last 7 days" newest first;
 "What we're watching" soonest first; section and subsection order),
 naming (Confluence<1> everywhere, with the one documented Atlassian
 exception; brand all-caps CI SITREP; current section names), hygiene
@@ -503,7 +503,7 @@ Before publishing, re-read every new or revised segment and confirm:
 
 1. **Necessary content is in there, and only that.** Every item from the
    day's research that passed the bar (§1) is in the report, in the right
-   section; every "New this week" entry points to content that exists;
+   section; every "New in the last 7 days" entry points to content that exists;
    nothing stale remains (no superseded text left in place, no entry
    promising content that isn't there).
 2. **Ratings are accurate.** The rating matches the source type and
@@ -514,7 +514,7 @@ Before publishing, re-read every new or revised segment and confirm:
    odd.
 3. **Information first.** Does the segment lead with information? Is the
    source at the end, hyperlinked? Fix any segment that doesn't.
-4. **Content order.** "New this week" newest first; "What we're watching"
+4. **Content order.** "New in the last 7 days" newest first; "What we're watching"
    soonest first; the new article sits in the right sub-section.
 
 **UX and design editor — a dedicated review on every release
@@ -789,3 +789,15 @@ The Self-Audit page records the date of the last full manual link audit
   countdown ids cd-<deadline-slug>. The profitability card's dashed
   border was made more pronounced the same evening (2px, muted gray —
   it was 1px in the hairline color and Yorgo hadn't noticed it).
+- **2026-11-15 (late evening)** — "New this week" renamed "New in the
+  last 7 days" (Yorgo: "this week" reads as a calendar week starting
+  Monday or Sunday, but the section is a rolling 7-day window — the
+  name was misleading). The window itself is unchanged at 7 days (3
+  would be too thin after a quiet stretch, 5 is arbitrary, a calendar
+  week would be worse — one day on a Monday). The section id is now
+  #new-in-the-last-7-days; the generators, verify.py, build_audit.py
+  (its "Items new this week" label is now "Items new in the last 7
+  days"), the cron, and these rules all use the new name. A
+  user-selectable window (3 / 7 / 14 / 30 days) was assessed the same
+  evening and held — it solves catching up after time away, which the
+  report body already does; the rename solves the misleading part.
