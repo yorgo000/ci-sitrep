@@ -183,6 +183,11 @@
   p:hover .share-link, summary:hover .share-link { opacity: 1; }
   .table-share { text-align: right; margin: 2px 0 12px; }
   table:hover + .table-share .share-link { opacity: 1; }
+  /* Dashboard cards: the share button sits in the card's top-right
+     corner (a sibling of the card's link, never nested inside it). */
+  .bottom-line-strip .stat-card, .countdown-strip .cd-card { position: relative; }
+  .bottom-line-strip .stat-card > .share-link, .countdown-strip .cd-card > .share-link { position: absolute; top: 6px; right: 6px; margin-left: 0; }
+  .bottom-line-strip .stat-card:hover > .share-link, .countdown-strip .cd-card:hover > .share-link { opacity: 1; }
   /* Breadcrumbs: a small trail at the top of every section body, back up
      to any ancestor level or the top of the page. Muted, one line. */
   .crumbs {
@@ -267,7 +272,7 @@
   .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
   .bottom-line-strip .stat-value { overflow-wrap: break-word; }
   .bottom-line-strip .stat-card a { text-decoration: none; color: inherit; display: block; }
-  .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; }
+  .stat-card.bl-full { grid-column: 1 / -1; border: 2px dashed var(--muted); }
   .bl-graphic-row { display: flex; align-items: center; gap: 14px; margin: 0 0 8px; }
   .bl-graphic-row .stat-value { margin: 0; }
   .bl-pie { width: 88px; height: 88px; flex: 0 0 auto; }
@@ -2238,6 +2243,29 @@ Sources: <a href="https://www.digitalapplied.com/blog/agentic-ai-regulated-indus
     if (text === 'See also') return;
     if (!d.id) d.id = uniqueId(slugify(text));
     sum.appendChild(makeShareButton(d.id, 'Copy link to this article'));
+  });
+  // Dashboard cards: the bottom-line strip and the countdown strip.
+  // Each card gets a stable id and a share button in its top-right
+  // corner — a sibling of the card's link, never nested inside it, so
+  // clicking it copies the card's URL instead of following the link.
+  // The strip id comes from the card's link target (bl-<article-slug>,
+  // bl-money for the profitability card); the countdown id from its
+  // label (cd-<deadline-slug>).
+  main.querySelectorAll('.bottom-line-strip .stat-card').forEach(function (card) {
+    var link = card.querySelector(':scope > a');
+    var base = 'bl-item';
+    if (link) {
+      var href = link.getAttribute('href') || '';
+      if (href.charAt(0) === '#') base = 'bl-' + href.slice(1);
+    }
+    if (!card.id) card.id = uniqueId(base);
+    card.appendChild(makeShareButton(card.id, 'Copy link to this figure'));
+  });
+  main.querySelectorAll('.countdown-strip .cd-card').forEach(function (card) {
+    var lab = card.querySelector('.cd-label');
+    var base = 'cd-' + (lab ? slugify(lab.textContent) : 'item');
+    if (!card.id) card.id = uniqueId(base);
+    card.appendChild(makeShareButton(card.id, 'Copy link to this deadline'));
   });
   // Tables: id from the nearest preceding heading, button in a small
   // right-aligned row just below the table.
