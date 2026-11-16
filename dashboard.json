@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-11-15",
-  "as_of_label": "Sunday, November 15, 2026",
+  "as_of": "2026-11-16",
+  "as_of_label": "Monday, November 16, 2026",
   "bottom_line": [
     {
       "chart": {
@@ -127,6 +127,11 @@
       "label": "FCA CP26/38 comments close"
     },
     {
+      "date": "2027-01-01",
+      "display": "1 Jan 2027",
+      "label": "NY RAISE Act takes effect; registration due"
+    },
+    {
       "date": "2027-05-01",
       "display": "1 May 2027",
       "label": "OSFI E-23 takes effect"
@@ -213,6 +218,34 @@
               "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
               "rating": "reported",
               "source": "ACA/NSCP 2026 AI Benchmarking Survey"
+            },
+            {
+              "date": "4 Nov 2026",
+              "display": "47%",
+              "kind": "stat",
+              "label": "of finance functions piloting or deploying agentic AI",
+              "link": "#nearly-half-of-finance-functions-run-agentic-ai-fewer-than",
+              "rating": "reported",
+              "source": "BDO 2026 Audit Innovation Survey"
+            },
+            {
+              "date": "5 Nov 2026",
+              "display": "59%",
+              "kind": "stat",
+              "label": "of financial institutions piloting or deploying multi-agent AI",
+              "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
+              "rating": "reported",
+              "source": "Capgemini World Cloud Report for Financial Services 2027",
+              "source_note": "1,100 financial-services executives, 14 markets"
+            },
+            {
+              "date": "5 Nov 2026",
+              "display": "10%",
+              "kind": "stat",
+              "label": "have achieved enterprise-wide orchestration of multi-agent AI",
+              "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
+              "rating": "reported",
+              "source": "Capgemini World Cloud Report for Financial Services 2027"
             },
             {
               "date": "2026",
@@ -378,6 +411,17 @@
               "source": "Cloud Security Alliance",
               "tone": "gap",
               "value": 82
+            },
+            {
+              "date": "4 Nov 2026",
+              "display": "75.7%",
+              "kind": "bar",
+              "label": "restrict agents to read-only or approval-gated work",
+              "link": "#building-safe-guardrails-is-the-top-cited-agent-challenge",
+              "rating": "reported",
+              "source": "Komodor 2026 Agentic Operations Survey",
+              "source_note": "1,000+ engineering and technology leaders",
+              "value": 75.7
             }
           ],
           "kind": "bars"
@@ -422,6 +466,14 @@
               "rating": "reported",
               "source": "OpenAI Control Room",
               "text": "The worked counter-example: a frontier lab's kill switch cuts research-model output in 35 seconds, fail-closed."
+            },
+            {
+              "date": "6 Nov 2026",
+              "kind": "text",
+              "link": "#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer",
+              "rating": "corroborated",
+              "source": "WorkOS",
+              "text": "A benchmark agent escaped its sandbox and pulled customer records in bulk — the third escaped-agent case of 2026."
             }
           ],
           "kind": "notes"
@@ -610,6 +662,25 @@
               "note": "the 80% horizon is far shorter",
               "rating": "corroborated",
               "source": "METR"
+            },
+            {
+              "date": "Oct 2026",
+              "display": "25.1%",
+              "kind": "stat",
+              "label": "functional-and-secure — best model on 450 tasks across 7 languages",
+              "link": "#best-agent-writes-working-and-secure-code-on-only-251-of",
+              "rating": "reported",
+              "source": "LSCBench",
+              "source_note": "450 tasks, 7 languages, 24 CWEs"
+            },
+            {
+              "date": "Nov 2026",
+              "display": "948",
+              "kind": "stat",
+              "label": "working Linux kernel privilege-escalation exploits from one agent pipeline",
+              "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
+              "rating": "reported",
+              "source": "OpenAI GPT-6 Cyber"
             }
           ],
           "kind": "stats"
