@@ -6,7 +6,7 @@ reading surface with:
 - a sidebar table of contents (jump to any section),
 - collapsible sub-sections (click a heading to fold/unfold),
 - collapsible article headlines (native <details>, already in the markdown),
-- a "New this week" section at the top with jump links (rolling 7-day window),
+- a "New in the last 7 days" section at the top with jump links (rolling 7-day window),
 - clean typography and table styling.
 
 Usage: build_html.py [input.md] [output.html]
@@ -481,7 +481,7 @@ TEMPLATE = """<!DOCTYPE html>
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
   /* Meta sections (front-page features + archive) sit below the three
      content sections: smaller, lighter, muted. */
-  main h2#new-this-week, main h2#what-were-watching, main h2#state-of-the-market, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
+  main h2#new-in-the-last-7-days, main h2#what-were-watching, main h2#state-of-the-market, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
   main h4 + .section-body {{ margin-left: 16px; }}
@@ -495,7 +495,7 @@ TEMPLATE = """<!DOCTYPE html>
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
-  #state-of-the-market + .section-body, #new-this-week + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
+  #state-of-the-market + .section-body, #new-in-the-last-7-days + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
   /* Inline TOC: hidden on desktop (the sidebar has it); shown on mobile. */
   .toc-inline {{ display: none; }}
   .toc-inline ul {{ list-style: none; padding: 0; margin: 0; }}
@@ -762,7 +762,7 @@ TEMPLATE = """<!DOCTYPE html>
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {{
     if (h.tagName === 'H1') return;
-    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching' || h.id === 'executive-dashboard' || h.id === 'report' || h.classList.contains('dash-panel')) return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching' || h.id === 'executive-dashboard' || h.id === 'report' || h.classList.contains('dash-panel')) return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
@@ -1022,7 +1022,7 @@ TEMPLATE = """<!DOCTYPE html>
       }}
       if (tag === 'LI') {{
         // Standalone list items in a section body: the best-practice
-        // bullets (§1.5.2, §2.5) and the "New this week" / "What we're
+        // bullets (§1.5.2, §2.5) and the "New in the last 7 days" / "What we're
         // watching" entries live here, not in <p> or <details>. Items
         // inside a <details> are already covered by their article unit;
         // nested items are covered by their parent's text. Unlike the
@@ -1317,7 +1317,7 @@ TEMPLATE = """<!DOCTYPE html>
       window.scrollTo({{ top: 0, behavior: 'smooth' }});
     }});
   }}
-  // Jumping to an anchor (from the sidebar or New this week) expands any
+  // Jumping to an anchor (from the sidebar or New in the last 7 days) expands any
   // collapsed ancestor section so the target is visible.
   function expandForAnchor() {{
     var id = location.hash && location.hash.slice(1);
