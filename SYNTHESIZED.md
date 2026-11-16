@@ -135,7 +135,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
 
 ## 1. Pre-commit: CI-generated code sanitizing
 
-Tools and best practices for addressing the problem of CI-generated code *before* it is committed — while it is being written and at the point of commit, before it enters the codebase. Covers commercial products, open-source tools, and the practices that make them effective, with focus on critical systems in finance. Confluence<1> builds its own tools in this space as well as advising on and deploying others'.
+Tools and best practices for addressing the problem of CI-generated code *before* it is committed — while it is being written and at the point of commit, before it enters the codebase. Covers commercial products, open-source tools, and the practices that make them effective, with focus on critical systems in finance. Confluence<1> builds sanitizing tools for clients and provides code-sanitizing services in this space, as well as advising on and deploying others'.
 
 ### 1.1 How big the problem is
 
