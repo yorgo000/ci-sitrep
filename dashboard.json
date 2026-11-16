@@ -4,8 +4,9 @@
   "bottom_line": [
     {
       "chart": {
-        "kind": "donut",
-        "legend": "AI agents 47% · human-written 53%",
+        "a_label": "AI agents",
+        "b_label": "human-written",
+        "kind": "pie",
         "value": 47
       },
       "date": "2026",
@@ -17,7 +18,9 @@
     },
     {
       "chart": {
-        "kind": "bar",
+        "a_label": "Using AI",
+        "b_label": "not using",
+        "kind": "pie",
         "value": 86
       },
       "date": "12 Nov 2026",
@@ -61,7 +64,7 @@
         "b": {
           "display": "1×",
           "label": "Generation alone",
-          "tone": "muted",
+          "tone": "gap",
           "value": 1
         },
         "kind": "compare"
@@ -75,7 +78,9 @@
     },
     {
       "chart": {
-        "kind": "bar",
+        "a_label": "Running agents",
+        "b_label": "not running",
+        "kind": "pie",
         "value": 79
       },
       "date": "2026",
@@ -94,6 +99,9 @@
       "source": "Cyera"
     },
     {
+      "chart": {
+        "kind": "question"
+      },
       "display": "Insufficient data",
       "full": true,
       "label": "profitability gained from AI",
