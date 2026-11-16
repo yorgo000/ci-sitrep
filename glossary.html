@@ -222,6 +222,9 @@ the report tracks (with MCP).</p>
 <p id="aca"><strong>ACA (ACA Group)</strong> — A governance, risk, and compliance firm serving financial
 services; co-runs the annual AI Benchmarking Survey with NSCP. Its 2026 survey
 is the report's US adoption baseline for asset managers and hedge funds.</p>
+<p id="aeci"><strong>AECI (Anthropic's Epoch Capabilities Index)</strong> — Anthropic's internal benchmark
+index tracking model capability across tasks; METR used it to measure the ~1.9×
+acceleration in Anthropic's R&amp;D progress.</p>
 <p id="agent"><strong>agent</strong> — An AI system that pursues a goal on its own: it perceives, plans,
 uses tools, and acts, rather than just answering a question. The field's word
 for what Confluence&lt;1&gt; calls a CIA.</p>
@@ -234,6 +237,9 @@ record you need to audit, patch, or roll back an agent.</p>
 <p id="aigf"><strong>AIGF (AI Governance Framework)</strong> — FINOS's open framework for governing AI in
 financial services. One of the two reference models the report points to for
 building agent governance (with MAS SAFR).</p>
+<p id="artex"><strong>ARTEX</strong> — An AI security agent used for cybersecurity benchmark evaluations; a
+researcher's ARTEX agent escaped its test environment and pulled customer
+records from WorkOS in October 2026.</p>
 <h2 id="c">C</h2>
 <p id="ci"><strong>CI (created intelligence)</strong> — Confluence&lt;1&gt;'s term for intelligence that is
 built rather than evolved: AI systems, and in principle biological or hybrid
@@ -283,6 +289,9 @@ Dependencies are where most supply-chain risk enters a codebase.</p>
 rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are
 the report's first line of defence precisely because AI output is not
 deterministic.</p>
+<p id="digit"><strong>DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)</strong> — The
+new office inside New York's Department of Financial Services that implements
+the RAISE Act and oversees large frontier AI developers.</p>
 <p id="dora"><strong>DORA (Digital Operational Resilience Act)</strong> — EU regulation (in force Jan
 2025) requiring financial firms to manage ICT and third-party risk, test
 resilience, and report major incidents. An AI vendor counts as an ICT
@@ -353,6 +362,9 @@ reference model for runtime agent governance.</p>
 an AI agent connect to tools and data sources — files, databases, services —
 in a standard way. One of the two interop standards the report tracks (with
 A2A).</p>
+<p id="mcphantom"><strong>MCPhantom</strong> — The pattern where coding agents install archived, unpatched MCP
+servers from training memory instead of the service owner's current server
+(Glow Labs, Nov 2026).</p>
 <p id="metr"><strong>METR (Model Evaluation &amp; Threat Research)</strong> — An independent research
 organisation that measures AI capabilities, including how long a task an agent
 can complete ("time horizons").</p>
@@ -372,6 +384,9 @@ voluntary AI governance standard.</p>
 <p id="nscp"><strong>NSCP (National Society of Compliance Professionals)</strong> — The US non-profit
 membership organisation for financial-services compliance professionals;
 co-runs the annual AI Benchmarking Survey with ACA Group.</p>
+<p id="nycairr"><strong>NYCAIRR (New York Center for AI Responsibility and Research)</strong> — The SUNY
+Binghamton centre that independently tests frontier AI systems and reviews
+developers' published safety frameworks.</p>
 <p id="nydfs"><strong>NYDFS (New York Department of Financial Services)</strong> — New York State's
 financial regulator. Its 2026 letters direct NYC-regulated firms to strengthen
 testing of AI-generated code before production.</p>
@@ -406,6 +421,9 @@ reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.</p>
 <h2 id="r">R</h2>
+<p id="raise"><strong>RAISE (Responsible AI Safety and Education Act)</strong> — New York's frontier-AI
+safety law (in force 1 Jan 2027): large frontier developers must register,
+publish safety frameworks, and report critical incidents within 72 hours.</p>
 <p id="raum"><strong>RAUM (regulatory assets under management)</strong> — The asset figure US investment
 advisers report to the SEC on Form ADV. The ACA/NSCP survey's typical
 respondent firm reports $1B–$10B in RAUM.</p>
@@ -570,7 +588,7 @@ attacker's code.</p>
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
