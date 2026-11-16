@@ -442,11 +442,15 @@ TEMPLATE = """<!DOCTYPE html>
   .masthead-logo {{ height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }}
   .masthead-nav {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
   .masthead-nav a {{ font-weight: 600; }}
-  .masthead-nav a.work-link {{ margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }}
-  .masthead-legend {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
-  .masthead-legend summary {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; cursor: pointer; }}
+  .masthead-legend {{ margin-bottom: 18px; padding-bottom: 0; border-bottom: 1px solid var(--line); }}
+  .masthead-legend[open] {{ padding-bottom: 16px; }}
+  .masthead-legend summary {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; cursor: pointer; }}
+  .masthead-legend[open] summary {{ margin-bottom: 10px; }}
   .masthead-legend p {{ font-size: 13px; color: var(--muted); margin: 0 0 8px; line-height: 1.45; }}
   .masthead-legend .dots {{ color: var(--ink); font-weight: 600; letter-spacing: 1px; }}
+  .masthead-contact {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
+  .masthead-contact h3 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }}
+  .masthead-contact p {{ font-size: 13px; color: var(--muted); margin: 0 0 8px; line-height: 1.45; }}
   nav.sidebar ul {{ list-style: none; padding: 0; margin: 0; }}
   nav.sidebar li {{ margin: 2px 0; }}
   nav.sidebar li li {{ padding-left: 14px; }}
@@ -620,7 +624,11 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="theses.html">Foundational theses</a>
       <a href="archive.html">Archive</a>
       <a href="about.html">About</a>
-      <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
+    </div>
+    <div class="masthead-contact">
+      <h3>Contact</h3>
+      <p>Errors, omissions, feature requests:<br><a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a></p>
+      <p>Work with Confluence&lt;1&gt;:<br><a href="mailto:hello@confluence1.com">hello@confluence1.com</a></p>
     </div>
     <details class="masthead-legend">
       <summary>Credibility rating</summary>
