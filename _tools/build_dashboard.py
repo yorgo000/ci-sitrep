@@ -287,32 +287,52 @@ def render_countdown(deadlines):
     )
 
 
-def render_donut(it):
-    """Inline SVG donut for a share figure (the ~47% AI-written code
-    card): the navy arc is the share, the grey remainder is the rest,
-    the value sits in the centre. No JS, no library — plain SVG.
+# Strip chart colours (2026-11-15): rust is the AI side, blue the
+# not-AI side — the same scheme on the pies and the comparison bars.
+RUST = "#b3543f"
+BLUE = "#283060"
+
+
+def render_pie(it):
+    """Inline SVG pie for a percentage figure: the rust wedge is the
+    AI side, the blue remainder is the rest. The number sits NEXT TO
+    the pie (in the graphic row), not inside it.
     """
     chart = it["chart"]
     v = chart["value"]
-    circ = 2 * math.pi * 40
-    arc = circ * v / 100
-    legend = (
-        f'<p class="bl-legend">{esc(chart["legend"])}</p>'
-        if chart.get("legend")
-        else ""
-    )
+    if v <= 0:
+        wedge = ""
+    elif v >= 100:
+        wedge = f'<circle cx="50" cy="50" r="40" fill="{RUST}"/>'
+    else:
+        theta = math.radians(v / 100 * 360)
+        x = 50 + 40 * math.sin(theta)
+        y = 50 - 40 * math.cos(theta)
+        large = 1 if v > 50 else 0
+        wedge = (
+            f'<path d="M 50,50 L 50,10 A 40,40 0 {large} 1 '
+            f'{x:.1f},{y:.1f} Z" fill="{RUST}"/>'
+        )
     return (
-        '<svg class="bl-donut" viewBox="0 0 100 100" role="img" '
+        '<svg class="bl-pie" viewBox="0 0 100 100" role="img" '
         f'aria-label="{esc(it["label"])}">'
-        '<circle cx="50" cy="50" r="40" fill="none" stroke="#c9c2b0" '
-        'stroke-width="16"/>'
-        '<circle cx="50" cy="50" r="40" fill="none" stroke="#283060" '
-        'stroke-width="16" '
-        f'stroke-dasharray="{arc:.1f} {circ - arc:.1f}" '
-        'transform="rotate(-90 50 50)"/>'
-        f'<text x="50" y="56" text-anchor="middle" class="bl-donut-value">'
-        f'{esc(it["display"])}</text>'
-        "</svg>" + legend
+        f'<circle cx="50" cy="50" r="40" fill="{BLUE}"/>'
+        f"{wedge}</svg>"
+    )
+
+
+def render_question():
+    """A question mark inside a circle — the graphic for the
+    profitability item, which has no data to chart.
+    """
+    return (
+        '<svg class="bl-question" viewBox="0 0 100 100" role="img" '
+        'aria-label="Unknown — no credible figure exists">'
+        f'<circle cx="50" cy="50" r="40" fill="none" stroke="{BLUE}" '
+        'stroke-width="6"/>'
+        '<text x="50" y="68" text-anchor="middle" '
+        'class="bl-question-mark">?</text>'
+        "</svg>"
     )
 
 
@@ -346,26 +366,43 @@ def render_bottom_line(items):
     Layout is 3+3+1: six cards in two rows of three, then the
     profitability item full-width (it has no figure — its display IS
     the finding, "Insufficient data", with no rating or date, linking
-    to the money panel). Cards carry a chart where the figure has one:
-    a donut for the AI code share, a bar for the two adoption rates,
-    comparison bars for the two multipliers; the 188 count has no
-    chartable comparison in the report, so it keeps the big number.
+    to the money panel; its graphic is a question mark in a circle).
+    Charts, one colour scheme throughout — rust is the AI side, blue
+    the not-AI side: pies for the three percentages (number next to
+    the pie, with a two-chip legend), comparison bars for the two
+    multipliers (AI patches rust vs human patches blue; review cost
+    blue — the review is the human side — vs generation alone rust);
+    the 188 count has no chartable comparison in the report, so it
+    keeps the big number.
     """
     cards = []
     for it in items:
         chart = it.get("chart")
-        if chart and chart["kind"] == "donut":
-            # The value lives in the donut's centre — no stat-value.
-            visual = render_donut(it)
+        legend = ""
+        if chart and chart["kind"] == "pie":
+            visual = (
+                '<div class="bl-graphic-row">'
+                f"{render_pie(it)}"
+                f'<p class="stat-value">{esc(it["display"])}</p>'
+                "</div>"
+            )
+            legend = (
+                '<p class="bl-legend">'
+                '<span class="bl-chip rust"></span>'
+                f'{esc(chart["a_label"])} {chart["value"]}% · '
+                '<span class="bl-chip blue"></span>'
+                f'{esc(chart["b_label"])} {100 - chart["value"]}%</p>'
+            )
+        elif chart and chart["kind"] == "question":
+            visual = (
+                '<div class="bl-graphic-row">'
+                f"{render_question()}"
+                f'<p class="stat-value">{esc(it["display"])}</p>'
+                "</div>"
+            )
         else:
             visual = f'<p class="stat-value">{esc(it["display"])}</p>'
-            if chart and chart["kind"] == "bar":
-                visual += (
-                    '<div class="bl-bar"><div class="bar-track">'
-                    f'<div class="bar-fill" style="width: {chart["value"]}%">'
-                    "</div></div></div>"
-                )
-            elif chart and chart["kind"] == "compare":
+            if chart and chart["kind"] == "compare":
                 visual += render_compare(chart)
         parts = [f'<a href="{esc(it["link"])}">{esc(it["source"])}</a>']
         if it.get("date"):
@@ -376,7 +413,7 @@ def render_bottom_line(items):
         cls = "stat-card bl-full" if it.get("full") else "stat-card"
         cards.append(
             f'<div class="{cls}">'
-            f"{visual}"
+            f"{visual}{legend}"
             f'<p class="stat-label">{esc(it["label"])}</p>'
             '<p class="fig-source">' + " · ".join(parts) + "</p>"
             f"{note}</div>"
@@ -470,10 +507,15 @@ def validate(data, index_html):
         chart = it.get("chart")
         if chart is not None:
             kind = chart.get("kind")
-            if kind in ("donut", "bar"):
+            if kind == "pie":
                 v = chart.get("value")
                 if not isinstance(v, (int, float)) or not 0 <= v <= 100:
                     errors.append(f"bottom line {src}: bad chart value {v!r}")
+                for field in ("a_label", "b_label"):
+                    if field not in chart:
+                        errors.append(f"bottom line {src}: pie missing {field}")
+            elif kind == "question":
+                pass
             elif kind == "compare":
                 for side in ("a", "b"):
                     s = chart.get(side) or {}
@@ -490,7 +532,7 @@ def validate(data, index_html):
                             f"bottom line {src}: compare {side} bad value "
                             f"{s.get('value')!r}"
                         )
-                    if s.get("tone") not in ("navy", "gap", "muted"):
+                    if s.get("tone") not in ("navy", "gap"):
                         errors.append(
                             f"bottom line {src}: compare {side} bad tone "
                             f"{s.get('tone')!r}"
@@ -509,13 +551,17 @@ DASH_CSS = """
   .dash-strip-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
   .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
   .bottom-line-strip .stat-value { overflow-wrap: break-word; }
-  .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; background: #f0f1f7; }
-  .bl-donut { width: 110px; height: 110px; display: block; margin: 0 auto 8px; }
-  .bl-donut-value { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 19px; font-weight: 700; fill: #283060; }
-  .bl-legend { font-size: 12px; color: var(--muted); margin: 0 0 6px; text-align: center; }
-  .bl-bar { margin: 0 0 8px; }
+  .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; }
+  .bl-graphic-row { display: flex; align-items: center; gap: 14px; margin: 0 0 8px; }
+  .bl-graphic-row .stat-value { margin: 0; }
+  .bl-pie { width: 88px; height: 88px; flex: 0 0 auto; }
+  .bl-question { width: 88px; height: 88px; flex: 0 0 auto; }
+  .bl-question-mark { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 52px; font-weight: 700; fill: #283060; }
+  .bl-legend { font-size: 12px; color: var(--muted); margin: 0 0 6px; }
+  .bl-chip { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+  .bl-chip.rust { background: #b3543f; }
+  .bl-chip.blue { background: #283060; }
   .bl-compare .bar-row { margin-bottom: 8px; }
-  .bar-fill.muted { background: #c9c2b0; }
   .countdown-strip { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
   .cd-card { flex: 1 1 180px; border: 1px solid var(--line); border-left: 3px solid var(--logo-navy); border-radius: 6px; padding: 10px 12px; background: #fdfbf7; }
   .cd-card a { text-decoration: none; color: inherit; display: block; }
