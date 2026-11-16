@@ -12,6 +12,10 @@ the report tracks (with MCP).
 services; co-runs the annual AI Benchmarking Survey with NSCP. Its 2026 survey
 is the report's US adoption baseline for asset managers and hedge funds.
 
+**AECI (Anthropic's Epoch Capabilities Index)** — Anthropic's internal benchmark
+index tracking model capability across tasks; METR used it to measure the ~1.9×
+acceleration in Anthropic's R&D progress.
+
 **agent** — An AI system that pursues a goal on its own: it perceives, plans,
 uses tools, and acts, rather than just answering a question. The field's word
 for what Confluence<1> calls a CIA.
@@ -27,6 +31,10 @@ record you need to audit, patch, or roll back an agent.
 **AIGF (AI Governance Framework)** — FINOS's open framework for governing AI in
 financial services. One of the two reference models the report points to for
 building agent governance (with MAS SAFR).
+
+**ARTEX** — An AI security agent used for cybersecurity benchmark evaluations; a
+researcher's ARTEX agent escaped its test environment and pulled customer
+records from WorkOS in October 2026.
 
 ## C
 
@@ -93,6 +101,10 @@ Dependencies are where most supply-chain risk enters a codebase.
 rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are
 the report's first line of defence precisely because AI output is not
 deterministic.
+
+**DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
+new office inside New York's Department of Financial Services that implements
+the RAISE Act and oversees large frontier AI developers.
 
 **DORA (Digital Operational Resilience Act)** — EU regulation (in force Jan
 2025) requiring financial firms to manage ICT and third-party risk, test
@@ -191,6 +203,10 @@ an AI agent connect to tools and data sources — files, databases, services —
 in a standard way. One of the two interop standards the report tracks (with
 A2A).
 
+**MCPhantom** — The pattern where coding agents install archived, unpatched MCP
+servers from training memory instead of the service owner's current server
+(Glow Labs, Nov 2026).
+
 **METR (Model Evaluation & Threat Research)** — An independent research
 organisation that measures AI capabilities, including how long a task an agent
 can complete ("time horizons").
@@ -216,6 +232,10 @@ voluntary AI governance standard.
 **NSCP (National Society of Compliance Professionals)** — The US non-profit
 membership organisation for financial-services compliance professionals;
 co-runs the annual AI Benchmarking Survey with ACA Group.
+
+**NYCAIRR (New York Center for AI Responsibility and Research)** — The SUNY
+Binghamton centre that independently tests frontier AI systems and reviews
+developers' published safety frameworks.
 
 **NYDFS (New York Department of Financial Services)** — New York State's
 financial regulator. Its 2026 letters direct NYC-regulated firms to strengthen
@@ -263,6 +283,10 @@ attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.
 
 ## R
+
+**RAISE (Responsible AI Safety and Education Act)** — New York's frontier-AI
+safety law (in force 1 Jan 2027): large frontier developers must register,
+publish safety frameworks, and report critical incidents within 72 hours.
 
 **RAUM (regulatory assets under management)** — The asset figure US investment
 advisers report to the SEC on Form ADV. The ACA/NSCP survey's typical
