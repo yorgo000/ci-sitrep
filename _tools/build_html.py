@@ -636,7 +636,7 @@ TEMPLATE = """<!DOCTYPE html>
       <p>Work with Confluence&lt;1&gt;:<br><a href="mailto:hello@confluence1.com">hello@confluence1.com</a></p>
     </div>
     <details class="masthead-legend">
-      <summary>Credibility rating</summary>
+      <summary>Credibility rating scale</summary>
       <p><span class="dots">●●●●</span> Established — peer-reviewed and independently confirmed, or a primary regulatory document.</p>
       <p><span class="dots">●●●○</span> Corroborated — peer-reviewed single study, or a credible source confirmed independently.</p>
       <p><span class="dots">●●○○</span> Reported — single credible source, not yet independently verified.</p>
