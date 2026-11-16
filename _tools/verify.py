@@ -224,26 +224,26 @@ def check_rating_consistency(articles):
 
 
 def check_freshness(md):
-    """New this week: 7-day window, newest first. What we're watching: no past dates, soonest first."""
+    """New in the last 7 days: 7-day window, newest first. What we're watching: no past dates, soonest first."""
     today = date.today()
 
-    ntw = re.search(r"## New this week\n(.*?)\n## What we're watching",
+    ntw = re.search(r"## New in the last 7 days\n(.*?)\n## What we're watching",
                     md, re.DOTALL)
     if not ntw:
-        fail("New this week section present", "section not found")
+        fail("New in the last 7 days section present", "section not found")
     else:
         dates = re.findall(r"^- \*\*(\d{4}-\d{2}-\d{2}) —", ntw.group(1), re.MULTILINE)
         parsed = [parse_ntw_date(d) for d in dates]
         stale = [d for d in parsed if d < today - timedelta(days=7)]
         if not stale:
-            ok("New this week: no entry older than 7 days", f"{len(parsed)} entries")
+            ok("New in the last 7 days: no entry older than 7 days", f"{len(parsed)} entries")
         else:
-            fail("New this week: no entry older than 7 days",
+            fail("New in the last 7 days: no entry older than 7 days",
                  f"stale: {[str(d) for d in stale]}")
         if parsed == sorted(parsed, reverse=True):
-            ok("New this week: newest first")
+            ok("New in the last 7 days: newest first")
         else:
-            fail("New this week: newest first", "entries out of order")
+            fail("New in the last 7 days: newest first", "entries out of order")
 
     www = re.search(r"## What we're watching\n(.*?)\n## Contents", md, re.DOTALL)
     if not www:
@@ -292,14 +292,14 @@ def check_structure(md):
             fail(f"section {num} name",
                  f"expected '{want}'; H2s found: {[h for h in h2s if h.startswith(num + '.')]}")
 
-    order = ["State of the market", "New this week", "What we're watching", "Contents",
+    order = ["State of the market", "New in the last 7 days", "What we're watching", "Contents",
              "1. ", "2. ", "3. ", "Archive"]
     pos = []
     for o in order:
         i = md.find(f"## {o}")
         pos.append(i)
     if all(p >= 0 for p in pos) and pos == sorted(pos):
-        ok("section order", "State of the market < New this week < What we're watching < Contents < §1 < §2 < §3 < Archive")
+        ok("section order", "State of the market < New in the last 7 days < What we're watching < Contents < §1 < §2 < §3 < Archive")
     else:
         fail("section order", f"positions: {dict(zip(order, pos))}")
 
