@@ -61,7 +61,7 @@ def main():
     m = re.search(r"\*\*Last updated:\*\* (\d{4}-\d{2}-\d{2})", src)
     last_updated = m.group(1) if m else "unknown"
 
-    ntw = re.search(r"## New this week\n(.*?)(?=\n## )", src, re.DOTALL)
+    ntw = re.search(r"## New in the last 7 days\n(.*?)(?=\n## )", src, re.DOTALL)
     n_new = len(re.findall(r"^- \*\*", ntw.group(1), re.MULTILINE)) if ntw else 0
 
     # --- Audit log: review funnel ---
@@ -129,7 +129,7 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 | Total external links (incl. inline prose links) | {n_links} |
 | Unique source URLs | {n_unique_urls} |
 | Sections | {n_h2} top-level · {n_h3} subsections · {n_h4} sub-subsections |
-| Items new this week | {n_new} |
+| Items new in the last 7 days | {n_new} |
 | Superseded entries in the archive | {n_archive} |
 | Report live since | 2026-11-09 |
 
