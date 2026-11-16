@@ -334,7 +334,7 @@ CIA, CIAC, Foundational theses, Archive, About — then the Contact
 section (heading "Contact": errors, omissions, and feature requests
 to ci-sitrep@confluence1.com; working with Confluence<1> to
 hello@confluence1.com — both mailto links), then the credibility
-rating legend (a collapsed `<details>`, summary "Credibility rating";
+rating legend (a collapsed `<details>`, summary "Credibility rating scale";
 starts closed — the dots are also explained in "How to read this" and
 carry their words in the dashboard; its padding-bottom and the
 summary's margin apply only when open, so the closed line has no
@@ -801,3 +801,8 @@ The Self-Audit page records the date of the last full manual link audit
   user-selectable window (3 / 7 / 14 / 30 days) was assessed the same
   evening and held — it solves catching up after time away, which the
   report body already does; the rename solves the misleading part.
+- **2026-11-16 (morning)** — "How to read this" guide reordered
+  (Yorgo): "How to read it" and "Short on time?" now come before "New
+  to the terms?" — they were buried after the terms paragraphs. The
+  masthead legend was renamed "Credibility rating scale" the same
+  morning (was "Credibility rating").
