@@ -95,7 +95,9 @@ Then the two top-level sections, both starting OPEN:
    `dashboard.json`: the bottom-line strip (seven items in a 3+3+1
    grid — six charted cards in two rows of three, then the
    profitability item full-width, reading "Insufficient data" and
-   linking to the money panel), the countdown strip (labelled
+   linking to the money panel; pies for the percentages, comparison
+   bars for the multipliers, one colour scheme throughout — rust is
+   the AI side, blue the not-AI side), the countdown strip (labelled
    "COUNTDOWN") and the five panels,
    every figure linked to the report article that evidences it. (The
    standalone dashboard page is gone; `dashboard.html` redirects to
@@ -161,9 +163,12 @@ figure carrying its value, label, source, rating, date, and a link to
 the report article that evidences it, plus a `bottom_line` list (seven
 items rendered as a strip above the countdown — rating and date
 optional, since the profitability item has neither; each item carries
-a chart where its figure has one — a donut for the AI code share, a
-bar for the adoption rates, comparison bars for the multipliers — and
-the profitability item is full-width, last, with `"full": true`) and a deadlines
+a chart where its figure has one — a pie for a percentage (number next
+to the pie, two-chip legend), comparison bars for a multiplier, a
+question mark in a circle for the profitability item, which has no
+data — all on one colour scheme, rust (#b3543f) for the AI side, blue
+(#283060) for the not-AI side; and the profitability item is
+full-width, last, with `"full": true`) and a deadlines
 list for the countdown strip. The link is the article's runtime id (assigned by the
 share JS from the headline) — a section anchor is not specific enough:
 the reader must land on the article itself, where its Source line
@@ -325,7 +330,9 @@ the logo, cube cropped out) — the logo stays in the masthead
 everywhere, all the time. On the report page the heading is followed
 by the nav links, in this order: Self-Audit, Glossary, The names: CI,
 CIA, CIAC, Foundational theses, Archive, About — then the credibility
-rating legend (heading: "Credibility rating"), the Contents index,
+rating legend (a collapsed `<details>`, summary "Credibility rating";
+starts closed — the dots are also explained in "How to read this" and
+carry their words in the dashboard), the Contents index,
 and the copyright line "© 2026 Confluence<1> Corp. All rights
 reserved." The nav ends with one restrained conversion link — "Work
 with Confluence<1>", jumping to About's Contact section — set apart
@@ -496,6 +503,42 @@ Before publishing, re-read every new or revised segment and confirm:
 4. **Content order.** "New this week" newest first; "What we're watching"
    soonest first; the new article sits in the right sub-section.
 
+**UX and design editor — a dedicated review on every release
+(adopted 2026-11-15).** Consistency in design is what makes the report
+fast to digest, so every release that touches presentation — generators,
+CSS, dashboard visuals, a new component — passes a dedicated design
+review before it ships. It is a separate pass from the content re-read
+and the automated checks, done with fresh eyes on the built page, and
+it runs after Tier 1 passes and before pushing. The editor checks:
+
+1. **Consistency.** The same kinds of things look the same: charts of
+   the same kind use the same form; labels, headings, and card
+   treatments follow the established patterns; a new element reuses an
+   existing style rather than inventing one.
+2. **Colour meaning.** A colour means the same thing everywhere it
+   appears. In the strip charts, rust (#b3543f) is the AI side and blue
+   (#283060) is the not-AI side — on the pies and on the comparison
+   bars alike, the same two hex values, never a third shade for the
+   same meaning.
+3. **Hierarchy.** The most important thing reads first; visual weight
+   is proportional to the information's importance.
+4. **Legibility.** Every number, label, and legend is readable at a
+   glance, on desktop and on a phone: no text spilling, clipping, or
+   wrapping awkwardly; no element depending on a font glyph that may
+   not render.
+5. **Pattern completeness.** A new element follows the established
+   pattern for its kind — rating dots, source links, share anchors
+   where they apply.
+6. **Mobile.** The layout degrades gracefully: grids wrap, cards stack,
+   nothing overflows horizontally.
+
+Findings are fixed, re-verified, and only then released. When a design
+question has no established pattern, the editor proposes one, records
+it in §4, and applies it consistently from then on. The editor writes
+the visual checks for the Tier 2 browser test, so what was reviewed is
+what gets verified live. Design findings that change a decision go in
+the release note to Yorgo.
+
 **Tier 2 — visual review (when the generators or the design change, or
 weekly).** Open the live site in a browser, desktop and mobile, and
 check it against §4: masthead and H1 band render correctly; content
@@ -522,7 +565,8 @@ The Self-Audit page records the date of the last full manual link audit
    then `build_page.py` for the Self-Audit page, title "Self-Audit —
    CI SITREP"). If ARCHIVE.md changed, rebuild archive.html too
    (rewrite its links to repo-root-relative form first).
-4. Run the Tier 1 verification (§5). Do not push a failing build.
+4. Run the Tier 1 verification (§5) and the UX and design-editor review
+   (§5). Do not push a failing build.
 5. Push the changed files with the API helper
    (`~/workspace/custom-connectors/custom.github/bin/github.py put`).
    Verify each put returns status 200 or 201. (SSH push is blocked by
@@ -680,3 +724,25 @@ The Self-Audit page records the date of the last full manual link audit
   the same style ("COUNTDOWN"). Strip charts are inline SVG and CSS
   bars, no library; the build validates chart kinds, values, and bar
   tones.
+- **2026-11-15 (late evening)** — Strip charts revised (F-01): all
+  three percentages are now pie charts with the number NEXT TO the pie
+  (the donut and the progress bars are gone); both comparison bars use
+  one colour scheme matching the pies — rust (#b3543f) is the AI side,
+  blue (#283060) the not-AI side (AI patches rust vs human patches
+  blue; the review cost blue — the review is the human side — vs
+  generation alone rust). The profitability card has the same
+  background as the other cards now (the distinct background is gone;
+  the dashed border stays) and its graphic is a question mark inside a
+  circle.
+- **2026-11-15 (late evening)** — UX and design editor (Yorgo's
+  direction): a dedicated design review is now part of the rules-based
+  pre-release review (§5) on every release that touches presentation,
+  with a six-point checklist — consistency, colour meaning, hierarchy,
+  legibility, pattern completeness, mobile — run after Tier 1 passes
+  and before pushing; findings are fixed and re-verified before
+  release, and new patterns get recorded in §4.
+- **2026-11-15 (late evening)** — Masthead credibility legend is now a
+  collapsed `<details>` (summary "Credibility rating", starts closed)
+  instead of an always-open block — it is reference material, used
+  once per reader; the dots stay explained in "How to read this" and
+  carry their words in the dashboard.
