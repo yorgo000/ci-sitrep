@@ -169,6 +169,7 @@ The report page has no conversion path; the only contact point is one line on th
 **Design notes:**
 
 - Placement decided 2026-11-14 (Yorgo): a **masthead nav link** — "Work with Confluence<1>" as the last link in the report page's masthead nav, jumping to About's Contact section (about.html#contact). Set apart from the content links by a separator line. The footer-line alternative was not chosen.
+- **Reworked 2026-11-15 (Yorgo):** the nav link is gone, replaced by a small **Contact section in the masthead** in its place (after the nav, before the credibility legend), with two mailto addresses: errors, omissions, and feature requests go to ci-sitrep@confluence1.com; working with Confluence<1> goes to hello@confluence1.com (picked for the classy, no-sales-connotation feel — sales@ was too transactional, clients@ reads as existing clients; the catch-all routes to Yorgo so the address can change in one line). The About page's Contact section lists both addresses too, in the same words.
 - The real conversion engine remains the newsletter funnel (subscribe → site → value-add → Confluence<1> service), which still needs Yorgo's yes to start.
 
 ## F-10 — Business Impact & Risk module in each pillar
