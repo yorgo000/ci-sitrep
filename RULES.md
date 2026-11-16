@@ -401,15 +401,23 @@ section-body so collapsing a section never hides it.
   mobile-only back link at the top of the main content, right under
   the page title.
 
-**Share links.** Article headlines, substantive paragraphs, tables, and
-headings each carry a small link-icon button that copies a direct URL
-(page + #anchor) with a "Copied" confirmation. The icon is inline SVG —
-no font glyph. Buttons appear on hover on desktop and are always visible
-on mobile. Ids are generated deterministically in JS from slugified text
-(60-char cap, dedupe -2/-3 suffixes), so a copied link resolves
-identically on any later load. Clicking an article's button never toggles
-the article; a shared article link opens the article expanded. Excluded:
-See also blocks, the How-to-read block, the mobile Contents block.
+**Share links.** Article headlines, substantive paragraphs, tables,
+headings, and every dashboard card (each bottom-line strip card and
+each countdown card) each carry a small link-icon button that copies
+a direct URL (page + #anchor) with a "Copied" confirmation. The icon
+is inline SVG — no font glyph. Buttons appear on hover on desktop
+(Yorgo: he loves that they stay hidden until hover — keep it that
+way) and are always visible on mobile. Card buttons sit in the card's
+top-right corner, as a sibling of the card's link, never nested
+inside it, so clicking one copies the card's URL instead of
+following the link. Ids are generated deterministically in JS from
+slugified text (60-char cap, dedupe -2/-3 suffixes), so a copied
+link resolves identically on any later load — strip ids are
+bl-<article-slug> (bl-money for the profitability card), countdown
+ids cd-<deadline-slug>. Clicking an article's button never toggles
+the article; a shared article link opens the article expanded.
+Excluded: See also blocks, the How-to-read block, the mobile
+Contents block.
 
 **Search.** A search box on the report page (row 2, under the As-of
 + controls row) — the report is reference material, and readers need
@@ -772,3 +780,12 @@ The Self-Audit page records the date of the last full manual link audit
   closed state was also fixed the same evening: its padding-bottom
   and the summary's margin now apply only when open, so the collapsed
   line has no blank space under it and reads as expandable.
+- **2026-11-15 (late evening)** — Share buttons on dashboard cards
+  (Yorgo: "very important"): every bottom-line strip card and every
+  countdown card now carries a share button in its top-right corner,
+  hidden until hover like the article buttons (Yorgo loves the
+  hover-hidden pattern — keep it). The button is a sibling of the
+  card's link, never nested inside it. Strip ids bl-<article-slug>,
+  countdown ids cd-<deadline-slug>. The profitability card's dashed
+  border was made more pronounced the same evening (2px, muted gray —
+  it was 1px in the hairline color and Yorgo hadn't noticed it).
