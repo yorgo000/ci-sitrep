@@ -444,7 +444,7 @@ TEMPLATE = """<!DOCTYPE html>
   .masthead-nav a {{ font-weight: 600; }}
   .masthead-nav a.work-link {{ margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }}
   .masthead-legend {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
-  .masthead-legend h3 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }}
+  .masthead-legend summary {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; cursor: pointer; }}
   .masthead-legend p {{ font-size: 13px; color: var(--muted); margin: 0 0 8px; line-height: 1.45; }}
   .masthead-legend .dots {{ color: var(--ink); font-weight: 600; letter-spacing: 1px; }}
   nav.sidebar ul {{ list-style: none; padding: 0; margin: 0; }}
@@ -622,13 +622,13 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="about.html">About</a>
       <a href="about.html#contact" class="work-link">Work with Confluence&lt;1&gt;</a>
     </div>
-    <div class="masthead-legend">
-      <h3>Credibility rating</h3>
+    <details class="masthead-legend">
+      <summary>Credibility rating</summary>
       <p><span class="dots">●●●●</span> Established — peer-reviewed and independently confirmed, or a primary regulatory document.</p>
       <p><span class="dots">●●●○</span> Corroborated — peer-reviewed single study, or a credible source confirmed independently.</p>
       <p><span class="dots">●●○○</span> Reported — single credible source, not yet independently verified.</p>
       <p><span class="dots">●○○○</span> Claimed — vendor claim or single uncorroborated report.</p>
-    </div>
+    </details>
     <h2>Contents</h2>
     {toc}
     <p class="meta" style="margin-top: 20px;">© 2026 Confluence&lt;1&gt; Corp. All rights reserved.<br>
