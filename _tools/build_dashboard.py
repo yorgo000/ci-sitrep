@@ -555,7 +555,7 @@ DASH_CSS = """
   .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
   .bottom-line-strip .stat-value { overflow-wrap: break-word; }
   .bottom-line-strip .stat-card a { text-decoration: none; color: inherit; display: block; }
-  .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; }
+  .stat-card.bl-full { grid-column: 1 / -1; border: 2px dashed var(--muted); }
   .bl-graphic-row { display: flex; align-items: center; gap: 14px; margin: 0 0 8px; }
   .bl-graphic-row .stat-value { margin: 0; }
   .bl-pie { width: 88px; height: 88px; flex: 0 0 auto; }
