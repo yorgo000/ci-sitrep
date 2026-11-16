@@ -17,7 +17,7 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 **The bar for adding or changing anything:** it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.
 
-**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New this week](#new-this-week) to jump to the latest changes.
+**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New in the last 7 days](#new-in-the-last-7-days) to jump to the latest changes.
 
 **Credibility rating** — every article carries a dots rating for how much confidence you can place in its source.
 
@@ -32,7 +32,7 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 AI now writes the majority of new code, and [close to half of it carries a known security flaw](#16-benchmarks--evidence) — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. [Adoption has run ahead of governance](#343-the-governance-gap) on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. [Regulators are closing in from several directions at once](#342-regulation) — examiner frameworks in the US, a dated deadline in Singapore, incident reporting in Australia — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.
 
-## New this week
+## New in the last 7 days
 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
