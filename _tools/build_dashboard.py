@@ -362,7 +362,10 @@ def render_compare(chart):
 
 def render_bottom_line(items):
     """The bottom-line strip (2026-11-15): seven at-a-glance items above
-    the countdown, each linked to its evidencing article — Yorgo's pick.
+    the countdown — the WHOLE card is one link to its evidencing
+    article (like the countdown cards; the source name is plain text,
+    not a nested link), so the number, the chart, and the description
+    all take the reader to the article. Yorgo's pick.
     Layout is 3+3+1: six cards in two rows of three, then the
     profitability item full-width (it has no figure — its display IS
     the finding, "Insufficient data", with no rating or date, linking
@@ -404,7 +407,7 @@ def render_bottom_line(items):
             visual = f'<p class="stat-value">{esc(it["display"])}</p>'
             if chart and chart["kind"] == "compare":
                 visual += render_compare(chart)
-        parts = [f'<a href="{esc(it["link"])}">{esc(it["source"])}</a>']
+        parts = [esc(it["source"])]
         if it.get("date"):
             parts.append(esc(it["date"]))
         if it.get("rating"):
@@ -412,11 +415,11 @@ def render_bottom_line(items):
         note = f'<p class="fig-note">{esc(it["note"])}</p>' if it.get("note") else ""
         cls = "stat-card bl-full" if it.get("full") else "stat-card"
         cards.append(
-            f'<div class="{cls}">'
+            f'<div class="{cls}"><a href="{esc(it["link"])}">'
             f"{visual}{legend}"
             f'<p class="stat-label">{esc(it["label"])}</p>'
             '<p class="fig-source">' + " · ".join(parts) + "</p>"
-            f"{note}</div>"
+            f"{note}</a></div>"
         )
     return (
         '<p class="dash-strip-label">The bottom line</p>'
@@ -551,6 +554,7 @@ DASH_CSS = """
   .dash-strip-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
   .bottom-line-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 20px; }
   .bottom-line-strip .stat-value { overflow-wrap: break-word; }
+  .bottom-line-strip .stat-card a { text-decoration: none; color: inherit; display: block; }
   .stat-card.bl-full { grid-column: 1 / -1; border-style: dashed; }
   .bl-graphic-row { display: flex; align-items: center; gap: 14px; margin: 0 0 8px; }
   .bl-graphic-row .stat-value { margin: 0; }
