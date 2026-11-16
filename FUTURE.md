@@ -112,12 +112,12 @@ The architecture for the whole operation — how information gets in, how it get
 **Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
 **Built:** 2026-11-14
 
-A short synthesis — 2–4 sentences — at the very top of the report, above "New this week", giving a new reader the macro narrative before the granular updates: where AI code generation and agentic deployment stand, where governance lags, and where regulation is heading. The executive reader's first paragraph.
+A short synthesis — 2–4 sentences — at the very top of the report, above "New in the last 7 days", giving a new reader the macro narrative before the granular updates: where AI code generation and agentic deployment stand, where governance lags, and where regulation is heading. The executive reader's first paragraph.
 
 **Design notes (decided 2026-11-14):**
 
 - Evidence-grounded in the report's own findings (the 45% flaw rate, the governance gap, the regulatory timeline) — no generic marketing lines.
-- A named front-page section (H2), starting OPEN like "New this week" and "What we're watching", sharing the tinted navy panel and the de-emphasized meta-heading style.
+- A named front-page section (H2), starting OPEN like "New in the last 7 days" and "What we're watching", sharing the tinted navy panel and the de-emphasized meta-heading style.
 - Maintenance rule: the daily watch revises it when a material shift lands; it must never go stale, or it contradicts the "up to date" promise. Recorded in RULES.md and the daily watch cron.
 - This is the cheap version of F-01 — the dashboard is the fuller, visual version, later.
 
@@ -126,7 +126,7 @@ A short synthesis — 2–4 sentences — at the very top of the report, above "
 **Status:** Proposed
 **Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
 
-A monthly synthesis below "New this week": the 3–4 biggest shifts of the month, so a reader checking in monthly instantly grasps the momentum without parsing individual tactical updates or digging through the Archive. Monthly, not quarterly — this field moves too fast for a quarterly cadence.
+A monthly synthesis below "New in the last 7 days": the 3–4 biggest shifts of the month, so a reader checking in monthly instantly grasps the momentum without parsing individual tactical updates or digging through the Archive. Monthly, not quarterly — this field moves too fast for a quarterly cadence.
 
 **Design notes:**
 
@@ -134,13 +134,13 @@ A monthly synthesis below "New this week": the 3–4 biggest shifts of the month
 - Natural raw material for the weekly newsletter (which synthesizes the week; this synthesizes the month).
 - Open question: maintained by a month-end step in the daily watch cron, or a separate monthly job?
 
-## F-07 — Plain-English tags in "New this week"
+## F-07 — Plain-English tags in "New in the last 7 days"
 
 **Status:** Done
 **Proposed:** 2026-11-14 (external reviewer feedback; assessed same day)
 **Built:** 2026-11-14
 
-Replace the academic "(subject 1/2/3)" parentheticals in the "New this week" entries with plain tags — [Pre-commit], [In codebase], [Agentic]. The section names are already plain English; the parentheticals were the only place the numbered-subject language reached the public page.
+Replace the academic "(subject 1/2/3)" parentheticals in the "New in the last 7 days" entries with plain tags — [Pre-commit], [In codebase], [Agentic]. The section names are already plain English; the parentheticals were the only place the numbered-subject language reached the public page.
 
 **Design notes:**
 
