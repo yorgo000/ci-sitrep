@@ -97,7 +97,8 @@ Then the two top-level sections, both starting OPEN:
    profitability item full-width, reading "Insufficient data" and
    linking to the money panel; pies for the percentages, comparison
    bars for the multipliers, one colour scheme throughout — rust is
-   the AI side, blue the not-AI side), the countdown strip (labelled
+   the AI side, blue the not-AI side; the WHOLE strip card is one link
+   to its evidencing article, like the countdown cards), the countdown strip (labelled
    "COUNTDOWN") and the five panels,
    every figure linked to the report article that evidences it. (The
    standalone dashboard page is gone; `dashboard.html` redirects to
@@ -746,3 +747,12 @@ The Self-Audit page records the date of the last full manual link audit
   instead of an always-open block — it is reference material, used
   once per reader; the dots stay explained in "How to read this" and
   carry their words in the dashboard.
+- **2026-11-15 (late evening)** — Strip cards are now whole-card
+  links: the browser test found clicking a strip card's number or
+  chart did nothing — only the small source name linked to the
+  evidencing article, which contradicted the dashboard intro's promise
+  that every number links to its article. Each strip card is now one
+  `<a>` to its evidencing article (source name plain text, no nested
+  link), the same pattern as the countdown cards. Panel figures keep
+  the source-name link (their "also" second links rule out a
+  whole-card wrap).
