@@ -173,6 +173,7 @@
     main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
   }
 </style>
+<script data-goatcounter="https://ci-sitrep.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="layout">
@@ -311,7 +312,7 @@
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'state-of-the-market' || h.id === 'new-this-week' || h.id === 'what-were-watching') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
