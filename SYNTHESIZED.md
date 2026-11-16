@@ -9,15 +9,15 @@
 
 This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
 
+**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New in the last 7 days](#new-in-the-last-7-days) to jump to the latest changes.
+
+**Short on time?** The [Executive dashboard](#executive-dashboard) gives the key numbers at a glance — every figure linked to the report section behind it.
+
 **New to the terms?** Read the [explainer: CI, CIA, and CIAC](explainer.html) — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
 
 **Terms:** the [Glossary](glossary.html) defines every acronym and piece of jargon in plain language. In the report, dotted-underlined terms show their definition on hover or tap.
 
-**Short on time?** The [Executive dashboard](#executive-dashboard) gives the key numbers at a glance — every figure linked to the report section behind it.
-
 **The bar for adding or changing anything:** it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.
-
-**How to read it:** scan the sub-section headings, open an article headline for its facts. Every article is a collapsible headline; the facts inside are one per bullet. Start with [New in the last 7 days](#new-in-the-last-7-days) to jump to the latest changes.
 
 **Credibility rating** — every article carries a dots rating for how much confidence you can place in its source.
 
