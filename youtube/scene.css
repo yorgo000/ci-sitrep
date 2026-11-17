@@ -112,17 +112,18 @@ body.dev #ambient::after {
 /* ---- right rail: CI vs EI gauges ---- */
 #rail {
   width: 560px; flex: none; display: flex; flex-direction: column;
-  background: var(--card); border: 1px solid var(--line); padding: 28px 30px;
+  background: var(--card); border: 1px solid var(--line); padding: 20px 30px;
+  overflow: hidden;
 }
 #rail h2 {
   font-family: Georgia, serif; font-size: 34px; margin: 0; letter-spacing: 1px;
 }
 #rail h2 .vs { color: var(--rust); font-style: italic; font-size: 26px; }
-.rail-sub { font-size: 16px; color: var(--muted); margin: 6px 0 22px; line-height: 1.4; }
-#gauges { display: flex; flex-direction: column; gap: 26px; }
-.gauge-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-.gauge-headline { font-size: 15px; color: var(--muted); margin-bottom: 10px; line-height: 1.35; }
-.bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.rail-sub { font-size: 16px; color: var(--muted); margin: 6px 0 14px; line-height: 1.4; }
+#gauges { display: flex; flex-direction: column; gap: 16px; }
+.gauge-title { font-size: 17px; font-weight: 700; margin-bottom: 5px; }
+.gauge-headline { font-size: 15px; color: var(--muted); margin-bottom: 6px; line-height: 1.35; }
+.bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
 .bar-value { width: 92px; flex: none; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
 .bar-track { flex: 1; height: 22px; background: rgba(250, 246, 239, 0.08); }
 .bar-fill { display: block; height: 100%; }
@@ -130,13 +131,13 @@ body.dev #ambient::after {
 .bar-fill.ei { background: var(--ei-blue); }
 .bar-label { width: 150px; flex: none; font-size: 15px; color: var(--muted); }
 .gauge-stat { display: flex; align-items: baseline; gap: 14px; }
-.gauge-stat .stat-value { font-size: 52px; font-weight: 700; color: var(--rust); line-height: 1; }
+.gauge-stat .stat-value { font-size: 44px; font-weight: 700; color: var(--rust); line-height: 1; }
 .gauge-stat .stat-label { font-size: 17px; color: #e8e2d4; line-height: 1.3; }
-.gauge-note { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.35; }
-.gauge-src { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.gauge-note { font-size: 14px; color: var(--muted); margin-top: 5px; line-height: 1.35; }
+.gauge-src { font-size: 13px; color: var(--muted); margin-top: 4px; }
 .gauge-src .dots { color: var(--rust); letter-spacing: 1px; }
 .rail-foot {
-  margin-top: auto; padding-top: 18px; font-size: 14px; line-height: 1.45;
+  margin-top: auto; padding-top: 12px; font-size: 14px; line-height: 1.45;
   color: var(--muted); border-top: 1px solid var(--line);
 }
 
