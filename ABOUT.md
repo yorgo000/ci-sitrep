@@ -2,7 +2,7 @@
 
 CI SITREP is published by Confluence<1>, a software development firm founded in 1996 that builds critical systems for the finance industry — mostly for hedge funds and managing general agents — and for clients in other industries whose business models demand systems that cannot fail. Confluence<1>'s work has included the United Nations Situation Room.
 
-Confluence<1> has always taken the problems others would not or could not — the systems where failure is not an option, where the requirements are the hardest in the industry, and where the stakes are the highest. That is the firm's character: the special forces of software development, called in when the problem is too hard, too critical, or too consequential for anyone else.
+Confluence<1> has always taken the problems others would not or could not — the systems where failure is not an option, where the requirements are the hardest in the industry, and where the stakes are the highest. That is the firm's character: the elite operators of software development, called in when the problem is too hard, too critical, or too consequential for anyone else.
 
 The report's chief editor is Yorgo Bougás, Confluence<1>'s founder and managing partner. Before Confluence<1>, Yorgo spent 9 years at Sanford C. Bernstein. Bernstein was a boutique, research-driven investment manager — founded in 1967 as an investment manager and broker-dealer, it took discretionary accounts from the start and became well known on the strength of its research. Yorgo's contribution was building the systems that let Bernstein scale that business — separately managed accounts with full tax awareness, daily portfolio optimization, and minimal need for hands-on portfolio managers. Those systems are still at the core of Bernstein's SMA business: in their current form, they autonomously manage $235 billion across roughly 75,000 to 100,000+ separately managed accounts, as of 2026 (within AllianceBernstein, which manages nearly $1 trillion in total assets). After having built those systems first on mainframes, then on VAX/DEC stations, and then on PCs, Yorgo also spent some time in Bernstein's Equity Strategy research department, working with the firm's Chief Investment Strategist, Michael Goldstein.
 
@@ -12,7 +12,7 @@ Responsible, applicable, actionable research, from the perspective of critical s
 
 CI SITREP tracks the state of the art in Created Intelligence in code and finance: the tools and practices for sanitizing and certifying AI-generated code before it is committed, the CI-generated problems already in existing codebases, and the architecture and management of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
 
-Every article carries a credibility rating — a dots score for how much confidence you can place in its source. See the legend on the main page for what each level means.
+Every article carries a confidence rating — a dots score for how much confidence you can place in its finding. See the legend on the main page for what each level means.
 
 ## How this is made
 
