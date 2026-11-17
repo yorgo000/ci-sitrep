@@ -122,6 +122,17 @@ CMA, Ofcom, and ICO coordinate on digital regulation.
 
 ## E
 
+**EI (evolved intelligence)** — Confluence<1>'s term for intelligence that
+evolved rather than was built — human intelligence, in the report's usage.
+The human side of every CI-vs-EI comparison; the counterpart to CI. See the
+explainer, "Created Intelligence — a note on the names".
+
+**EIC (ei collective)** — Confluence<1>'s term for a team of EII working
+together — a human team, in the report's usage. The counterpart to CIC.
+
+**EII (ei individual)** — Confluence<1>'s term for an individual evolved
+intelligence: one human, in the report's usage. The counterpart to CII.
+
 **Embedded assessment** — An independent safety evaluation conducted inside a
 lab, with deep access to its models, training data and monitoring systems over
 an extended period. OpenAI's first phase (Nov 2026) put four outside groups
