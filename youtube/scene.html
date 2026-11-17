@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CI SITREP — Live</title>
+<meta name="viewport" content="width=1920, height=1080">
+<link rel="stylesheet" href="scene.css">
+<!--
+  CI SITREP broadcast scene (F-19). Load in OBS as a browser source at
+  1920×1080, local file URL. Data comes from findings-inline.js (generated
+  with the export — works under file://) and is refreshed from
+  ../data/findings.json every 15 minutes when served over HTTP.
+
+  Query flags: ?dev=1 shows the voiceover caption and the ambient-slot
+  outline (setup only, never on air). ?transparent=1 drops the page
+  background so OBS can composite footage underneath the scene.
+-->
+</head>
+<body>
+<div id="ambient" aria-hidden="true"><!--
+  AMBIENT FOOTAGE SLOT: this layer sits behind everything. For the MVP it
+  is a dimmed dark gradient. To run real footage: either drop a <video>
+  element here (muted, autoplay, loop, object-fit: cover), or load the
+  scene with ?transparent=1 and put the footage on a lower OBS source.
+  Footage must be ours or licensed — no clips we do not own.
+--></div>
+
+<div id="stage">
+  <header id="topband">
+    <div class="masthead">
+      <div class="wordmark">CI SITREP</div>
+      <div class="vertical">Code &amp; Finance</div>
+      <div class="site-url">yorgo000.github.io/ci-sitrep</div>
+    </div>
+    <div class="asof">
+      <div class="asof-label">AS OF</div>
+      <div class="asof-date" id="asof-date">—</div>
+    </div>
+    <div class="clocks">
+      <div class="clock"><span class="clock-label">ET</span> <span id="clock-et">--:--:--</span></div>
+      <div class="clock"><span class="clock-label">UTC</span> <span id="clock-utc">--:--:--</span></div>
+    </div>
+    <div class="deadline-chip" id="deadline-chip">
+      <span class="deadline-label">NEXT DEADLINE</span>
+      <span class="deadline-text" id="deadline-text">—</span>
+      <span class="deadline-days" id="deadline-days">—</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="finding" aria-live="off">
+      <div class="finding-head">
+        <span class="section-chip" id="section-chip">—</span>
+        <span class="rating" id="rating"><span class="dots" id="rating-dots"></span><span id="rating-label"></span></span>
+        <span class="counter" id="counter">—</span>
+      </div>
+      <h1 id="headline">Loading the report…</h1>
+      <p class="summary" id="summary"></p>
+      <div class="source-line" id="source-line"></div>
+      <div class="vo-caption" id="vo-caption" hidden></div>
+      <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+    </section>
+
+    <aside id="rail">
+      <h2>CI <span class="vs">vs</span> EI</h2>
+      <p class="rail-sub">Created intelligence against evolved intelligence — the same task, both sides.</p>
+      <div id="gauges"></div>
+      <p class="rail-foot">Gauges grow as the human-baseline audit (F-17) lands. Where no human baseline exists, the report says so — it never guesses.</p>
+    </aside>
+  </main>
+
+  <div id="glossary-band">
+    <span class="band-label">GLOSSARY</span>
+    <div class="marquee"><div class="marquee-track" id="glossary-track"></div></div>
+  </div>
+
+  <footer id="ticker">
+    <span class="band-label">WHAT&rsquo;S NEW</span>
+    <div class="marquee"><div class="marquee-track" id="ticker-track"></div></div>
+    <span class="byline">by Confluence&lt;1&gt;</span>
+  </footer>
+</div>
+
+<div id="data-error" hidden>
+  <p><strong>CI SITREP data did not load.</strong></p>
+  <p>Regenerate the export (<code>_tools/export_findings.py</code>) so
+  <code>youtube/findings-inline.js</code> exists, or serve this folder over
+  HTTP so <code>../data/findings.json</code> can be fetched. See
+  <code>youtube/README.md</code>.</p>
+</div>
+
+<script src="findings-inline.js"></script>
+<script src="scene.js"></script>
+</body>
+</html>
