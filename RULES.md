@@ -195,6 +195,30 @@ updates the deadlines list the day a What-we're-watching date lands, so
 the countdown strip never shows a passed date. Panel order is editorial
 (audience-first), not numeric.
 
+**CI vs EI page.** `CI-VS-EI.md` builds to `ci-vs-ei.html` via
+`build_page.py` — the dedicated always-on view of every CI figure
+against its human (EI, evolved intelligence) equivalent, and the third
+surface alongside the executive dashboard and the report (F-17, built
+2026-11-17; "ATAK" is design analogy only — the view is named "CI vs
+EI"). It presents, in three family sections (Development, Operations,
+Business-composite), the complete pairs, the partial comparisons (with
+their caveat), and the gaps (explicitly, as gaps — a row reading "No
+human baseline published" is a finding, not a hole). A comparison
+counts only on the same task with the same metric, with the baseline
+population stated; a CI number from one study set against a human
+number from another is not a comparison. Every figure carries its
+confidence rating and links to the report article that evidences it
+(the article's runtime id, as in the dashboard). The page is versioned
+and dated ("As of" + version in the dateline) and carries a Changes
+log at the bottom: when a figure moves, the change is logged there
+with the old and new values. The working audit behind it lives at
+`~/workspace/goals/watch-subjects-synthesized-state-of-the-art/hidden_files/f17-baseline-audit.md`
+(not public). The daily watch maintains both: when a new article
+publishes a human baseline on a task the report already measures, or a
+new benchmark arrives with a human control arm, update the audit and
+the page the same run — a gap that gains a baseline is a material
+change, and the "New in the last 7 days" entry says so.
+
 ---
 
 ## 3. Style — how it reads
@@ -327,8 +351,8 @@ tagline ("Created Intelligence in code and finance — as of today."),
 and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
 the logo, cube cropped out) — the logo stays in the masthead
 everywhere, all the time. On the report page the heading is followed
-by the nav links, in this order: Self-Audit, Glossary, The names: CI,
-CII, CIC, Foundational theses, Archive, About — then the Contact
+by the nav links, in this order: Self-Audit, Glossary, CI vs EI, The
+names: CI, CII, CIC, Foundational theses, Archive, About — then the Contact
 section (heading "Contact": errors, omissions, and feature requests
 to ci-sitrep@confluence1.com; working with Confluence<1> to
 hello@confluence1.com — both mailto links), then the confidence rating legend (a collapsed `<details>`, summary "Confidence rating scale";
@@ -388,7 +412,7 @@ section-body so collapsing a section never hides it.
   directly above). Breadcrumb paragraphs never get share buttons.
 - **Back-to-top button.** A small round navy button, fixed bottom-right,
   invisible until the reader has scrolled 500px down, then smooth-scrolls
-  to the top. The arrow is inline SVG. On all six pages.
+  to the top. The arrow is inline SVG. On every page.
 - **Back to the report.** On the content pages (About, Explainer,
   Theses, Archive, Self-Audit, Glossary): the sidebar opens with the
   same masthead heading as the report page (linked "CI SITREP / Code
@@ -469,6 +493,20 @@ narrow screens. Stat cards already lead with the number
 (`.stat-value` above `.stat-label`) — the bar rows now match them.
 The stacked-bar legend keeps its "label — value" form: it is a legend
 decoding coloured segments, not a figure row.
+
+**Pair tables (CI vs EI page).** The page's tables carry the
+`pair-table` class (assigned by `build_page.py` for `CI-VS-EI.md`):
+the CI column reads rust (#b3543f) and the EI column navy (#283060) —
+the same colour meaning as the dashboard strip, the same two hex
+values, never a third shade for the same meaning. A gap cell reads
+"No human baseline published" in muted italic (Markdown emphasis —
+`main em` already renders muted), so the absence is visible at a scan
+without a third colour. One table shape for all rows: Parameter | CI |
+EI (human) | Evidence — the Evidence cell carries the source link
+(to the report article), the date, and the rating in dots + words
+("●●○○ Reported"), so no legend is needed on the page. Rows are
+ordered pairs first, then partials, then gaps; a section with no pairs
+says so in a line ("No complete pair yet") instead of an empty table.
 
 ---
 
@@ -848,6 +886,17 @@ The Self-Audit page records the date of the last full manual link audit
   removed). The taxonomy draft's credibility dimension is now
   confidence. Changelog entries above keep the terms as they were when
   written.
+- **2026-11-17 (evening)** — CI vs EI page (F-17/ATAK, Yorgo): the
+  baseline audit classified all 42 performance figures in the report
+  and dashboard — 3 complete pairs, 12 partial comparisons, 27 gaps —
+  and the dedicated CI vs EI page presents them in three family
+  sections (Development, Operations, Business-composite), versioned
+  and dated with a Changes log. A comparison counts only on the same
+  task with the same metric; gaps read "No human baseline published".
+  The page is linked from the masthead nav after Glossary. Pair-table
+  pattern adopted (§4): CI column rust, EI column navy. Glossary
+  gained EI, EII, EIC (90 terms). The daily watch maintains the page
+  and the audit when a new article publishes a human baseline.
 - **2026-11-17 (evening)** — Findings export added to the publish
   pipeline (F-19/F-02): `_tools/export_findings.py` regenerates
   data/findings.json + youtube/findings-inline.js after build_html.py
