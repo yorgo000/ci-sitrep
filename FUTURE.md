@@ -12,7 +12,7 @@ To add a feature: append a new section at the bottom with the next number, statu
 **Proposed:** 2026-11-12
 **Built:** 2026-11-15 (Yorgo's pick — "work on graphics" while he reviewed the taxonomy)
 
-A graphic / countdown / visual dashboard that gives high-level executives making service and product decisions an immediate, at-a-glance view of the things that will affect their decisions — the pragmatic facts that get lost in the fluff of the news cycle. The kind of thing the special forces keep their eye on: the actual undeniable realities, not which way the hype is blowing.
+A graphic / countdown / visual dashboard that gives high-level executives making service and product decisions an immediate, at-a-glance view of the things that will affect their decisions — the pragmatic facts that get lost in the fluff of the news cycle. The kind of thing elite operators keep their eye on: the actual undeniable realities, not which way the hype is blowing.
 
 **Live at:** https://yorgo000.github.io/ci-sitrep/#executive-dashboard — the first top-level section of the main report page. **Moved into the main page 2026-11-15** (Yorgo's restructure): it was a standalone page at dashboard.html from its build that morning until the restructure that evening; `dashboard.html` now redirects to `index.html#executive-dashboard`, so the link sent out earlier still lands on the dashboard. Linked from the "How to read this" block ("Short on time?").
 
@@ -30,7 +30,7 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 **Design (as built):**
 
 - `dashboard.json` is the single source of truth (figures with value, label, source, source note, rating, date, and a link to the report article that evidences it); `_tools/build_dashboard.py` renders the section and `build_html.py` imports it, embedding the panels in `index.html` as H3s under the section's H2 ("Executive dashboard"), with the dashboard's CSS and countdown JS inserted after the template format step. Pure CSS bars and stat cards — no chart library, no backend, no cost.
-- Every figure carries its credibility rating (dots + word) and links to the report article behind it — the article's runtime id, so the reader lands on the article expanded and its Source line takes them to the primary source. Six figures carry an "also" link to a second evidencing article in another subsection (SecureVibeBench, A.S.E ×3, BugLedger, CodeRabbit). The three §3.6 figures (ThinkingBox ×2, METR) still link to the section anchor: §3.6 is prose, not articles. The generator validates every figure (required fields, rating in the four levels, bar values 0–100, link anchors exist in index.html or among the computed article ids — `compute_article_ids()` replicates the share JS's slugify + uniqueId) and exits 1 on a bad entry.
+- Every figure carries its confidence rating (dots + word) and links to the report article behind it — the article's runtime id, so the reader lands on the article expanded and its Source line takes them to the primary source. Six figures carry an "also" link to a second evidencing article in another subsection (SecureVibeBench, A.S.E ×3, BugLedger, CodeRabbit). The three §3.6 figures (ThinkingBox ×2, METR) still link to the section anchor: §3.6 is prose, not articles. The generator validates every figure (required fields, rating in the four levels, bar values 0–100, link anchors exist in index.html or among the computed article ids — `compute_article_ids()` replicates the share JS's slugify + uniqueId) and exits 1 on a bad entry.
 - Panels start open (the template collapses every heading; the dashboard's JS re-opens them); breadcrumbs removed as noise on a one-screen page; share buttons on panel headings work as on the other pages.
 - Panel order is editorial (audience-first): code share, governance gap, right vs wrong, net impact, money.
 
@@ -52,15 +52,15 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 The long-term product architecture. One database of all CI news gathered each day, across all industries. Every piece of data is collected, rated, vetted, tagged, summarised, and organised **once**. Sitreps are then produced by filtering:
 
 - **Filter by industry** → a specific industry's sitrep (finance, healthcare, manufacturing, etc.).
-- **Combine filters** → intersection reports (e.g. CIAC + finance, code + healthcare).
+- **Combine filters** → intersection reports (e.g. CIC + finance, code + healthcare).
 - **The same piece of information sells on multiple sitreps** — no duplication, no maintenance of parallel copies.
 
-This resolves the split question: separate sitreps become *views* on one database, not separate products to maintain. The tagging taxonomy (subject, type, credibility, severity, jurisdiction, source-date) is the filter mechanism — it already exists in draft. What remains: the database itself (structured storage for articles + tags + ratings), the filter/query layer, and per-filter rendering.
+This resolves the split question: separate sitreps become *views* on one database, not separate products to maintain. The tagging taxonomy (subject, type, confidence, severity, jurisdiction, source-date) is the filter mechanism — it already exists in draft. What remains: the database itself (structured storage for articles + tags + ratings), the filter/query layer, and per-filter rendering.
 
 **Design notes (to be refined):**
 
 - The current SYNTHESIZED.md is the single source of truth in Markdown form; the database is its structured successor.
-- Intersection reports (CIAC × finance) are the most commercially interesting filter — they serve the buyer who needs one slice, not the whole report.
+- Intersection reports (CIC × finance) are the most commercially interesting filter — they serve the buyer who needs one slice, not the whole report.
 - Open question: when does the Markdown source become a bottleneck? The filter UI on the static site (planned after the taxonomy backfill) is the first step toward filtered views without a backend.
 
 ## F-03 — Source directory + reader suggestions (in the audit section)
@@ -102,7 +102,7 @@ The architecture for the whole operation — how information gets in, how it get
 - **The intake criteria.** What passes the vetting bar at intake? The current report has a bar ("could change how a firm building critical systems in finance should act") — the funnel needs its own, broader criteria for what enters the database at all.
 - **Radar scope and cadence.** How far and wide — which sources, which industries, which languages? Continuous or once a day?
 - **Who/what vets on the fly.** Human, agent, or both? The current daily watch is agent-run with human review at the report level; intake vetting at scale may need a different split.
-- **Database schema.** What fields per item — the tagging taxonomy (subject, type, credibility, severity, jurisdiction, source-date) is the starting point, but intake may need more.
+- **Database schema.** What fields per item — the tagging taxonomy (subject, type, confidence, severity, jurisdiction, source-date) is the starting point, but intake may need more.
 - **The production interface.** What does the operator see and choose when producing a sitrep? How are filter intersections specified?
 - **Relationship to the current daily watch.** Does the daily watch cron become the radar, or is the radar something broader that the watch feeds into?
 
@@ -169,7 +169,7 @@ The report page has no conversion path; the only contact point is one line on th
 **Design notes:**
 
 - Placement decided 2026-11-14 (Yorgo): a **masthead nav link** — "Work with Confluence<1>" as the last link in the report page's masthead nav, jumping to About's Contact section (about.html#contact). Set apart from the content links by a separator line. The footer-line alternative was not chosen.
-- **Reworked 2026-11-15 (Yorgo):** the nav link is gone, replaced by a small **Contact section in the masthead** in its place (after the nav, before the credibility legend), with two mailto addresses: errors, omissions, and feature requests go to ci-sitrep@confluence1.com; working with Confluence<1> goes to hello@confluence1.com (picked for the classy, no-sales-connotation feel — sales@ was too transactional, clients@ reads as existing clients; the catch-all routes to Yorgo so the address can change in one line). The About page's Contact section lists both addresses too, in the same words.
+- **Reworked 2026-11-15 (Yorgo):** the nav link is gone, replaced by a small **Contact section in the masthead** in its place (after the nav, before the confidence legend), with two mailto addresses: errors, omissions, and feature requests go to ci-sitrep@confluence1.com; working with Confluence<1> goes to hello@confluence1.com (picked for the classy, no-sales-connotation feel — sales@ was too transactional, clients@ reads as existing clients; the catch-all routes to Yorgo so the address can change in one line). The About page's Contact section lists both addresses too, in the same words.
 - The real conversion engine remains the newsletter funnel (subscribe → site → value-add → Confluence<1> service), which still needs Yorgo's yes to start.
 
 ## F-10 — Business Impact & Risk module in each pillar
@@ -208,7 +208,7 @@ A search box at the top of the report page, right under the "As of" banner. Clie
 **Status:** Proposed
 **Proposed:** 2026-11-14 (Yorgo — "the day will come when we will set up a link to have AI answer questions for the user")
 
-A way for readers to ask questions and get answers grounded in the report. Assessment (2026-11-14): very doable, but a real project — days to a week for a solid v1, not an afternoon. Three pieces: (1) retrieval — finding the right passages for a question (search + ranking; F-13 is the foundation); (2) a language model to compose the answer; (3) a backend — GitHub Pages cannot run server code, so it needs a small serverless function plus an LLM API key (cost small, cents per question at this scale). The plumbing is standard; the hard part is editorial, not technical: answers must cite the report's articles, respect the credibility ratings, and say "not in the report" when the answer isn't there — otherwise it becomes a hallucination machine on top of a credibility-rated knowledge base.
+A way for readers to ask questions and get answers grounded in the report. Assessment (2026-11-14): very doable, but a real project — days to a week for a solid v1, not an afternoon. Three pieces: (1) retrieval — finding the right passages for a question (search + ranking; F-13 is the foundation); (2) a language model to compose the answer; (3) a backend — GitHub Pages cannot run server code, so it needs a small serverless function plus an LLM API key (cost small, cents per question at this scale). The plumbing is standard; the hard part is editorial, not technical: answers must cite the report's articles, respect the confidence ratings, and say "not in the report" when the answer isn't there — otherwise it becomes a hallucination machine on top of a confidence-rated knowledge base.
 
 **Notes / open questions:**
 - Which backend host (serverless function); whose LLM API key pays; public vs subscriber-only — Q&A over the vetted database is a natural subscriber feature (fits the commercialization direction).
@@ -240,7 +240,7 @@ Let readers save items to a personal reading list and come back to them later �
 
 **Design notes:**
 
-- It builds on the share infrastructure: every article, paragraph, table, and heading already has a deterministic runtime id and a stable anchor URL that opens expanded. A list entry stores the anchor URL, the item's title, its section, its credibility rating, and the date saved.
+- It builds on the share infrastructure: every article, paragraph, table, and heading already has a deterministic runtime id and a stable anchor URL that opens expanded. A list entry stores the anchor URL, the item's title, its section, its confidence rating, and the date saved.
 - The "add to reading list" control sits beside the share button on each item (articles at minimum; the same control works on the other shareable units since they share the anchor machinery).
 - The list itself is a view the reader returns to (own page, linked from the masthead nav): each entry links back to its anchor in the report (opens expanded) and carries its share button, so sharing from the list works exactly like sharing from the report.
 - **Open questions:** the list's home — own page vs a panel; ordering (most recent first, or report order); remove/clear; what happens when a saved article is superseded and archived — its anchor may disappear from the live report, so stale entries need graceful handling (link to the Archive, or a note that the item moved); local-storage limits for heavy readers.
@@ -267,7 +267,7 @@ A benchmark score on its own tells an executive nothing: 74.0 on A.S.E, 67% on T
 - **No baseline, no guess.** Where the source publishes no human comparison, the figure carries a "no human baseline published" note rather than an invented one. Over time this becomes a pressure point: benchmarks that publish baselines are more useful to executives, and the report can say so.
 - **A human-baseline view (later).** Once baselines are structured data (a natural field for the F-02 database), a dedicated view — every CI-vs-human comparison in one place — becomes possible. That is a later step; the audit and the per-figure baselines come first.
 
-**Open questions:** how the dashboard shows a baseline without doubling the figure count (second value, ratio, or a toggle); whether to score benchmarks partly on whether they publish a human baseline (a credibility-adjacent signal, not the credibility rating itself); which human population is the baseline for agent tasks — median developer, senior developer, specialist — since the answer changes the comparison.
+**Open questions:** how the dashboard shows a baseline without doubling the figure count (second value, ratio, or a toggle); whether to score benchmarks partly on whether they publish a human baseline (a confidence-adjacent signal, not the confidence rating itself); which human population is the baseline for agent tasks — median developer, senior developer, specialist — since the answer changes the comparison.
 
 ---
 
@@ -339,7 +339,7 @@ The About page needs to sell the work behind the sitrep: how many sources, how m
 
 **What it draws on (all real, all computed — nothing invented):**
 
-- The Self-Audit page already computes the raw material: article/source/link counts, the credibility distribution, and the per-run source-review funnel (audit_log.csv — e.g. the Tuesday 2026-11-17 run reviewed 55 sources to add 5 articles). The About numbers must come from the same computed source so they can't drift from the audit.
+- The Self-Audit page already computes the raw material: article/source/link counts, the confidence distribution, and the per-run source-review funnel (audit_log.csv — e.g. the Tuesday 2026-11-17 run reviewed 55 sources to add 5 articles). The About numbers must come from the same computed source so they can't drift from the audit.
 - The pipeline: the daily watch (04:30 ET run + 08:00 catch-up), the agent team (5 CII roles: Barnaby + 3 baseline researchers + the daily watch worker; the 08:00 catch-up worker joins Nov 18, making 6), the vetting-on-the-fly rule (F-04), the 53-check verification before every push, the design-editor review.
 - The expertise: decades building mission-critical systems for finance (already in About — Bernstein SMA systems, UN Situation Room, hedge funds, MGAs).
 - What it's for: advising finance on critical matters, building critical systems — the Confluence<1> services the sitrep feeds.
