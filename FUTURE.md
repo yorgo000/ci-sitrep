@@ -316,6 +316,20 @@ A live YouTube channel in the CNBC style: news and the various dashboards in rot
 
 ---
 
+## F-20 — Tagline: "the information you need to make the good calls"
+
+**Status:** Proposed
+**Proposed:** 2026-11-17 (Yorgo)
+
+A single promise line for all CI SITREP materials — site, channel, newsletter, explainer. Draft wording (Yorgo — "or something along those lines"): "we give you the information you need to make the good calls". It states the product's job in one sentence: the reader is a person with decisions to make, and the sitrep exists so those decisions are well informed. Distinct from the descriptive tagline ("Created Intelligence in code and finance — as of today"), which says what the report covers; this one says what it does for the reader. It fits the elite-operators / brass-tacks / ATAK voice and the "Right-Time Situational Awareness Tool" framing (item 4 of the 2026-11-17 strategy discussion, pending).
+
+**Notes / open questions:**
+- Wording to settle: the draft is Yorgo's; candidates to weigh alongside it — "the information behind the good calls", "know enough to call it right". He picks the final wording.
+- Placement: masthead under the existing tagline? Channel intro/outro? Newsletter header? Decide per material once the wording is settled — one line, many placements.
+- Voice: the line speaks as Confluence<1> ("we give you"); check it sits comfortably next to the "by Confluence<1>" byline and the report's otherwise impersonal tone.
+
+---
+
 ## Template for new features
 
 ```markdown
