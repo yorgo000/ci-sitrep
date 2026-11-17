@@ -33,8 +33,8 @@ and minor updates do not qualify.
 2. In codebase: Sanitizing post-commit of CI-generated code — tools,
    techniques, and best practices for detecting and remediating the
    defects CI-generated code has already left in an existing codebase.
-3. Agentic: CIAC Design, Build, Deployment — the creation, governance,
-   and management of ci agent collectives.
+3. Agentic: CIC Design, Build, Deployment — the creation, governance,
+   and management of cii collectives.
 
 **Geography and audience focus (2026-11-15).** The report's focus is the
 US — New York City in particular — and the firms Confluence<1> serves:
@@ -48,8 +48,7 @@ front-page synthesis lead with US figures, and non-US figures are
 labelled with their jurisdiction. A missing US figure is a gap to note
 and to seek, not a reason to lead with a UK one.
 
-**Nomenclature.** Our own framing uses CI (created intelligence), CIA (ci
-agent), CIAC (cia collective) — in the title, the explainer, the theses,
+**Nomenclature.** Our own framing uses CI (created intelligence), CII (ci individual), CIC (cii collective) — in the title, the explainer, the theses,
 the section headings, and the culture framework. The field's own words
 stay as the sources say them: quoted statistics (Sonar, Google, Gartner)
 keep "AI-generated" because that is what the sources say. Never rewrite a
@@ -83,7 +82,7 @@ the file is hierarchical, with a table of contents.
 on one row (banner left, controls right).
 **Row 2** — the search box (§4).
 **Row 3** — **How to read this**, one collapsed block holding everything
-before "New in the last 7 days" (the intro line, the credibility legend, the
+before "New in the last 7 days" (the intro line, the confidence legend, the
 caveats). Right-justified when collapsed; full width when open. It must
 not attract attention.
 The mobile inline Contents sits between row 2 and row 3 (hidden on
@@ -132,8 +131,7 @@ Then the two top-level sections, both starting OPEN:
 
 **Articles.** Each article is a collapsible headline (`<details>` /
 `<summary>`) with one fact per bullet inside. The headline carries the
-finding, the source in a parenthetical with the date, and the credibility
-rating (§3). Every article ends with a Source bullet (§3).
+finding, the source in a parenthetical with the date, and the confidence rating (§3). Every article ends with a Source bullet (§3).
 
 **See also cross-links.** One-line collapsible blocks at the end of
 sub-sections, linking related sections across the three subjects. When a
@@ -268,8 +266,8 @@ truncated or guessed URL. If a URL returns 404, find the correct URL
 (search for the article title) or use an archived copy — do not link to a
 dead page.
 
-**Credibility rating.** Every article headline carries a dots rating for
-how much confidence a reader can place in its source, appended at the end
+**Confidence rating.** Every article headline carries a dots rating for
+how much confidence a reader can place in its finding, appended at the end
 of the `<summary>` line (after the source info).
 
 - ●●●● Established — peer-reviewed and independently confirmed, or a
@@ -330,11 +328,10 @@ and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
 the logo, cube cropped out) — the logo stays in the masthead
 everywhere, all the time. On the report page the heading is followed
 by the nav links, in this order: Self-Audit, Glossary, The names: CI,
-CIA, CIAC, Foundational theses, Archive, About — then the Contact
+CII, CIC, Foundational theses, Archive, About — then the Contact
 section (heading "Contact": errors, omissions, and feature requests
 to ci-sitrep@confluence1.com; working with Confluence<1> to
-hello@confluence1.com — both mailto links), then the credibility
-rating legend (a collapsed `<details>`, summary "Credibility rating scale";
+hello@confluence1.com — both mailto links), then the confidence rating legend (a collapsed `<details>`, summary "Confidence rating scale";
 starts closed — the dots are also explained in "How to read this" and
 carry their words in the dashboard; its padding-bottom and the
 summary's margin apply only when open, so the closed line has no
@@ -487,7 +484,7 @@ python3 _tools/verify.py SYNTHESIZED.md index.html
 ```
 
 It checks structure (every article has a Source bullet and exactly one
-credibility rating; every headline parenthetical links its source, with
+confidence rating; every headline parenthetical links its source, with
 the documented exceptions; no duplicate headlines; no literal Markdown
 links in the HTML; all internal anchors resolve — article ids
 assigned at runtime by the share JS are accepted via the computed id
@@ -498,7 +495,7 @@ week" entry older than 7 days; no past date in "What we're watching";
 naming (Confluence<1> everywhere, with the one documented Atlassian
 exception; brand all-caps CI SITREP; current section names), hygiene
 (no internal-process strings on the public page), and layout markers
-(As-of banner, mobile Contents, credibility legend, copyright line,
+(As-of banner, mobile Contents, confidence legend, copyright line,
 share buttons, How-to-read block, the two top-level sections, the
 Sections control in the main content, the embedded dashboard panels).
 It also curl-checks every external link.
@@ -829,3 +826,14 @@ The Self-Audit page records the date of the last full manual link audit
   a dashboard convention, and the labels were already written as
   continuations of the number. `.bar-head` is now a plain block so
   the sentence wraps naturally on narrow screens.
+- **2026-11-17 (afternoon)** — Vocabulary pass (Yorgo): the rating is now
+  the confidence rating (was credibility rating) — the dots rate the
+  finding, not just its source, so the definition now reads "how much
+  confidence you can place in its finding". CIA is now CII (ci
+  individual) and CIAC is now CIC (cii collective), for symmetry with
+  the human-side terms and because CIA collides with the Central
+  Intelligence Agency; "special forces" is now "elite operators".
+  CIA/CIAC stay in the glossary as "formerly" entries (terms are never
+  removed). The taxonomy draft's credibility dimension is now
+  confidence. Changelog entries above keep the terms as they were when
+  written.
