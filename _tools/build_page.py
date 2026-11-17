@@ -68,6 +68,11 @@ def build(input_path, output_path, title=None):
     # Glossary entries get stable ids, so tooltips link straight to them.
     if Path(input_path).name == "GLOSSARY.md":
         body = add_glossary_ids(body)
+    # CI vs EI page: its tables are pair tables (CI column rust, EI column
+    # navy — see the .pair-table CSS above). Every table on that page is a
+    # pair table, so the class goes on all of them.
+    if Path(input_path).name == "CI-VS-EI.md":
+        body = body.replace("<table>", '<table class="pair-table">')
     # Mobile-only back link at the top of the content (see .back-inline):
     # on a phone the sidebar sits below the content, so the reader needs a
     # way back to the report without scrolling to the bottom of the page.
@@ -88,6 +93,13 @@ def build(input_path, output_path, title=None):
         toc=toc_html,
         body=body,
     )
+    # GoatCounter analytics (site_config.GOATCOUNTER_CODE; no-op when None).
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import site_config
+
+    snippet = site_config.goatcounter_snippet()
+    if snippet:
+        html = html.replace("</head>", snippet + "\n</head>", 1)
     Path(output_path).write_text(html, encoding="utf-8")
     print(f"Wrote {output_path} ({len(html)} bytes)")
 
@@ -253,6 +265,10 @@ TEMPLATE = """<!DOCTYPE html>
   main table {{ border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }}
   main th, main td {{ border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }}
   main th {{ background: var(--side-bg); font-weight: 600; }}
+  /* Pair tables (CI vs EI page): the CI column reads rust and the EI
+     column navy — the same colour meaning as the dashboard strip. */
+  table.pair-table th:nth-child(2), table.pair-table td:nth-child(2) {{ color: #b3543f; }}
+  table.pair-table th:nth-child(3), table.pair-table td:nth-child(3) {{ color: #283060; }}
   main hr {{ border: none; border-top: 1px solid var(--line); margin: 32px 0; }}
   main blockquote {{ border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }}
   main em {{ color: var(--muted); }}
