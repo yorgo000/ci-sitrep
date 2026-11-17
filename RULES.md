@@ -459,6 +459,20 @@ on a reader's device is a defect, even if the behaviour works.
 following a source never replaces the sitrep. Internal links (anchors,
 .html pages, mailto) stay in the same tab.
 
+**Dashboard figure rows: the number leads.** In every bar row — the
+dashboard panels and the bottom-line strip's comparison bars — the
+value comes first and the label follows, so each row reads as a
+sentence ("98% of large companies have AI governance policies"). The
+labels were written as continuations of the number; the old
+right-aligned value (label left, number at the end of the line) made
+the reader jump to the end for the finding. The bar underneath still
+carries the magnitude comparison, so nothing is lost. The `.bar-head`
+is a plain block, not a flex row, so the sentence wraps naturally on
+narrow screens. Stat cards already lead with the number
+(`.stat-value` above `.stat-label`) — the bar rows now match them.
+The stacked-bar legend keeps its "label — value" form: it is a legend
+decoding coloured segments, not a figure row.
+
 ---
 
 ## 5. Verification — the daily check
@@ -806,3 +820,12 @@ The Self-Audit page records the date of the last full manual link audit
   to the terms?" — they were buried after the terms paragraphs. The
   masthead legend was renamed "Credibility rating scale" the same
   morning (was "Credibility rating").
+- **2026-11-17 (morning)** — Dashboard bar rows now lead with the
+  number (Yorgo: the percentages at the end of the line were a
+  less intuitive read than at the front). Value first, label after,
+  in the panels and in the bottom-line strip's comparison bars —
+  each row reads as a sentence, and the bar underneath still carries
+  the magnitude comparison. No good reason for the old layout: it was
+  a dashboard convention, and the labels were already written as
+  continuations of the number. `.bar-head` is now a plain block so
+  the sentence wraps naturally on narrow screens.
