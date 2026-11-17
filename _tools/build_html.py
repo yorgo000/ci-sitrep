@@ -632,6 +632,7 @@ TEMPLATE = """<!DOCTYPE html>
     <div class="masthead-nav">
       <a href="audit.html">Self-Audit</a>
       <a href="glossary.html">Glossary</a>
+      <a href="ci-vs-ei.html">CI vs EI</a>
       <a href="explainer.html">The names: CI, CII, CIC</a>
       <a href="theses.html">Foundational theses</a>
       <a href="archive.html">Archive</a>
