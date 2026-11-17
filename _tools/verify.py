@@ -33,7 +33,7 @@ from urllib.parse import urlparse
 CANONICAL_SECTIONS = {
     "1": "Pre-commit: CI-generated code sanitizing",
     "2": "In codebase: Sanitizing post-commit of CI-generated code",
-    "3": "Agentic: CIAC Design, Build, Deployment",
+    "3": "Agentic: CIC Design, Build, Deployment",
 }
 RATINGS = ["\u25cf\u25cf\u25cf\u25cf", "\u25cf\u25cf\u25cf\u25cb",
            "\u25cf\u25cf\u25cb\u25cb", "\u25cf\u25cb\u25cb\u25cb"]
@@ -62,7 +62,7 @@ FORBIDDEN = [
 HTML_MARKERS = [
     ("as-of-banner", "As-of banner"),
     ("toc-inline", "mobile inline Contents"),
-    ("Credibility rating", "credibility legend heading"),
+    ("Confidence rating", "confidence legend heading"),
     ("Confluence<1> Corp. All rights reserved", "copyright line"),
     ("makeShareButton", "share-link buttons"),
     ("back-to-top", "back-to-top button"),
@@ -165,10 +165,10 @@ def check_articles(md):
         else:
             unrated.append(strip_tags(summary)[:80])
     if not unrated:
-        ok("every article has exactly one credibility rating",
+        ok("every article has exactly one confidence rating",
            " ●●●● %d / ●●●○ %d / ●●○○ %d / ●○○○ %d" % tuple(dist[r] for r in RATINGS))
     else:
-        fail("every article has exactly one credibility rating",
+        fail("every article has exactly one confidence rating",
              f"{len(unrated)} without exactly one rating: {unrated[:3]}")
 
     # Headline parenthetical links
@@ -343,7 +343,7 @@ def check_top_level(html):
 
 def glossary_key(short):
     """Alphabetical sort key for a glossary term: lowercased, punctuation
-    stripped (so CI/CD sorts as 'cicd', after CIAC)."""
+    stripped (so CI/CD sorts as 'cicd', after CIC)."""
     return re.sub(r"[^a-z0-9]", "", short.lower())
 
 
