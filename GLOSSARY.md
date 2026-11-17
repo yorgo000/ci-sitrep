@@ -116,6 +116,16 @@ CMA, Ofcom, and ICO coordinate on digital regulation.
 
 ## E
 
+**Embedded assessment** — An independent safety evaluation conducted inside a
+lab, with deep access to its models, training data and monitoring systems over
+an extended period. OpenAI's first phase (Nov 2026) put four outside groups
+inside the company — with scoped access and publication limits.
+
+**exploit_agent** — A multi-agent framework observed by Google's threat
+intelligence team (Nov 2026) that turns security patches into working exploits
+automatically: it diffs code before and after a patch, drafts the exploit and
+fires it with no human in the loop.
+
 **exploit verification** — Checking a fix by running a real attack against it:
 the vulnerability counts as fixed only if a working exploit now fails. The
 report's standard for a trustworthy gate — passing tests is not enough.
@@ -191,6 +201,11 @@ never been tested is a claim, not a control.
 predict and generate language (and code). The engine inside coding assistants
 and agents.
 
+**LLMJacking** — Stealing LLM API credentials and cloud resources from
+compromised environments and reselling access to high-performance models
+through underground proxy services (Google Threat Intelligence Group, Nov
+2026).
+
 ## M
 
 **MAS (Monetary Authority of Singapore)** — Singapore's central bank and
@@ -210,6 +225,11 @@ servers from training memory instead of the service owner's current server
 **METR (Model Evaluation & Threat Research)** — An independent research
 organisation that measures AI capabilities, including how long a task an agent
 can complete ("time horizons").
+
+**MIDNIGHT NEPTUNE** — A suspected North Korean-linked threat cluster that
+turned a coding assistant into a delivery pipe (Nov 2026): it modified
+.claude/settings.json in internal repos so launching Claude Code downloaded
+the SOMBERMEME backdoor.
 
 **model risk** — The risk that a model is wrong, misused, or misunderstood —
 and the firm loses money or breaks the law because it relied on the model.
@@ -333,6 +353,11 @@ something goes wrong.
 **slopsquatting** — Registering the package name an AI coding tool
 hallucinated, then publishing malicious code under it — so the next developer
 (or agent) who trusts the hallucination installs the attacker's package.
+
+**SOMBERMEME** — A backdoor delivered by tampering with a coding assistant's
+settings: suspected North Korean operators modified .claude/settings.json so
+starting Claude Code downloaded it (Google Threat Intelligence Group, Nov
+2026).
 
 **SR 11-7** — The Fed's model-risk letter (2011–2026), the old US rulebook for
 governing models. Rescinded April 2026 and replaced by SR 26-2.
