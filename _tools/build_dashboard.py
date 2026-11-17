@@ -168,13 +168,17 @@ def source_html(f):
 
 
 def render_bar(f):
+    # Number first: the value leads and the label follows, so each row
+    # reads as a sentence ("98% of large companies have AI governance
+    # policies") — the labels were written as continuations of the
+    # number. Yorgo's direction, 2026-11-17.
     tone = f.get("tone", "navy")
     note = f'<p class="fig-note">{esc(f["note"])}</p>' if f.get("note") else ""
     return (
         '<div class="bar-row">'
         '<div class="bar-head">'
-        f'<span class="bar-label">{esc(f["label"])}</span>'
         f'<span class="bar-value">{esc(f["display"])}</span>'
+        f'<span class="bar-label">{esc(f["label"])}</span>'
         "</div>"
         '<div class="bar-track">'
         f'<div class="bar-fill {tone}" style="width: {f["value"]}%"></div>'
@@ -349,8 +353,8 @@ def render_compare(chart):
         rows.append(
             '<div class="bar-row">'
             '<div class="bar-head">'
-            f'<span class="bar-label">{esc(s["label"])}</span>'
             f'<span class="bar-value">{esc(s["display"])}</span>'
+            f'<span class="bar-label">{esc(s["label"])}</span>'
             "</div>"
             '<div class="bar-track">'
             f'<div class="bar-fill {esc(s["tone"])}" '
@@ -575,9 +579,9 @@ DASH_CSS = """
   .panel-lede { color: var(--muted); font-size: 15px; margin: -4px 0 16px; }
   .block-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 24px 0 10px; font-weight: 600; }
   .bar-row { margin: 0 0 14px; }
-  .bar-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .bar-head { margin-bottom: 4px; }
   .bar-label { font-size: 15px; }
-  .bar-value { font-weight: 700; font-size: 16px; color: var(--logo-navy); white-space: nowrap; }
+  .bar-value { font-weight: 700; font-size: 16px; color: var(--logo-navy); white-space: nowrap; margin-right: 6px; }
   .bar-track { height: 10px; background: #ece5d3; border-radius: 5px; overflow: hidden; }
   .bar-fill { height: 100%; background: var(--logo-navy); border-radius: 5px; }
   .bar-fill.gap { background: #b3543f; }
