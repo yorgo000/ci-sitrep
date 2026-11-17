@@ -132,7 +132,7 @@
    "label": "OSFI E-23 takes effect"
   }
  ],
- "note": "Every number below is drawn from the CI SITREP report and links to the article that evidences it — the article's Source line takes you to the primary source. The rating shows how much confidence to place in the source — the dots are the report's credibility rating, not the dashboard's opinion.",
+ "note": "Every number below is drawn from the CI SITREP report and links to the article that evidences it — the article's Source line takes you to the primary source. The rating shows how much confidence to place in the finding — the dots are the report's confidence rating, not the dashboard's opinion.",
  "panels": [
   {
    "blocks": [
