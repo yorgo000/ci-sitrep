@@ -21,9 +21,9 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 ---
 
-## Credibility distribution
+## Confidence distribution
 
-Every article carries a dots rating for how much confidence a reader can place in its source. The distribution below shows how much of the report rests on strong evidence and how much is still single-source.
+Every article carries a dots rating for how much confidence a reader can place in its finding. The distribution below shows how much of the report rests on strong evidence and how much is still single-source.
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
@@ -72,7 +72,7 @@ The rules the report is built and maintained under. These are not aspirations �
 - **Information first.** Article headlines lead with the finding, never the source name. The source goes in the parenthetical with the date; the full citation is the Source link at the bottom of the article. This is a knowledge base, not a bibliography.
 - **Sources live with the content.** Every article ends with a Source link to its primary source. Subsections that draw on multiple references carry a Sources line. There are no bibliography dumps — a reader verifies each claim at the point where they read it.
 - **Inline links.** When prose mentions a source, benchmark, regulation, framework, or product by name, the first mention in each subsection is hyperlinked to its source, so every section is self-contained for a reader who jumps straight to it.
-- **Credibility rating.** Every article is rated ●●●● to ●○○○ (see above). When in doubt, the lower level is assigned.
+- **Confidence rating.** Every article is rated ●●●● to ●○○○ (see above). When in doubt, the lower level is assigned.
 - **Link verification.** Every new link is verified live before publishing (see Link health above).
 - **No silent deletion.** When new information supersedes old text, the old text moves to the [archive](archive.html), dated and categorized. The pre-restructure version of the report is preserved in full.
 - **The bar for entry.** Something is added or changed only if it could change how a firm building critical systems in finance should act.
@@ -81,7 +81,7 @@ The rules the report is built and maintained under. These are not aspirations �
 
 ## Coverage — what we track and what we might be missing
 
-**Covered:** three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIAC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
+**Covered:** three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
 
 **Known gaps — things we are watching for that have not arrived yet:** the live list is on the report's front page, in [What we're watching](index.html#what-were-watching) — the dated events on the horizon and the open questions the report is tracking. It is maintained in the open, in the same file as the report, so it never goes stale.
 
