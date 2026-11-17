@@ -26,6 +26,17 @@ so the two can never drift. It prints the counts and any warnings (an article
 without a parseable date is a warning, not a failure — the report itself
 carries no date for it).
 
+## Changing the scene
+
+`scene.html` loads `scene.css` and `scene.js` with a version query
+(`?v=2`). The GitHub Pages CDN caches the plain URLs for up to 10 minutes,
+so a plain-URL change can take that long to reach viewers — and a
+verification run can measure the old layout. When you change `scene.css`
+or `scene.js`, bump the version in `scene.html` (and push `scene.html`
+with the change) so the new files load immediately. `findings-inline.js`
+is deliberately unversioned: it changes on every export, and over HTTP the
+scene re-fetches `findings.json` every 15 minutes anyway.
+
 ## View locally
 
 ```bash
