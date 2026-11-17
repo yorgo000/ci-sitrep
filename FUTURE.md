@@ -330,6 +330,28 @@ A single promise line for all CI SITREP materials — site, channel, newsletter,
 
 ---
 
+## F-21 — About: sell the making of it
+
+**Status:** Proposed
+**Proposed:** 2026-11-17 (Yorgo)
+
+The About page needs to sell the work behind the sitrep: how many sources, how many agents, how long it takes, how much expertise goes into scouring the landscape, collecting the data, filtering it, distilling it, vetting and rating it — and then what it's used for: advising the finance industry on critical matters, building critical systems. The reader has to feel two things: (a) this takes a lot to put together, (b) it's designed to be useful to elite operators. This is the evidence behind the F-20 promise line ("the information you need to make the good calls") — the promise says what it does for the reader, this says what it costs to make.
+
+**What it draws on (all real, all computed — nothing invented):**
+
+- The Self-Audit page already computes the raw material: article/source/link counts, the credibility distribution, and the per-run source-review funnel (audit_log.csv — e.g. the Tuesday 2026-11-17 run reviewed 55 sources to add 5 articles). The About numbers must come from the same computed source so they can't drift from the audit.
+- The pipeline: the daily watch (04:30 ET run + 08:00 catch-up), the agent team (coordinator + one research agent per subject), the vetting-on-the-fly rule (F-04), the 53-check verification before every push, the design-editor review.
+- The expertise: decades building mission-critical systems for finance (already in About — Bernstein SMA systems, UN Situation Room, hedge funds, MGAs).
+- What it's for: advising finance on critical matters, building critical systems — the Confluence<1> services the sitrep feeds.
+
+**Notes / open questions:**
+- Placement: a section in About, or a standalone "How this is made" page linked from About? About keeps it where a skeptic looks; a separate page lets the pipeline breathe.
+- Which numbers: per-run (55 sources reviewed Tuesday) vs cumulative (sources reviewed since launch, articles, glossary terms)? Cumulative is the weight; per-run is the tempo. Probably both, each labeled.
+- Keep it honest: every number computed from the audit log or the generators, refreshed with the daily watch — no hand-written counts, no rounded-up claims.
+- Tone: brass tacks, not a brochure. The elite-operator reader respects the work when the numbers are specific and checkable.
+
+---
+
 ## Template for new features
 
 ```markdown
