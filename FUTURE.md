@@ -271,6 +271,50 @@ A benchmark score on its own tells an executive nothing: 74.0 on A.S.E, 67% on T
 
 ---
 
+## F-18 — Site analytics (GoatCounter)
+
+**Status:** Done 2026-11-16
+**Proposed:** 2026-11-16 (Yorgo — "is there any type of analytics I can look at for the sitrep? ... other than me, I wonder if anyone else has looked at it")
+
+GitHub Pages has no built-in analytics, so the site has counted nothing since it went live — whatever is added starts counting from installation day and cannot look backward. GoatCounter chosen 2026-11-16 (free hosted tier, cookieless, no consent banner, ~3.5KB script; Plausible at $9/mo was the alternative). It answers the question asked: pageviews and unique visitors per page, referrers, browsers/devices, countries.
+
+**Built 2026-11-16:** `_tools/site_config.py` holds the single `GOATCOUNTER_CODE` constant (`"ci-sitrep"`, account created by Yorgo, site domain yorgo000.github.io) and `goatcounter_snippet()`; build_html.py and build_page.py insert the snippet before `</head>` on every generated page (index + all six sub-pages; dashboard.html is a redirect and carries none). All seven pages rebuilt, verify.py passed, pushed, and confirmed live (snippet on index + about on first check). Own-visit exclusion is by IP in GoatCounter Settings → Main ("Ignore these IP addresses"); his IP is at ifconfig.me, and the dual-WAN (Spectrum + T-Mobile failover) means it can change, so both addresses may need listing. **Bug found and fixed during the build:** the archive-page rebuild command in the daily watch cron had a one-character sed error that ate the `]` of the append-only-report link, leaving raw malformed text on the live archive page; the cron command is fixed (replacement now `](archive/...` instead of `(archive/...`) and the archive page now carries a working link. **API connected 2026-11-16** (custom.goatcounter connector, Bearer key, helper `bin/goatcounter.py`): totals, per-path hits, toprefs/locations/browsers all verified working; first pull ~14:50 showed 0 visitors (counting started ~14:40, only real browser loads count). Connector doc at `~/workspace/custom-connectors/custom.goatcounter/CONNECTOR.md`.
+
+**Notes / open questions:**
+- The repo's Insights → Traffic page (repo visits + clones, last 14 days) is the only pre-analytics signal; the API token cannot read it (403), so Yorgo checks it himself in the browser.
+- When rebuilding sub-pages, pass the proper title argument (build_page.py takes `[title]`; the published about.html carries "About — CI SITREP"). The GoatCounter rebuild also cleared the pre-rename `'new-this-week'` string from the sub-pages' JS (dead code there, but now consistent).
+
+---
+
+## F-19 — Live channel: CI SITREP on YouTube, CNBC-style
+
+**Status:** Proposed
+**Proposed:** 2026-11-17 (Yorgo)
+
+A live YouTube channel in the CNBC style: news and the various dashboards in rotation, as an always-on broadcast of the sitrep. Sections in rotation: facts from the database; a scrolling ticker of new facts as they come in; glossary/terminology definitions; and a set of gauges showing how CI vs EI stands on the critical factors (placement TBD — top, side, or its own scene). At a later phase, clips from videos we have filtered and rated. Eventually, multiple channels specialized for particular sectors, industries, countries — the F-02 filter model applied to broadcast: one database, one channel per filter.
+
+**Phases:**
+
+- **Phase 1 — one channel, data only.** Rotating scenes rendered from data the site already has: dashboard figures (dashboard.json), the new-facts ticker ("New in the last 7 days"), glossary definitions (GLOSSARY.md), and the CI-vs-EI gauges. No video clips yet. Audio: silent or a royalty-free music bed (AI voiceover reading the daily summary is a later option — NotebookLM-style narration fits Yorgo's video preference).
+- **Phase 2 — curated clips.** Clips from videos we have filtered and rated, in rotation with the data scenes. Rights policy needed before this phase: only our own content and licensed content — re-streaming other creators' videos risks Content ID claims or strikes regardless of fair-use arguments, and YouTube enforces automatically.
+- **Phase 3 — multiple channels.** One channel per vertical (sector / industry / country), each a filter over the same database. Each channel needs its own stream, encoder capacity, and YouTube channel; the render pipeline is shared.
+
+**How it works (feasibility, assessed 2026-11-17):** feasible. YouTube Live takes a standard RTMP stream; the channel is a render pipeline, not a person at a desk. Two routes: (a) OBS Studio with browser sources (the scenes are web pages fed by sitrep data, rotated on a timer) on an always-on machine — fastest to build, days to ~2 weeks; (b) a headless pipeline (headless Chromium + ffmpeg compositing + RTMP) on a small server — more build time (1–3 weeks), more reliable, and the one that scales to multiple channels. Either way the site already owns the hard part: the data is structured (dashboard.json, SYNTHESIZED.md, GLOSSARY.md) and refreshed daily by the watch. Rough running cost: a VPS able to encode 720p30 is ~$20–50/mo, 1080p ~$50–100/mo; YouTube itself is free; the main cost is build time. YouTube requires a verified channel and a 24-hour wait the first time live streaming is enabled, and no live strikes.
+
+**The hard parts (not the streaming):** (1) the always-on machine and monitoring — a dead stream is worse than no stream, so the encoder needs auto-reconnect and alerting; (2) motion-design quality — CNBC-grade rotation is real design work, and the design-editor standard applies; (3) freshness honesty — the data refreshes daily, so the ticker repeats within a day: the channel is right-time, not a news wire, and the rotation must be designed for that; (4) clip rights (phase 2 — see above); (5) the gauges depend on F-17/ATAK data — the CI-vs-EI pairs must exist before the gauges mean anything, so phase 1 either ships without gauges or waits for the baseline audit.
+
+**Dependencies:** F-02 (single database — the channel is another renderer over it); F-17 / ATAK page (the gauges); the daily watch (freshness); the glossary (definitions feed).
+
+**Notes / open questions:**
+- Channel name — Yorgo picks (working title only: "CI SITREP Live").
+- Broadcast hours: 24/7 or business hours? 24/7 is the CNBC comparison, but business hours halves the exposure to a dead stream overnight.
+- Render route: OBS + browser sources (v1 speed) vs headless pipeline (v2 robustness)? The OBS route can be the prototype and the headless pipeline the production system.
+- Audio: silent, music bed, or AI voiceover? Voiceover is the most "channel-like" and the most work.
+- Which vertical first after Code & Finance, and does each channel get its own YouTube channel (brand accounts) or one channel with playlists?
+- Success metric: not views — this is a leave-it-on-the-wall credibility surface and a reason to visit the site, not a viral play.
+
+---
+
 ## Template for new features
 
 ```markdown
