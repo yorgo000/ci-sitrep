@@ -1,6 +1,6 @@
 # Created Intelligence — a note on the names
 
-This site uses a small set of terms — **CI**, **CIA**, **CIAC** — instead of the usual "AI". They are Confluence<1>'s internal nomenclature: our working convention for talking about intelligence that is created rather than evolved. This page explains what they mean, and why we use them.
+This site uses a small set of terms — **CI**, **CII**, **CIC** — instead of the usual "AI". They are Confluence<1>'s internal nomenclature: our working convention for talking about intelligence that is created rather than evolved. This page explains what they mean, and why we use them. Until 17 November 2026 the terms were CIA (ci agent) and CIAC (cia collective).
 
 ## Why not just "AI"?
 
@@ -40,23 +40,23 @@ A creator need not design every descendant in detail. Deliberately establishing 
 
 There is one boundary condition: the creation must be causally attributable to an antecedent intelligence. Merely observing an intelligence that arose independently through an unrelated natural process would not make it CI.
 
-## CIA — a CI agent
+## CII — a CI individual
 
-An individual agent: a single created intelligence — one system.
+An individual: a single created intelligence — one system.
 
-When this site talks about an "agent", it means a CIA: one CI system doing work — writing code, reviewing code, running a task, making a decision. The term keeps the focus on what it is (a created intelligence) rather than on what it is made of.
+When this site talks about an "agent", it means a CII: one CI system doing work — writing code, reviewing code, running a task, making a decision. The term keeps the focus on what it is (a created intelligence) rather than on what it is made of.
 
-## CIAC — a CIA collective
+## CIC — a CII collective
 
-A swarm or team of CI agents working together — a collective.
+A swarm or team of CIIs working together — a collective.
 
 This is the unit for the third subject of this report: how collectives are created, governed, and managed. A collective is not just many agents side by side; it is agents with coordination, roles, and shared objectives — a supervisor and its workers, an orchestrated team, a multi-agent system.
 
 ## Why these names matter here
 
-This report tracks the state of the art in CI agents and CI agent collectives, for critical systems in finance. The names keep the framing straight: the subject is created intelligence — its lineage, its capabilities, its governance — not "artificial versus natural".
+This report tracks the state of the art in CII and CIC, for critical systems in finance. The names keep the framing straight: the subject is created intelligence — its lineage, its capabilities, its governance — not "artificial versus natural".
 
-"AI" is still used colloquially, and the terms overlap. CI is the more precise category; CIA and CIAC are the working units.
+"AI" is still used colloquially, and the terms overlap. CI is the more precise category; CII and CIC are the working units.
 
 ## The basis
 
