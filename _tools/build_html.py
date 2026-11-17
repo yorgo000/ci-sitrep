@@ -341,6 +341,13 @@ def build(input_path, output_path):
             for e in errors:
                 print("  -", e)
             sys.exit(1)
+    # GoatCounter analytics (site_config.GOATCOUNTER_CODE; no-op when None).
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import site_config
+
+    snippet = site_config.goatcounter_snippet()
+    if snippet:
+        html = html.replace("</head>", snippet + "\n</head>", 1)
     Path(output_path).write_text(html, encoding="utf-8")
     print(f"Wrote {output_path} ({len(html)} bytes)")
 
@@ -625,7 +632,7 @@ TEMPLATE = """<!DOCTYPE html>
     <div class="masthead-nav">
       <a href="audit.html">Self-Audit</a>
       <a href="glossary.html">Glossary</a>
-      <a href="explainer.html">The names: CI, CIA, CIAC</a>
+      <a href="explainer.html">The names: CI, CII, CIC</a>
       <a href="theses.html">Foundational theses</a>
       <a href="archive.html">Archive</a>
       <a href="about.html">About</a>
@@ -636,7 +643,7 @@ TEMPLATE = """<!DOCTYPE html>
       <p>Work with Confluence&lt;1&gt;:<br><a href="mailto:hello@confluence1.com">hello@confluence1.com</a></p>
     </div>
     <details class="masthead-legend">
-      <summary>Credibility rating scale</summary>
+      <summary>Confidence rating scale</summary>
       <p><span class="dots">●●●●</span> Established — peer-reviewed and independently confirmed, or a primary regulatory document.</p>
       <p><span class="dots">●●●○</span> Corroborated — peer-reviewed single study, or a credible source confirmed independently.</p>
       <p><span class="dots">●●○○</span> Reported — single credible source, not yet independently verified.</p>
