@@ -590,18 +590,29 @@ The Self-Audit page records the date of the last full manual link audit
    then `build_page.py` for the Self-Audit page, title "Self-Audit —
    CI SITREP"). If ARCHIVE.md changed, rebuild archive.html too
    (rewrite its links to repo-root-relative form first).
-4. Run the Tier 1 verification (§5) and the UX and design-editor review
+4. Refresh the findings export — the JSON database behind the YouTube
+   channel (F-02): venv python `_tools/export_findings.py` (parses
+   SYNTHESIZED.md, GLOSSARY.md, dashboard.json; writes
+   data/findings.json and youtube/findings-inline.js). Run it after
+   build_html.py — it cross-validates article ids against index.html.
+   It warns rather than failing on articles with no parseable date (4
+   known as of 2026-11-17); a warning for a NEW article means the
+   report genuinely carries no date for it — note it and continue.
+   Push data/findings.json and youtube/findings-inline.js with the
+   other changed files (their generated_at timestamp changes on every
+   run, so they are always "changed").
+5. Run the Tier 1 verification (§5) and the UX and design-editor review
    (§5). Do not push a failing build.
-5. Push the changed files with the API helper
+6. Push the changed files with the API helper
    (`~/workspace/custom-connectors/custom.github/bin/github.py put`).
    Verify each put returns status 200 or 201. (SSH push is blocked by
    the VM egress proxy — HTTPS/API only.)
-6. Verify the live site reflects the change (curl the live page and
+7. Verify the live site reflects the change (curl the live page and
    check for the new content). GitHub Pages deployments lag — sometimes
    several minutes. If the live page is stale but the repo content is
    correct via raw.githubusercontent.com, wait and re-check rather than
    re-pushing.
-7. Append one row to `_tools/audit_log.csv` per run (date, distinct
+8. Append one row to `_tools/audit_log.csv` per run (date, distinct
    sources actually opened and evaluated, articles added, articles
    updated, notes). On a quiet day, log 0 added and 0 updated — the
    funnel needs the denominator. The audit page numbers are computed
@@ -837,3 +848,10 @@ The Self-Audit page records the date of the last full manual link audit
   removed). The taxonomy draft's credibility dimension is now
   confidence. Changelog entries above keep the terms as they were when
   written.
+- **2026-11-17 (evening)** — Findings export added to the publish
+  pipeline (F-19/F-02): `_tools/export_findings.py` regenerates
+  data/findings.json + youtube/findings-inline.js after build_html.py
+  on every publish; the export is the first F-02 database file (81
+  articles, what's-new, glossary, deadlines, gauges) and feeds the
+  YouTube broadcast scene (youtube/scene.html) and the review table
+  (youtube/review.html).
