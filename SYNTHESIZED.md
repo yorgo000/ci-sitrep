@@ -13,13 +13,13 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 **Short on time?** The [Executive dashboard](#executive-dashboard) gives the key numbers at a glance — every figure linked to the report section behind it.
 
-**New to the terms?** Read the [explainer: CI, CIA, and CIAC](explainer.html) — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
+**New to the terms?** Read the [explainer: CI, CII, and CIC](explainer.html) — what Created Intelligence means, and why this site uses it instead of "AI". The terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
 
 **Terms:** the [Glossary](glossary.html) defines every acronym and piece of jargon in plain language. In the report, dotted-underlined terms show their definition on hover or tap.
 
 **The bar for adding or changing anything:** it could change how a firm building critical systems in finance should act. Routine news, vendor marketing, and minor updates do not qualify.
 
-**Credibility rating** — every article carries a dots rating for how much confidence you can place in its source.
+**Confidence rating** — every article carries a dots rating for how much confidence you can place in its finding.
 
 - **●●●● Established:** peer-reviewed and independently confirmed, or a primary regulatory/government document — safe to act on.
 - **●●●○ Corroborated:** peer-reviewed single study, or a credible primary source confirmed by independent reporting — good basis for a decision.
@@ -126,7 +126,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
   - [2.5 Best practice — finance](#25-best-practice--finance)
   - [2.6 Hype vs verified](#26-hype-vs-verified)
   - [2.7 What this means in practice](#27-what-this-means-in-practice)
-- [3. Agentic: CIAC Design, Build, Deployment](#3-agentic-ciac-design-build-deployment)
+- [3. Agentic: CIC Design, Build, Deployment](#3-agentic-cic-design-build-deployment)
   - [3.1 Frameworks & platforms](#31-frameworks--platforms)
   - [3.2 Interoperability standards](#32-interoperability-standards)
   - [3.3 Orchestration patterns](#33-orchestration-patterns)
@@ -299,7 +299,7 @@ The converging model across 2026 sources (Bugni Labs, Shetty, DesignVerse, CSA) 
 
 #### 1.5.2 Provenance, audit trail, and regulation
 
-- **Provenance and accountability are the audit requirement.** Every CI-generated change must record: who requested it, which tool and model, in what context, and who approved it. The CIA proposes; a human reviews, accepts, and is accountable. (Linux kernel policy is the cleanest statement: agents must not add "Signed-off-by" — only a human can certify a contribution.) Four-eyes for high-risk changes; approver ≠ requester. Tier controls by risk: heaviest on customer data, payments, access control, critical infrastructure.
+- **Provenance and accountability are the audit requirement.** Every CI-generated change must record: who requested it, which tool and model, in what context, and who approved it. The CII proposes; a human reviews, accepts, and is accountable. (Linux kernel policy is the cleanest statement: agents must not add "Signed-off-by" — only a human can certify a contribution.) Four-eyes for high-risk changes; approver ≠ requester. Tier controls by risk: heaviest on customer data, payments, access control, critical infrastructure.
 - **Audit trail must survive the pipeline.** The evidence — diff, requirements, tests, automated-check results, review outcome, deployment record — must stay connected from PR through production, queryable after the people involved have moved on. Review comments and approval labels alone do not satisfy this.
 - **Strengthened testing of CI-generated code before production deployment is now the explicit examiner direction** — [NYDFS](https://www.willkie.com/publications/2026/05/nydfs-issues-two-industry-letters-addressing--heightened-cybersecurity-risks-from-frontier-ai-models) Industry Letters, 21 May 2026 (NYC, directly applicable): two letters — (1) heightened cybersecurity risks from frontier AI models (prompted by Anthropic's Mythos vulnerability-finding model), (2) guidance for heightened threat environments. They impose no new legal requirements, but direct regulated entities to consider the strengthened testing, expedited vulnerability management, and third-party coordination. Binding backdrop remains the NYDFS Cybersecurity Regulation (23 NYCRR 500). Examiner direction is clear even where the letters are advisory.
 - **US federal — a gap opened in 2026.** [SR 11-7](https://www.syntrox.io/blog/sr-11-7-model-risk-management-ai-agents) was rescinded and replaced 17 Apr 2026 by **[SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html)** (Fed / [OCC Bulletin 2026-13](https://www.botminds.ai/solutions/commercial-loan-portfolio-analysis/model-risk-ai-loan-file-agents) / FDIC FIL-15-2026). Generative and agentic AI are **expressly out of scope**; the guidance states it sets no enforceable standards and is most relevant above $30B in assets. The clause that still matters for buyers: **vendor products must still be validated** (by internal or outside parties). An AI request for information was promised; none had appeared by late Oct 2026. A replacement third-party-risk (TPRM) guidance was proposed 15 Sep 2026 (comments due 16 Dec 2026 — extended 13 Nov from 16 Nov). Practical consequence: **there is currently no federal model-risk umbrella for AI coding tools** — firms must build their own controls, and existing technology-neutral rules (FFIEC IT Examination Handbook, 2023 interagency third-party guidance) still apply.
@@ -846,7 +846,7 @@ Sources: [EASM News, NCSC Patch Wave](https://www.easm.news/ncsc-patch-wave-exte
 
 ---
 
-## 3. Agentic: CIAC Design, Build, Deployment
+## 3. Agentic: CIC Design, Build, Deployment
 
 By late 2026 the multi-agent field has consolidated around a handful of frameworks, the supervisor pattern is the production default, and the binding constraint is reliability, not capability: the best agents succeed once far more often than they succeed every time. Governance has shifted from model oversight to runtime control — deterministic gates before execution, scoped permissions, tamper-evident audit trails — and finance regulators have now spoken in several documents, most consequentially the US agencies' decision to *exclude* agentic AI from the new model-risk guidance, leaving firms to govern it themselves. The evidence in §3.4.3 shows most firms are not governing their agents as well as they believe: policies exist but are bypassed, agent identities are ungoverned, actions are unattributable, and a third of companies have no way to stop a rogue agent.
 
