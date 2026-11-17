@@ -18,7 +18,7 @@ acceleration in Anthropic's R&D progress.
 
 **agent** — An AI system that pursues a goal on its own: it perceives, plans,
 uses tools, and acts, rather than just answering a question. The field's word
-for what Confluence<1> calls a CIA.
+for what Confluence<1> calls a CII.
 
 **agentic** — Of an AI system: acting autonomously toward a goal, using tools
 and making decisions, rather than only responding to prompts. Agentic AI does
@@ -43,18 +43,24 @@ built rather than evolved: AI systems, and in principle biological or hybrid
 ones too. See the explainer, "Created Intelligence — a note on the names". Not
 to be confused with CI/CD (below).
 
-**CIA (ci agent)** — Confluence<1>'s term for an individual created-intelligence
-agent: one AI system acting autonomously toward a goal. The field's word is
-"agent".
+**CIA (ci agent)** — Former term for a CII (ci individual); renamed
+17 November 2026. See CII.
 
-**CIAC (cia collective)** — Confluence<1>'s term for a team of CI agents
+**CIAC (cia collective)** — Former term for a CIC (cii collective);
+renamed 17 November 2026. See CIC.
+
+**CIC (cii collective)** — Confluence<1>'s term for a team of CII
 working together — a swarm or collective with shared goals, roles, and
-governance.
+governance. Formerly CIAC.
 
 **CI/CD (continuous integration / continuous delivery)** — The automated
 pipeline that tests and ships code changes: every change is built, tested, and
 (if it passes) deployed. Unrelated to "CI" as Confluence<1> uses it (created
 intelligence).
+
+**CII (ci individual)** — Confluence<1>'s term for an individual created
+intelligence: one AI system acting autonomously toward a goal. The
+field's word is "agent". Formerly CIA.
 
 **circuit breaker** — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
