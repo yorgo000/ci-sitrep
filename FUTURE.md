@@ -340,7 +340,7 @@ The About page needs to sell the work behind the sitrep: how many sources, how m
 **What it draws on (all real, all computed — nothing invented):**
 
 - The Self-Audit page already computes the raw material: article/source/link counts, the credibility distribution, and the per-run source-review funnel (audit_log.csv — e.g. the Tuesday 2026-11-17 run reviewed 55 sources to add 5 articles). The About numbers must come from the same computed source so they can't drift from the audit.
-- The pipeline: the daily watch (04:30 ET run + 08:00 catch-up), the agent team (coordinator + one research agent per subject), the vetting-on-the-fly rule (F-04), the 53-check verification before every push, the design-editor review.
+- The pipeline: the daily watch (04:30 ET run + 08:00 catch-up), the agent team (5 CII roles: Barnaby + 3 baseline researchers + the daily watch worker; the 08:00 catch-up worker joins Nov 18, making 6), the vetting-on-the-fly rule (F-04), the 53-check verification before every push, the design-editor review.
 - The expertise: decades building mission-critical systems for finance (already in About — Bernstein SMA systems, UN Situation Room, hedge funds, MGAs).
 - What it's for: advising finance on critical matters, building critical systems — the Confluence<1> services the sitrep feeds.
 
