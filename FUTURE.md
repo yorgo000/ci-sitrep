@@ -332,7 +332,7 @@ A single promise line for all CI SITREP materials — site, channel, newsletter,
 
 ## F-21 — About: sell the making of it
 
-**Status:** Proposed
+**Status:** Done 2026-11-17 (About section live; LinkedIn post drafted, awaiting Yorgo's verdict)
 **Proposed:** 2026-11-17 (Yorgo)
 
 The About page needs to sell the work behind the sitrep: how many sources, how many agents, how long it takes, how much expertise goes into scouring the landscape, collecting the data, filtering it, distilling it, vetting and rating it — and then what it's used for: advising the finance industry on critical matters, building critical systems. The reader has to feel two things: (a) this takes a lot to put together, (b) it's designed to be useful to elite operators. This is the evidence behind the F-20 promise line ("the information you need to make the good calls") — the promise says what it does for the reader, this says what it costs to make.
