@@ -80,6 +80,8 @@ body.dev #ambient::after {
   background: var(--card); border: 1px solid var(--line);
   padding: 36px 44px 28px;
 }
+.finding-body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+.finding-body #headline { margin-top: 0; }
 .finding-head { display: flex; align-items: center; gap: 20px; }
 .section-chip {
   font-size: 15px; font-weight: 700; letter-spacing: 2px;
@@ -123,7 +125,7 @@ body.dev #ambient::after {
 .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
 .bar-value { width: 92px; flex: none; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
 .bar-track { flex: 1; height: 22px; background: rgba(250, 246, 239, 0.08); }
-.bar-fill { height: 100%; }
+.bar-fill { display: block; height: 100%; }
 .bar-fill.ci { background: var(--rust); }
 .bar-fill.ei { background: var(--ei-blue); }
 .bar-label { width: 150px; flex: none; font-size: 15px; color: var(--muted); }
