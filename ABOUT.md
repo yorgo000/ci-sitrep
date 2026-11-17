@@ -14,6 +14,16 @@ CI SITREP tracks the state of the art in Created Intelligence in code and financ
 
 Every article carries a credibility rating — a dots score for how much confidence you can place in its source. See the legend on the main page for what each level means.
 
+## How this is made
+
+CI SITREP is a Right-Time Situational Awareness Tool, published by Confluence<1>. It exists so that we only need to monitor one SITREP — and now we're letting you in on it too.
+
+It takes a lot to put together. For example this week so far we have reviewed 212 sources and kept 35 of them — a 16.5% acceptance rate. Most of what we review doesn't clear the bar. The result is 81 findings, every one confidence-rated (43% Established or Corroborated), drawn from 195 source links across 61 unique domains, every one verified live. Before anything publishes, it passes 53 automated checks. The work is done by 5 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.
+
+**How we choose what to look at.** There is no fixed list of sources to defend. The radar runs fresh every morning across the three subjects — sanitizing CI-generated code before it is committed, sanitizing it once it is already in a codebase, and the design, build and deployment of agentic collectives — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.
+
+**What it is for.** Advising the finance industry on critical technologies and building the critical systems that they depend on. It is designed to be useful to elite operators — people with profit-and-loss responsibility who need the information that sits behind the good calls - and nothing they don't need.
+
 ## Contact
 
 CI SITREP is a Confluence<1> service. For errors, omissions, or feature requests, write to [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com). To work with Confluence<1>, write to [hello@confluence1.com](mailto:hello@confluence1.com).
