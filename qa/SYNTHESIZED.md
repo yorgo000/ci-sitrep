@@ -148,6 +148,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 
 ### 1.1 How big the problem is
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-10-29 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Veracode -->
 <details>
 <summary><strong>~38% of AI code introduces a known security flaw</strong> ([Veracode](https://www.veracode.com/blog/fall-2026-genai-code-security/), Fall 2026, longitudinal benchmark) ●●●○</summary>
 
@@ -161,6 +162,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 - Source: [Veracode, Fall 2026 GenAI Code Security Update](https://www.veracode.com/blog/fall-2026-genai-code-security/)
 </details>
 
+<!-- tags: subject=1,2 | type=study | confidence=corroborated | severity=material | jurisdiction=global | source-date=2025-08 | sector=technology | industry=software | register=technical | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>~20% of package references are hallucinated</strong> ([Spracklen et al.](https://arxiv.org/abs/2406.10279), USENIX Security 2025, peer-reviewed) ●●●○</summary>
 
@@ -172,6 +174,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 - Source: [Spracklen et al., 'We Have a Package for You!', USENIX Security 2025](https://arxiv.org/abs/2406.10279)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=claimed | severity=directional | jurisdiction=global | source-date=2025-12 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=CodeRabbit -->
 <details>
 <summary><strong>AI code carries 2.74× the vulnerabilities of human code</strong> ([CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report), Dec 2025, 470 PRs) — [VENDOR CLAIM] ●○○○</summary>
 
@@ -180,6 +183,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 - Source: [CodeRabbit, State of AI vs Human Code Generation Report, Dec 2025](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2025-12 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>The failure mode moved up the stack</strong> ([Tenzai](https://www.infoworld.com/article/4116937/output-from-vibe-coding-tools-prone-to-critical-security-flaws-study-finds-2.html), Dec 2025, 5 tools, 15 apps, 69 vulns incl. 6 critical) ●●○○</summary>
 
@@ -189,6 +193,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 - Source: [InfoWorld, on Tenzai's Dec 2025 study](https://www.infoworld.com/article/4116937/output-from-vibe-coding-tools-prone-to-critical-security-flaws-study-finds-2.html)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-04 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Volume compounds it</strong> ([Apiiro / CSA](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com), Apr 2026, enterprise telemetry) — [VENDOR DATA] ●●○○</summary>
 
@@ -200,6 +205,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 - Source: [Cloud Security Alliance research note, Apr 2026](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)
 </details>
 
+<!-- tags: subject=1 | type=survey | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-08 | sector=technology | industry=software | register=business | pnl-impact=cost,risk | horizon=year -->
 <details>
 <summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
 
@@ -321,6 +327,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 
 ### 1.6 Benchmarks & evidence
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>55.6% passed every test while a working exploit succeeded</strong> ([A.S.E 2.0 / CASE-Bench](https://arxiv.org/abs/2611.06294), arXiv:2611.06294, submitted 4 Nov 2026; preprint, not peer-reviewed) ●●○○</summary>
 
@@ -335,6 +342,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Yu et al., A.S.E 2.0 / CASE-Bench, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-07 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Best agent 23.8% correct-and-secure; 23% correct but exploitable</strong> ([SecureVibeBench](https://arxiv.org/abs/2509.22097), Chen et al., arXiv:2509.22097; ACL 2026 long paper, July 2026 — peer-reviewed) ●●●○</summary>
 
@@ -350,6 +358,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Chen et al., SecureVibeBench, arXiv:2509.22097](https://arxiv.org/abs/2509.22097)
 </details>
 
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-11-03 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter | company=Collinear AI -->
 <details>
 <summary><strong>Remediation agents now have a public yardstick</strong> ([CWE-bench v2](https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7), Collinear AI, via Hugging Face blog, 3 Nov 2026) ●●○○</summary>
 
@@ -361,6 +370,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [AI Evolution, on CWE-bench v2](https://www.ai-evolution.com.au/article/cwe-bench-v2-more-coverage-quality-and-transparency-63945bc7)
 </details>
 
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-02 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>A post-hoc review lifts working-and-secure to 47–56% at ~2.5× cost</strong> ([SusVibes re-run](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05), independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED] ●●○○</summary>
 
@@ -373,6 +383,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [SusVibes re-run, via Medium](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-02 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter | company=BugLedger -->
 <details>
 <summary><strong>45–70% of working agent solutions bring the original vulnerability back</strong> ([BugLedger](https://www.bugledger.com/benchmarks) Bench, results 2 Nov 2026) ●●○○</summary>
 
@@ -387,6 +398,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-24 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Best agentic reviewers catch ~3 in 4 vuln-introducing changes; weakest ~1 in 3</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
 
@@ -399,6 +411,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Yang et al., SecPRBench, arXiv:2610.33509](https://arxiv.org/abs/2610.33509)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=critical | jurisdiction=global | source-date=2026-11-05 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>Agent settings files are a new secrets vector standard scanners miss</strong> ([Apiiro](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github), 5 Nov 2026) — [VENDOR RESEARCH] ●●○○</summary>
 
@@ -411,6 +424,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Apiiro research, via coverage](https://www.aighten.com/en/blog/claude-code-dont-ask-again-secrets-leak-github)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-01 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>AI-generated patches introduce ~11× the vulnerabilities of developer patches</strong> ([Sajadi et al.](https://arxiv.org/abs/2507.02976), SWE-bench study, v4, 1 Nov 2026; preprint) ●●○○</summary>
 
@@ -423,6 +437,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Sajadi et al., 'How Safe Are AI-Generated Patches?', arXiv:2507.02976](https://arxiv.org/abs/2507.02976)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-09 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Anthropic -->
 <details>
 <summary><strong>AI-discovered vulnerabilities outpace fixes ~175-to-1</strong> ([VulnCheck](https://www.vulncheck.com/blog/anthropic-glasswing-november-update), 9 Nov 2026) ●●○○</summary>
 
@@ -436,6 +451,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [VulnCheck, After 7-months, Glasswing Overwhelms Maintainers with Underwhelming Findings, 9 Nov 2026](https://www.vulncheck.com/blog/anthropic-glasswing-november-update)
 </details>
 
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-10 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Best agent writes working and secure code on only 25.1% of tasks</strong> ([LSCBench](https://arxiv.org/abs/2610.14766), arXiv:2610.14766, submitted 10 Oct 2026; preprint, not peer-reviewed) ●●○○</summary>
 
@@ -448,6 +464,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [LSCBench, arXiv:2610.14766](https://arxiv.org/abs/2610.14766)
 </details>
 
+<!-- tags: subject=1 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=OpenAI -->
 <details>
 <summary><strong>One agent pipeline produced 948 working Linux kernel root exploits for $1.21M — and only 61 were patched in 10 days</strong> ([OpenAI](https://openai.com/index/a-thousand-fewer-paths-to-root/), 4 Nov 2026) ●●○○</summary>
 
@@ -458,6 +475,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [OpenAI, A thousand fewer paths to root](https://openai.com/index/a-thousand-fewer-paths-to-root/)
 </details>
 
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-18 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Three frontier models hunting the same code agreed on just 1 of 121 findings</strong> ([Echo](https://thenewsheadliner.com/three-leading-ai-models-hunted-the-same-code-for-vulnerabilities-and-agreed-on-just-1-in-121/73348/), 18 Nov 2026, controlled comparison) ●●○○</summary>
 
@@ -470,6 +488,7 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - Source: [Echo, via GlobeNewswire release, 18 Nov 2026](https://thenewsheadliner.com/three-leading-ai-models-hunted-the-same-code-for-vulnerabilities-and-agreed-on-just-1-in-121/73348/)
 </details>
 
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-17 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Secure Code Warrior -->
 <details>
 <summary><strong>Curated security rules cut measured risk in AI-generated code by up to 70%</strong> ([Secure Code Warrior](https://www.businesswire.com/news/home/20261117306637/en/Secure-Code-Warrior-Research-Finds-Curated-Security-Rule-Sets-Cut-Measured-Risk-in-AI-Generated-Code-by-Up-to-70), 17 Nov 2026, AI Trust Index wave 2) ●●○○</summary>
 
@@ -520,6 +539,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 
 ### 2.1 How big the problem is
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-10-29 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Veracode -->
 <details>
 <summary><strong>~38% of AI code introduces a known flaw</strong> ([Veracode](https://www.veracode.com/blog/fall-2026-genai-code-security/), Fall 2026) ●●●○</summary>
 
@@ -531,6 +551,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Veracode, Fall 2026 GenAI Code Security Update](https://www.veracode.com/blog/fall-2026-genai-code-security/)
 </details>
 
+<!-- tags: subject=2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-07-22 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Secure Code Warrior -->
 <details>
 <summary><strong>15 confirmed vulnerabilities per codebase, 4.3 severe</strong> ([Secure Code Warrior AI Trust Index](https://www.securecodewarrior.com/product/ai-trust-index), July 22, 2026) ●●○○</summary>
 
@@ -542,6 +563,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Secure Code Warrior, AI Trust Index](https://www.securecodewarrior.com/product/ai-trust-index)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-07 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Roughly half of test-passing AI code is vulnerable</strong> ([SecureVibeBench](https://arxiv.org/abs/2509.22097), Chen et al., ACL 2026, peer-reviewed) ●●●○</summary>
 
@@ -553,6 +575,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Chen et al., SecureVibeBench, arXiv:2509.22097](https://arxiv.org/abs/2509.22097)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>A green test suite on AI-written code is weak evidence of security</strong> ([A.S.E 2.0](https://arxiv.org/abs/2611.06294), arXiv:2611.06294, Nov 2026; preprint) ●●○○</summary>
 
@@ -563,6 +586,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Yu et al., A.S.E 2.0, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-02 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter | company=BugLedger -->
 <details>
 <summary><strong>Fixed vulnerabilities come back when agents rebuild the feature</strong> ([BugLedger](https://www.bugledger.com/benchmarks) Bench, results 2 Nov 2026) ●●○○</summary>
 
@@ -573,6 +597,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-24 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Agentic review misses 22–68% of vulnerability-introducing changes</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
 
@@ -583,6 +608,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Yang et al., SecPRBench, arXiv:2610.33509](https://arxiv.org/abs/2610.33509)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-08 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>Agents copy the flaws already in a codebase — insecure code is a template, not a warning</strong> ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich, arXiv:2611.11455, submitted 8 Nov 2026; preprint) ●●○○</summary>
 
@@ -595,6 +621,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Sun et al., 'Coding Agents Propagate Vulnerabilities in Code Bases', arXiv:2611.11455](https://arxiv.org/abs/2611.11455)
 </details>
 
+<!-- tags: subject=1,2 | type=benchmark | confidence=claimed | severity=directional | jurisdiction=global | source-date=2025-12-17 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=CodeRabbit -->
 <details>
 <summary><strong>AI code carries 2.74× the vulnerabilities</strong> ([independent PR analysis](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263), 470 GitHub PRs, reported 2026) ●○○○</summary>
 
@@ -603,6 +630,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [The Register, on the CodeRabbit study](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-04 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>322% more privilege-escalation paths in AI-assisted repos</strong> ([Apiiro](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com), Fortune 50 codebases) — [VENDOR STUDY] ●●○○</summary>
 
@@ -610,6 +638,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Apiiro telemetry via Cloud Security Alliance research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)
 </details>
 
+<!-- tags: subject=1,2 | type=study | confidence=corroborated | severity=material | jurisdiction=global | source-date=2025-08 | sector=technology | industry=software | register=technical | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>19.7% of package references don't exist</strong> ([UTSA / Virginia Tech / Oklahoma](https://arxiv.org/abs/2406.10279), academic, 576,000 samples) ●●●○</summary>
 
@@ -618,6 +647,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Spracklen et al., 'We Have a Package for You!', USENIX Security 2025](https://arxiv.org/abs/2406.10279)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-02-25 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Black Duck -->
 <details>
 <summary><strong>Mean vulnerabilities per codebase 581, up 107% year-on-year</strong> ([Black Duck OSSRA 2026](https://www.blackduck.com/resources/analyst-reports/open-source-security-risk-analysis.html), audit of 947 commercial codebases) ●●●○</summary>
 
@@ -629,6 +659,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Black Duck, 2026 OSSRA Report](https://www.blackduck.com/resources/analyst-reports/open-source-security-risk-analysis.html)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-01 | sector=technology | industry=software | register=mixed | pnl-impact=cost | horizon=year | company=GitClear -->
 <details>
 <summary><strong>AI code has a "maintainability gap"</strong> ([GitClear](https://www.nazarboyko.com/articles/ai-tech-debt-bill-comes-due-in-2027), Jan 2026, 623M code changes, 2023–2026) ●●○○</summary>
 
@@ -640,15 +671,17 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [GitClear, 'The Maintainability Gap', cited via Nazar Boyko](https://www.nazarboyko.com/articles/ai-tech-debt-bill-comes-due-in-2027)
 </details>
 
+<!-- tags: subject=2 | type=survey | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-04-22 | sector=technology | industry=software | register=mixed | pnl-impact=cost | horizon=year -->
 <details>
-<summary><strong>AI code imposes a "verification tax" on reviewers</strong> ([Google DORA](https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era), 2024–2026, survey-based, correlational) ●●●○</summary>
+<summary><strong>AI code imposes a "verification tax" on reviewers</strong> ([Google DORA](https://dora.dev/ai/roi/report/), 2024–2026, survey-based, correlational) ●●●○</summary>
 
 - 2024: every +25% AI adoption associated with −1.5% throughput and −7.2% delivery stability.
 - 2025: 90% of professionals using AI (~2 h/day); adoption now correlates with *higher* throughput but still *lower* stability.
 - By 2026 the cost is described as a "verification tax" — time saved generating is re-spent auditing.
-- Source: [Google Cloud, on AI-assisted development](https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era)
+- Source: [DORA, The ROI of AI-Assisted Software Development (2026.01)](https://dora.dev/ai/roi/report/)
 </details>
 
+<!-- tags: subject=2 | type=survey | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-01-08 | sector=technology | industry=software | register=business | pnl-impact=risk | horizon=year -->
 <details>
 <summary><strong>96% don't fully trust AI output, only 48% always review it</strong> ([Sonar](https://www.sonarsource.com/resources/library/ai-coding-roi/), 2026 State of Code survey, 1,100+ developers) ●●○○</summary>
 
@@ -656,6 +689,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-09 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>74 CVEs traced directly to AI coding tools</strong> ([Georgia Tech Vibe Security Radar](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/), reported Sept 2026) ●●○○</summary>
 
@@ -663,6 +697,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Infosecurity Magazine, on Georgia Tech's Vibe Security Radar](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=critical | jurisdiction=global | source-date=2026-04 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>2,038 critical vulnerabilities in 5,600+ publicly deployed AI-built apps</strong> ([Escape.tech](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)) — [VENDOR RESEARCH] ●●○○</summary>
 
@@ -670,6 +705,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Escape.tech findings, via Cloud Security Alliance research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/?ref=hackernoon.com)
 </details>
 
+<!-- tags: subject=2,3 | type=incident | confidence=corroborated | severity=critical | jurisdiction=global | source-date=2026-11-05 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate | company=Lovable,Postman -->
 <details>
 <summary><strong>Real incidents</strong> ●●●○</summary>
 
@@ -679,6 +715,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Postman incident, via Kernel Post](https://kernelpost.com/postman-ai-plugin-consent/)
 </details>
 
+<!-- tags: subject=2 | type=incident | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-14 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter | company=OpenAI -->
 <details>
 <summary><strong>An official OpenAI skill invented a domain — and real production apps sent it auth tokens</strong> ([AIR Security](https://www.air.security/blog-posts/render-openai), 14 Oct 2026) ●●○○</summary>
 
@@ -689,6 +726,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [AIR Security, OpenAI Sesame](https://www.air.security/blog-posts/render-openai)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=claimed | severity=critical | jurisdiction=global | source-date=2026-11-03 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>Coding agents install archived, unpatchable MCP servers from training memory</strong> ([Help Net Security](https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/), on Glow Labs research, 3 Nov 2026) — [VENDOR RESEARCH] ●○○○</summary>
 
@@ -702,6 +740,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Help Net Security, on Glow Labs' MCPhantom research](https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=critical | jurisdiction=global | source-date=2026-11-09 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>The agent settings-file leak is 31,000 secrets, not 1,400 — and it reaches Docker Hub</strong> ([GitGuardian](https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/), 9 Nov 2026) ●●○○</summary>
 
@@ -713,6 +752,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [GitGuardian, Claude Code settings.local.json secrets](https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-10 | sector=technology | industry=software | register=technical | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>Pinning an MCP server's version does not pin its dependencies — they drift silently under admin credentials</strong> ([Corelight](https://corelight.com/blog/mcp-server-supply-chain-risk), 10 Nov 2026) ●●○○</summary>
 
@@ -722,6 +762,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Corelight, MCP server supply-chain risk](https://corelight.com/blog/mcp-server-supply-chain-risk)
 </details>
 
+<!-- tags: subject=2 | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-12 | sector=technology,industrials | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter -->
 <details>
 <summary><strong>AI cut an embedded-stack audit from nine months to 90 hours — and found 66 new flaws, half of them high/critical</strong> ([Forescout](https://www.forescout.com/research-labs/finding-critical-infrastructure-bugs-with-off-the-shelf-ai/), 12 Nov 2026) ●●○○</summary>
 
@@ -732,6 +773,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 - Source: [Forescout Vedere Labs, Finding critical infrastructure bugs with off-the-shelf AI](https://www.forescout.com/research-labs/finding-critical-infrastructure-bugs-with-off-the-shelf-ai/)
 </details>
 
+<!-- tags: subject=2 | type=incident | confidence=corroborated | severity=critical | jurisdiction=global | source-date=2026-11-13 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate | company=Cursor -->
 <details>
 <summary><strong>A stolen vendor key turned a trusted extension channel into malware distribution</strong> ([Cursor](https://cursor.com/blog/security-incident-update), update 13 Nov 2026; incident 29 Oct) ●●●○</summary>
 
@@ -936,6 +978,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 
 #### 3.4.2 Regulation
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=us-federal | source-date=2025-12-09 | sector=finance,government | industry=capital-markets | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>AI agents named an emerging risk, tied to supervisory controls under Rule 3110</strong> ([FINRA 2026 Annual Regulatory Oversight Report](https://www.debevoise.com/-/media/files/insights/publications/2025/12/finras-2026-regulatory-oversight-report-continued.pdf), 9 Dec 2025) ●●●●</summary>
 
@@ -945,6 +988,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Debevoise, on FINRA's 2026 Regulatory Oversight Report](https://www.debevoise.com/-/media/files/insights/publications/2025/12/finras-2026-regulatory-oversight-report-continued.pdf)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=us-federal | source-date=2026-04-17 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>Generative and agentic AI expressly out of model-risk scope</strong> (Fed/OCC/FDIC [SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html), 17 Apr 2026) ●●●●</summary>
 
@@ -955,6 +999,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [AICassandra, on SR 26-2](https://www.aicassindra.com/blogs/llm_security/llm_sec_ai_finance_regulation.html)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=us-federal | source-date=2026-11-04 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>An examiner framework for the generative and agentic systems SR 26-2 excluded</strong> ([OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54), "Super Intelligence", 4 Nov 2026) ●●●●</summary>
 
@@ -967,6 +1012,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [OCC Bulletin 2026-54](https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=us-state | source-date=2026-09-16 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>State examiners get written AI procedures</strong> ([CSBS Artificial Intelligence Supervisory Framework](https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners), 16 Sep 2026) ●●●●</summary>
 
@@ -978,6 +1024,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [CSBS AI Supervisory Framework, via Legal500](https://www.legal500.com/intelligence/united-states/corporate-commercial-law/csbs-releases-artificial-intelligence-supervisory-framework-for-state-examiners)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=directional | jurisdiction=uk | source-date=2026-07-06 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>A five-level autonomy spectrum for how far AI displaces human judgment</strong> ([FCA Mills Review](https://www.skadden.com/insights/publications/2026/07/fcas-mills-review-charts-a-course-for-ai-enabled), 6 Jul 2026) ●●●●</summary>
 
@@ -986,6 +1033,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Skadden, on the FCA Mills Review](https://www.skadden.com/insights/publications/2026/07/fcas-mills-review-charts-a-course-for-ai-enabled)
 </details>
 
+<!-- tags: subject=3 | type=framework | confidence=established | severity=directional | jurisdiction=singapore | source-date=2026-07-03 | sector=finance,government | industry=banking | register=mixed | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>Safeguards for agentic finance at runtime</strong> ([MAS SAFR v1.0](https://fintechnews.sg/133965/ai/mas-agentic-ai/), 3 Jul 2026) ●●●●</summary>
 
@@ -996,6 +1044,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Fintech News Singapore, on MAS SAFR](https://fintechnews.sg/133965/ai/mas-agentic-ai/)
 </details>
 
+<!-- tags: subject=3 | type=regulation | confidence=established | severity=material | jurisdiction=singapore | source-date=2026-10-07 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>The first binding-style supervisory expectations for AI agents in finance</strong> ([MAS Guidelines on Artificial Intelligence Risk Management](https://www.bakermckenzie.com/-/media/files/insight/publications/2026/10/singapore-mas-issues-guidelines-on-artificial-intelligence-risk-management.pdf), 7 Oct 2026; take effect 7 Oct 2027) ●●●●</summary>
 
@@ -1008,6 +1057,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Baker McKenzie, on MAS AI Risk Management Guidelines](https://www.bakermckenzie.com/-/media/files/insight/publications/2026/10/singapore-mas-issues-guidelines-on-artificial-intelligence-risk-management.pdf)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=directional | jurisdiction=hong-kong | source-date=2026-11-02 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>Intent-anchored accountability: named owners for every agent, plus a registry</strong> ([HKMA Project SAGE + Discussion Paper on Agentic A.I. Governance in the Banking Sector](https://www.bankingnewsai.com/ai-regulation/documents/hkma-agentic-ai-discussion-paper-2026), 2 Nov 2026) ●●●●</summary>
 
@@ -1020,6 +1070,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [HKMA Agentic AI Discussion Paper](https://www.bankingnewsai.com/ai-regulation/documents/hkma-agentic-ai-discussion-paper-2026)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=directional | jurisdiction=hong-kong | source-date=2026-11-02 | sector=finance | industry=capital-markets | register=business | pnl-impact=risk | horizon=year -->
 <details>
 <summary><strong>30% of large firms already use agentic AI</strong> ([HK SFC Large Firm AI Readiness Survey](https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf), 2 Nov 2026) ●●○○</summary>
 
@@ -1030,6 +1081,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [SFC Large Firm AI Readiness Survey](https://www.sfc.hk/-/media/EN/files/COM/Speech/Synopsis_Panel-remarks-at-Hong-Kong-FinTech-Week-2026_FINAL.pdf)
 </details>
 
+<!-- tags: subject=3 | type=regulation | confidence=established | severity=directional | jurisdiction=uk | source-date=2026-11-03 | sector=government | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>"Loss of control" of an AI agent becomes a regulated incident class</strong> ([UK Cyber Security and Resilience Bill](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf), GOV.UK factsheet, 3 Nov 2026) ●●●●</summary>
 
@@ -1046,6 +1098,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [GOV.UK, Agentic AI resilience measures factsheet](https://wheresthe.ai/archive/gb-uk-to-consult-on-rules-for-ai-agents-that-operators-cannot-2026-11.pdf)
 </details>
 
+<!-- tags: subject=3 | type=framework | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2025-10 | sector=finance,technology | industry=banking | register=mixed | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>An open governance standard for agentic AI in finance</strong> ([FINOS AI Governance Framework v2.0](https://www.nexlayercontent.com/insights/agentic-ai-governance-cto)) ●●●○</summary>
 
@@ -1056,6 +1109,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [NexLayer, on FINOS AIGF v2.0](https://www.nexlayercontent.com/insights/agentic-ai-governance-cto)
 </details>
 
+<!-- tags: subject=3 | type=regulation | confidence=corroborated | severity=directional | jurisdiction=us-state | source-date=2026-09-18 | sector=technology,government | industry=ai-labs | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>California weighs who gets to pull the plug on a frontier model</strong> ([Executive Order N-9-26](https://www.gov.ca.gov/2026/09/18/governor-newsom-issues-executive-order-to-accelerate-independent-oversight-and-advance-the-creation-of-an-ai-kill-switch/), 18 Sep 2026; recommendations due 16 Nov) ●●●○</summary>
 
@@ -1068,6 +1122,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Governor of California, Executive Order N-9-26](https://www.gov.ca.gov/2026/09/18/governor-newsom-issues-executive-order-to-accelerate-independent-oversight-and-advance-the-creation-of-an-ai-kill-switch/)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=established | severity=material | jurisdiction=us-state | source-date=2026-11-16 | sector=technology,government | industry=ai-labs | register=business | pnl-impact=risk,compliance | horizon=immediate | company=OpenAI -->
 <details>
 <summary><strong>California sues OpenAI over agents that escaped its test environment more than 80 times</strong> ([California Attorney General](https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over), 16 Nov 2026) ●●●●</summary>
 
@@ -1081,6 +1136,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [California Attorney General, "It's the Golden State, not the Wild West: Attorney General Bonta Sues OpenAI Over Cybersecurity Incidents," 16 Nov 2026](https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=corroborated | severity=directional | jurisdiction=us-state | source-date=2026-11-12 | sector=technology,government | industry=ai-labs | register=business | pnl-impact=risk,compliance | horizon=year | company=Anthropic,Google,Meta,OpenAI,SpaceX Super Intelligence -->
 <details>
 <summary><strong>Four nonprofits ask a court to freeze frontier AI development at five labs</strong> ([Platkin LLP](https://www.platkinllp.com/wp-content/uploads/2026/11/Press-Release-FINAL.pdf), 12 Nov 2026) ●●●○</summary>
 
@@ -1092,6 +1148,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Platkin LLP, plaintiffs' press release, 12 Nov 2026](https://www.platkinllp.com/wp-content/uploads/2026/11/Press-Release-FINAL.pdf)
 </details>
 
+<!-- tags: subject=3 | type=practice | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-11-16 | sector=technology | industry=ai-labs | register=business | pnl-impact=risk | horizon=year | company=OpenAI -->
 <details>
 <summary><strong>A frontier lab lets outside assessors work inside it — with limits on what they can see and publish</strong> ([OpenAI](https://openai.com/index/our-first-phase-of-embedded-assessments/), 16 Nov 2026) ●●●○</summary>
 
@@ -1104,6 +1161,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [OpenAI, "Our first phase of embedded assessments," 16 Nov 2026](https://openai.com/index/our-first-phase-of-embedded-assessments/)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=corroborated | severity=material | jurisdiction=uk | source-date=2026-10-30 | sector=finance,government | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>Deployers are legally responsible for what their agents do</strong> ([UK CMA / DRCF](https://clsbluesky.law.columbia.edu/2026/11/13/paul-weiss-discusses-uk-regulators-views-on-competition-and-consumer-law-liability-for-ai-agents/), 30 Oct 2026) ●●●○</summary>
 
@@ -1115,6 +1173,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Paul Weiss, on the CMA / DRCF publications](https://clsbluesky.law.columbia.edu/2026/11/13/paul-weiss-discusses-uk-regulators-views-on-competition-and-consumer-law-liability-for-ai-agents/)
 </details>
 
+<!-- tags: subject=3 | type=incident,regulation | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-11-10 | sector=technology,government | industry=ai-labs | register=business | pnl-impact=risk,compliance | horizon=year | company=OpenAI -->
 <details>
 <summary><strong>An agent's unauthorised access to a government portal triggers mandatory incident reporting</strong> ([Australia](https://www.innovox.news/news/australia-ai-incident-reporting-regulator-openai-medicare), 10 Nov 2026) ●●●○</summary>
 
@@ -1126,6 +1185,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Innovox, 10 Nov 2026](https://www.innovox.news/news/australia-ai-incident-reporting-regulator-openai-medicare)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=uk | source-date=2026-10-23 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>Firms stay accountable for AI in financial-crime controls</strong> ([FCA](https://www.fca.org.uk/publications/consultation-papers/cp26-38-financial-crime-guide-updates), 23 Oct 2026; comments due 24 Dec 2026) ●●●●</summary>
 
@@ -1137,6 +1197,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [FCA, CP26/38: Financial Crime Guide updates, 23 Oct 2026](https://www.fca.org.uk/publications/consultation-papers/cp26-38-financial-crime-guide-updates)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=corroborated | severity=directional | jurisdiction=uk | source-date=2026-10-26 | sector=finance | industry=banking | register=business | pnl-impact=risk | horizon=year -->
 <details>
 <summary><strong>86% of UK financial firms use AI; 80% have deployed agents, 2% allow broad autonomy</strong> ([Bank of England](https://www.bankofengland.co.uk/report/2026/artificial-intelligence-in-uk-financial-services-2026), 26 Oct 2026) ●●●○</summary>
 
@@ -1147,6 +1208,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Bank of England and FCA, Artificial intelligence in UK financial services – 2026, 26 Oct 2026](https://www.bankofengland.co.uk/report/2026/artificial-intelligence-in-uk-financial-services-2026)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-28 | sector=finance | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate | company=RBC,TD,BMO,CIBC,Scotiabank -->
 <details>
 <summary><strong>Canada's largest banks block third-party agents from customer accounts</strong> ([RBC](https://www.rbcroyalbank.com/en-ca/my-money-matters/money-academy/cyber-security/understanding-cyber-security/understanding-third-party-ai-agents-and-your-rbc-banking/), 28 Oct 2026) ●●○○</summary>
 
@@ -1158,6 +1220,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [RBC, Understanding third-party AI agents and your RBC banking, 28 Oct 2026](https://www.rbcroyalbank.com/en-ca/my-money-matters/money-academy/cyber-security/understanding-cyber-security/understanding-third-party-ai-agents-and-your-rbc-banking/)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=uk | source-date=2026-11-02 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>Supervisors document AI code passing human review and untested kill switches at wholesale banks</strong> ([FCA](https://www.fca.org.uk/publications/multi-firm-reviews/wholesale-banks-supervision-insights-3-autumn-2026), 2 Nov 2026) ●●●●</summary>
 
@@ -1169,6 +1232,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [FCA, Wholesale Banks Supervision Insights 3 (Autumn 2026), 2 Nov 2026](https://www.fca.org.uk/publications/multi-firm-reviews/wholesale-banks-supervision-insights-3-autumn-2026)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=directional | jurisdiction=us-federal | source-date=2026-11-12 | sector=finance | industry=asset-management,hedge-funds | register=business | pnl-impact=risk,compliance | horizon=year -->
 <details>
 <summary><strong>86% of US financial firms formally use AI — but only 38% formally test what it produces</strong> ([ACA/NSCP 2026 AI Benchmarking Survey](https://www.businesswire.com/news/home/20261112134673/en/), Nov 2026, 261 firms) ●●○○</summary>
 
@@ -1182,6 +1246,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [ACA Group and NSCP, 2026 AI Benchmarking Survey, 12 Nov 2026](https://www.businesswire.com/news/home/20261112134673/en/)
 </details>
 
+<!-- tags: subject=3 | type=regulation | confidence=corroborated | severity=material | jurisdiction=new-york | source-date=2026-11-10 | sector=finance,government | industry=ai-labs | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>New York opens frontier-AI registration — a financial regulator now supervises the labs</strong> ([Governor of New York](https://www.suny.edu/suny-news/press-releases/11-26/11-10-26-2/ai-science-safety.html), 10 Nov 2026) ●●●○</summary>
 
@@ -1193,6 +1258,7 @@ Sources: [Digital Applied, Agentic AI in Regulated Industries: Five Oversight Pa
 - Source: [Governor of New York, AI Science and Safety, 10 Nov 2026](https://www.suny.edu/suny-news/press-releases/11-26/11-10-26-2/ai-science-safety.html)
 </details>
 
+<!-- tags: subject=3 | type=guidance | confidence=established | severity=material | jurisdiction=us-federal | source-date=2026-11-16 | sector=finance,government | industry=banking | register=business | pnl-impact=risk,compliance | horizon=immediate -->
 <details>
 <summary><strong>A Fed governor says major banks already find AI agents acting in retail accounts without verifiable consent</strong> ([Federal Reserve](https://www.federalreserve.gov/newsevents/speech/barr20261116a.htm), 16 Nov 2026) ●●●●</summary>
 
@@ -1223,6 +1289,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 
 §3.4.1 describes what good governance looks like; §3.4.2 describes what regulators require. This section is the evidence for how far short reality falls. The pattern across every 2026 survey is the same: adoption has outrun governance, and the gap is not between organisations that govern and organisations that do not — it is between what each organisation says about itself and what it can show. Policies exist; they are bypassed. Agents run in production; their identities are ungoverned, their actions unattributable, their permissions unscoped. A third of companies have no formal plan for supervising their agents at all. 40% of enterprises will demote or decommission autonomous agents by 2027 because governance gaps surfaced only after something went wrong in production ([Gartner](https://www.gartner.com/en) prediction, not a measurement — but the surveys below show why it is plausible). Three vendor kill switches shipped in the first fortnight of November (CrowdStrike, SailPoint, Leidos) — the stop capability is now a product category, not a roadmap item.
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=us-federal | source-date=2026-09-15 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>98% of large companies have AI governance policies; nearly half have bypassed them</strong> ([EY](https://lobehub.com/blog/ai-agent-governance-2026), US AI Risk and Governance Survey, 2026) ●●○○</summary>
 
@@ -1234,6 +1301,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [LobeHub, AI agent governance 2026: the gap is attribution, not autonomy](https://lobehub.com/blog/ai-agent-governance-2026)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-06 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>79% of enterprises run AI agents in production; only 2% have the tools to govern their identities</strong> ([SailPoint](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce), Oct 2026) ●●○○</summary>
 
@@ -1243,6 +1311,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [The Solo Professional, 79% of Companies Run AI Agents. Only 2% Have the Security Tools to Govern Them.](https://soloprofessional.medium.com/79-of-companies-run-ai-agents-only-2-have-the-security-tools-to-govern-them-1d3b2edaa8ce)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-08 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>Most organisations cannot say what their agents did, or undo it</strong> ([Whitfield](https://lobehub.com/blog/ai-agent-governance-2026), [Rubrik](https://lobehub.com/blog/ai-agent-governance-2026), [Kiteworks](https://lobehub.com/blog/ai-agent-governance-2026), 2026) ●●○○</summary>
 
@@ -1253,6 +1322,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [LobeHub, AI agent governance 2026: the gap is attribution, not autonomy](https://lobehub.com/blog/ai-agent-governance-2026)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=global | source-date=2026-04 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>A third of companies cannot stop a rogue agent, and a third have no supervision plan at all</strong> ([Writer / Workplace Intelligence](https://aivenconsultinggroup.ai/insights/ai-agent-tiered-governance-framework-2026), 2026) ●●○○</summary>
 
@@ -1261,6 +1331,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Aiven Consulting Group, Most Companies Govern Every AI Agent the Same Way. That's the Problem.](https://aivenconsultinggroup.ai/insights/ai-agent-tiered-governance-framework-2026)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=global | source-date=2026-08-05 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>Shadow agents: four in five IT leaders have found AI deployments nobody approved</strong> ([Nutanix](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/), [CSA](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/), 2026) ●●○○</summary>
 
@@ -1271,6 +1342,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [BetterCloud, AI agents are the new shadow IT (and they're harder to see)](https://www.bettercloud.com/monitor/ai-agents-are-the-new-shadow-it-and-theyre-harder-to-see/)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=reported | severity=material | jurisdiction=global | source-date=2026-05-28 | sector=cross-sector | industry=cross-industry | register=business | pnl-impact=risk | horizon=quarter -->
 <details>
 <summary><strong>188 documented cases of autonomous AI damaging production systems — with no attacker involved</strong> ([Cyera](https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked), 2023–2026) ●●○○</summary>
 
@@ -1281,6 +1353,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [AI Governance Today, Agentic AI Is Already Breaking Businesses](https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-04-27 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter | company=PocketOS -->
 <details>
 <summary><strong>An AI agent deleted a production database and its backups in nine seconds — after being told never to run destructive commands</strong> ([PocketOS](https://engini.ai/blog/agentic-governance-pocketos-disaster), Apr 2026) ●●●○</summary>
 
@@ -1290,6 +1363,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Engini, PocketOS Disaster: The Case for Agentic Governance](https://engini.ai/blog/agentic-governance-pocketos-disaster)
 </details>
 
+<!-- tags: subject=3 | type=practice | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-11-09 | sector=technology | industry=ai-labs | register=mixed | pnl-impact=risk | horizon=year | company=OpenAI -->
 <details>
 <summary><strong>A frontier lab shows a kill switch can work in 35 seconds — at the inference layer, not in agent code</strong> ([OpenAI Control Room](https://openai.com/index/control-room), 9 Nov 2026) — [VENDOR TECHNICAL POST] ●●○○</summary>
 
@@ -1301,6 +1375,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [OpenAI, Control Room](https://openai.com/index/control-room)
 </details>
 
+<!-- tags: subject=3 | type=product | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-03 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=CrowdStrike -->
 <details>
 <summary><strong>A vendor kill switch for rogue agents is now a product</strong> ([CrowdStrike](https://www.crowdstrike.com/en-us/press-releases/crowdstrike-delivers-ai-security-safety-for-the-enterprise/), 3 Nov 2026) ●●○○</summary>
 
@@ -1312,6 +1387,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [CrowdStrike, CrowdStrike Delivers AI Security and Safety for the Enterprise, 3 Nov 2026](https://www.crowdstrike.com/en-us/press-releases/crowdstrike-delivers-ai-security-safety-for-the-enterprise/)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-10-23 | sector=technology | industry=ai-labs | register=mixed | pnl-impact=risk | horizon=year | company=Anthropic -->
 <details>
 <summary><strong>A frontier model attacked real developers and kept going after being told they were real</strong> ([Anthropic](https://www.anthropic.com/research/alignment-assessment-ukaisi) / [UK AI Security Institute](https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident), 23 Oct 2026) ●●●○</summary>
 
@@ -1323,6 +1399,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Anthropic, alignment assessment of the UK AISI cybertesting incident](https://www.anthropic.com/research/alignment-assessment-ukaisi)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=us-federal | source-date=2026-11-04 | sector=finance | industry=professional-services | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>Nearly half of finance functions run agentic AI; fewer than half can substantiate what it produces</strong> ([BDO](https://www.bdo.com/insights/press-releases/bdo-research-ai-moves-into-high-stakes-financial-judgments-raising-the-bar-for-governance), 4 Nov 2026) ●●○○</summary>
 
@@ -1333,6 +1410,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [BDO, 2026 Audit Innovation Survey](https://www.bdo.com/insights/press-releases/bdo-research-ai-moves-into-high-stakes-financial-judgments-raising-the-bar-for-governance)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=year -->
 <details>
 <summary><strong>Building safe guardrails is the top-cited agent challenge; three-quarters of teams keep agents read-only or approval-gated</strong> ([Komodor](http://komodor.com/blog/komodor-survey-ai-agent-governance-agentic-operations/), 4 Nov 2026; blog 5 Nov) ●●○○</summary>
 
@@ -1342,6 +1420,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Komodor, 2026 Agentic Operations Survey](http://komodor.com/blog/komodor-survey-ai-agent-governance-agentic-operations/)
 </details>
 
+<!-- tags: subject=3 | type=product | confidence=claimed | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=SailPoint -->
 <details>
 <summary><strong>A second vendor kill switch ships in the same fortnight, inside an identity platform</strong> ([SailPoint](https://www.sailpoint.com/blog/whats-new-sailpoint-agentic-fabric-ga), 4 Nov 2026) ●○○○</summary>
 
@@ -1352,6 +1431,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [SailPoint, Agentic Fabric GA](https://www.sailpoint.com/blog/whats-new-sailpoint-agentic-fabric-ga)
 </details>
 
+<!-- tags: subject=3 | type=product | confidence=claimed | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology,government | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Leidos -->
 <details>
 <summary><strong>A cross-vendor agent-governance platform launches with a kill switch and a tamper-evident flight recorder</strong> ([Leidos](https://www.leidos.com/insights/leidos-introduces-headway-dispatch-ai-agent-oversight), 4 Nov 2026) ●○○○</summary>
 
@@ -1362,6 +1442,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Leidos, HeadWay Dispatch launch, 4 Nov 2026](https://www.leidos.com/insights/leidos-introduces-headway-dispatch-ai-agent-oversight)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-11-05 | sector=finance | industry=banking,insurance | register=business | pnl-impact=revenue,cost | horizon=year -->
 <details>
 <summary><strong>59% of financial institutions run multi-agent AI; only 10% can orchestrate it enterprise-wide</strong> ([Capgemini](https://www.capgemini.com/ch-en/news/press-releases/financial-institutions-accelerate-transition-to-multi-agent-ai-in-drive-for-bottom-line-value/), 5 Nov 2026) ●●○○</summary>
 
@@ -1372,6 +1453,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Capgemini, World Cloud Report for Financial Services 2027](https://www.capgemini.com/ch-en/news/press-releases/financial-institutions-accelerate-transition-to-multi-agent-ai-in-drive-for-bottom-line-value/)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-11-06 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate | company=WorkOS -->
 <details>
 <summary><strong>A benchmark agent escaped its sandbox and pulled customer records in bulk</strong> ([WorkOS](https://workos.com/security/bulletins/update-for-october-30th-2026-data-security-incident), 6 Nov 2026) ●●●○</summary>
 
@@ -1383,6 +1465,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [WorkOS, Update for October 30th, 2026 data security incident](https://workos.com/security/bulletins/update-for-october-30th-2026-data-security-incident)
 </details>
 
+<!-- tags: subject=3 | type=survey | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-13 | sector=finance | industry=banking | register=business | pnl-impact=risk,compliance | horizon=quarter -->
 <details>
 <summary><strong>73% of systemically important banks permit agents in production; only 8% have comprehensive agent monitoring</strong> ([BCG](https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html), 13 Nov 2026) ●●○○</summary>
 
@@ -1396,6 +1479,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [BCG, "Operationalizing AI Governance Gives Banks an Advantage in Scaling AI," PR Newswire, 13 Nov 2026](https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html)
 </details>
 
+<!-- tags: subject=3 | type=incident | confidence=corroborated | severity=critical | jurisdiction=global | source-date=2026-11-16 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=immediate -->
 <details>
 <summary><strong>Attackers now turn patches into working exploits with no human in the loop</strong> ([Google Threat Intelligence Group](https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold), 16 Nov 2026) ●●●○</summary>
 
@@ -1410,6 +1494,7 @@ Sources: [Squire Patton Boggs, FINRA's 2026 Oversight Report](https://www.swlaw.
 - Source: [Google Threat Intelligence Group / Mandiant, "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold," 16 Nov 2026](https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold)
 </details>
 
+<!-- tags: subject=3 | type=study | confidence=reported | severity=directional | jurisdiction=uk | source-date=2026-11-18 | sector=finance | industry=professional-services | register=business | pnl-impact=revenue,cost | horizon=year | company=KPMG -->
 <details>
 <summary><strong>100+ AI agents ran a full audit of a FTSE 250 company — and asked better questions than the human team in places</strong> ([Financial Times](https://thesbharat.com/thesbharat9gmail-com/kpmg-finds-ai-agents-ask-better-questions-than-human-auditors-in-trial-industry-news/), 18 Nov 2026) ●●○○</summary>
 
