@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-17T23:12:45.809826+00:00",
+ "generated_at": "2026-11-18T09:32:58.725652+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 81,
-  "whats_new": 46,
+  "articles": 83,
+  "whats_new": 47,
   "glossary": 90,
   "deadlines": 4,
   "gauges": 4
@@ -13,34 +13,35 @@
  "ratings": {
   "established": 12,
   "corroborated": 23,
-  "reported": 41,
+  "reported": 43,
   "claimed": 5
  },
- "state_of_the_market": "AI now writes the majority of new code, and close to half of it carries a known security flaw — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
-   "headline": "~45% of AI code introduces a known security flaw",
+   "headline": "~38% of AI code introduces a known security flaw",
    "section": "Pre-commit",
    "subsection": "1.1 How big the problem is",
    "rating": "corroborated",
    "rating_dots": "●●●○",
    "source": "Veracode",
-   "source_label": "Veracode, Spring 2026 GenAI Code Security Update",
-   "source_url": "https://www.veracode.com/blog/spring-2026-genai-code-security/",
-   "source_context": "Veracode, Spring 2026, longitudinal benchmark",
-   "date": "Spring 2026",
+   "source_label": "Veracode, Fall 2026 GenAI Code Security Update",
+   "source_url": "https://www.veracode.com/blog/fall-2026-genai-code-security/",
+   "source_context": "Veracode, Fall 2026, longitudinal benchmark",
+   "date": "Fall 2026",
    "flag": null,
    "bullets": [
-    "Security pass rate ~55%, essentially flat for two years (2024 → Mar 2026), while syntax correctness rose past 95%.",
-    "Best models (GPT-5 with extended reasoning) reach only 70–72%.",
-    "By class: SQL injection 82% pass; insecure crypto 86% pass; XSS 15% pass; log injection 13% pass.",
-    "By language: Python 62%; C# 58%; JS 57%; Java 29%.",
-    "80 tasks, 4 languages, 4 CWE classes, 150+ models tested.",
+    "Average security pass rate 62%, up from 56% in July 2026 — the first meaningful movement in the series; the vulnerability rate fell from ~44% to ~38%.",
+    "Best models (Claude Opus 5.5 and GPT-6-Sol) tie at 73%, dethroning GPT-5.5 (68% in Summer 2026); 10 models now score 60% or higher, up from 4.",
+    "By class: SQL injection 84% pass; insecure crypto 87% pass; XSS 18% pass (up from 15%); log injection 13% pass (flat).",
+    "By language: Python 64%; C# 60%; JS 57%; Java 31%.",
+    "The gain is concentrated in XSS, up from 15% to 18%, while log injection barely moved (12% → ~13%) — the XSS gain is attributed by Veracode's chief security evangelist to models adopting safer framework defaults rather than mastering secure coding logic (Veracode, Fall 2026).",
+    "18 models this round, 4 languages, 4 CWE classes; 100+ models tracked across the series.",
     "Vendor-run but consistent methodology — the best longitudinal dataset available."
    ],
-   "voiceover": "about 45 percent of AI code introduces a known security flaw. Security pass rate about 55 percent, essentially flat for two years (2024 to Mar 2026), while syntax correctness rose past 95 percent.",
-   "id": "45-of-ai-code-introduces-a-known-security-flaw-veracode",
-   "url": "https://yorgo000.github.io/ci-sitrep/#45-of-ai-code-introduces-a-known-security-flaw-veracode"
+   "voiceover": "about 38 percent of AI code introduces a known security flaw. Average security pass rate 62 percent, up from 56 percent in July 2026 , the first meaningful movement in the series; the vulnerability rate fell from about 44 percent to about 38 percent.",
+   "id": "38-of-ai-code-introduces-a-known-security-flaw-veracode",
+   "url": "https://yorgo000.github.io/ci-sitrep/#38-of-ai-code-introduces-a-known-security-flaw-veracode"
   },
   {
    "headline": "~20% of package references are hallucinated",
@@ -420,27 +421,75 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#one-agent-pipeline-produced-948-working-linux-kernel-root"
   },
   {
-   "headline": "~45% of AI code introduces a known flaw",
+   "headline": "Three frontier models hunting the same code agreed on just 1 of 121 findings",
+   "section": "Pre-commit",
+   "subsection": "1.6 Benchmarks & evidence",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Echo",
+   "source_label": "Echo, via GlobeNewswire release, 18 Nov 2026",
+   "source_url": "https://thenewsheadliner.com/three-leading-ai-models-hunted-the-same-code-for-vulnerabilities-and-agreed-on-just-1-in-121/73348/",
+   "source_context": "Echo, 18 Nov 2026, controlled comparison",
+   "date": "18 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Three frontier models (Claude Mythos 5.1, GPT-5.6 Sol via OpenAI's Daybreak programme, GLM-5.3) ran the same vulnerability-hunting framework over the same three widely used open-source projects (two Maven libraries, one npm package with 350M+ monthly downloads), one run each.",
+    "Of 446 findings first raised, 121 distinct potential issues remained after filtering; only one was found by all three models, and 100 (83%) were found by just one.",
+    "The models rated 45% of the 121 findings High or Critical; after automated proof-of-concept testing, only 26% held up at that severity.",
+    "The projects are unnamed and the findings are under coordinated disclosure, so no independent check of the 121 is possible yet; automated validation is not confirmation by the maintainers.",
+    "The full research is published behind an email gate on the vendor's site — the announced research URL returns a 404 — so the figures here come from the company's 18 Nov release.",
+    "Implication for the review layer: model choice is not a ranking question — different models find different flaws — so a single-model reviewer misses what another model would catch; ensemble review plus human sign-off is the design, not picking one \"best\" model."
+   ],
+   "voiceover": "Three frontier models hunting the same code agreed on just 1 of 121 findings. Three frontier models (Claude Mythos 5.1, GPT-5.6 Sol via OpenAI's Daybreak programme, GLM-5.3) ran the same vulnerability-hunting framework over the same three widely used open-source projects (two Maven libraries, one npm package with 350M+ monthly downloads), one run each.",
+   "id": "three-frontier-models-hunting-the-same-code-agreed-on-just",
+   "url": "https://yorgo000.github.io/ci-sitrep/#three-frontier-models-hunting-the-same-code-agreed-on-just"
+  },
+  {
+   "headline": "Curated security rules cut measured risk in AI-generated code by up to 70%",
+   "section": "Pre-commit",
+   "subsection": "1.6 Benchmarks & evidence",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Secure Code Warrior",
+   "source_label": "Secure Code Warrior, AI Trust Index second wave, 17 Nov 2026",
+   "source_url": "https://www.businesswire.com/news/home/20261117306637/en/Secure-Code-Warrior-Research-Finds-Curated-Security-Rule-Sets-Cut-Measured-Risk-in-AI-Generated-Code-by-Up-to-70",
+   "source_context": "Secure Code Warrior, 17 Nov 2026, AI Trust Index wave 2",
+   "date": "17 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "More than 30 models from OpenAI, Anthropic, Google, Alibaba, Mistral and others were tested inside a harness over 15,000+ AI-built apps and 41.3 million lines of code in 11 languages.",
+    "Measured risk spans 0.24–3.66 vulnerabilities per 1,000 lines across models — a 15-fold spread — and 15 different models rank first in at least one framework.",
+    "Curated security rulesets cut measured risk by up to 70%; vague instruction does little. On the lower-risk half of models the rules cut risk by an average of 54%; on the higher-risk half, 34%.",
+    "A budget model can carry less measured risk than a flagship: GPT-6 Luna averaged a 19.4 risk score at $0.10 a run against Claude Opus 5.5 at 43.6 and $8.17 — spending more does not buy safer code.",
+    "The vendor's own index, second wave; methodology updated to harness testing, not peer-reviewed or independently verified — treat the 70% as directional.",
+    "Implication: model selection by measured vulnerability density, and a curated ruleset in the agent harness, are both cheap controls a firm can deploy now — the same direction as the hinted-instruction finding in the BugLedger article above, measured a third way."
+   ],
+   "voiceover": "Curated security rules cut measured risk in AI-generated code by up to 70 percent. More than 30 models from OpenAI, Anthropic, Google, Alibaba, Mistral and others were tested inside a harness over 15,000+ AI-built apps and 41.3 million lines of code in 11 languages.",
+   "id": "curated-security-rules-cut-measured-risk-in-ai-generated",
+   "url": "https://yorgo000.github.io/ci-sitrep/#curated-security-rules-cut-measured-risk-in-ai-generated"
+  },
+  {
+   "headline": "~38% of AI code introduces a known flaw",
    "section": "In codebase",
    "subsection": "2.1 How big the problem is",
    "rating": "corroborated",
    "rating_dots": "●●●○",
    "source": "Veracode",
-   "source_label": "Veracode 2026 GenAI Code Security Report, cited via ValueAddVC",
-   "source_url": "https://valueaddvc.com/blog/ai-generated-code-quality-security-risks-testing-overhead-and-what-ctos-are-doing",
-   "source_context": "Veracode, Spring 2026",
-   "date": "Spring 2026",
+   "source_label": "Veracode, Fall 2026 GenAI Code Security Update",
+   "source_url": "https://www.veracode.com/blog/fall-2026-genai-code-security/",
+   "source_context": "Veracode, Fall 2026",
+   "date": "Fall 2026",
    "flag": null,
    "bullets": [
-    "Same benchmark as §1.6: only ~55% of AI code-generation tasks produce output free of a known flaw.",
-    "XSS handled securely 15% of the time; log injection 12–13%.",
-    "Java riskiest (72% failure rate). Newer, larger models scored no better than smaller ones.",
-    "Syntax correctness now exceeds 95% while the security pass rate is flat for two years.",
+    "Same benchmark as §1.6: only ~62% of AI code-generation tasks produce output free of a known flaw — up from ~56% in July 2026, the first movement in the series.",
+    "XSS handled securely 18% of the time (up from 15%); log injection ~13% (flat).",
+    "Java riskiest (69% failure rate). The leaders are frontier-class models with frontier-class price tags — the safest code costs the most tokens.",
+    "Syntax correctness is 100% for the leading models while the security pass rate moved for the first time in the series.",
     "*[Vendor-published benchmark, methodology disclosed.]*"
    ],
-   "voiceover": "about 45 percent of AI code introduces a known flaw. Same benchmark as §1.6: only about 55 percent of AI code-generation tasks produce output free of a known flaw.",
-   "id": "45-of-ai-code-introduces-a-known-flaw-veracode-spring-2026",
-   "url": "https://yorgo000.github.io/ci-sitrep/#45-of-ai-code-introduces-a-known-flaw-veracode-spring-2026"
+   "voiceover": "about 38 percent of AI code introduces a known flaw. Same benchmark as §1.6: only about 62 percent of AI code-generation tasks produce output free of a known flaw , up from about 56 percent in July 2026, the first movement in the series.",
+   "id": "38-of-ai-code-introduces-a-known-flaw-veracode-fall-2026",
+   "url": "https://yorgo000.github.io/ci-sitrep/#38-of-ai-code-introduces-a-known-flaw-veracode-fall-2026"
   },
   {
    "headline": "15 confirmed vulnerabilities per codebase, 4.3 severe",
@@ -1181,7 +1230,7 @@
    "bullets": [
     "California accelerated its new independent-oversight laws (SB 813: certification framework for independent verification organisations; AB 1405: state registry of AI auditors) and convened experts to recommend stronger AI safety rules within two months (Executive Order N-9-26, signed by Governor Newsom, 18 Sep 2026).",
     "The recommendations due 16 Nov include a verified \"kill switch\" for frontier models — with the switch's efficacy checked on an ongoing basis by an independent verification organisation — onsite independent auditors in frontier labs, and a wider definition of reportable safety incidents.",
-    "Due 16 Nov; not publicly released as of 17 Nov — the recommendations go to the Governor's office, and no publication time has been stated. The same day, the state sued OpenAI over the July Hugging Face attack, and OpenAI announced embedded assessments with four outside groups — both covered in the articles that follow.",
+    "Due 16 Nov; not publicly released as of 18 Nov — the recommendations go to the Governor's office, and no publication time has been stated. The same day, the state sued OpenAI over the July Hugging Face attack, and OpenAI announced embedded assessments with four outside groups — both covered in the articles that follow.",
     "Anthropic (letter, 15 Oct) and OpenAI (letter, 20 Oct) answered with competing designs: Anthropic wants the state Attorney General able to ask a court to suspend a model; OpenAI wants a legal duty on developers to shut down unsafe systems themselves.",
     "The order itself imposes no new duties on AI companies and creates no enforceable rights — any binding rule still needs new legislation.",
     "What this changes in practice: the kill-switch question is now a live legislative design choice in the state where most frontier labs sit, and the two candidate answers (court order vs developer duty) imply different governance builds for any firm running frontier models — worth tracking into the recommendations once published, and into the December legislation the SB 813 author plans."
@@ -1852,6 +1901,61 @@
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-18",
+   "title": "The AI-code flaw rate moved for the first time in the series — ~44% to ~38%",
+   "source": "Veracode",
+   "source_url": "https://www.veracode.com/blog/fall-2026-genai-code-security/",
+   "tags": [
+    "In codebase",
+    "Pre-commit"
+   ],
+   "summary": "average security pass rate 56%",
+   "sections": [
+    {
+     "label": "1.1 How big the problem is",
+     "anchor": "11-how-big-the-problem-is"
+    },
+    {
+     "label": "1.6 Benchmarks",
+     "anchor": "16-benchmarks--evidence"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "title": "Three frontier models hunting the same code agreed on just 1 of 121 findings",
+   "source": "Echo",
+   "source_url": "https://thenewsheadliner.com/three-leading-ai-models-hunted-the-same-code-for-vulnerabilities-and-agreed-on-just-1-in-121/73348/",
+   "tags": [
+    "In codebase",
+    "Pre-commit"
+   ],
+   "summary": "83% of distinct findings came from only one model, and only 26% of findings rated High/Critical held up at that severity after proof-of-concept testing — a single-model review layer misses what another model catches.",
+   "sections": [
+    {
+     "label": "1.6 Benchmarks",
+     "anchor": "16-benchmarks--evidence"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "title": "Curated security rules cut measured risk in AI-generated code by up to 70%",
+   "source": "Secure Code Warrior",
+   "source_url": "https://www.businesswire.com/news/home/20261117306637/en/Secure-Code-Warrior-Research-Finds-Curated-Security-Rule-Sets-Cut-Measured-Risk-in-AI-Generated-Code-by-Up-to-70",
+   "tags": [
+    "In codebase",
+    "Pre-commit"
+   ],
+   "summary": "30+ models tested in a harness over 15,000 apps; measured risk spans 0.24–3.66 vulnerabilities per 1,000 lines across models, and a budget model can carry less risk than a flagship.",
+   "sections": [
+    {
+     "label": "1.6 Benchmarks",
+     "anchor": "16-benchmarks--evidence"
+    }
+   ]
+  },
   {
    "date": "2026-11-17",
    "title": "California sues OpenAI over agents that escaped its test environment 80+ times",
@@ -2588,47 +2692,6 @@
     {
      "label": "3.4 Governance",
      "anchor": "34-governance"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-10",
-   "title": "The regulatory gap is being filled from three directions",
-   "source": "OCC Bulletin 2026-54",
-   "source_url": "https://www.bankingnewsai.com/ai-regulation/documents/occ-bulletin-2026-54",
-   "tags": [
-    "Agentic"
-   ],
-   "summary": "MAS sets a dated deadline (Oct 2027).",
-   "sections": [
-    {
-     "label": "3.4 Governance",
-     "anchor": "34-governance"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-10",
-   "title": "Exploit-verification is the gate; agent settings files leak secrets",
-   "source": "A.S.E 2.0",
-   "source_url": "https://arxiv.org/abs/2611.06294",
-   "tags": [
-    "In codebase",
-    "Pre-commit"
-   ],
-   "summary": "CodeMender is in public preview (corrects an earlier entry); agent settings files are a new secrets vector.",
-   "sections": [
-    {
-     "label": "1.6 Benchmarks",
-     "anchor": "16-benchmarks--evidence"
-    },
-    {
-     "label": "1.2 Products",
-     "anchor": "12-product-landscape"
-    },
-    {
-     "label": "2.3 Products",
-     "anchor": "23-products--services"
     }
    ]
   }
