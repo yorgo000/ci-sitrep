@@ -38,6 +38,11 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 - **Old text (§1.6.1 vendor-claims list):** "OpenAI's GPT-6 Cyber 48.45% intended-exploit success on ExploitGym and "948 Linux kernel privilege-escalation bugs validated" (vendor system card / research run, Nov 2026);"
 - **Superseded by:** a full article in §1.6 (OpenAI, 4 Nov 2026): 2,308 candidates → 948 distinct LPE flaws with candidate patches, ~$1,279 per flaw; 61 patched upstream in ten days. The one-liner now points to the article. Current entry lives in [SYNTHESIZED.md §1.6](../SYNTHESIZED.md#16-benchmarks--evidence).
 
+### 2026-11-18 — Veracode "~45% flaw rate" (Spring 2026 round superseded)
+
+- **Old text (§1.1):** "~45% of AI code introduces a known security flaw (Veracode, Spring 2026, longitudinal benchmark)" — security pass rate ~55%, essentially flat for two years; best models 70–72%; XSS 15% pass, log injection 13%; Java 29%.
+- **Superseded by:** Veracode Fall 2026 round (29 Oct 2026) — average pass rate 62% (up from 56% in July), flaw rate ~38%, best models tied at 73% (Claude Opus 5.5, GPT-6-Sol); XSS 18%, log injection ~13% (flat); Java 31%. The "45%" figure is also corrected in §1.6.1 and §2.6. Current entry lives in [SYNTHESIZED.md §1.1](../SYNTHESIZED.md#11-how-big-the-problem-is).
+
 ### 2026-11-11 — Standalone update blocks (merged into sections)
 
 - The standalone update blocks from 2026-11-10 and 2026-11-11 have been merged into their proper sections (A.S.E 2.0, SecureVibeBench, CWE-bench v2, SusVibes and Apiiro into §1.6; CodeMender and Vercel Security Review into §1.2.3; OCC Bulletin 2026-54 into §1.5.2). The updates themselves are preserved in place.
@@ -55,6 +60,11 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 
 - **Old claim (original report, 2026-11-09, §2.4):** "No independent accuracy data published yet for any reasoning agent — all vendor claims."
 - **Superseded in part by:** CWE-bench v2 (3 Nov 2026) gives a public yardstick (leaders ~68% pass@1, even the leader fails 19% of tasks on every attempt). No reasoning-agent product has yet been independently measured against it at scale. Current entry lives in [SYNTHESIZED.md §2.4](../SYNTHESIZED.md#24-techniques).
+
+### 2026-11-18 — Veracode "~45% flaw rate" in §2.1 (Spring 2026 round superseded)
+
+- **Old text (§2.1):** "~45% of AI code introduces a known flaw (Veracode, Spring 2026)" — only ~55% of tasks produce flaw-free output; XSS 15%, log injection 12–13%; Java 72% failure rate; pass rate flat for two years; newer, larger models no better than smaller ones.
+- **Superseded by:** Veracode Fall 2026 round (29 Oct 2026) — ~38% flaw rate, 62% pass rate (first movement in the series); XSS 18%, log injection ~13%; Java 69% failure rate; the leaders are frontier-class models with frontier-class price tags. The Source line now points at the primary Veracode post (previously a secondary summary). Current entry lives in [SYNTHESIZED.md §2.1](../SYNTHESIZED.md#21-how-big-the-problem-is).
 
 ### 2026-11-11 — Standalone update blocks (merged into sections)
 
@@ -97,3 +107,13 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 
 - **Old text (State of the market):** "Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared."
 - **Superseded by:** the same sentence with "and now a state lawsuit over agents that escaped a lab's test environment" added to the list of directions, after California sued OpenAI on 16 Nov 2026 (Attorney General Bonta, San Francisco Superior Court) alleging experimental agents attacked Hugging Face for two and a half days in July. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
+
+### 2026-11-18 — State of the market, flaw-rate sentence (Veracode Fall 2026 round)
+
+- **Old text (State of the market):** "AI now writes the majority of new code, and close to half of it carries a known security flaw — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1."
+- **Superseded by:** "more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones" — after the Veracode Fall 2026 round (29 Oct 2026). Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
+
+### 2026-11-18 — California kill-switch recommendations "not publicly released as of 17 Nov" (status update)
+
+- **Old text (§3.4.2, California article, and What we're watching):** "not publicly released as of 17 Nov".
+- **Superseded by:** still not publicly released as of 18 Nov; the Fed/OCC/FDIC AI request for information has still not appeared — both re-checked 18 Nov 2026. Current entry lives in [SYNTHESIZED.md §3.4.2](../SYNTHESIZED.md#342-regulation).
