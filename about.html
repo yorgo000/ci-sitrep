@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — CI SITREP</title>
+<title>About</title>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -159,6 +159,10 @@
   main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
   main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
   main th { background: var(--side-bg); font-weight: 600; }
+  /* Pair tables (CI vs EI page): the CI column reads rust and the EI
+     column navy — the same colour meaning as the dashboard strip. */
+  table.pair-table th:nth-child(2), table.pair-table td:nth-child(2) { color: #b3543f; }
+  table.pair-table th:nth-child(3), table.pair-table td:nth-child(3) { color: #283060; }
   main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
   main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
   main em { color: var(--muted); }
@@ -185,7 +189,7 @@
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
     <p class="back"><a href="index.html">&larr; Back to the report</a></p>
-    <h2>Contents</h2>
+    <h2>PAGE CONTENTS</h2>
     <div class="toc">
 <ul>
 <li><a href="#what-this-report-is">What this report is</a></li>
@@ -208,7 +212,7 @@
 <p>Every article carries a confidence rating — a dots score for how much confidence you can place in its finding. See the legend on the main page for what each level means.</p>
 <h2 id="how-this-is-made">How this is made</h2>
 <p>CI SITREP is a Right-Time Situational Awareness Tool, published by Confluence&lt;1&gt;. It exists so that we only need to monitor one SITREP — and now we're letting you in on it too.</p>
-<p>It takes a lot to put together. For example this week so far we have reviewed 212 sources and kept 35 of them — a 16.5% acceptance rate. Most of what we review doesn't clear the bar. The result is 81 findings, every one confidence-rated (43% Established or Corroborated), drawn from 195 source links across 61 unique domains, every one verified live. Before anything publishes, it passes 53 automated checks. The work is done by 5 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.</p>
+<p>It takes a lot to put together. Since tracking began on 12 November we have reviewed 262 sources and kept 39 of them — a 14.9% acceptance rate. Most of what we review doesn't clear the bar. The result is 85 findings, every one confidence-rated (42% Established or Corroborated), drawn from 201 source links, every one verified live. Before anything publishes, it passes 53 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.</p>
 <p><strong>How we choose what to look at.</strong> There is no fixed list of sources to defend. The radar runs fresh every morning across the three subjects — sanitizing CI-generated code before it is committed, sanitizing it once it is already in a codebase, and the design, build and deployment of agentic collectives — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.</p>
 <p><strong>What it is for.</strong> Advising the finance industry on critical technologies and building the critical systems that they depend on. It is designed to be useful to elite operators — people with profit-and-loss responsibility who need the information that sits behind the good calls - and nothing they don't need.</p>
 <h2 id="contact">Contact</h2>
