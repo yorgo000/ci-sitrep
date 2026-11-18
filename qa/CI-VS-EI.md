@@ -20,7 +20,7 @@ Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from case
 |---|---|---|---|
 | Vulnerabilities in patches | **135** manually confirmed vulnerabilities (Llama 3.3, SWE-bench train+test) | **12** in developer patches for the same issues | [Sajadi et al. §1.6](index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of) · 1 Nov 2026 · preprint · ●●○○ Reported |
 | Vulnerabilities in patches, newer model | **3** vulnerabilities (GPT-5.4 nano, test set) | **2** in developer patches for the same issues | [Sajadi et al. §1.6](index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of) · 1 Nov 2026 · preprint · ●●○○ Reported |
-| Vulnerability rate, equivalent tasks | **up to 2.74×** the vulnerabilities of human code (maximum across categories); 1.7× more major issues | **1×** baseline (human-written code, 470 PRs) | [CodeRabbit §1.1](index.html#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code) · Dec 2025 · vendor's own analysis · ●○○○ Claimed |
+| Vulnerability rate, equivalent tasks | **up to 2.74×** the vulnerabilities of human code (maximum across categories); 1.7× more major issues | **1×** baseline (human-written code, 150 of 470 PRs) | [CodeRabbit §1.1](index.html#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code) · Dec 2025 · vendor's own analysis · ●○○○ Claimed |
 
 ### Partial comparisons
 
