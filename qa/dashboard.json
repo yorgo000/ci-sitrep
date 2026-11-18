@@ -37,7 +37,7 @@
    "tile": "pie"
   },
   {
-   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 squares.",
+   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
    "caption": "Share of 147 vulnerabilities counted",
    "chart": {
     "a": {
@@ -151,7 +151,8 @@
    "label": "OSFI E-23 takes effect"
   }
  ],
- "note": "Every number below links to the article that evidences it; the article's Source line takes you to the primary source. Pie colours follow the split: rust is the AI side where the split is AI versus human; otherwise blue is the favourable side and rust the adverse side, with grey for the unclassified rest. Tile background tint is the finding's sentiment for a firm building critical systems in finance: blue is favourable, rust adverse, grey neutral.",
+ "note": "Every number below links to the article that evidences it; the article's Source line takes you to the primary source. Pie colours follow the split: rust is the AI side where the split is AI versus human; otherwise blue is favourable, rust adverse, grey the unclassified rest.",
+ "tint_note": "Tile background tint is the finding's sentiment for a firm building critical systems in finance: blue is favourable, rust adverse, grey neutral.",
  "panels": [
   {
    "blocks": [
@@ -1079,7 +1080,7 @@
       {
        "also": [
         {
-         "anchor": "#ai-code-carries-up-to-274-the-vulnerabilities-independent",
+         "anchor": "#ai-code-carries-up-to-274-the-vulnerabilities-the-register",
          "label": "§2.1"
         }
        ],
@@ -1103,7 +1104,7 @@
        "kind": "stat",
        "label": "vulnerability rate, AI vs human code",
        "link": "#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
-       "note": "2.74× is the maximum across vulnerability categories (worst: cross-site scripting); overall rate 1.7×.",
+       "note": "2.74× is the maximum across vulnerability categories (worst: cross-site scripting); 1.7× more major issues.",
        "rating": "claimed",
        "sentiment": "negative",
        "source": "CodeRabbit",
