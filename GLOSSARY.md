@@ -24,6 +24,11 @@ for what Confluence<1> calls a CII.
 and making decisions, rather than only responding to prompts. Agentic AI does
 things, not just says things.
 
+**agentic commerce** — Buying, selling, or moving money by AI agents acting
+on a customer's behalf, without the customer executing each step. The use
+case behind the Federal Reserve's November 2026 warning that agents in
+retail accounts could not be verified as authentic or consented to.
+
 **AI-BOM (AI bill of materials)** — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
 record you need to audit, patch, or roll back an agent.
