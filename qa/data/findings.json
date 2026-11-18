@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18T19:23:35.363113+00:00",
+ "generated_at": "2026-11-18T19:50:51.089634+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -79,10 +79,10 @@
    "date": "Dec 2025",
    "flag": "VENDOR CLAIM",
    "bullets": [
-    "CI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).",
+    "AI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).",
     "CodeRabbit's own analysis — treat as a vendor claim."
    ],
-   "voiceover": "AI code carries up to 2.74 times the vulnerabilities of human code. CI-generated code had 1.7 times more major issues and up to 2.74 times the security-vulnerability rate of human-written code for equivalent tasks (2.74 times is the maximum across vulnerability categories , worst is cross-site scripting).",
+   "voiceover": "AI code carries up to 2.74 times the vulnerabilities of human code. AI-generated code had 1.7 times more major issues and up to 2.74 times the security-vulnerability rate of human-written code for equivalent tasks (2.74 times is the maximum across vulnerability categories , worst is cross-site scripting).",
    "id": "ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
    "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code"
   },
@@ -633,19 +633,19 @@
    "subsection": "2.1 How big the problem is",
    "rating": "claimed",
    "rating_dots": "●○○○",
-   "source": "independent PR analysis",
+   "source": "The Register",
    "source_label": "The Register, on the CodeRabbit study",
    "source_url": "https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263",
-   "source_context": "independent PR analysis, 470 GitHub PRs, reported 2026",
-   "date": "2026",
+   "source_context": "The Register, on the CodeRabbit study, 470 GitHub PRs, Dec 2025",
+   "date": "Dec 2025",
    "flag": null,
    "bullets": [
     "AI-written code carries up to 2.74× the vulnerabilities of human-written code and 1.7× more major issues (2.74× is the maximum across vulnerability categories).",
     "*[Secondary reporting; indicative, not a named primary study.]*"
    ],
    "voiceover": "AI code carries up to 2.74 times the vulnerabilities. AI-written code carries up to 2.74 times the vulnerabilities of human-written code and 1.7 times more major issues (2.74 times is the maximum across vulnerability categories).",
-   "id": "ai-code-carries-up-to-274-the-vulnerabilities-independent",
-   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-independent"
+   "id": "ai-code-carries-up-to-274-the-vulnerabilities-the-register",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-the-register"
   },
   {
    "headline": "322% more privilege-escalation paths in AI-assisted repos",
