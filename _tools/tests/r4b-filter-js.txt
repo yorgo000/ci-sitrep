@@ -1,0 +1,324 @@
+
+<script>
+(function () {
+  // Page-level filter/sort (Round 4): ONE set of controls filters the
+  // whole page — dashboard tiles AND report articles. Matching is AND
+  // across dimensions; within a dimension an element matches if ANY of
+  // its values equals ANY selected value (Type is multi-choice, so a
+  // dimension can hold several selections). An element with no value
+  // for a filtered dimension does NOT match — the interim
+  // untagged-visible rule retired with the tag backfill (a Company
+  // selection means what it says; an untagged article is not evidence
+  // about that company). The ONLY exemption is elements that cannot be
+  // tagged: the §3.6 figures and the money bignote carry
+  // .tile-untagged and are never hidden (and no sort moves them).
+  // Filtered-out tiles/articles are hidden, not greyed out. A panel
+  // with zero visible tiles hides entirely; a report subsection hides
+  // when all its articles filter out, and a section hides when all its
+  // subsections hide (a section with no articles — the front-page
+  // sections, prose sections — never hides). The strips never filter.
+  // Sorting reorders tiles WITHIN each panel only — articles filter
+  // but do not sort (sorting them would scramble the report's
+  // editorial structure). Block labels hide while a non-default sort
+  // is active (they would no longer describe the tiles under them);
+  // pinned tiles (the full-width bignote, the untaggable §3.6 figures)
+  // keep their editorial positions and the sorted tiles fill the
+  // remaining slots. Share links open unfiltered: filter state is
+  // per-page-load only, and any in-page jump into the dashboard or the
+  // report clears the filters first so the target is always visible
+  // (this covers search-result clicks too).
+  var bar = document.getElementById('dash-filters');
+  if (!bar) return;
+  var embed = document.querySelector('.dash-embed');
+  if (!embed) return;
+  var report = document.querySelector('.report-embed');
+  var tiles = Array.prototype.slice.call(embed.querySelectorAll('.tile-grid .tile'));
+  var grids = Array.prototype.slice.call(embed.querySelectorAll('.tile-grid'));
+  var articles = report
+    ? Array.prototype.slice.call(report.querySelectorAll('details[data-subject]'))
+    : [];
+  var countEl = document.getElementById('dash-count');
+  var emptyEl = document.getElementById('dash-empty');
+  var reportEmptyEl = document.getElementById('report-empty');
+  var indicatorEl = document.getElementById('sfp-active');
+  var totalFigures = tiles.length;
+  var totalArticles = articles.length;
+  var selects = Array.prototype.slice.call(bar.querySelectorAll('select[data-filter]'));
+  var typeBoxes = Array.prototype.slice.call(bar.querySelectorAll('input[type="checkbox"][data-filter]'));
+  var sortSel = document.getElementById('dash-sort');
+  var sortDirBtn = document.getElementById('dash-sort-dir');
+  var sortDirLabel = sortDirBtn ? sortDirBtn.querySelector('.sort-dir-label') : null;
+  // Indicator order: control order, top line first, then More filters.
+  var DIM_ORDER = ['industry', 'severity', 'pnl-impact', 'horizon',
+                   'register', 'subject', 'type', 'confidence',
+                   'jurisdiction', 'company'];
+  var DIM_LABEL = {industry: 'Industry', severity: 'Severity',
+                   'pnl-impact': 'P&L impact', horizon: 'Horizon',
+                   register: 'Technical level', subject: 'Section',
+                   type: 'Type', confidence: 'Confidence',
+                   jurisdiction: 'Jurisdiction', company: 'Company'};
+  // Sort: per-key default direction (the option labels state it), and
+  // the rank orders for dimensions with a natural (non-alphabetical)
+  // order. Set dimensions sort alphabetically by first value; the
+  // register is a depth scale (technical first); horizon is
+  // chronological (soonest first); subject is section order with
+  // Cross-cutting last (it is the residual bucket).
+  var SORT_DEFAULT_DIR = {date: 'desc', confidence: 'desc',
+                          severity: 'desc', horizon: 'asc', subject: 'asc',
+                          type: 'asc', industry: 'asc', 'pnl-impact': 'asc',
+                          register: 'asc', jurisdiction: 'asc',
+                          company: 'asc'};
+  var ORDER_RANK = {
+    severity: {critical: 4, material: 3, directional: 2, background: 1},
+    horizon: {immediate: 0, quarter: 1, year: 2, longer: 3},
+    subject: {'1': 0, '2': 1, '3': 2, '0': 3},
+    register: {technical: 0, mixed: 1, business: 2}
+  };
+  var sortDir = 'desc';
+  // Remember editorial order (per grid child, labels included) so
+  // "Panel order" restores the exact original sequence.
+  grids.forEach(function (g) {
+    Array.prototype.slice.call(g.children).forEach(function (kid, i) { kid._orig = i; });
+  });
+  function activeFilters() {
+    var out = {};
+    selects.forEach(function (s) { if (s.value) out[s.getAttribute('data-filter')] = [s.value]; });
+    var checked = [];
+    typeBoxes.forEach(function (b) { if (b.checked) checked.push(b.value); });
+    if (checked.length) out[typeBoxes[0].getAttribute('data-filter')] = checked;
+    return out;
+  }
+  function valuesOf(el, dim) {
+    var attr = el.getAttribute('data-' + dim);
+    if (!attr) return null;
+    // Company values contain spaces ("Black Duck"), so data-company is
+    // comma-joined; every other dimension is space-joined tokens.
+    return dim === 'company' ? attr.split(',') : attr.split(' ');
+  }
+  function matches(el, filters) {
+    for (var dim in filters) {
+      var vals = valuesOf(el, dim);
+      if (!vals) return false;
+      var want = filters[dim];
+      var hit = false;
+      for (var i = 0; i < want.length; i++) {
+        if (vals.indexOf(want[i]) !== -1) { hit = true; break; }
+      }
+      if (!hit) return false;
+    }
+    return true;
+  }
+  function tileMatches(tile, filters) {
+    // Untaggable figures are never hidden by any filter.
+    if (tile.classList.contains('tile-untagged')) return true;
+    return matches(tile, filters);
+  }
+  function updateIndicator(filters) {
+    if (!indicatorEl) return;
+    var names = [];
+    DIM_ORDER.forEach(function (dim) { if (filters[dim]) names.push(DIM_LABEL[dim]); });
+    if (!names.length) { indicatorEl.textContent = ''; return; }
+    var shown = names.slice(0, 3);
+    var extra = names.length - shown.length;
+    var text = ' \u00b7 ' + names.length + ' filter' +
+      (names.length === 1 ? '' : 's') + ' active: ' + shown.join(', ');
+    if (extra) text += ' +' + extra + ' more';
+    indicatorEl.textContent = text;
+  }
+  function updateLabels() {
+    // A block label hides when every tile between it and the next label
+    // (or the grid end) is hidden, and returns when any reappears. The
+    // labels live inside each panel's .tile-grid, so this works with
+    // the runtime DOM — the collapse JS wraps the panel content in a
+    // .section-body, but the grid and its children are unchanged by it.
+    // While a non-default sort is active the labels stay hidden
+    // regardless: the sort has reordered the tiles, so a label no
+    // longer describes the tiles under it.
+    var sorted = sortSel.value !== 'panel';
+    grids.forEach(function (g) {
+      var kids = Array.prototype.slice.call(g.children);
+      kids.forEach(function (kid, i) {
+        if (!kid.classList.contains('block-label')) return;
+        var anyVisible = false;
+        for (var j = i + 1; j < kids.length; j++) {
+          if (kids[j].classList.contains('block-label')) break;
+          if (kids[j].classList.contains('tile') &&
+              kids[j].style.display !== 'none') { anyVisible = true; break; }
+        }
+        kid.style.display = (anyVisible && !sorted) ? '' : 'none';
+      });
+    });
+  }
+  function updateSections() {
+    if (!report) return;
+    // Every report heading hides with its section-body when the body
+    // holds articles and every one is filtered out. A body with no
+    // articles (the front-page sections, prose sections) never hides —
+    // the unfiltered sections stay visible by construction.
+    report.querySelectorAll('h2, h3, h4').forEach(function (h) {
+      var body = h.nextElementSibling;
+      if (!body || !body.classList.contains('section-body')) return;
+      var arts = body.querySelectorAll('details[data-subject]');
+      if (!arts.length) return;
+      var anyVisible = false;
+      arts.forEach(function (a) { if (a.style.display !== 'none') anyVisible = true; });
+      h.style.display = anyVisible ? '' : 'none';
+      body.style.display = anyVisible ? '' : 'none';
+    });
+  }
+  function applyFilters() {
+    var filters = activeFilters();
+    var visible = 0;
+    tiles.forEach(function (t) {
+      var show = tileMatches(t, filters);
+      t.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    var anyPanelVisible = false;
+    embed.querySelectorAll('h3.dash-panel').forEach(function (h) {
+      var body = h.nextElementSibling;
+      if (!body || !body.classList.contains('section-body')) return;
+      var vis = 0;
+      body.querySelectorAll('.tile-grid .tile').forEach(function (t) {
+        if (t.style.display !== 'none') vis++;
+      });
+      h.style.display = vis ? '' : 'none';
+      body.style.display = vis ? '' : 'none';
+      if (vis) anyPanelVisible = true;
+    });
+    var visArticles = 0;
+    articles.forEach(function (a) {
+      var show = matches(a, filters);
+      a.style.display = show ? '' : 'none';
+      if (show) visArticles++;
+    });
+    updateSections();
+    if (emptyEl) emptyEl.hidden = anyPanelVisible;
+    if (reportEmptyEl) reportEmptyEl.hidden = visArticles > 0;
+    // The count is always shown — hiding it when unfiltered meant it
+    // vanished after Clear all and never appeared on a fresh load
+    // until a filter was applied.
+    if (countEl) {
+      countEl.hidden = false;
+      countEl.textContent = 'Showing ' + visible + ' of ' + totalFigures +
+        ' figures \u00b7 ' + visArticles + ' of ' + totalArticles + ' articles';
+    }
+    updateLabels();
+    updateIndicator(filters);
+  }
+  function sortValue(tile, key) {
+    if (key === 'date') {
+      var d = tile.getAttribute('data-date');
+      return d ? Date.parse(d) : null;
+    }
+    if (key === 'confidence') {
+      var r = tile.getAttribute('data-rating');
+      return r ? +r : null;
+    }
+    var vals = valuesOf(tile, key);
+    if (!vals) return null;
+    var first = vals[0];
+    if (ORDER_RANK[key]) return ORDER_RANK[key][first];
+    return first.toLowerCase();
+  }
+  function compareTiles(a, b, key) {
+    var va = sortValue(a, key), vb = sortValue(b, key);
+    if (va === null && vb === null) return a._orig - b._orig;
+    if (va === null) return 1;   // a missing key sorts last, either direction
+    if (vb === null) return -1;
+    var c = (va < vb) ? -1 : (va > vb) ? 1 : 0;
+    if (sortDir === 'desc') c = -c;
+    return c || (a._orig - b._orig);
+  }
+  function isPinned(t) {
+    // Full-width tiles (the money bignote) and untaggable figures keep
+    // their editorial positions under any sort.
+    return t.classList.contains('tile-span-3') ||
+           t.classList.contains('tile-untagged');
+  }
+  function applySort() {
+    var key = sortSel.value;
+    grids.forEach(function (g) {
+      var kids = Array.prototype.slice.call(g.children);
+      if (key === 'panel') {
+        kids.sort(function (a, b) { return a._orig - b._orig; });
+        kids.forEach(function (k) { g.appendChild(k); });
+        return;
+      }
+      var sortable = kids.filter(function (k) {
+        return k.classList.contains('tile') && !isPinned(k);
+      });
+      sortable.sort(function (a, b) { return compareTiles(a, b, key); });
+      // Pinned tiles and block labels keep their positions; the sorted
+      // tiles fill the remaining slots in order.
+      var i = 0;
+      kids.forEach(function (k) {
+        if (k.classList.contains('tile') && !isPinned(k)) g.appendChild(sortable[i++]);
+        else g.appendChild(k);
+      });
+    });
+    updateLabels();
+  }
+  function setSortDir(dir) {
+    sortDir = dir;
+    if (sortDirLabel) sortDirLabel.textContent = dir === 'desc' ? 'Descending' : 'Ascending';
+    if (sortDirBtn) sortDirBtn.classList.toggle('asc', dir === 'asc');
+  }
+  function syncSortDirState() {
+    // Direction is meaningless for editorial order: the toggle is
+    // disabled while Panel order is selected.
+    if (!sortDirBtn) return;
+    var panel = sortSel.value === 'panel';
+    sortDirBtn.disabled = panel;
+    sortDirBtn.setAttribute('aria-disabled', panel ? 'true' : 'false');
+  }
+  function clearFilters() {
+    // Back to the default state: filters cleared (selects and Type
+    // boxes), sort back to Panel order (and the tiles restored to
+    // editorial order), More filters collapsed. The count line and the
+    // header indicator update via applyFilters.
+    selects.forEach(function (s) { s.value = ''; });
+    typeBoxes.forEach(function (b) { b.checked = false; });
+    sortSel.value = 'panel';
+    setSortDir('desc');
+    syncSortDirState();
+    applySort();
+    var more = bar.querySelector('.dash-more-filters');
+    if (more) more.open = false;
+    applyFilters();
+  }
+  selects.forEach(function (s) { s.addEventListener('change', applyFilters); });
+  typeBoxes.forEach(function (b) { b.addEventListener('change', applyFilters); });
+  sortSel.addEventListener('change', function () {
+    if (sortSel.value !== 'panel') setSortDir(SORT_DEFAULT_DIR[sortSel.value] || 'asc');
+    syncSortDirState();
+    applySort();
+  });
+  if (sortDirBtn) sortDirBtn.addEventListener('click', function () {
+    setSortDir(sortDir === 'desc' ? 'asc' : 'desc');
+    applySort();
+  });
+  document.querySelectorAll('[data-clear-filters]').forEach(function (btn) {
+    btn.addEventListener('click', clearFilters);
+  });
+  // Initialise from the DOM: the count reads "Showing 62 of 62 figures
+  // · 85 of 85 articles" on fresh load (the server renders the same
+  // text; this confirms it against the tiles and articles actually
+  // present) and the labels start in their unfiltered state.
+  syncSortDirState();
+  applyFilters();
+  // A shared tile/article link, a search result, or a TOC jump into the
+  // dashboard or the report must land on a visible target: clear the
+  // filters before the browser follows the anchor (this runs before
+  // hashchange).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (target && (embed.contains(target) ||
+                   (report && report.contains(target)))) clearFilters();
+  });
+})();
+</script>
