@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-18T17:13:10.466707+00:00",
+ "generated_at": "2026-11-18T17:37:50.952464+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
   "articles": 85,
   "whats_new": 49,
-  "glossary": 91,
+  "glossary": 92,
   "deadlines": 4,
   "gauges": 4
  },
@@ -3074,6 +3074,10 @@
    "definition": "Permissions by job, not by person: each role gets exactly the access its job needs, nothing more. Applies to agents as well as people."
   },
   {
+   "term": "recall",
+   "definition": "In evaluation, the share of the target items a system catches. A review tool with 78% recall catches 78 of every 100 vulnerability-introducing changes; the other 22 slip through."
+  },
+  {
    "term": "red team",
    "definition": "A group that attacks a system (or an AI) on purpose, playing the adversary, to find weaknesses before a real attacker does. The counterpart of the \"blue team\" that defends."
   },
@@ -3135,7 +3139,7 @@
   },
   {
    "term": "vibe coding",
-   "definition": "Writing software by describing what you want to an AI in plain language and accepting what it produces, with little or no reading of the code. Fast; Veracode's finding is that ~45% of AI-generated code carries a known security flaw. ## X"
+   "definition": "Writing software by describing what you want to an AI in plain language and accepting what it produces, with little or no reading of the code. Fast; Veracode's finding is that ~38% of AI-generated code carries a known security flaw. ## X"
   },
   {
    "term": "XSS (cross-site scripting)",
@@ -3231,12 +3235,12 @@
    "kind": "stat",
    "title": "Agent time horizon (50% reliability)",
    "display": "~7 months",
-   "headline": "~7 months for the 50%-reliability time horizon to double",
+   "headline": "~7 months for agents to handle tasks twice as long, half the time",
    "source": "METR",
    "date": "2026",
    "rating": "corroborated",
    "link": "#36-evaluation",
-   "note": "the 80% horizon is far shorter"
+   "note": "at 80% success, the task length is far shorter"
   }
  ],
  "warnings": [
