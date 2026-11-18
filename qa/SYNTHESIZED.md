@@ -178,7 +178,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 <details>
 <summary><strong>AI code carries up to 2.74× the vulnerabilities of human code</strong> ([CodeRabbit](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report), Dec 2025, 470 PRs) — [VENDOR CLAIM] ●○○○</summary>
 
-- CI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).
+- AI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).
 - CodeRabbit's own analysis — treat as a vendor claim.
 - Source: [CodeRabbit, State of AI vs Human Code Generation Report, Dec 2025](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)
 </details>
@@ -623,7 +623,7 @@ Tools, techniques, and best practices for detecting and remediating the defects 
 
 <!-- tags: subject=1,2 | type=benchmark | confidence=claimed | severity=directional | jurisdiction=global | source-date=2025-12-17 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=CodeRabbit -->
 <details>
-<summary><strong>AI code carries up to 2.74× the vulnerabilities</strong> ([independent PR analysis](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263), 470 GitHub PRs, reported 2026) ●○○○</summary>
+<summary><strong>AI code carries up to 2.74× the vulnerabilities</strong> ([The Register](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263), on the CodeRabbit study, 470 GitHub PRs, Dec 2025) ●○○○</summary>
 
 - AI-written code carries **up to 2.74× the vulnerabilities** of human-written code and 1.7× more major issues (2.74× is the maximum across vulnerability categories).
 - *[Secondary reporting; indicative, not a named primary study.]*
