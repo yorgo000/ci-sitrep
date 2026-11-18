@@ -11,7 +11,7 @@ the date.
 
 **Scope:** this file governs the report itself (SYNTHESIZED.md and the
 generated site). The publication's future features live in FUTURE.md. The
-tagging taxonomy lives in TAXONOMY_DRAFT.md (draft, awaiting approval).
+tagging taxonomy lives in TAXONOMY_DRAFT.md (approved v2, 2026-11-18).
 
 ---
 
@@ -79,25 +79,26 @@ the file is hierarchical, with a table of contents.
 **Front page, in order:**
 
 **Row 1** — the As-of banner and the Sections expand/collapse controls,
-on one row (banner left, controls right).
-**Row 2** — the search box (§4).
-**Row 3** — **How to read this**, one collapsed block holding everything
-before "New in the last 7 days" (the intro line, the confidence legend, the
-caveats). Right-justified when collapsed; full width when open. It must
-not attract attention.
-The mobile inline Contents sits between row 2 and row 3 (hidden on
-desktop); the sidebar Contents lives in the masthead (§4).
+on one row (banner left, controls right). On phones, "How to read this"
+also sits centered in row 1 — a phones-only copy of the masthead
+control (§4); on desktop it is hidden.
+**Row 2** — the Search/Filter/Sort panel (§4): one collapsed block
+holding the search box, the filters, and the sort control. Collapsed
+by default.
+The mobile inline PAGE CONTENTS sits between row 2 and the dashboard section
+(hidden on desktop); the sidebar PAGE CONTENTS lives in the masthead (§4).
 
 Then the two top-level sections, both starting OPEN:
 
 1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
-   `dashboard.json`: the bottom-line strip (seven items in a 3+3+1
-   grid — six charted cards in two rows of three, then the
+   `dashboard.json`: the bottom-line strip (seven tiles in a 3+3+1
+   grid — six charted tiles in two rows of three, then the
    profitability item full-width, reading "Insufficient data" and
-   linking to the money panel; pies for the percentages, comparison
-   bars for the multipliers, one colour scheme throughout — rust is
-   the AI side, blue the not-AI side; the WHOLE strip card is one link
-   to its evidencing article, like the countdown cards), the countdown strip (labelled
+   linking to the money panel; pie tiles for the percentages, a ratio
+   tile for the multiplier, a waffle tile for the count-share, a
+   big-number tile for the count; pie colours follow the split, §4;
+   the WHOLE strip tile is one link
+   to its evidencing article, like the countdown tiles), the countdown strip (labelled
    "COUNTDOWN") and the five panels,
    every figure linked to the report article that evidences it. (The
    standalone dashboard page is gone; `dashboard.html` redirects to
@@ -133,6 +134,27 @@ Then the two top-level sections, both starting OPEN:
 `<summary>`) with one fact per bullet inside. The headline carries the
 finding, the source in a parenthetical with the date, and the confidence rating (§3). Every article ends with a Source bullet (§3).
 
+**Tagging.** Every article carries one tag line — an HTML comment
+directly above its headline — in the taxonomy's fixed 12-dimension
+field order (subject, type, confidence, severity, jurisdiction,
+source-date, sector, industry, register, pnl-impact, horizon,
+company). Set dimensions are multi-value: no tie-breaks — use both
+values where both fit. Level dimensions (confidence, severity,
+register, horizon) are single-value; when in doubt, pick the lower /
+less alarming. Multi-value fields list values in taxonomy-table
+order. **Mirrored pairs:** the same finding mirrored in two sections
+carries both subjects on both instances; distinct findings from the
+same source stay section-pure. **Company** is the item's subject, not
+its source: a named recurring benchmark, instrument, or report counts
+its maker; one-off studies and surveys of third parties do not tag
+their measurer or publisher. **Dates:** the headline source's date
+when one exists, else the most-recent constituent. The tag join
+parses SYNTHESIZED.md directly (`build_dashboard.py`'s shared parser
+— one parser, never duplicated): articles and tiles carry `data-*`
+attributes from their tag lines for the filter panel (§4).
+`data-company` is comma-joined — company values contain spaces — all
+other dimensions space-joined.
+
 **See also cross-links.** One-line collapsible blocks at the end of
 sub-sections, linking related sections across the three subjects. When a
 new item is cross-cutting — the same evidence, control, regulation, or
@@ -158,30 +180,38 @@ alphabetical place under the right letter heading. Changing
 
 **Dashboard.** `dashboard.json` is the single source of truth for the
 executive dashboard (F-01): five panels of at-a-glance figures, every
-figure carrying its value, label, source, rating, date, and a link to
-the report article that evidences it, plus a `bottom_line` list (seven
-items rendered as a strip above the countdown — rating and date
-optional, since the profitability item has neither; each item carries
-a chart where its figure has one — a pie for a percentage (number next
-to the pie, two-chip legend), comparison bars for a multiplier, a
-question mark in a circle for the profitability item, which has no
-data — all on one colour scheme, rust (#b3543f) for the AI side, blue
-(#283060) for the not-AI side; and the profitability item is
-full-width, last, with `"full": true`) and a deadlines
-list for the countdown strip. The link is the article's runtime id (assigned by the
-share JS from the headline) — a section anchor is not specific enough:
-the reader must land on the article itself, where its Source line
-takes them to the primary source. Where a conclusion draws on a second
-headline article in another subsection, the figure carries an "also"
-list ({anchor, label}) rendered after the source name. The one
-exception is §3.6 (Evaluation), which is prose, not articles: its
-figures link to the section anchor until the content becomes articles.
-It is embedded in the report page as the first
+figure carrying its value, label, source, rating, date,
+and a link to the report article that evidences it, plus a `bottom_line`
+list (seven items rendered as a strip above the countdown — rating and
+date optional, since the profitability item has neither; each item
+carries a tile where its figure has one — a pie tile for a percentage
+(number next to the pie, block-level legend rows), a ratio tile for a
+multiplier, a waffle tile for a count-share, a big-number tile for a
+count, a question mark in a circle for the profitability item, which
+has no data — pie colours follow the split, §4; and the profitability
+item is full-width, last, with `"full": true`) and a deadlines
+list for the countdown strip. Tile ids derive from the figure's stable
+`key`, never from its label slug — a label reword must not break a
+shared tile link. (Decided 2026-11-18; migration pending — no figure
+carries a `key` yet, and ids still derive from label slugs until it
+lands.) Every pie-family figure carries `pie_split` (§4); the
+segmented pie carries a per-segment `tone` instead. The link is the
+article's runtime id (assigned by the share JS from the headline) — a
+section anchor is not specific enough: the reader must land on the
+article itself, where its Source line takes them to the primary
+source. Where a conclusion draws on a second headline article in
+another subsection, the figure carries an "also" list ({anchor, label})
+rendered after the source name. The one exception is §3.6 (Evaluation),
+which is prose, not articles: its figures link to the section anchor
+until the content becomes articles. The dashboard intro carries a
+second paragraph, `tint_note`, stating what the tile background tint
+means (§4). It is embedded in the report page as the first
 top-level section (EXECUTIVE DASHBOARD): `build_html.py` imports
 `_tools/build_dashboard.py` to render it, and validates every figure
 against the generated `index.html` (required fields, rating in the
-four levels, bar values 0–100, link anchors exist in `index.html` or
-among the computed article ids) —
+four levels, `pie_split` in its six values, waffle figures count-vs-count
+with a minority share ≥ 2%, history join rules, link anchors exist in
+`index.html` or among the computed article ids) —
 a bad entry exits 1; fix the data, never weaken the check.
 `compute_article_ids()` in `_tools/build_dashboard.py` replicates the
 share JS's slugify + uniqueId — the two implementations must stay in
@@ -193,7 +223,24 @@ honest statement is "no credible dollar figure exists yet". The daily
 watch updates a figure when a new article moves a headline number, and
 updates the deadlines list the day a What-we're-watching date lands, so
 the countdown strip never shows a passed date. Panel order is editorial
-(audience-first), not numeric.
+(audience-first), not numeric. `as_of_label` rolls to the release date
+whenever dashboard content changes.
+
+**Dashboard history.** `dashboard-history.json` is the append-only log
+of dated values behind the sparkline tiles, keyed by figure; a figure
+joins it by its `history_key`. A figure becomes a sparkline tile when
+its series holds 2+ VERIFIED dated values of the same metric from the
+same series (same survey/benchmark, same question/population) — a
+forecast is never a point, and no point is invented or read off an
+unreadable chart. Lower bounds plot at the bound value with `>` in the
+display; points derived from the source's own stated deltas
+(subtraction) or stated counts (division) are legitimate recomputation,
+flagged in the fig-note. Validate: the key exists, 2+ points, ascending
+dates, the last point's display equals the figure's display. Sparkline
+captions list every point: a multi-year series keeps the full label on
+every point; a single-year series carries the year once as a prefix
+("2026: Spring ~45% → Jul ~44% → Fall ~38%"). One-off studies,
+incidents, and counts with no repeated measurement never get a series.
 
 **CI vs EI page.** `CI-VS-EI.md` builds to `ci-vs-ei.html` via
 `build_page.py` — the dedicated always-on view of every CI figure
@@ -350,23 +397,29 @@ is identical on every page: the CI SITREP / Code & Finance wordmark +
 tagline ("Created Intelligence in code and finance — as of today."),
 and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
 the logo, cube cropped out) — the logo stays in the masthead
-everywhere, all the time. On the report page the heading is followed
-by the nav links, in this order: Self-Audit, Glossary, CI vs EI, The
-names: CI, CII, CIC, Foundational theses, Archive, About — then the Contact
-section (heading "Contact": errors, omissions, and feature requests
-to ci-sitrep@confluence1.com; working with Confluence<1> to
-hello@confluence1.com — both mailto links), then the confidence rating legend (a collapsed `<details>`, summary "Confidence rating scale";
+everywhere, all the time. On the report page the heading is followed,
+in this order: "How to read this" (a collapsed `<details>`, summary
+in the masthead-header treatment — 13px, uppercase, letter-spaced,
+muted, not italic — mirroring the confidence legend; body 13px muted;
+its inline links need an explicit inline override, since sidebar links
+are block-level nav rows); the nav, headed "SITREP sections", with
+the links in this order: Self-Audit, Glossary, CI vs EI, The
+names: CI, CII, CIC, Foundational theses, Archive, About; the page
+Contents, titled "PAGE CONTENTS"; the confidence rating legend (a
+collapsed `<details>`, summary "Confidence rating scale";
 starts closed — the dots are also explained in "How to read this" and
 carry their words in the dashboard; its padding-bottom and the
 summary's margin apply only when open, so the closed line has no
-blank space under it), the Contents index,
-and the copyright line "© 2026 Confluence<1> Corp. All rights
-reserved." The nav ends with one restrained conversion link — "Work
-with Confluence<1>", jumping to About's Contact section — set apart
-from the content links by a separator line. It is the only conversion
-element on the report page; no CTAs inside the content (see F-12,
-Dropped). On the sub-pages the heading is followed by a "← Back to
-the report" link and the Contents index (see Navigation).
+blank space under it); the Contact section (heading "Contact":
+errors, omissions, and feature requests to
+ci-sitrep@confluence1.com; working with Confluence<1> to
+hello@confluence1.com — both mailto links); and the copyright line
+"© 2026 Confluence<1> Corp. All rights reserved." No CTAs inside the
+content (see F-12, Dropped). On the sub-pages the heading is followed
+by a "← Back to the report" link and the PAGE CONTENTS index (see
+Navigation). "How to read this" also renders as a phones-only copy in
+row 1 (§2) — one source, emitted twice, so the copies cannot drift;
+on phones the page looks unchanged by design.
 
 **Section headings.** The two top-level sections (EXECUTIVE DASHBOARD,
 REPORT) are the visual top of the hierarchy, their heading text in
@@ -386,10 +439,12 @@ reader drills in.) Article headlines are native `<details>` and
 start collapsed. Jumping to an anchor auto-expands its ancestors —
 including the target heading itself. "Collapse all" returns the page to
 its initial state: it closes everything except the two top-level
-sections. "How to read this" is regular weight, italic, muted — not
-attracting attention; it sits centered in row 1, between the As-of
+sections. "How to read this" lives in the masthead (see Masthead);
+its phones-only row-1 copy is regular weight, italic, muted — not
+attracting attention — sits centered in row 1, between the As-of
 banner and the Sections controls, and drops to a full-width line when
-opened. On the content pages (About, Explainer, Theses, Archive,
+opened. The Search/Filter/Sort panel (§4) starts collapsed.
+On the content pages (About, Explainer, Theses, Archive,
 Self-Audit, Glossary) everything starts collapsed, including the theses
 page's Part headings (H1s other than the page title). The Sections
 expand/collapse control lives in the main content — row 1 on the
@@ -397,8 +452,8 @@ report page, under the H1 on the content pages — never in the
 sidebar, where it was lost.
 
 **Mobile.** Content comes before the masthead (CSS `order`: main first,
-sidebar second). A native `<details>` "Contents" line sits in the main
-content between the search box (row 2) and the dashboard section;
+sidebar second). A native `<details>` "PAGE CONTENTS" line sits in the main
+content between the Search/Filter/Sort panel (row 2) and the dashboard section;
 it is hidden on desktop and shown on mobile, and sits outside every
 section-body so collapsing a section never hides it.
 
@@ -417,32 +472,33 @@ section-body so collapsing a section never hides it.
   Theses, Archive, Self-Audit, Glossary): the sidebar opens with the
   same masthead heading as the report page (linked "CI SITREP / Code
   & Finance" wordmark + tagline + "by Confluence<1>" logo), followed
-  by a "← Back to the report" link above the Contents list. On mobile
+  by a "← Back to the report" link above the PAGE CONTENTS list. On mobile
   the sidebar sits below the content, so those pages also carry a
   mobile-only back link at the top of the main content, right under
   the page title.
 
 **Share links.** Article headlines, substantive paragraphs, tables,
-headings, and every dashboard card (each bottom-line strip card and
-each countdown card) each carry a small link-icon button that copies
+headings, and every dashboard tile (panel tiles, bottom-line strip
+tiles, countdown tiles) each carry a small link-icon button that copies
 a direct URL (page + #anchor) with a "Copied" confirmation. The icon
 is inline SVG — no font glyph. Buttons appear on hover on desktop
 (Yorgo: he loves that they stay hidden until hover — keep it that
-way) and are always visible on mobile. Card buttons sit in the card's
-top-right corner, as a sibling of the card's link, never nested
-inside it, so clicking one copies the card's URL instead of
+way) and are always visible on mobile. Tile buttons sit in the tile's
+top-right corner, as a sibling of the tile's link, never nested
+inside it, so clicking one copies the tile's URL instead of
 following the link. Ids are generated deterministically in JS from
 slugified text (60-char cap, dedupe -2/-3 suffixes), so a copied
 link resolves identically on any later load — strip ids are
-bl-<article-slug> (bl-money for the profitability card), countdown
-ids cd-<deadline-slug>. Clicking an article's button never toggles
+bl-<article-slug> (bl-money for the profitability tile), countdown
+ids cd-<deadline-slug>, panel tile ids derive from the figure's
+stable `key` (§2; migration pending — label slugs until it lands). Clicking an article's button never toggles
 the article; a shared article link opens the article expanded.
 Excluded: See also blocks, the How-to-read block, the mobile
-Contents block.
+PAGE CONTENTS block.
 
-**Search.** A search box on the report page (row 2, under the As-of
-+ controls row) — the report is reference material, and readers need
-to find their way back to information they saw. It indexes the live page
+**Search.** A search box inside the Search/Filter/Sort panel (§4) — the
+report is reference material, and readers need to find their way back
+to information they saw. It indexes the live page
 at runtime on first keystroke: no build step, no index file, no
 backend, no cost, and always in sync with the daily watch (it reads the
 page, so it needs no cron step). Searchable units are the share-button
@@ -460,6 +516,59 @@ closes; aria-live result status. V1 searches the report page only.
 Acronyms a reader would search for (e.g. TPRM) must be defined in the
 prose at first mention — the search matches literal text, and an
 acronym that never appears returns nothing. Icons are inline SVG.
+Search-result clicks clear the filters first, so the target is always
+visible on landing.
+
+**Search, filter & sort panel.** One collapsed `<details>` at the top
+of the page (row 2), holding the search box, the filters, and the sort
+control. Collapsed by default. The header is a full-width navy bar —
+"Search, filter & sort" in white, a CSS chevron (no font glyph) — with
+an active-filter indicator after the label: count + dimension names,
+capped at three names ("2 filters active: Severity, Industry"). One
+active dimension counts once, however many values it holds; sort and
+search are not counted (sort hides nothing; search has its own results
+count). The panel filters the WHOLE report page — dashboard tiles AND
+report articles, one model, one count line — from the tags (§2).
+Sort applies to dashboard tiles within panels only: articles filter
+but never sort, or the report's editorial structure scrambles. The
+strips are never filtered and never counted. "New in the last 7 days",
+"State of the market", and "What we're watching" stay unfiltered (not
+tagged content). Shared links land unfiltered: a landing clears the
+filters and the panel stays collapsed.
+**Controls, in order.** Top line: Industry, Severity, P&L impact,
+Horizon, Technical level (register), then Sort + the asc/desc toggle.
+More filters: Section (subject), Type, Confidence, Jurisdiction,
+Company. There is no Sector control — sector becomes a separate
+product; sector tags stay in the data and `data-sector` stays on tiles
+and articles as the hook. Type is a checkbox group, multiple choice:
+OR within the dimension, AND across dimensions; none checked means no
+constraint. Company is a select derived from the distinct company
+values in the tag data at build time (open vocabulary — a newly tagged
+company appears on the next build); controlled-vocabulary dimensions
+list the full taxonomy vocabulary even at zero articles (EU, Greece),
+so the option exists the day the first article lands. Sort offers
+twelve keys — panel order, date, confidence, severity, horizon,
+section, type, industry, P&L impact, tech level, jurisdiction, company
+— each option labelled with its default direction; the asc/desc toggle
+is a text button ("Ascending"/"Descending", CSS triangle, no glyph
+characters), disabled for Panel order. Sort-key orders: severity and
+confidence in their natural taxonomy order; horizon chronological;
+register technical → mixed → business (depth scale); set dimensions
+alphabetical by first value; ties keep editorial order (stable sort).
+**Count line.** "Showing X of 62 figures · Y of 85 articles", always
+visible, below Clear-all; figures are panel tiles only. When a
+subsection filters out entirely it hides, heading and all; when a
+section's subsections all hide, the section hides; the REPORT and
+EXECUTIVE DASHBOARD headings stay visible, framing the per-area
+empty-state lines ("No figures match these filters." /
+"No articles match these filters.", each with its own Clear button).
+Only the four untaggable tiles — the three §3.6 figures and the money
+bignote — are never hidden and keep their editorial position under
+sorting; the interim untagged-visible rule is retired (the backfill is
+complete — an untagged article does not match a Company selection).
+**Clear-all** sits below More filters, at the bottom of the filter
+block; it resets the sort to Panel order and collapses More filters.
+Filter selects go full-width on phones (≤600px).
 
 **Tooltips.** The first mention of a glossary term in each subsection
 gets a dotted underline; hovering (desktop) or tapping (mobile) shows
@@ -480,19 +589,89 @@ on a reader's device is a defect, even if the behaviour works.
 following a source never replaces the sitrep. Internal links (anchors,
 .html pages, mailto) stay in the same tab.
 
-**Dashboard figure rows: the number leads.** In every bar row — the
-dashboard panels and the bottom-line strip's comparison bars — the
-value comes first and the label follows, so each row reads as a
-sentence ("98% of large companies have AI governance policies"). The
-labels were written as continuations of the number; the old
-right-aligned value (label left, number at the end of the line) made
-the reader jump to the end for the finding. The bar underneath still
-carries the magnitude comparison, so nothing is lost. The `.bar-head`
-is a plain block, not a flex row, so the sentence wraps naturally on
-narrow screens. Stat cards already lead with the number
-(`.stat-value` above `.stat-label`) — the bar rows now match them.
-The stacked-bar legend keeps its "label — value" form: it is a legend
-decoding coloured segments, not a figure row.
+**Dashboard tiles.** Every dashboard figure renders as a tile, one
+tile type per stat kind — eight types, no bars, no lines except
+sparklines inside tiles. The value leads everywhere: the number comes
+first and the label follows, so each tile reads as a sentence ("98% of
+large companies have AI governance policies").
+- `pie` — shares of one whole ONLY. A comparison is not a share: a-vs-b
+  figures get ratio tiles, never pies.
+- `ratio` — multipliers and a-vs-b comparisons; the multiple stays the
+  headline number, with side rows carrying the exact side values.
+- `big-number` — counts and single magnitudes with no denominator.
+- `no-data` — the honest absence ("Insufficient data"); dashed border.
+- `sparkline` — time series, 2+ dated points ONLY (§2).
+- `flag` — binary facts.
+- `note` — prose findings with no stat.
+- `waffle` — count-shares ONLY: both sides counts of the same thing,
+  minority share ≥ 2% (a 1-square minority reads as a solid block). A
+  10×10 grid of 6px squares; the multiple stays the headline number;
+  side rows keep the exact counts (a rounded graphic is never the only
+  record); the caption names the counted set ("Share of 147
+  vulnerabilities counted"). Pure multipliers and rates are not shares
+  of a whole and stay ratio tiles.
+**Pie colours.** Every pie-family figure carries `pie_split`, naming
+the wedge; the remainder follows by rule. Decision procedure, in
+order: (1) CI vs EI or AI-side-vs-rest split → `identity` (rust wedge,
+blue remainder); (2) wedge favourable, remainder adverse → `positive`
+(blue wedge, rust remainder); (3) wedge adverse, remainder favourable
+→ `negative` (rust wedge, blue remainder); (4) wedge favourable,
+remainder unclassified → `positive-neutral` (blue wedge, grey
+remainder); (5) wedge adverse, remainder unclassified →
+`negative-neutral` (rust wedge, grey remainder); (6) none of the above
+→ `none` (blue wedge, grey remainder). Identity beats valence: a CI/EI
+split is `identity` even when one side is the good side. When torn
+between rule 2 and rule 3, default to rule 3 — a grey remainder claims
+less than a rust one. Grey is `#c9c2b0` (muted); `#ece5d3` leaves the
+pie system. The segmented pie carries a per-segment `tone` (blue /
+rust / grey by valence: positive → blue, negative → rust, mixed →
+grey) instead of `pie_split`. The range pie draws a solid wedge to the
+low bound, a band in the wedge colour at 40% opacity to the high bound,
+and the remainder as a wedge path (high → 100%) — never a full circle
+— so the band composites over the tile tint, not over a navy
+remainder. A pie legend is one block-level row per segment, chip +
+label + value, no separators, no wrapping within a row. Strip-legend
+chips derive from `pie_split` (a-chip = wedge colour, b-chip =
+remainder colour).
+**Sentiment is the tile's background tint** — a visual cue, never a
+label (the word-pill treatment is superseded and gone). Positive =
+blue tint `#E9EAEF`; negative = rust tint `#F6EAE5`; neutral = grey
+tint `#F0EDE5`. The tints are pale washes (≈10% colour over paper);
+the encodings are saturated fills — the two never share a lightness
+band, so sentiment and the AI/not-AI encoding stay distinguishable.
+Countdown tiles carry NO tint (a deadline has no sentiment); the
+no-data tile takes the grey tint with its dashed border. The
+`sentiment` data field stays (positive / negative / neutral); each
+tinted tile also carries `data-sentiment` and a visually-hidden
+sentiment word — colour is never the sole carrier, because the labels
+always state the direction in words. The tint meaning is stated once,
+in the dashboard intro (`tint_note`, §2) — one home per idea, no
+second legend. Sentiment judges the finding as stated in the label; a
+level-vs-direction conflict goes neutral.
+**Unit sizes.** Tiles are standardized 1/2/3-unit cards. The unit is
+WIDTH (grid columns); height is natural per tile, top-aligned
+(`align-items: start`) — no forced equal heights, no dead space to
+match a taller neighbour. Fixed columns: 3 above 1100px, 2 at
+601–1100px, 1 at ≤600px. Span collapse is explicit (a span-2 item in a
+1-column grid creates an implicit track and overflows): span-3 is
+always `1 / -1`; span-2 becomes `1 / -1` at ≤600px. Mapping: pie
+(single/range), ratio, big-number, waffle, no-data, flag = 1 unit;
+segmented pie, note, sparkline = 2 units; money bignote = 3 units.
+The bottom-line strip is 3+3+1 in the same system; the countdown strip
+keeps its own 4→2→1 grid (four tiles do not pack into a 3-column unit
+grid). `.tile-grid` uses dense flow: a later 1-unit tile backfills a
+hole a 2-unit tile leaves — visual order may differ from DOM order by
+one slot; DOM order stays editorial. The square variant is one
+aspect-ratio rule on 1-unit tiles, not adopted.
+**Graphic-slot scoping.** Any CSS rule targeting a tile's inner graphic
+must be scoped or qualified so it can never match the tile div:
+tile-type classes are also tile-div classes — an unscoped
+`.tile-waffle { width: 72px }` constrained the TILE to 72px and the
+graphic overflowed it. Qualify graphic rules to the graphic row
+(`.tile-graphic-row .tile-waffle`) or to the element (svg-qualified pie
+and sparkline rules); audit every tile-type class for width, flex,
+max/min-width, flex-basis, and grid-column rules on any class the tile
+div carries.
 
 **Pair tables (CI vs EI page).** The page's tables carry the
 `pair-table` class (assigned by `build_page.py` for `CI-VS-EI.md`):
@@ -533,7 +712,7 @@ week" entry older than 7 days; no past date in "What we're watching";
 naming (Confluence<1> everywhere, with the one documented Atlassian
 exception; brand all-caps CI SITREP; current section names), hygiene
 (no internal-process strings on the public page), and layout markers
-(As-of banner, mobile Contents, confidence legend, copyright line,
+(As-of banner, mobile PAGE CONTENTS, confidence legend, copyright line,
 share buttons, How-to-read block, the two top-level sections, the
 Sections control in the main content, the embedded dashboard panels).
 It also curl-checks every external link.
@@ -546,6 +725,25 @@ It also curl-checks every external link.
   candidates, and link-check failures. For link warnings, browser-check
   any URL that is not a known bot-protected site (Medium, OpenAI,
   BusinessWire and similar block curl but load fine in a browser).
+
+**Proposed verify.py extensions (not implemented — record, do not
+assume):** a tile-count check as a DERIVED data-vs-render check
+(figures in `dashboard.json` vs tiles rendered — never a hard-coded
+count, the watch adds figures); a masthead-order assertion batch
+(How-to-read before SITREP sections, Contact above ©, PAGE CONTENTS
+below the sections nav). The sentiment re-point is moot: verify.py
+does not count pills (verified 2026-11-18) — tint counts are checked
+statically instead.
+
+**Filter JS harness.** `_tools/tests/` holds the filter/sort JS test
+harness (`r4b-test.js` + `r4b-fixture.json` + `r4b-filter-js.txt`): a
+Node DOM shim running the real FILTER_JS from the generator against a
+fixture parsed from the built `index.html`, expectations computed
+independently — 69/69 pass (2026-11-18). Re-run it (`node
+_tools/tests/r4b-test.js`) after any filter or sort JS change; the
+fixture and the filter-JS extract are snapshots of the 2026-11-18
+build — regenerate them from the current built page and generator
+when either changes.
 
 **What automation cannot check — the worker's pre-publish re-read.**
 Before publishing, re-read every new or revised segment and confirm:
@@ -579,10 +777,12 @@ it runs after Tier 1 passes and before pushing. The editor checks:
    treatments follow the established patterns; a new element reuses an
    existing style rather than inventing one.
 2. **Colour meaning.** A colour means the same thing everywhere it
-   appears. In the strip charts, rust (#b3543f) is the AI side and blue
-   (#283060) is the not-AI side — on the pies and on the comparison
-   bars alike, the same two hex values, never a third shade for the
-   same meaning.
+   appears. Pie colours follow the split (§4): rust (#b3543f) is the AI
+   side where the split is AI vs human; otherwise blue (#283060) is the
+   favourable side, rust the adverse side, grey (#c9c2b0) the
+   unclassified rest — the same hex values everywhere, never a third
+   shade for the same meaning. The sentiment tint is a separate channel
+   (pale ground vs saturated mark) and never redefines a wedge colour.
 3. **Hierarchy.** The most important thing reads first; visual weight
    is proportional to the information's importance.
 4. **Legibility.** Every number, label, and legend is readable at a
@@ -605,7 +805,7 @@ the release note to Yorgo.
 **Tier 2 — visual review (when the generators or the design change, or
 weekly).** Open the live site in a browser, desktop and mobile, and
 check it against §4: masthead and H1 band render correctly; content
-before masthead on mobile; the inline Contents line is present on mobile
+before masthead on mobile; the inline PAGE CONTENTS line is present on mobile
 and absent on desktop; share buttons work (clicking one copies the link
 and, for an article, does not toggle it); a shared article URL opens the
 article expanded; no glyph renders as a weird character. A design change
@@ -621,12 +821,18 @@ The Self-Audit page records the date of the last full manual link audit
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
-   (`~/workspace/ci-sitrep/`) is a copy, not the source.
+   (`~/workspace/ci-sitrep/`) is a copy, not the source. Tag new
+   articles per §2 (one tag line above the headline) as part of the
+   same edit — the daily watch cron instructions carry the tagging
+   step, so new articles never arrive untagged.
 2. Sync the changed files into the staging repo.
 3. Regenerate the HTML with the repo's generators (`build_html.py` for
    the report; `build_page.py` for the other pages; `build_audit.py`
    then `build_page.py` for the Self-Audit page, title "Self-Audit —
-   CI SITREP"). If ARCHIVE.md changed, rebuild archive.html too
+   CI SITREP"). `build_html.py` is always invoked with explicit
+   input/output args — with no args it writes to
+   `watches/SYNTHESIZED.html` WITHOUT the dashboard or tooltips. If
+   ARCHIVE.md changed, rebuild archive.html too
    (rewrite its links to repo-root-relative form first).
 4. Refresh the findings export — the JSON database behind the YouTube
    channel (F-02): venv python `_tools/export_findings.py` (parses
@@ -638,7 +844,9 @@ The Self-Audit page records the date of the last full manual link audit
    report genuinely carries no date for it — note it and continue.
    Push data/findings.json and youtube/findings-inline.js with the
    other changed files (their generated_at timestamp changes on every
-   run, so they are always "changed").
+   run, so they are always "changed"). Exporter gauge matching keys on
+   stable identifiers (the source), never on display text — a label
+   reword must not drop a gauge.
 5. Run the Tier 1 verification (§5) and the UX and design-editor review
    (§5). Do not push a failing build.
 6. Push the changed files with the API helper
@@ -904,3 +1112,22 @@ The Self-Audit page records the date of the last full manual link audit
   articles, what's-new, glossary, deadlines, gauges) and feeds the
   YouTube broadcast scene (youtube/scene.html) and the review table
   (youtube/review.html).
+- **2026-11-18** — Dashboard tile system recorded in these rules
+  (F-01/F-02): eight tile types, one per stat kind (pie, ratio,
+  big-number, no-data, sparkline, flag, note, waffle); `pie_split`
+  replaces the `ai_side` boolean (six values, identity beats valence,
+  grey `#c9c2b0` for the unclassified rest; range-pie remainder as a
+  wedge, never a full circle); sentiment is the tile's background tint
+  (blue/rust/grey), superseding the word-pill; standardized 1/2/3-unit
+  cards (width units, natural height, dense flow, 1100px + 600px
+  breakpoints); Search/Filter/Sort in one collapsible panel at the
+  top, filtering the whole report page (sort tiles-only; sector control
+  removed, tags kept in data); masthead reordered (How to read this →
+  SITREP sections → PAGE CONTENTS → legend → Contact → ©) with a
+  phones-only row-1 copy of How to read this; `dashboard-history.json`
+  (append-only, 4 series) with the sparkline promotion and caption
+  rules; tagging rules (mirrored pairs, company, composite dates, field
+  order) and the tag join; stable per-figure `key` (decided; migration
+  pending); filter-JS harness
+  under `_tools/tests/` (69/69). verify.py extensions proposed, not
+  implemented (derived tile-count check, masthead-order assertions).
