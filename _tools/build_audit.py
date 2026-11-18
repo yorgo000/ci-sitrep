@@ -11,6 +11,10 @@ The audit log (audit_log.csv, same directory as this script) records each daily
 watch run: date, sources reviewed, articles added, articles updated, notes.
 The daily watch cron appends one row per run. The funnel metrics on the audit
 page are computed from this log.
+
+compute_metrics() is also imported by refresh_about.py, which regenerates the
+About page's "How this is made" numbers paragraph from the same numbers — the
+computation lives here once, so the two pages can never drift apart.
 """
 
 import csv
@@ -21,15 +25,20 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
-SYN = ROOT / "SYNTHESIZED.md"
-ARCH = ROOT / "archive" / "ARCHIVE.md"
 LOG = Path(__file__).resolve().parent / "audit_log.csv"
 OUT = ROOT / "AUDIT.md"
 
 
-def main():
-    src = SYN.read_text()
-    arch = ARCH.read_text() if ARCH.exists() else ""
+def compute_metrics(root):
+    """Compute every audit metric from the live report files.
+
+    Single source of truth for the numbers on the Self-Audit page and the
+    About page's "How this is made" paragraph (refresh_about.py imports
+    this) — the computation lives here once, never duplicated.
+    """
+    src = (root / "SYNTHESIZED.md").read_text()
+    arch_path = root / "archive" / "ARCHIVE.md"
+    arch = arch_path.read_text() if arch_path.exists() else ""
 
     # --- Articles and confidence ---
     summaries = re.findall(r"<details>\s*<summary>(.*?)</summary>", src, re.DOTALL)
@@ -75,10 +84,64 @@ def main():
     log_start = log_rows[0]["date"] if log_rows else None
     log_end = log_rows[-1]["date"] if log_rows else None
 
+    n_art = len(articles)
+    return {
+        "n_articles": n_art,
+        "n_est": n_est,
+        "n_corr": n_corr,
+        "n_rep": n_rep,
+        "n_clm": n_clm,
+        "est_corr_pct": f"{100 * (n_est + n_corr) / n_art:.0f}" if n_art else "—",
+        "n_article_sources": n_article_sources,
+        "n_subsection_links": n_subsection_links,
+        "n_source_links": n_article_sources + n_subsection_links,
+        "n_links": n_links,
+        "n_unique_urls": n_unique_urls,
+        "n_h2": n_h2,
+        "n_h3": n_h3,
+        "n_h4": n_h4,
+        "n_archive": n_archive,
+        "last_updated": last_updated,
+        "n_new": n_new,
+        "log_rows": log_rows,
+        "total_reviewed": total_reviewed,
+        "total_added": total_added,
+        "total_updated": total_updated,
+        "acceptance_rate": (
+            f"{100 * total_added / total_reviewed:.1f}" if total_reviewed else None
+        ),
+        "log_start": log_start,
+        "log_end": log_end,
+    }
+
+
+def main():
+    m = compute_metrics(ROOT)
+    n_art = m["n_articles"]
+    n_est = m["n_est"]
+    n_corr = m["n_corr"]
+    n_rep = m["n_rep"]
+    n_clm = m["n_clm"]
+    n_article_sources = m["n_article_sources"]
+    n_subsection_links = m["n_subsection_links"]
+    n_links = m["n_links"]
+    n_unique_urls = m["n_unique_urls"]
+    n_h2 = m["n_h2"]
+    n_h3 = m["n_h3"]
+    n_h4 = m["n_h4"]
+    n_archive = m["n_archive"]
+    last_updated = m["last_updated"]
+    n_new = m["n_new"]
+    log_rows = m["log_rows"]
+    total_reviewed = m["total_reviewed"]
+    total_added = m["total_added"]
+    total_updated = m["total_updated"]
+    log_start = m["log_start"]
+    log_end = m["log_end"]
+
     today = date.today().isoformat()
 
     # --- Confidence percentages ---
-    n_art = len(articles)
     def pct(n):
         return f"{100 * n / n_art:.0f}%" if n_art else "—"
 
