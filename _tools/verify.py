@@ -576,6 +576,20 @@ def main():
     check_source_first(md)
     check_links(md)
 
+    # Staleness guard for the About page: site_config.VERIFY_CHECK_COUNT
+    # must track the pass count, or the About numbers drift. A mismatch
+    # is a WARN, not a FAIL — the report is still publishable; the
+    # config needs one edit.
+    try:
+        from site_config import VERIFY_CHECK_COUNT
+        n_pass_so_far = sum(1 for r in results if r[0] == "PASS")
+        if n_pass_so_far != VERIFY_CHECK_COUNT:
+            results.append(("WARN", "verify-count-config",
+                            f"site_config.VERIFY_CHECK_COUNT is {VERIFY_CHECK_COUNT} "
+                            f"but this run passed {n_pass_so_far} checks — update the config"))
+    except ImportError:
+        pass
+
     n_fail = sum(1 for r in results if r[0] == "FAIL")
     n_warn = sum(1 for r in results if r[0] == "WARN")
     n_pass = sum(1 for r in results if r[0] == "PASS")
