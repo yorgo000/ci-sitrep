@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18T17:37:50.952464+00:00",
+ "generated_at": "2026-11-18T18:58:29.203608+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -67,7 +67,7 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#20-of-package-references-are-hallucinated-spracklen-et-al"
   },
   {
-   "headline": "AI code carries 2.74× the vulnerabilities of human code",
+   "headline": "AI code carries up to 2.74× the vulnerabilities of human code",
    "section": "Pre-commit",
    "subsection": "1.1 How big the problem is",
    "rating": "claimed",
@@ -79,12 +79,12 @@
    "date": "Dec 2025",
    "flag": "VENDOR CLAIM",
    "bullets": [
-    "CI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.",
+    "CI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).",
     "CodeRabbit's own analysis — treat as a vendor claim."
    ],
-   "voiceover": "AI code carries 2.74 times the vulnerabilities of human code. CI-generated code had 1.7 times more major issues and 2.74 times the security-vulnerability rate of human-written code for equivalent tasks.",
-   "id": "ai-code-carries-274-the-vulnerabilities-of-human-code",
-   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-274-the-vulnerabilities-of-human-code"
+   "voiceover": "AI code carries up to 2.74 times the vulnerabilities of human code. CI-generated code had 1.7 times more major issues and up to 2.74 times the security-vulnerability rate of human-written code for equivalent tasks (2.74 times is the maximum across vulnerability categories , worst is cross-site scripting).",
+   "id": "ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code"
   },
   {
    "headline": "The failure mode moved up the stack",
@@ -628,7 +628,7 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#agents-copy-the-flaws-already-in-a-codebase-insecure-code"
   },
   {
-   "headline": "AI code carries 2.74× the vulnerabilities",
+   "headline": "AI code carries up to 2.74× the vulnerabilities",
    "section": "In codebase",
    "subsection": "2.1 How big the problem is",
    "rating": "claimed",
@@ -640,12 +640,12 @@
    "date": "2026",
    "flag": null,
    "bullets": [
-    "AI-written code carries 2.74× the vulnerabilities of human-written code and 1.7× more major issues.",
+    "AI-written code carries up to 2.74× the vulnerabilities of human-written code and 1.7× more major issues (2.74× is the maximum across vulnerability categories).",
     "*[Secondary reporting; indicative, not a named primary study.]*"
    ],
-   "voiceover": "AI code carries 2.74 times the vulnerabilities. AI-written code carries 2.74 times the vulnerabilities of human-written code and 1.7 times more major issues.",
-   "id": "ai-code-carries-274-the-vulnerabilities-independent-pr",
-   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-274-the-vulnerabilities-independent-pr"
+   "voiceover": "AI code carries up to 2.74 times the vulnerabilities. AI-written code carries up to 2.74 times the vulnerabilities of human-written code and 1.7 times more major issues (2.74 times is the maximum across vulnerability categories).",
+   "id": "ai-code-carries-up-to-274-the-vulnerabilities-independent",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-independent"
   },
   {
    "headline": "322% more privilege-escalation paths in AI-assisted repos",
@@ -701,7 +701,8 @@
    "bullets": [
     "Mean vulnerabilities per codebase 581, up 107% year-on-year — the sharpest jump in the report's history.",
     "68% of codebases have open-source license conflicts (highest ever).",
-    "97% of organisations now use AI coding assistants in production software.",
+    "67% of organisations use AI-powered coding assistants.",
+    "97% use open-source AI models (such as those from Hugging Face) in development workflows.",
     "The surge is explicitly attributed to AI-accelerated code creation (Black Duck).",
     "*[Vendor-published audit.]*"
    ],
@@ -3196,18 +3197,18 @@
    "ci": {
     "label": "CI-generated code",
     "value": 2.74,
-    "display": "2.74×"
+    "display": "up to 2.74×"
    },
    "ei": {
     "label": "Human-written code",
     "value": 1,
     "display": "1×"
    },
-   "headline": "AI code carries 2.74× the vulnerabilities of human code",
+   "headline": "AI code carries up to 2.74× the vulnerabilities of human code",
    "source": "CodeRabbit",
    "date": "Dec 2025",
    "rating": "claimed",
-   "link": "#ai-code-carries-274-the-vulnerabilities-of-human-code",
+   "link": "#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
    "note": "Vendor claim — CodeRabbit's own analysis."
   },
   {
