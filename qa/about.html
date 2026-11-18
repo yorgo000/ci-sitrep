@@ -159,6 +159,10 @@
   main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
   main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
   main th { background: var(--side-bg); font-weight: 600; }
+  /* Pair tables (CI vs EI page): the CI column reads rust and the EI
+     column navy — the same colour meaning as the dashboard strip. */
+  table.pair-table th:nth-child(2), table.pair-table td:nth-child(2) { color: #b3543f; }
+  table.pair-table th:nth-child(3), table.pair-table td:nth-child(3) { color: #283060; }
   main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
   main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
   main em { color: var(--muted); }
