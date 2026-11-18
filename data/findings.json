@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-11-18T09:32:58.725652+00:00",
+ "generated_at": "2026-11-18T13:06:51.945325+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 83,
-  "whats_new": 47,
-  "glossary": 90,
+  "articles": 85,
+  "whats_new": 49,
+  "glossary": 91,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
-  "established": 12,
+  "established": 13,
   "corroborated": 23,
-  "reported": 43,
+  "reported": 44,
   "claimed": 5
  },
- "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
    "headline": "~38% of AI code introduces a known security flaw",
@@ -1497,6 +1497,29 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#new-york-opens-frontier-ai-registration-a-financial"
   },
   {
+   "headline": "A Fed governor says major banks already find AI agents acting in retail accounts without verifiable consent",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "established",
+   "rating_dots": "●●●●",
+   "source": "Federal Reserve",
+   "source_label": "Federal Reserve, Governor Michael S. Barr, \"Some Potential Financial Stability Implications of Artificial Intelligence,\" 16 Nov 2026",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20261116a.htm",
+   "source_context": "Federal Reserve, 16 Nov 2026",
+   "date": "16 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Major banks now report finding AI agents attempting to take actions in retail customer accounts, \"without the bank being able to verify authenticity, consent, and alignment with customer instructions\" — Governor Michael S. Barr, speaking at the ACM International Conference on AI in Finance in Milan (Federal Reserve, 16 Nov 2026).",
+    "He named four guardrails: strict authentication, explicit consent verification for specific actions, technical controls limiting agent capabilities, and both rules- and values-based constraints — \"especially critical as agentic commerce expands\" (Federal Reserve, 16 Nov 2026).",
+    "The same speech warns agents \"may accelerate deposit outflows during stress periods\": agents could detect yield differentials or stability signals and move funds autonomously at high speed, \"potentially accelerating runs that unfold in minutes, overwhelming traditional liquidity management and regulatory intervention timelines\" (Federal Reserve, 16 Nov 2026).",
+    "Barr named no banks, gave no incident counts, and said nothing about whether money moved — and the views are his own, not necessarily the Board's. A speech, not a rule: it announces no new requirement or examination programme.",
+    "What this changes in practice: the agent-access question Canada's banks answered by blocking third-party agents now has a US federal voice naming the exact controls — per-action consent verification and capability limits are the deliverable, and a firm whose agents touch customer accounts should expect examiners to ask how each action's authenticity and consent are verified. The bank-run warning also puts a velocity question on deposit and liquidity work: an agent moving funds at machine speed compresses the response window from hours to minutes."
+   ],
+   "voiceover": "A Fed governor says major banks already find AI agents acting in retail accounts without verifiable consent. Major banks now report finding AI agents attempting to take actions in retail customer accounts, \"without the bank being able to verify authenticity, consent, and alignment with customer instructions\" , Governor Michael S. Barr, speaking at the ACM International Conference on AI in Finance in Milan (Federal Reserve, 16 Nov 2026).",
+   "id": "a-fed-governor-says-major-banks-already-find-ai-agents",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-fed-governor-says-major-banks-already-find-ai-agents"
+  },
+  {
    "headline": "98% of large companies have AI governance policies; nearly half have bypassed them",
    "section": "Agentic",
    "subsection": "3.4 Governance",
@@ -1898,9 +1921,66 @@
    "voiceover": "Attackers now turn patches into working exploits with no human in the loop. The first fully automated patch-to-exploit pipeline Google has observed: a multi-agent framework, dubbed exploit_agent, found on an exposed staging server, continuously diffs popular web software before and after patch announcements, drafts an exploit for the hole the patch closed, and executes it automatically , with no human in the loop (Google Threat Intelligence Group / Mandiant, AI Threat Tracker, 16 Nov 2026).",
    "id": "attackers-now-turn-patches-into-working-exploits-with-no",
    "url": "https://yorgo000.github.io/ci-sitrep/#attackers-now-turn-patches-into-working-exploits-with-no"
+  },
+  {
+   "headline": "100+ AI agents ran a full audit of a FTSE 250 company — and asked better questions than the human team in places",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Financial Times",
+   "source_label": "Business Standard's account of the Financial Times reporting, \"KPMG finds AI agents ask better questions than human auditors in trial,\" 18 Nov 2026",
+   "source_url": "https://thesbharat.com/thesbharat9gmail-com/kpmg-finds-ai-agents-ask-better-questions-than-human-auditors-in-trial-industry-news/",
+   "source_context": "Financial Times, 18 Nov 2026",
+   "date": "18 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "KPMG deployed more than 100 AI agents to examine the financial statements of an unnamed FTSE 250 company in an experimental audit run alongside the conventional audit — the agents worked across the entire audit process, collecting, analysing and documenting data, preparing draft conclusions, working autonomously with one another and suggesting subsequent steps (Financial Times, via Business Standard, 18 Nov 2026).",
+    "KPMG's UK head of audit, Cath Burnet, said that \"in several cases the AI was able to go so much deeper\" and asked \"better questions\" in some situations than the regular audit team (Financial Times, via Business Standard, 18 Nov 2026).",
+    "The limit showed up too: a human auditor had to step in when an agent could not match a set of regulations to the company's documents — and KPMG did not rely on the agents' findings when formally approving the accounts (Financial Times, via Business Standard, 18 Nov 2026).",
+    "The agents were built by a team over four months; an audit partner signed off on the exercise, and KPMG says the system gave \"full visibility and full traceability\" of the agents' work, recording interactions with documents down to individual characters and timestamps (Financial Times, via Business Standard, 18 Nov 2026).",
+    "KPMG plans to extend the project to as many as 20 larger audits and eventually offer AI-based audits to clients — but says the technology is not yet at the scale for thousands of audits, and some companies do not have sufficiently clean data for agents to work effectively (Financial Times, via Business Standard, 18 Nov 2026).",
+    "The same week, the UK's Financial Reporting Council published new Ethics and Technology guidance (16 Nov) for audit firms using technology including AI, and its executive director of regulatory standards said \"whatever technology a firm uses, the auditor remains accountable\" — auditors must be able to explain how they used the technology, challenge its outputs and stand behind the evidence (Financial Times, via Business Standard, 18 Nov 2026).",
+    "What this changes in practice: a 100-agent collective has now run a real audit end to end, in parallel, inside a Big Four firm — the first deployment at this scale in financial assurance, and the failure mode is instructive: the agent that could not map regulation to documents is the same gap this section describes, and the traceability KPMG built (every document interaction logged) is the audit trail a finance client should demand from any agent collective touching its books. PwC is running parallel audit projects of its own, so this is a firm-wide direction, not a one-off."
+   ],
+   "voiceover": "100+ AI agents ran a full audit of a FTSE 250 company , and asked better questions than the human team in places. KPMG deployed more than 100 AI agents to examine the financial statements of an unnamed FTSE 250 company in an experimental audit run alongside the conventional audit , the agents worked across the entire audit process, collecting, analysing and documenting data, preparing draft conclusions, working autonomously with one another and suggesting subsequent steps (Financial Times, via Business Standard, 18 Nov 2026).",
+   "id": "100-ai-agents-ran-a-full-audit-of-a-ftse-250-company-and",
+   "url": "https://yorgo000.github.io/ci-sitrep/#100-ai-agents-ran-a-full-audit-of-a-ftse-250-company-and"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-18",
+   "title": "A Fed governor says major banks already find AI agents acting in retail accounts without verifiable consent",
+   "source": "Federal Reserve",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20261116a.htm",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Governor Barr names four guardrails — strict authentication, explicit per-action consent verification, technical capability limits, rules- and values-based constraints — and warns agents could accelerate deposit outflows into runs that unfold in minutes.",
+   "sections": [
+    {
+     "label": "3.4 Governance",
+     "anchor": "34-governance"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "title": "100+ AI agents ran a full audit of a FTSE 250 company — and asked better questions than the human team in places",
+   "source": "Financial Times",
+   "source_url": "https://thesbharat.com/thesbharat9gmail-com/kpmg-finds-ai-agents-ask-better-questions-than-human-auditors-in-trial-industry-news/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "KPMG's Project Exponential ran agents across the whole audit in parallel with the conventional team; a human still had to step in when an agent could not match a regulation to the company's documents, and the findings were not used for the formal opinion.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
   {
    "date": "2026-11-18",
    "title": "The AI-code flaw rate moved for the first time in the series — ~44% to ~38%",
@@ -2716,6 +2796,10 @@
   {
    "term": "agentic",
    "definition": "Of an AI system: acting autonomously toward a goal, using tools and making decisions, rather than only responding to prompts. Agentic AI does things, not just says things."
+  },
+  {
+   "term": "agentic commerce",
+   "definition": "Buying, selling, or moving money by AI agents acting on a customer's behalf, without the customer executing each step. The use case behind the Federal Reserve's November 2026 warning that agents in retail accounts could not be verified as authentic or consented to."
   },
   {
    "term": "AI-BOM (AI bill of materials)",
