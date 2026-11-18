@@ -1,6 +1,6 @@
 # CI vs EI
 
-**As of Tuesday, November 17, 2026 · Version 1.0**
+**As of Wednesday, November 18, 2026 · Version 1.1**
 
 Every CI figure in the report, set against its human equivalent — [EI, evolved intelligence](glossary.html#ei) — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.
 
@@ -38,7 +38,7 @@ Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from case
 
 | Parameter | CI | EI (human) | Evidence |
 |---|---|---|---|
-| Error rate | **~45%** of AI code introduces a known flaw (55% security pass rate, flat for two years) | *No human baseline published* | [Veracode §1.1](index.html#45-of-ai-code-introduces-a-known-security-flaw-veracode) · Spring 2026 · ●●●○ Corroborated |
+| Error rate | **~38%** of AI code introduces a known flaw (62% security pass rate; first movement in the series, from 56% in July 2026) | *No human baseline published* | [Veracode §1.1](index.html#38-of-ai-code-introduces-a-known-security-flaw-veracode) · Fall 2026 · ●●●○ Corroborated |
 | Hallucinated packages | **19.7%** of package references name packages that don't exist | *No human baseline published* | [Spracklen et al. §1.1](index.html#20-of-package-references-are-hallucinated-spracklen-et-al) · USENIX Security 2025 · ●●●○ Corroborated |
 | Error rate, base rates | **~40%** of Copilot programs vulnerable in high-risk scenarios; **29.5%** Python / **24.2%** JS AI-assisted snippets with weaknesses | *No human baseline published* | [Tenzai §1.1](index.html#the-failure-mode-moved-up-the-stack-tenzai-dec-2025-5-tools) · Dec 2025 · ●●○○ Reported |
 | Correct-and-secure | Best agent–model pair **23.8%** correct-and-secure; **23.0%** correct but exploitable | *No human baseline published* — see the selection-trap note above | [SecureVibeBench §1.6](index.html#best-agent-238-correct-and-secure-23-correct-but) · ACL 2026 · ●●●○ Corroborated |
@@ -106,4 +106,5 @@ No complete pair yet. The composite the page exists to answer — total risk-adj
 ## Changes
 
 - **v1.0 — 17 Nov 2026.** First edition: 3 complete pairs, 12 partial comparisons, 27 gaps, across 42 classified items. Baseline for movement.
+- **v1.1 — 18 Nov 2026.** Veracode error rate moved: ~45% → ~38% of AI code introduces a known flaw (security pass rate 55% → 62%, first movement in the series); still a gap — no human baseline published. Counts unchanged: 3 pairs / 12 partials / 27 gaps.
 - When a figure moves, the change is logged here with the old and new values, and the pair's row is updated.
