@@ -1,0 +1,26 @@
+{
+ "veracode-flaw-rate": {
+  "label": "AI-code flaw rate (Veracode longitudinal benchmark)",
+  "points": [
+   {
+    "date": "2026-03",
+    "display": "~45%",
+    "label": "Spring 2026",
+    "value": 45
+   },
+   {
+    "date": "2026-07",
+    "display": "~44%",
+    "label": "July 2026",
+    "value": 44
+   },
+   {
+    "date": "2026-10-29",
+    "display": "~38%",
+    "label": "Fall 2026",
+    "value": 38
+   }
+  ],
+  "unit": "%"
+ }
+}
