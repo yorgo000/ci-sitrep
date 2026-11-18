@@ -1,110 +1,882 @@
-# CI vs EI
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CI vs EI — CI SITREP</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #ddd5c2;
+    --accent: #283060;
+    --logo-navy: #283060;
+    --bg: #faf6ef;
+    --side-bg: #faf6ef;
+    --code-bg: #f3ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .layout { display: flex; min-height: 100vh; }
+  nav.sidebar {
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav.sidebar h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
+  nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
+  nav.sidebar li { margin: 2px 0; }
+  nav.sidebar li li { padding-left: 14px; }
+  nav.sidebar li li li { padding-left: 14px; }
+  nav.sidebar a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  nav.sidebar a:hover { background: #e8dfcc; }
+  nav.sidebar .toc-controls { margin: 0 0 10px; }
+  nav.sidebar .toc-controls button {
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }
+  nav.sidebar .toc-controls button:hover { background: #e8dfcc; }
+  nav.sidebar .toc li.has-children > a .toc-toggle {
+    display: inline-block; cursor: pointer; width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid var(--muted); vertical-align: middle; margin-right: 5px;
+  }
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
+  nav.sidebar .toc li.toc-collapsed > ul { display: none; }
+  /* Masthead: the CI SITREP wordmark, linking back to the report. */
+  .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
+  nav.sidebar .masthead-title a { color: #283060; text-decoration: none; display: inline; padding: 0; }
+  nav.sidebar .masthead-title a:hover { background: none; }
+  .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
+  .masthead-tagline { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }
+  .masthead-by { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .masthead-logo { height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }
+  nav.sidebar .back { margin: 0 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  /* Mobile-only back link at the top of the content: on a phone the
+     sidebar sits below the content, so the reader needs a way back to
+     the report without scrolling to the bottom of the page. */
+  .back-inline { display: none; }
+  .sec-controls { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+  .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
+  .sec-controls button:hover { background: #e8dfcc; }
+  main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
+  main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }
+  main h1:first-of-type { margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }
+  main h1 em { display: block; font-size: 20px; margin-top: 2px; }
+  main h2 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }
+  main h3 { font-size: 18px; margin: 28px 0 10px; line-height: 1.35; color: var(--logo-navy); }
+  main h4 { font-size: 16px; margin: 20px 0 8px; }
+  h2 .toggle, h3 .toggle, h4 .toggle {
+    cursor: pointer; margin-right: 6px;
+    user-select: none; display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 6px solid var(--muted); vertical-align: middle;
+  }
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h1.collapsed + .section-body, h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
+  h1.collapsed .toggle, h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
+  /* Share link: a small link icon at the end of every section heading.
+     Copies the direct URL to that section. Hidden until hover on desktop;
+     always visible on mobile (no hover on touch). The icon is inline SVG,
+     not a font glyph. */
+  .share-link {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    vertical-align: middle;
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .share-link svg { display: block; }
+  h1:hover .share-link, h2:hover .share-link, h3:hover .share-link, h4:hover .share-link,
+  .share-link:focus { opacity: 1; }
+  .share-link:hover { color: var(--accent); background: #efe9da; }
+  .share-link.copied { font-size: 12px; font-weight: 600; color: var(--accent); opacity: 1; }
+  p:hover .share-link, summary:hover .share-link { opacity: 1; }
+  .table-share { text-align: right; margin: 2px 0 12px; }
+  table:hover + .table-share .share-link { opacity: 1; }
+  /* Breadcrumbs: a small trail at the top of every section body, back up
+     to any ancestor level or the top of the page. Muted, one line. */
+  .crumbs {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .crumbs a { color: var(--muted); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); text-decoration: underline; }
+  .crumbs .crumb-sep { color: var(--line); margin: 0 3px; }
+  /* Back-to-top button: fixed, bottom-right, invisible until the reader
+     has scrolled down the page. The arrow is inline SVG, not a font glyph. */
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--logo-navy);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .back-to-top.visible { opacity: 0.85; pointer-events: auto; }
+  .back-to-top:hover { opacity: 1; }
+  main p { margin: 8px 0; }
+  main ul, main ol { margin: 8px 0; padding-left: 24px; }
+  main li { margin: 4px 0; }
+  main li > ul, main li > ol { margin: 4px 0; }
+  main a { color: var(--accent); }
+  main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  main th { background: var(--side-bg); font-weight: 600; }
+  /* Pair tables (CI vs EI page): the CI column reads rust and the EI
+     column navy — the same colour meaning as the dashboard strip. */
+  table.pair-table th:nth-child(2), table.pair-table td:nth-child(2) { color: #b3543f; }
+  table.pair-table th:nth-child(3), table.pair-table td:nth-child(3) { color: #283060; }
+  main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
+  main em { color: var(--muted); }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    /* On a phone the content comes first and the masthead/sidebar follows below it. */
+    main { order: 1; padding: 24px 20px 48px; }
+    .share-link { opacity: 1; }
+    .back-to-top { right: 16px; bottom: 16px; }
+    .back-inline { display: block; margin: 0 0 16px; font-size: 14px; }
+    nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
+    main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
+  }
+</style>
+<script data-goatcounter="https://ci-sitrep.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="masthead">
+      <p class="masthead-title"><a href="index.html">CI SITREP</a></p>
+      <p class="masthead-vertical">Code &amp; Finance</p>
+      <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
+      <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
+    </div>
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <h2>Contents</h2>
+    <div class="toc">
+<ul>
+<li><a href="#development">Development</a><ul>
+<li><a href="#complete-pairs">Complete pairs</a></li>
+<li><a href="#partial-comparisons">Partial comparisons</a></li>
+<li><a href="#gaps">Gaps</a></li>
+</ul>
+</li>
+<li><a href="#operations">Operations</a><ul>
+<li><a href="#complete-pairs_1">Complete pairs</a></li>
+<li><a href="#partial-comparisons_1">Partial comparisons</a></li>
+<li><a href="#gaps_1">Gaps</a></li>
+</ul>
+</li>
+<li><a href="#business-composite">Business-composite</a><ul>
+<li><a href="#complete-pairs_2">Complete pairs</a></li>
+<li><a href="#partial-comparisons_2">Partial comparisons</a></li>
+<li><a href="#gaps_2">Gaps</a></li>
+</ul>
+</li>
+<li><a href="#changes">Changes</a></li>
+</ul>
+</div>
 
-**As of Wednesday, November 18, 2026 · Version 1.1**
+  </nav>
+  <main>
+    <h1 id="ci-vs-ei">CI vs EI</h1>
+<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
+<p><strong>As of Wednesday, November 18, 2026 · Version 1.1</strong></p>
+<p>Every CI figure in the report, set against its human equivalent — <a href="glossary.html#ei">EI, evolved intelligence</a> — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.</p>
+<p>A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: <strong>3 complete pairs, 12 partial comparisons, 27 gaps</strong>, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in the report is measured against the task, never against a human doing the same task.</p>
+<p>The strongest pair: AI patches introduce <strong>135</strong> confirmed vulnerabilities against <strong>12</strong> for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in the report measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.</p>
+<p>CI figures read in rust, human figures in navy — the same colours as the dashboard. Every row links to the report article that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.</p>
+<h2 id="development">Development</h2>
+<p>Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from cases where a human <em>did</em> introduce a vulnerability — that is how the tasks were selected, so reading them as "humans 0% secure" would be a misuse. The human rate on those tasks was never measured as a control group.</p>
+<h3 id="complete-pairs">Complete pairs</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vulnerabilities in patches</td>
+<td><strong>135</strong> manually confirmed vulnerabilities (Llama 3.3, SWE-bench train+test)</td>
+<td><strong>12</strong> in developer patches for the same issues</td>
+<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §1.6</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Vulnerabilities in patches, newer model</td>
+<td><strong>3</strong> vulnerabilities (GPT-5.4 nano, test set)</td>
+<td><strong>2</strong> in developer patches for the same issues</td>
+<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §1.6</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Vulnerability rate, equivalent tasks</td>
+<td><strong>2.74×</strong> the vulnerabilities of human code; 1.7× more major issues</td>
+<td><strong>1×</strong> baseline (human-written code, 470 PRs)</td>
+<td><a href="index.html#ai-code-carries-274-the-vulnerabilities-of-human-code">CodeRabbit §1.1</a> · Dec 2025 · vendor's own analysis · ●○○○ Claimed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="partial-comparisons">Partial comparisons</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commit speed</td>
+<td>AI-assisted developers commit <strong>3–4×</strong> faster</td>
+<td>Unassisted developers (implied) — method undisclosed, a rate, not same-task time</td>
+<td><a href="index.html#volume-compounds-it-apiiro-csa-apr-2026-enterprise">Apiiro / CSA §1.1</a> · Apr 2026 · vendor telemetry · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Privilege-escalation paths</td>
+<td><strong>+322%</strong> in AI-assisted repos; +153% architectural flaws</td>
+<td>Non-AI repos in the same telemetry — populations not matched on task, size, or age</td>
+<td><a href="index.html#322-more-privilege-escalation-paths-in-ai-assisted-repos">Apiiro §2.1</a> · 2026 · vendor study · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Vulnerability trend</td>
+<td>Mean <strong>581</strong> vulnerabilities per codebase, <strong>+107%</strong> year-on-year</td>
+<td>2025 codebases (~281) — a time-series, not a matched comparison; the AI attribution is the vendor's</td>
+<td><a href="index.html#mean-vulnerabilities-per-codebase-581-up-107-year-on-year">Black Duck OSSRA §2.1</a> · 2026 · 947 codebases · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Maintainability</td>
+<td>Moved code <strong>21% → 3.8%</strong> of changed lines; duplicate blocks <strong>+81%</strong>; two-week churn <strong>+15%</strong></td>
+<td>2022 commit history (human-era) vs 2023–26 (AI-era) — a time-series, not same-task</td>
+<td><a href="index.html#ai-code-has-a-maintainability-gap-gitclear-jan-2026-623m">GitClear §2.1</a> · Jan 2026 · 623M code changes · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Verification tax</td>
+<td>Every +25% AI adoption cost <strong>−1.5%</strong> throughput and <strong>−7.2%</strong> delivery stability (2024)</td>
+<td>Lower-adoption teams — correlational survey, compares adoption levels, not same-task performance</td>
+<td><a href="index.html#ai-code-imposes-a-verification-tax-on-reviewers-google-dora">Google DORA §2.1</a> · 2024–2026 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Audit time</td>
+<td>Embedded-stack audit: <strong>90 hours</strong></td>
+<td><strong>9 months</strong> (same team's prior audit) — but not a controlled benchmark: different target sets, and the AI run rediscovered only 40% of the flaws the human audit had disclosed</td>
+<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §2.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Dose-response</td>
+<td>Organisations at 81–100% AI-generated code ship vulnerable code at <strong>3.4×</strong> the rate of those at 1–20%</td>
+<td>Organisations at 1–20% AI code — different organisations, not the same task</td>
+<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes §1.6</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gaps">Gaps</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error rate</td>
+<td><strong>~38%</strong> of AI code introduces a known flaw (62% security pass rate; first movement in the series, from 56% in July 2026)</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#38-of-ai-code-introduces-a-known-security-flaw-veracode">Veracode §1.1</a> · Fall 2026 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Hallucinated packages</td>
+<td><strong>19.7%</strong> of package references name packages that don't exist</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#20-of-package-references-are-hallucinated-spracklen-et-al">Spracklen et al. §1.1</a> · USENIX Security 2025 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Error rate, base rates</td>
+<td><strong>~40%</strong> of Copilot programs vulnerable in high-risk scenarios; <strong>29.5%</strong> Python / <strong>24.2%</strong> JS AI-assisted snippets with weaknesses</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#the-failure-mode-moved-up-the-stack-tenzai-dec-2025-5-tools">Tenzai §1.1</a> · Dec 2025 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Correct-and-secure</td>
+<td>Best agent–model pair <strong>23.8%</strong> correct-and-secure; <strong>23.0%</strong> correct but exploitable</td>
+<td><em>No human baseline published</em> — see the selection-trap note above</td>
+<td><a href="index.html#best-agent-238-correct-and-secure-23-correct-but">SecureVibeBench §1.6</a> · ACL 2026 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Correct-and-secure</td>
+<td>Claude Code <strong>74.0%</strong> functional pass, <strong>18.4%</strong> secure; <strong>55.6%</strong> passed every test while a working exploit succeeded</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#556-passed-every-test-while-a-working-exploit-succeeded-ase">A.S.E 2.0 §1.6</a> · 4 Nov 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Correct-and-secure</td>
+<td>Best model <strong>25.1%</strong> functional-and-secure on 450 tasks, 7 languages</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#best-agent-writes-working-and-secure-code-on-only-251-of">LSCBench §1.6</a> · Oct 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Vulnerability reintroduction</td>
+<td><strong>45–70%</strong> of working agent solutions reintroduce the original vulnerability</td>
+<td><em>No human baseline published</em> — see the selection-trap note above</td>
+<td><a href="index.html#4570-of-working-agent-solutions-bring-the-original">BugLedger §1.6</a> · 2 Nov 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Flaw propagation</td>
+<td>Insecure neighbouring code cuts correct-and-secure output by <strong>35.4 points</strong> on average in C/C++</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#agents-copy-the-flaws-already-in-a-codebase-insecure-code">Sun et al. §2.1</a> · 8 Nov 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Remediation accuracy</td>
+<td>Leading remediation agents <strong>~68%</strong> pass@1; the leader fails 19% of tasks on every attempt</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2">CWE-bench v2 §1.6</a> · 3 Nov 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Review recall</td>
+<td>Agentic pre-merge review recall <strong>32.5–78.1%</strong> across eight frontier models</td>
+<td><em>No human baseline published</em> — human reviewers are the incumbent control, and their miss rate on the same 265 commits is unpublished</td>
+<td><a href="index.html#best-agentic-reviewers-catch-3-in-4-vuln-introducing">SecPRBench §1.6</a> · 24 Oct 2026 · preprint · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Vulnerabilities per codebase</td>
+<td><strong>15</strong> confirmed vulnerabilities per AI-generated codebase, 4.3 severe</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#15-confirmed-vulnerabilities-per-codebase-43-severe-secure">Secure Code Warrior §2.1</a> · Jul 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Flaws in AI-built apps</td>
+<td><strong>2,038</strong> critical vulnerabilities in 5,600+ publicly deployed AI-built apps</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#2038-critical-vulnerabilities-in-5600-publicly-deployed-ai">Escape.tech §2.1</a> · 2026 · vendor research · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>CVEs attributed to AI tools</td>
+<td><strong>74</strong> CVEs traced directly to AI coding tools</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#74-cves-traced-directly-to-ai-coding-tools-georgia-tech">Georgia Tech §2.1</a> · Sep 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Patch-to-exploit speed</td>
+<td>Working exploits generated <strong>within a day</strong> of disclosure (PaperCut zero-days, Aug 2026)</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#attackers-now-turn-patches-into-working-exploits-with-no">Google Threat Intelligence Group §3.4.3</a> · 16 Nov 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Documentation quality</td>
+<td><em>No figure</em> — nothing in the report measures documentation quality of CI vs EI code</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+<tr>
+<td>Test quality</td>
+<td><em>No figure</em> — nothing compares test quality (coverage, mutation score) of CI-written vs human-written tests</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+<tr>
+<td>Architectural foresight</td>
+<td><em>No figure</em> — nothing measures it</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operations">Operations</h2>
+<h3 id="complete-pairs_1">Complete pairs</h3>
+<p>No complete pair yet. Every agent-reliability figure in the report is measured against the task, never against a human doing the same task.</p>
+<h3 id="partial-comparisons_1">Partial comparisons</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task time horizon</td>
+<td>50%-reliability horizon doubles <strong>~every 7 months</strong>; the 80% horizon is far shorter; measurements above 16h flagged unreliable</td>
+<td>Human time is the yardstick for task length (an "X-hour task" is X hours of human work) — but no human success rate on the same tasks is published as a control</td>
+<td><a href="index.html#36-evaluation">METR §3.6</a> · 2026 · public tracker frozen (last model added 8 May) · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>R&amp;D acceleration</td>
+<td>Capability improving <strong>~1.9×</strong> the Mar 2024–Oct 2025 rate (95% CI 1.5–2.8×), ~80% of the acceleration judged attributable to AI doing R&amp;D</td>
+<td>The Mar 2024–Oct 2025 rate (mostly human R&amp;D) — a time-series rate comparison; the ~80% attribution is METR's judgment, not a measurement</td>
+<td><a href="index.html#36-evaluation">METR §3.6</a> · 5 Nov 2026 · 11 weeks inside Anthropic · ●●○○ Reported</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gaps_1">Gaps</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reliability (pass^k)</td>
+<td>ThinkingBox: Claude Opus 5.5 pass@1 <strong>67.16%</strong>, yet only <strong>241 of 507</strong> workflows pass on all 20 attempts; <strong>67.24%</strong> of failures terminate cleanly, then report done</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#36-evaluation">ThinkingBox §3.6</a> · Oct 2026 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Reliability (pass^k)</td>
+<td>tau-bench: GPT-4o pass^8 <strong>below 25%</strong> on retail despite a much higher pass@1</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#36-evaluation">§3.6</a> · prose, not an article — no rating</td>
+</tr>
+<tr>
+<td>Framework failure rate</td>
+<td>Failure rates of <strong>41%–86.7%</strong> across seven popular frameworks</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#33-orchestration-patterns">MAST §3.3</a> · reported via a Medium technical report, not independently verified</td>
+</tr>
+<tr>
+<td>Self-reported completion</td>
+<td><strong>Half</strong> of self-asserted "PASS" fix claims fail independent mechanical verification</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#36-evaluation">§3.6</a> · 2026 digest, reported, not independently verified</td>
+</tr>
+<tr>
+<td>Incident rate</td>
+<td><strong>188</strong> documented cases of autonomous AI damaging production systems, no attacker involved (late 2023–mid-2026)</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#188-documented-cases-of-autonomous-ai-damaging-production">Cyera §3.4.3</a> · 2023–mid-2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Incident rate</td>
+<td><strong>46%</strong> of systemically important banks reported an AI-related issue or incident in the past 12 months</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#73-of-systemically-important-banks-permit-agents-in">BCG §3.4.3</a> · 13 Nov 2026 · 26 banks · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Detection time</td>
+<td>WorkOS: a benchmark agent's bulk extraction ran <strong>5 days</strong> before detection</td>
+<td><em>No human baseline published</em></td>
+<td><a href="index.html#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer">WorkOS §3.4.3</a> · 6 Nov 2026 · ●●●○ Corroborated</td>
+</tr>
+<tr>
+<td>Escalation rate</td>
+<td><em>No figure</em> — nothing measures how often agents escalate to humans vs how often humans escalate on the same work</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+<tr>
+<td>Oversight cost per agent-hour</td>
+<td><em>No figure</em> — nothing prices the human oversight an agent-hour consumes</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+</tbody>
+</table>
+<h2 id="business-composite">Business-composite</h2>
+<h3 id="complete-pairs_2">Complete pairs</h3>
+<p>No complete pair yet. The composite the page exists to answer — total risk-adjusted cost per outcome, both sides, same task — has no figure on either side.</p>
+<h3 id="partial-comparisons_2">Partial comparisons</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Review cost</td>
+<td>A post-hoc security review lifts working-and-secure output to 47–56% at <strong>~2.5×</strong> the cost of generation alone</td>
+<td>The human is the intervention (the review), not a baseline for generation — and the review still leaves about half of tasks insecure</td>
+<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes re-run §1.6</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Cost per flaw found</td>
+<td>One agent pipeline: 948 working Linux kernel exploits at <strong>~$1,279</strong> per flaw, $1.21M end-to-end</td>
+<td><em>No human cost per flaw published</em> — and the fix loop lags by an order of magnitude (61 patched in 10 days), its cost unpriced</td>
+<td><a href="index.html#one-agent-pipeline-produced-948-working-linux-kernel-root">OpenAI §1.6</a> · 4 Nov 2026 · ●●○○ Reported</td>
+</tr>
+<tr>
+<td>Cost per finding</td>
+<td>Embedded-stack audit: 99 validated flaws for $935 in model spend, <strong>$2.58</strong> per finding</td>
+<td><em>No human cost per finding published</em> — and the $935 is the marginal cost of running a finished harness, not of building it</td>
+<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §2.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gaps_2">Gaps</h3>
+<table class="pair-table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>CI</th>
+<th>EI (human)</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total risk-adjusted cost per outcome</td>
+<td><em>No figure</em> — the dashboard's money panel states it honestly: no credible dollar figure exists yet for money saved or lost to AI code and agents</td>
+<td><em>No human baseline published</em></td>
+<td>No source — no figure published</td>
+</tr>
+</tbody>
+</table>
+<h2 id="changes">Changes</h2>
+<ul>
+<li><strong>v1.0 — 17 Nov 2026.</strong> First edition: 3 complete pairs, 12 partial comparisons, 27 gaps, across 42 classified items. Baseline for movement.</li>
+<li><strong>v1.1 — 18 Nov 2026.</strong> Veracode error rate moved: ~45% → ~38% of AI code introduces a known flaw (security pass rate 55% → 62%, first movement in the series); still a gap — no human baseline published. Counts unchanged: 3 pairs / 12 partials / 27 gaps.</li>
+<li>When a figure moves, the change is logged here with the old and new values, and the pair's row is updated.</li>
+</ul>
+  </main>
+</div>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function () {
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {
+        li.classList.toggle('toc-collapsed', collapse);
+      });
+    });
+    toc.querySelectorAll('li').forEach(function (li) {
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      li.classList.add('toc-collapsed');  // TOC starts collapsed: top-level only.
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      // No text content: the arrow is drawn with CSS borders (see .toc-toggle),
+      // so it renders identically on every system instead of depending on
+      // a font carrying the U+25B8/U+25BE triangle glyphs.
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      });
+    });
+  }
+  // Sections control (at the top of the content): expand/collapse all
+  // content headings, including the theses page's Part headings (H1s
+  // other than the page title). It used to live in the sidebar; it was
+  // lost there.
+  var secControls = document.querySelector('.sec-controls');
+  if (secControls) {
+    secControls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h1:not(:first-of-type), main h2, main h3, main h4').forEach(function (h) {
+        h.classList.toggle('collapsed', collapse);
+      });
+    });
+  }
+  // Make h1/h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  // H1 covers the theses page's Part headings; the page title itself is
+  // never collapsible. Everything starts COLLAPSED so the reader drills
+  // into one section at a time.
+  var main = document.querySelector('main');
+  if (!main) return;
+  var pageTitle = main.querySelector('h1');
+  var headings = main.querySelectorAll('h1, h2, h3, h4');
+  headings.forEach(function (h) {
+    if (h === pageTitle) return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    h.classList.add('collapsed');  // Everything starts collapsed; drill in one section at a time.
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }
+      collected.push(node);
+      node = next;
+    }
+    collected.forEach(function (n) { body.appendChild(n); });
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    });
+    if (level === 4) h.classList.add('collapsed');
+  });
+  // Breadcrumbs: at the top of every section body, a small trail back up
+  // to any ancestor level or the top of the page ("Top · Part I …" on the
+  // theses page; "Top · §3 Agentic … · §3.4 Governance" on the report).
+  // A reader who drilled down jumps back without scrolling. Built from
+  // the heading hierarchy, so it stays correct as sections are added or
+  // renamed. Skips the three front-page sections of the report (they sit at
+  // the top of the page already) and the page title.
+  var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  var firstH1 = main.querySelector('h1');
+  crumbHeads.forEach(function (h) {
+    if (h.tagName === 'H1') return;
+    if (h.id === 'state-of-the-market' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var ancestors = [];
+    var idx = crumbHeads.indexOf(h);
+    var need = level - 1;
+    for (var k = idx - 1; k >= 0 && need >= 1; k--) {
+      var cand = crumbHeads[k];
+      var cl = parseInt(cand.tagName.substring(1), 10);
+      if (cl === need) {
+        if (cand !== firstH1) ancestors.unshift(cand);
+        need--;
+      }
+    }
+    var sbody = h.nextElementSibling;
+    if (!sbody || !sbody.classList.contains('section-body')) return;
+    var crumbs = document.createElement('p');
+    crumbs.className = 'crumbs';
+    var chtml = '<a href="#" class="crumb-top" title="Back to the top of the page">↑ Top</a>';
+    ancestors.forEach(function (a) {
+      chtml += ' <span class="crumb-sep">·</span> <a href="#' + a.id + '">' + a.textContent.trim() + '</a>';
+    });
+    crumbs.innerHTML = chtml;
+    sbody.insertBefore(crumbs, sbody.firstChild);
+  });
+  // The "Top" crumb smooth-scrolls to the top (no hash change).
+  main.addEventListener('click', function (e) {
+    var t = e.target.closest('a.crumb-top');
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // Share links: every section heading, article headline, substantive
+  // paragraph, and table gets a small link button that copies the direct
+  // URL to that unit (page + #anchor). The icon is inline SVG, not a font
+  // glyph, so it renders identically everywhere. On desktop the button
+  // appears on hover of its unit; on touch devices it is always visible
+  // (see the .share-link CSS). Clicking it never toggles its unit.
+  var LINK_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  function slugify(text) {
+    var s = text.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    if (s.length > 60) {
+      s = s.slice(0, 60);
+      var cut = s.lastIndexOf('-');
+      if (cut > 20) s = s.slice(0, cut);
+    }
+    return s;
+  }
+  var usedIds = {};
+  document.querySelectorAll('[id]').forEach(function (el) { usedIds[el.id] = true; });
+  function uniqueId(base) {
+    if (!base) base = 'item';
+    var id = base, n = 2;
+    while (usedIds[id]) { id = base + '-' + n; n++; }
+    usedIds[id] = true;
+    return id;
+  }
+  function copyUrl(id, btn) {
+    var origin = location.origin || (location.protocol + '//' + location.host);
+    var path = location.pathname.replace(/\/index\.html$/, '/');
+    var url = origin + path + '#' + id;
+    function done() {
+      btn.classList.add('copied');
+      btn.textContent = 'Copied';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = LINK_SVG;
+      }, 1500);
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+  function makeShareButton(id, label) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'share-link';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+    btn.innerHTML = LINK_SVG;
+    btn.addEventListener('click', function (e) {
+      // Never toggle the enclosing heading or <details>: the click is
+      // only for copying. preventDefault cancels the <summary> toggle,
+      // stopPropagation keeps the heading collapse handler out of it.
+      e.stopPropagation();
+      e.preventDefault();
+      copyUrl(id, btn);
+    });
+    return btn;
+  }
+  // Headings (all except the page title).
+  var shareHeads = main.querySelectorAll('h1, h2, h3, h4');
+  shareHeads.forEach(function (h, i) {
+    if (!h.id) return;
+    if (i === 0 && h.tagName === 'H1') return;  // the page title is not a section
+    h.appendChild(makeShareButton(h.id, 'Copy link to this section'));
+  });
+  // Articles: the <details> blocks. Skips the How-to-read block, the
+  // mobile Contents block, and the See-also cross-link blocks. The id
+  // goes on the <details> itself; the button goes in its <summary>.
+  main.querySelectorAll('details').forEach(function (d) {
+    if (d.classList.contains('how-to-read') || d.classList.contains('toc-inline')) return;
+    var sum = d.querySelector(':scope > summary');
+    if (!sum) return;
+    var text = sum.textContent.trim();
+    if (text === 'See also') return;
+    if (!d.id) d.id = uniqueId(slugify(text));
+    sum.appendChild(makeShareButton(d.id, 'Copy link to this article'));
+  });
+  // Tables: id from the nearest preceding heading, button in a small
+  // right-aligned row just below the table.
+  var allHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  main.querySelectorAll('table').forEach(function (tbl) {
+    var head = null;
+    for (var k = 0; k < allHeads.length; k++) {
+      if (allHeads[k].compareDocumentPosition(tbl) & Node.DOCUMENT_POSITION_FOLLOWING) head = allHeads[k];
+      else break;
+    }
+    var base = (head && head.id ? head.id + '-table' : 'table');
+    if (!tbl.id) tbl.id = uniqueId(base);
+    var row = document.createElement('div');
+    row.className = 'table-share';
+    row.appendChild(makeShareButton(tbl.id, 'Copy link to this table'));
+    tbl.parentNode.insertBefore(row, tbl.nextSibling);
+  });
+  // Substantive paragraphs: prose outside any <details>, long enough to be
+  // worth sharing, not a Sources line or the As-of banner. The button goes
+  // inline at the end of the paragraph.
+  main.querySelectorAll('p').forEach(function (p) {
+    if (p.closest('details')) return;
+    if (p.classList.contains('as-of-banner')) return;
+    if (p.classList.contains('crumbs')) return;
+    var text = p.textContent.trim();
+    if (text.length < 80) return;
+    if (text.indexOf('Sources:') === 0) return;
+    if (!p.id) p.id = uniqueId(slugify(text));
+    p.appendChild(makeShareButton(p.id, 'Copy link to this paragraph'));
+  });
 
-Every CI figure in the report, set against its human equivalent — [EI, evolved intelligence](glossary.html#ei) — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.
-
-A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: **3 complete pairs, 12 partial comparisons, 27 gaps**, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in the report is measured against the task, never against a human doing the same task.
-
-The strongest pair: AI patches introduce **135** confirmed vulnerabilities against **12** for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in the report measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.
-
-CI figures read in rust, human figures in navy — the same colours as the dashboard. Every row links to the report article that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.
-
-## Development
-
-Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from cases where a human *did* introduce a vulnerability — that is how the tasks were selected, so reading them as "humans 0% secure" would be a misuse. The human rate on those tasks was never measured as a control group.
-
-### Complete pairs
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Vulnerabilities in patches | **135** manually confirmed vulnerabilities (Llama 3.3, SWE-bench train+test) | **12** in developer patches for the same issues | [Sajadi et al. §1.6](index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of) · 1 Nov 2026 · preprint · ●●○○ Reported |
-| Vulnerabilities in patches, newer model | **3** vulnerabilities (GPT-5.4 nano, test set) | **2** in developer patches for the same issues | [Sajadi et al. §1.6](index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of) · 1 Nov 2026 · preprint · ●●○○ Reported |
-| Vulnerability rate, equivalent tasks | **2.74×** the vulnerabilities of human code; 1.7× more major issues | **1×** baseline (human-written code, 470 PRs) | [CodeRabbit §1.1](index.html#ai-code-carries-274-the-vulnerabilities-of-human-code) · Dec 2025 · vendor's own analysis · ●○○○ Claimed |
-
-### Partial comparisons
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Commit speed | AI-assisted developers commit **3–4×** faster | Unassisted developers (implied) — method undisclosed, a rate, not same-task time | [Apiiro / CSA §1.1](index.html#volume-compounds-it-apiiro-csa-apr-2026-enterprise) · Apr 2026 · vendor telemetry · ●●○○ Reported |
-| Privilege-escalation paths | **+322%** in AI-assisted repos; +153% architectural flaws | Non-AI repos in the same telemetry — populations not matched on task, size, or age | [Apiiro §2.1](index.html#322-more-privilege-escalation-paths-in-ai-assisted-repos) · 2026 · vendor study · ●●○○ Reported |
-| Vulnerability trend | Mean **581** vulnerabilities per codebase, **+107%** year-on-year | 2025 codebases (~281) — a time-series, not a matched comparison; the AI attribution is the vendor's | [Black Duck OSSRA §2.1](index.html#mean-vulnerabilities-per-codebase-581-up-107-year-on-year) · 2026 · 947 codebases · ●●●○ Corroborated |
-| Maintainability | Moved code **21% → 3.8%** of changed lines; duplicate blocks **+81%**; two-week churn **+15%** | 2022 commit history (human-era) vs 2023–26 (AI-era) — a time-series, not same-task | [GitClear §2.1](index.html#ai-code-has-a-maintainability-gap-gitclear-jan-2026-623m) · Jan 2026 · 623M code changes · ●●○○ Reported |
-| Verification tax | Every +25% AI adoption cost **−1.5%** throughput and **−7.2%** delivery stability (2024) | Lower-adoption teams — correlational survey, compares adoption levels, not same-task performance | [Google DORA §2.1](index.html#ai-code-imposes-a-verification-tax-on-reviewers-google-dora) · 2024–2026 · ●●●○ Corroborated |
-| Audit time | Embedded-stack audit: **90 hours** | **9 months** (same team's prior audit) — but not a controlled benchmark: different target sets, and the AI run rediscovered only 40% of the flaws the human audit had disclosed | [Forescout §2.1](index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours) · 12 Nov 2026 · ●●○○ Reported |
-| Dose-response | Organisations at 81–100% AI-generated code ship vulnerable code at **3.4×** the rate of those at 1–20% | Organisations at 1–20% AI code — different organisations, not the same task | [SusVibes §1.6](index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25) · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported |
-
-### Gaps
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Error rate | **~38%** of AI code introduces a known flaw (62% security pass rate; first movement in the series, from 56% in July 2026) | *No human baseline published* | [Veracode §1.1](index.html#38-of-ai-code-introduces-a-known-security-flaw-veracode) · Fall 2026 · ●●●○ Corroborated |
-| Hallucinated packages | **19.7%** of package references name packages that don't exist | *No human baseline published* | [Spracklen et al. §1.1](index.html#20-of-package-references-are-hallucinated-spracklen-et-al) · USENIX Security 2025 · ●●●○ Corroborated |
-| Error rate, base rates | **~40%** of Copilot programs vulnerable in high-risk scenarios; **29.5%** Python / **24.2%** JS AI-assisted snippets with weaknesses | *No human baseline published* | [Tenzai §1.1](index.html#the-failure-mode-moved-up-the-stack-tenzai-dec-2025-5-tools) · Dec 2025 · ●●○○ Reported |
-| Correct-and-secure | Best agent–model pair **23.8%** correct-and-secure; **23.0%** correct but exploitable | *No human baseline published* — see the selection-trap note above | [SecureVibeBench §1.6](index.html#best-agent-238-correct-and-secure-23-correct-but) · ACL 2026 · ●●●○ Corroborated |
-| Correct-and-secure | Claude Code **74.0%** functional pass, **18.4%** secure; **55.6%** passed every test while a working exploit succeeded | *No human baseline published* | [A.S.E 2.0 §1.6](index.html#556-passed-every-test-while-a-working-exploit-succeeded-ase) · 4 Nov 2026 · preprint · ●●○○ Reported |
-| Correct-and-secure | Best model **25.1%** functional-and-secure on 450 tasks, 7 languages | *No human baseline published* | [LSCBench §1.6](index.html#best-agent-writes-working-and-secure-code-on-only-251-of) · Oct 2026 · preprint · ●●○○ Reported |
-| Vulnerability reintroduction | **45–70%** of working agent solutions reintroduce the original vulnerability | *No human baseline published* — see the selection-trap note above | [BugLedger §1.6](index.html#4570-of-working-agent-solutions-bring-the-original) · 2 Nov 2026 · ●●○○ Reported |
-| Flaw propagation | Insecure neighbouring code cuts correct-and-secure output by **35.4 points** on average in C/C++ | *No human baseline published* | [Sun et al. §2.1](index.html#agents-copy-the-flaws-already-in-a-codebase-insecure-code) · 8 Nov 2026 · preprint · ●●○○ Reported |
-| Remediation accuracy | Leading remediation agents **~68%** pass@1; the leader fails 19% of tasks on every attempt | *No human baseline published* | [CWE-bench v2 §1.6](index.html#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2) · 3 Nov 2026 · ●●○○ Reported |
-| Review recall | Agentic pre-merge review recall **32.5–78.1%** across eight frontier models | *No human baseline published* — human reviewers are the incumbent control, and their miss rate on the same 265 commits is unpublished | [SecPRBench §1.6](index.html#best-agentic-reviewers-catch-3-in-4-vuln-introducing) · 24 Oct 2026 · preprint · ●●○○ Reported |
-| Vulnerabilities per codebase | **15** confirmed vulnerabilities per AI-generated codebase, 4.3 severe | *No human baseline published* | [Secure Code Warrior §2.1](index.html#15-confirmed-vulnerabilities-per-codebase-43-severe-secure) · Jul 2026 · ●●○○ Reported |
-| Flaws in AI-built apps | **2,038** critical vulnerabilities in 5,600+ publicly deployed AI-built apps | *No human baseline published* | [Escape.tech §2.1](index.html#2038-critical-vulnerabilities-in-5600-publicly-deployed-ai) · 2026 · vendor research · ●●○○ Reported |
-| CVEs attributed to AI tools | **74** CVEs traced directly to AI coding tools | *No human baseline published* | [Georgia Tech §2.1](index.html#74-cves-traced-directly-to-ai-coding-tools-georgia-tech) · Sep 2026 · ●●○○ Reported |
-| Patch-to-exploit speed | Working exploits generated **within a day** of disclosure (PaperCut zero-days, Aug 2026) | *No human baseline published* | [Google Threat Intelligence Group §3.4.3](index.html#attackers-now-turn-patches-into-working-exploits-with-no) · 16 Nov 2026 · ●●○○ Reported |
-| Documentation quality | *No figure* — nothing in the report measures documentation quality of CI vs EI code | *No human baseline published* | No source — no figure published |
-| Test quality | *No figure* — nothing compares test quality (coverage, mutation score) of CI-written vs human-written tests | *No human baseline published* | No source — no figure published |
-| Architectural foresight | *No figure* — nothing measures it | *No human baseline published* | No source — no figure published |
-
-## Operations
-
-### Complete pairs
-
-No complete pair yet. Every agent-reliability figure in the report is measured against the task, never against a human doing the same task.
-
-### Partial comparisons
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Task time horizon | 50%-reliability horizon doubles **~every 7 months**; the 80% horizon is far shorter; measurements above 16h flagged unreliable | Human time is the yardstick for task length (an "X-hour task" is X hours of human work) — but no human success rate on the same tasks is published as a control | [METR §3.6](index.html#36-evaluation) · 2026 · public tracker frozen (last model added 8 May) · ●●●○ Corroborated |
-| R&D acceleration | Capability improving **~1.9×** the Mar 2024–Oct 2025 rate (95% CI 1.5–2.8×), ~80% of the acceleration judged attributable to AI doing R&D | The Mar 2024–Oct 2025 rate (mostly human R&D) — a time-series rate comparison; the ~80% attribution is METR's judgment, not a measurement | [METR §3.6](index.html#36-evaluation) · 5 Nov 2026 · 11 weeks inside Anthropic · ●●○○ Reported |
-
-### Gaps
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Reliability (pass^k) | ThinkingBox: Claude Opus 5.5 pass@1 **67.16%**, yet only **241 of 507** workflows pass on all 20 attempts; **67.24%** of failures terminate cleanly, then report done | *No human baseline published* | [ThinkingBox §3.6](index.html#36-evaluation) · Oct 2026 · ●●●○ Corroborated |
-| Reliability (pass^k) | tau-bench: GPT-4o pass^8 **below 25%** on retail despite a much higher pass@1 | *No human baseline published* | [§3.6](index.html#36-evaluation) · prose, not an article — no rating |
-| Framework failure rate | Failure rates of **41%–86.7%** across seven popular frameworks | *No human baseline published* | [MAST §3.3](index.html#33-orchestration-patterns) · reported via a Medium technical report, not independently verified |
-| Self-reported completion | **Half** of self-asserted "PASS" fix claims fail independent mechanical verification | *No human baseline published* | [§3.6](index.html#36-evaluation) · 2026 digest, reported, not independently verified |
-| Incident rate | **188** documented cases of autonomous AI damaging production systems, no attacker involved (late 2023–mid-2026) | *No human baseline published* | [Cyera §3.4.3](index.html#188-documented-cases-of-autonomous-ai-damaging-production) · 2023–mid-2026 · ●●○○ Reported |
-| Incident rate | **46%** of systemically important banks reported an AI-related issue or incident in the past 12 months | *No human baseline published* | [BCG §3.4.3](index.html#73-of-systemically-important-banks-permit-agents-in) · 13 Nov 2026 · 26 banks · ●●○○ Reported |
-| Detection time | WorkOS: a benchmark agent's bulk extraction ran **5 days** before detection | *No human baseline published* | [WorkOS §3.4.3](index.html#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer) · 6 Nov 2026 · ●●●○ Corroborated |
-| Escalation rate | *No figure* — nothing measures how often agents escalate to humans vs how often humans escalate on the same work | *No human baseline published* | No source — no figure published |
-| Oversight cost per agent-hour | *No figure* — nothing prices the human oversight an agent-hour consumes | *No human baseline published* | No source — no figure published |
-
-## Business-composite
-
-### Complete pairs
-
-No complete pair yet. The composite the page exists to answer — total risk-adjusted cost per outcome, both sides, same task — has no figure on either side.
-
-### Partial comparisons
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Review cost | A post-hoc security review lifts working-and-secure output to 47–56% at **~2.5×** the cost of generation alone | The human is the intervention (the review), not a baseline for generation — and the review still leaves about half of tasks insecure | [SusVibes re-run §1.6](index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25) · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported |
-| Cost per flaw found | One agent pipeline: 948 working Linux kernel exploits at **~$1,279** per flaw, $1.21M end-to-end | *No human cost per flaw published* — and the fix loop lags by an order of magnitude (61 patched in 10 days), its cost unpriced | [OpenAI §1.6](index.html#one-agent-pipeline-produced-948-working-linux-kernel-root) · 4 Nov 2026 · ●●○○ Reported |
-| Cost per finding | Embedded-stack audit: 99 validated flaws for $935 in model spend, **$2.58** per finding | *No human cost per finding published* — and the $935 is the marginal cost of running a finished harness, not of building it | [Forescout §2.1](index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours) · 12 Nov 2026 · ●●○○ Reported |
-
-### Gaps
-
-| Parameter | CI | EI (human) | Evidence |
-|---|---|---|---|
-| Total risk-adjusted cost per outcome | *No figure* — the dashboard's money panel states it honestly: no credible dollar figure exists yet for money saved or lost to AI code and agents | *No human baseline published* | No source — no figure published |
-
-## Changes
-
-- **v1.0 — 17 Nov 2026.** First edition: 3 complete pairs, 12 partial comparisons, 27 gaps, across 42 classified items. Baseline for movement.
-- **v1.1 — 18 Nov 2026.** Veracode error rate moved: ~45% → ~38% of AI code introduces a known flaw (security pass rate 55% → 62%, first movement in the series); still a gap — no human baseline published. Counts unchanged: 3 pairs / 12 partials / 27 gaps.
-- When a figure moves, the change is logged here with the old and new values, and the pair's row is updated.
+  // Back-to-top button: appears once the reader has scrolled down the
+  // page, smooth-scrolls back to the top. Invisible until needed.
+  var toTop = document.querySelector('.back-to-top');
+  if (toTop) {
+    window.addEventListener('scroll', function () {
+      toTop.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Jumping to an anchor expands any collapsed ancestor section.
+  function expandForAnchor() {
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    // If the anchor IS a collapsible heading, open it too: the walk
+    // below only opens ancestors, so a deep link to a subsection
+    // heading would otherwise land on a collapsed section.
+    if (el.classList) el.classList.remove('collapsed');
+    var node = el;
+    while (node) {
+      if (node.classList && node.classList.contains('section-body')) {
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }
+      if (node.tagName === 'DETAILS') node.open = true;
+      node = node.parentElement;
+    }
+    el.scrollIntoView();
+  }
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+})();
+</script>
+</body>
+</html>
