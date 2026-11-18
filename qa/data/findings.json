@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18T13:06:51.945325+00:00",
+ "generated_at": "2026-11-18T17:13:10.466707+00:00",
  "as_of": "Tuesday, November 17, 2026",
  "as_of_date": "2026-11-17",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -739,8 +739,8 @@
    "rating": "corroborated",
    "rating_dots": "●●●○",
    "source": "Google DORA",
-   "source_label": "Google Cloud, on AI-assisted development",
-   "source_url": "https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era",
+   "source_label": "DORA, The ROI of AI-Assisted Software Development (2026.01)",
+   "source_url": "https://dora.dev/ai/roi/report/",
    "source_context": "Google DORA, 2024–2026, survey-based, correlational",
    "date": "2024",
    "flag": null,
