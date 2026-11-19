@@ -167,6 +167,119 @@ def parse_glossary(path):
     return entries
 
 
+ARTICLE_DETAILS_RE = re.compile(
+    r"<details([^>]*)>\s*<summary>(.*?)</summary>", re.DOTALL
+)
+
+
+def add_article_data_attrs(body, tags):
+    """Emit data-* attributes on every article <details> block, from the
+    tag lines — the same join the dashboard tiles use
+    (build_dashboard.parse_article_tags is the single parser; tag_attrs
+    is the single attribute builder — nothing is duplicated here). The
+    article id is the runtime id the share JS will assign (summary text
+    -> slugify -> document-order dedupe), so the attributes land on the
+    article whose tag line they came from. Non-article details are
+    skipped: How-to-read (carries a class attribute), "See also" blocks
+    (summary text), and any details whose headline has no tag line (it
+    has no tags to match on, so it stays unfiltered).
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_dashboard
+
+    used = set()
+
+    def repl(m):
+        opening_attrs, summary_html = m.group(1), m.group(2)
+        if "class=" in opening_attrs:
+            return m.group(0)
+        text = build_dashboard.headline_text(summary_html)
+        if text == "See also":
+            return m.group(0)
+        base = build_dashboard.slugify(text) or "item"
+        ident, n = base, 2
+        while ident in used:
+            ident = f"{base}-{n}"
+            n += 1
+        used.add(ident)
+        dims = tags.get(ident)
+        if not dims:
+            return m.group(0)
+        return (
+            f"<details{opening_attrs}{build_dashboard.tag_attrs(dims)}>"
+            f"\n<summary>{summary_html}</summary>"
+        )
+
+    return ARTICLE_DETAILS_RE.sub(repl, body)
+
+
+FEED_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\s*[—–-]\s*")
+FEED_SOURCE_RE = re.compile(
+    r"<strong>.*?</strong>\s*\(<a href=\"(https?://[^\"]+)\""
+)
+
+
+def add_feed_data_attrs(body, tags, url_to_ids):
+    """Emit data-* attributes on each "New in the last 7 days" feed
+    entry, inheriting its target article's tags — the same tag parser
+    and the same attribute builder as the articles
+    (build_dashboard.match_feed_entry / tag_attrs), so the feed can
+    never disagree with them. The feed <ul> gets the whats-new-feed
+    class the filter JS selects on, and a feed-empty state is inserted
+    after it (shown by the JS only when no entry is visible). Entries
+    with no identifiable article keep no attributes — they stay visible
+    under any filter — and are reported, so a feed title drifting away
+    from its article is visible at build time instead of silently
+    unfilterable.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_dashboard
+
+    m = re.search(
+        r'(<h2 id="new-in-the-last-7-days">.*?</h2>.*?)<ul>(.*?)</ul>',
+        body, re.DOTALL,
+    )
+    if not m or m.group(1).count("<h2") != 1:
+        print("WARNING: 'New in the last 7 days' feed list not found — "
+              "feed entries left unfiltered")
+        return body
+    head, ul_inner = m.group(1), m.group(2)
+    tagged, unmatched = [], []
+
+    def repl(m):
+        inner = m.group(1)
+        sm = re.match(r"<strong>(.*?)</strong>", inner)
+        if not sm:
+            unmatched.append("(entry without a bold title)")
+            return m.group(0)
+        headline = FEED_DATE_RE.sub("", sm.group(1))
+        um = FEED_SOURCE_RE.match(inner)
+        source_url = um.group(1).rstrip("/") if um else None
+        dims = build_dashboard.match_feed_entry(
+            headline, source_url, tags, url_to_ids
+        )
+        if not dims:
+            unmatched.append(headline)
+            return m.group(0)
+        tagged.append(headline)
+        return f"<li{build_dashboard.tag_attrs(dims)}>{inner}</li>"
+
+    new_inner = re.sub(r"<li>(.*?)</li>", repl, ul_inner, flags=re.DOTALL)
+    new_feed = (
+        head + '<ul class="whats-new-feed">' + new_inner + "</ul>"
+        + '\n<p class="dash-empty" id="feed-empty" hidden>'
+        "No new items match these filters. "
+        '<button type="button" class="dash-clear-btn" '
+        "data-clear-filters>Clear all filters</button></p>"
+    )
+    print(f"Feed: {len(tagged)} of {len(tagged) + len(unmatched)} "
+          "entries tagged")
+    for u in unmatched:
+        print(f"WARNING: feed entry has no matching article (stays "
+              f"unfiltered): {u[:100]}")
+    return body[:m.start()] + new_feed + body[m.end():]
+
+
 def build(input_path, output_path):
     src = Path(input_path).read_text(encoding="utf-8")
     src = strip_contents_section(src)
@@ -208,6 +321,21 @@ def build(input_path, output_path):
         r'<a href="\1" target="_blank" rel="noopener">',
         body,
     )
+    # Article data-* attributes (Round 4): every article <details> carries
+    # its tags, so the page-level filter JS can hide non-matching articles.
+    # Runs on the converted body, before the dashboard section and the
+    # panel are assembled (neither contains article <details> blocks).
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build_dashboard
+    article_tags = build_dashboard.parse_article_tags(input_path)
+    body = add_article_data_attrs(body, article_tags)
+    # Feed data-* attributes (Round 5): each "New in the last 7 days"
+    # entry inherits its target article's tags, so the page-level
+    # filter covers the feed too. Same stage as the article attrs —
+    # the feed <ul> is in the converted body here.
+    article_sources = build_dashboard.parse_article_sources(input_path)
+    url_to_ids = build_dashboard.invert_sources(article_sources)
+    body = add_feed_data_attrs(body, article_tags, url_to_ids)
     toc_html = md.toc
 
     # Prominent timestamp banner directly under the H1, so a reader sees at a
@@ -218,11 +346,12 @@ def build(input_path, output_path):
     # It sits outside every section-body, so collapsing a section never hides it.
     inline_toc = (
         '<details class="toc-inline">\n'
-        '<summary>Contents</summary>\n'
+        '<summary>PAGE CONTENTS</summary>\n'
         + toc_html +
         '\n</details>\n'
     )
-    # Search box, right under the "As of" banner: the report is reference
+    # Search box (Round 4: inside the Search/Filter/Sort panel, which sits
+    # right under the "As of" banner row): the report is reference
     # material, and readers need to find their way back to something they
     # saw. It indexes the live page at runtime (see the search JS), so it
     # needs no build-time index and stays fresh with every publish. It
@@ -239,23 +368,33 @@ def build(input_path, output_path):
         '<p id="search-status" class="visually-hidden" aria-live="polite"></p>\n'
         '</div>\n'
     )
-    # Page structure (2026-11-15 restructure; row 1 revised 2026-11-15):
-    #   Row 1: As-of banner (left) + "How to read this" (centered) +
-    #     Sections expand/collapse controls (right). When "How to read
-    #     this" is opened it drops to a full-width line below the row.
-    #   Row 2: search box.
+    # Page structure (2026-11-15 restructure; row 1 revised 2026-11-15;
+    # row 2 revised 2026-11-18, Round 4; FIX 2, 2026-11-18: "How to read
+    # this" moved into the masthead, above the SITREP sections nav):
+    #   Row 1: As-of banner (left) + Sections expand/collapse controls
+    #     (right) on desktop. The row-1 "How to read this" copy is
+    #     phones-only (display: none above 900px) — on phones the
+    #     masthead renders below all main content, so the row-1 copy
+    #     stays where first-time readers find it. When the phone copy
+    #     is opened it drops to a full-width line below the row.
+    #   Row 2: the Search/Filter/Sort panel — one collapsible <details>
+    #     holding the search box + the filter/sort controls (the
+    #     standalone search-box row is gone; its markup moved inside).
     #   Then the two top-level sections: EXECUTIVE DASHBOARD (the F-01
     #   dashboard, embedded from dashboard.json) and REPORT (the report
     #   body). The report's headings keep their levels — the H2s stay H2s
     #   — so every anchor survives the move.
-    # "How to read this" comes out of the body and into row 1, centered
-    # between the As-of banner and the Sections controls.
+    # "How to read this" comes out of the body and is emitted twice from
+    # the same extracted string (FIX 2): once into the masthead sidebar
+    # (the control on desktop) and once into row 1 (phones-only).
     htr_match = re.search(r'<details class="how-to-read">.*?</details>', body, re.DOTALL)
     htr = htr_match.group(0) if htr_match else ""
     if htr_match:
         body = body[:htr_match.start()] + body[htr_match.end():]
 
-    # Row 1: As-of banner + "How to read this" + Sections controls.
+    # Row 1: As-of banner + "How to read this" (phones-only copy) +
+    # Sections controls. The copy stays in the row assembly; CSS hides
+    # it above 900px (see .top-row details.how-to-read).
     sec_controls = (
         '<div class="sec-controls">Sections: '
         '<button type="button" data-act="expand">Expand all</button>'
@@ -275,12 +414,27 @@ def build(input_path, output_path):
     dash_path = Path(input_path).parent / "dashboard.json"
     dash_section = ""
     dash_data = None
+    search_row = search_box  # no dashboard.json: the search box stands alone
     toc = toc_html
     if dash_path.exists():
-        sys.path.insert(0, str(Path(__file__).resolve().parent))
-        import build_dashboard
         dash_data = json.loads(dash_path.read_text(encoding="utf-8"))
         dash_inner = build_dashboard.render_embedded(dash_data)
+        # Search/Filter/Sort panel (Round 4): the search box + the
+        # filter/sort controls in ONE collapsible panel at the top of
+        # the page, in the spot where the search box sat. The panel is
+        # index-only — sub-pages have no dashboard/report to filter.
+        n_figures = len(list(build_dashboard.iter_figures(dash_data)))
+        filter_bar = build_dashboard.render_filter_bar(
+            n_figures, len(article_tags), article_tags)
+        search_row = (
+            '<details class="search-filter-panel">\n'
+            '<summary class="sfp-header"><span class="sfp-left">'
+            '<span>Search, filter &amp; sort</span>'
+            '<span class="sfp-active" id="sfp-active"></span></span>'
+            '<span class="sfp-chevron" aria-hidden="true"></span></summary>\n'
+            '<div class="sfp-body">\n' + search_box + filter_bar + '\n</div>\n'
+            '</details>\n'
+        )
         dash_section = (
             '<h2 id="executive-dashboard">EXECUTIVE DASHBOARD</h2>\n'
             f'<div class="dash-embed">\n{dash_inner}\n</div>\n'
@@ -306,10 +460,18 @@ def build(input_path, output_path):
         print(f"WARNING: {dash_path} not found — dashboard section omitted")
 
     body = (
-        h1_part + "\n" + row1 + search_box + "\n" + inline_toc
+        h1_part + "\n" + row1 + search_row + "\n" + inline_toc
         + dash_section
         + '<h2 id="report">REPORT</h2>\n'
         + '<div class="report-embed">\n' + rest + '\n</div>\n'
+        # Report empty state (Round 4): shows when every article filters
+        # out. It sits OUTSIDE .report-embed — but inside #report's
+        # section-body, which never hides — so hiding the last section
+        # cannot hide the line itself.
+        + '<p class="dash-empty" id="report-empty" hidden>'
+        "No articles match these filters. "
+        '<button type="button" class="dash-clear-btn" '
+        "data-clear-filters>Clear all filters</button></p>\n"
     )
 
     # Glossary data for tooltips: parsed from GLOSSARY.md in the same
@@ -328,12 +490,14 @@ def build(input_path, output_path):
         last_updated=last_updated,
         toc=toc,
         body=body,
+        how_to_read=htr,
         glossary_data=glossary_data,
     )
     if dash_data is not None:
         # Dashboard CSS/JS are inserted AFTER .format() — they contain braces.
         html = html.replace("</style>", build_dashboard.DASH_CSS + "\n</style>", 1)
         html = html.replace("</body>", build_dashboard.COUNTDOWN_JS + "\n</body>", 1)
+        html = html.replace("</body>", build_dashboard.FILTER_JS + "\n</body>", 1)
         # Validate the dashboard data against the final HTML.
         errors = build_dashboard.validate(dash_data, html)
         if errors:
@@ -389,17 +553,20 @@ TEMPLATE = """<!DOCTYPE html>
     font-size: 15px;
     font-weight: 600;
   }}
-  /* Row 1: As-of banner + Sections controls, one row. Row 3: "How to
-     read this", right-justified when collapsed, full width when open. */
+  /* Row 1: As-of banner + Sections controls, one row. (The row-3
+     layout this comment used to describe was removed 2026-11-15.) */
   .top-row {{ display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin: 0 0 16px; }}
   .top-row .as-of-banner {{ margin: 0; }}
   .sec-controls {{ font-size: 13px; color: var(--muted); white-space: nowrap; }}
   .sec-controls button {{ font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }}
   .sec-controls button:hover {{ background: #e8dfcc; }}
-  /* "How to read this" lives in row 1, centered between the As-of banner
-     and the Sections controls; when opened it drops to a full-width line
-     below the row (the row wraps). */
-  .top-row details.how-to-read {{ flex: 1 1 auto; text-align: center; }}
+  /* "How to read this" in row 1 is the phones-only copy (FIX 2): the
+     masthead copy is the control on desktop, so this one is hidden
+     above 900px and restored in the media query below. On phones it
+     sits centered between the As-of banner and the Sections controls;
+     when opened it drops to a full-width line below the row (the row
+     wraps). */
+  .top-row details.how-to-read {{ flex: 1 1 auto; text-align: center; display: none; }}
   .top-row details.how-to-read[open] {{ flex-basis: 100%; text-align: left; }}
   details.how-to-read {{ width: fit-content; max-width: 100%; }}
   details.how-to-read[open] {{ width: 100%; }}
@@ -448,6 +615,7 @@ TEMPLATE = """<!DOCTYPE html>
   .masthead-by {{ font-size: 13px; color: var(--muted); margin: 10px 0 0; }}
   .masthead-logo {{ height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }}
   .masthead-nav {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
+  .masthead-nav h3 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }}
   .masthead-nav a {{ font-weight: 600; }}
   .masthead-legend {{ margin-bottom: 18px; padding-bottom: 0; border-bottom: 1px solid var(--line); }}
   .masthead-legend[open] {{ padding-bottom: 16px; }}
@@ -455,6 +623,20 @@ TEMPLATE = """<!DOCTYPE html>
   .masthead-legend[open] summary {{ margin-bottom: 10px; }}
   .masthead-legend p {{ font-size: 13px; color: var(--muted); margin: 0 0 8px; line-height: 1.45; }}
   .masthead-legend .dots {{ color: var(--ink); font-weight: 600; letter-spacing: 1px; }}
+  /* "How to read this" in the masthead (FIX 2): same treatment as the
+     confidence legend — a bordered <details> box with a masthead-header
+     summary. The same block also renders in row 1, hidden on desktop
+     and shown on phones (see the media query below). */
+  nav.sidebar details.how-to-read {{ margin-bottom: 18px; padding-bottom: 0; border-bottom: 1px solid var(--line); }}
+  nav.sidebar details.how-to-read[open] {{ padding-bottom: 16px; }}
+  nav.sidebar details.how-to-read > summary {{ font-size: 13px; font-style: normal; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }}
+  nav.sidebar details.how-to-read[open] > summary {{ margin-bottom: 10px; }}
+  nav.sidebar details.how-to-read p, nav.sidebar details.how-to-read li {{ font-size: 13px; color: var(--muted); line-height: 1.45; }}
+  nav.sidebar details.how-to-read p {{ margin: 0 0 8px; }}
+  /* Sidebar links are block-level nav rows; the guide's links are inline,
+     inside sentences — override or every link breaks its sentence. */
+  nav.sidebar details.how-to-read a {{ display: inline; padding: 0; font-size: inherit; color: var(--accent); text-decoration: underline; }}
+  nav.sidebar details.how-to-read a:hover {{ background: none; }}
   .masthead-contact {{ margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }}
   .masthead-contact h3 {{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }}
   .masthead-contact p {{ font-size: 13px; color: var(--muted); margin: 0 0 8px; line-height: 1.45; }}
@@ -537,11 +719,11 @@ TEMPLATE = """<!DOCTYPE html>
   p:hover .share-link, summary:hover .share-link {{ opacity: 1; }}
   .table-share {{ text-align: right; margin: 2px 0 12px; }}
   table:hover + .table-share .share-link {{ opacity: 1; }}
-  /* Dashboard cards: the share button sits in the card's top-right
-     corner (a sibling of the card's link, never nested inside it). */
-  .bottom-line-strip .stat-card, .countdown-strip .cd-card {{ position: relative; }}
-  .bottom-line-strip .stat-card > .share-link, .countdown-strip .cd-card > .share-link {{ position: absolute; top: 6px; right: 6px; margin-left: 0; }}
-  .bottom-line-strip .stat-card:hover > .share-link, .countdown-strip .cd-card:hover > .share-link {{ opacity: 1; }}
+  /* Dashboard tiles: the share button sits in the tile's top-right
+     corner (a sibling of the tile's link, never nested inside it). */
+  .tile-grid .tile, .bottom-line-strip .tile, .countdown-strip .cd-card {{ position: relative; }}
+  .tile-grid .tile > .share-link, .bottom-line-strip .tile > .share-link, .countdown-strip .cd-card > .share-link {{ position: absolute; top: 6px; right: 6px; margin-left: 0; }}
+  .tile-grid .tile:hover > .share-link, .bottom-line-strip .tile:hover > .share-link, .countdown-strip .cd-card:hover > .share-link {{ opacity: 1; }}
   /* Breadcrumbs: a small trail at the top of every section body, back up
      to any ancestor level or the top of the page. Muted, one line. */
   .crumbs {{
@@ -615,6 +797,10 @@ TEMPLATE = """<!DOCTYPE html>
     .back-to-top {{ right: 16px; bottom: 16px; }}
     #def-tip {{ max-width: calc(100vw - 32px); }}
     .toc-inline {{ display: block; }}
+    /* FIX 2: the phones-only row-1 "How to read this" copy is visible
+       here (hidden on desktop); the masthead copy also renders below
+       the content, inside the sidebar. */
+    .top-row details.how-to-read {{ display: block; }}
     nav.sidebar {{ order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }}
     main h1 {{ margin: -24px -20px 16px; padding: 24px 20px; }}
   }}
@@ -629,7 +815,9 @@ TEMPLATE = """<!DOCTYPE html>
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
+    {how_to_read}
     <div class="masthead-nav">
+      <h3>SITREP sections</h3>
       <a href="audit.html">Self-Audit</a>
       <a href="glossary.html">Glossary</a>
       <a href="ci-vs-ei.html">CI vs EI</a>
@@ -638,11 +826,8 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="archive.html">Archive</a>
       <a href="about.html">About</a>
     </div>
-    <div class="masthead-contact">
-      <h3>Contact</h3>
-      <p>Errors, omissions, feature requests:<br><a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a></p>
-      <p>Work with Confluence&lt;1&gt;:<br><a href="mailto:hello@confluence1.com">hello@confluence1.com</a></p>
-    </div>
+    <h2>PAGE CONTENTS</h2>
+    {toc}
     <details class="masthead-legend">
       <summary>Confidence rating scale</summary>
       <p><span class="dots">●●●●</span> Established — peer-reviewed and independently confirmed, or a primary regulatory document.</p>
@@ -650,8 +835,11 @@ TEMPLATE = """<!DOCTYPE html>
       <p><span class="dots">●●○○</span> Reported — single credible source, not yet independently verified.</p>
       <p><span class="dots">●○○○</span> Claimed — vendor claim or single uncorroborated report.</p>
     </details>
-    <h2>Contents</h2>
-    {toc}
+    <div class="masthead-contact">
+      <h3>Contact</h3>
+      <p>Errors, omissions, feature requests:<br><a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a></p>
+      <p>Work with Confluence&lt;1&gt;:<br><a href="mailto:hello@confluence1.com">hello@confluence1.com</a></p>
+    </div>
     <p class="meta" style="margin-top: 20px;">© 2026 Confluence&lt;1&gt; Corp. All rights reserved.<br>
     Source: SYNTHESIZED.md (Markdown is the source of truth).</p>
   </nav>
@@ -885,10 +1073,11 @@ TEMPLATE = """<!DOCTYPE html>
     h.appendChild(makeShareButton(h.id, 'Copy link to this section'));
   }});
   // Articles: the <details> blocks. Skips the How-to-read block, the
-  // mobile Contents block, and the See-also cross-link blocks. The id
-  // goes on the <details> itself; the button goes in its <summary>.
+  // mobile Contents block, the dashboard's More filters block, the
+  // Search/Filter/Sort panel, and the See-also cross-link blocks. The
+  // id goes on the <details> itself; the button goes in its <summary>.
   main.querySelectorAll('details').forEach(function (d) {{
-    if (d.classList.contains('how-to-read') || d.classList.contains('toc-inline')) return;
+    if (d.classList.contains('how-to-read') || d.classList.contains('toc-inline') || d.classList.contains('dash-more-filters') || d.classList.contains('search-filter-panel')) return;
     var sum = d.querySelector(':scope > summary');
     if (!sum) return;
     var text = sum.textContent.trim();
@@ -896,14 +1085,15 @@ TEMPLATE = """<!DOCTYPE html>
     if (!d.id) d.id = uniqueId(slugify(text));
     sum.appendChild(makeShareButton(d.id, 'Copy link to this article'));
   }});
-  // Dashboard cards: the bottom-line strip and the countdown strip.
-  // Each card gets a stable id and a share button in its top-right
-  // corner — a sibling of the card's link, never nested inside it, so
-  // clicking it copies the card's URL instead of following the link.
-  // The strip id comes from the card's link target (bl-<article-slug>,
-  // bl-money for the profitability card); the countdown id from its
-  // label (cd-<deadline-slug>).
-  main.querySelectorAll('.bottom-line-strip .stat-card').forEach(function (card) {{
+  // Dashboard cards: the bottom-line strip, the countdown strip, and
+  // the panel tiles. Each card gets a stable id and a share button in
+  // its top-right corner — a sibling of the card's link, never nested
+  // inside it, so clicking it copies the card's URL instead of
+  // following the link. The strip id comes from the card's link target
+  // (bl-<article-slug>, bl-money for the profitability card); the
+  // countdown id from its label (cd-<deadline-slug>); panel tiles carry
+  // their id from the generator (tile-<panel>-<slug>).
+  main.querySelectorAll('.bottom-line-strip .tile').forEach(function (card) {{
     var link = card.querySelector(':scope > a');
     var base = 'bl-item';
     if (link) {{
@@ -918,6 +1108,10 @@ TEMPLATE = """<!DOCTYPE html>
     var base = 'cd-' + (lab ? slugify(lab.textContent) : 'item');
     if (!card.id) card.id = uniqueId(base);
     card.appendChild(makeShareButton(card.id, 'Copy link to this deadline'));
+  }});
+  main.querySelectorAll('.tile-grid .tile').forEach(function (card) {{
+    if (!card.id) card.id = uniqueId('tile-item');
+    card.appendChild(makeShareButton(card.id, 'Copy link to this figure'));
   }});
   // Tables: id from the nearest preceding heading, button in a small
   // right-aligned row just below the table.
@@ -940,6 +1134,7 @@ TEMPLATE = """<!DOCTYPE html>
   // inline at the end of the paragraph.
   main.querySelectorAll('p').forEach(function (p) {{
     if (p.closest('details')) return;
+    if (p.closest('.tile')) return;  // tile text is covered by the tile's own button
     if (p.classList.contains('as-of-banner')) return;
     if (p.classList.contains('crumbs')) return;
     var text = p.textContent.trim();
@@ -1000,7 +1195,7 @@ TEMPLATE = """<!DOCTYPE html>
         return;
       }}
       if (tag === 'DETAILS') {{
-        if (n.classList.contains('how-to-read') || n.classList.contains('toc-inline')) return;
+        if (n.classList.contains('how-to-read') || n.classList.contains('toc-inline') || n.classList.contains('dash-more-filters') || n.classList.contains('search-filter-panel')) return;
         var sum = n.querySelector(':scope > summary');
         if (!sum || !n.id) return;
         var stext = cleanText(sum);
@@ -1011,6 +1206,7 @@ TEMPLATE = """<!DOCTYPE html>
       if (tag === 'P') {{
         if (n.closest('details')) return;
         if (n.closest('#search-box')) return;
+        if (n.closest('.tile')) return;  // tiles are indexed as units below
         if (n.classList.contains('as-of-banner')) return;
         if (n.classList.contains('crumbs')) return;
         var ptext = cleanText(n);
@@ -1048,6 +1244,38 @@ TEMPLATE = """<!DOCTYPE html>
         items.push({{ id: n.id, title: lt + '…', text: ltext, path: pathOf(), kind: 'list' }});
         return;
       }}
+    }});
+    // Dashboard tiles: each tile is a searchable figure — value + label
+    // as the title, the tile's full text (minus the share button and
+    // the visually-hidden sentiment word, which would otherwise make
+    // every negative tile match a search for "negative") as the body,
+    // its panel as the path. Hidden (filtered-out) tiles are still in
+    // the DOM, so search still finds them; the filter script clears the
+    // filters before following the result link.
+    main.querySelectorAll('.dash-embed .tile').forEach(function (t) {{
+      if (!t.id) return;
+      var c = t.cloneNode(true);
+      c.querySelectorAll('button, .visually-hidden').forEach(function (b) {{ b.remove(); }});
+      var text = c.textContent.replace(/\s+/g, ' ').trim();
+      if (text.length < 20) return;
+      var val = t.querySelector('.stat-value');
+      var lab = t.querySelector('.stat-label');
+      var txt = t.querySelector('.tile-text');
+      var title = '';
+      if (val && lab) title = cleanText(val) + ' ' + cleanText(lab);
+      else if (txt) title = cleanText(txt);
+      else title = text;
+      if (title.length > 90) {{
+        var sp2 = title.slice(0, 90).lastIndexOf(' ');
+        title = (sp2 > 40 ? title.slice(0, sp2) : title.slice(0, 90)) + '…';
+      }}
+      var path = 'Executive dashboard';
+      var sbody = t.closest('.section-body');
+      if (sbody) {{
+        var h = sbody.previousElementSibling;
+        if (h && h.tagName === 'H3') path = 'Executive dashboard · ' + cleanText(h);
+      }}
+      items.push({{ id: t.id, title: title, text: text, path: path, kind: 'figure' }});
     }});
     return items;
   }}
@@ -1342,7 +1570,10 @@ TEMPLATE = """<!DOCTYPE html>
         var prev = node.previousElementSibling;
         if (prev) prev.classList.remove('collapsed');
       }}
-      if (node.tagName === 'DETAILS') node.open = true;
+      // A shared-link landing must NOT force the Search/Filter/Sort
+      // panel open: landings arrive with filters cleared and the panel
+      // collapsed.
+      if (node.tagName === 'DETAILS' && !node.classList.contains('search-filter-panel')) node.open = true;
       node = node.parentElement;
     }}
     el.scrollIntoView();
