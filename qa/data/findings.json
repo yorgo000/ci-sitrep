@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-11-19T12:02:42.056221+00:00",
- "as_of": "Wednesday, November 18, 2026",
- "as_of_date": "2026-11-18",
+ "generated_at": "2026-11-19T13:04:59.577347+00:00",
+ "as_of": "Thursday, November 19, 2026",
+ "as_of_date": "2026-11-19",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 96,
-  "whats_new": 59,
+  "articles": 97,
+  "whats_new": 61,
   "glossary": 98,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
   "established": 14,
-  "corroborated": 29,
+  "corroborated": 30,
   "reported": 48,
   "claimed": 5
  },
- "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
    "headline": "~38% of AI code introduces a known security flaw",
@@ -1642,6 +1642,30 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#california-proposes-state-set-safety-standards-licensed"
   },
   {
+   "headline": "US banks write AI-agent liability into customer terms — the customer owns whatever the agent does, even if it is hacked",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "TechCrunch",
+   "source_label": "TechCrunch, \"More banks say customers using AI agents are on their own — even if they get hacked,\" 18 Nov 2026",
+   "source_url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+   "source_context": "TechCrunch, 18 Nov 2026",
+   "date": "18 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Citi's Online User Agreement now carries a new Section H on third-party AI agents: customers who grant an agent account access are responsible for what the agent does — and if the tool leaks their credentials or is hacked, the customer is responsible for what the hackers do with the account (TechCrunch, 18 Nov 2026, quoting a Citi spokesperson).",
+    "PNC changed its terms the same day, 18 Nov; Citizens emailed customers a similar warning the same week; JPMorgan and Bank of America announced similar policies in October (TechCrunch, 18 Nov 2026).",
+    "Wells Fargo's updated Online Access Agreement, effective Tue 24 Nov 2026, adds a Section 15: anything an agent does under a customer's login is deemed initiated and authorised by the customer, without further verification — including unintended actions and actions from manipulated inputs, i.e. prompt injection — and the bank does not monitor agent activity; use is \"AT YOUR OWN RISK\" (Wells Fargo, agreement effective 24 Nov 2026; first reported by American Banker, 2 Nov 2026).",
+    "A customer who revokes an agent's access must keep proof of the revocation and produce it on request, and stays responsible for the agent's actions until the bank is told (Wells Fargo, Section 15(f), agreement effective 24 Nov 2026).",
+    "No regulator or court has tested whether these clauses survive a dispute: Regulation E caps consumer liability for unauthorised electronic transfers, and whether a hijacked agent's transfer counts as unauthorised is an open question (TechCrunch, 18 Nov 2026).",
+    "What this changes in practice: the access question has now been answered three ways — Canada's banks by blocking, US banks first by restricting and now by contract — so an agentic finance product that signs in with a customer's password faces a liability wall as well as a technical one, and any firm building agents that touch customer accounts needs a consent and attribution record that survives a dispute about who authorised what."
+   ],
+   "voiceover": "US banks write AI-agent liability into customer terms , the customer owns whatever the agent does, even if it is hacked. Citi's Online User Agreement now carries a new Section H on third-party AI agents: customers who grant an agent account access are responsible for what the agent does , and if the tool leaks their credentials or is hacked, the customer is responsible for what the hackers do with the account (TechCrunch, 18 Nov 2026, quoting a Citi spokesperson).",
+   "id": "us-banks-write-ai-agent-liability-into-customer-terms-the",
+   "url": "https://yorgo000.github.io/ci-sitrep/#us-banks-write-ai-agent-liability-into-customer-terms-the"
+  },
+  {
    "headline": "98% of large companies have AI governance policies; nearly half have bypassed them",
    "section": "Agentic",
    "subsection": "3.4 Governance",
@@ -2217,6 +2241,39 @@
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-19",
+   "title": "US banks write AI-agent liability into customer terms — the customer owns whatever the agent does, even if it is hacked",
+   "source": "TechCrunch",
+   "source_url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Citi's new Section H makes customers responsible for an agent's actions, including losses from a hacked tool; PNC changed terms the same day, Citizens warned customers, and Wells Fargo's Section 15 takes effect 24 Nov.",
+   "sections": [
+    {
+     "label": "3.4 Governance",
+     "anchor": "34-governance"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "title": "A major bank open-sources its own AI code-review harness",
+   "source": "CommBank",
+   "source_url": "https://www.commbank.com.au/articles/newsroom/2026/11/accelerate-ai-codecheck-announcement.html",
+   "tags": [
+    "In codebase",
+    "Pre-commit"
+   ],
+   "summary": "CodeCheck guides Codex or Claude Code through a consistent vulnerability analysis, free from GitHub; built on the bank's internal capability across ~2.5 billion lines of code.",
+   "sections": [
+    {
+     "label": "1.2 Product landscape",
+     "anchor": "12-product-landscape"
+    }
+   ]
+  },
   {
    "date": "2026-11-19",
    "title": "For every human identity, enterprises now manage 109 machine identities — and most cannot revoke an agent's credentials",
