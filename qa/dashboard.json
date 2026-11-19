@@ -593,15 +593,15 @@
        "tile": "big-number"
       },
       {
-       "date": "Oct 2026",
+       "date": "May 2026",
        "display": "109:1",
-       "history_key": "sailpoint-identity-ratio",
+       "history_key": "pan-identity-ratio",
        "kind": "stat",
        "label": "machine-to-human identity ratio",
-       "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
-       "rating": "reported",
+       "link": "#for-every-human-identity-enterprises-now-manage-109-machine",
+       "rating": "corroborated",
        "sentiment": "negative",
-       "source": "SailPoint / Palo Alto Networks",
+       "source": "Palo Alto Networks, 2026 Identity Security Landscape",
        "tile": "sparkline"
       }
      ],
