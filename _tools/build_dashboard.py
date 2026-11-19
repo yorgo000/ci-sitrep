@@ -56,7 +56,10 @@ uniqueId so validation can check article links against the ids the page
 will actually assign. A figure may also carry an "also" list of further
 evidencing articles ({anchor, label}) when its conclusion draws on
 more than one subsection. A failure exits 1 with the problem listed
-— fix the data, don't weaken the check.
+— fix the data, don't weaken the check. validate() also enforces the
+uniform tile height (estimate_tile_height): a 1-unit or 2-unit tile
+estimating over 290px fails the build — trim that tile's wording until
+it fits, never raise the height; 280–290px only warns.
 
 Usage: build_dashboard.py [dashboard.json] [index.html]
 Validates dashboard.json against index.html; exits 1 on any failure.
@@ -556,11 +559,12 @@ def span_class(f, full=False):
     class; 2-unit tiles .tile-span-2; 3-unit tiles .tile-span-3 (always
     1 / -1). The mapping is by tile TYPE, not per-figure data — the
     bignote and the strip's full-width tile span 3 by position (full),
-    not by type."""
+    not by type. Paired is 2-unit: the two figures sit side by side in
+    one DOUBLE card (2026-11-19 uniform-size round)."""
     if full:
         return " tile-span-3"
     tile = f["tile"]
-    if tile in ("note", "sparkline"):
+    if tile in ("note", "sparkline", "paired"):
         return " tile-span-2"
     if tile == "pie" and f.get("segments"):
         return " tile-span-2"
@@ -812,22 +816,24 @@ def render_pie_body(f, legend=False):
 
 
 def render_paired_body(f):
-    """The paired tile (strip only): two pie figures in one 1-unit card,
-    stacked as two rows in figures order (figures[0] first). Each row is
-    a self-contained pie figure — small pie + value, label, and its OWN
-    legend — so the two pies' colour meanings never merge (identity vs
-    positive here). No "vs" connector and no gap marker between the
-    rows: the two figures share a population, not a subset relationship
-    (the second figure is of ALL banks, not of the first figure's
-    subset); order + labels carry the story. A hairline divider
-    separates the rows (CSS .tile-paired-row)."""
-    rows = []
+    """The paired tile (strip only): two pie figures SIDE BY SIDE in one
+    DOUBLE (2-unit) card, figures[0] left. Each half is a self-contained
+    pie figure — standard 72px pie + value, label, and its OWN legend —
+    so the two pies' colour meanings never merge (identity vs positive
+    here). No "vs" connector and no gap marker between the halves: the
+    two figures share a population, not a subset relationship (the
+    second figure is of ALL banks, not of the first figure's subset);
+    order + labels carry the story. A vertical hairline divider
+    separates the halves on web (CSS .tile-paired-half); on phones the
+    halves stack with a horizontal divider. The source line is appended
+    once below the halves by the caller."""
+    halves = []
     for fig in f["figures"]:
         svg = pie_svg(fig["value"], fig["pie_split"],
                       f'{fig["display"]} {fig["label"]}')
         wedge, rest = PIE_SPLITS[fig["pie_split"]]
-        rows.append(
-            '<div class="tile-paired-row">'
+        halves.append(
+            '<div class="tile-paired-half">'
             '<div class="tile-graphic-row">'
             f"{svg}"
             f'<p class="stat-value">{esc(fig["display"])}</p>'
@@ -843,7 +849,7 @@ def render_paired_body(f):
             "</p>"
             "</div>"
         )
-    return "".join(rows)
+    return '<div class="tile-paired-halves">' + "".join(halves) + "</div>"
 
 
 def _side_rows(chart):
@@ -968,21 +974,22 @@ def _series_year(label):
     return m.group(0) if m else None
 
 
-def render_sparkline_body(f, history):
+def _sparkline_caption(f, history):
+    """The caption listing EVERY history point, in order — shared by
+    render_sparkline_body and the height estimator (one implementation).
+    First->last paired non-consecutive snapshots and omitted the plotted
+    middle point (Round 3 engagement F5). The aria-label (sparkline_svg)
+    already lists all points with full labels; it stays as-is.
+    A repeated short label ("Apr" twice in the Google series) is
+    ambiguous in the caption — those points keep their full label.
+    Year rule (Round 5 F1+N1): a yearless short label sitting one line
+    above a fig-note carrying a different year can invert the trend if
+    misread ("Oct" over "Oct 2026"). A series spanning more than one
+    year keeps the FULL label on every point; a single-year series
+    carries the year once as a "YYYY: " prefix. A series with no year
+    in any label keeps the short labels, prefix-free."""
     series = history[f["history_key"]]
     pts = series["points"]
-    # The caption lists EVERY history point, in order — first->last
-    # paired non-consecutive snapshots and omitted the plotted middle
-    # point (Round 3 engagement F5). The aria-label (sparkline_svg)
-    # already lists all points with full labels; it stays as-is.
-    # A repeated short label ("Apr" twice in the Google series) is
-    # ambiguous in the caption — those points keep their full label.
-    # Year rule (Round 5 F1+N1): a yearless short label sitting one line
-    # above a fig-note carrying a different year can invert the trend if
-    # misread ("Oct" over "Oct 2026"). A series spanning more than one
-    # year keeps the FULL label on every point; a single-year series
-    # carries the year once as a "YYYY: " prefix. A series with no year
-    # in any label keeps the short labels, prefix-free.
     shorts = [_short_series_label(p["label"]) for p in pts]
     labels = [p["label"] if shorts.count(s) > 1 else s
               for p, s in zip(pts, shorts)]
@@ -994,14 +1001,17 @@ def render_sparkline_body(f, history):
         prefix = next(iter(years)) + ": "
     else:
         prefix = ""
-    caption = prefix + " → ".join(
+    return prefix + " → ".join(
         f"{lab} {p['display']}" for lab, p in zip(labels, pts)
     )
+
+
+def render_sparkline_body(f, history):
     return (
         f'<p class="stat-value">{esc(f["display"])}</p>'
         f'<p class="stat-label">{esc(f["label"])}</p>'
-        f"{sparkline_svg(pts, f['display'] + ' ' + f['label'])}"
-        f'<p class="tile-caption">{esc(caption)}</p>'
+        f"{sparkline_svg(history[f['history_key']]['points'], f['display'] + ' ' + f['label'])}"
+        f'<p class="tile-caption">{esc(_sparkline_caption(f, history))}</p>'
     )
 
 
@@ -1020,29 +1030,53 @@ def render_note_body(f):
     return f'<p class="tile-text">{esc(f["text"])}</p>'
 
 
+# Tile types whose content block is vertically centred in the card
+# (short-note fix, 2026-11-19 — the whole-row check found note and
+# short-stat tiles reading hollow: finding pinned top, source pinned
+# bottom, 170px+ of empty tint in the middle). The wrapper takes the
+# free space above the source line and centres the body within it.
+# Paired, waffle, and sparkline tiles are excluded — their layouts
+# fill the card and passed the whole-row check; centring them would
+# move already-good layouts. A wrapper (not an auto top margin on the
+# first body element): the first element differs by type, and on
+# segmented pies the stat value leads while the graphic row sits third
+# — a margin rule on the graphic row would split that block apart.
+CENTERED_TILES = frozenset(
+    {"note", "big-number", "ratio", "pie", "no-data", "flag"})
+
+
+def _center_wrap(body, tile):
+    """Wrap a tile body in the centring shell (in-scope types only)."""
+    if tile in CENTERED_TILES:
+        return f'<div class="tile-body-center">{body}</div>'
+    return body
+
+
 def tile_body(f, history):
     """Dispatch on tile type. Unknown types fail loudly — a tile that
     renders as nothing would silently drop a figure."""
     tile = f["tile"]
     if tile == "pie":
-        return render_pie_body(f)
-    if tile == "paired":
-        return render_paired_body(f)
-    if tile == "ratio":
-        return render_ratio_body(f)
-    if tile == "waffle":
-        return render_waffle_body(f)
-    if tile == "big-number":
-        return render_big_number_body(f)
-    if tile == "no-data":
-        return render_no_data_body(f)
-    if tile == "sparkline":
-        return render_sparkline_body(f, history)
-    if tile == "flag":
-        return render_flag_body(f)
-    if tile == "note":
-        return render_note_body(f)
-    raise ValueError(f"unknown tile type: {tile}")
+        body = render_pie_body(f)
+    elif tile == "paired":
+        body = render_paired_body(f)
+    elif tile == "ratio":
+        body = render_ratio_body(f)
+    elif tile == "waffle":
+        body = render_waffle_body(f)
+    elif tile == "big-number":
+        body = render_big_number_body(f)
+    elif tile == "no-data":
+        body = render_no_data_body(f)
+    elif tile == "sparkline":
+        body = render_sparkline_body(f, history)
+    elif tile == "flag":
+        body = render_flag_body(f)
+    elif tile == "note":
+        body = render_note_body(f)
+    else:
+        raise ValueError(f"unknown tile type: {tile}")
+    return _center_wrap(body, tile)
 
 
 # --- Tile shell, panels, strips ----------------------------------------------
@@ -1133,9 +1167,11 @@ def render_bottom_line(items, history):
     the countdown — the WHOLE card is one link to its evidencing article
     (like the countdown cards; the source name is plain text, not a nested
     link), so the number, the chart, and the description all take the
-    reader to the article. Layout is 3+3+1: six 1-unit tiles in two rows of
-    three, then the profitability item full-width (3-unit by the strip
-    rule — it has no figure, its display IS the finding, "Insufficient
+    reader to the article. Layout is 3+3+1: six charted tiles occupying
+    seven units in three rows (three 1-unit tiles; the 2.5× tile plus
+    the paired DOUBLE tile; the 188 tile alone, the trailing hole
+    consolidated bottom-right), then the profitability item full-width
+    (3-unit by the strip rule — it has no figure, its display IS the finding, "Insufficient
     data", with no rating or date, linking to the money panel; its graphic
     is a question mark in a circle). The tint class sits on the tile div
     (outside the link); the visually-hidden sentiment span is the tile's
@@ -1145,7 +1181,7 @@ def render_bottom_line(items, history):
     cards = []
     for it in items:
         if it["tile"] == "pie":
-            body = render_pie_body(it, legend=True)
+            body = _center_wrap(render_pie_body(it, legend=True), "pie")
         else:
             body = tile_body(it, history)
         parts = [esc(it["source"])]
@@ -1300,6 +1336,191 @@ def render_embedded(data, ctx=None):
 
 
 # --- Validation ---------------------------------------------------------------
+
+# --- Build-time tile-height estimator (uniform-size round, 2026-11-19) ---
+# Every 1-unit and 2-unit tile is exactly TILE_HEIGHT tall (DASH_CSS);
+# the estimator predicts each tile's content height from the same CSS
+# arithmetic the spec was computed from, and validate() fails the build
+# when a tile estimates over the fail line. Desktop widths only — the
+# binding case (2-column tiles are never narrower than 246px; phones
+# are natural-height). The estimator is approximate by design (glyph
+# widths vary; the 1px tile border eats 2px of the 280): estimates in
+# the 280–290px band print a WARNING for the live whole-row check to
+# confirm, and only estimates over 290px fail the build. The spec sets
+# no numeric tolerance (it calls the ACA sparkline's ~282px "within
+# estimator tolerance" without defining one) — the 290px fail line is
+# the implementer's reading, flagged to the Chief Editor.
+TILE_HEIGHT = 280
+TILE_HEIGHT_FAIL = 290
+
+_INNER_1UNIT = 219   # 1-unit tile content width at desktop 3-col
+_INNER_2UNIT = 477   # 2-unit tile content width at desktop 3-col
+_INNER_HALF = 224    # paired-tile half content width
+_PAD = 44            # tile padding: 32px top + 12px bottom
+_GRAPHIC = 80        # 72px graphic row + 8px margin
+_VALUE = 37          # standalone stat-value block: 30px x 1.1 + 4px margin
+_LH_LABEL = 19.6     # 14px x 1.4
+_LH_SMALL = 20.8     # 13px x inherited 1.6
+_LH_LEGEND = 19.2    # 12px x 1.6
+_LH_TEXT = 24.0      # 15px x 1.6
+_RATING_CHARS = 14   # the rating span ("●●○○ Reported") counted flat
+
+
+def _est_lines_len(n, inner, font_size):
+    """Lines a run of n characters wraps to: chars per line =
+    floor(inner / (font_size x 0.5)) — the average glyph is half an em
+    wide."""
+    cpl = max(1, int(inner / (font_size * 0.5)))
+    return max(1, math.ceil(n / cpl))
+
+
+def _est_lines(text, inner, font_size):
+    return _est_lines_len(len(text), inner, font_size)
+
+
+def _est_source_len(f, strip):
+    """Length of the joined source line the renderer emits (source ·
+    source_note · date · rating; panel figures also carry "also in ..."
+    entries). The rating span counts flat at 14 chars (spec §4.5)."""
+    parts = [f.get("source", "")]
+    if not strip:
+        parts += [f"also in {e['label']}" for e in f.get("also") or []]
+    if f.get("source_note"):
+        parts.append(f["source_note"])
+    if f.get("date"):
+        parts.append(f["date"])
+    if f.get("rating"):
+        parts.append("x" * _RATING_CHARS)
+    return len(" · ".join(parts))
+
+
+def _est_legend_lines(rows, inner):
+    """Legend rows are block-level (one row per line minimum); each row
+    wraps at 12px."""
+    return sum(_est_lines(r, inner, 12) for r in rows)
+
+
+def _est_sides(chart, inner):
+    """Compare-chart side rows (ratio + waffle): two 13px rows inside a
+    container with a 6px bottom margin. The rows' own 2px bottom
+    margins are NOT counted (spec §4.5 lists "sides +6" — the
+    container margin only): the last row's 2px collapses with the
+    container's 6px in the browser, so the spec's count understates
+    the true height by 2px — inside the tolerance band."""
+    total = 6.0
+    for s in ("a", "b"):
+        row = f"{chart[s]['label']} — {chart[s]['display']}"
+        total += _est_lines(row, inner, 13) * _LH_SMALL
+    return total
+
+
+def estimate_tile_height(f, history, strip=False):
+    """Estimated content height (px) of one 1-unit or 2-unit tile at
+    desktop widths, from the CSS arithmetic (spec §4.5): padding 44,
+    graphic row 80, standalone stat-value block 37, per-field line
+    heights and margins as in DASH_CSS. strip=True for bottom-line
+    items (their pies carry legends; their source lines have no "also"
+    entries). The paired tile is max(half heights) + the source line
+    at 2-unit width. Raises KeyError/ValueError on a malformed figure
+    — the caller runs this only after the field checks pass."""
+    tile = f["tile"]
+    span2 = "tile-span-2" in span_class(f)
+    inner = _INNER_2UNIT if span2 else _INNER_1UNIT
+    body = 0.0
+    if tile == "pie":
+        if f.get("segments"):
+            primary = f["segments"][0]
+            label = f"{primary['label']} — {f['title']}"
+            body += _VALUE
+            body += _est_lines(label, inner, 14) * _LH_LABEL + 6
+            body += _GRAPHIC
+            rows = [f"{s['label']} — {s['value']}%" for s in f["segments"]]
+            body += _est_legend_lines(rows, inner) * _LH_LEGEND + 6
+        else:
+            body += _GRAPHIC
+            body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+            if strip:
+                chart = f["chart"]
+                rows = [f"{chart['a_label']} {chart['value']}%",
+                        f"{chart['b_label']} {100 - chart['value']}%"]
+                body += _est_legend_lines(rows, inner) * _LH_LEGEND + 6
+    elif tile == "paired":
+        half_h = 0.0
+        for fig in f["figures"]:
+            h = _GRAPHIC
+            h += _est_lines(fig["label"], _INNER_HALF, 14) * _LH_LABEL + 6
+            rows = [f"{fig['a_label']} {fig['value']}%",
+                    f"{fig['b_label']} {100 - fig['value']}%"]
+            h += _est_legend_lines(rows, _INNER_HALF) * _LH_LEGEND + 6
+            half_h = max(half_h, h)
+        body += half_h
+    elif tile == "ratio":
+        body += _VALUE
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+        if "before" in f and "after" in f:
+            mult = f["after"] / f["before"]
+            for key, lab in (("before", f["before_label"]),
+                             ("after", f["after_label"])):
+                row = f"{lab} — {f[key]:g}"
+                body += _est_lines(row, inner, 13) * _LH_SMALL
+            body += (_est_lines(f"≈{mult:.1f}× the secure output", inner, 13)
+                     * _LH_SMALL + 4)
+            body += 6
+        else:
+            body += _est_sides(f["chart"], inner)
+    elif tile == "waffle":
+        body += _GRAPHIC
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+        body += _est_lines(f["caption"], inner, 12) * _LH_LEGEND + 6
+        body += _est_sides(f["chart"], inner)
+    elif tile == "big-number":
+        body += _VALUE
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+    elif tile == "no-data":
+        body += _GRAPHIC
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+    elif tile == "sparkline":
+        body += _VALUE
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+        body += inner * 48 / 300 + 6  # SVG height (viewBox 300x48) + margins
+        body += (_est_lines(_sparkline_caption(f, history), inner, 12)
+                 * _LH_LEGEND + 6)
+    elif tile == "flag":
+        body += _GRAPHIC
+        body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
+    elif tile == "note":
+        body += _est_lines(f["text"], inner, 15) * _LH_TEXT + 6
+    else:
+        raise ValueError(f"unknown tile type: {tile}")
+    total = _PAD + body
+    total += (_est_lines_len(_est_source_len(f, strip), inner, 13)
+              * _LH_SMALL + 3)
+    if f.get("note"):
+        total += _est_lines(f["note"], inner, 13) * _LH_SMALL + 2
+    return total
+
+
+def _check_tile_height(f, src, errors, history, strip=False):
+    """The uniform-size enforcement: a 1-unit or 2-unit tile estimating
+    over TILE_HEIGHT_FAIL (290px) fails the build, naming the figure —
+    trim that tile's wording until it fits, never raise the height. The
+    280–290px band only warns (estimator tolerance — the live
+    whole-row check confirms it). 3-unit tiles and countdown tiles are
+    exempt and never reach this check."""
+    est = estimate_tile_height(f, history, strip=strip)
+    ident = (f"{src} ({f.get('display', '')} "
+             f"{f.get('label', f.get('text', ''))[:40]})")
+    if est > TILE_HEIGHT_FAIL:
+        errors.append(
+            f"{ident}: estimates {est:.0f}px — over the {TILE_HEIGHT}px "
+            f"tile height (fail line {TILE_HEIGHT_FAIL}px); trim this "
+            "tile's wording"
+        )
+    elif est > TILE_HEIGHT:
+        print(f"WARNING: {ident} estimates {est:.0f}px — inside the "
+              f"{TILE_HEIGHT}–{TILE_HEIGHT_FAIL}px tolerance band; "
+              "confirm live")
+
 
 def _check_tile_fields(f, src, errors, history):
     """Per-type field checks for one figure (panel or strip)."""
@@ -1578,8 +1799,15 @@ def validate(data, index_html, ctx=None):
                 errors.append(f"{src}: malformed also entry {extra!r}")
                 continue
             check_link(src, extra["anchor"])
+        n_err = len(errors)
         _check_tile_fields(f, src, errors, history)
+        fields_ok = len(errors) == n_err
         check_tags(src, f.get("link", ""), f.get("rating"))
+        if fields_ok:
+            # The height check needs well-formed fields (a sparkline
+            # with a bad history_key has no caption to measure) — a
+            # figure that already failed reports only its field errors.
+            _check_tile_height(f, src, errors, history)
     # Bottom-line strip: same link check; rating and date are optional
     # (the profitability item has neither — its display is the finding).
     for it in data.get("bottom_line", []):
@@ -1590,8 +1818,14 @@ def validate(data, index_html, ctx=None):
         if it.get("rating") is not None and it["rating"] not in RATINGS:
             errors.append(f"bottom line {src}: bad rating {it.get('rating')!r}")
         check_link(src, it.get("link", ""))
+        n_err = len(errors)
         _check_tile_fields(it, f"bottom line {src}", errors, history)
+        fields_ok = len(errors) == n_err
         check_tags(src, it.get("link", ""), it.get("rating"))
+        if fields_ok and not it.get("full"):
+            # Full-width strip items are exempt (natural height).
+            _check_tile_height(it, f"bottom line {src}", errors, history,
+                               strip=True)
     # Tile ids must be unique (a duplicate id would break share links).
     tile_ids = assign_tile_ids(data)
     if len(set(tile_ids.values())) != len(tile_ids):
@@ -1657,17 +1891,30 @@ DASH_CSS = """
   .dash-empty { font-size: 15px; color: var(--muted); font-style: italic; margin: 16px 0; }
   .dash-empty .dash-clear-btn { font-style: normal; margin-left: 8px; }
   /* The tile shell: one card for every figure, strip, and deadline.
-     Unit sizes (Round 4 §2): the unit is WIDTH in grid columns; height
-     is natural, top-aligned (align-items: start — without it the rows
-     would still stretch and the unit system would be void). Fixed
-     columns — 3 above 1100px, 2 at 601–1100px, 1 at ≤600px (the 1100px
-     breakpoint is arithmetic: a 1-unit tile must stay ≥ ~210px for the
-     pie row to fit). Dense flow backfills the holes a 2-unit tile
-     leaves; the strips keep default flow (their spans cannot hole). */
+     Unit sizes (Round 4 §2, uniform-size round 2026-11-19): ONE tile
+     size — the unit is a fixed card, 1 unit wide (one grid column) by
+     280px tall; a 2-unit tile is two columns wide and 280px tall. The
+     height is FIXED (not grid stretch, which would equalize only
+     within a row): every 1-unit and 2-unit tile is exactly 280px tall
+     at every multi-column width, so every row aligns top and bottom.
+     Height on the tile, not grid-auto-rows on the grid — block-labels
+     are grid items too, and a fixed auto-row would stretch every label
+     row to 280px. `height`, not `min-height`: min-height would let
+     tall content stretch a tile silently; with `height` plus visible
+     overflow (no overflow: hidden on tiles — keep it that way), a
+     breach shows in the visual check, and the build-time estimator
+     (estimate_tile_height) prevents breaches in practice. 3-unit tiles
+     (money bignote, profitability) and countdown tiles keep their own
+     natural height. Fixed columns — 3 above 1100px, 2 at 601–1100px, 1
+     at ≤600px (the 1100px breakpoint is arithmetic: a 1-unit tile must
+     stay ≥ ~210px for the pie row to fit). Dense flow backfills the
+     holes a 2-unit tile leaves; the strips keep default flow (their
+     spans cannot hole). */
   .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 8px; align-items: start; grid-auto-flow: dense; }
-  .tile { border: 1px solid var(--line); border-radius: 6px; padding: 32px 14px 12px; background: #fdfbf7; display: flex; flex-direction: column; min-width: 0; }
+  .tile { border: 1px solid var(--line); border-radius: 6px; padding: 32px 14px 12px; background: #fdfbf7; display: flex; flex-direction: column; min-width: 0; height: 280px; }
   .tile-span-2 { grid-column: span 2; }
-  .tile-span-3 { grid-column: 1 / -1; }
+  .tile-span-3 { grid-column: 1 / -1; height: auto; }
+  .countdown-strip .tile { height: auto; }
   /* Sentiment tints (Round 4 §1): pale washes over the card colour —
      light enough not to muddy the warm paper or dull the pies. The
      encodings (saturated rust/navy/grey fills) never share the tints'
@@ -1697,17 +1944,16 @@ DASH_CSS = """
   .waffle-sq.rust { background: #b3543f; }
   .waffle-sq.blue { background: #283060; }
   .waffle-sq.muted { background: #c9c2b0; }
-  /* Paired tile (strip only): two pie figures stacked in one 1-unit
-     card. The pies shrink to 48px — two 72px pies + labels would
-     overrun the card; the value stays full-size (the number carries
-     the finding). Each row carries its own legend — the two pies'
-     colour meanings stay separate, never merged. A hairline divider
-     marks the rows as two findings, not a comparison: no "vs"
-     connector, no gap marker (the second figure is of the same
-     population, not a subset of the first). */
-  .tile-paired-row svg.tile-pie { width: 48px; height: 48px; }
-  .tile-paired-row .tile-graphic-row { margin-bottom: 4px; }
-  .tile-paired-row + .tile-paired-row { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+  /* Paired tile (strip only): two pie figures side by side in one DOUBLE
+     (2-unit) card — figures[0] left. Each half is a self-contained pie
+     figure at the standard 72px pie size (the 48px shrink died with the
+     overstuffed 1-unit card). A vertical hairline divider marks the halves
+     as two findings, not a comparison: no "vs" connector, no gap marker
+     (the second figure is of the same population, not a subset of the
+     first). On phones the halves stack with a horizontal divider. */
+  .tile-paired-halves { display: flex; }
+  .tile-paired-half { flex: 1 1 0; min-width: 0; padding-right: 14px; }
+  .tile-paired-half + .tile-paired-half { border-left: 1px solid var(--line); padding-left: 14px; padding-right: 0; }
   .tile-flag-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #283060; background: transparent; flex: 0 0 auto; }
   .tile-flag-dot.filled { background: #283060; }
   .tile-text { font-size: 15px; margin: 0 0 6px; }
@@ -1730,7 +1976,27 @@ DASH_CSS = """
   .tile-derived { font-size: 13px; color: var(--muted); margin: 4px 0 0; font-style: italic; }
   .stat-value { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 30px; font-weight: 700; color: var(--logo-navy); line-height: 1.1; margin: 0 0 4px; overflow-wrap: break-word; }
   .stat-label { font-size: 14px; margin: 0 0 6px; line-height: 1.4; }
-  .fig-source { font-size: 13px; color: var(--muted); margin: 0; padding-top: 3px; }
+  /* Short tiles read hollow (whole-row check 2026-11-19): the finding
+     pinned to the top and the source line to the bottom left 170px+ of
+     empty tint in the middle of a note or short-stat card. The body
+     wrapper takes the free space above the source line (flex: 1) and
+     centres the body within it — the source stays pinned to the
+     bottom, and the air splits evenly above and below the content
+     instead of pooling in the middle, which reads as intentional
+     whitespace rather than a hole. For tiles whose content already
+     fills the height the wrapper has no free space to centre in — no
+     effect. Only note/big-number/ratio/pie/no-data/flag bodies are
+     wrapped (CENTERED_TILES); paired, waffle, and sparkline tiles
+     keep their top-anchored layout. On phones the fixed height lifts,
+     so the wrapper collapses to content height — no effect there. */
+  .tile-body-center { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  /* The source line pins to the tile's bottom (margin-top: auto — the
+     tile is a flex column, and the strip's <a> is a flex column with
+     flex: 1). On centred tiles the body wrapper (flex: 1) takes the
+     free space, so this margin computes to 0 and the content block
+     sits centred above the source line; on uncentred tiles the margin
+     holds the source at the bottom with the finding at the top. */
+  .fig-source { font-size: 13px; color: var(--muted); margin: auto 0 0; padding-top: 3px; }
   .fig-source a { color: var(--muted); }
   .fig-note { font-size: 13px; color: var(--muted); margin: 2px 0 0; font-style: italic; }
   .rating { white-space: nowrap; }
@@ -1751,8 +2017,11 @@ DASH_CSS = """
   /* At one column every span becomes full-width — EXPLICITLY. A span 2
      item in a 1-column grid does not clamp: it creates an implicit
      track and the grid overflows. .tile-span-3 is 1 / -1 at all widths
-     by definition, so only span-2 needs the collapse. */
-  @media (max-width: 600px) { .bottom-line-strip, .countdown-strip, .tile-grid { grid-template-columns: 1fr; } .tile-span-2 { grid-column: 1 / -1; } .dash-type-grid { grid-template-columns: 1fr; } .dash-filter { flex: 1 1 100%; } .dash-filter select { width: 100%; } }
+     by definition, so only span-2 needs the collapse. The fixed height
+     is lifted on phones too (natural height — single column, no row
+     neighbours to align with, and full-width content wraps short);
+     the paired tile's halves stack with a horizontal divider. */
+  @media (max-width: 600px) { .bottom-line-strip, .countdown-strip, .tile-grid { grid-template-columns: 1fr; } .tile-span-2 { grid-column: 1 / -1; } .dash-type-grid { grid-template-columns: 1fr; } .dash-filter { flex: 1 1 100%; } .dash-filter select { width: 100%; } .tile { height: auto; } .tile-paired-halves { flex-direction: column; } .tile-paired-half { padding-right: 0; } .tile-paired-half + .tile-paired-half { border-left: none; padding-left: 0; border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; } }
 """
 
 COUNTDOWN_JS = """
