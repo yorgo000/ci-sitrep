@@ -394,8 +394,17 @@ Sources: [Willkie, NYDFS Issues Two Industry Letters](https://www.willkie.com/pu
 - 65–75% of working solutions reintroduced the old vulnerability.
 - A one-line security reminder added only 1–8 points.
 - A post-hoc security review lifted working-and-secure to 47–56% at ~2.5× the cost — still leaving about half of tasks insecure.
-- Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%.
 - Corroborates the other two benchmarks; the cost figure (2.5× for a review that still leaves half insecure) is the number to use when scoping a review layer for a client.
+- Source: [SusVibes re-run, via Medium](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05)
+</details>
+
+<!-- tags: subject=1 | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-02 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter -->
+<details>
+<summary><strong>Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%</strong> ([SusVibes re-run](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05), independent research commissioned by Checkmarx, reported 2 Nov 2026) — [VENDOR-COMMISSIONED] ●●○○</summary>
+
+- Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%.
+- The figures are self-reported — the rates are what organisations said they shipped.
+- The same re-run found a post-hoc security review lifts working-and-secure to 47–56% at ~2.5× the cost — see the preceding article.
 - Source: [SusVibes re-run, via Medium](https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05)
 </details>
 
