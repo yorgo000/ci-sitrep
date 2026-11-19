@@ -166,6 +166,13 @@ similarity.
 `_tools/build_audit.py` — never hand-edit it. Its Coverage section links
 to "What we're watching" rather than maintaining its own known-gaps list.
 
+**Corrections page.** `CORRECTIONS.md` (built to `corrections.html`
+via `build_page.py`) lists every correction and omission fix, newest
+first, one line each: the date, what was wrong or missing, what it is
+now, with a link to the corrected article where one exists. When a
+correction or omission fix lands, add its entry as part of the same
+publish — the daily watch owns it. Entries are never removed.
+
 **Glossary.** `GLOSSARY.md` is the single source of truth for the
 report's acronyms and jargon: one line per term, plain language,
 alphabetical under letter headings. It builds to `glossary.html` via
@@ -404,8 +411,9 @@ in the masthead-header treatment — 13px, uppercase, letter-spaced,
 muted, not italic — mirroring the confidence legend; body 13px muted;
 its inline links need an explicit inline override, since sidebar links
 are block-level nav rows); the nav, headed "SITREP sections", with
-the links in this order: Self-Audit, Glossary, CI vs EI, The
-names: CI, CII, CIC, Foundational theses, Archive, About; the page
+the links in this order: Self-Audit, Corrections, Glossary, CI vs
+EI, The names: CI, CII, CIC, Foundational theses, Archive, About;
+the page
 Contents, titled "PAGE CONTENTS"; the confidence rating legend (a
 collapsed `<details>`, summary "Confidence rating scale";
 starts closed — the dots are also explained in "How to read this" and
@@ -1176,3 +1184,9 @@ years change. verify.py warns when its pass count differs from
   procedure as pies; verify.py runs under TZ=America/New_York
   (freshness checks are ET-relative); FCA CP26/38 weekday corrected
   (Thu 24 Dec, not Wed).
+
+- **2026-11-19:** Corrections page (`CORRECTIONS.md` →
+  `corrections.html`): every correction and omission fix listed
+  newest-first, one line each; the daily watch adds an entry as part
+  of the same publish that lands the fix; entries never removed. Nav
+  order gains Corrections after Self-Audit.
