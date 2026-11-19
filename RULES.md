@@ -840,6 +840,36 @@ The Self-Audit page records the date of the last full manual link audit
 
 ## 6. Publishing
 
+**Pre-release checklist.** Every release — content or presentation —
+passes every line before it pushes. A miss-log entry adds a line here:
+the checklist is revised after every miss, and the revision is part of
+closing the miss.
+1. verify.py under `TZ=America/New_York`: all checks passed, 0
+   failures; every warning reviewed.
+2. §5 six-point design review — mandatory when the release touches
+   presentation; the design editor runs it after Tier 1 passes, before
+   pushing.
+3. Content re-read: the day's necessary content is in and only that;
+   every rating accurate; every figure's attribution verified, not
+   just its value.
+4. New articles tagged (§2); feed entries inherit tags; findings
+   export refreshed.
+5. Layout balance (added 2026-11-19 — the paired-tile miss): no
+   1-unit tile more than ~1.5× its row neighbours' height;
+   double/triple tiles render at their declared size (horizontal span
+   on web, vertical on phone).
+6. Overflow/clip check (added 2026-11-19): no clipped graphics or
+   text at desktop width and at phone width (Yorgo's phone where the
+   VM cannot check).
+7. Browser visual checks view WHOLE ROWS and sections, never an
+   isolated tile.
+8. QA-first for presentation changes: land on QA, Yorgo reviews,
+   Chief Editor releases. Content-only watch runs publish directly.
+9. Live check after pushing: the live site byte-identical to the
+   build (Pages deploys lag; a stale edge is re-checked, not
+   re-pushed).
+10. QA mirror re-synced to the new prod.
+
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
    (`~/workspace/ci-sitrep/`) is a copy, not the source. Tag new
