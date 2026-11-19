@@ -338,6 +338,10 @@ respondent firm reports $1B–$10B in RAUM.
 role gets exactly the access its job needs, nothing more. Applies to agents as
 well as people.
 
+**recall** — In evaluation, the share of the target items a system catches. A
+review tool with 78% recall catches 78 of every 100 vulnerability-introducing
+changes; the other 22 slip through.
+
 **red team** — A group that attacks a system (or an AI) on purpose, playing the
 adversary, to find weaknesses before a real attacker does. The counterpart of
 the "blue team" that defends.
@@ -407,7 +411,7 @@ interagency guidance would rewrite the US rules for it; comments close 16 Dec
 
 **vibe coding** — Writing software by describing what you want to an AI in
 plain language and accepting what it produces, with little or no reading of the
-code. Fast; Veracode's finding is that ~45% of AI-generated code carries a
+code. Fast; Veracode's finding is that ~38% of AI-generated code carries a
 known security flaw.
 
 ## X
