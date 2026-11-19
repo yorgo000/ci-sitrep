@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T13:04:59.577347+00:00",
+ "generated_at": "2026-11-19T16:36:22.722072+00:00",
  "as_of": "Thursday, November 19, 2026",
  "as_of_date": "2026-11-19",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -3690,7 +3690,7 @@
     "value": 12,
     "display": "12"
    },
-   "headline": "11× more vulnerabilities in AI patches than in human patches",
+   "headline": "~11× more vulnerabilities in AI patches than in human patches",
    "source": "Sajadi et al., SWE-bench study v4",
    "date": "1 Nov 2026",
    "rating": "reported",
@@ -3729,9 +3729,9 @@
    "ei": {
     "label": "With post-hoc review",
     "value": 2.5,
-    "display": "2.5×"
+    "display": "~2.5×"
    },
-   "headline": "Review lifts working-and-secure to 47–56% at 2.5× the cost",
+   "headline": "Review lifts working-and-secure to 47–56% at ~2.5× the cost",
    "source": "SusVibes re-run",
    "date": "2 Nov 2026",
    "rating": "reported",
