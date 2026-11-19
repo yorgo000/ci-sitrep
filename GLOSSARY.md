@@ -49,6 +49,10 @@ documented a China-nexus campaign using it to breach 10 of 19 targeted
 organisations in August–September 2026; the same tooling's signature showed
 up in the Microsoft agent-framework PyPI compromise.
 
+**Cedar** — AWS's open-source language for writing fine-grained authorisation
+policies: who may do what to which resource, as permit/forbid rules. Dogwood
+builds on its syntax.
+
 **CI (created intelligence)** — Confluence<1>'s term for intelligence that is
 built rather than evolved: AI systems, and in principle biological or hybrid
 ones too. See the explainer, "Created Intelligence — a note on the names". Not
@@ -122,6 +126,11 @@ deterministic.
 **DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
 new office inside New York's Department of Financial Services that implements
 the RAISE Act and oversees large frontier AI developers.
+
+**Dogwood** — AWS's open-source policy language for governing agent actions.
+Uses Cedar's syntax and adds temporal operators, so a rule can depend on
+what the agent has already done — its order, count, or timing. The policy
+language of Strands Box.
 
 **DORA (Digital Operational Resilience Act)** — EU regulation (in force Jan
 2025) requiring financial firms to manage ICT and third-party risk, test
