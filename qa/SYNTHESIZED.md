@@ -93,7 +93,7 @@ What is coming up, and what we are looking for — the dated events on the horiz
 **Coming up:**
 
 - **Wed 16 Dec 2026** — Comments close on the replacement third-party-risk (TPRM) guidance (Fed/FDIC/OCC/NCUA; extended 13 Nov from 16 Nov). → [3.4 Governance](#34-governance)
-- **Wed 24 Dec 2026** — FCA CP26/38 Financial Crime Guide comments close. → [3.4 Governance](#34-governance)
+- **Thu 24 Dec 2026** — FCA CP26/38 Financial Crime Guide comments close. → [3.4 Governance](#34-governance)
 - **Fri 1 Jan 2027** — New York's RAISE Act takes effect; large frontier developers must be registered. → [3.4 Governance](#34-governance)
 - **1 Feb 2027** — HKMA Project SAGE comments close. → [3.4 Governance](#34-governance)
 - **1 May 2027** — OSFI Guideline E-23 model-risk management takes effect; AI/ML models expressly in scope, including third-party models. → [2.5 Best practice — finance](#25-best-practice--finance)
