@@ -53,17 +53,17 @@
   ],
   "unit": "%"
  },
- "sailpoint-identity-ratio": {
-  "label": "Machine-to-human identity ratio (SailPoint)",
+ "pan-identity-ratio": {
+  "label": "Machine-to-human identity ratio (Palo Alto Networks)",
   "points": [
    {
-    "date": "2025-10",
+    "date": "2025-04",
     "display": "82:1",
     "label": "2025",
     "value": 82
    },
    {
-    "date": "2026-10",
+    "date": "2026-05",
     "display": "109:1",
     "label": "2026",
     "value": 109
