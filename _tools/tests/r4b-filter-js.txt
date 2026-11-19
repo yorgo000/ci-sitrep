@@ -1,4 +1,5 @@
 
+
 <script>
 (function () {
   // Page-level filter/sort (Round 4): ONE set of controls filters the
@@ -17,6 +18,15 @@
   // when all its articles filter out, and a section hides when all its
   // subsections hide (a section with no articles — the front-page
   // sections, prose sections — never hides). The strips never filter.
+  // The "New in the last 7 days" feed filters with the report: each
+  // entry inherits its target article's tags at build time
+  // (build_html.py) and hides when the article filters out. Entries
+  // with no identifiable article (a deadline, a subsection
+  // announcement, a digest covering several articles) carry no tags
+  // and stay visible under any filter; the feed's empty state shows
+  // only when NO entry is visible. The count line counts figures and
+  // body articles only — the feed is a view onto the same articles,
+  // not more of them.
   // Sorting reorders tiles WITHIN each panel only — articles filter
   // but do not sort (sorting them would scramble the report's
   // editorial structure). Block labels hide while a non-default sort
@@ -37,6 +47,11 @@
   var articles = report
     ? Array.prototype.slice.call(report.querySelectorAll('details[data-subject]'))
     : [];
+  var feedList = report ? report.querySelector('.whats-new-feed') : null;
+  var feedItems = feedList
+    ? Array.prototype.slice.call(feedList.querySelectorAll('li[data-subject]'))
+    : [];
+  var feedEmptyEl = document.getElementById('feed-empty');
   var countEl = document.getElementById('dash-count');
   var emptyEl = document.getElementById('dash-empty');
   var reportEmptyEl = document.getElementById('report-empty');
@@ -192,6 +207,25 @@
       a.style.display = show ? '' : 'none';
       if (show) visArticles++;
     });
+    var visFeed = 0;
+    feedItems.forEach(function (li) {
+      var show = matches(li, filters);
+      li.style.display = show ? '' : 'none';
+      if (show) visFeed++;
+    });
+    // The feed's empty state shows only when NO entry is visible:
+    // untagged entries are always visible, so while any remain the
+    // state never appears — it matters once every entry is tagged and
+    // all of them filter out. The check reads the live DOM (tagged
+    // and untagged alike) rather than a precomputed count.
+    if (feedEmptyEl) {
+      var anyFeedVisible = visFeed > 0;
+      if (!anyFeedVisible && feedList) {
+        anyFeedVisible = Array.prototype.slice.call(feedList.querySelectorAll('li'))
+          .some(function (li) { return li.style.display !== 'none'; });
+      }
+      feedEmptyEl.hidden = anyFeedVisible;
+    }
     updateSections();
     if (emptyEl) emptyEl.hidden = anyPanelVisible;
     if (reportEmptyEl) reportEmptyEl.hidden = visArticles > 0;
