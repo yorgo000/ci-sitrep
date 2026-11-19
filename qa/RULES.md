@@ -166,6 +166,13 @@ similarity.
 `_tools/build_audit.py` — never hand-edit it. Its Coverage section links
 to "What we're watching" rather than maintaining its own known-gaps list.
 
+**Corrections page.** `CORRECTIONS.md` (built to `corrections.html`
+via `build_page.py`) lists every correction and omission fix, newest
+first, one line each: the date, what was wrong or missing, what it is
+now, with a link to the corrected article where one exists. When a
+correction or omission fix lands, add its entry as part of the same
+publish — the daily watch owns it. Entries are never removed.
+
 **Glossary.** `GLOSSARY.md` is the single source of truth for the
 report's acronyms and jargon: one line per term, plain language,
 alphabetical under letter headings. It builds to `glossary.html` via
@@ -187,7 +194,8 @@ date optional, since the profitability item has neither; each item
 carries a tile where its figure has one — a pie tile for a percentage
 (number next to the pie, block-level legend rows), a ratio tile for a
 multiplier, a waffle tile for a count-share, a big-number tile for a
-count, a question mark in a circle for the profitability item, which
+count, a paired tile for two figures from one finding, a question mark
+in a circle for the profitability item, which
 has no data — pie colours follow the split, §4; and the profitability
 item is full-width, last, with `"full": true`) and a deadlines
 list for the countdown strip. Tile ids derive from the figure's stable
@@ -403,8 +411,9 @@ in the masthead-header treatment — 13px, uppercase, letter-spaced,
 muted, not italic — mirroring the confidence legend; body 13px muted;
 its inline links need an explicit inline override, since sidebar links
 are block-level nav rows); the nav, headed "SITREP sections", with
-the links in this order: Self-Audit, Glossary, CI vs EI, The
-names: CI, CII, CIC, Foundational theses, Archive, About; the page
+the links in this order: Self-Audit, Corrections, Glossary, CI vs
+EI, The names: CI, CII, CIC, Foundational theses, Archive, About;
+the page
 Contents, titled "PAGE CONTENTS"; the confidence rating legend (a
 collapsed `<details>`, summary "Confidence rating scale";
 starts closed — the dots are also explained in "How to read this" and
@@ -590,7 +599,7 @@ following a source never replaces the sitrep. Internal links (anchors,
 .html pages, mailto) stay in the same tab.
 
 **Dashboard tiles.** Every dashboard figure renders as a tile, one
-tile type per stat kind — eight types, no bars, no lines except
+tile type per stat kind — nine types, no bars, no lines except
 sparklines inside tiles. The value leads everywhere: the number comes
 first and the label follows, so each tile reads as a sentence ("98% of
 large companies have AI governance policies").
@@ -610,6 +619,12 @@ large companies have AI governance policies").
   record); the caption names the counted set ("Share of 147
   vulnerabilities counted"). Pure multipliers and rates are not shares
   of a whole and stay ratio tiles.
+- `paired` — two figures from one finding, one card (fixed order, the
+  headline figure first); each row carries its own pie + block-level
+  legend, separated by a hairline divider, no "vs" connector; the
+  whole tile links to the evidencing article; sentiment judges the
+  combined finding, not either figure alone. Exactly 2 figures, each
+  0–100 with a valid `pie_split`.
 **Pie colours.** Every pie-family figure carries `pie_split`, naming
 the wedge; the remainder follows by rule. Decision procedure, in
 order: (1) CI vs EI or AI-side-vs-rest split → `identity` (rust wedge,
@@ -633,6 +648,12 @@ remainder. A pie legend is one block-level row per segment, chip +
 label + value, no separators, no wrapping within a row. Strip-legend
 chips derive from `pie_split` (a-chip = wedge colour, b-chip =
 remainder colour).
+**Ratio colours.** The same decision procedure as pies, applied to
+the two sides: identity first (CI vs EI → rust/blue), then valence
+(favourable → blue, adverse → rust). The 2.5× SusVibes tile is the
+worked example: both sides are AI generation, so identity does not
+apply; the reviewed side is favourable → blue, generation alone →
+rust.
 **Sentiment is the tile's background tint** — a visual cue, never a
 label (the word-pill treatment is superseded and gone). Positive =
 blue tint `#E9EAEF`; negative = rust tint `#F6EAE5`; neutral = grey
@@ -867,7 +888,11 @@ years change. verify.py warns when its pass count differs from
    stable identifiers (the source), never on display text — a label
    reword must not drop a gauge.
 5. Run the Tier 1 verification (§5) and the UX and design-editor review
-   (§5). Do not push a failing build.
+   (§5). Do not push a failing build. Run verify.py under
+   `TZ=America/New_York` — the freshness checks are ET-relative and
+   the VM clock is UTC; under UTC, feed entries on their seventh day
+   fail a day early. (build_qa.py runs verify.py internally, so it
+   inherits the same requirement.)
 6. Push the changed files with the API helper
    (`~/workspace/custom-connectors/custom.github/bin/github.py put`).
    Verify each put returns status 200 or 201. (SSH push is blocked by
@@ -1153,4 +1178,15 @@ years change. verify.py warns when its pass count differs from
   About "How this is made" numbers refresh from the audit data on
   every publish (`_tools/refresh_about.py`, option (a) — Yorgo's
   pick); verify.py warns when its pass count differs from
-  `site_config.VERIFY_CHECK_COUNT`.
+  `site_config.VERIFY_CHECK_COUNT`. Release 2026-11-18 (evening):
+  ninth tile type `paired` (BCG strip tile replaces SailPoint 79%);
+  ratio-side tones follow the same identity-first-then-valence
+  procedure as pies; verify.py runs under TZ=America/New_York
+  (freshness checks are ET-relative); FCA CP26/38 weekday corrected
+  (Thu 24 Dec, not Wed).
+
+- **2026-11-19:** Corrections page (`CORRECTIONS.md` →
+  `corrections.html`): every correction and omission fix listed
+  newest-first, one line each; the daily watch adds an entry as part
+  of the same publish that lands the fix; entries never removed. Nav
+  order gains Corrections after Self-Audit.
