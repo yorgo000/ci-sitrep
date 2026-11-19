@@ -43,6 +43,16 @@ records from WorkOS in October 2026.
 
 ## C
 
+**Cairn** — An open-source AI penetration-testing framework that hands an
+intrusion to a model and lets it plan and run the attack in a loop. Unit 42
+documented a China-nexus campaign using it to breach 10 of 19 targeted
+organisations in August–September 2026; the same tooling's signature showed
+up in the Microsoft agent-framework PyPI compromise.
+
+**Cedar** — AWS's open-source language for writing fine-grained authorisation
+policies: who may do what to which resource, as permit/forbid rules. Dogwood
+builds on its syntax.
+
 **CI (created intelligence)** — Confluence<1>'s term for intelligence that is
 built rather than evolved: AI systems, and in principle biological or hybrid
 ones too. See the explainer, "Created Intelligence — a note on the names". Not
@@ -116,6 +126,11 @@ deterministic.
 **DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
 new office inside New York's Department of Financial Services that implements
 the RAISE Act and oversees large frontier AI developers.
+
+**Dogwood** — AWS's open-source policy language for governing agent actions.
+Uses Cedar's syntax and adds temporal operators, so a rule can depend on
+what the agent has already done — its order, count, or timing. The policy
+language of Strands Box.
 
 **DORA (Digital Operational Resilience Act)** — EU regulation (in force Jan
 2025) requiring financial firms to manage ICT and third-party risk, test
@@ -211,6 +226,12 @@ changing "order 123" to "order 124").
 training it. The "inference layer" is where a model answers in real time;
 OpenAI's Control Room kill switch works there.
 
+**IVO (independent verification organisation)** — A licensed outside body that
+tests a frontier AI developer's models against state-set safety standards and
+reports unredacted assessments to the state. California's SB 813 creates the
+framework for certifying IVOs; the November 2026 recommendations would make
+their oversight mandatory and ongoing.
+
 ## K
 
 **kill switch** — A control that stops an AI agent (or system) immediately and
@@ -300,6 +321,12 @@ expressly brings AI/ML models inside model-risk scope.
 **OWASP (Open Web Application Security Project)** — An open community that
 publishes the standard lists of web and AI security risks (the OWASP Top 10).
 
+**OWASP Top 10 for Agentic Applications** — OWASP's list of the ten highest
+risks for applications built on AI agents — prompt injection, unauthorised
+tool execution, memory poisoning, inter-agent trust failure and the rest. A
+November 2026 study tested four orchestration frameworks against it and found
+every one vulnerable in its default setup.
+
 ## P
 
 **pass@1 and pass^k** — Two ways of scoring an agent. pass@1: it succeeds on
@@ -349,6 +376,12 @@ the "blue team" that defends.
 **RFI (request for information)** — A regulator's formal call for public input
 before it writes a rule. The Fed/OCC/FDIC AI RFI, promised in April 2026, still
 has not appeared.
+
+**RSI (recursive self-improvement)** — A scenario in which an AI model designs
+its own successor without human input, so capability growth becomes
+self-sustaining. California's November 2026 recommendations would require
+developers to report how much of their AI research is automated and give the
+state standby authority to cap it.
 
 ## S
 
