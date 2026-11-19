@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-11-19T09:44:30.814300+00:00",
+ "generated_at": "2026-11-19T12:02:42.056221+00:00",
  "as_of": "Wednesday, November 18, 2026",
  "as_of_date": "2026-11-18",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 92,
-  "whats_new": 55,
-  "glossary": 96,
+  "articles": 96,
+  "whats_new": 59,
+  "glossary": 98,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
   "established": 14,
-  "corroborated": 26,
-  "reported": 47,
+  "corroborated": 29,
+  "reported": 48,
   "claimed": 5
  },
  "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
@@ -1017,6 +1017,31 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#a-credential-stealer-rode-microsofts-own-agent-framework"
   },
   {
+   "headline": "AWS's open-source agent harness runs the same models for 28% less — on its own benchmark",
+   "section": "Agentic",
+   "subsection": "3.1 Frameworks & platforms",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Strands Agents",
+   "source_label": "Strands Agents, \"Introducing Strands harness: frontier performance with 28% lower token cost,\" 21 Sep 2026",
+   "source_url": "https://strandsagents.com/blog/introducing-strands-harness/",
+   "source_context": "Strands Agents, 21 Sep 2026",
+   "date": "21 Sep 2026",
+   "flag": null,
+   "bullets": [
+    "Strands harness, released 21 Sep 2026 under Apache 2.0, is a fully assembled general-purpose agent: one line of Python or TypeScript wires it to a model across Amazon Bedrock, Anthropic, OpenAI, Google, a local Ollama model, or LiteLLM, and it ships with shell, file and web tools, long-term memory and session resume built in (Strands Agents, 21 Sep 2026).",
+    "Across six benchmarks using the same Claude or GPT models, AWS reports the harness cost 28% less than comparable harnesses (Claude Code, Codex and others) at similar accuracy — AWS's own benchmark, run on EC2 with Harbor; the team promises a follow-up paper, which is not yet published, so treat the number as a vendor claim (Strands Agents, 21 Sep 2026).",
+    "The widest gap was Terminal-Bench 2.1 with Fable 5: $56.29 and a 69.7 score against Claude Code's $248.05 and 61.8 across 89 trials — again AWS's numbers, not independently verified (Strands Agents, 21 Sep 2026).",
+    "The saving comes from context-management defaults, not the model: tool results over ~1,500 tokens are truncated, summarisation (compaction) triggers above 85% context-window use, and context recovery runs inside the execution loop (Strands Agents, 21 Sep 2026).",
+    "The harness is built on the Strands Agents SDK (now the Strands Harness SDK) — AWS's open-source, model-driven agent SDK, previewed May 2025 and 1.0 in July 2025 with four multi-agent primitives and A2A support; it runs in the builder's own process and deploys to any Linux container, including Amazon Bedrock AgentCore (AWS Open Source Blog, 15 Jul 2025).",
+    "The ecosystem is filling in around it: MongoDB shipped a strands-mongodb backend (18 Nov 2026) giving Strands agents durable sessions and searchable long-term memory in MongoDB instead of local disk or S3 (MongoDB, 18 Nov 2026).",
+    "What this changes in practice: the harness layer — context management, not model choice — is now where agent cost is won or lost, and AWS has a complete open-source stack (SDK, harness, the sandbox in §3.4.3, managed runtime) that finance firms evaluating agent platforms have to weigh against LangGraph and the Microsoft stack; the 28% figure itself is unverified, so benchmark it on your own workload before budgeting on it."
+   ],
+   "voiceover": "AWS's open-source agent harness runs the same models for 28 percent less , on its own benchmark. Strands harness, released 21 Sep 2026 under Apache 2.0, is a fully assembled general-purpose agent: one line of Python or TypeScript wires it to a model across Amazon Bedrock, Anthropic, OpenAI, Google, a local Ollama model, or LiteLLM, and it ships with shell, file and web tools, long-term memory and session resume built in (Strands Agents, 21 Sep 2026).",
+   "id": "awss-open-source-agent-harness-runs-the-same-models-for-28",
+   "url": "https://yorgo000.github.io/ci-sitrep/#awss-open-source-agent-harness-runs-the-same-models-for-28"
+  },
+  {
    "headline": "AI agents named an emerging risk, tied to supervisory controls under Rule 3110",
    "section": "Agentic",
    "subsection": "3.4 Governance",
@@ -1653,12 +1678,37 @@
    "flag": null,
    "bullets": [
     "79% of enterprises run AI agents in production; only 2% use identity-security tools specifically designed to manage and govern them (SailPoint, Horizons of Identity Security, announced 6 Oct 2026).",
-    "54% of respondents sit at the lowest tier of maturity for agent identity.",
-    "The ratio of machine identities to human identities is now 109 to 1, up from 82 to 1 a year earlier — and roughly 79 of those 109 are AI agents specifically (Palo Alto Networks, 2026 Identity Security Landscape, ~3,000 cybersecurity decision-makers)."
+    "54% of respondents sit at the lowest tier of maturity for agent identity."
    ],
    "voiceover": "79 percent of enterprises run AI agents in production; only 2 percent have the tools to govern their identities. 79 percent of enterprises run AI agents in production; only 2 percent use identity-security tools specifically designed to manage and govern them (SailPoint, Horizons of Identity Security, announced 6 Oct 2026).",
    "id": "79-of-enterprises-run-ai-agents-in-production-only-2-have",
    "url": "https://yorgo000.github.io/ci-sitrep/#79-of-enterprises-run-ai-agents-in-production-only-2-have"
+  },
+  {
+   "headline": "For every human identity, enterprises now manage 109 machine identities — and most cannot revoke an agent's credentials",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "Palo Alto Networks",
+   "source_label": "Palo Alto Networks, \"How to Assess Maturity When Machine Identities Outnumber Humans 109:1,\" 20 May 2026",
+   "source_url": "https://www.paloaltonetworks.com/blog/identity-security/assess-maturity-when-machine-identities-outnumber-humans-1091/",
+   "source_context": "Palo Alto Networks, 2026 Identity Security Landscape, 20 May 2026",
+   "date": "20 May 2026",
+   "flag": null,
+   "bullets": [
+    "Machine identities per human hit 109:1 in 2026, up from 82:1 a year earlier, and 77% of organisations expect the number to keep climbing — 2,930 cybersecurity decision-makers in 20 countries, surveyed Mar–Apr 2026 (Palo Alto Networks, 2026 Identity Security Landscape, 20 May 2026).",
+    "The 82:1 prior-year figure comes from CyberArk's April 2025 edition of the same survey series (n=2,600) — a different sample, so the trend is a comparison across editions, not a longitudinal panel (NHI Governance, Oct 2026).",
+    "79 of the 109 machine identities per human are AI agents — AI agents are ~72% of all machine identities (Palo Alto Networks, 2026 Identity Security Landscape).",
+    "99% of organisations have adopted AI agents, and on average 40% of AI agents — and 40% of machine identities — already have access to organisational data; organisations expect AI-agent identities to grow 85% in the next 12 months, against 77% for machine identities and 56% for human identities (Palo Alto Networks, 2026 Identity Security Landscape, 20 May 2026).",
+    "Only 37% of organisations can revoke an AI agent's credentials, and only 30% have immutable audit logging for what their agents do (Palo Alto Networks, 2026 Identity Security Landscape, 20 May 2026).",
+    "Nine in ten organisations suffered an identity-related breach in the last 12 months, and 83% reported at least two (Palo Alto Networks, 2026 Identity Security Landscape).",
+    "AI-assisted attacks can move from initial access to exfiltration in 25 minutes (Unit 42 Incident Response Report, cited by Palo Alto Networks, 20 May 2026).",
+    "What this changes in practice: the identity estate is now mostly machines, and mostly agents — and the controls that matter (revocation, immutable audit) exist in only a minority of organisations, which is why the agent-identity gap in the SailPoint article above is a governance gap, not a tooling gap; baseline revocation capability and audit logging before scaling agent deployment."
+   ],
+   "voiceover": "For every human identity, enterprises now manage 109 machine identities , and most cannot revoke an agent's credentials. Machine identities per human hit 109:1 in 2026, up from 82:1 a year earlier, and 77 percent of organisations expect the number to keep climbing , 2,930 cybersecurity decision-makers in 20 countries, surveyed Mar to Apr 2026 (Palo Alto Networks, 2026 Identity Security Landscape, 20 May 2026).",
+   "id": "for-every-human-identity-enterprises-now-manage-109-machine",
+   "url": "https://yorgo000.github.io/ci-sitrep/#for-every-human-identity-enterprises-now-manage-109-machine"
   },
   {
    "headline": "Most organisations cannot say what their agents did, or undo it",
@@ -2116,9 +2166,121 @@
    "voiceover": "All four leading agent frameworks fail authorisation-boundary tests in their default setup. Twelve attack experiments mapped to the OWASP Top 10 for Agentic Applications, run against LangChain, LangGraph, AutoGen and OpenClaw with a common model (gpt-4o-mini), found every framework vulnerable in its unprotected configuration , prompt injection, unauthorised tool execution, memory poisoning, or inter-agent trust failure (Lazer et al., Tennessee Tech / Purdue / Nebraska Omaha, arXiv:2611.21259, 16 Nov 2026).",
    "id": "all-four-leading-agent-frameworks-fail-authorisation",
    "url": "https://yorgo000.github.io/ci-sitrep/#all-four-leading-agent-frameworks-fail-authorisation"
+  },
+  {
+   "headline": "AWS's agent sandbox enforces rules the agent cannot see, change, or talk its way around",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "AWS Open Source Blog",
+   "source_label": "AWS Open Source Blog, \"Introducing Strands Box: AI agent sandboxes powered by Dogwood,\" 7 Oct 2026",
+   "source_url": "https://aws.amazon.com/blogs/opensource/introducing-strands-box-ai-agent-sandboxes-powered-by-dogwood/",
+   "source_context": "AWS Open Source Blog, 7 Oct 2026",
+   "date": "7 Oct 2026",
+   "flag": null,
+   "bullets": [
+    "Strands Box, launched in developer preview 7 Oct 2026 under Apache 2.0, is an open-source sandbox that pairs OS-level containment (macOS Seatbelt) with fine-grained policies governing what the agent may do inside the boundary (AWS Open Source Blog, 7 Oct 2026).",
+    "Policies are written in Dogwood, a policy language using Cedar's syntax (permit/forbid over principal, action, resource) with temporal operators, so a rule can depend on what the agent has already done — its order, its count, its timing: \"let the agent post to the incident channel, but no more than three times every 10 minutes\" (AWS Open Source Blog, 7 Oct 2026).",
+    "Enforcement sits outside the agent's process at four points — network egress gateway, Python interpreter, shell interpreter, MCP broker — and every point reports actions in the same event vocabulary (fs:read, http:request), so one rule can connect a file read through one tool with a later HTTP request through another (AWS Open Source Blog, 7 Oct 2026).",
+    "The egress gateway attaches real credentials itself: the agent holds a placeholder token, and the gateway swaps in the real secret — or signs the request with AWS SigV4 from credentials held outside the agent — before forwarding a permitted request, so cloud credentials never enter the agent's environment (AWS Open Source Blog, 7 Oct 2026).",
+    "The limits are real: Box is macOS-only today (Apple silicon, macOS 15+), in developer preview, and policy covers only what passes through its enforcement points — paths granted directly in box.toml are bounded by containment, not policy (AWS Open Source Blog, 7 Oct 2026; InfoWorld, 25 Oct 2026).",
+    "Box is harness-agnostic — AWS's stated goal is for developers to package agents built with Strands, LangChain or the Claude Agent SDK with Box and deploy them to Bedrock AgentCore, ECS or Kubernetes with their policies intact (AWS Open Source Blog, 7 Oct 2026).",
+    "What this changes in practice: this is the §3.4.1 control pattern — the gate outside the model — as a shipping open-source product, and it directly answers the OWASP finding above that framework defaults are not a security boundary; a firm running agents on macOS can trial it now, and the Dogwood policy shape (history-aware, rate-limited, credential-free) is the template to demand from any sandbox vendor."
+   ],
+   "voiceover": "AWS's agent sandbox enforces rules the agent cannot see, change, or talk its way around. Strands Box, launched in developer preview 7 Oct 2026 under Apache 2.0, is an open-source sandbox that pairs OS-level containment (macOS Seatbelt) with fine-grained policies governing what the agent may do inside the boundary (AWS Open Source Blog, 7 Oct 2026).",
+   "id": "awss-agent-sandbox-enforces-rules-the-agent-cannot-see",
+   "url": "https://yorgo000.github.io/ci-sitrep/#awss-agent-sandbox-enforces-rules-the-agent-cannot-see"
+  },
+  {
+   "headline": "A prompt could switch off secret masking in a Strands tool and read cloud credentials in cleartext",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "AWS Security Bulletin 2026-154-AWS",
+   "source_label": "AWS Security Bulletin 2026-154-AWS, \"CVE-2026-115415 — Secret masking bypass in the environment tool in Strands Agents Tools,\" 28 Oct 2026",
+   "source_url": "https://aws.amazon.com/security/security-bulletins/2026-154-aws/",
+   "source_context": "AWS Security Bulletin 2026-154-AWS, 28 Oct 2026",
+   "date": "28 Oct 2026",
+   "flag": null,
+   "bullets": [
+    "CVE-2026-115415: the environment tool in strands-agents-tools — the pre-built tool package for the Strands Agents SDK — masked secret-looking environment variables by default, but the masking switch was a parameter in the tool's input schema, so the model itself could turn it off (AWS Security Bulletin 2026-154-AWS, 28 Oct 2026; GHSA-qjx4-hg6g-2f34).",
+    "A crafted prompt, delivered through content the agent was asked to process — a web page, a file, an earlier tool's output — could instruct the model to call the tool with masking off; list and get ran without an operator consent prompt, so the tool returned the host's environment variables in cleartext, including cloud credentials and API keys (AWS Security Bulletin 2026-154-AWS, 28 Oct 2026).",
+    "Affected versions: strands-agents-tools >= 0.1.0 and < 0.8.6. The fix shipped in 0.8.6 on 7 Aug 2026 — nearly three months before the 28 Oct disclosure — where masking is controlled only by the operator and the environment tool is deprecated; AWS recommends upgrading and rotating any credentials present in the environment of agents that loaded the tool (AWS Security Bulletin 2026-154-AWS, 28 Oct 2026; PyPI).",
+    "CVSS 5.9 (Medium, v4) (OSV).",
+    "What this changes in practice: a security parameter the model can set is not a security parameter — it is attacker-influenced input, and this is the failure mode the sandbox above is built to prevent (credentials attached outside the agent's environment, where the model cannot reach them); check whether any agent loads the environment tool, upgrade to 0.8.6 or remove it, and rotate exposed credentials."
+   ],
+   "voiceover": "A prompt could switch off secret masking in a Strands tool and read cloud credentials in cleartext. CVE-2026-115415: the environment tool in strands-agents-tools , the pre-built tool package for the Strands Agents SDK , masked secret-looking environment variables by default, but the masking switch was a parameter in the tool's input schema, so the model itself could turn it off (AWS Security Bulletin 2026-154-AWS, 28 Oct 2026; GHSA-qjx4-hg6g-2f34).",
+   "id": "a-prompt-could-switch-off-secret-masking-in-a-strands-tool",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-prompt-could-switch-off-secret-masking-in-a-strands-tool"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-19",
+   "title": "For every human identity, enterprises now manage 109 machine identities — and most cannot revoke an agent's credentials",
+   "source": "Palo Alto Networks",
+   "source_url": "https://www.paloaltonetworks.com/blog/identity-security/assess-maturity-when-machine-identities-outnumber-humans-1091/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "109:1, up from 82:1, with 99% of organisations running AI agents — but only 37% can revoke an agent's credentials and only 30% have immutable audit logging; the ratio was previously misattributed to SailPoint in this report and is now corrected to Palo Alto Networks.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "title": "AWS's agent sandbox enforces rules the agent cannot see, change, or talk its way around",
+   "source": "AWS",
+   "source_url": "https://aws.amazon.com/blogs/opensource/introducing-strands-box-ai-agent-sandboxes-powered-by-dogwood/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Strands Box pairs OS containment with Dogwood policies enforced outside the agent's process — history-aware, rate-limited, and with real credentials attached at an egress gateway the agent never sees; macOS-only in developer preview.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "title": "A prompt could switch off secret masking in a Strands tool and read cloud credentials in cleartext",
+   "source": "AWS Security Bulletin 2026-154-AWS",
+   "source_url": "https://aws.amazon.com/security/security-bulletins/2026-154-aws/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "CVE-2026-115415 — the masking switch was a parameter in the tool's input schema, so the model could turn it off; fixed in strands-agents-tools 0.8.6, which also deprecates the environment tool; rotate exposed credentials.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "title": "AWS's open-source agent harness runs the same models for 28% less — on its own benchmark",
+   "source": "Strands Agents",
+   "source_url": "https://strandsagents.com/blog/introducing-strands-harness/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Strands harness is a fully assembled Apache 2.0 agent with context-management defaults; the 28% is AWS's own benchmark across six suites, not independently verified — the harness layer, not model choice, is where agent cost is now won or lost.",
+   "sections": [
+    {
+     "label": "3.1 Frameworks & platforms",
+     "anchor": "31-frameworks--platforms"
+    }
+   ]
+  },
   {
    "date": "2026-11-19",
    "title": "California proposes state-set safety standards, licensed verifiers and emergency shutdown powers for frontier AI",
@@ -3082,6 +3244,10 @@
    "definition": "An open-source AI penetration-testing framework that hands an intrusion to a model and lets it plan and run the attack in a loop. Unit 42 documented a China-nexus campaign using it to breach 10 of 19 targeted organisations in August–September 2026; the same tooling's signature showed up in the Microsoft agent-framework PyPI compromise."
   },
   {
+   "term": "Cedar",
+   "definition": "AWS's open-source language for writing fine-grained authorisation policies: who may do what to which resource, as permit/forbid rules. Dogwood builds on its syntax."
+  },
+  {
    "term": "CI (created intelligence)",
    "definition": "Confluence<1>'s term for intelligence that is built rather than evolved: AI systems, and in principle biological or hybrid ones too. See the explainer, \"Created Intelligence — a note on the names\". Not to be confused with CI/CD (below)."
   },
@@ -3152,6 +3318,10 @@
   {
    "term": "DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)",
    "definition": "The new office inside New York's Department of Financial Services that implements the RAISE Act and oversees large frontier AI developers."
+  },
+  {
+   "term": "Dogwood",
+   "definition": "AWS's open-source policy language for governing agent actions. Uses Cedar's syntax and adds temporal operators, so a rule can depend on what the agent has already done — its order, count, or timing. The policy language of Strands Box."
   },
   {
    "term": "DORA (Digital Operational Resilience Act)",
