@@ -224,6 +224,25 @@ const reportEmpty = new El('p', { id: 'report-empty', class: 'dash-empty', hidde
 const clearBtnReport = new El('button', { attrs: { 'data-clear-filters': '' }, class: 'dash-clear-btn' });
 reportEmpty.appendChild(clearBtnReport);
 root.appendChild(reportEmpty);
+// Feed ("New in the last 7 days"): 3 tagged entries + empty state.
+// Hand-built, not from the fixture JSON — the fixture predates feed
+// tagging. An untagged entry is appended later, by the test that
+// needs one (the empty state can only show while none exists).
+const feedList = new El('ul', { class: 'whats-new-feed' });
+report.appendChild(feedList);
+const feedItems = [];
+function addFeedLi(attrs) {
+  const li = new El('li', { attrs: {} });
+  for (const [dim, v] of Object.entries(attrs)) li.setAttribute('data-' + dim, v);
+  feedList.appendChild(li);
+  feedItems.push(li);
+  return li;
+}
+addFeedLi({ subject: '3', industry: 'banking', severity: 'material' });
+addFeedLi({ subject: '1', industry: 'software', severity: 'critical' });
+addFeedLi({ subject: '2', industry: 'software', severity: 'directional' });
+const feedEmpty = new El('p', { id: 'feed-empty', class: 'dash-empty', hidden: true });
+report.appendChild(feedEmpty);
 // An anchor link into the report, for the share-link test
 const anchor = new El('a', { attrs: { href: '#art-5' } });
 root.appendChild(anchor);
@@ -402,6 +421,29 @@ setSelect('severity', 'critical');
 check('pre-click: filtered', visibleArticles().length === 7, String(visibleArticles().length));
 clickAnchor();
 check('anchor click clears filters', visibleArticles().length === 85 && countEl.textContent === 'Showing 62 of 62 figures · 85 of 85 articles', countEl.textContent);
+
+// feed filtering (Round 5 fix: entries inherit their article's tags)
+const visibleFeed = () => feedItems.filter(li => li.style.display !== 'none');
+clearAll();
+check('feed fresh: all visible, empty hidden', visibleFeed().length === 3 && feedEmpty.hidden === true, `${visibleFeed().length} visible`);
+setSelect('industry', 'banking');
+check('feed banking: 1 visible', visibleFeed().length === 1, String(visibleFeed().length));
+check('feed banking: empty hidden', feedEmpty.hidden === true);
+check('feed banking: count line counts tiles+articles only',
+  countEl.textContent === `Showing ${visibleTiles().length} of 62 figures · ${visibleArticles().length} of 85 articles`, countEl.textContent);
+clearAll(); setSelect('jurisdiction', 'eu');
+check('feed eu: 0 visible', visibleFeed().length === 0, String(visibleFeed().length));
+check('feed eu: empty shows', feedEmpty.hidden === false);
+// untagged entry (no identifiable article): appended now, stays
+// visible under the same filter, and the empty state hides again.
+const untaggedLi = new El('li', { attrs: {} });
+feedList.appendChild(untaggedLi);
+feedItems.push(untaggedLi);
+setSelect('jurisdiction', 'eu'); // re-apply so the JS re-evaluates
+check('feed eu + untagged: untagged visible', untaggedLi.style.display !== 'none');
+check('feed eu + untagged: empty hidden', feedEmpty.hidden === true);
+clearAll();
+check('feed clear-all: all visible, empty hidden', visibleFeed().length === 4 && feedEmpty.hidden === true, `${visibleFeed().length} visible`);
 
 console.log(`\n${pass} passed, ${fail} failed.`);
 process.exit(fail ? 1 : 0);
