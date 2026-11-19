@@ -4,6 +4,96 @@
   "bottom_line": [
     {
       "chart": {
+        "kind": "compare",
+        "a": {
+          "display": "3.4×",
+          "label": "81–100% AI code",
+          "tone": "gap",
+          "value": 3.4
+        },
+        "b": {
+          "display": "1×",
+          "label": "1–20% AI code",
+          "tone": "navy",
+          "value": 1
+        }
+      },
+      "date": "2 Nov 2026",
+      "display": "3.4×",
+      "label": "the reported vulnerable-code shipping rate, 81–100% vs 1–20% AI code",
+      "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "SusVibes re-run",
+      "span": 2,
+      "tile": "ratio"
+    },
+    {
+      "chart": {
+        "a": {
+          "display": "~2.5×",
+          "label": "With post-hoc review",
+          "tone": "navy",
+          "value": 2.5
+        },
+        "b": {
+          "display": "1×",
+          "label": "Generation alone",
+          "tone": "gap",
+          "value": 1
+        },
+        "kind": "compare"
+      },
+      "date": "2 Nov 2026",
+      "display": "~2.5×",
+      "label": "the cost of a post-hoc review that still leaves about half insecure",
+      "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "SusVibes re-run",
+      "tile": "ratio"
+    },
+    {
+      "date": "2026",
+      "display": "188",
+      "label": "documented cases of autonomous AI damaging production",
+      "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "Cyera",
+      "tile": "big-number"
+    },
+    {
+      "date": "13 Nov 2026",
+      "display": "73%",
+      "figures": [
+        {
+          "a_label": "Permit agents in production",
+          "b_label": "do not permit",
+          "display": "73%",
+          "label": "of systemically important banks permit agents in production for select use cases",
+          "pie_split": "identity",
+          "value": 73
+        },
+        {
+          "a_label": "Have comprehensive monitoring",
+          "b_label": "do not",
+          "display": "8%",
+          "label": "have comprehensive agent monitoring and controls",
+          "pie_split": "positive",
+          "value": 8
+        }
+      ],
+      "label": "of systemically important banks permit agents in production for select use cases",
+      "link": "#73-of-systemically-important-banks-permit-agents-in",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "BCG AI Safety and Governance in Banking 2026",
+      "source_note": "26 global and domestic systemically important banks",
+      "tile": "paired"
+    },
+    {
+      "chart": {
         "a_label": "AI agents",
         "b_label": "human-written",
         "kind": "pie",
@@ -62,70 +152,6 @@
       "sentiment": "negative",
       "source": "Sajadi et al., SWE-bench study v4",
       "tile": "waffle"
-    },
-    {
-      "chart": {
-        "a": {
-          "display": "~2.5×",
-          "label": "With post-hoc review",
-          "tone": "navy",
-          "value": 2.5
-        },
-        "b": {
-          "display": "1×",
-          "label": "Generation alone",
-          "tone": "gap",
-          "value": 1
-        },
-        "kind": "compare"
-      },
-      "date": "2 Nov 2026",
-      "display": "~2.5×",
-      "label": "the cost of a post-hoc review that still leaves about half insecure",
-      "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "SusVibes re-run",
-      "tile": "ratio"
-    },
-    {
-      "date": "13 Nov 2026",
-      "display": "73%",
-      "figures": [
-        {
-          "a_label": "Permit agents in production",
-          "b_label": "do not permit",
-          "display": "73%",
-          "label": "of systemically important banks permit agents in production for select use cases",
-          "pie_split": "identity",
-          "value": 73
-        },
-        {
-          "a_label": "Have comprehensive monitoring",
-          "b_label": "do not",
-          "display": "8%",
-          "label": "have comprehensive agent monitoring and controls",
-          "pie_split": "positive",
-          "value": 8
-        }
-      ],
-      "label": "of systemically important banks permit agents in production for select use cases",
-      "link": "#73-of-systemically-important-banks-permit-agents-in",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "BCG AI Safety and Governance in Banking 2026",
-      "source_note": "26 global and domestic systemically important banks",
-      "tile": "paired"
-    },
-    {
-      "date": "2026",
-      "display": "188",
-      "label": "documented cases of autonomous AI damaging production",
-      "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "Cyera",
-      "tile": "big-number"
     },
     {
       "chart": {
