@@ -1,6 +1,6 @@
 {
- "as_of": "2026-11-17",
- "as_of_label": "Tuesday, November 17, 2026",
+ "as_of": "2026-11-18",
+ "as_of_label": "Wednesday, November 18, 2026",
  "bottom_line": [
   {
    "chart": {
@@ -89,21 +89,33 @@
    "tile": "ratio"
   },
   {
-   "chart": {
-    "a_label": "Running agents",
-    "b_label": "not running",
-    "kind": "pie",
-    "value": 79
-   },
-   "date": "2026",
-   "display": "79%",
-   "label": "of enterprises run AI agents in production",
-   "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
-   "pie_split": "identity",
+   "date": "13 Nov 2026",
+   "display": "73%",
+   "figures": [
+    {
+     "a_label": "Permit agents in production",
+     "b_label": "do not permit",
+     "display": "73%",
+     "label": "of systemically important banks permit agents in production",
+     "pie_split": "identity",
+     "value": 73
+    },
+    {
+     "a_label": "Have comprehensive monitoring and controls",
+     "b_label": "do not",
+     "display": "8%",
+     "label": "have comprehensive agent monitoring and controls",
+     "pie_split": "positive",
+     "value": 8
+    }
+   ],
+   "label": "of systemically important banks permit agents in production",
+   "link": "#73-of-systemically-important-banks-permit-agents-in",
    "rating": "reported",
-   "sentiment": "neutral",
-   "source": "SailPoint Horizons of Identity Security",
-   "tile": "pie"
+   "sentiment": "negative",
+   "source": "BCG AI Safety and Governance in Banking 2026",
+   "source_note": "26 global and domestic systemically important banks",
+   "tile": "paired"
   },
   {
    "date": "2026",
@@ -137,7 +149,7 @@
   },
   {
    "date": "2026-12-24",
-   "display": "Wed 24 Dec 2026",
+   "display": "Thu 24 Dec 2026",
    "label": "FCA CP26/38 comments close"
   },
   {
