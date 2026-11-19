@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T16:36:22.722072+00:00",
+ "generated_at": "2026-11-19T22:18:00.978702+00:00",
  "as_of": "Thursday, November 19, 2026",
  "as_of_date": "2026-11-19",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -2043,7 +2043,7 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer"
   },
   {
-   "headline": "73% of systemically important banks permit agents in production; only 8% have comprehensive agent monitoring",
+   "headline": "73% of systemically important banks permit agents in production for select use cases; only 8% have comprehensive agent monitoring",
    "section": "Agentic",
    "subsection": "3.4 Governance",
    "rating": "reported",
@@ -2063,7 +2063,7 @@
     "The sample is the largest banks, with the largest risk functions — a regional or community bank should assume its own numbers are worse, not better (BCG, 13 Nov 2026).",
     "What this changes in practice: the governance gap in this section now has a banking-specific measure, and the buyer is the bank itself — the deliverable is agent monitoring and a centralised inventory, the two things the OCC's examiner framework (2026-54) points examiners at, and the preapproved-pattern fast lane is the governance build that also shortens time to production."
    ],
-   "voiceover": "73 percent of systemically important banks permit agents in production; only 8 percent have comprehensive agent monitoring. 73 percent of the 26 global and domestic systemically important banks in the benchmark permit AI agents in production for select use cases , but none permits broad production use, and at 88 percent of banks agents are 10 percent or less of the AI portfolio (BCG, AI Safety and Governance in Banking 2026, 13 Nov 2026).",
+   "voiceover": "73 percent of systemically important banks permit agents in production for select use cases; only 8 percent have comprehensive agent monitoring. 73 percent of the 26 global and domestic systemically important banks in the benchmark permit AI agents in production for select use cases , but none permits broad production use, and at 88 percent of banks agents are 10 percent or less of the AI portfolio (BCG, AI Safety and Governance in Banking 2026, 13 Nov 2026).",
    "id": "73-of-systemically-important-banks-permit-agents-in",
    "url": "https://yorgo000.github.io/ci-sitrep/#73-of-systemically-important-banks-permit-agents-in"
   },
@@ -2591,7 +2591,7 @@
   },
   {
    "date": "2026-11-17",
-   "title": "73% of systemically important banks run agents in production; only 8% have comprehensive agent monitoring",
+   "title": "73% of systemically important banks permit agents in production for select use cases; only 8% have comprehensive agent monitoring",
    "source": "BCG",
    "source_url": "https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html",
    "tags": [
