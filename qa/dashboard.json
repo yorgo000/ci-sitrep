@@ -7,21 +7,21 @@
         "kind": "compare",
         "a": {
           "display": "3.4×",
-          "label": "81–100% AI code",
+          "label": "81–100% of code AI-generated",
           "tone": "gap",
           "value": 3.4
         },
         "b": {
           "display": "1×",
-          "label": "1–20% AI code",
+          "label": "1–20% of code AI-generated",
           "tone": "navy",
           "value": 1
         }
       },
       "date": "2 Nov 2026",
       "display": "3.4×",
-      "label": "the self-reported vulnerable-code shipping rate, 81–100% vs 1–20% AI code",
-      "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+      "label": "the self-reported vulnerable-code shipping rate, 81–100% vs 1–20% AI-generated code",
+      "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
       "rating": "reported",
       "sentiment": "negative",
       "source": "SusVibes re-run",
@@ -1093,13 +1093,13 @@
               "chart": {
                 "a": {
                   "display": "3.4×",
-                  "label": "81–100% AI code",
+                  "label": "81–100% of code AI-generated",
                   "tone": "gap",
                   "value": 3.4
                 },
                 "b": {
                   "display": "1×",
-                  "label": "1–20% AI code",
+                  "label": "1–20% of code AI-generated",
                   "tone": "navy",
                   "value": 1
                 },
@@ -1109,7 +1109,7 @@
               "display": "3.4×",
               "kind": "stat",
               "label": "vulnerable-code rate at 81–100% AI-generated code vs 1–20%",
-              "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+              "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
               "rating": "reported",
               "sentiment": "negative",
               "source": "SusVibes",
