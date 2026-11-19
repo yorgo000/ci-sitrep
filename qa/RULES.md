@@ -834,6 +834,25 @@ The Self-Audit page records the date of the last full manual link audit
    `watches/SYNTHESIZED.html` WITHOUT the dashboard or tooltips. If
    ARCHIVE.md changed, rebuild archive.html too
    (rewrite its links to repo-root-relative form first).
+
+**About numbers refresh.** The About page's "How this is made"
+paragraph carries numbers that go stale every morning the watch runs.
+They are regenerated from the audit data on every publish — never
+hand-edited. Pipeline position: after build_audit.py, before
+build_page.py builds about.html: `python3 _tools/refresh_about.py`
+regenerates the paragraph in ABOUT.md from
+`build_audit.compute_metrics()` (the same computation as the Self-Audit
+page) plus the fixed values in site_config.py (`VERIFY_CHECK_COUNT`,
+`ABOUT_CII_COUNT`, `ABOUT_TEAM_YEARS`). The wording is Yorgo's approved
+text — only the numbers change; if the paragraph is reworded, the
+script fails loudly and its template must be updated by hand to match.
+`refresh_about.py --check` verifies the paragraph is current without
+writing (exit 1 if stale). The "61 unique domains" clause stays out: it
+is unverifiable from audit data. Update site_config.py when the
+verify.py pass count, the CII role count, or the team's cumulative
+years change. verify.py warns when its pass count differs from
+`VERIFY_CHECK_COUNT` — that warning means the config is stale.
+
 4. Refresh the findings export — the JSON database behind the YouTube
    channel (F-02): venv python `_tools/export_findings.py` (parses
    SYNTHESIZED.md, GLOSSARY.md, dashboard.json; writes
@@ -1131,3 +1150,7 @@ The Self-Audit page records the date of the last full manual link audit
   pending); filter-JS harness
   under `_tools/tests/` (69/69). verify.py extensions proposed, not
   implemented (derived tile-count check, masthead-order assertions).
+  About "How this is made" numbers refresh from the audit data on
+  every publish (`_tools/refresh_about.py`, option (a) — Yorgo's
+  pick); verify.py warns when its pass count differs from
+  `site_config.VERIFY_CHECK_COUNT`.
