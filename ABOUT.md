@@ -26,4 +26,4 @@ It takes a lot to put together. Since tracking began on 12 November we have revi
 
 ## Contact
 
-CI SITREP is a Confluence<1> service. For errors, omissions, or feature requests, write to [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com). To work with Confluence<1>, write to [hello@confluence1.com](mailto:hello@confluence1.com).
+CI SITREP is a Confluence<1> service. For errors, omissions, or feature requests, write to [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com). To work with Confluence<1>, write to [hello@confluence1.com](mailto:hello@confluence1.com). Corrections are published on the [Corrections page](corrections.html).
