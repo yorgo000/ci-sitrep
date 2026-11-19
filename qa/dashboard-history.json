@@ -3,13 +3,13 @@
   "label": "US financial firms formally using AI (ACA/NSCP survey)",
   "points": [
    {
-    "date": "2024-06",
+    "date": "2024-07",
     "display": "45%",
     "label": "2024",
     "value": 45
    },
    {
-    "date": "2025-06",
+    "date": "2025-10-29",
     "display": "71%",
     "label": "2025",
     "value": 71
@@ -57,7 +57,7 @@
   "label": "Machine-to-human identity ratio (SailPoint)",
   "points": [
    {
-    "date": "2025-06",
+    "date": "2025-10",
     "display": "82:1",
     "label": "2025",
     "value": 82
