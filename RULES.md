@@ -210,7 +210,16 @@ segmented pie carries a per-segment `tone` instead. The link is the
 article's runtime id (assigned by the share JS from the headline) — a
 section anchor is not specific enough: the reader must land on the
 article itself, where its Source line takes them to the primary
-source. Where a conclusion draws on a second headline article in
+source. The link target's headline must state the tile's figure: a
+reader who clicks a tile lands on an article headlined with the
+finding they clicked. If the figure is a secondary finding inside an
+article headlined with something else, split it into its own article
+— headline the finding, same source, same rating — and point the
+tile at the new article. Never point a tile at an article whose
+headline is about a different finding, however good the evidence
+buried in its bullets. (2026-11-19: the 3.4× strip tile linked to the
+2.5× post-hoc-review article, where the 3.4× was one bullet in six;
+Yorgo caught it from a QA screenshot.) Where a conclusion draws on a second headline article in
 another subsection, the figure carries an "also" list ({anchor, label})
 rendered after the source name. The one exception is §3.6 (Evaluation),
 which is prose, not articles: its figures link to the section anchor
@@ -660,6 +669,16 @@ the two sides: identity first (CI vs EI → rust/blue), then valence
 worked example: both sides are AI generation, so identity does not
 apply; the reviewed side is favourable → blue, generation alone →
 rust.
+**Ratio side rows name the cohorts, not the measure.** A compare
+chart's two arms identify who or what is being compared — the groups,
+the conditions — while the tile label states what is measured (the
+rate, the cost, the share). An arm label that restates the measured
+quantity reads as the measure against itself and says nothing about
+what differs between the sides: "81–100% AI code vs 1–20% AI code" is
+unreadable; "81–100% of code AI-generated vs 1–20% of code
+AI-generated" names the two cohorts and the label supplies the rate.
+(2026-11-19: the 3.4× tile's arms read "AI code vs AI code", caught
+by Yorgo from a QA screenshot.)
 **Sentiment is the tile's background tint** — a visual cue, never a
 label (the word-pill treatment is superseded and gone). Positive =
 blue tint `#E9EAEF`; negative = rust tint `#F6EAE5`; neutral = grey
@@ -900,6 +919,12 @@ closing the miss.
    build (Pages deploys lag; a stale edge is re-checked, not
    re-pushed).
 10. QA mirror re-synced to the new prod.
+11. Tile links land on headlines that state the tile's figure (added
+    2026-11-19 — the 3.4× miss): every dashboard figure's link
+    target is an article headlined with that figure — a secondary
+    finding gets its own article, never a tile pointed at another
+    finding's headline; ratio side rows name the cohorts, not the
+    measure.
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
@@ -1269,3 +1294,12 @@ years change. verify.py warns when its pass count differs from
   height. Pre-release checklist added to §6 (10 lines incl. layout
   balance, overflow/clip, whole-row visual checks), revised after
   every miss.
+- **2026-11-19 (evening)** — Tile-link headline rule (§2) and ratio
+  side-row rule (§4): a dashboard figure's link target must be an
+  article headlined with that figure — a secondary finding buried in
+  another article is split into its own article (headline the
+  finding) and the tile repointed; ratio compare-chart arms name the
+  cohorts being compared, never the measured quantity. Prompted by
+  the 3.4× tile, which linked to the 2.5× post-hoc-review article
+  (the 3.4× was one bullet in six) with arms reading "AI code vs AI
+  code". §6 checklist gains line 11.
