@@ -25,7 +25,7 @@ A graphic / countdown / visual dashboard that gives high-level executives making
 - **Agentic right vs wrong** — SecureVibeBench stacked bar (23.8% correct-and-secure / 23.0% correct-but-exploitable / 53.3% incorrect); A.S.E 2.0 functional 74.0% vs secure 18.4%; CWE-bench ~68% pass@1; SecPRBench recall 32.5–78.1%; BugLedger 45–70% reintroduce, hint 0.35 → 0.71; ThinkingBox 67.16% pass@1 but only 241/507 on all 20 attempts; METR horizon doubles ~every 7 months.
 - **Net impact: more code vs more cleanup** — a two-sided ledger (output up: Sonar 42%→65%, DORA throughput; cleanup up: GitClear duplication/churn, DORA stability, Black Duck 581 vulns +107%, Glasswing 175-to-1, Sajadi 11×, ETH Zurich 35.4-pt propagation, FCA outage). No single net number — the ledger says so honestly.
 - **Money saved vs lost** — the honest panel: "No credible dollar figure exists yet" as the headline, with the cost multipliers (2.5× review cost, 3.4× vuln rate, 2.74× claimed) and the CMA 10%-of-turnover exposure context.
-- **Countdown strip** — California kill-switch recommendations (Mon 16 Nov 2026), TPRM comments (Wed 16 Dec 2026), FCA CP26/38 (Wed 24 Dec 2026), OSFI E-23 (1 May 2027); days-remaining computed in the browser at load.
+- **Countdown strip** — California kill-switch recommendations (Mon 16 Nov 2026), TPRM comments (Wed 16 Dec 2026), FCA CP26/38 (Thu 24 Dec 2026), OSFI E-23 (1 May 2027); days-remaining computed in the browser at load.
 
 **Design (as built):**
 
