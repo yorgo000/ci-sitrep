@@ -91,12 +91,15 @@ The mobile inline PAGE CONTENTS sits between row 2 and the dashboard section
 Then the two top-level sections, both starting OPEN:
 
 1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
-   `dashboard.json`: the bottom-line strip (seven tiles in a 3+3+1
-   grid — six charted tiles in two rows of three, then the
+   `dashboard.json`: the bottom-line strip (seven items in a 3+3+1
+   grid — six charted tiles occupying seven units in three rows (three
+   1-unit tiles; the 2.5× tile plus the paired double tile; the 188
+   tile alone, the trailing hole consolidated bottom-right), then the
    profitability item full-width, reading "Insufficient data" and
    linking to the money panel; pie tiles for the percentages, a ratio
    tile for the multiplier, a waffle tile for the count-share, a
-   big-number tile for the count; pie colours follow the split, §4;
+   big-number tile for the count, a paired double tile for the two BCG
+   figures; pie colours follow the split, §4;
    the WHOLE strip tile is one link
    to its evidencing article, like the countdown tiles), the countdown strip (labelled
    "COUNTDOWN") and the five panels,
@@ -619,12 +622,15 @@ large companies have AI governance policies").
   record); the caption names the counted set ("Share of 147
   vulnerabilities counted"). Pure multipliers and rates are not shares
   of a whole and stay ratio tiles.
-- `paired` — two figures from one finding, one card (fixed order, the
-  headline figure first); each row carries its own pie + block-level
-  legend, separated by a hairline divider, no "vs" connector; the
-  whole tile links to the evidencing article; sentiment judges the
-  combined finding, not either figure alone. Exactly 2 figures, each
-  0–100 with a valid `pie_split`.
+- `paired` — two figures from one finding, one DOUBLE card (2 units
+  wide, 280px tall): the figures sit SIDE BY SIDE (figures[0] left),
+  each half carrying its own pie (standard 72px) + value, label, and
+  legend, separated by a vertical hairline divider, no "vs"
+  connector; the whole tile links to the evidencing article;
+  sentiment judges the combined finding, not either figure alone; one
+  source line below the halves. On phones the halves stack vertically
+  with a horizontal hairline divider. Exactly 2 figures, each 0–100
+  with a valid `pie_split`.
 **Pie colours.** Every pie-family figure carries `pie_split`, naming
 the wedge; the remainder follows by rule. Decision procedure, in
 order: (1) CI vs EI or AI-side-vs-rest split → `identity` (rust wedge,
@@ -669,21 +675,46 @@ always state the direction in words. The tint meaning is stated once,
 in the dashboard intro (`tint_note`, §2) — one home per idea, no
 second legend. Sentiment judges the finding as stated in the label; a
 level-vs-direction conflict goes neutral.
-**Unit sizes.** Tiles are standardized 1/2/3-unit cards. The unit is
-WIDTH (grid columns); height is natural per tile, top-aligned
-(`align-items: start`) — no forced equal heights, no dead space to
-match a taller neighbour. Fixed columns: 3 above 1100px, 2 at
-601–1100px, 1 at ≤600px. Span collapse is explicit (a span-2 item in a
-1-column grid creates an implicit track and overflows): span-3 is
-always `1 / -1`; span-2 becomes `1 / -1` at ≤600px. Mapping: pie
-(single/range), ratio, big-number, waffle, no-data, flag = 1 unit;
-segmented pie, note, sparkline = 2 units; money bignote = 3 units.
-The bottom-line strip is 3+3+1 in the same system; the countdown strip
-keeps its own 4→2→1 grid (four tiles do not pack into a 3-column unit
-grid). `.tile-grid` uses dense flow: a later 1-unit tile backfills a
-hole a 2-unit tile leaves — visual order may differ from DOM order by
-one slot; DOM order stays editorial. The square variant is one
-aspect-ratio rule on 1-unit tiles, not adopted.
+**Unit sizes.** Tiles are standardized 1/2/3-unit cards on ONE tile
+size (2026-11-19, Yorgo: same-size cards scan easiest). The unit is a
+fixed card: 1 unit wide (one grid column) by 280px tall. A 2-unit tile
+is two columns wide and 280px tall; a 3-unit tile spans the full width
+and keeps its own (natural) height — the money bignote and the
+profitability tile are framing elements, not stat cards, and are
+exempt from the 280px height, as are the countdown tiles (their own
+4→2→1 grid, uniform 3-line content). Height is fixed, not stretched:
+every 1-unit and 2-unit tile is exactly 280px tall at every
+multi-column width, so every row aligns top and bottom; the source
+line is pinned to the tile's bottom (`margin-top: auto`); short tiles
+vertically centre their content (the body sits centred between the top
+and the source line) so a short card reads finished rather than
+hollow. Content fits the unit by budget, not by truncation: labels
+≤ 84 chars, legend rows ≤ 36 chars, side rows ≤ 33 chars, source lines
+≤ 99 chars (1-unit) / ≤ 146 chars (2-unit), fig-notes ≤ 66 chars,
+note text ≤ 190 chars, sparkline captions ≤ 79 chars, waffle captions
+≤ 36 chars — and every tile's estimated height
+(`build_dashboard.py`'s estimator, desktop widths) must be ≤ 280px;
+the build FAILS above 290px and WARNS at 281–290px (tolerance band —
+the estimator runs conservative, so band cases are decided by the live
+whole-row check, not by trimming). A single tile's overflow is fixed by
+trimming that tile, never by raising the unit height; the height moves
+only on systematic evidence from the live whole-row check. Fixed
+columns: 3 above 1100px, 2 at 601–1100px, 1 at ≤600px. On phones
+(≤600px, single column) the fixed height is lifted — tiles are natural
+height, since there are no row neighbours to align with and full-width
+content wraps short; a double tile's content stacks (the paired tile's
+halves stack vertically, each ~1 unit of content). Span collapse is
+explicit (a span-2 item in a 1-column grid creates an implicit track
+and overflows): span-3 is always `1 / -1`; span-2 becomes `1 / -1` at
+≤600px. Mapping: pie (single/range), ratio, big-number, waffle,
+no-data, flag = 1 unit; segmented pie, note, sparkline, paired = 2
+units; money bignote, profitability = 3 units (full-width, natural
+height). The bottom-line strip is 3+3+1 in the same system (see §2);
+the countdown strip keeps its own 4→2→1 grid (four tiles do not pack
+into a 3-column unit grid). `.tile-grid` uses dense flow: a later
+1-unit tile backfills a hole a 2-unit tile leaves — visual order may
+differ from DOM order by one slot; DOM order stays editorial. The
+square variant is one aspect-ratio rule on 1-unit tiles, not adopted.
 **Graphic-slot scoping.** Any CSS rule targeting a tile's inner graphic
 must be scoped or qualified so it can never match the tile div:
 tile-type classes are also tile-div classes — an unscoped
@@ -1073,10 +1104,11 @@ years change. verify.py warns when its pass count differs from
   79% adoption rates, comparison bars for the multipliers (Sajadi 135
   vs 12 vulnerabilities; SusVibes 2.5× vs 1× review cost); the 188
   count has no chartable comparison in the report, so it keeps the big
-  number. Layout is 3+3+1: six cards in two rows of three, then the
-  profitability item full-width last (dashed border, bignote
-  background) — which also fixes the "Insufficient" text spilling out
-  of its card at the old width. The countdown strip got a heading in
+  number. Layout is 3+3+1: three 1-unit tiles, the 2.5× tile plus the
+  paired double tile, then the 188 tile alone, then the profitability
+  item full-width last (dashed border, bignote background) — which
+  also fixes the "Insufficient" text spilling out of its card at the
+  old width. The countdown strip got a heading in
   the same style ("COUNTDOWN"). Strip charts are inline SVG and CSS
   bars, no library; the build validates chart kinds, values, and bar
   tones.
@@ -1220,3 +1252,20 @@ years change. verify.py warns when its pass count differs from
   newest-first, one line each; the daily watch adds an entry as part
   of the same publish that lands the fix; entries never removed. Nav
   order gains Corrections after Self-Audit.
+- **2026-11-19** — One tile size (Yorgo, after the paired tile
+  rendered ~2× taller than its strip neighbours; the apparent row-1
+  pie clip in the screenshot was his red annotation, not a rendering
+  defect): every 1-unit and 2-unit tile is exactly 280px tall at
+  multi-column widths, source line pinned to the bottom, short tiles
+  vertically centred; content fits by budget (labels ≤ 84 chars,
+  legend rows ≤ 36, source ≤ 99/146, notes ≤ 190) enforced by a
+  build-time height estimator (FAIL above 290px, WARN 281–290px
+  tolerance band, decided by the live whole-row check); the paired
+  tile is now a double (2 units wide, figures side by side, 72px pies,
+  vertical hairline divider; halves stack on phones); the strip is
+  3+3+1 with the trailing hole consolidated bottom-right; on phones
+  the fixed height lifts (natural height, single column). 3-unit tiles
+  (money bignote, profitability) and countdown tiles keep natural
+  height. Pre-release checklist added to §6 (10 lines incl. layout
+  balance, overflow/clip, whole-row visual checks), revised after
+  every miss.
