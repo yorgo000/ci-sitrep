@@ -1,1 +1,3167 @@
-{"panels": [{"id": "code-share", "kids": [{"kind": "tile", "id": "tile-code-share-of-code-written-fully-by-ai-agents", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-08-01", "rating": "3"}}, {"kind": "tile", "id": "tile-code-share-of-committed-code-ai-generated-or-assisted", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-08-01", "rating": "3"}}, {"kind": "tile", "id": "tile-code-share-of-new-code-ai-generated-engineer-approved", "classes": ["tile", "tile-sparkline", "tile-span-2", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-08-01", "rating": "3"}}, {"kind": "tile", "id": "tile-code-share-of-organisations-use-ai-powered-coding-assistants", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Black Duck", "date": "2026-02-25", "rating": "3"}}, {"kind": "label", "text": "Finance cut"}, {"kind": "tile", "id": "tile-code-share-of-us-financial-firms-formally-use-ai", "classes": ["tile", "tile-sparkline", "tile-span-2", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "asset-management hedge-funds", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-federal", "date": "2026-11-12", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-are-experimenting-with-agentic-ai", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "asset-management hedge-funds", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-federal", "date": "2026-11-12", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-have-a-formal-program-to-test-or-validate-ai-outputs", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "asset-management hedge-funds", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-federal", "date": "2026-11-12", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-of-finance-functions-piloting-or-deploying-agentic-ai", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "survey", "industry": "professional-services", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-11-04", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-of-financial-institutions-piloting-or-deploying-multi-agent", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "banking insurance", "register": "business", "pnl-impact": "revenue cost", "horizon": "year", "jurisdiction": "global", "date": "2026-11-05", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-have-achieved-enterprise-wide-orchestration-of-multi-agent", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "banking insurance", "register": "business", "pnl-impact": "revenue cost", "horizon": "year", "jurisdiction": "global", "date": "2026-11-05", "rating": "2"}}, {"kind": "tile", "id": "tile-code-share-of-uk-firms-have-deployed-agents", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "banking", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "uk", "date": "2026-10-26", "rating": "3"}}, {"kind": "tile", "id": "tile-code-share-of-ai-code-introduces-a-known-security-flaw", "classes": ["tile", "tile-sparkline", "tile-span-2", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Veracode", "date": "2026-10-29", "rating": "3"}}]}, {"id": "governance-gap", "kids": [{"kind": "tile", "id": "tile-governance-gap-of-large-companies-have-ai-governance-policies", "classes": ["tile", "tile-pie", "tile-sentiment-positive"], "attrs": {"sentiment": "positive", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-09-15", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-have-bypassed-those-policies", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-09-15", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-of-policies-not-updated-for-agentic-risk", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-09-15", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-of-enterprises-run-ai-agents-in-production", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-06", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-have-the-identity-tools-to-govern-them", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-06", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-cannot-reliably-attribute-agent-actions", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-08", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-cannot-roll-back-agent-actions-without-disruption", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-08", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-authorise-agents-to-approve-or-reject-transactions", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-08", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-not-confident-they-could-shut-down-a-rogue-agent", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-have-no-formal-supervision-plan", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-have-a-formally-deployed-documented-kill-switch", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-of-it-leaders-encountered-unauthorised-ai-deployments", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-08-05", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-discovered-at-least-one-agent-it-didnt-know-about-in-the", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-08-05", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-restrict-agents-to-read-only-or-approval-gated-work", "classes": ["tile", "tile-pie", "tile-sentiment-positive"], "attrs": {"sentiment": "positive", "subject": "3", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-11-04", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-of-systemically-important-banks-permit-agents-in-production", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "survey", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-13", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-have-comprehensive-agent-monitoring-and-controls", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "survey", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-13", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-documented-cases-of-autonomous-ai-damaging-production", "classes": ["tile", "tile-big-number", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "incident", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-05-28", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-machine-to-human-identity-ratio", "classes": ["tile", "tile-sparkline", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-06", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-supervisors-document-ai-code-passing-human-review-and-kill", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "uk", "date": "2026-11-02", "rating": "4"}}, {"kind": "tile", "id": "tile-governance-gap-the-worked-counter-example-a-frontier-labs-kill-switch-cuts", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-positive"], "attrs": {"sentiment": "positive", "subject": "3", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "practice", "industry": "ai-labs", "register": "mixed", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-09", "rating": "2"}}, {"kind": "tile", "id": "tile-governance-gap-a-benchmark-agent-escaped-its-sandbox-and-pulled-customer", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "company": "WorkOS", "date": "2026-11-06", "rating": "3"}}]}, {"id": "right-vs-wrong", "kids": [{"kind": "tile", "id": "tile-right-vs-wrong-best-agentmodel-pair-on-security-tasks", "classes": ["tile", "tile-pie", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-07-01", "rating": "3"}}, {"kind": "tile", "id": "tile-right-vs-wrong-functional-pass-claude-code-sonnet-45-repo-level-cve-tasks", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-04", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-secure-same-model-same-tasks", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-04", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-succeed-on-the-first-attempt-leading-remediation-agents", "classes": ["tile", "tile-pie", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Collinear AI", "date": "2026-11-03", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-of-vuln-introducing-changes-caught-best-frontier-model", "classes": ["tile", "tile-pie", "tile-sentiment-positive"], "attrs": {"sentiment": "positive", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-24", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-of-vuln-introducing-changes-caught-weakest-frontier-model", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-24", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-of-working-agent-solutions-reintroduce-the-original", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "BugLedger", "date": "2026-11-02", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-secure-output-claude-opus-55-with-one-line-of-security", "classes": ["tile", "tile-ratio", "tile-sentiment-positive"], "attrs": {"sentiment": "positive", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "BugLedger", "date": "2026-11-02", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-passed-every-test-while-a-working-exploit-succeeded", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-04", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-succeed-on-the-first-attempt-but-only-241-of-507-workflows", "classes": ["tile", "tile-pie", "tile-sentiment-neutral", "tile-untagged"], "attrs": {"sentiment": "neutral"}}, {"kind": "tile", "id": "tile-right-vs-wrong-of-failures-terminate-cleanly-then-report-done", "classes": ["tile", "tile-pie", "tile-sentiment-negative", "tile-untagged"], "attrs": {"sentiment": "negative"}}, {"kind": "tile", "id": "tile-right-vs-wrong-for-agents-to-handle-tasks-twice-as-long-half-the-time", "classes": ["tile", "tile-big-number", "tile-sentiment-neutral", "tile-untagged"], "attrs": {"sentiment": "neutral"}}, {"kind": "tile", "id": "tile-right-vs-wrong-functional-and-secure-best-model-on-450-tasks-across-7", "classes": ["tile", "tile-pie", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-10", "rating": "2"}}, {"kind": "tile", "id": "tile-right-vs-wrong-working-linux-kernel-privilege-escalation-exploits-from-one", "classes": ["tile", "tile-big-number", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-04", "rating": "2"}}]}, {"id": "net-impact", "kids": [{"kind": "label", "text": "Output up"}, {"kind": "tile", "id": "tile-net-impact-42-of-committed-code-is-ai-generated-or-assisted-65", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "1", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-08-01", "rating": "3"}}, {"kind": "tile", "id": "tile-net-impact-by-2025-higher-ai-adoption-correlates-with-higher", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-neutral"], "attrs": {"sentiment": "neutral", "subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "mixed", "pnl-impact": "cost", "horizon": "year", "jurisdiction": "global", "date": "2026-04-22", "rating": "3"}}, {"kind": "label", "text": "Cleanup up"}, {"kind": "tile", "id": "tile-net-impact-duplicate-code-blocks-81-code-churn-within-two-weeks-15", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "2", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost", "horizon": "year", "jurisdiction": "global", "company": "GitClear", "date": "2026-01-01", "rating": "2"}}, {"kind": "tile", "id": "tile-net-impact-every-25-of-ai-adoption-cost-15-throughput-and-72-delivery", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "mixed", "pnl-impact": "cost", "horizon": "year", "jurisdiction": "global", "date": "2026-04-22", "rating": "3"}}, {"kind": "tile", "id": "tile-net-impact-mean-vulnerabilities-per-codebase-581-up-107-year-on-year", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Black Duck", "date": "2026-02-25", "rating": "3"}}, {"kind": "tile", "id": "tile-net-impact-96-of-developers-dont-fully-trust-ai-output-yet-only-48", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "2", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "date": "2026-01-08", "rating": "2"}}, {"kind": "tile", "id": "tile-net-impact-ai-discovered-vulnerabilities-outpace-fixes-175-to-1-37966", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Anthropic", "date": "2026-11-09", "rating": "2"}}, {"kind": "tile", "id": "tile-net-impact-ai-generated-patches-introduce-11-the-vulnerabilities-of", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-01", "rating": "2"}}, {"kind": "tile", "id": "tile-net-impact-insecure-neighbouring-code-cuts-correct-and-secure-output", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-08", "rating": "2"}}, {"kind": "tile", "id": "tile-net-impact-supervisors-document-ai-code-passing-human-review-and", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "uk", "date": "2026-11-02", "rating": "4"}}]}, {"id": "money", "kids": [{"kind": "tile", "id": "tile-money-no-credible-dollar-figure-exists-yet-the-figures-below-are", "classes": ["tile", "tile-note", "tile-span-3", "tile-sentiment-neutral", "tile-untagged"], "attrs": {"sentiment": "neutral"}}, {"kind": "tile", "id": "tile-money-cost-of-a-post-hoc-security-review-that-lifts-working-and", "classes": ["tile", "tile-ratio", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-02", "rating": "2"}}, {"kind": "tile", "id": "tile-money-vulnerable-code-rate-at-81100-ai-generated-code-vs-120", "classes": ["tile", "tile-ratio", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-02", "rating": "2"}}, {"kind": "tile", "id": "tile-money-vulnerability-rate-ai-vs-human-code", "classes": ["tile", "tile-ratio", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "1 2", "sector": "technology", "confidence": "claimed", "severity": "directional", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "CodeRabbit", "date": "2025-12-01", "rating": "1"}}, {"kind": "tile", "id": "tile-money-exposure-context-not-a-loss-under-uk-cmadrcf-an-agents", "classes": ["tile", "tile-note", "tile-span-2", "tile-sentiment-negative"], "attrs": {"sentiment": "negative", "subject": "3", "sector": "finance government", "confidence": "corroborated", "severity": "material", "type": "guidance", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "uk", "date": "2026-10-30", "rating": "3"}}]}], "report": {"id": "report-root", "level": 1, "children": [{"id": "state-of-the-market", "level": 2, "children": [], "articles": []}, {"id": "new-in-the-last-7-days", "level": 2, "children": [], "articles": []}, {"id": "what-were-watching", "level": 2, "children": [], "articles": []}, {"id": "1-pre-commit-ci-generated-code-sanitizing", "level": 2, "children": [{"id": "11-how-big-the-problem-is", "level": 3, "children": [], "articles": [{"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Veracode", "date": "2026-10-29"}, {"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2025-08-01"}, {"subject": "1 2", "sector": "technology", "confidence": "claimed", "severity": "directional", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "CodeRabbit", "date": "2025-12-01"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2025-12-01"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01"}, {"subject": "1", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-08-01"}]}, {"id": "12-product-landscape", "level": 3, "children": [{"id": "121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save", "level": 4, "children": [], "articles": []}, {"id": "122-layer-b--pr--ci-gates-acts-at-pull-request-or-pipeline--the-established-market", "level": 4, "children": [], "articles": []}, {"id": "123-layer-c--llm-based-review--audit-reads-the-code-the-way-a-reviewer-would", "level": 4, "children": [], "articles": []}], "articles": []}, {"id": "13-what-they-catch", "level": 3, "children": [], "articles": []}, {"id": "14-how-they-work-mechanisms", "level": 3, "children": [], "articles": []}, {"id": "15-best-practice--critical-systems-in-finance", "level": 3, "children": [{"id": "151-the-three-layer-model", "level": 4, "children": [], "articles": []}, {"id": "152-provenance-audit-trail-and-regulation", "level": 4, "children": [], "articles": []}], "articles": []}, {"id": "16-benchmarks--evidence", "level": 3, "children": [{"id": "161-hype-vs-independently-verified", "level": 4, "children": [], "articles": []}], "articles": [{"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-04"}, {"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-07-01"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Collinear AI", "date": "2026-11-03"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-02"}, {"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "BugLedger", "date": "2026-11-02"}, {"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-24"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "critical", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-11-05"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-01"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Anthropic", "date": "2026-11-09"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-10"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-04"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-18"}, {"subject": "1", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Secure Code Warrior", "date": "2026-11-17"}]}, {"id": "17-open-gaps--watch-items", "level": 3, "children": [], "articles": []}], "articles": []}, {"id": "2-in-codebase-sanitizing-post-commit-of-ci-generated-code", "level": 2, "children": [{"id": "21-how-big-the-problem-is", "level": 3, "children": [], "articles": [{"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Veracode", "date": "2026-10-29"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Secure Code Warrior", "date": "2026-07-22"}, {"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-07-01"}, {"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-04"}, {"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "BugLedger", "date": "2026-11-02"}, {"subject": "1 2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "benchmark", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-24"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-08"}, {"subject": "1 2", "sector": "technology", "confidence": "claimed", "severity": "directional", "type": "benchmark", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "CodeRabbit", "date": "2025-12-17"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01"}, {"subject": "1 2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2025-08-01"}, {"subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Black Duck", "date": "2026-02-25"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost", "horizon": "year", "jurisdiction": "global", "company": "GitClear", "date": "2026-01-01"}, {"subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "software", "register": "mixed", "pnl-impact": "cost", "horizon": "year", "jurisdiction": "global", "date": "2026-04-22"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "software", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "date": "2026-01-08"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-09-01"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "critical", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-04-01"}, {"subject": "2 3", "sector": "technology", "confidence": "corroborated", "severity": "critical", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "company": "Lovable,Postman", "date": "2026-11-05"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "company": "OpenAI", "date": "2026-10-14"}, {"subject": "2", "sector": "technology", "confidence": "claimed", "severity": "critical", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-11-03"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "critical", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-11-09"}, {"subject": "2", "sector": "technology", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "technical", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-11-10"}, {"subject": "2", "sector": "technology industrials", "confidence": "reported", "severity": "material", "type": "study", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-12"}, {"subject": "2", "sector": "technology", "confidence": "corroborated", "severity": "critical", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "company": "Cursor", "date": "2026-11-13"}]}, {"id": "22-problem-classes", "level": 3, "children": [], "articles": []}, {"id": "23-products--services", "level": 3, "children": [], "articles": []}, {"id": "24-techniques", "level": 3, "children": [], "articles": []}, {"id": "25-best-practice--finance", "level": 3, "children": [], "articles": []}, {"id": "26-hype-vs-verified", "level": 3, "children": [], "articles": []}, {"id": "27-what-this-means-in-practice", "level": 3, "children": [], "articles": []}], "articles": []}, {"id": "3-agentic-cic-design-build-deployment", "level": 2, "children": [{"id": "31-frameworks--platforms", "level": 3, "children": [], "articles": []}, {"id": "32-interoperability-standards", "level": 3, "children": [], "articles": []}, {"id": "33-orchestration-patterns", "level": 3, "children": [], "articles": []}, {"id": "34-governance", "level": 3, "children": [{"id": "341-the-converged-control-pattern", "level": 4, "children": [], "articles": []}, {"id": "342-regulation", "level": 4, "children": [], "articles": [{"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "capital-markets", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-federal", "date": "2025-12-09"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-federal", "date": "2026-04-17"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-federal", "date": "2026-11-04"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-state", "date": "2026-09-16"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "directional", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "uk", "date": "2026-07-06"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "directional", "type": "framework", "industry": "banking", "register": "mixed", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "singapore", "date": "2026-07-03"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "regulation", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "singapore", "date": "2026-10-07"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "directional", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "hong-kong", "date": "2026-11-02"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "capital-markets", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "hong-kong", "date": "2026-11-02"}, {"subject": "3", "sector": "government", "confidence": "established", "severity": "directional", "type": "regulation", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "uk", "date": "2026-11-03"}, {"subject": "3", "sector": "finance technology", "confidence": "corroborated", "severity": "directional", "type": "framework", "industry": "banking", "register": "mixed", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "global", "date": "2025-10-01"}, {"subject": "3", "sector": "technology government", "confidence": "corroborated", "severity": "directional", "type": "regulation", "industry": "ai-labs", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-state", "date": "2026-09-18"}, {"subject": "3", "sector": "technology government", "confidence": "established", "severity": "material", "type": "incident", "industry": "ai-labs", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-state", "company": "OpenAI", "date": "2026-11-16"}, {"subject": "3", "sector": "technology government", "confidence": "corroborated", "severity": "directional", "type": "incident", "industry": "ai-labs", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-state", "company": "Anthropic,Google,Meta,OpenAI,SpaceX Super Intelligence", "date": "2026-11-12"}, {"subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "practice", "industry": "ai-labs", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-16"}, {"subject": "3", "sector": "finance government", "confidence": "corroborated", "severity": "material", "type": "guidance", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "uk", "date": "2026-10-30"}, {"subject": "3", "sector": "technology government", "confidence": "corroborated", "severity": "directional", "type": "incident regulation", "industry": "ai-labs", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-10"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "uk", "date": "2026-10-23"}, {"subject": "3", "sector": "finance", "confidence": "corroborated", "severity": "directional", "type": "survey", "industry": "banking", "register": "business", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "uk", "date": "2026-10-26"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "incident", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "global", "company": "RBC,TD,BMO,CIBC,Scotiabank", "date": "2026-10-28"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "uk", "date": "2026-11-02"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "asset-management hedge-funds", "register": "business", "pnl-impact": "risk compliance", "horizon": "year", "jurisdiction": "us-federal", "date": "2026-11-12"}, {"subject": "3", "sector": "finance government", "confidence": "corroborated", "severity": "material", "type": "regulation", "industry": "ai-labs", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "new-york", "date": "2026-11-10"}, {"subject": "3", "sector": "finance government", "confidence": "established", "severity": "material", "type": "guidance", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "immediate", "jurisdiction": "us-federal", "date": "2026-11-16"}]}, {"id": "343-the-governance-gap", "level": 4, "children": [], "articles": [{"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-09-15"}, {"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-06"}, {"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-10-08"}, {"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-04-01"}, {"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "survey", "industry": "cross-industry", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-08-05"}, {"subject": "3", "sector": "cross-sector", "confidence": "reported", "severity": "material", "type": "incident", "industry": "cross-industry", "register": "business", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "date": "2026-05-28"}, {"subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "quarter", "jurisdiction": "global", "company": "PocketOS", "date": "2026-04-27"}, {"subject": "3", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "practice", "industry": "ai-labs", "register": "mixed", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "company": "OpenAI", "date": "2026-11-09"}, {"subject": "3", "sector": "technology", "confidence": "reported", "severity": "material", "type": "product", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "CrowdStrike", "date": "2026-11-03"}, {"subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "directional", "type": "incident", "industry": "ai-labs", "register": "mixed", "pnl-impact": "risk", "horizon": "year", "jurisdiction": "global", "company": "Anthropic", "date": "2026-10-23"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "survey", "industry": "professional-services", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "us-federal", "date": "2026-11-04"}, {"subject": "3", "sector": "technology", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "year", "jurisdiction": "global", "date": "2026-11-04"}, {"subject": "3", "sector": "technology", "confidence": "claimed", "severity": "material", "type": "product", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "SailPoint", "date": "2026-11-04"}, {"subject": "3", "sector": "technology government", "confidence": "claimed", "severity": "material", "type": "product", "industry": "software", "register": "mixed", "pnl-impact": "cost risk", "horizon": "quarter", "jurisdiction": "global", "company": "Leidos", "date": "2026-11-04"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "survey", "industry": "banking insurance", "register": "business", "pnl-impact": "revenue cost", "horizon": "year", "jurisdiction": "global", "date": "2026-11-05"}, {"subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "material", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "company": "WorkOS", "date": "2026-11-06"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "material", "type": "survey", "industry": "banking", "register": "business", "pnl-impact": "risk compliance", "horizon": "quarter", "jurisdiction": "global", "date": "2026-11-13"}, {"subject": "3", "sector": "technology", "confidence": "corroborated", "severity": "critical", "type": "incident", "industry": "software", "register": "mixed", "pnl-impact": "risk", "horizon": "immediate", "jurisdiction": "global", "date": "2026-11-16"}, {"subject": "3", "sector": "finance", "confidence": "reported", "severity": "directional", "type": "study", "industry": "professional-services", "register": "business", "pnl-impact": "revenue cost", "horizon": "year", "jurisdiction": "uk", "company": "KPMG", "date": "2026-11-18"}]}], "articles": []}, {"id": "35-management--observability", "level": 3, "children": [], "articles": []}, {"id": "36-evaluation", "level": 3, "children": [], "articles": []}, {"id": "37-best-practices", "level": 3, "children": [], "articles": []}, {"id": "38-hype-vs-verified", "level": 3, "children": [], "articles": []}], "articles": []}, {"id": "archive", "level": 2, "children": [], "articles": []}], "articles": []}, "scenarios": {"fresh": {}, "severity_critical": {"severity": ["critical"]}, "type_benchmark_study": {"type": ["benchmark", "study"]}, "company_black_duck": {"company": ["Black Duck"]}, "company_openai": {"company": ["OpenAI"]}, "jurisdiction_eu": {"jurisdiction": ["eu"]}, "jurisdiction_greece": {"jurisdiction": ["greece"]}, "severity_critical_industry_software": {"severity": ["critical"], "industry": ["software"]}, "five_dims": {"industry": ["software"], "severity": ["critical"], "pnl-impact": ["risk"], "horizon": ["immediate"], "register": ["technical"]}, "confidence_claimed": {"confidence": ["claimed"]}}, "expected": {"fresh": [62, 85], "severity_critical": [4, 7], "type_benchmark_study": [25, 37], "company_black_duck": [6, 1], "company_openai": [6, 7], "jurisdiction_eu": [4, 0], "jurisdiction_greece": [4, 0], "severity_critical_industry_software": [4, 7], "five_dims": [4, 0], "confidence_claimed": [5, 5]}}
+{
+  "panels": [
+    {
+      "id": "code-share",
+      "kids": [
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-code-written-fully-by-ai-agents",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "business",
+            "pnl-impact": "cost risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-08-01",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-committed-code-ai-generated-or-assisted",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "business",
+            "pnl-impact": "cost risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-08-01",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-new-code-ai-generated-engineer-approved",
+          "classes": [
+            "tile",
+            "tile-sparkline",
+            "tile-span-2",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "business",
+            "pnl-impact": "cost risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-08-01",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-organisations-use-ai-powered-coding-assistants",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "Black Duck",
+            "date": "2026-02-25",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "label",
+          "text": "Finance cut"
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-us-financial-firms-formally-use-ai",
+          "classes": [
+            "tile",
+            "tile-sparkline",
+            "tile-span-2",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "asset-management hedge-funds",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "year",
+            "jurisdiction": "us-federal",
+            "date": "2026-11-12",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-are-experimenting-with-agentic-ai",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "asset-management hedge-funds",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "year",
+            "jurisdiction": "us-federal",
+            "date": "2026-11-12",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-have-a-formal-program-to-test-or-validate-ai-outputs",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "asset-management hedge-funds",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "year",
+            "jurisdiction": "us-federal",
+            "date": "2026-11-12",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-finance-functions-piloting-or-deploying-agentic-ai",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "professional-services",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "us-federal",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-financial-institutions-piloting-or-deploying-multi-agent",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "banking insurance",
+            "register": "business",
+            "pnl-impact": "revenue cost",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-11-05",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-have-achieved-enterprise-wide-orchestration-of-multi-agent",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "banking insurance",
+            "register": "business",
+            "pnl-impact": "revenue cost",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-11-05",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-uk-firms-have-deployed-agents",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "banking",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "year",
+            "jurisdiction": "uk",
+            "date": "2026-10-26",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-code-share-of-ai-code-introduces-a-known-security-flaw",
+          "classes": [
+            "tile",
+            "tile-sparkline",
+            "tile-span-2",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "Veracode",
+            "date": "2026-10-29",
+            "rating": "3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "governance-gap",
+      "kids": [
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-of-large-companies-have-ai-governance-policies",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-positive"
+          ],
+          "attrs": {
+            "sentiment": "positive",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "us-federal",
+            "date": "2026-09-15",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-have-bypassed-those-policies",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "us-federal",
+            "date": "2026-09-15",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-of-policies-not-updated-for-agentic-risk",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "us-federal",
+            "date": "2026-09-15",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-of-enterprises-run-ai-agents-in-production",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-06",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-have-the-identity-tools-to-govern-them",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-06",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-cannot-reliably-attribute-agent-actions",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-08",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-cannot-roll-back-agent-actions-without-disruption",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-08",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-authorise-agents-to-approve-or-reject-transactions",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-08",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-not-confident-they-could-shut-down-a-rogue-agent",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-04-01",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-have-no-formal-supervision-plan",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-04-01",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-have-a-formally-deployed-documented-kill-switch",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-04-01",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-of-it-leaders-encountered-unauthorised-ai-deployments",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-08-05",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-discovered-at-least-one-agent-it-didnt-know-about-in-the",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-08-05",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-restrict-agents-to-read-only-or-approval-gated-work",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-positive"
+          ],
+          "attrs": {
+            "sentiment": "positive",
+            "subject": "3",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-of-systemically-important-banks-permit-agents-in-production",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "banking",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-13",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-have-comprehensive-agent-monitoring-and-controls",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "survey",
+            "industry": "banking",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-13",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-documented-cases-of-autonomous-ai-damaging-production",
+          "classes": [
+            "tile",
+            "tile-big-number",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "incident",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-05-28",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-machine-to-human-identity-ratio",
+          "classes": [
+            "tile",
+            "tile-sparkline",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "cross-sector",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "survey",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-05-20",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-supervisors-document-ai-code-passing-human-review-and-kill",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance government",
+            "confidence": "established",
+            "severity": "material",
+            "type": "guidance",
+            "industry": "banking",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "immediate",
+            "jurisdiction": "uk",
+            "date": "2026-11-02",
+            "rating": "4"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-the-worked-counter-example-a-frontier-labs-kill-switch-cuts",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-positive"
+          ],
+          "attrs": {
+            "sentiment": "positive",
+            "subject": "3",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "practice",
+            "industry": "ai-labs",
+            "register": "mixed",
+            "pnl-impact": "risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "company": "OpenAI",
+            "date": "2026-11-09",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-governance-gap-a-benchmark-agent-escaped-its-sandbox-and-pulled-customer",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "incident",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "risk",
+            "horizon": "immediate",
+            "jurisdiction": "global",
+            "company": "WorkOS",
+            "date": "2026-11-06",
+            "rating": "3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "right-vs-wrong",
+      "kids": [
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-best-agentmodel-pair-on-security-tasks",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-07-01",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-functional-pass-claude-code-sonnet-45-repo-level-cve-tasks",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-secure-same-model-same-tasks",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-succeed-on-the-first-attempt-leading-remediation-agents",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "Collinear AI",
+            "date": "2026-11-03",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-of-vuln-introducing-changes-caught-best-frontier-model",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-positive"
+          ],
+          "attrs": {
+            "sentiment": "positive",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-24",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-of-vuln-introducing-changes-caught-weakest-frontier-model",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-24",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-of-working-agent-solutions-reintroduce-the-original",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "BugLedger",
+            "date": "2026-11-02",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-secure-output-claude-opus-55-with-one-line-of-security",
+          "classes": [
+            "tile",
+            "tile-ratio",
+            "tile-sentiment-positive"
+          ],
+          "attrs": {
+            "sentiment": "positive",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "BugLedger",
+            "date": "2026-11-02",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-passed-every-test-while-a-working-exploit-succeeded",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-succeed-on-the-first-attempt-but-only-241-of-507-workflows",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-neutral",
+            "tile-untagged"
+          ],
+          "attrs": {
+            "sentiment": "neutral"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-of-failures-terminate-cleanly-then-report-done",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative",
+            "tile-untagged"
+          ],
+          "attrs": {
+            "sentiment": "negative"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-for-agents-to-handle-tasks-twice-as-long-half-the-time",
+          "classes": [
+            "tile",
+            "tile-big-number",
+            "tile-sentiment-neutral",
+            "tile-untagged"
+          ],
+          "attrs": {
+            "sentiment": "neutral"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-functional-and-secure-best-model-on-450-tasks-across-7",
+          "classes": [
+            "tile",
+            "tile-pie",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-10-10",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-right-vs-wrong-working-linux-kernel-privilege-escalation-exploits-from-one",
+          "classes": [
+            "tile",
+            "tile-big-number",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "OpenAI",
+            "date": "2026-11-04",
+            "rating": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "net-impact",
+      "kids": [
+        {
+          "kind": "label",
+          "text": "Output up"
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-42-of-committed-code-is-ai-generated-or-assisted-65",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "business",
+            "pnl-impact": "cost risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-08-01",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-by-2025-higher-ai-adoption-correlates-with-higher",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-neutral"
+          ],
+          "attrs": {
+            "sentiment": "neutral",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-04-22",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "label",
+          "text": "Cleanup up"
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-duplicate-code-blocks-81-code-churn-within-two-weeks-15",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "study",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "company": "GitClear",
+            "date": "2026-01-01",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-every-25-of-ai-adoption-cost-15-throughput-and-72-delivery",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-04-22",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-mean-vulnerabilities-per-codebase-581-up-107-year-on-year",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "Black Duck",
+            "date": "2026-02-25",
+            "rating": "3"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-96-of-developers-dont-fully-trust-ai-output-yet-only-48",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "directional",
+            "type": "survey",
+            "industry": "software",
+            "register": "business",
+            "pnl-impact": "risk",
+            "horizon": "year",
+            "jurisdiction": "global",
+            "date": "2026-01-08",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-ai-discovered-vulnerabilities-outpace-fixes-175-to-1-37966",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "Anthropic",
+            "date": "2026-11-09",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-ai-generated-patches-introduce-11-the-vulnerabilities-of",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-01",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-insecure-neighbouring-code-cuts-correct-and-secure-output",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "2",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "study",
+            "industry": "software",
+            "register": "technical",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-08",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-net-impact-supervisors-document-ai-code-passing-human-review-and",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance government",
+            "confidence": "established",
+            "severity": "material",
+            "type": "guidance",
+            "industry": "banking",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "immediate",
+            "jurisdiction": "uk",
+            "date": "2026-11-02",
+            "rating": "4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "money",
+      "kids": [
+        {
+          "kind": "tile",
+          "id": "tile-money-no-credible-dollar-figure-exists-yet-the-figures-below-are",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-3",
+            "tile-sentiment-neutral",
+            "tile-untagged"
+          ],
+          "attrs": {
+            "sentiment": "neutral"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-money-cost-of-a-post-hoc-security-review-that-lifts-working-and",
+          "classes": [
+            "tile",
+            "tile-ratio",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-02",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-money-vulnerable-code-rate-at-81100-ai-generated-code-vs-120",
+          "classes": [
+            "tile",
+            "tile-ratio",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1",
+            "sector": "technology",
+            "confidence": "reported",
+            "severity": "material",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "date": "2026-11-02",
+            "rating": "2"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-money-vulnerability-rate-ai-vs-human",
+          "classes": [
+            "tile",
+            "tile-ratio",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "1 2",
+            "sector": "technology",
+            "confidence": "claimed",
+            "severity": "directional",
+            "type": "benchmark",
+            "industry": "software",
+            "register": "mixed",
+            "pnl-impact": "cost risk",
+            "horizon": "quarter",
+            "jurisdiction": "global",
+            "company": "CodeRabbit",
+            "date": "2025-12-01",
+            "rating": "1"
+          }
+        },
+        {
+          "kind": "tile",
+          "id": "tile-money-exposure-context-not-a-loss-under-uk-cmadrcf-an-agents",
+          "classes": [
+            "tile",
+            "tile-note",
+            "tile-span-2",
+            "tile-sentiment-negative"
+          ],
+          "attrs": {
+            "sentiment": "negative",
+            "subject": "3",
+            "sector": "finance government",
+            "confidence": "corroborated",
+            "severity": "material",
+            "type": "guidance",
+            "industry": "cross-industry",
+            "register": "business",
+            "pnl-impact": "risk compliance",
+            "horizon": "immediate",
+            "jurisdiction": "uk",
+            "date": "2026-10-30",
+            "rating": "3"
+          }
+        }
+      ]
+    }
+  ],
+  "report": {
+    "id": "report-root",
+    "level": 1,
+    "articles": [],
+    "children": [
+      {
+        "id": "state-of-the-market",
+        "level": 2,
+        "articles": [],
+        "children": []
+      },
+      {
+        "id": "new-in-the-last-7-days",
+        "level": 2,
+        "articles": [],
+        "children": []
+      },
+      {
+        "id": "what-were-watching",
+        "level": 2,
+        "articles": [],
+        "children": []
+      },
+      {
+        "id": "1-pre-commit-ci-generated-code-sanitizing",
+        "level": 2,
+        "articles": [],
+        "children": [
+          {
+            "id": "11-how-big-the-problem-is",
+            "level": 3,
+            "articles": [
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Veracode",
+                "date": "2026-10-29"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2025-08-01"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "claimed",
+                "severity": "directional",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "CodeRabbit",
+                "date": "2025-12-01"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2025-12-01"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-04-01"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "directional",
+                "type": "survey",
+                "industry": "software",
+                "register": "business",
+                "pnl-impact": "cost risk",
+                "horizon": "year",
+                "jurisdiction": "global",
+                "date": "2026-08-01"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "12-product-landscape",
+            "level": 3,
+            "articles": [],
+            "children": [
+              {
+                "id": "121-layer-a--agent-time-enforcement-acts-while-the-agent-writes-before-the-save",
+                "level": 4,
+                "articles": [],
+                "children": []
+              },
+              {
+                "id": "122-layer-b--pr--ci-gates-acts-at-pull-request-or-pipeline--the-established-market",
+                "level": 4,
+                "articles": [],
+                "children": []
+              },
+              {
+                "id": "123-layer-c--llm-based-review--audit-reads-the-code-the-way-a-reviewer-would",
+                "level": 4,
+                "articles": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "13-what-they-catch",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "14-how-they-work-mechanisms",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "15-best-practice--critical-systems-in-finance",
+            "level": 3,
+            "articles": [],
+            "children": [
+              {
+                "id": "151-the-three-layer-model",
+                "level": 4,
+                "articles": [],
+                "children": []
+              },
+              {
+                "id": "152-provenance-audit-trail-and-regulation",
+                "level": 4,
+                "articles": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "16-benchmarks--evidence",
+            "level": 3,
+            "articles": [
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-04"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-07-01"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "directional",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Collinear AI",
+                "date": "2026-11-03"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-02"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "BugLedger",
+                "date": "2026-11-02"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-10-24"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "critical",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "date": "2026-11-05"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-01"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Anthropic",
+                "date": "2026-11-09"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-10-10"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "OpenAI",
+                "date": "2026-11-04"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-18"
+              },
+              {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Secure Code Warrior",
+                "date": "2026-11-17"
+              }
+            ],
+            "children": [
+              {
+                "id": "161-hype-vs-independently-verified",
+                "level": 4,
+                "articles": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "17-open-gaps--watch-items",
+            "level": 3,
+            "articles": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "2-in-codebase-sanitizing-post-commit-of-ci-generated-code",
+        "level": 2,
+        "articles": [],
+        "children": [
+          {
+            "id": "21-how-big-the-problem-is",
+            "level": 3,
+            "articles": [
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Veracode",
+                "date": "2026-10-29"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Secure Code Warrior",
+                "date": "2026-07-22"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-07-01"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-04"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "BugLedger",
+                "date": "2026-11-02"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-10-24"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-08"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "claimed",
+                "severity": "directional",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "CodeRabbit",
+                "date": "2025-12-17"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-04-01"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2025-08-01"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Black Duck",
+                "date": "2026-02-25"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "directional",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost",
+                "horizon": "year",
+                "jurisdiction": "global",
+                "company": "GitClear",
+                "date": "2026-01-01"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "directional",
+                "type": "survey",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost",
+                "horizon": "year",
+                "jurisdiction": "global",
+                "date": "2026-04-22"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "directional",
+                "type": "survey",
+                "industry": "software",
+                "register": "business",
+                "pnl-impact": "risk",
+                "horizon": "year",
+                "jurisdiction": "global",
+                "date": "2026-01-08"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-09-01"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "critical",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "date": "2026-04-01"
+              },
+              {
+                "subject": "2 3",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Lovable,Postman",
+                "date": "2026-11-05"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "incident",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "OpenAI",
+                "date": "2026-10-14"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "claimed",
+                "severity": "critical",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "date": "2026-11-03"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "critical",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "date": "2026-11-09"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "date": "2026-11-10"
+              },
+              {
+                "subject": "2",
+                "sector": "technology industrials",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-12"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Cursor",
+                "date": "2026-11-13"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "incident",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-17"
+              },
+              {
+                "subject": "2 3",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Microsoft",
+                "date": "2026-11-17"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "22-problem-classes",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "23-products--services",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "24-techniques",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "25-best-practice--finance",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "26-hype-vs-verified",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "27-what-this-means-in-practice",
+            "level": 3,
+            "articles": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "3-agentic-cic-design-build-deployment",
+        "level": 2,
+        "articles": [],
+        "children": [
+          {
+            "id": "31-frameworks--platforms",
+            "level": 3,
+            "articles": [
+              {
+                "subject": "3",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "product",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Amazon",
+                "date": "2026-09-21"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "32-interoperability-standards",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "33-orchestration-patterns",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "34-governance",
+            "level": 3,
+            "articles": [],
+            "children": [
+              {
+                "id": "341-the-converged-control-pattern",
+                "level": 4,
+                "articles": [],
+                "children": []
+              },
+              {
+                "id": "342-regulation",
+                "level": 4,
+                "articles": [
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "capital-markets",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-federal",
+                    "date": "2025-12-09"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-04-17"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-state",
+                    "date": "2026-09-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "directional",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "uk",
+                    "date": "2026-07-06"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "directional",
+                    "type": "framework",
+                    "industry": "banking",
+                    "register": "mixed",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "singapore",
+                    "date": "2026-07-03"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "singapore",
+                    "date": "2026-10-07"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "directional",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "hong-kong",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "survey",
+                    "industry": "capital-markets",
+                    "register": "business",
+                    "pnl-impact": "risk",
+                    "horizon": "year",
+                    "jurisdiction": "hong-kong",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "government",
+                    "confidence": "established",
+                    "severity": "directional",
+                    "type": "regulation",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "uk",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance technology",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "framework",
+                    "industry": "banking",
+                    "register": "mixed",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "date": "2025-10-01"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-state",
+                    "date": "2026-09-18"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-state",
+                    "company": "OpenAI",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "incident",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-state",
+                    "company": "Anthropic,Google,Meta,OpenAI,SpaceX Super Intelligence",
+                    "date": "2026-11-12"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "practice",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "company": "OpenAI",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "uk",
+                    "date": "2026-10-30"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "incident regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "company": "OpenAI",
+                    "date": "2026-11-10"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "uk",
+                    "date": "2026-10-23"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "survey",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk",
+                    "horizon": "year",
+                    "jurisdiction": "uk",
+                    "date": "2026-10-26"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "company": "RBC,TD,BMO,CIBC,Scotiabank",
+                    "date": "2026-10-28"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "uk",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "survey",
+                    "industry": "asset-management hedge-funds",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-12"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "new-york",
+                    "date": "2026-11-10"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "regulation",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "us-state",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-state",
+                    "date": "2026-11-18"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "immediate",
+                    "jurisdiction": "us-federal",
+                    "company": "Citi,PNC,Citizens,Wells Fargo",
+                    "date": "2026-11-18"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": "343-the-governance-gap",
+                "level": 4,
+                "articles": [
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-09-15"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-10-06"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-05-20"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-10-08"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-04-01"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-08-05"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "cross-sector",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "cross-industry",
+                    "register": "business",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-05-28"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "PocketOS",
+                    "date": "2026-04-27"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "practice",
+                    "industry": "ai-labs",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "company": "OpenAI",
+                    "date": "2026-11-09"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "product",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "cost risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "CrowdStrike",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "directional",
+                    "type": "incident",
+                    "industry": "ai-labs",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "company": "Anthropic",
+                    "date": "2026-10-23"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "professional-services",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "survey",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "cost risk",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "claimed",
+                    "severity": "material",
+                    "type": "product",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "cost risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "SailPoint",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology government",
+                    "confidence": "claimed",
+                    "severity": "material",
+                    "type": "product",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "cost risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "Leidos",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "survey",
+                    "industry": "banking insurance",
+                    "register": "business",
+                    "pnl-impact": "revenue cost",
+                    "horizon": "year",
+                    "jurisdiction": "global",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "company": "WorkOS",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "survey",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-11-13"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "critical",
+                    "type": "incident",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "reported",
+                    "severity": "directional",
+                    "type": "study",
+                    "industry": "professional-services",
+                    "register": "business",
+                    "pnl-impact": "revenue cost",
+                    "horizon": "year",
+                    "jurisdiction": "uk",
+                    "company": "KPMG",
+                    "date": "2026-11-18"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "critical",
+                    "type": "incident",
+                    "industry": "software",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "date": "2026-11-12"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "ai-labs",
+                    "register": "mixed",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "Google",
+                    "date": "2026-11-13"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "study",
+                    "industry": "software",
+                    "register": "technical",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "date": "2026-11-16"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "product",
+                    "industry": "software",
+                    "register": "technical",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "Amazon",
+                    "date": "2026-10-07"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "incident",
+                    "industry": "software",
+                    "register": "technical",
+                    "pnl-impact": "risk",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "company": "Amazon",
+                    "date": "2026-10-28"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "35-management--observability",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "36-evaluation",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "37-best-practices",
+            "level": 3,
+            "articles": [],
+            "children": []
+          },
+          {
+            "id": "38-hype-vs-verified",
+            "level": 3,
+            "articles": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "archive",
+        "level": 2,
+        "articles": [],
+        "children": []
+      }
+    ]
+  },
+  "scenarios": {
+    "fresh": {},
+    "severity_critical": {
+      "severity": [
+        "critical"
+      ]
+    },
+    "type_benchmark_study": {
+      "type": [
+        "benchmark",
+        "study"
+      ]
+    },
+    "company_black_duck": {
+      "company": [
+        "Black Duck"
+      ]
+    },
+    "company_openai": {
+      "company": [
+        "OpenAI"
+      ]
+    },
+    "jurisdiction_eu": {
+      "jurisdiction": [
+        "eu"
+      ]
+    },
+    "jurisdiction_greece": {
+      "jurisdiction": [
+        "greece"
+      ]
+    },
+    "severity_critical_industry_software": {
+      "severity": [
+        "critical"
+      ],
+      "industry": [
+        "software"
+      ]
+    },
+    "five_dims": {
+      "industry": [
+        "software"
+      ],
+      "severity": [
+        "critical"
+      ],
+      "pnl-impact": [
+        "risk"
+      ],
+      "horizon": [
+        "immediate"
+      ],
+      "register": [
+        "technical"
+      ]
+    },
+    "confidence_claimed": {
+      "confidence": [
+        "claimed"
+      ]
+    }
+  },
+  "expected": {
+    "fresh": [
+      62,
+      97
+    ],
+    "severity_critical": [
+      4,
+      9
+    ],
+    "type_benchmark_study": [
+      25,
+      38
+    ],
+    "company_black_duck": [
+      6,
+      1
+    ],
+    "company_openai": [
+      6,
+      7
+    ],
+    "jurisdiction_eu": [
+      4,
+      0
+    ],
+    "jurisdiction_greece": [
+      4,
+      0
+    ],
+    "severity_critical_industry_software": [
+      4,
+      9
+    ],
+    "five_dims": [
+      4,
+      0
+    ],
+    "confidence_claimed": [
+      5,
+      5
+    ]
+  }
+}
