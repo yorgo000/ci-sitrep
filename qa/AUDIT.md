@@ -10,9 +10,9 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 97 |
-| Source links (article + subsection) | 233 |
-| Total external links (incl. inline prose links) | 518 |
+| Articles | 98 |
+| Source links (article + subsection) | 234 |
+| Total external links (incl. inline prose links) | 520 |
 | Unique source URLs | 193 |
 | Sections | 3 top-level · 22 subsections · 9 sub-subsections |
 | Items new in the last 7 days | 61 |
@@ -29,7 +29,7 @@ Every article carries a dots rating for how much confidence a reader can place i
 |---|---|---|---|
 | ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 14 | 14% |
 | ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 30 | 31% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 48 | 49% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 49 | 50% |
 | ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 5 | 5% |
 
 **45% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
