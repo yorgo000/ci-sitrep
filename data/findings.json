@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-18T13:06:51.945325+00:00",
- "as_of": "Tuesday, November 17, 2026",
- "as_of_date": "2026-11-17",
+ "generated_at": "2026-11-19T04:03:54.181646+00:00",
+ "as_of": "Wednesday, November 18, 2026",
+ "as_of_date": "2026-11-18",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
   "articles": 85,
   "whats_new": 49,
-  "glossary": 91,
+  "glossary": 92,
   "deadlines": 4,
   "gauges": 4
  },
@@ -67,7 +67,7 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#20-of-package-references-are-hallucinated-spracklen-et-al"
   },
   {
-   "headline": "AI code carries 2.74× the vulnerabilities of human code",
+   "headline": "AI code carries up to 2.74× the vulnerabilities of human code",
    "section": "Pre-commit",
    "subsection": "1.1 How big the problem is",
    "rating": "claimed",
@@ -79,12 +79,12 @@
    "date": "Dec 2025",
    "flag": "VENDOR CLAIM",
    "bullets": [
-    "CI-generated code had 1.7× more major issues and 2.74× the security-vulnerability rate of human-written code for equivalent tasks.",
+    "AI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).",
     "CodeRabbit's own analysis — treat as a vendor claim."
    ],
-   "voiceover": "AI code carries 2.74 times the vulnerabilities of human code. CI-generated code had 1.7 times more major issues and 2.74 times the security-vulnerability rate of human-written code for equivalent tasks.",
-   "id": "ai-code-carries-274-the-vulnerabilities-of-human-code",
-   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-274-the-vulnerabilities-of-human-code"
+   "voiceover": "AI code carries up to 2.74 times the vulnerabilities of human code. AI-generated code had 1.7 times more major issues and up to 2.74 times the security-vulnerability rate of human-written code for equivalent tasks (2.74 times is the maximum across vulnerability categories , worst is cross-site scripting).",
+   "id": "ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code"
   },
   {
    "headline": "The failure mode moved up the stack",
@@ -628,24 +628,24 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#agents-copy-the-flaws-already-in-a-codebase-insecure-code"
   },
   {
-   "headline": "AI code carries 2.74× the vulnerabilities",
+   "headline": "AI code carries up to 2.74× the vulnerabilities",
    "section": "In codebase",
    "subsection": "2.1 How big the problem is",
    "rating": "claimed",
    "rating_dots": "●○○○",
-   "source": "independent PR analysis",
+   "source": "The Register",
    "source_label": "The Register, on the CodeRabbit study",
    "source_url": "https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263",
-   "source_context": "independent PR analysis, 470 GitHub PRs, reported 2026",
-   "date": "2026",
+   "source_context": "The Register, on the CodeRabbit study, 470 GitHub PRs, Dec 2025",
+   "date": "Dec 2025",
    "flag": null,
    "bullets": [
-    "AI-written code carries 2.74× the vulnerabilities of human-written code and 1.7× more major issues.",
+    "AI-written code carries up to 2.74× the vulnerabilities of human-written code and 1.7× more major issues (2.74× is the maximum across vulnerability categories).",
     "*[Secondary reporting; indicative, not a named primary study.]*"
    ],
-   "voiceover": "AI code carries 2.74 times the vulnerabilities. AI-written code carries 2.74 times the vulnerabilities of human-written code and 1.7 times more major issues.",
-   "id": "ai-code-carries-274-the-vulnerabilities-independent-pr",
-   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-274-the-vulnerabilities-independent-pr"
+   "voiceover": "AI code carries up to 2.74 times the vulnerabilities. AI-written code carries up to 2.74 times the vulnerabilities of human-written code and 1.7 times more major issues (2.74 times is the maximum across vulnerability categories).",
+   "id": "ai-code-carries-up-to-274-the-vulnerabilities-the-register",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-code-carries-up-to-274-the-vulnerabilities-the-register"
   },
   {
    "headline": "322% more privilege-escalation paths in AI-assisted repos",
@@ -701,7 +701,8 @@
    "bullets": [
     "Mean vulnerabilities per codebase 581, up 107% year-on-year — the sharpest jump in the report's history.",
     "68% of codebases have open-source license conflicts (highest ever).",
-    "97% of organisations now use AI coding assistants in production software.",
+    "67% of organisations use AI-powered coding assistants.",
+    "97% use open-source AI models (such as those from Hugging Face) in development workflows.",
     "The surge is explicitly attributed to AI-accelerated code creation (Black Duck).",
     "*[Vendor-published audit.]*"
    ],
@@ -739,8 +740,8 @@
    "rating": "corroborated",
    "rating_dots": "●●●○",
    "source": "Google DORA",
-   "source_label": "Google Cloud, on AI-assisted development",
-   "source_url": "https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era",
+   "source_label": "DORA, The ROI of AI-Assisted Software Development (2026.01)",
+   "source_url": "https://dora.dev/ai/roi/report/",
    "source_context": "Google DORA, 2024–2026, survey-based, correlational",
    "date": "2024",
    "flag": null,
@@ -3074,6 +3075,10 @@
    "definition": "Permissions by job, not by person: each role gets exactly the access its job needs, nothing more. Applies to agents as well as people."
   },
   {
+   "term": "recall",
+   "definition": "In evaluation, the share of the target items a system catches. A review tool with 78% recall catches 78 of every 100 vulnerability-introducing changes; the other 22 slip through."
+  },
+  {
    "term": "red team",
    "definition": "A group that attacks a system (or an AI) on purpose, playing the adversary, to find weaknesses before a real attacker does. The counterpart of the \"blue team\" that defends."
   },
@@ -3135,7 +3140,7 @@
   },
   {
    "term": "vibe coding",
-   "definition": "Writing software by describing what you want to an AI in plain language and accepting what it produces, with little or no reading of the code. Fast; Veracode's finding is that ~45% of AI-generated code carries a known security flaw. ## X"
+   "definition": "Writing software by describing what you want to an AI in plain language and accepting what it produces, with little or no reading of the code. Fast; Veracode's finding is that ~38% of AI-generated code carries a known security flaw. ## X"
   },
   {
    "term": "XSS (cross-site scripting)",
@@ -3150,7 +3155,7 @@
   },
   {
    "date": "2026-12-24",
-   "display": "Wed 24 Dec 2026",
+   "display": "Thu 24 Dec 2026",
    "label": "FCA CP26/38 comments close"
   },
   {
@@ -3192,18 +3197,18 @@
    "ci": {
     "label": "CI-generated code",
     "value": 2.74,
-    "display": "2.74×"
+    "display": "up to 2.74×"
    },
    "ei": {
     "label": "Human-written code",
     "value": 1,
     "display": "1×"
    },
-   "headline": "AI code carries 2.74× the vulnerabilities of human code",
+   "headline": "AI code carries up to 2.74× the vulnerabilities of human code",
    "source": "CodeRabbit",
    "date": "Dec 2025",
    "rating": "claimed",
-   "link": "#ai-code-carries-274-the-vulnerabilities-of-human-code",
+   "link": "#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
    "note": "Vendor claim — CodeRabbit's own analysis."
   },
   {
@@ -3231,12 +3236,12 @@
    "kind": "stat",
    "title": "Agent time horizon (50% reliability)",
    "display": "~7 months",
-   "headline": "~7 months for the 50%-reliability time horizon to double",
+   "headline": "~7 months for agents to handle tasks twice as long, half the time",
    "source": "METR",
    "date": "2026",
    "rating": "corroborated",
    "link": "#36-evaluation",
-   "note": "the 80% horizon is far shorter"
+   "note": "at 80% success, the task length is far shorter"
   }
  ],
  "warnings": [
