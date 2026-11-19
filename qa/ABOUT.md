@@ -18,7 +18,7 @@ Every article carries a confidence rating — a dots score for how much confiden
 
 CI SITREP is a Right-Time Situational Awareness Tool, published by Confluence<1>. It exists so that we only need to monitor one SITREP — and now we're letting you in on it too.
 
-It takes a lot to put together. Since tracking began on 12 November we have reviewed 262 sources and kept 39 of them — a 14.9% acceptance rate. Most of what we review doesn't clear the bar. The result is 85 findings, every one confidence-rated (42% Established or Corroborated), drawn from 201 source links, every one verified live. Before anything publishes, it passes 53 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.
+It takes a lot to put together. Since tracking began on 12 November we have reviewed 382 sources and kept 50 of them — a 13.1% acceptance rate. Most of what we review doesn't clear the bar. The result is 96 findings, every one confidence-rated (45% Established or Corroborated), drawn from 231 source links, every one verified live. Before anything publishes, it passes 53 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.
 
 **How we choose what to look at.** There is no fixed list of sources to defend. The radar runs fresh every morning across the three subjects — sanitizing CI-generated code before it is committed, sanitizing it once it is already in a codebase, and the design, build and deployment of agentic collectives — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.
 
@@ -26,4 +26,4 @@ It takes a lot to put together. Since tracking began on 12 November we have revi
 
 ## Contact
 
-CI SITREP is a Confluence<1> service. For errors, omissions, or feature requests, write to [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com). To work with Confluence<1>, write to [hello@confluence1.com](mailto:hello@confluence1.com).
+CI SITREP is a Confluence<1> service. For errors, omissions, or feature requests, write to [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com). To work with Confluence<1>, write to [hello@confluence1.com](mailto:hello@confluence1.com). Corrections are published on the [Corrections page](corrections.html).
