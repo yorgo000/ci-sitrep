@@ -360,6 +360,15 @@ The About page needs to sell the work behind the sitrep: how many sources, how m
 
 ---
 
+## F-22 — Corrections page
+
+**Status:** Done 2026-11-19
+**Proposed:** 2026-11-19 (Yorgo)
+
+A public Corrections page (`CORRECTIONS.md` → `corrections.html`): errors and omissions corrected in public, newest first, one line each — date, what was wrong or missing, what it is now, with a link to the corrected article where one exists. In the masthead nav after Self-Audit (both are accountability pages); linked from the About page's Contact section. The daily watch adds an entry as part of the same publish that lands a fix (RULES.md §2); entries are never removed. Launched with five entries: the Strands omission and the SailPoint/PAN 109:1 misattribution (both 19 Nov, both found by Yorgo), and the Black Duck 67%, CodeRabbit "up to 2.74×", and FCA Thu 24 Dec corrections (18 Nov).
+
+---
+
 ## Template for new features
 
 ```markdown
