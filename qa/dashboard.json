@@ -55,7 +55,7 @@
         "kind": "compare"
       },
       "date": "1 Nov 2026",
-      "display": "11×",
+      "display": "~11×",
       "label": "more vulnerabilities in AI patches than in human patches",
       "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
       "rating": "reported",
@@ -66,7 +66,7 @@
     {
       "chart": {
         "a": {
-          "display": "2.5×",
+          "display": "~2.5×",
           "label": "With post-hoc review",
           "tone": "navy",
           "value": 2.5
@@ -80,7 +80,7 @@
         "kind": "compare"
       },
       "date": "2 Nov 2026",
-      "display": "2.5×",
+      "display": "~2.5×",
       "label": "the cost of a post-hoc review that still leaves about half insecure",
       "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
       "rating": "reported",
@@ -96,12 +96,12 @@
           "a_label": "Permit agents in production",
           "b_label": "do not permit",
           "display": "73%",
-          "label": "of systemically important banks permit agents in production",
+          "label": "of systemically important banks permit agents in production for select use cases",
           "pie_split": "identity",
           "value": 73
         },
         {
-          "a_label": "Have comprehensive monitoring and controls",
+          "a_label": "Have comprehensive monitoring",
           "b_label": "do not",
           "display": "8%",
           "label": "have comprehensive agent monitoring and controls",
@@ -109,7 +109,7 @@
           "value": 8
         }
       ],
-      "label": "of systemically important banks permit agents in production",
+      "label": "of systemically important banks permit agents in production for select use cases",
       "link": "#73-of-systemically-important-banks-permit-agents-in",
       "rating": "reported",
       "sentiment": "negative",
@@ -499,7 +499,7 @@
               "kind": "bar",
               "label": "have a formally deployed, documented kill switch",
               "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
-              "note": "23% of firms with agents in production never tested their termination capability",
+              "note": "23% of firms with agents in production never tested kill switches",
               "pie_split": "positive",
               "rating": "reported",
               "sentiment": "negative",
@@ -553,7 +553,7 @@
               "date": "13 Nov 2026",
               "display": "73%",
               "kind": "bar",
-              "label": "of systemically important banks permit agents in production",
+              "label": "of systemically important banks permit agents in production for select use cases",
               "link": "#73-of-systemically-important-banks-permit-agents-in",
               "pie_split": "identity",
               "rating": "reported",
@@ -679,7 +679,7 @@
           ],
           "sentiment": "negative",
           "source": "SecureVibeBench",
-          "source_note": "peer-reviewed, ACL 2026",
+          "source_note": "peer-reviewed",
           "tile": "pie",
           "title": "Best agent–model pair on security tasks"
         },
@@ -800,9 +800,9 @@
             },
             {
               "after": 0.71,
-              "after_label": "Hinted (one line of security instruction)",
+              "after_label": "Hinted",
               "before": 0.35,
-              "before_label": "Blind (no security instruction)",
+              "before_label": "Blind",
               "date": "2 Nov 2026",
               "display": "0.35 → 0.71",
               "kind": "stat",
@@ -1039,7 +1039,7 @@
             {
               "chart": {
                 "a": {
-                  "display": "2.5×",
+                  "display": "~2.5×",
                   "label": "With post-hoc review",
                   "tone": "navy",
                   "value": 2.5
@@ -1053,7 +1053,7 @@
                 "kind": "compare"
               },
               "date": "Nov 2026",
-              "display": "2.5×",
+              "display": "~2.5×",
               "kind": "stat",
               "label": "cost of a post-hoc security review that lifts working-and-secure output to 47–56%",
               "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
@@ -1114,9 +1114,9 @@
               "date": "Dec 2025",
               "display": "up to 2.74×",
               "kind": "stat",
-              "label": "vulnerability rate, AI vs human code",
+              "label": "vulnerability rate, AI vs human",
               "link": "#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code",
-              "note": "2.74× is the maximum across vulnerability categories (worst: cross-site scripting); 1.7× more major issues.",
+              "note": "Maximum across categories (worst: XSS); 1.7× more major issues.",
               "rating": "claimed",
               "sentiment": "negative",
               "source": "CodeRabbit",
