@@ -383,7 +383,7 @@ def build_gauges(dashboard, articles, warnings):
                 "key": "coderabbit", "kind": "pair",
                 "title": "Vulnerability rate, CI code vs human code",
                 "ci": {"label": "CI-generated code", "value": 2.74,
-                       "display": "2.74×"},
+                       "display": "up to 2.74×"},
                 "ei": {"label": "Human-written code", "value": 1,
                        "display": "1×"},
                 "headline": art["headline"],
@@ -395,8 +395,7 @@ def build_gauges(dashboard, articles, warnings):
     for panel in dashboard.get("panels", []):
         for block in panel.get("blocks", []):
             for fig in block.get("items", []):
-                if (fig.get("source") == "METR"
-                        and "time horizon to double" in fig.get("label", "")):
+                if fig.get("source") == "METR":
                     gauges.append({
                         "key": "metr", "kind": "stat",
                         "title": "Agent time horizon (50% reliability)",
