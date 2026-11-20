@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-20T17:57:34.267577+00:00",
- "as_of": "Thursday, November 19, 2026",
- "as_of_date": "2026-11-19",
+ "generated_at": "2026-11-20T18:35:46.964788+00:00",
+ "as_of": "Friday, November 20, 2026",
+ "as_of_date": "2026-11-20",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
   "articles": 114,
   "whats_new": 71,
-  "glossary": 103,
+  "glossary": 104,
   "deadlines": 4,
   "gauges": 4
  },
@@ -144,7 +144,7 @@
    "flag": null,
    "bullets": [
     "~47% of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, ~15,000 devs).",
-    "42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always verify it before committing; 65% expected by 2027 (Sonar State of Code 2026).",
+    "42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always review it before committing; 65% expected by 2027 (Sonar State of Code 2026).",
     "75% of new code AI-generated, engineer-approved (Google, Apr 2026)."
    ],
    "voiceover": "Adoption is already majority-AI. about 47 percent of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, about 15,000 devs).",
@@ -4131,7 +4131,11 @@
   },
   {
    "term": "prompt injection",
-   "definition": "An attack that hides instructions in data an AI system reads (a web page, a document, a code comment) so the model follows the attacker's orders instead of its own. OWASP's #1 GenAI risk three years running. ## R"
+   "definition": "An attack that hides instructions in data an AI system reads (a web page, a document, a code comment) so the model follows the attacker's orders instead of its own. OWASP's #1 GenAI risk three years running."
+  },
+  {
+   "term": "pts (percentage points)",
+   "definition": "The unit for the arithmetic difference between two percentages: a share falling from 91% to 42% falls by 49 pts, not 49%. (Not index points, the usual finance meaning.) ## R"
   },
   {
    "term": "RAISE (Responsible AI Safety and Education Act)",
