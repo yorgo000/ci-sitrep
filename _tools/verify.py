@@ -66,7 +66,7 @@ HTML_MARKERS = [
     ("Confluence<1> Corp. All rights reserved", "copyright line"),
     ("makeShareButton", "share-link buttons"),
     ("back-to-top", "back-to-top button"),
-    ("state-of-the-market", "State of the market section"),
+    ("situation-at-hand", "Situation at hand section"),
     ("search-box", "Search box"),
     ("search-input", "Search input"),
     ("glossary.html", "Glossary nav link"),
@@ -292,14 +292,14 @@ def check_structure(md):
             fail(f"section {num} name",
                  f"expected '{want}'; H2s found: {[h for h in h2s if h.startswith(num + '.')]}")
 
-    order = ["State of the market", "New in the last 7 days", "What we're watching", "Contents",
+    order = ["Situation at hand", "New in the last 7 days", "What we're watching", "Contents",
              "1. ", "2. ", "3. ", "Archive"]
     pos = []
     for o in order:
         i = md.find(f"## {o}")
         pos.append(i)
     if all(p >= 0 for p in pos) and pos == sorted(pos):
-        ok("section order", "State of the market < New in the last 7 days < What we're watching < Contents < §1 < §2 < §3 < Archive")
+        ok("section order", "Situation at hand < New in the last 7 days < What we're watching < Contents < §1 < §2 < §3 < Archive")
     else:
         fail("section order", f"positions: {dict(zip(order, pos))}")
 
@@ -328,17 +328,17 @@ def check_top_level(html):
     no_script = re.sub(r"<script>.*?</script>", "", html, flags=re.DOTALL)
     ed = no_script.find('id="executive-dashboard"')
     rep = no_script.find('id="report"')
-    sotm = no_script.find('id="state-of-the-market"')
+    sotm = no_script.find('id="situation-at-hand"')
     if ed == -1 or rep == -1 or sotm == -1:
         fail("top-level sections present",
-             f"executive-dashboard={ed}, report={rep}, state-of-the-market={sotm}")
+             f"executive-dashboard={ed}, report={rep}, situation-at-hand={sotm}")
     elif ed < rep < sotm:
         ok("top-level sections order",
-           "Executive dashboard < Report < State of the market")
+           "Executive dashboard < Report < Situation at hand")
     else:
         fail("top-level sections order",
              f"positions: executive-dashboard={ed}, report={rep}, "
-             f"state-of-the-market={sotm}")
+             f"situation-at-hand={sotm}")
 
 
 def glossary_key(short):
