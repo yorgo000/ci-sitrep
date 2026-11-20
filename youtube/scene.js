@@ -1,5 +1,5 @@
 /* CI SITREP broadcast scene (F-19).
-   Cycles the report: State of the market first, then every finding, one at
+   Cycles the report: Situation at hand first, then every finding, one at
    a time. Data: window.CI_SITREP_DATA from findings-inline.js (generated
    with the export — the file:// path OBS uses), refreshed from
    ../data/findings.json every 15 minutes when served over HTTP.
@@ -14,7 +14,7 @@
   'use strict';
 
   var ARTICLE_MS = 15000;   // ~15s per finding: 81 findings ≈ 20 minutes
-  var SOTM_MS = 75000;      // State of the market: full synthesis, spoken
+  var SOTM_MS = 75000;      // Situation at hand: full synthesis, spoken
   var REFRESH_MS = 15 * 60 * 1000;
   var MARQUEE_PX_PER_SEC = 140;
 
@@ -156,12 +156,12 @@
       $('section-chip').textContent = 'STATE OF THE MARKET';
       $('rating').style.visibility = 'hidden';
       $('counter').textContent = 'Cycle opener';
-      $('headline').textContent = 'State of the market';
-      $('summary').textContent = data.state_of_the_market || '';
+      $('headline').textContent = 'Situation at hand';
+      $('summary').textContent = data.situation_at_hand || '';
       $('source-line').innerHTML = 'The report&rsquo;s own synthesis — every claim ' +
         'traceable to a section below. ' + (data.counts ? data.counts.articles +
         ' findings, every one confidence-rated.' : '');
-      vo = speakable('State of the market. ' + (data.state_of_the_market || ''));
+      vo = speakable('Situation at hand. ' + (data.situation_at_hand || ''));
     } else {
       var a = slide.article;
       finding.classList.remove('sotm');
@@ -188,7 +188,7 @@
     }
     document.dispatchEvent(new CustomEvent('ci-sitrep-slide', { detail: {
       index: index, total: slides.length, kind: slide.kind,
-      id: slide.article ? slide.article.id : 'state-of-the-market',
+      id: slide.article ? slide.article.id : 'situation-at-hand',
       voiceover: vo
     }}));
     var bar = $('progress-bar');
