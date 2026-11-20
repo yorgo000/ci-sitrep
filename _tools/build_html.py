@@ -670,7 +670,7 @@ TEMPLATE = """<!DOCTYPE html>
   main h2 {{ font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }}
   /* Meta sections (front-page features + archive) sit below the three
      content sections: smaller, lighter, muted. */
-  main h2#new-in-the-last-7-days, main h2#what-were-watching, main h2#state-of-the-market, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
+  main h2#new-in-the-last-7-days, main h2#what-were-watching, main h2#situation-at-hand, main h2#archive {{ font-size: 17px; font-weight: 600; color: var(--muted); }}
   main h3 {{ font-size: 18px; margin: 28px 0 10px; line-height: 1.35; }}
   main h4 {{ font-size: 16px; margin: 20px 0 8px 16px; }}
   main h4 + .section-body {{ margin-left: 16px; }}
@@ -684,7 +684,7 @@ TEMPLATE = """<!DOCTYPE html>
      (inserted by the JS below), so collapse hides the adjacent sibling,
      not a child. */
   h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body {{ display: none; }}
-  #state-of-the-market + .section-body, #new-in-the-last-7-days + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
+  #situation-at-hand + .section-body, #new-in-the-last-7-days + .section-body, #what-were-watching + .section-body {{ background: #f0f1f7; border-left: 3px solid var(--logo-navy); padding: 12px 16px; border-radius: 0 6px 6px 0; }}
   /* Inline TOC: hidden on desktop (the sidebar has it); shown on mobile. */
   .toc-inline {{ display: none; }}
   .toc-inline ul {{ list-style: none; padding: 0; margin: 0; }}
@@ -959,7 +959,7 @@ TEMPLATE = """<!DOCTYPE html>
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {{
     if (h.tagName === 'H1') return;
-    if (h.id === 'state-of-the-market' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching' || h.id === 'executive-dashboard' || h.id === 'report' || h.classList.contains('dash-panel')) return;
+    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching' || h.id === 'executive-dashboard' || h.id === 'report' || h.classList.contains('dash-panel')) return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
