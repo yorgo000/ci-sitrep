@@ -463,8 +463,8 @@ def check_hygiene(md, html):
             fail(f"{label}: no internal-process strings", f"found: {found}")
 
 
-def check_html(html):
-    """Literal Markdown links, anchors, layout markers."""
+def check_html(html, repo_root):
+    """Literal Markdown links, anchors, relative file links, layout markers."""
     # Strip <script> blocks first: JS string literals contain href="#..."
     # fragments (e.g. the breadcrumb builder's '<a href="#' + a.id + '">')
     # that are not real links and would false-positive the anchor check.
@@ -488,6 +488,31 @@ def check_html(html):
         ok("all internal anchors resolve", f"{len(hrefs)} links, {len(ids)} ids")
     else:
         fail("all internal anchors resolve", f"missing: {missing}")
+
+    # Relative file links must resolve to a file in the repo (D3): the
+    # append-only archive file was linked from five places but never
+    # committed, and no check caught it. Fragments and query strings
+    # are stripped before resolving; a leading "/" is repo-root-relative.
+    # Only .md/.html/.png are in scope — the file types the report links.
+    file_hrefs = sorted(set(re.findall(r'href="([^"]+)"', no_script)))
+    missing_files = []
+    n_file_links = 0
+    for href in file_hrefs:
+        target = href.split("#", 1)[0].split("?", 1)[0]
+        if not target or "://" in target or target.startswith(
+                ("mailto:", "tel:", "data:")):
+            continue
+        if not target.lower().endswith((".md", ".html", ".png")):
+            continue
+        n_file_links += 1
+        if not (repo_root / target.lstrip("/")).is_file():
+            missing_files.append(href)
+    if not missing_files:
+        ok("all relative file links resolve",
+           f"{n_file_links} links, repo root {repo_root}")
+    else:
+        fail("all relative file links resolve",
+             f"missing: {missing_files}")
 
     # Markers run on the full HTML: some (makeShareButton) live in the JS.
     for marker, label in HTML_MARKERS:
@@ -571,7 +596,7 @@ def main():
     check_top_level(html)
     check_naming(md, html_unescaped)
     check_hygiene(md, html)
-    check_html(html_unescaped)
+    check_html(html_unescaped, html_path.resolve().parent)
     check_glossary(md_path, html)
     check_source_first(md)
     check_links(md)
