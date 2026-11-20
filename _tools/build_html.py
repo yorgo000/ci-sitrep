@@ -499,7 +499,11 @@ def build(input_path, output_path):
         html = html.replace("</body>", build_dashboard.COUNTDOWN_JS + "\n</body>", 1)
         html = html.replace("</body>", build_dashboard.FILTER_JS + "\n</body>", 1)
         # Validate the dashboard data against the final HTML.
-        errors = build_dashboard.validate(dash_data, html)
+        errors, warnings = build_dashboard.validate(dash_data, html)
+        if warnings:
+            print("dashboard.json warnings (non-blocking):")
+            for w in warnings:
+                print("  -", w)
         if errors:
             print("dashboard.json validation FAILED:")
             for e in errors:
