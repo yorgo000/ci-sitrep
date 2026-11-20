@@ -59,7 +59,13 @@ more than one subsection. A failure exits 1 with the problem listed
 — fix the data, don't weaken the check. validate() also enforces the
 uniform tile height (estimate_tile_height): a 1-unit or 2-unit tile
 estimating over 290px fails the build — trim that tile's wording until
-it fits, never raise the height; 280–290px only warns.
+it fits, never raise the height; 280–290px only warns. And it enforces
+the RULES.md §2 headline rule (D2): a figure's display numerals must
+appear in its target article's headline (or a headline_match word-form
+such as "four in five"); a mismatch on a theme-headlined article, or on
+a figure listed in HEADLINE_KNOWN_MISMATCHES, warns instead of failing,
+so the nightly watch never breaks on a mismatch that predates the
+check. validate() returns (errors, warnings); warnings never exit 1.
 
 Usage: build_dashboard.py [dashboard.json] [index.html]
 Validates dashboard.json against index.html; exits 1 on any failure.
@@ -85,6 +91,47 @@ RATINGS = {
 RATING_NUM = {"established": 4, "corroborated": 3, "reported": 2, "claimed": 1}
 TILE_TYPES = {"pie", "ratio", "big-number", "no-data", "sparkline", "flag", "note", "waffle", "paired"}
 SENTIMENTS = {"positive", "negative", "neutral"}
+
+# Headline-rule known mismatches (D2, 2026-11-20): (link, display) ->
+# resolution. A figure whose display numerals are absent from its target
+# article's headline FAILS the build — unless it is listed here, in which
+# case it WARNS. The list holds ONLY the mismatches that existed when the
+# check shipped; every entry names its resolution, and the A11 split round
+# (or the headline_match data round) deletes entries as their resolutions
+# land. When the list is empty the check is fully enforcing — that is the
+# FAIL flip, and it happens entry by entry, never as a big bang. Keyed on
+# (link, display) so a repoint or a reword silently drops the exception:
+# the figure is then judged on its merits, and a new value that still
+# mismatches fails loudly instead of hiding behind a stale exception.
+HEADLINE_KNOWN_MISMATCHES = {
+    # A11 splits (named in the usability review §3, A11).
+    ("#mean-vulnerabilities-per-codebase-581-up-107-year-on-year", "67%"):
+        "A11 split: Black Duck 67% gets its own article",
+    ("#4570-of-working-agent-solutions-bring-the-original",
+     "0.35 \u2192 0.71"):
+        "A11 split: BugLedger 0.35->0.71 gets its own article",
+    # A11-pattern splits: secondary findings in articles headlined with
+    # another finding. Same pattern as the named two, not named in A11 —
+    # the Chief Editor decides whether A11 takes them too.
+    ("#86-of-us-financial-firms-formally-use-ai-but-only-38", "1 in 4"):
+        "A11-pattern split: ACA 25% experimenting is a secondary finding",
+    ("#556-passed-every-test-while-a-working-exploit-succeeded-ase",
+     "74.0%"):
+        "A11-pattern split: A.S.E 74.0% is a secondary finding",
+    ("#556-passed-every-test-while-a-working-exploit-succeeded-ase",
+     "18.4%"):
+        "A11-pattern split: A.S.E 18.4% is a secondary finding",
+    # Word-form cases: the headline expresses the figure in words, so a
+    # headline_match entry resolves them (data round, no split needed).
+    ("#98-of-large-companies-have-ai-governance-policies-nearly", "47%"):
+        'headline_match ["nearly half"] (data round)',
+    ("#98-of-large-companies-have-ai-governance-policies-nearly", "49%"):
+        'headline_match ["nearly half"] (data round)',
+    ("#best-agentic-reviewers-catch-3-in-4-vuln-introducing", "78.1%"):
+        'headline_match ["3 in 4"] (data round)',
+    ("#best-agentic-reviewers-catch-3-in-4-vuln-introducing", "32.5%"):
+        'headline_match ["1 in 3"] (data round)',
+}
 
 # Pie/strip colours (2026-11-18, Yorgo's three rules): rust is the AI
 # side where the split is AI vs human; otherwise blue is the favourable
@@ -1824,8 +1871,127 @@ def _check_history(history, errors):
                 errors.append(f"history {key!r} point {i}: needs display + label")
 
 
+# --- Headline rule (D2) ------------------------------------------------------
+# RULES.md §2: a figure's link target must be an article headlined with
+# that figure. The check compares the figure's display numerals against
+# its target article's headline.
+
+_NUM_TOKEN = re.compile(r"(?<![\dA-Za-z])\d[\d,]*\.?\d*(?![\dA-Za-z])")
+
+
+def _number_tokens(text):
+    """Numerals in text as floats. Token-aware: a bare 1 never matches
+    inside 109, and a sample size like 623m is not a numeral token."""
+    return [float(t.replace(",", "")) for t in _NUM_TOKEN.findall(text or "")]
+
+
+def _headline_main_clause(headline):
+    """The headline minus its parenthetical (source, date, sample size).
+    The finding lives in the main clause; a numeral that appears only in
+    the parenthetical — an arXiv id, a sample size — does not headline
+    the figure."""
+    h = headline or ""
+    for _ in range(3):  # defensive: nested parentheticals, if any
+        stripped = re.sub(r"\([^)]*\)", " ", h)
+        if stripped == h:
+            break
+        h = stripped
+    return h
+
+
+def _headline_is_theme(headline):
+    """A theme/synthesis headline carries no finding numerals: strip the
+    parenthetical, years, and version tokens, then look for digits."""
+    h = _headline_main_clause(headline)
+    h = re.sub(r"\b(?:19|20)\d{2}\b", " ", h)
+    h = re.sub(r"\bv\d+(?:\.\d+)?\b", " ", h, flags=re.IGNORECASE)
+    return not _NUM_TOKEN.search(h)
+
+
+def _figure_numerals(f):
+    """The numerals the tile shows, as floats. A segments pie carries no
+    display — the lead segment is the figure (the rest is the breakdown).
+    A paired tile shows both figures. A trailing ':1' is a normalisation
+    unit, not a counted population."""
+    tile = f.get("tile")
+    if tile == "pie" and isinstance(f.get("segments"), list):
+        return [float(f["segments"][0]["value"])]
+    if tile == "paired":
+        out = []
+        for fig in f.get("figures") or []:
+            out.extend(_number_tokens(fig.get("display")))
+        return out
+    disp = f.get("display")
+    if not isinstance(disp, str):
+        return []
+    disp = re.sub(r":\s*1\s*$", "", disp)
+    return _number_tokens(disp)
+
+
+def _check_headline(f, src, errors, warnings, article_ids):
+    """One figure against its target headline. PASS if every display
+    numeral appears in the headline's main clause, or the figure's value
+    does (the value expressed differently, e.g. display '1 in 4' with
+    value 25), or a headline_match word-form does (e.g. 'four in five'
+    for 79%). Otherwise: WARN for a known mismatch or a theme-headlined
+    article, FAIL for anything else. Section/panel anchors and figures
+    with no display value (notes, no-data, flags) have no headline to
+    check and are skipped."""
+    link = f.get("link", "")
+    if not link.startswith("#"):
+        return
+    headline = article_ids.get(link[1:])
+    if headline is None:
+        return
+    numerals = _figure_numerals(f)
+    if not numerals:
+        return
+    forms = f.get("headline_match")
+    if forms is not None and (
+            not isinstance(forms, list)
+            or not all(isinstance(x, str) for x in forms)):
+        errors.append(f"{src}: headline_match must be a list of strings")
+        return
+    main = _headline_main_clause(headline)
+    tokens = _number_tokens(main)
+
+    def _present(n):
+        return any(abs(n - t) < 1e-9 for t in tokens)
+
+    if all(_present(n) for n in numerals):
+        return
+    v = f.get("value")
+    if isinstance(v, (int, float)) and not isinstance(v, bool) \
+            and _present(float(v)):
+        return
+    if forms and any(form.lower() in main.lower() for form in forms):
+        return
+    shown = ", ".join(f"{n:g}" for n in numerals)
+    known = HEADLINE_KNOWN_MISMATCHES.get((link, f.get("display")))
+    if known is not None:
+        warnings.append(
+            f"{src}: headline rule — numerals {shown} absent from target "
+            f"headline (known mismatch, {known})"
+        )
+    elif _headline_is_theme(headline):
+        warnings.append(
+            f"{src}: headline rule — numerals {shown} absent from target "
+            f"headline (theme-headlined article; no numerals in headline)"
+        )
+    else:
+        errors.append(
+            f"{src}: headline rule — numerals {shown} absent from target "
+            f"headline {headline!r} (link {link})"
+        )
+
+
 def validate(data, index_html, ctx=None):
+    """Returns (errors, warnings). Errors exit 1; warnings print and
+    never block — the headline rule warns on theme-headlined articles
+    and known mismatches so the nightly watch never breaks on a
+    mismatch that predates the check (D2)."""
     errors = []
+    warnings = []
     if ctx is None:
         ctx = build_context()
     tags = ctx["tags"]
@@ -1908,6 +2074,9 @@ def validate(data, index_html, ctx=None):
         fields_ok = len(errors) == n_err
         check_tags(src, f.get("link", ""), f.get("rating"))
         if fields_ok:
+            # The headline check needs well-formed fields (a segments
+            # pie with a bad segment list has no lead value to check).
+            _check_headline(f, src, errors, warnings, article_ids)
             # The height check needs well-formed fields (a sparkline
             # with a bad history_key has no caption to measure) — a
             # figure that already failed reports only its field errors.
@@ -1927,6 +2096,9 @@ def validate(data, index_html, ctx=None):
         _check_tile_fields(it, f"bottom line {src}", errors, history)
         fields_ok = len(errors) == n_err
         check_tags(src, it.get("link", ""), it.get("rating"))
+        if fields_ok:
+            _check_headline(it, f"bottom line {src}", errors, warnings,
+                            article_ids)
         if fields_ok and not it.get("full"):
             # Full-width strip items are exempt (natural height).
             _check_tile_height(it, f"bottom line {src}", errors, history,
@@ -1943,7 +2115,7 @@ def validate(data, index_html, ctx=None):
         errors.append(f"duplicate tile ids: {dupes}")
     if "what-were-watching" not in anchors:
         errors.append("countdown link target #what-were-watching missing")
-    return errors
+    return errors, warnings
 
 
 DASH_CSS = """
@@ -2543,7 +2715,11 @@ def main(argv):
     index_path = argv[2] if len(argv) > 2 else str(REPO / "index.html")
     data = json.loads(Path(data_path).read_text(encoding="utf-8"))
     index_html = Path(index_path).read_text(encoding="utf-8")
-    errors = validate(data, index_html)
+    errors, warnings = validate(data, index_html)
+    if warnings:
+        print("dashboard.json warnings (non-blocking):")
+        for w in warnings:
+            print("  -", w)
     if errors:
         print("dashboard.json validation FAILED:")
         for e in errors:
