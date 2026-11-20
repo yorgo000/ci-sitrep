@@ -4,6 +4,98 @@
   "bottom_line": [
     {
       "chart": {
+        "kind": "compare",
+        "a": {
+          "display": "3.4×",
+          "label": "81–100% of code AI-generated",
+          "tone": "gap",
+          "value": 3.4
+        },
+        "b": {
+          "display": "1×",
+          "label": "1–20% of code AI-generated",
+          "tone": "navy",
+          "value": 1
+        }
+      },
+      "date": "2 Nov 2026",
+      "display": "3.4×",
+      "label": "the self-reported vulnerable-code shipping rate, 81–100% vs 1–20% AI-generated code",
+      "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "SusVibes re-run",
+      "span": 2,
+      "tile": "ratio"
+    },
+    {
+      "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
+      "caption": "Share of 147 vulnerabilities counted",
+      "chart": {
+        "a": {
+          "display": "135",
+          "label": "AI patches",
+          "tone": "gap",
+          "value": 135
+        },
+        "b": {
+          "display": "12",
+          "label": "Human patches",
+          "tone": "navy",
+          "value": 12
+        },
+        "kind": "compare"
+      },
+      "date": "1 Nov 2026",
+      "display": "~11×",
+      "label": "more vulnerabilities in AI patches than in human patches",
+      "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "Sajadi et al., SWE-bench study v4",
+      "tile": "waffle"
+    },
+    {
+      "date": "2026",
+      "display": "188",
+      "label": "documented cases of autonomous AI damaging production",
+      "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "Cyera",
+      "tile": "big-number"
+    },
+    {
+      "date": "13 Nov 2026",
+      "display": "73%",
+      "figures": [
+        {
+          "a_label": "Permit agents in production",
+          "b_label": "do not permit",
+          "display": "73%",
+          "label": "of systemically important banks permit agents in production for select use cases",
+          "pie_split": "identity",
+          "value": 73
+        },
+        {
+          "a_label": "Have comprehensive monitoring",
+          "b_label": "do not",
+          "display": "8%",
+          "label": "have comprehensive agent monitoring and controls",
+          "pie_split": "positive",
+          "value": 8
+        }
+      ],
+      "label": "of systemically important banks permit agents in production for select use cases",
+      "link": "#73-of-systemically-important-banks-permit-agents-in",
+      "rating": "reported",
+      "sentiment": "negative",
+      "source": "BCG AI Safety and Governance in Banking 2026",
+      "source_note": "26 global and domestic systemically important banks",
+      "tile": "paired"
+    },
+    {
+      "chart": {
         "a_label": "AI agents",
         "b_label": "human-written",
         "kind": "pie",
@@ -37,33 +129,6 @@
       "tile": "pie"
     },
     {
-      "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
-      "caption": "Share of 147 vulnerabilities counted",
-      "chart": {
-        "a": {
-          "display": "135",
-          "label": "AI patches",
-          "tone": "gap",
-          "value": 135
-        },
-        "b": {
-          "display": "12",
-          "label": "Human patches",
-          "tone": "navy",
-          "value": 12
-        },
-        "kind": "compare"
-      },
-      "date": "1 Nov 2026",
-      "display": "~11×",
-      "label": "more vulnerabilities in AI patches than in human patches",
-      "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "Sajadi et al., SWE-bench study v4",
-      "tile": "waffle"
-    },
-    {
       "chart": {
         "a": {
           "display": "~2.5×",
@@ -87,45 +152,6 @@
       "sentiment": "negative",
       "source": "SusVibes re-run",
       "tile": "ratio"
-    },
-    {
-      "date": "13 Nov 2026",
-      "display": "73%",
-      "figures": [
-        {
-          "a_label": "Permit agents in production",
-          "b_label": "do not permit",
-          "display": "73%",
-          "label": "of systemically important banks permit agents in production for select use cases",
-          "pie_split": "identity",
-          "value": 73
-        },
-        {
-          "a_label": "Have comprehensive monitoring",
-          "b_label": "do not",
-          "display": "8%",
-          "label": "have comprehensive agent monitoring and controls",
-          "pie_split": "positive",
-          "value": 8
-        }
-      ],
-      "label": "of systemically important banks permit agents in production for select use cases",
-      "link": "#73-of-systemically-important-banks-permit-agents-in",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "BCG AI Safety and Governance in Banking 2026",
-      "source_note": "26 global and domestic systemically important banks",
-      "tile": "paired"
-    },
-    {
-      "date": "2026",
-      "display": "188",
-      "label": "documented cases of autonomous AI damaging production",
-      "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
-      "rating": "reported",
-      "sentiment": "negative",
-      "source": "Cyera",
-      "tile": "big-number"
     },
     {
       "chart": {
@@ -1067,13 +1093,13 @@
               "chart": {
                 "a": {
                   "display": "3.4×",
-                  "label": "81–100% AI code",
+                  "label": "81–100% of code AI-generated",
                   "tone": "gap",
                   "value": 3.4
                 },
                 "b": {
                   "display": "1×",
-                  "label": "1–20% AI code",
+                  "label": "1–20% of code AI-generated",
                   "tone": "navy",
                   "value": 1
                 },
@@ -1083,7 +1109,7 @@
               "display": "3.4×",
               "kind": "stat",
               "label": "vulnerable-code rate at 81–100% AI-generated code vs 1–20%",
-              "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+              "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
               "rating": "reported",
               "sentiment": "negative",
               "source": "SusVibes",
