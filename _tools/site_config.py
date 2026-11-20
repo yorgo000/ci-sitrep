@@ -14,7 +14,7 @@ GOATCOUNTER_CODE = "ci-sitrep"
 # publish; the computed numbers come from build_audit.compute_metrics.
 ABOUT_CII_COUNT = 6       # CII roles on the team (Barnaby + 3 baseline researchers + daily watch + catch-up)
 ABOUT_TEAM_YEARS = 39     # cumulative editing-team experience (9 Bernstein + 30 Confluence<1>)
-VERIFY_CHECK_COUNT = 53   # verify.py pass count from the last full run; update when it changes
+VERIFY_CHECK_COUNT = 54   # verify.py pass count from the last full run; update when it changes
 
 
 def goatcounter_snippet():
