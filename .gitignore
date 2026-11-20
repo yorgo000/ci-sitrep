@@ -1,0 +1,4 @@
+# Local-only: never committed. Pushes go via the GitHub API helper, not git.
+_tools/venv/
+__pycache__/
+*.bak
