@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-11-19T22:18:00.978702+00:00",
+ "generated_at": "2026-11-20T03:56:43.537822+00:00",
  "as_of": "Thursday, November 19, 2026",
  "as_of_date": "2026-11-19",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 97,
+  "articles": 98,
   "whats_new": 61,
   "glossary": 98,
   "deadlines": 4,
@@ -13,7 +13,7 @@
  "ratings": {
   "established": 14,
   "corroborated": 30,
-  "reported": 48,
+  "reported": 49,
   "claimed": 5
  },
  "state_of_the_market": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
@@ -244,12 +244,32 @@
     "65–75% of working solutions reintroduced the old vulnerability.",
     "A one-line security reminder added only 1–8 points.",
     "A post-hoc security review lifted working-and-secure to 47–56% at ~2.5× the cost — still leaving about half of tasks insecure.",
-    "Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%.",
     "Corroborates the other two benchmarks; the cost figure (2.5× for a review that still leaves half insecure) is the number to use when scoping a review layer for a client."
    ],
    "voiceover": "A post-hoc review lifts working-and-secure to 47 to 56 percent at about 2.5 times cost. Agents rebuilding features that originally shipped with a real vulnerability: functional success 83 to 95 percent, but only 24 to 36 percent both working and secure.",
    "id": "a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
    "url": "https://yorgo000.github.io/ci-sitrep/#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25"
+  },
+  {
+   "headline": "Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%",
+   "section": "Pre-commit",
+   "subsection": "1.6 Benchmarks & evidence",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "SusVibes re-run",
+   "source_label": "SusVibes re-run, via Medium",
+   "source_url": "https://medium.com/@FaithChihambakwe/what-share-of-ai-code-has-vulnerabilities-and-which-kind-does-a-human-review-reduce-it-268ff4531d05",
+   "source_context": "SusVibes re-run, independent research commissioned by Checkmarx, reported 2 Nov 2026",
+   "date": "2 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Organisations where 81–100% of code is AI-generated reported shipping vulnerable code at 3.4× the rate of those at 1–20%.",
+    "The figures are self-reported — the rates are what organisations said they shipped.",
+    "The same re-run found a post-hoc security review lifts working-and-secure to 47–56% at ~2.5× the cost — see the preceding article."
+   ],
+   "voiceover": "Organisations where 81 to 100 percent of code is AI-generated reported shipping vulnerable code at 3.4 times the rate of those at 1 to 20 percent. Organisations where 81 to 100 percent of code is AI-generated reported shipping vulnerable code at 3.4 times the rate of those at 1 to 20 percent.",
+   "id": "organisations-where-81100-of-code-is-ai-generated-reported",
+   "url": "https://yorgo000.github.io/ci-sitrep/#organisations-where-81100-of-code-is-ai-generated-reported"
   },
   {
    "headline": "45–70% of working agent solutions bring the original vulnerability back",
