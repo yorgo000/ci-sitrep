@@ -238,7 +238,7 @@ Tools and best practices for addressing the problem of CI-generated code *before
 <summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
 
 - ~47% of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, ~15,000 devs).
-- 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always verify it before committing; 65% expected by 2027 ([Sonar State of Code 2026](https://www.sonarsource.com/resources/library/ai-coding-roi/)).
+- 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always review it before committing; 65% expected by 2027 ([Sonar State of Code 2026](https://www.sonarsource.com/resources/library/ai-coding-roi/)).
 - 75% of new code AI-generated, engineer-approved ([Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/), Apr 2026).
 - Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/)
 </details>
