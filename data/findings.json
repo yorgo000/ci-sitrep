@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-11-20T09:54:36.039407+00:00",
+ "generated_at": "2026-11-20T13:07:28.166125+00:00",
  "as_of": "Thursday, November 19, 2026",
  "as_of_date": "2026-11-19",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 111,
-  "whats_new": 68,
-  "glossary": 101,
+  "articles": 114,
+  "whats_new": 71,
+  "glossary": 103,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
   "established": 17,
-  "corroborated": 35,
+  "corroborated": 38,
   "reported": 53,
   "claimed": 6
  },
@@ -1186,6 +1186,80 @@
    "voiceover": "A single pull request could have handed attackers the keys to Microsoft's software supply chain. A single pull request against microsoft/winget-pkgs could have handed an attacker a Microsoft moderator's GitHub token , a flaw Cycode scores CVSS 10.0 , with no phishing, no malware, and no moderator clicking anything (Cycode, 18 Nov 2026).",
    "id": "a-single-pull-request-could-have-handed-attackers-the-keys",
    "url": "https://yorgo000.github.io/ci-sitrep/#a-single-pull-request-could-have-handed-attackers-the-keys"
+  },
+  {
+   "headline": "One GitHub issue could have backdoored the next Codex release",
+   "section": "In codebase",
+   "subsection": "2.1 How big the problem is",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "Depi",
+   "source_label": "Depi, \"Backdooring the next release of Codex through GitHub Action pipeline exploit chaining,\" 11 Nov 2026",
+   "source_url": "https://depi.security/blog/20261111-backdooring-codex/",
+   "source_context": "Depi, 11 Nov 2026",
+   "date": "11 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "The openai/codex repository ran an issue-labeler workflow that fed any opened issue's title and body straight into a Codex agent's prompt — allow-users: \"*\" — so anyone who could open an issue could talk to the agent (Depi, 11 Nov 2026).",
+    "A crafted issue made the agent treat the attacker's text as instructions and run attacker code inside the agent's sandbox (Depi, 11 Nov 2026).",
+    "The sandbox escape used unauthenticated .NET CoreCLR debug pipes left in /tmp/ to read the GitHub runner's worker-process memory, locate environ, and leak the run's ACTIONS_RUNTIME_TOKEN and GITHUB_TOKEN, exfiltrated through workflow logs (Depi, 11 Nov 2026).",
+    "Those tokens poisoned the GitHub Actions cache for the more privileged rust-ci.yml workflow, planting a malicious Python test file that ran with that workflow's permissions, including contents: write (Depi, 11 Nov 2026).",
+    "The pivot planted a persistent workflow with id-token: write, triggered when a release is edited or deleted; Depi created a fake Codex release as the trap — deleting it would have yielded a GitHub-signed OIDC token that npm trusts for publishing @openai/codex (Depi, 11 Nov 2026).",
+    "No malicious npm release was published — the chain was demonstrated in a test environment — and OpenAI fixed the core bug right away; Bugcrowd lists the report P1, resolved, with an initial $1,000 bounty still under review (Depi, 11 Nov 2026; Bugcrowd).",
+    "Implication: any repository that lets an agent read untrusted text inside CI has the same shape — audit every workflow that feeds issues, pull requests or comments into an agent, restrict who can trigger it, and never let one agent session combine untrusted input with publish credentials."
+   ],
+   "voiceover": "One GitHub issue could have backdoored the next Codex release. The openai/codex repository ran an issue-labeler workflow that fed any opened issue's title and body straight into a Codex agent's prompt , allow-users: \"*\" , so anyone who could open an issue could talk to the agent (Depi, 11 Nov 2026).",
+   "id": "one-github-issue-could-have-backdoored-the-next-codex",
+   "url": "https://yorgo000.github.io/ci-sitrep/#one-github-issue-could-have-backdoored-the-next-codex"
+  },
+  {
+   "headline": "A read-only git_status call could run code from a repo's own config",
+   "section": "In codebase",
+   "subsection": "2.1 How big the problem is",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "GitHub Advisory",
+   "source_label": "GitHub Advisory, GHSA-6hqx-gqrx-c5r2, 11 Nov 2026",
+   "source_url": "https://github.com/modelcontextprotocol/servers/security/advisories/GHSA-6hqx-gqrx-c5r2",
+   "source_context": "GitHub Advisory, 11 Nov 2026",
+   "date": "11 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "The reference Git MCP server, mcp-server-git, ran Git inside client-chosen repositories without neutralising the repository's own .git/config — and core.fsmonitor names a program Git executes when refreshing the index, so a read-only git_status call on an untrusted repository ran attacker-chosen code with the server's privileges (GitHub Advisory GHSA-6hqx-gqrx-c5r2, 11 Nov 2026).",
+    "A second sink, diff.external, gives the same result through the read-only diff tools, and the command can be inlined in the configuration, so a single edited .git/config is enough; a lab test found seven such sinks, all executing on 2026.11.4 and none on the fixed version (GitHub Advisory, 11 Nov 2026; Agent Intelligence, 17 Nov 2026).",
+    "The code runs inside Git, not through the agent's own command tool, so the client's approval prompt and sandbox never see it — and a diff.external or textconv payload can return an empty diff for a changed file, hiding its own edits from the model reviewing them (Agent Intelligence, 17 Nov 2026).",
+    "GHSA-6hqx-gqrx-c5r2 is rated High, CVSS 3.1 7.8, with no CVE assigned; it affects mcp-server-git through 2026.11.4 and is fixed in 2026.11.11, part of the MCP servers v2.4.0 release that patched six advisories across three servers (GitHub Advisory, 11 Nov 2026; Agent Intelligence, 17 Nov 2026).",
+    "A plain git clone does not copy a remote repository's .git/config or hooks, so cloning a stranger's project does not deliver the payload — the channels that carry a .git directory intact are project archives, CI artifacts, backups, shared folders, vendored trees and agent workspaces copied rather than cloned (Agent Intelligence, 17 Nov 2026).",
+    "The payload inherits the server's environment, which often includes tokens passed through the MCP client's env block, SSH keys and cloud credentials (Agent Intelligence, 17 Nov 2026).",
+    "Implication: a \"read-only\" tool annotation is a hint, not a security boundary — pin the server version, and treat any repository an agent opens as untrusted input, not just its files."
+   ],
+   "voiceover": "A read-only git_status call could run code from a repo's own config. The reference Git MCP server, mcp-server-git, ran Git inside client-chosen repositories without neutralising the repository's own .git/config , and core.fsmonitor names a program Git executes when refreshing the index, so a read-only git_status call on an untrusted repository ran attacker-chosen code with the server's privileges (GitHub Advisory GHSA-6hqx-gqrx-c5r2, 11 Nov 2026).",
+   "id": "a-read-only-git_status-call-could-run-code-from-a-repos-own",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-read-only-git_status-call-could-run-code-from-a-repos-own"
+  },
+  {
+   "headline": "AWS's MCP gateway let an authenticated user reach internal services — and upgrading alone does not clean it up",
+   "section": "In codebase",
+   "subsection": "2.1 How big the problem is",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "AWS",
+   "source_label": "AWS Security Bulletin 2026-180-AWS, CVE-2026-125926, 11 Nov 2026",
+   "source_url": "https://aws.amazon.com/security/security-bulletins/2026-180-aws/",
+   "source_context": "AWS, 11 Nov 2026",
+   "date": "11 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "CVE-2026-125926: server-side request forgery in mcp-gateway-registry, AWS's open-source registry and gateway for MCP servers — an authenticated user with permission to register or modify a server could set an upstream address that made the gateway send requests to services on the deployment's internal network, and in some cases the gateway returned those responses to the user (AWS Security Bulletin 2026-180-AWS, 11 Nov 2026).",
+    "Affected versions 1.0.3–1.34.0; fixed in 1.35.0 (AWS, 11 Nov 2026).",
+    "Version 1.35.0 validates upstream addresses when a server is registered or modified, but leaves server configurations stored before the upgrade unchanged — a poisoned upstream survives the patch (AWS, 11 Nov 2026).",
+    "After upgrading, AWS tells customers to review the upstream addresses of registered servers, review logs for unexpected registrations and changes, and — if the registry runs with an attached cloud role and the log review cannot rule out activity — review that role's activity and rotate its credentials (AWS, 11 Nov 2026).",
+    "The bulletin also warns on version sequencing: a separate, unrelated flaw in the product's external management API was fixed in 1.25.0, but a deployment on 1.25.0 or later still carried this SSRF until 1.35.0 (AWS, 11 Nov 2026).",
+    "Implication: a gateway that proxies agent tool calls is itself a trust boundary — validate upstream addresses at registration, and treat the upgrade as two steps: patch, then audit stored configurations and cloud-role activity."
+   ],
+   "voiceover": "AWS's MCP gateway let an authenticated user reach internal services , and upgrading alone does not clean it up. CVE-2026-125926: server-side request forgery in mcp-gateway-registry, AWS's open-source registry and gateway for MCP servers , an authenticated user with permission to register or modify a server could set an upstream address that made the gateway send requests to services on the deployment's internal network, and in some cases the gateway returned those responses to the user (AWS Security Bulletin 2026-180-AWS, 11 Nov 2026).",
+   "id": "awss-mcp-gateway-let-an-authenticated-user-reach-internal",
+   "url": "https://yorgo000.github.io/ci-sitrep/#awss-mcp-gateway-let-an-authenticated-user-reach-internal"
   },
   {
    "headline": "AWS's open-source agent harness runs the same models for 28% less — on its own benchmark",
@@ -2577,6 +2651,55 @@
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-20",
+   "title": "One GitHub issue could have backdoored the next Codex release",
+   "source": "Depi",
+   "source_url": "https://depi.security/blog/20261111-backdooring-codex/",
+   "tags": [
+    "Agentic",
+    "In codebase"
+   ],
+   "summary": "a crafted issue injected instructions into OpenAI's Codex repository labeler, escaped the agent sandbox through runner debug pipes, poisoned the Actions cache and reached within one step of npm publish credentials for @openai/codex; no malicious release was published.",
+   "sections": [
+    {
+     "label": "2.1 How big the problem is",
+     "anchor": "21-how-big-the-problem-is"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "title": "A read-only git_status call could run code from a repo's own config",
+   "source": "GitHub Advisory",
+   "source_url": "https://github.com/modelcontextprotocol/servers/security/advisories/GHSA-6hqx-gqrx-c5r2",
+   "tags": [
+    "In codebase"
+   ],
+   "summary": "the reference Git MCP server ran a repository's .git/config unchecked — core.fsmonitor or diff.external executed attacker code with the server's privileges; fixed in 2026.11.11.",
+   "sections": [
+    {
+     "label": "2.1 How big the problem is",
+     "anchor": "21-how-big-the-problem-is"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "title": "AWS's MCP gateway let an authenticated user reach internal services — and upgrading alone does not clean it up",
+   "source": "AWS",
+   "source_url": "https://aws.amazon.com/security/security-bulletins/2026-180-aws/",
+   "tags": [
+    "In codebase"
+   ],
+   "summary": "SSRF (CVE-2026-125926) in mcp-gateway-registry; 1.35.0 validates new upstreams but leaves stored configurations untouched, so a poisoned upstream survives the patch.",
+   "sections": [
+    {
+     "label": "2.1 How big the problem is",
+     "anchor": "21-how-big-the-problem-is"
+    }
+   ]
+  },
   {
    "date": "2026-11-20",
    "title": "A single pull request could have handed attackers the keys to Microsoft's software supply chain",
@@ -4079,6 +4202,10 @@
    "definition": "The Fed/OCC/FDIC letter (17 Apr 2026) that replaced SR 11-7. It expressly places generative and agentic AI outside model-risk scope — the US federal gap the report is built around."
   },
   {
+   "term": "SSRF (server-side request forgery)",
+   "definition": "A flaw where an attacker makes a server send requests to places it should not reach — its own internal network, cloud metadata services — and sometimes get the answers back. The flaw behind the AWS MCP gateway bulletin (Nov 2026)."
+  },
+  {
    "term": "supervisor pattern",
    "definition": "The production-default way to run a team of agents: one supervisor agent plans, assigns work to specialist agents, checks their output, and decides what ships."
   },
@@ -4088,7 +4215,11 @@
   },
   {
    "term": "TPRM (third-party risk management)",
-   "definition": "Managing the risk of outside vendors: the firms whose software, data, or services you depend on. The proposed interagency guidance would rewrite the US rules for it; comments close 16 Dec 2026. ## V"
+   "definition": "Managing the risk of outside vendors: the firms whose software, data, or services you depend on. The proposed interagency guidance would rewrite the US rules for it; comments close 16 Dec 2026."
+  },
+  {
+   "term": "trusted publishing",
+   "definition": "Publishing a package with a short-lived identity token from the CI platform (an OIDC token) instead of a long-lived API key — so whoever controls the CI job can publish. The prize at the end of Depi's Codex chain (Nov 2026): a GitHub-signed token npm would have accepted for @openai/codex. ## V"
   },
   {
    "term": "vibe coding",
