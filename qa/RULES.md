@@ -220,8 +220,10 @@ tile at the new article. Never point a tile at an article whose
 headline is about a different finding, however good the evidence
 buried in its bullets. (2026-11-19: the 3.4× strip tile linked to the
 2.5× post-hoc-review article, where the 3.4× was one bullet in six;
-Yorgo caught it from a QA screenshot.) Where a conclusion draws on a second headline article in
-another subsection, the figure carries an "also" list ({anchor, label})
+Yorgo caught it from a QA screenshot.) Numbered figures render as
+visual tiles, never bare notes (§4). Where a conclusion draws on a
+second headline article in another subsection, the figure carries an
+"also" list ({anchor, label})
 rendered after the source name. The one exception is §3.6 (Evaluation),
 which is prose, not articles: its figures link to the section anchor
 until the content becomes articles. The dashboard intro carries a
@@ -646,6 +648,16 @@ large companies have AI governance policies").
   source line below the halves. On phones the halves stack vertically
   with a horizontal hairline divider. Exactly 2 figures, each 0–100
   with a valid `pie_split`.
+
+**A figure with a headline number renders as a visual tile, never a bare
+note.** A headline number is a share, a count, a multiple, or a delta;
+it renders as a big-number, pie, ratio, sparkline, or waffle tile.
+Notes are ONLY for findings with no headline number: a prose finding,
+a case, a qualitative judgement. A numbered finding rendered as prose
+is a defect. (2026-11-20: the whole Net impact panel rendered as ten
+tall, mostly empty note cards — every item carried a headline number;
+Yorgo caught it from a screenshot.)
+
 **Pie colours.** Every pie-family figure carries `pie_split`, naming
 the wedge; the remainder follows by rule. Decision procedure, in
 order: (1) CI vs EI or AI-side-vs-rest split → `identity` (rust wedge,
@@ -721,7 +733,20 @@ note text ≤ 190 chars, sparkline captions ≤ 79 chars, waffle captions
 (`build_dashboard.py`'s estimator, desktop widths) must be ≤ 280px;
 the build FAILS above 290px and WARNS at 281–290px (tolerance band —
 the estimator runs conservative, so band cases are decided by the live
-whole-row check, not by trimming). A single tile's overflow is fixed by
+whole-row check, not by trimming). Underfill is enforced the same
+way, NOTE-ONLY: a `note` tile estimating under 110px FAILS the build —
+convert the figure to a visual tile or enrich the note text. Other tile
+types are never underfill-checked (a big-number carries a stat block;
+the 188 strip tile estimates ~150px and is legitimate). The floor is
+calibrated, not guessed: the estimator quantizes span-2 notes into
+~98/~122/~146px buckets, and legitimate prose notes occupy the 122px
+and 146px buckets alongside the defect cards, so no higher floor
+separates the two — 110px sits midway between the 1-line and 2-line
+buckets and catches only the worst offenders; the §6 line-13 human
+check covers the rest. No WARN band: every legitimate note sits in
+it, and a standing warning trains the reader to ignore warnings.
+(2026-11-20 — the Net impact miss: ten note cards, content 98–146px
+by the estimator, passed every check.) A single tile's overflow is fixed by
 trimming that tile, never by raising the unit height; the height moves
 only on systematic evidence from the live whole-row check. Fixed
 columns: 3 above 1100px, 2 at 601–1100px, 1 at ≤600px. On phones
@@ -739,7 +764,17 @@ the countdown strip keeps its own 4→2→1 grid (four tiles do not pack
 into a 3-column unit grid). `.tile-grid` uses dense flow: a later
 1-unit tile backfills a hole a 2-unit tile leaves — visual order may
 differ from DOM order by one slot; DOM order stays editorial. The
-square variant is one aspect-ratio rule on 1-unit tiles, not adopted.
+ledger is the exception to one-grid-per-panel (2026-11-20): its two
+sides are semantically disjoint (output up vs cleanup up) and must
+never interleave, even under sort — each side renders in its own
+`.tile-grid`, with its block-label as the grid's first child, and the
+panel footnote below the second grid. The sort/filter JS is
+grid-generic (it reorders within each grid, labels per grid, counts
+per panel body), so two grids are safe. The second grid carries
+`margin-top: 16px`, restoring the 24px inter-side gap of the
+single-grid layout (12px row gap + 12px label margin; the split would
+otherwise leave the 8px grid margin-bottom alone). The square variant
+is one aspect-ratio rule on 1-unit tiles, not adopted.
 **Graphic-slot scoping.** Any CSS rule targeting a tile's inner graphic
 must be scoped or qualified so it can never match the tile div:
 tile-type classes are also tile-div classes — an unscoped
@@ -931,6 +966,16 @@ closing the miss.
     finding gets its own article, never a tile pointed at another
     finding's headline; ratio side rows name the cohorts, not the
     measure.
+12. Whole-row visual check covers EVERY panel (added 2026-11-20 — the
+    Net impact miss): the line-7 check runs over every dashboard
+    panel and the strip, not a sample.
+13. No tile renders mostly empty (added 2026-11-20): no card reads
+    mostly empty at desktop width; a numbered figure rendered as
+    bare prose fails the release.
+14. Design §5 review collected IN WRITING before release (added
+    2026-11-20): the design editor's verdict — pass, or findings
+    fixed and re-verified — is recorded in the release note; no
+    written verdict, no release.
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
@@ -1322,3 +1367,17 @@ years change. verify.py warns when its pass count differs from
   headline + voiceover + slide id, and the watch-cron instructions all
   carry the new name. Historical changelog and archive entries keep
   the old name.
+- **2026-11-20** — Net impact panel converted from notes to visual
+  tiles (Yorgo, from a screenshot: the whole panel rendered as ten
+  tall, mostly empty note cards — every item carried a headline
+  number): nine of the ten ledger items are now visual tiles (seven
+  big-number, two ratio), the FCA case stays a note with enriched
+  text. New rules: a figure with a headline number renders as a
+  visual tile, never a bare note (§4, pointer in §2). §6 checklist
+  gains lines 12–14: the whole-row visual check covers every panel,
+  no tile renders mostly empty, and the §5 design review is
+  collected in writing before release — no written verdict, no
+  release. §1.1 Sonar bullet aligned to "review" (was "verify"),
+  matching the §2 article. An underfill check is enforced in
+  `build_dashboard.py` (note tiles under 110px fail, §4); the ledger
+  splits into one grid per side so the sides can never interleave.
