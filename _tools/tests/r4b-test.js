@@ -8,7 +8,7 @@
 // the build or the generator changes — then update this file's
 // hard-coded snapshot numbers (totals, Black Duck, pre-click) from
 // the values regen_fixture.py prints. Current snapshot: 62 figures,
-// 97 articles (2026-11-19 redesign round).
+// 98 articles (2026-11-19 3.4x split).
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -175,7 +175,7 @@ const moreFilters = new El('details', { class: 'dash-more-filters' });
 bar.appendChild(moreFilters);
 const clearBtnBar = new El('button', { attrs: { 'data-clear-filters': '' }, class: 'dash-clear-btn' });
 bar.appendChild(clearBtnBar);
-const countEl = new El('p', { id: 'dash-count', text: 'Showing 62 of 62 figures · 97 of 97 articles' });
+const countEl = new El('p', { id: 'dash-count', text: 'Showing 62 of 62 figures · 98 of 98 articles' });
 bar.appendChild(countEl);
 const indicatorEl = new El('span', { id: 'sfp-active', class: 'sfp-active', text: '' });
 root.appendChild(indicatorEl);
@@ -285,11 +285,11 @@ function clickAnchor() {
 }
 
 // ---------- tests ----------
-check('fresh count line', countEl.textContent === 'Showing 62 of 62 figures · 97 of 97 articles', countEl.textContent);
+check('fresh count line', countEl.textContent === 'Showing 62 of 62 figures · 98 of 98 articles', countEl.textContent);
 check('fresh indicator empty', indicatorEl.textContent === '');
 check('fresh toggle disabled', sortDirBtn.disabled === true);
 check('fresh all tiles visible', visibleTiles().length === 62, String(visibleTiles().length));
-check('fresh all articles visible', visibleArticles().length === 97, String(visibleArticles().length));
+check('fresh all articles visible', visibleArticles().length === 98, String(visibleArticles().length));
 check('fresh dash-empty hidden', dashEmpty.hidden === true);
 check('fresh report-empty hidden', reportEmpty.hidden === true);
 
@@ -302,7 +302,7 @@ for (const [name, filters] of Object.entries(fixture.scenarios)) {
   const vf = visibleTiles().length, va = visibleArticles().length;
   check(`scenario ${name}: figures ${vf}==${ef}`, vf === ef, `got ${vf}`);
   check(`scenario ${name}: articles ${va}==${ea}`, va === ea, `got ${va}`);
-  check(`scenario ${name}: count line`, countEl.textContent === `Showing ${ef} of 62 figures · ${ea} of 97 articles`, countEl.textContent);
+  check(`scenario ${name}: count line`, countEl.textContent === `Showing ${ef} of 62 figures · ${ea} of 98 articles`, countEl.textContent);
 }
 
 // indicator text
@@ -420,14 +420,14 @@ check('clear-all: type boxes unchecked', TYPE_VALUES.every(v => !typeBoxes[v].ch
 check('clear-all: sort back to panel', sortSel.value === 'panel');
 check('clear-all: toggle reset to Descending + disabled', sortDirLabel.textContent === 'Descending' && sortDirBtn.disabled === true);
 check('clear-all: More filters collapsed', moreFilters.open === false);
-check('clear-all: counts restored', countEl.textContent === 'Showing 62 of 62 figures · 97 of 97 articles', countEl.textContent);
+check('clear-all: counts restored', countEl.textContent === 'Showing 62 of 62 figures · 98 of 98 articles', countEl.textContent);
 check('clear-all: indicator empty', indicatorEl.textContent === '');
 
 // anchor click into the report clears filters (share links open unfiltered)
 setSelect('severity', 'critical');
 check('pre-click: filtered', visibleArticles().length === 9, String(visibleArticles().length));
 clickAnchor();
-check('anchor click clears filters', visibleArticles().length === 97 && countEl.textContent === 'Showing 62 of 62 figures · 97 of 97 articles', countEl.textContent);
+check('anchor click clears filters', visibleArticles().length === 98 && countEl.textContent === 'Showing 62 of 62 figures · 98 of 98 articles', countEl.textContent);
 
 // feed filtering (Round 5 fix: entries inherit their article's tags)
 const visibleFeed = () => feedItems.filter(li => li.style.display !== 'none');
@@ -437,7 +437,7 @@ setSelect('industry', 'banking');
 check('feed banking: 1 visible', visibleFeed().length === 1, String(visibleFeed().length));
 check('feed banking: empty hidden', feedEmpty.hidden === true);
 check('feed banking: count line counts tiles+articles only',
-  countEl.textContent === `Showing ${visibleTiles().length} of 62 figures · ${visibleArticles().length} of 97 articles`, countEl.textContent);
+  countEl.textContent === `Showing ${visibleTiles().length} of 62 figures · ${visibleArticles().length} of 98 articles`, countEl.textContent);
 clearAll(); setSelect('jurisdiction', 'eu');
 check('feed eu: 0 visible', visibleFeed().length === 0, String(visibleFeed().length));
 check('feed eu: empty shows', feedEmpty.hidden === false);
