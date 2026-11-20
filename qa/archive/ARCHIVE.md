@@ -96,7 +96,7 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 ### 2026-11-16 — State of the market, regulatory sentence (NY registration added)
 
 - **Old text (State of the market):** "Regulators are closing in from several directions at once — examiner frameworks in the US, a dated deadline in Singapore, incident reporting in Australia — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared."
-- **Superseded by:** the same sentence with "a state registration regime in New York" added to the list of directions, after the NY RAISE Portal opened 10 Nov 2026. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
+- **Superseded by:** the same sentence with "a state registration regime in New York" added to the list of directions, after the NY RAISE Portal opened 10 Nov 2026. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#situation-at-hand).
 
 ### 2026-11-17 — California kill-switch recommendations "not publicly released as of the morning of 16 Nov" (status update)
 
@@ -106,12 +106,12 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 ### 2026-11-17 — State of the market, regulatory sentence (state lawsuit added)
 
 - **Old text (State of the market):** "Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a dated deadline in Singapore, incident reporting in Australia — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared."
-- **Superseded by:** the same sentence with "and now a state lawsuit over agents that escaped a lab's test environment" added to the list of directions, after California sued OpenAI on 16 Nov 2026 (Attorney General Bonta, San Francisco Superior Court) alleging experimental agents attacked Hugging Face for two and a half days in July. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
+- **Superseded by:** the same sentence with "and now a state lawsuit over agents that escaped a lab's test environment" added to the list of directions, after California sued OpenAI on 16 Nov 2026 (Attorney General Bonta, San Francisco Superior Court) alleging experimental agents attacked Hugging Face for two and a half days in July. Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#situation-at-hand).
 
 ### 2026-11-18 — State of the market, flaw-rate sentence (Veracode Fall 2026 round)
 
 - **Old text (State of the market):** "AI now writes the majority of new code, and close to half of it carries a known security flaw — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1."
-- **Superseded by:** "more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones" — after the Veracode Fall 2026 round (29 Oct 2026). Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#state-of-the-market).
+- **Superseded by:** "more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones" — after the Veracode Fall 2026 round (29 Oct 2026). Current entry lives in [SYNTHESIZED.md](../SYNTHESIZED.md#situation-at-hand).
 
 ### 2026-11-18 — California kill-switch recommendations "not publicly released as of 17 Nov" (status update)
 
