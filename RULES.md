@@ -220,7 +220,14 @@ tile at the new article. Never point a tile at an article whose
 headline is about a different finding, however good the evidence
 buried in its bullets. (2026-11-19: the 3.4× strip tile linked to the
 2.5× post-hoc-review article, where the 3.4× was one bullet in six;
-Yorgo caught it from a QA screenshot.) Numbered figures render as
+Yorgo caught it from a QA screenshot.) Since 2026-11-20 the rule is
+enforced mechanically: `build_dashboard.validate()` fails the build
+when a figure's display numerals are absent from its target
+headline, except figures listed in `HEADLINE_KNOWN_MISMATCHES`
+(pre-existing mismatches, each naming its resolution — A11 splits or
+`headline_match` word-forms) and theme-headlined articles, which
+warn. `verify.py` also checks that every relative file link
+resolves to a file in the repo (D3). Numbered figures render as
 visual tiles, never bare notes (§4). Where a conclusion draws on a
 second headline article in another subsection, the figure carries an
 "also" list ({anchor, label})
@@ -581,11 +588,16 @@ register technical → mixed → business (depth scale); set dimensions
 alphabetical by first value; ties keep editorial order (stable sort).
 **Count line.** "Showing X of 62 figures · Y of 85 articles", always
 visible, below Clear-all; figures are panel tiles only. When a
-subsection filters out entirely it hides, heading and all; when a
-section's subsections all hide, the section hides; the REPORT and
-EXECUTIVE DASHBOARD headings stay visible, framing the per-area
-empty-state lines ("No figures match these filters." /
-"No articles match these filters.", each with its own Clear button).
+subsection filters out entirely it hides, heading and all. The three
+report sections (§1 Pre-commit, §2 In codebase, §3 Agentic) NEVER
+hide under filtering — no matter what filter the reader uses, they
+always get all three sections; a section with no matching articles
+shows an empty-state line under its heading instead of vanishing
+(decided 2026-11-20; implementation pending — rides with the
+usability review). The REPORT and EXECUTIVE DASHBOARD headings stay
+visible, framing the per-area empty-state lines ("No figures match
+these filters." / "No articles match these filters.", each with its
+own Clear button).
 Only the four untaggable tiles — the three §3.6 figures and the money
 bignote — are never hidden and keep their editorial position under
 sorting; the interim untagged-visible rule is retired (the backfill is
@@ -1381,3 +1393,17 @@ years change. verify.py warns when its pass count differs from
   matching the §2 article. An underfill check is enforced in
   `build_dashboard.py` (note tiles under 110px fail, §4); the ledger
   splits into one grid per side so the sides can never interleave.
+- **2026-11-20** — Filter section-invariance decided (Yorgo): the
+  three report sections (§1 Pre-commit, §2 In codebase, §3 Agentic)
+  never hide under filtering — no matter what filter the reader
+  uses, they always get all three sections. Implementation pending;
+  rides with the usability review.
+- **2026-11-20** — Headline rule now enforced mechanically (D2):
+  `build_dashboard.validate()` fails the build when a figure's
+  display numerals are absent from its target article's headline
+  (word-forms via `headline_match`); the 9 pre-existing mismatches
+  warn from `HEADLINE_KNOWN_MISMATCHES` until their A11 splits or
+  data entries land, and theme-headlined articles warn. `verify.py`
+  gains a relative-file-link check (D3, 54 checks) — the class that
+  let the uncommitted append-only archive file 404. The local git
+  checkout was reconciled to origin/main (D4).
