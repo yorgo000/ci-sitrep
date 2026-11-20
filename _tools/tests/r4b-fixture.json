@@ -1139,11 +1139,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-42-of-committed-code-is-ai-generated-or-assisted-65",
+          "id": "tile-net-impact-of-committed-code-is-ai-generated-or-assisted-65-by-2027",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-neutral"
           ],
           "attrs": {
@@ -1164,11 +1163,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-by-2025-higher-ai-adoption-correlates-with-higher",
+          "id": "tile-net-impact-of-professionals-using-ai-by-2025-use-linked-to-higher",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-neutral"
           ],
           "attrs": {
@@ -1193,11 +1191,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-duplicate-code-blocks-81-code-churn-within-two-weeks-15",
+          "id": "tile-net-impact-duplicate-code-blocks-two-week-churn-15-refactoring-21-38",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1219,11 +1216,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-every-25-of-ai-adoption-cost-15-throughput-and-72-delivery",
+          "id": "tile-net-impact-delivery-stability-per-25-ai-adoption-in-2024-verification",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1244,11 +1240,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-mean-vulnerabilities-per-codebase-581-up-107-year-on-year",
+          "id": "tile-net-impact-mean-vulnerabilities-per-codebase-up-107-year-on-year",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1270,11 +1265,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-96-of-developers-dont-fully-trust-ai-output-yet-only-48",
+          "id": "tile-net-impact-of-developers-always-review-ai-output-before-committing-96",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1295,11 +1289,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-ai-discovered-vulnerabilities-outpace-fixes-175-to-1-37966",
+          "id": "tile-net-impact-ai-discovered-vulnerabilities-outpace-fixes",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-ratio",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1321,11 +1314,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-ai-generated-patches-introduce-11-the-vulnerabilities-of",
+          "id": "tile-net-impact-vulnerabilities-in-ai-patches-vs-developer-patches",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-ratio",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1346,11 +1338,10 @@
         },
         {
           "kind": "tile",
-          "id": "tile-net-impact-insecure-neighbouring-code-cuts-correct-and-secure-output",
+          "id": "tile-net-impact-share-of-correct-and-secure-code-in-cc-repo-coding-insecure",
           "classes": [
             "tile",
-            "tile-note",
-            "tile-span-2",
+            "tile-big-number",
             "tile-sentiment-negative"
           ],
           "attrs": {
@@ -1520,7 +1511,7 @@
     "articles": [],
     "children": [
       {
-        "id": "state-of-the-market",
+        "id": "situation-at-hand",
         "level": 2,
         "articles": [],
         "children": []
@@ -1875,6 +1866,20 @@
                 "jurisdiction": "global",
                 "company": "Secure Code Warrior",
                 "date": "2026-11-17"
+              },
+              {
+                "subject": "1 2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "Snyk",
+                "date": "2026-10-28"
               }
             ],
             "children": [
@@ -2237,6 +2242,118 @@
                 "jurisdiction": "global",
                 "company": "Microsoft",
                 "date": "2026-11-17"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "study",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "company": "GitHub",
+                "date": "2026-11-17"
+              },
+              {
+                "subject": "2 3",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Chainstack",
+                "date": "2026-11-10"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Microsoft",
+                "date": "2026-11-10"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Mittwald",
+                "date": "2026-11-07"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Cycode,Microsoft",
+                "date": "2026-11-18"
+              },
+              {
+                "subject": "2 3",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "critical",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "OpenAI",
+                "date": "2026-11-11"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "incident",
+                "industry": "software",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Model Context Protocol",
+                "date": "2026-11-11"
+              },
+              {
+                "subject": "2",
+                "sector": "technology",
+                "confidence": "corroborated",
+                "severity": "material",
+                "type": "incident",
+                "industry": "software cloud",
+                "register": "technical",
+                "pnl-impact": "risk",
+                "horizon": "immediate",
+                "jurisdiction": "global",
+                "company": "Amazon Web Services",
+                "date": "2026-11-11"
               }
             ],
             "children": []
@@ -2686,8 +2803,73 @@
                     "pnl-impact": "risk compliance",
                     "horizon": "immediate",
                     "jurisdiction": "us-federal",
-                    "company": "Citi,PNC,Citizens,Wells Fargo",
+                    "company": "Citi,PNC,Citizens,Wells Fargo,JPMorgan,Bank of America",
                     "date": "2026-11-18"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "reported",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "us-state",
+                    "date": "2026-11-18"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "quarter",
+                    "jurisdiction": "new-york",
+                    "date": "2026-11-17"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance",
+                    "confidence": "corroborated",
+                    "severity": "material",
+                    "type": "guidance",
+                    "industry": "banking",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "singapore",
+                    "date": "2026-11-19"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "government",
+                    "confidence": "established",
+                    "severity": "directional",
+                    "type": "regulation",
+                    "industry": "ai-labs",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-19"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "finance government",
+                    "confidence": "established",
+                    "severity": "material",
+                    "type": "regulation",
+                    "industry": "capital-markets",
+                    "register": "business",
+                    "pnl-impact": "risk compliance",
+                    "horizon": "year",
+                    "jurisdiction": "us-federal",
+                    "date": "2026-11-19"
                   }
                 ],
                 "children": []
@@ -3031,6 +3213,34 @@
                     "jurisdiction": "global",
                     "company": "Amazon",
                     "date": "2026-10-28"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "corroborated",
+                    "severity": "critical",
+                    "type": "incident",
+                    "industry": "ai-labs",
+                    "register": "technical",
+                    "pnl-impact": "risk",
+                    "horizon": "immediate",
+                    "jurisdiction": "global",
+                    "company": "OpenAI",
+                    "date": "2026-11-10"
+                  },
+                  {
+                    "subject": "3",
+                    "sector": "technology",
+                    "confidence": "claimed",
+                    "severity": "directional",
+                    "type": "product",
+                    "industry": "software",
+                    "register": "technical",
+                    "pnl-impact": "risk",
+                    "horizon": "quarter",
+                    "jurisdiction": "global",
+                    "company": "HYPR",
+                    "date": "2026-11-18"
                   }
                 ],
                 "children": []
@@ -3138,15 +3348,15 @@
   "expected": {
     "fresh": [
       62,
-      98
+      114
     ],
     "severity_critical": [
       4,
-      9
+      14
     ],
     "type_benchmark_study": [
       25,
-      39
+      41
     ],
     "company_black_duck": [
       6,
@@ -3154,7 +3364,7 @@
     ],
     "company_openai": [
       6,
-      7
+      9
     ],
     "jurisdiction_eu": [
       4,
@@ -3166,15 +3376,15 @@
     ],
     "severity_critical_industry_software": [
       4,
-      9
+      13
     ],
     "five_dims": [
       4,
-      0
+      4
     ],
     "confidence_claimed": [
       5,
-      5
+      6
     ]
   }
 }
