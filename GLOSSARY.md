@@ -429,6 +429,11 @@ governing models. Rescinded April 2026 and replaced by SR 26-2.
 expressly places generative and agentic AI outside model-risk scope — the US
 federal gap the report is built around.
 
+**SSRF (server-side request forgery)** — A flaw where an attacker makes a
+server send requests to places it should not reach — its own internal network,
+cloud metadata services — and sometimes get the answers back. The flaw behind
+the AWS MCP gateway bulletin (Nov 2026).
+
 **supervisor pattern** — The production-default way to run a team of agents:
 one supervisor agent plans, assigns work to specialist agents, checks their
 output, and decides what ships.
@@ -443,6 +448,12 @@ vulnerabilities" finding.
 the firms whose software, data, or services you depend on. The proposed
 interagency guidance would rewrite the US rules for it; comments close 16 Dec
 2026.
+
+**trusted publishing** — Publishing a package with a short-lived identity
+token from the CI platform (an OIDC token) instead of a long-lived API key —
+so whoever controls the CI job can publish. The prize at the end of Depi's
+Codex chain (Nov 2026): a GitHub-signed token npm would have accepted for
+@openai/codex.
 
 ## V
 
