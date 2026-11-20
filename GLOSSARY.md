@@ -355,6 +355,10 @@ reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.
 
+**pts (percentage points)** — The unit for the arithmetic difference
+between two percentages: a share falling from 91% to 42% falls by
+49 pts, not 49%. (Not index points, the usual finance meaning.)
+
 ## R
 
 **RAISE (Responsible AI Safety and Education Act)** — New York's frontier-AI
