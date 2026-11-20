@@ -392,6 +392,24 @@ A public Corrections page (`CORRECTIONS.md` → `corrections.html`): errors and 
 
 ---
 
+## F-24 — Subset / superset choice on multi-select filters
+
+**Status:** Proposed
+**Proposed:** 2026-11-20 (Yorgo)
+
+Today the filter panel matches AND across dimensions and union (ANY) within a dimension: an article matches if any of its values equals any selected value — and Type is the only multi-choice dimension. When a reader selects multiple values in a multi-select dimension — industries, sectors, and any other multi-select — the reader must choose the match mode: **subset** (intersection — the article must carry ALL selected values) or **superset** (union — the article carries ANY selected value, today's behaviour). No silent default: the choice is required when two or more values are selected.
+
+**Notes / open questions:**
+
+- Per-dimension toggle (each multi-select group gets its own subset/superset control) or one global toggle for the whole panel? Per-dimension is the natural reading; confirm at build.
+- What the panel shows before the reader chooses: the multi-selection doesn't filter until a mode is picked, or the mode control appears with the second selection. Decide at build.
+- Label wording: "subset" / "superset" are the spec terms; the UI may want plainer labels ("match all" / "match any") — decide at build.
+- Tag caps bound intersection: set dimensions carry at most 2 values per article (pnl-impact 3), so an intersection over more values than the cap can match nothing — the UI should say so rather than show an empty result silently.
+- Sector is not a filter today (removed 2026-11-18; tags kept in data) — sector multi-select arrives with the sector filter's return, under the same rule.
+- Dashboard figures inherit their evidencing article's tags, so the same rule governs tiles.
+
+---
+
 ## Template for new features
 
 ```markdown
