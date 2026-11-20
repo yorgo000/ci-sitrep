@@ -1743,6 +1743,19 @@
                 "date": "2026-11-02"
               },
               {
+                "subject": "1",
+                "sector": "technology",
+                "confidence": "reported",
+                "severity": "material",
+                "type": "benchmark",
+                "industry": "software",
+                "register": "mixed",
+                "pnl-impact": "cost risk",
+                "horizon": "quarter",
+                "jurisdiction": "global",
+                "date": "2026-11-02"
+              },
+              {
                 "subject": "1 2",
                 "sector": "technology",
                 "confidence": "reported",
@@ -3125,7 +3138,7 @@
   "expected": {
     "fresh": [
       62,
-      97
+      98
     ],
     "severity_critical": [
       4,
@@ -3133,7 +3146,7 @@
     ],
     "type_benchmark_study": [
       25,
-      38
+      39
     ],
     "company_black_duck": [
       6,
