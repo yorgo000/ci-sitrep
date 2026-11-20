@@ -107,7 +107,7 @@ Then the two top-level sections, both starting OPEN:
    standalone dashboard page is gone; `dashboard.html` redirects to
    `index.html#executive-dashboard`.)
 2. **REPORT** — the report itself, in this order:
-   - **State of the market** — a 2–4 sentence macro synthesis, the first
+   - **Situation at hand** — a 2–4 sentence macro synthesis, the first
      thing a new reader actually reads. Every claim in it is grounded in
      the report's own findings and traceable via an internal link to the
      section that evidences it (the flaw rate to §1.6, the governance gap
@@ -448,7 +448,7 @@ REPORT) are the visual top of the hierarchy, their heading text in
 all-caps so they read as different from their constituents (title case
 until 2026-11-15, when Yorgo asked for caps); the three content
 sections (§1, §2, §3) sit inside Report. The meta-section headings
-("State of the market", "New in the last 7 days", "What we're watching",
+("Situation at hand", "New in the last 7 days", "What we're watching",
 "Archive") are de-emphasized: smaller, lighter weight, muted color.
 
 **Collapse behaviour.** Only the two top-level sections start OPEN;
@@ -554,7 +554,7 @@ report articles, one model, one count line — from the tags (§2).
 Sort applies to dashboard tiles within panels only: articles filter
 but never sort, or the report's editorial structure scrambles. The
 strips are never filtered and never counted. "New in the last 7 days",
-"State of the market", and "What we're watching" stay unfiltered (not
+"Situation at hand", and "What we're watching" stay unfiltered (not
 tagged content). Shared links land unfiltered: a landing clears the
 filters and the panel stays collapsed.
 **Controls, in order.** Top line: Industry, Severity, P&L impact,
@@ -1316,3 +1316,9 @@ years change. verify.py warns when its pass count differs from
   11× waffle) together in row 1 — Yorgo's pick. The 3.4× finding split
   into its own article (98 articles, 14E/30C/49R/5Cl). §2 strip clause
   updated to 8 items / 9 units / 3×3.
+- **2026-11-20** — "State of the market" renamed "Situation at hand"
+  (Yorgo's pick): the front-page macro synthesis section, its anchor
+  (`#situation-at-hand`), the findings-export key, the broadcast scene
+  headline + voiceover + slide id, and the watch-cron instructions all
+  carry the new name. Historical changelog and archive entries keep
+  the old name.
