@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Export the CI SITREP report as structured JSON (F-19 / first F-02 database file).
 
-Parses SYNTHESIZED.md (articles, State of the market, New in the last 7 days),
+Parses SYNTHESIZED.md (articles, Situation at hand, New in the last 7 days),
 GLOSSARY.md (terms), and dashboard.json (deadlines, gauges) and writes:
 
   data/findings.json          — the database: articles, what's new, glossary,
@@ -106,12 +106,12 @@ class _IdCollector(HTMLParser):
 
 
 def parse_articles(src, warnings):
-    """Walk SYNTHESIZED.md; return (articles, state_of_market, whats_new)."""
+    """Walk SYNTHESIZED.md; return (articles, situation_at_hand, whats_new)."""
     lines = src.splitlines()
     section = None
     subsection = None
     articles = []
-    state_of_market = []
+    situation_at_hand = []
     whats_new_raw = []
     in_state = False
     in_new = False
@@ -124,7 +124,7 @@ def parse_articles(src, warnings):
             subsection = None
             in_state = False
             in_new = False
-        elif line.startswith("## State of the market"):
+        elif line.startswith("## Situation at hand"):
             in_state = True
             in_new = False
         elif line.startswith("## New in the last 7 days"):
@@ -136,7 +136,7 @@ def parse_articles(src, warnings):
         elif line.startswith("### "):
             subsection = line[4:].strip()
         if in_state and line and not line.startswith("##"):
-            state_of_market.append(line)
+            situation_at_hand.append(line)
         if in_new and line.startswith("- **"):
             whats_new_raw.append(line)
         if line.strip() == "<details>":
@@ -149,7 +149,7 @@ def parse_articles(src, warnings):
             if art is not None:
                 articles.append(art)
         i += 1
-    return articles, md_to_text(" ".join(state_of_market)), whats_new_raw
+    return articles, md_to_text(" ".join(situation_at_hand)), whats_new_raw
 
 
 def parse_article_block(block, section, subsection, warnings):
@@ -423,7 +423,7 @@ def main(argv):
     dashboard = json.loads((repo / "dashboard.json").read_text())
     glossary = parse_glossary((repo / "GLOSSARY.md").read_text())
 
-    articles, state_of_market, whats_new_raw = parse_articles(synth, warnings)
+    articles, situation_at_hand, whats_new_raw = parse_articles(synth, warnings)
     whats_new = parse_whats_new(whats_new_raw, warnings)
     assign_ids(articles, repo / "index.html", warnings)
     validate_ids(articles, repo / "index.html", warnings)
@@ -468,7 +468,7 @@ def main(argv):
         },
         "ratings": {r: sum(1 for a in articles if a["rating"] == r)
                     for r in ("established", "corroborated", "reported", "claimed")},
-        "state_of_the_market": state_of_market,
+        "situation_at_hand": situation_at_hand,
         "articles": articles,
         "whats_new": whats_new,
         "glossary": glossary,
