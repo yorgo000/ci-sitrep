@@ -41,6 +41,8 @@ building agent governance (with MAS SAFR).
 researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
 
+**ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)** — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.
+
 ## C
 
 **Cairn** — An open-source AI penetration-testing framework that hands an
@@ -237,6 +239,8 @@ their oversight mandatory and ongoing.
 **kill switch** — A control that stops an AI agent (or system) immediately and
 completely when it goes wrong — and proves it stopped. A kill switch that has
 never been tested is a claim, not a control.
+
+**Know Your Agent (KYA)** — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.
 
 ## L
 
@@ -446,6 +450,8 @@ interagency guidance would rewrite the US rules for it; comments close 16 Dec
 plain language and accepting what it produces, with little or no reading of the
 code. Fast; Veracode's finding is that ~38% of AI-generated code carries a
 known security flaw.
+
+**VulnBench** — A benchmark of 108 hand-curated, attacker-reachable vulnerabilities in 20 open-source web apps, measuring deterministic SAST against AI security review under one blind protocol. Version 2.0 (Oct 2026) is the report's head-to-head evidence for running both layers.
 
 ## X
 
