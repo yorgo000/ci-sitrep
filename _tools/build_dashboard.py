@@ -1160,12 +1160,26 @@ def render_bignote_tile(b, panel_id, ctx, tile_ids):
 def render_panel(p, ctx, tile_ids):
     """One panel: a single tile grid holding every block's tiles in
     editorial order, with block labels as full-width grid rows. One grid
-    (not one per block) so the sort control can reorder within the panel;
-    the ledger's two groups are labelled rows in the same grid, stacked
-    vertically. The panel footnote sits below the grid.
+    (not one per block) so the sort control can reorder within the panel.
+    EXCEPTION — the ledger (2026-11-20, Net impact fix): the ledger's
+    two sides are semantically disjoint (output up vs cleanup up) and
+    must never interleave, even under sort, so each side gets its own
+    grid, with its block-label as the grid's first child. The sort /
+    filter JS is grid-generic (applySort reorders within each grid,
+    updateLabels works per grid, applyFilters counts tiles per panel
+    body), so two grids are safe — and the sides can never mix. The
+    panel footnote sits below the last grid.
     """
+    grids = []
     kids = []
     footnote = ""
+
+    def flush():
+        nonlocal kids
+        if kids:
+            grids.append('<div class="tile-grid">' + "".join(kids) + "</div>")
+            kids = []
+
     for b in p["blocks"]:
         kind = b["kind"]
         if kind in ("bars", "stats", "notes"):
@@ -1177,21 +1191,29 @@ def render_panel(p, ctx, tile_ids):
         elif kind == "bignote":
             kids.append(render_bignote_tile(b, p["id"], ctx, tile_ids))
         elif kind == "ledger":
+            # One grid per side (see docstring): flush any pending
+            # non-ledger grid first so editorial order is preserved.
+            flush()
             for side in ("left", "right"):
-                kids.append(f'<p class="block-label">{esc(b[side]["title"])}</p>')
-                kids.extend(
+                side_kids = [
+                    f'<p class="block-label">{esc(b[side]["title"])}</p>'
+                ]
+                side_kids.extend(
                     render_tile(f, p["id"], ctx, tile_ids)
                     for f in b[side]["items"]
+                )
+                grids.append(
+                    '<div class="tile-grid">' + "".join(side_kids) + "</div>"
                 )
             if b.get("footnote"):
                 footnote = f'<p class="ledger-foot">{esc(b["footnote"])}</p>'
         else:
             raise ValueError(f"unknown block kind: {kind}")
-    grid = '<div class="tile-grid">' + "".join(kids) + "</div>"
+    flush()
     return (
         f'<h3 id="{esc(p["id"])}" class="dash-panel">{esc(p["title"])}</h3>'
         f'<p class="panel-lede">{esc(p["lede"])}</p>'
-        f"{grid}{footnote}"
+        f"{''.join(grids)}{footnote}"
     )
 
 
@@ -1390,6 +1412,15 @@ def render_embedded(data, ctx=None):
 # the implementer's reading, flagged to the Chief Editor.
 TILE_HEIGHT = 280
 TILE_HEIGHT_FAIL = 290
+# Underfill fail line (2026-11-20 — the Net impact miss): a NOTE tile
+# estimating under 110px fails the build. Calibrated, not guessed: the
+# estimator quantizes span-2 notes into ~98/~122/~146px buckets (1/2/3
+# lines of text + a 1-line source), and legitimate prose notes occupy
+# the 122px and 146px buckets alongside the defect cards — no higher
+# floor separates the two. 110px sits midway between the 1-line and
+# 2-line buckets and catches only the worst offenders (a card under
+# ~40% full); the §6 line-13 human check covers the rest.
+TILE_UNDERFILL_FAIL = 110
 
 _INNER_1UNIT = 219   # 1-unit tile content width at desktop 3-col
 _INNER_2UNIT = 477   # 2-unit tile content width at desktop 3-col
@@ -1565,6 +1596,34 @@ def _check_tile_height(f, src, errors, history, strip=False):
         print(f"WARNING: {ident} estimates {est:.0f}px — inside the "
               f"{TILE_HEIGHT}–{TILE_HEIGHT_FAIL}px tolerance band; "
               "confirm live")
+
+
+def _check_tile_underfill(f, src, errors, history, strip=False):
+    """The underfill enforcement (2026-11-20 — the Net impact miss): a
+    NOTE tile estimating under TILE_UNDERFILL_FAIL (110px) fails the
+    build — a card under ~40% full in a 280px unit is hollow, not
+    minimal. NOTE-ONLY: every other tile type carries a graphic row
+    or a stat block, so a short estimate is not underfill for them
+    (the 188 strip tile estimates ~150px and is a legitimate
+    big-number). No WARN band: every legitimate note in the dashboard
+    estimates 122–146px, so a band above the fail line would warn on
+    accepted content every build — a standing warning trains the
+    reader to ignore warnings. The §6 line-13 human check (no card
+    reads mostly empty) covers notes above the fail line. The fail
+    message names the fix: convert the figure to a visual tile, or
+    enrich the note text."""
+    if f.get("tile") != "note":
+        return
+    est = estimate_tile_height(f, history, strip=strip)
+    ident = (f"{src} ({f.get('display', '')} "
+             f"{f.get('label', f.get('text', ''))[:40]})")
+    if est < TILE_UNDERFILL_FAIL:
+        errors.append(
+            f"{ident}: estimates {est:.0f}px — under the "
+            f"{TILE_UNDERFILL_FAIL}px underfill line in a "
+            f"{TILE_HEIGHT}px tile; convert this figure to a visual "
+            "tile or enrich the note text"
+        )
 
 
 def _check_tile_fields(f, src, errors, history):
@@ -1853,6 +1912,7 @@ def validate(data, index_html, ctx=None):
             # with a bad history_key has no caption to measure) — a
             # figure that already failed reports only its field errors.
             _check_tile_height(f, src, errors, history)
+            _check_tile_underfill(f, src, errors, history)
     # Bottom-line strip: same link check; rating and date are optional
     # (the profitability item has neither — its display is the finding).
     for it in data.get("bottom_line", []):
@@ -1871,6 +1931,8 @@ def validate(data, index_html, ctx=None):
             # Full-width strip items are exempt (natural height).
             _check_tile_height(it, f"bottom line {src}", errors, history,
                                strip=True)
+            _check_tile_underfill(it, f"bottom line {src}", errors, history,
+                                  strip=True)
     # Tile ids must be unique (a duplicate id would break share links).
     tile_ids = assign_tile_ids(data)
     if len(set(tile_ids.values())) != len(tile_ids):
@@ -1956,6 +2018,14 @@ DASH_CSS = """
      holes a 2-unit tile leaves; the strips keep default flow (their
      spans cannot hole). */
   .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 8px; align-items: start; grid-auto-flow: dense; }
+  /* Ledger split grids (2026-11-20): the second grid's label is a
+     first-child, so its 12px top margin is zeroed, and the 12px row
+     gap of the old single-grid layout is gone — without this the gap
+     between the two sides would be the 8px grid margin-bottom alone,
+     against 24px before (12px row gap + 12px label margin). 8 + 16
+     restores the 24px rhythm exactly. Only the ledger ever produces
+     adjacent grids. */
+  .tile-grid + .tile-grid { margin-top: 16px; }
   .tile { border: 1px solid var(--line); border-radius: 6px; padding: 32px 14px 12px; background: #fdfbf7; display: flex; flex-direction: column; min-width: 0; height: 280px; }
   .tile-span-2 { grid-column: span 2; }
   .tile-span-3 { grid-column: 1 / -1; height: auto; }
