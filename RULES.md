@@ -192,7 +192,8 @@ alphabetical place under the right letter heading. Changing
 executive dashboard (F-01): five panels of at-a-glance figures, every
 figure carrying its value, label, source, rating, date,
 and a link to the report article that evidences it, plus a `bottom_line`
-list (seven items rendered as a strip above the countdown — rating and
+list (eight items in nine units — three full rows of three — rendered
+as a strip above the countdown; rating and
 date optional, since the profitability item has neither; each item
 carries a tile where its figure has one — a pie tile for a percentage
 (number next to the pie, block-level legend rows), a ratio tile for a
@@ -618,7 +619,12 @@ large companies have AI governance policies").
 - `pie` — shares of one whole ONLY. A comparison is not a share: a-vs-b
   figures get ratio tiles, never pies.
 - `ratio` — multipliers and a-vs-b comparisons; the multiple stays the
-  headline number, with side rows carrying the exact side values.
+  headline number, with side rows carrying the exact side values. A
+  ratio tile with a compare chart can be a DOUBLE (2 units,
+  `"span": 2`): one figure in a wide card — enlarged numeral + label
+  on the left, side rows on the right (the 3.4× strip tile, 2026-11-19);
+  the before/after variant has no chart and keeps the stacked layout
+  whatever its span.
 - `big-number` — counts and single magnitudes with no denominator.
 - `no-data` — the honest absence ("Insufficient data"); dashed border.
 - `sparkline` — time series, 2+ dated points ONLY (§2).
@@ -1303,3 +1309,10 @@ years change. verify.py warns when its pass count differs from
   the 3.4× tile, which linked to the 2.5× post-hoc-review article
   (the 3.4× was one bullet in six) with arms reading "AI code vs AI
   code". §6 checklist gains line 11.
+- **2026-11-19 (late evening)** — Strip grows to eight items: the
+  3.4× SusVibes figure promoted to a DOUBLE ratio tile (one figure in
+  a 2-unit card, §4); the strip is three full rows of three units, the
+  two doubles offset by one column, the vulnerability pair (3.4× +
+  11× waffle) together in row 1 — Yorgo's pick. The 3.4× finding split
+  into its own article (98 articles, 14E/30C/49R/5Cl). §2 strip clause
+  updated to 8 items / 9 units / 3×3.
