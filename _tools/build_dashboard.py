@@ -557,12 +557,16 @@ def sentiment_span(sentiment):
 def span_class(f, full=False):
     """The tile's unit width (Round 4 §2.1): 1-unit tiles carry no span
     class; 2-unit tiles .tile-span-2; 3-unit tiles .tile-span-3 (always
-    1 / -1). The mapping is by tile TYPE, not per-figure data — the
-    bignote and the strip's full-width tile span 3 by position (full),
-    not by type. Paired is 2-unit: the two figures sit side by side in
-    one DOUBLE card (2026-11-19 uniform-size round)."""
+    1 / -1). The mapping is by tile TYPE, except a per-figure
+    "span": 2 in the data, which wins over the type mapping (strip
+    3.4× round, 2026-11-19: a ratio tile promoted to a DOUBLE card) —
+    the bignote and the strip's full-width tile span 3 by position
+    (full), not by type. Paired is 2-unit: the two figures sit side by
+    side in one DOUBLE card (2026-11-19 uniform-size round)."""
     if full:
         return " tile-span-3"
+    if f.get("span") == 2:
+        return " tile-span-2"
     tile = f["tile"]
     if tile in ("note", "sparkline", "paired"):
         return " tile-span-2"
@@ -864,6 +868,29 @@ def _side_rows(chart):
     return f'<div class="tile-sides">{rows}</div>'
 
 
+def render_ratio_double_body(f):
+    """The DOUBLE-ratio layout (strip 3.4× tile, 2026-11-19): ONE figure
+    in a 2-unit card — NOT the paired tile's halves pattern (no
+    vertical hairline divider; one figure, not two). Left zone (~57%)
+    carries the enlarged display numeral (48px, .stat-value-lg) with
+    the label beneath; right zone (~43%) carries the two side rows
+    (the standard .tile-sides/.tile-side markup, shared with the
+    stacked ratio), vertically centred against the left zone by the
+    flex row (align-items: center). The zones are separated by
+    whitespace and scale contrast only. On phones the zones stack
+    (value → label → side rows) via the ≤600px rule in DASH_CSS, and
+    the tile reads as a standard 1-unit ratio tile at full width."""
+    return (
+        '<div class="tile-ratio-double">'
+        '<div class="tile-ratio-main">'
+        f'<p class="stat-value stat-value-lg">{esc(f["display"])}</p>'
+        f'<p class="stat-label">{esc(f["label"])}</p>'
+        "</div>"
+        f"{_side_rows(f['chart'])}"
+        "</div>"
+    )
+
+
 def render_ratio_body(f):
     if "before" in f and "after" in f:
         # Before/after variant: both sides are the same model under two
@@ -1061,7 +1088,13 @@ def tile_body(f, history):
     elif tile == "paired":
         body = render_paired_body(f)
     elif tile == "ratio":
-        body = render_ratio_body(f)
+        # A 2-unit ratio with a compare chart takes the DOUBLE layout
+        # (render_ratio_double_body); the before/after variant has no
+        # chart, so it keeps the stacked layout whatever its span.
+        if "tile-span-2" in span_class(f) and "chart" in f:
+            body = render_ratio_double_body(f)
+        else:
+            body = render_ratio_body(f)
     elif tile == "waffle":
         body = render_waffle_body(f)
     elif tile == "big-number":
@@ -1163,17 +1196,22 @@ def render_panel(p, ctx, tile_ids):
 
 
 def render_bottom_line(items, history):
-    """The bottom-line strip (2026-11-15): seven at-a-glance tiles above
+    """The bottom-line strip (2026-11-15): eight at-a-glance tiles above
     the countdown — the WHOLE card is one link to its evidencing article
     (like the countdown cards; the source name is plain text, not a nested
     link), so the number, the chart, and the description all take the
-    reader to the article. Layout is 3+3+1: six charted tiles occupying
-    seven units in three rows (three 1-unit tiles; the 2.5× tile plus
-    the paired DOUBLE tile; the 188 tile alone, the trailing hole
-    consolidated bottom-right), then the profitability item full-width
-    (3-unit by the strip rule — it has no figure, its display IS the finding, "Insufficient
-    data", with no rating or date, linking to the money panel; its graphic
-    is a question mark in a circle). The tint class sits on the tile div
+    reader to the article. Layout (strip 3.4× round, 2026-11-19;
+    regrouped the same evening — Yorgo's pick: the vulnerability pair
+    together): the two DOUBLE tiles are offset by one column — the
+    maximum possible for adjacent rows — row 1 the 3.4× double
+    (cols 1–2) + the 11× waffle, row 2 the 188 tile + the BCG paired
+    double (cols 2–3), row 3 the 47% + 86% pies + the 2.5× tile, then
+    the profitability item full-width (3-unit by the strip rule — it
+    has no figure, its display IS the finding, "Insufficient data",
+    with no rating or date, linking to the money panel; its graphic
+    is a question mark in a circle). At 2 columns the packing is
+    3.4× full row, 11×+188, BCG full row, 47%+86%, 2.5× trailing
+    single. The tint class sits on the tile div
     (outside the link); the visually-hidden sentiment span is the tile's
     first child, before the link. The share button stays a sibling of the
     link, as everywhere. The strip is never filtered.
@@ -1455,7 +1493,14 @@ def estimate_tile_height(f, history, strip=False):
             half_h = max(half_h, h)
         body += half_h
     elif tile == "ratio":
-        body += _VALUE
+        # A span-2 ratio renders the DOUBLE layout (48px numeral:
+        # 48 x 1.1 + 4 margin ≈ 57px, +20 over the standard _VALUE).
+        # The estimate stays the conservative STACKED count (label at
+        # full inner width, sides below): the real layout puts the
+        # sides beside the value, so the stacked count overstates by
+        # the sides' height — which covers the label wrapping to an
+        # extra line in the narrower left zone.
+        body += _VALUE + (20 if span2 else 0)
         body += _est_lines(f["label"], inner, 14) * _LH_LABEL + 6
         if "before" in f and "after" in f:
             mult = f["after"] / f["before"]
@@ -1954,6 +1999,20 @@ DASH_CSS = """
   .tile-paired-halves { display: flex; }
   .tile-paired-half { flex: 1 1 0; min-width: 0; padding-right: 14px; }
   .tile-paired-half + .tile-paired-half { border-left: 1px solid var(--line); padding-left: 14px; padding-right: 0; }
+  /* Double-ratio tile (strip 3.4×, 2026-11-19): ONE figure in a
+     2-unit card — not the paired tile's halves pattern (no divider;
+     one figure, not two). Left zone (~57%) carries the enlarged
+     numeral (48px) with the label beneath; right zone (~43%) carries
+     the standard side rows, vertically centred against the left zone
+     (align-items: center). Zones separated by whitespace and scale
+     contrast only. Qualified under .tile so the rules can never match
+     the tile div itself (RULES.md §4 graphic-slot scoping — cf. the
+     svg-qualified pie/sparkline rules above). On phones the zones
+     stack (value → label → side rows) via the ≤600px rule below. */
+  .tile .tile-ratio-double { display: flex; align-items: center; gap: 20px; }
+  .tile .tile-ratio-main { flex: 1 1 57%; min-width: 0; }
+  .tile .tile-ratio-double .tile-sides { flex: 1 1 43%; min-width: 0; margin: 0; }
+  .tile .stat-value-lg { font-size: 48px; }
   .tile-flag-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #283060; background: transparent; flex: 0 0 auto; }
   .tile-flag-dot.filled { background: #283060; }
   .tile-text { font-size: 15px; margin: 0 0 6px; }
@@ -2022,6 +2081,14 @@ DASH_CSS = """
      neighbours to align with, and full-width content wraps short);
      the paired tile's halves stack with a horizontal divider. */
   @media (max-width: 600px) { .bottom-line-strip, .countdown-strip, .tile-grid { grid-template-columns: 1fr; } .tile-span-2 { grid-column: 1 / -1; } .dash-type-grid { grid-template-columns: 1fr; } .dash-filter { flex: 1 1 100%; } .dash-filter select { width: 100%; } .tile { height: auto; } .tile-paired-halves { flex-direction: column; } .tile-paired-half { padding-right: 0; } .tile-paired-half + .tile-paired-half { border-left: none; padding-left: 0; border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; } }
+  /* Double-ratio tile on phones: the zones stack (value → label →
+     side rows — the DOM order), reading as a standard 1-unit ratio
+     tile at full width; the enlarged numeral stays; no divider. The
+     zones take content height (flex: none — the desktop 57%/43%
+     basis is a row-direction split) and the side rows recover their
+     standard bottom margin (the desktop rule zeroes it for the
+     centred row). */
+  @media (max-width: 600px) { .tile .tile-ratio-double { flex-direction: column; align-items: stretch; gap: 6px; } .tile .tile-ratio-main, .tile .tile-ratio-double .tile-sides { flex: none; } .tile .tile-ratio-double .tile-sides { margin: 0 0 6px; } }
 """
 
 COUNTDOWN_JS = """
