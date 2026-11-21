@@ -60,12 +60,14 @@ more than one subsection. A failure exits 1 with the problem listed
 uniform tile height (estimate_tile_height): a 1-unit or 2-unit tile
 estimating over 290px fails the build — trim that tile's wording until
 it fits, never raise the height; 280–290px only warns. And it enforces
-the RULES.md §2 headline rule (D2): a figure's display numerals must
-appear in its target article's headline (or a headline_match word-form
-such as "four in five"); a mismatch on a theme-headlined article, or on
-a figure listed in HEADLINE_KNOWN_MISMATCHES, warns instead of failing,
-so the nightly watch never breaks on a mismatch that predates the
-check. validate() returns (errors, warnings); warnings never exit 1.
+the RULES.md §2 headline rule (D2) with a confidence floor (Yorgo,
+2026-11-21): the rule binds only 'claimed' (one-dot) figures — a
+'claimed' figure's display numerals must appear in its target
+article's headline (or a headline_match word-form such as "four in
+five"); a figure rated 'reported' or better passes on a headline
+mismatch, silently. A mismatch on a 'claimed' figure listed in
+HEADLINE_KNOWN_MISMATCHES warns instead of failing. validate()
+returns (errors, warnings); warnings never exit 1.
 
 Usage: build_dashboard.py [dashboard.json] [index.html]
 Validates dashboard.json against index.html; exits 1 on any failure.
@@ -92,46 +94,18 @@ RATING_NUM = {"established": 4, "corroborated": 3, "reported": 2, "claimed": 1}
 TILE_TYPES = {"pie", "ratio", "big-number", "no-data", "sparkline", "flag", "note", "waffle", "paired"}
 SENTIMENTS = {"positive", "negative", "neutral"}
 
-# Headline-rule known mismatches (D2, 2026-11-20): (link, display) ->
-# resolution. A figure whose display numerals are absent from its target
-# article's headline FAILS the build — unless it is listed here, in which
-# case it WARNS. The list holds ONLY the mismatches that existed when the
-# check shipped; every entry names its resolution, and the A11 split round
-# (or the headline_match data round) deletes entries as their resolutions
-# land. When the list is empty the check is fully enforcing — that is the
-# FAIL flip, and it happens entry by entry, never as a big bang. Keyed on
-# (link, display) so a repoint or a reword silently drops the exception:
-# the figure is then judged on its merits, and a new value that still
-# mismatches fails loudly instead of hiding behind a stale exception.
-HEADLINE_KNOWN_MISMATCHES = {
-    # A11 splits (named in the usability review §3, A11).
-    ("#mean-vulnerabilities-per-codebase-581-up-107-year-on-year", "67%"):
-        "A11 split: Black Duck 67% gets its own article",
-    ("#4570-of-working-agent-solutions-bring-the-original",
-     "0.35 \u2192 0.71"):
-        "A11 split: BugLedger 0.35->0.71 gets its own article",
-    # A11-pattern splits: secondary findings in articles headlined with
-    # another finding. Same pattern as the named two, not named in A11 —
-    # the Chief Editor decides whether A11 takes them too.
-    ("#86-of-us-financial-firms-formally-use-ai-but-only-38", "1 in 4"):
-        "A11-pattern split: ACA 25% experimenting is a secondary finding",
-    ("#556-passed-every-test-while-a-working-exploit-succeeded-ase",
-     "74.0%"):
-        "A11-pattern split: A.S.E 74.0% is a secondary finding",
-    ("#556-passed-every-test-while-a-working-exploit-succeeded-ase",
-     "18.4%"):
-        "A11-pattern split: A.S.E 18.4% is a secondary finding",
-    # Word-form cases: the headline expresses the figure in words, so a
-    # headline_match entry resolves them (data round, no split needed).
-    ("#98-of-large-companies-have-ai-governance-policies-nearly", "47%"):
-        'headline_match ["nearly half"] (data round)',
-    ("#98-of-large-companies-have-ai-governance-policies-nearly", "49%"):
-        'headline_match ["nearly half"] (data round)',
-    ("#best-agentic-reviewers-catch-3-in-4-vuln-introducing", "78.1%"):
-        'headline_match ["3 in 4"] (data round)',
-    ("#best-agentic-reviewers-catch-3-in-4-vuln-introducing", "32.5%"):
-        'headline_match ["1 in 3"] (data round)',
-}
+# Headline-rule known mismatches (D2, 2026-11-20; emptied 2026-11-21):
+# (link, display) -> resolution. The headline rule binds only 'claimed'
+# (one-dot) figures (Yorgo, 2026-11-21): a 'claimed' figure whose display
+# numerals are absent from its target article's headline FAILS the build
+# — unless it is listed here, in which case it WARNS. The list starts
+# empty under the new rule: the 9 mismatches found when the check shipped
+# were all rated 'reported' or better, so they pass silently now and need
+# no exception. Keyed on (link, display) so a repoint or a reword silently
+# drops the exception: the figure is then judged on its merits, and a new
+# value that still mismatches fails loudly instead of hiding behind a
+# stale exception.
+HEADLINE_KNOWN_MISMATCHES = {}
 
 # Pie/strip colours (2026-11-18, Yorgo's three rules): rust is the AI
 # side where the split is AI vs human; otherwise blue is the favourable
@@ -1933,10 +1907,13 @@ def _check_headline(f, src, errors, warnings, article_ids):
     numeral appears in the headline's main clause, or the figure's value
     does (the value expressed differently, e.g. display '1 in 4' with
     value 25), or a headline_match word-form does (e.g. 'four in five'
-    for 79%). Otherwise: WARN for a known mismatch or a theme-headlined
-    article, FAIL for anything else. Section/panel anchors and figures
-    with no display value (notes, no-data, flags) have no headline to
-    check and are skipped."""
+    for 79%). The rule binds only 'claimed' (one-dot) figures (Yorgo,
+    2026-11-21): a figure rated 'reported' or better passes on a
+    headline mismatch, silently. For a 'claimed' figure: WARN for a
+    known mismatch or a theme-headlined article, FAIL for anything
+    else. Section/panel anchors and figures with no display value
+    (notes, no-data, flags) have no headline to check and are
+    skipped."""
     link = f.get("link", "")
     if not link.startswith("#"):
         return
@@ -1966,6 +1943,11 @@ def _check_headline(f, src, errors, warnings, article_ids):
         return
     if forms and any(form.lower() in main.lower() for form in forms):
         return
+    # Confidence floor (Yorgo, 2026-11-21): the headline rule binds
+    # only 'claimed' figures. A figure rated 'reported' or better
+    # passes on a headline mismatch, silently.
+    if f.get("rating") != "claimed":
+        return
     shown = ", ".join(f"{n:g}" for n in numerals)
     known = HEADLINE_KNOWN_MISMATCHES.get((link, f.get("display")))
     if known is not None:
@@ -1987,9 +1969,9 @@ def _check_headline(f, src, errors, warnings, article_ids):
 
 def validate(data, index_html, ctx=None):
     """Returns (errors, warnings). Errors exit 1; warnings print and
-    never block — the headline rule warns on theme-headlined articles
-    and known mismatches so the nightly watch never breaks on a
-    mismatch that predates the check (D2)."""
+    never block — the headline rule (D2) binds only 'claimed' figures
+    (confidence floor, Yorgo 2026-11-21) and warns on a 'claimed'
+    figure's theme-headlined article or known mismatch."""
     errors = []
     warnings = []
     if ctx is None:
