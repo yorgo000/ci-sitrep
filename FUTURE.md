@@ -410,6 +410,28 @@ Today the filter panel matches AND across dimensions and union (ANY) within a di
 
 ---
 
+## F-25 — Forecasting: best-fit curves and "when does it hit X"
+
+**Status:** Proposed
+**Proposed:** 2026-11-21 (Yorgo)
+
+For every report metric that exists as a time series, fit a curve to the verified points and project it forward: not just the sparkline of where a number has been, but a fitted curve showing where it is going and by when it crosses a threshold — e.g. AI-written code share: 47% today, 80% by when. Premium-subscription material: the sparkline stays free; the fitted curve, the milestone dates, and the fit quality sit behind the premium tier (tier split to be decided — no signup or paywall exists today).
+
+**Candidate inventory (2026-11-21):** only 4 series exist in `dashboard-history.json`; the 2026-11-18 audit found the other 55 panel figures have no verified repeated measurement. Of the 4: ACA/NSCP AI use (45→71→86%, 3 annual points, same survey — the best candidate); Google AI-code share (4 points, but the series is CLOSED — Pichai discontinued the metric Oct 2026 — and the first two points are lower bounds, so a forecast would be unverifiable); Veracode flaw rate (3 points inside 7 months — too short a span to extrapolate years); PAN identity ratio (2 points from different samples — fails any bar). The JetBrains 47% example is a single point in the report — historical points from the 2023–2025 surveys need researching before any curve exists. The held S-4/S-5/S-6 series (GitClear, Black Duck 581, VulnCheck) are further candidates once shipped.
+
+**Method (proposed):** parametric curve fits, not ML — with 3–4 points a machine-learning model is meaningless. Logistic (S-curve) for bounded shares (0–100%), exponential or linear for unbounded ratios/counts. A projection is published only when the series clears the bar below; it renders as a dashed extension of the sparkline with an uncertainty band, labelled a projection, never a finding, and re-fits automatically as the daily watch appends points.
+
+**Notes / open questions:**
+
+- Minimum bar for publishing a projection — proposed: ≥4 verified points from the same source and method, spanning ≥1 year. With 3 points a 2-parameter fit is nearly interpolation and no error estimate is possible. (Demo fits 2026-11-21, illustrative only, published nowhere: ACA/NSCP logistic fit puts 90% at ~Apr 2027 and 95% at ~Mar 2028; Google's fit puts 80% at ~Aug 2026 — already past, unverifiable because the series is closed; Veracode's puts 30% at ~Sep 2027.)
+- Closed series (Google): forecast with a flag, or exclude? Proposed: exclude — a projection the source itself stopped measuring can't be checked.
+- Mixed-source series: never fit across sources — a JetBrains point and a Stack Overflow point are different measurements. The historical-points research must find same-survey points.
+- Premium split: what stays free (sparkline + headline milestone date?) vs premium (full curve, bands, fit quality, all series)? No paywall or signup exists today — the premium tier itself is a separate decision.
+- Confidence treatment: projections are not findings — they need their own rating or a fixed ●○○○ Claimed treatment, decided at build. Never a dashboard figure without the projection label.
+- Depends on: the historical-points audit (new research — same-source points for the candidate metrics, starting with JetBrains) and F-02 (the database stores dated values, which is what makes re-fitting automatic).
+
+---
+
 ## Template for new features
 
 ```markdown
