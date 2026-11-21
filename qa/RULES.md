@@ -211,23 +211,28 @@ segmented pie carries a per-segment `tone` instead. The link is the
 article's runtime id (assigned by the share JS from the headline) — a
 section anchor is not specific enough: the reader must land on the
 article itself, where its Source line takes them to the primary
-source. The link target's headline must state the tile's figure: a
-reader who clicks a tile lands on an article headlined with the
-finding they clicked. If the figure is a secondary finding inside an
-article headlined with something else, split it into its own article
+source. The link target's headline must state the tile's figure — but
+only for figures rated ●○○○ (Claimed): a reader who clicks a
+one-dot tile lands on an article headlined with the finding they
+clicked. A figure rated ●●○○ (Reported) or better may link to an
+article that does not headline its figure (Yorgo, 2026-11-21) — the
+confidence carries it, and the split rule below does not apply to
+it. If a Claimed figure is a secondary finding inside an article
+headlined with something else, split it into its own article
 — headline the finding, same source, same rating — and point the
-tile at the new article. Never point a tile at an article whose
-headline is about a different finding, however good the evidence
-buried in its bullets. (2026-11-19: the 3.4× strip tile linked to the
-2.5× post-hoc-review article, where the 3.4× was one bullet in six;
-Yorgo caught it from a QA screenshot.) Since 2026-11-20 the rule is
-enforced mechanically: `build_dashboard.validate()` fails the build
-when a figure's display numerals are absent from its target
-headline, except figures listed in `HEADLINE_KNOWN_MISMATCHES`
-(pre-existing mismatches, each naming its resolution — A11 splits or
-`headline_match` word-forms) and theme-headlined articles, which
-warn. `verify.py` also checks that every relative file link
-resolves to a file in the repo (D3). Numbered figures render as
+tile at the new article. Never point a one-dot tile at an article
+whose headline is about a different finding, however good the
+evidence buried in its bullets. (2026-11-19: the 3.4× strip tile
+linked to the 2.5× post-hoc-review article, where the 3.4× was one
+bullet in six; Yorgo caught it from a QA screenshot.) Since
+2026-11-20 the rule is enforced mechanically:
+`build_dashboard.validate()` fails the build when a Claimed
+figure's display numerals are absent from its target headline,
+except figures listed in `HEADLINE_KNOWN_MISMATCHES` (which warn)
+and theme-headlined articles (which warn); a `headline_match`
+word-form in data (e.g. "four in five") also passes. `verify.py`
+also checks that every relative file link resolves to a file in
+the repo (D3). Numbered figures render as
 visual tiles, never bare notes (§4). Where a conclusion draws on a
 second headline article in another subsection, the figure carries an
 "also" list ({anchor, label})
@@ -1407,3 +1412,12 @@ years change. verify.py warns when its pass count differs from
   gains a relative-file-link check (D3, 54 checks) — the class that
   let the uncommitted append-only archive file 404. The local git
   checkout was reconciled to origin/main (D4).
+- **2026-11-21** — Headline rule gains a confidence floor (Yorgo):
+  a tile may link to an article that does not headline its figure
+  when the figure is rated ●●○○ (Reported) or better — the rule is
+  enforced only for ●○○○ (Claimed) figures. The 9
+  `HEADLINE_KNOWN_MISMATCHES` entries (all rated 'reported' or
+  better) are deleted; no A11 splits and no `headline_match` data
+  entries are needed for them. `build_dashboard.validate()` passes
+  ≥2-dot figures on a headline mismatch silently; the FAIL tier
+  still binds Claimed figures.
