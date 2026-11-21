@@ -209,7 +209,7 @@
 <p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
 <p>A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.</p>
-<p><strong>As of:</strong> 2026-11-20. <strong>Report last updated:</strong> 2026-11-20.</p>
+<p><strong>As of:</strong> 2026-11-21. <strong>Report last updated:</strong> 2026-11-21.</p>
 <hr />
 <h2 id="at-a-glance">At a glance</h2>
 <table>
@@ -222,19 +222,19 @@
 <tbody>
 <tr>
 <td>Articles</td>
-<td>114</td>
+<td>117</td>
 </tr>
 <tr>
 <td>Source links (article + subsection)</td>
-<td>270</td>
+<td>277</td>
 </tr>
 <tr>
 <td>Total external links (incl. inline prose links)</td>
-<td>591</td>
+<td>596</td>
 </tr>
 <tr>
 <td>Unique source URLs</td>
-<td>217</td>
+<td>222</td>
 </tr>
 <tr>
 <td>Sections</td>
@@ -242,7 +242,7 @@
 </tr>
 <tr>
 <td>Items new in the last 7 days</td>
-<td>71</td>
+<td>69</td>
 </tr>
 <tr>
 <td>Superseded entries in the archive</td>
@@ -270,19 +270,19 @@
 <tr>
 <td>●●●● Established</td>
 <td>Peer-reviewed and independently confirmed, or a primary regulatory/government document</td>
-<td>17</td>
+<td>18</td>
 <td>15%</td>
 </tr>
 <tr>
 <td>●●●○ Corroborated</td>
 <td>Peer-reviewed single study, or a credible primary source confirmed by independent reporting</td>
-<td>38</td>
+<td>39</td>
 <td>33%</td>
 </tr>
 <tr>
 <td>●●○○ Reported</td>
 <td>Single credible source, not yet independently verified</td>
-<td>53</td>
+<td>54</td>
 <td>46%</td>
 </tr>
 <tr>
@@ -293,11 +293,11 @@
 </tr>
 </tbody>
 </table>
-<p><strong>48% of articles are Established or Corroborated.</strong> The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.</p>
+<p><strong>49% of articles are Established or Corroborated.</strong> The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.</p>
 <hr />
 <h2 id="source-review-funnel">Source review funnel</h2>
 <p>The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.</p>
-<p>Since tracking began on 2026-11-12, the daily watch has reviewed <strong>453</strong> sources and added <strong>63</strong> new articles (updating <strong>10</strong> existing ones). That is a 13.9% acceptance rate — most of what is reviewed does not clear the bar for entry.</p>
+<p>Since tracking began on 2026-11-12, the daily watch has reviewed <strong>493</strong> sources and added <strong>66</strong> new articles (updating <strong>11</strong> existing ones). That is a 13.4% acceptance rate — most of what is reviewed does not clear the bar for entry.</p>
 <table>
 <thead>
 <tr>
@@ -309,6 +309,13 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2026-11-21</td>
+<td>40</td>
+<td>3</td>
+<td>1</td>
+<td>3 new articles: Amazon Threat Intelligence Cairn/MONAI zero-day (20 Nov, agents found CVE-2026-133968 CVSS 9.8 in ~11 min, root shell; first autonomous zero-day discovery in the incident record) + GAO technology assessment GAO-27-108458 (20 Nov, agentic multi-stage attacks, no accepted measurement criteria, 16 policy options) in §3.4.2 + IBM Agent Identity GA (27 Oct, named identity in Verify/Entra, per-agent audit logs, kill switch) in §3.4.3. In-place: GTIG article CAIRN clause, §2.5 patch-window bullet, §3.4.3 intro (three→four kill switches), §3.4.2 synthesis + Changed 21 Nov, RFI re-checked 21 Nov (Federal Register API: no Fed/OCC/FDIC AI RFI in Nov 1-21). Glossary +2 (GAO, zero-day). NTW: 5 entries from 13 Nov aged out; 3 new entries dated 21 Nov. Dashboard unchanged (no headline number moved); CI-vs-EI unchanged (no new human baseline). Verify: 54 pass, 0 fail; 11 warnings reviewed (10 verb-opener flags all pre-existing false positives; 18-19 curl link failures all pre-existing bot-protected/rate-limited, new links 200 + GAO browser-verified). Reviewed but below bar: SecureVibeBench (already in report; Jun 2026 write-up), OCC 2026-54 Polsinelli secondary (already a §3.4.2 article), bank-liability secondaries (already covered 19 Nov), Umbraco MCP SDK flaw (niche CMS), Kubeshark MCP CVE-2026-129235 (niche observability tool), jupyter-mcp-server CVSS 9.3 DNS rebinding (niche dev tool; pattern already documented), OpenAI misalignment monitor-evasion cases (Oct 20 update, judged below bar 19 Nov), McKinsey AI Trust Maturity Survey (Jan 2026, via secondary blog). Still deferred from 20 Nov, not evaluated this run: NEAR AI SGLang TEE flaw, SAS/FT Longitude + OvationCXM banking surveys, EU AI Office RFIs to OpenAI/Anthropic, Apiiro secrets count, Morphisec MCP demo, PHP release.</td>
+</tr>
 <tr>
 <td>2026-11-20</td>
 <td>26</td>
@@ -358,13 +365,6 @@
 <td>1</td>
 <td>5 new articles: California v. OpenAI suit (16 Nov, 80+ loss-of-control incidents vs 27 publicly reported; Hugging Face attack 9-16 Jul, ~700 agents, ~17,600 actions) + nonprofits' freeze suit (12 Nov, five labs, UCL) + OpenAI embedded assessments (16 Nov, Apollo/METR/Transluce/Goodfire) in §3.4.2; BCG bank governance benchmark (13 Nov, 73%/8%, 26 systemically important banks) + GTIG AI Threat Tracker (16 Nov, exploit_agent patch-to-exploit automation, ARTEX/CAIRN/PentAGI, SOMBERMEME) in §3.4.3. In-place: State of the market (state lawsuit added), California article (recommendations still unpublished as of 17 Nov), §3.4.2 synthesis (three directions; RFI re-checked 17 Nov), §2.5 patch-window bullet, §3.4.3 See also (§2.5). Glossary +5 terms (Embedded assessment, exploit_agent, LLMJacking, MIDNIGHT NEPTUNE, SOMBERMEME). Dashboard: California deadline removed, as_of 17 Nov, +2 BCG figures (53 total). WWW: 16 Nov item removed; 2 open questions added (CA suit outcome, Apollo reports). Verify: 53 pass, 0 fail; 6 warnings reviewed (5 verb-opener flags all false positives incl. 2 new; 10 link failures all known bot-protected or browser-verified, incl. Komodor re-checked live today and OpenAI embedded-assessments page browser-verified). Reviewed but below bar: BIS interim final rule on remote access to advanced semiconductors (export control, not CI governance); Al Jazeera Newsom-2028 piece (no new facts); federal AI Kill Switch Act (no movement). California kill-switch recommendations still not publicly released as of 17 Nov; Fed AI RFI still unpublished.</td>
 </tr>
-<tr>
-<td>2026-11-16</td>
-<td>31</td>
-<td>16</td>
-<td>1</td>
-<td>16 new articles: LSCBench (Oct, best model 25.1% functional-and-secure; 57/150 scenarios secured by no model) + OpenAI kernel exploits (4 Nov, 948 working LPE flaws, $1,279 each; 61 patched in 10 days) in §1.6; Sesame (14 Oct), MCPhantom (3 Nov), GitGuardian (9 Nov, 31,088 secrets), Corelight (10 Nov), Forescout (12 Nov, 99 flaws, 90 hours), Cursor supply-chain incident (13 Nov) in §2.1; NY RAISE Portal (10 Nov, registration by 1 Jan 2027, DFS/DIGIT) in §3.4.2; AISI/Anthropic Mythos attack (23 Oct), BDO (4 Nov, 47% agentic in finance), Komodor (4 Nov), SailPoint kill switch (4 Nov), Leidos HeadWay (4 Nov), Capgemini (5 Nov, 59%/10%), WorkOS ARTEX escape (6 Nov) in §3.4.3. In-place: State of the market (NY regime), §1.6.1, §2.4, §2.6, §3.4.2 synthesis + California status + RFI re-check 16 Nov, §3.4.3 intro, §3.6 METR freeze + R&amp;D acceleration, §3.8 Menlo spend line. Glossary +6 terms (AECI, ARTEX, DIGIT, MCPhantom, NYCAIRR, RAISE). Dashboard +6 figures, NY RAISE deadline added. Verify: 53 pass, 0 fail; 4 warnings reviewed (2 pre-existing verb-opener flags, 1 false positive on SailPoint bullet; link failures all known bot-protected, new links 200 + browser-verified). Reviewed but below bar: federal AI Kill Switch Act (no movement), CA special session floated only, Wiener to Congress, DFSA survey, FCA trusted framework, framework version bumps, Zenity AgentCorruption, OpenAI misalignment update, Claude Code sandbox fix, Copilot JetBrains CVE, Qodo/Codex review, Codex Security CLI importers, Cloudflare skill surge, Snyk Forrester, SonarQube 2026.1, SecureAgentBench, IOActive, CPython/Jinja escape, EMBRACE, CybeDefend launch, Copilot Xcode/JetBrains Air, wfx-loot claim (unverified). California kill-switch recommendations due today — not publicly released as of the morning of 16 Nov; Fed AI RFI still unpublished.</td>
-</tr>
 </tbody>
 </table>
 <hr />
@@ -373,7 +373,7 @@
 <ul>
 <li><strong>Last full link audit:</strong> 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).</li>
 <li><strong>New links:</strong> every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.</li>
-<li><strong>Current unique URLs:</strong> 217 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).</li>
+<li><strong>Current unique URLs:</strong> 222 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).</li>
 </ul>
 <hr />
 <h2 id="how-we-vet">How we vet</h2>
