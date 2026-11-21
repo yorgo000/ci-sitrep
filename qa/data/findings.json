@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-11-20T23:56:38.258953+00:00",
+ "generated_at": "2026-11-21T09:33:54.321364+00:00",
  "as_of": "Friday, November 20, 2026",
  "as_of_date": "2026-11-20",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 114,
-  "whats_new": 71,
-  "glossary": 104,
+  "articles": 117,
+  "whats_new": 69,
+  "glossary": 106,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
-  "established": 17,
-  "corroborated": 38,
-  "reported": 53,
+  "established": 18,
+  "corroborated": 39,
+  "reported": 54,
   "claimed": 6
  },
  "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
@@ -2031,6 +2031,29 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#public-companies-would-have-to-disclose-their-ai-governance"
   },
   {
+   "headline": "Agentic AI can already run multi-stage attacks with minimal human input — and no accepted way exists to measure the risk",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "established",
+   "rating_dots": "●●●●",
+   "source": "U.S. GAO",
+   "source_label": "U.S. GAO, \"AI and Cybersecurity: Technologies Can Magnify Cyberattacks and Enhance Cyber Defense,\" GAO-27-108458, 20 Nov 2026",
+   "source_url": "https://www.gao.gov/products/gao-27-108458",
+   "source_context": "U.S. GAO, GAO-27-108458, 20 Nov 2026",
+   "date": "20 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Agentic AI can autonomously carry out multiple stages of an attack with minimal human input — illustrated by a June 2026 case in which multiple AI agents built a testing framework to refine malware-evasion techniques against security products (U.S. GAO, GAO-27-108458, 20 Nov 2026).",
+    "No widely accepted criteria exist for evaluating the offensive or defensive capabilities of generative AI — defenders cannot measure what they are buying or facing, and generative AI expands the attack surface with data-quality, architecture and governance challenges (U.S. GAO, 20 Nov 2026).",
+    "16 policy options under four goals — close gaps in cybersecurity guidance and practices, address AI research gaps, govern AI tools through their cybersecurity lifecycle, enhance the workforce — including research into agentic AI identity management, expanded AI testing environments, human authorisation for consequential AI-initiated security actions, and restricting autonomous AI in consequential functions pending certification (U.S. GAO, 20 Nov 2026).",
+    "The options are a menu for policymakers — Congress, agencies, standards bodies, industry — not requirements, and the report makes no recommendation of its own (U.S. GAO, 20 Nov 2026).",
+    "Implication: the measurement gap is now a federal finding, not just a vendor complaint — a firm buying AI cyber-defence tools has no accepted yardstick to judge them by, and the policy direction (agent identity, human authorisation, pre-deployment validation) matches the controls this report already recommends."
+   ],
+   "voiceover": "Agentic AI can already run multi-stage attacks with minimal human input , and no accepted way exists to measure the risk. Agentic AI can autonomously carry out multiple stages of an attack with minimal human input , illustrated by a June 2026 case in which multiple AI agents built a testing framework to refine malware-evasion techniques against security products (U.S. GAO, GAO-27-108458, 20 Nov 2026).",
+   "id": "agentic-ai-can-already-run-multi-stage-attacks-with-minimal",
+   "url": "https://yorgo000.github.io/ci-sitrep/#agentic-ai-can-already-run-multi-stage-attacks-with-minimal"
+  },
+  {
    "headline": "98% of large companies have AI governance policies; nearly half have bypassed them",
    "section": "Agentic",
    "subsection": "3.4 Governance",
@@ -2448,7 +2471,7 @@
     "The first fully automated patch-to-exploit pipeline Google has observed: a multi-agent framework, dubbed exploit_agent, found on an exposed staging server, continuously diffs popular web software before and after patch announcements, drafts an exploit for the hole the patch closed, and executes it automatically — with no human in the loop (Google Threat Intelligence Group / Mandiant, AI Threat Tracker, 16 Nov 2026).",
     "Victim telemetry on the server pointed at French media, entertainment and education websites; the server also held data exfiltrated from victims and post-compromise scripts for internal reconnaissance, brute-forcing, webshell installation and removing other attackers' webshells (Google Threat Intelligence Group, 16 Nov 2026).",
     "The report prints no success rate, no victim count and no attribution for exploit_agent — the operator is unidentified, with Russian-language comments in a configuration file as the only origin clue — and the WordPress plugin in its worked example (Spectra 2.19.25, over a million installations) is shown being inspected, not exploited (Google Threat Intelligence Group, 16 Nov 2026).",
-    "Four open-source multi-agent penetration-testing frameworks are now abused in live intrusions: ARTEX (the FBI warned on 13 Nov that ARTEX abuse can reach privileged access in under three hours), CAIRN (observed against US aerospace targets), CyberStrikeAI and PentAGI (a customised PentAGI platform ran systematic reconnaissance and vulnerability scanning against organisations in Asia between late August and early October) (Google Threat Intelligence Group, 16 Nov 2026; FBI FLASH, 13 Nov 2026).",
+    "Four open-source multi-agent penetration-testing frameworks are now abused in live intrusions: ARTEX (the FBI warned on 13 Nov that ARTEX abuse can reach privileged access in under three hours), CAIRN (observed against US aerospace targets; in a separate campaign its agents found a zero-day on their own — see the article below), CyberStrikeAI and PentAGI (a customised PentAGI platform ran systematic reconnaissance and vulnerability scanning against organisations in Asia between late August and early October) (Google Threat Intelligence Group, 16 Nov 2026; FBI FLASH, 13 Nov 2026).",
     "A suspected North Korean cluster (MIDNIGHT NEPTUNE) turned a coding assistant into a delivery pipe: after initial access via fake recruiter personas and ClickFix lures at cryptocurrency firms in North America and Europe, it modified .claude/settings.json in internal repositories so launching Claude Code automatically downloaded the SOMBERMEME backdoor (Google Threat Intelligence Group, 16 Nov 2026).",
     "The patch window is shrinking measurably: zero-day exploits averaged 11 per month in 2026 (8 in 2025) before spiking to 22 in August, and overall disclosures and exploits nearly doubled between January and August 2026 — while in late August, working exploits for two PaperCut zero-days (CVE-2026-81578, CVE-2026-82078) were generated within a day of disclosure and a campaign hit hundreds of organisations four days later (Google Threat Intelligence Group, 16 Nov 2026).",
     "Google projects attacks with little to no human interaction within one to three months, and fully autonomous attacks in three to six — a forecast, not an observation; today's observed stage is \"minimal human-in-the-loop\" (Google Threat Intelligence Group, 16 Nov 2026).",
@@ -2648,9 +2671,105 @@
    "voiceover": "A new identity platform gives every agent a named human owner and a passkey-signed approval step. Each agent is bound to a named human supervisor through the organisation's identity provider; agents start with zero access and never hold tool credentials , the gateway issues short-lived tokens for a single tool (HYPR, 18 Nov 2026).",
    "id": "a-new-identity-platform-gives-every-agent-a-named-human",
    "url": "https://yorgo000.github.io/ci-sitrep/#a-new-identity-platform-gives-every-agent-a-named-human"
+  },
+  {
+   "headline": "A major vendor's agent-identity platform reaches general availability — named identity, per-agent audit logs and a kill switch",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "IBM",
+   "source_label": "IBM Newsroom, \"IBM Introduces Identity and Control for AI Agents, Securing Frontier Intelligence for the Enterprise,\" 27 Oct 2026",
+   "source_url": "https://newsroom.ibm.com/2026-10-27-ibm-introduces-identity-and-control-for-ai-agents,-securing-frontier-intelligence-for-the-enterprise?lnk=hpls2us",
+   "source_context": "IBM, 27 Oct 2026",
+   "date": "27 Oct 2026",
+   "flag": null,
+   "bullets": [
+    "Every agent running in watsonx Orchestrate — native or imported, including LangGraph agents — now gets a verifiable identity of its own, registered in IBM Verify or Microsoft Entra, with named owners; the identity provider stays the source of truth, and agents call enterprise systems as themselves through an OAuth token exchange scoped to that user and agent (IBM, 27 Oct 2026).",
+    "New in the release: per-agent access logs recording the connection, tool and user behind each event, and a kill switch that undeploys an agent and ends its sessions in one step, after showing which collaborator agents would be affected (IBM, 27 Oct 2026).",
+    "HashiCorp Vault 2.2, generally available alongside, brokers just-in-time, target-specific credentials for agents, revocable in real time (IBM, 27 Oct 2026).",
+    "Cross-platform discovery of agents on Amazon Bedrock, Microsoft Foundry and Google Gemini, and sandboxed containment, remain tech previews — the generally available piece is identity, credentials and audit inside Orchestrate (IBM, 27 Oct 2026).",
+    "No independent verification exists — the claim to watch is the per-agent audit log answering \"who did this?\" with two names, the agent and the person it acted for, which is the attribution control this section has been tracking.",
+    "Implication: the identity layer for agents is now a generally available product from a major enterprise vendor, not only a startup category — a firm running agents on Orchestrate can give each one a named identity in its existing identity provider instead of shared service accounts."
+   ],
+   "voiceover": "A major vendor's agent-identity platform reaches general availability , named identity, per-agent audit logs and a kill switch. Every agent running in watsonx Orchestrate , native or imported, including LangGraph agents , now gets a verifiable identity of its own, registered in IBM Verify or Microsoft Entra, with named owners; the identity provider stays the source of truth, and agents call enterprise systems as themselves through an OAuth token exchange scoped to that user and agent (IBM, 27 Oct 2026).",
+   "id": "a-major-vendors-agent-identity-platform-reaches-general",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-major-vendors-agent-identity-platform-reaches-general"
+  },
+  {
+   "headline": "Agents found a zero-day on their own — and took root on a university server in 11 minutes",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "Amazon Threat Intelligence",
+   "source_label": "Amazon Threat Intelligence, \"Chinese-nexus actor's Cairn AI agents found a zero-day on their own,\" AWS Security Blog, 20 Nov 2026",
+   "source_url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+   "source_context": "Amazon Threat Intelligence, AWS Security Blog, 20 Nov 2026",
+   "date": "20 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "A China-nexus actor gave Cairn agents one goal — \"obtain shell access\" — and the agents planned, executed and adjusted their approach without the operator choosing each next step, across a 48-hour campaign against universities in East Asia outside mainland China, 8–10 Sep 2026 (Amazon Threat Intelligence, 20 Nov 2026).",
+    "Against a server running MONAI Label, an open-source medical-imaging application, the agents mapped the API, found an upload endpoint with an unsanitised filename parameter, and went from mapping the application's API to arbitrary file write in about 11 minutes; in a later session they wrote a reverse shell into sitecustomize.py and triggered a training endpoint to spawn a root shell (Amazon Threat Intelligence, 20 Nov 2026).",
+    "The flaw was a genuine zero-day — no fix, issue, advisory or vulnerability-database mention existed when the agents found it (Amazon Threat Intelligence, 20 Nov 2026); it is now tracked as CVE-2026-133968 (CVSS 9.8), a path-traversal flaw in MONAI Label through 0.8.5, fixed in the source with an advisory published 18 Nov but no patched release yet, and authentication disabled by default (GHSA-qc22-rmgc-vg94, 18 Nov 2026).",
+    "Two other operations in the same campaign failed after long autonomous runs — 148 actions over roughly 16 hours against an unauthenticated Redis instance, and 30,000+ credential combinations against a GPU server — but the agents kept adapting for nearly a full day without human direction (Amazon Threat Intelligence, 20 Nov 2026).",
+    "The same framework is behind the Unit 42 campaign above (25 operations, 10 of 19 organisations breached) — this disclosure moves Cairn from exploiting known flaws to discovering unknown ones (Amazon Threat Intelligence, 20 Nov 2026).",
+    "Implication: the patch window is no longer the only exposure — an agent can find a flaw nobody knew existed and weaponise it in minutes, so exposed services with authentication disabled by default are live targets even with no CVE on the books; Amazon's advice is high-confidence detections that trigger automated response, with humans overseeing outcomes rather than reviewing every action."
+   ],
+   "voiceover": "Agents found a zero-day on their own , and took root on a university server in 11 minutes. A China-nexus actor gave Cairn agents one goal , \"obtain shell access\" , and the agents planned, executed and adjusted their approach without the operator choosing each next step, across a 48-hour campaign against universities in East Asia outside mainland China, 8 to 10 Sep 2026 (Amazon Threat Intelligence, 20 Nov 2026).",
+   "id": "agents-found-a-zero-day-on-their-own-and-took-root-on-a",
+   "url": "https://yorgo000.github.io/ci-sitrep/#agents-found-a-zero-day-on-their-own-and-took-root-on-a"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-21",
+   "title": "Agents found a zero-day on their own — and took root on a university server in 11 minutes",
+   "source": "Amazon Threat Intelligence",
+   "source_url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Cairn agents given one goal (\"obtain shell access\") found an unpatched path-traversal flaw in MONAI Label and used it for a root shell; the flaw is now CVE-2026-133968 (CVSS 9.8), with no patched release yet.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "title": "Agentic AI can already run multi-stage attacks with minimal human input — and no accepted way exists to measure the risk",
+   "source": "U.S. GAO",
+   "source_url": "https://www.gao.gov/products/gao-27-108458",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "GAO-27-108458 documents agentic AI carrying out multiple attack stages with minimal human input, finds no widely accepted criteria for measuring generative AI's offensive or defensive capabilities, and offers 16 policy options.",
+   "sections": [
+    {
+     "label": "3.4 Governance",
+     "anchor": "34-governance"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "title": "A major vendor's agent-identity platform reaches general availability — named identity, per-agent audit logs and a kill switch",
+   "source": "IBM",
+   "source_url": "https://newsroom.ibm.com/2026-10-27-ibm-introduces-identity-and-control-for-ai-agents,-securing-frontier-intelligence-for-the-enterprise?lnk=hpls2us",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Agent Identity in watsonx Orchestrate gives every agent a verifiable identity in IBM Verify or Microsoft Entra, with OAuth token exchange scoped to user and agent; cross-platform discovery and sandboxed containment remain tech previews.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
   {
    "date": "2026-11-20",
    "title": "One GitHub issue could have backdoored the next Codex release",
@@ -3733,91 +3852,6 @@
      "anchor": "34-governance"
     }
    ]
-  },
-  {
-   "date": "2026-11-13",
-   "title": "Third-party-risk (TPRM) comment period extended to 16 Dec",
-   "source": null,
-   "source_url": null,
-   "tags": [
-    "Agentic"
-   ],
-   "summary": "the four agencies (Fed/FDIC/OCC/NCUA) extended the comment period on the replacement third-party-risk guidance from 16 Nov to 16 Dec 2026 — the Fed's community-bank guide got the same extension. The Monday deadline is gone; a comment can now be drafted after the launch.",
-   "sections": [
-    {
-     "label": "3.4 Governance",
-     "anchor": "34-governance"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-13",
-   "title": "AI-generated patches introduce ~11× the vulnerabilities of developer patches",
-   "source": null,
-   "source_url": null,
-   "tags": [
-    "In codebase",
-    "Pre-commit"
-   ],
-   "summary": "Llama 3.3 introduced 135 manually confirmed vulnerabilities vs 12 for developers on the same issues (SWE-bench study v4, 1 Nov); all four agentic repair frameworks introduced vulnerabilities too — the fix loop needs the same verification as generation.",
-   "sections": [
-    {
-     "label": "1.6 Benchmarks",
-     "anchor": "16-benchmarks--evidence"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-13",
-   "title": "Kill switches, two ways",
-   "source": null,
-   "source_url": null,
-   "tags": [
-    "Agentic"
-   ],
-   "summary": "California's expert recommendations on a frontier-model kill switch are due 16 Nov, with Anthropic and OpenAI split on who pulls the plug (court order vs developer duty); OpenAI's own Control Room already cuts research-model output in 35 seconds, fail-closed.",
-   "sections": [
-    {
-     "label": "3.4 Governance",
-     "anchor": "34-governance"
-    },
-    {
-     "label": "3.4.3 The governance gap",
-     "anchor": "343-the-governance-gap"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-13",
-   "title": "The governance gap",
-   "source": null,
-   "source_url": null,
-   "tags": [
-    "Agentic"
-   ],
-   "summary": "seven new articles in §3.4.3 — policies exist but are bypassed (EY), agent identities ungoverned (SailPoint), actions unattributable and un-rollbackable (Whitfield, Rubrik), no tested kill switch (Writer), shadow agents everywhere (Nutanix, CSA), 188 documented production-damage incidents (Cyera), and the PocketOS case study.",
-   "sections": [
-    {
-     "label": "3.4.3 The governance gap",
-     "anchor": "343-the-governance-gap"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-13",
-   "title": "Australia moves to mandatory AI incident reporting; UK holds deployers liable",
-   "source": null,
-   "source_url": null,
-   "tags": [
-    "Agentic"
-   ],
-   "summary": "an OpenAI agent's unauthorised access to a Medicare portal in June triggers a new AI safety regulator, six obligations and legislation planned for 2027; the UK CMA/DRCF say an agent's autonomy does not diminish the deployer's responsibility, with fines up to 10% of worldwide turnover.",
-   "sections": [
-    {
-     "label": "3.4 Governance",
-     "anchor": "34-governance"
-    }
-   ]
   }
  ],
  "glossary": [
@@ -3996,6 +4030,10 @@
   {
    "term": "frontier model",
    "definition": "The most capable AI model available at a given time — the leading edge (e.g. the newest Claude, GPT, Gemini). Frontier labs are the companies that build them. ## G"
+  },
+  {
+   "term": "GAO (Government Accountability Office)",
+   "definition": "The US federal watchdog that audits government programs and reports to Congress; its technology assessments signal where federal expectations on AI may head."
   },
   {
    "term": "guardrail",
@@ -4235,7 +4273,11 @@
   },
   {
    "term": "XSS (cross-site scripting)",
-   "definition": "A flaw where an attacker injects malicious script into a web page other people view — so the victim's browser runs the attacker's code."
+   "definition": "A flaw where an attacker injects malicious script into a web page other people view — so the victim's browser runs the attacker's code. ## Z"
+  },
+  {
+   "term": "zero-day",
+   "definition": "A software flaw nobody knew about until it is exploited or disclosed, so no patch exists yet — the \"zero\" is the number of days defenders have had to fix it."
   }
  ],
  "deadlines": [
