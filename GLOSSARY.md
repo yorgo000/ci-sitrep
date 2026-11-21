@@ -193,6 +193,8 @@ companies that build them.
 
 ## G
 
+**GAO (Government Accountability Office)** — The US federal watchdog that audits government programs and reports to Congress; its technology assessments signal where federal expectations on AI may head.
+
 **guardrail** — A constraint built around an AI system to keep it inside safe
 behaviour: what it may and may not do, say, or touch. Guardrails can be rules,
 filters, or code.
@@ -473,3 +475,9 @@ known security flaw.
 **XSS (cross-site scripting)** — A flaw where an attacker injects malicious
 script into a web page other people view — so the victim's browser runs the
 attacker's code.
+
+## Z
+
+**zero-day** — A software flaw nobody knew about until it is exploited or
+disclosed, so no patch exists yet — the "zero" is the number of days defenders
+have had to fix it.
