@@ -10,7 +10,7 @@ Responsible, applicable, actionable research, from the perspective of critical s
 
 ## What this report is
 
-CI SITREP tracks the state of the art in Created Intelligence in code and finance: the tools and practices for sanitizing and certifying AI-generated code before it is committed, the CI-generated problems already in existing codebases, and the architecture and management of agentic collectives. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions.
+CI SITREP tracks the state of the art in Created Intelligence in code and finance: what AI code and agents mean for your P&L; the agentic staff doing the work; certifying the code already in your codebase; and sanitizing AI-generated code before it is committed. It is a knowledge base, updated daily, for people who carry profit-and-loss responsibility and need to stay current to make sound budget decisions. Confluence<1> builds mission-critical systems for the finance industry; in this space, it builds sanitizing tools for clients and provides sanitizing services, as well as advising on and deploying others'.
 
 Every article carries a confidence rating — a dots score for how much confidence you can place in its finding. See the legend on the main page for what each level means.
 
@@ -20,7 +20,7 @@ CI SITREP is a Right-Time Situational Awareness Tool, published by Confluence<1>
 
 It takes a lot to put together. Since tracking began on 12 November we have reviewed 559 sources and kept 71 of them — a 12.7% acceptance rate. Most of what we review doesn't clear the bar. The result is 122 findings, every one confidence-rated (48% Established or Corroborated), drawn from 291 source links, every one verified live. Before anything publishes, it passes 54 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.
 
-**How we choose what to look at.** There is no fixed list of sources to defend. The radar runs fresh every morning across the three subjects — sanitizing CI-generated code before it is committed, sanitizing it once it is already in a codebase, and the design, build and deployment of agentic collectives — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.
+**How we choose what to look at.** There is no fixed list of sources to defend. The radar runs fresh every morning across the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.
 
 **What it is for.** Advising the finance industry on critical technologies and building the critical systems that they depend on. It is designed to be useful to elite operators — people with profit-and-loss responsibility who need the information that sits behind the good calls - and nothing they don't need.
 
