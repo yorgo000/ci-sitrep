@@ -190,7 +190,7 @@
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
-    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <p class="back"><a href="index.html">&larr; Back to CI SITREP</a></p>
     <h2>PAGE CONTENTS</h2>
     <div class="toc">
 <ul>
@@ -219,13 +219,13 @@
   </nav>
   <main>
     <h1 id="ci-vs-ei">CI vs EI</h1>
-<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<p class="back-inline"><a href="index.html">&larr; Back to CI SITREP</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
 <p><strong>As of Wednesday, November 18, 2026 · Version 1.1</strong></p>
-<p>Every CI figure in the report, set against its human equivalent — <a href="glossary.html#ei">EI, evolved intelligence</a> — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.</p>
-<p>A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: <strong>3 complete pairs, 12 partial comparisons, 27 gaps</strong>, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in the report is measured against the task, never against a human doing the same task.</p>
-<p>The strongest pair: AI patches introduce <strong>135</strong> confirmed vulnerabilities against <strong>12</strong> for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in the report measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.</p>
-<p>CI figures read in rust, human figures in navy — the same colours as the dashboard. Every row links to the report article that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.</p>
+<p>Every CI figure in CILAK (CI Landscape Assessment Kit), set against its human equivalent — <a href="glossary.html#ei">EI, evolved intelligence</a> — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.</p>
+<p>A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: <strong>3 complete pairs, 12 partial comparisons, 27 gaps</strong>, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in CILAK is measured against the task, never against a human doing the same task.</p>
+<p>The strongest pair: AI patches introduce <strong>135</strong> confirmed vulnerabilities against <strong>12</strong> for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in CILAK measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.</p>
+<p>CI figures read in rust, human figures in navy — the same colours as SITREP. Every row links to the CILAK article that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.</p>
 <h2 id="development">Development</h2>
 <p>Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from cases where a human <em>did</em> introduce a vulnerability — that is how the tasks were selected, so reading them as "humans 0% secure" would be a misuse. The human rate on those tasks was never measured as a control group.</p>
 <h3 id="complete-pairs">Complete pairs</h3>
@@ -243,19 +243,19 @@
 <td>Vulnerabilities in patches</td>
 <td><strong>135</strong> manually confirmed vulnerabilities (Llama 3.3, SWE-bench train+test)</td>
 <td><strong>12</strong> in developer patches for the same issues</td>
-<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §1.6</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §4.5</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Vulnerabilities in patches, newer model</td>
 <td><strong>3</strong> vulnerabilities (GPT-5.4 nano, test set)</td>
 <td><strong>2</strong> in developer patches for the same issues</td>
-<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §1.6</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#ai-generated-patches-introduce-11-the-vulnerabilities-of">Sajadi et al. §4.5</a> · 1 Nov 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Vulnerability rate, equivalent tasks</td>
 <td><strong>up to 2.74×</strong> the vulnerabilities of human code (maximum across categories); 1.7× more major issues</td>
 <td><strong>1×</strong> baseline (human-written code, 150 of 470 PRs)</td>
-<td><a href="index.html#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code">CodeRabbit §1.1</a> · Dec 2025 · vendor's own analysis · ●○○○ Claimed</td>
+<td><a href="index.html#ai-code-carries-up-to-274-the-vulnerabilities-of-human-code">CodeRabbit §4.1</a> · Dec 2025 · vendor's own analysis · ●○○○ Claimed</td>
 </tr>
 </tbody>
 </table>
@@ -274,43 +274,43 @@
 <td>Commit speed</td>
 <td>AI-assisted developers commit <strong>3–4×</strong> faster</td>
 <td>Unassisted developers (implied) — method undisclosed, a rate, not same-task time</td>
-<td><a href="index.html#volume-compounds-it-apiiro-csa-apr-2026-enterprise">Apiiro / CSA §1.1</a> · Apr 2026 · vendor telemetry · ●●○○ Reported</td>
+<td><a href="index.html#volume-compounds-it-apiiro-csa-apr-2026-enterprise">Apiiro / CSA §3.1</a> · Apr 2026 · vendor telemetry · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Privilege-escalation paths</td>
 <td><strong>+322%</strong> in AI-assisted repos; +153% architectural flaws</td>
 <td>Non-AI repos in the same telemetry — populations not matched on task, size, or age</td>
-<td><a href="index.html#322-more-privilege-escalation-paths-in-ai-assisted-repos">Apiiro §2.1</a> · 2026 · vendor study · ●●○○ Reported</td>
+<td><a href="index.html#322-more-privilege-escalation-paths-in-ai-assisted-repos">Apiiro §3.1</a> · 2026 · vendor study · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Vulnerability trend</td>
 <td>Mean <strong>581</strong> vulnerabilities per codebase, <strong>+107%</strong> year-on-year</td>
 <td>2025 codebases (~281) — a time-series, not a matched comparison; the AI attribution is the vendor's</td>
-<td><a href="index.html#mean-vulnerabilities-per-codebase-581-up-107-year-on-year">Black Duck OSSRA §2.1</a> · 2026 · 947 codebases · ●●●○ Corroborated</td>
+<td><a href="index.html#mean-vulnerabilities-per-codebase-581-up-107-year-on-year">Black Duck OSSRA §3.1</a> · 2026 · 947 codebases · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Maintainability</td>
 <td>Moved code <strong>21% → 3.8%</strong> of changed lines; duplicate blocks <strong>+81%</strong>; two-week churn <strong>+15%</strong></td>
 <td>2022 commit history (human-era) vs 2023–26 (AI-era) — a time-series, not same-task</td>
-<td><a href="index.html#ai-code-has-a-maintainability-gap-gitclear-jan-2026-623m">GitClear §2.1</a> · Jan 2026 · 623M code changes · ●●○○ Reported</td>
+<td><a href="index.html#ai-code-has-a-maintainability-gap-gitclear-jan-2026-623m">GitClear §3.1</a> · Jan 2026 · 623M code changes · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Verification tax</td>
 <td>Every +25% AI adoption cost <strong>−1.5%</strong> throughput and <strong>−7.2%</strong> delivery stability (2024)</td>
 <td>Lower-adoption teams — correlational survey, compares adoption levels, not same-task performance</td>
-<td><a href="index.html#ai-code-imposes-a-verification-tax-on-reviewers-google-dora">Google DORA §2.1</a> · 2024–2026 · ●●●○ Corroborated</td>
+<td><a href="index.html#ai-code-imposes-a-verification-tax-on-reviewers-google-dora">Google DORA §1.2</a> · 2024–2026 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Audit time</td>
 <td>Embedded-stack audit: <strong>90 hours</strong></td>
 <td><strong>9 months</strong> (same team's prior audit) — but not a controlled benchmark: different target sets, and the AI run rediscovered only 40% of the flaws the human audit had disclosed</td>
-<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §2.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §3.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Dose-response</td>
 <td>Organisations at 81–100% AI-generated code ship vulnerable code at <strong>3.4×</strong> the rate of those at 1–20%</td>
 <td>Organisations at 1–20% AI code — different organisations, not the same task</td>
-<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes §1.6</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
+<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes §4.5</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
 </tr>
 </tbody>
 </table>
@@ -329,89 +329,89 @@
 <td>Error rate</td>
 <td><strong>~38%</strong> of AI code introduces a known flaw (62% security pass rate; first movement in the series, from 56% in July 2026)</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#38-of-ai-code-introduces-a-known-security-flaw-veracode">Veracode §1.1</a> · Fall 2026 · ●●●○ Corroborated</td>
+<td><a href="index.html#38-of-ai-code-introduces-a-known-security-flaw-veracode">Veracode §3.1</a> · Fall 2026 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Hallucinated packages</td>
 <td><strong>19.7%</strong> of package references name packages that don't exist</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#20-of-package-references-are-hallucinated-spracklen-et-al">Spracklen et al. §1.1</a> · USENIX Security 2025 · ●●●○ Corroborated</td>
+<td><a href="index.html#20-of-package-references-are-hallucinated-spracklen-et-al">Spracklen et al. §4.1</a> · USENIX Security 2025 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Error rate, base rates</td>
 <td><strong>~40%</strong> of Copilot programs vulnerable in high-risk scenarios; <strong>29.5%</strong> Python / <strong>24.2%</strong> JS AI-assisted snippets with weaknesses</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#the-failure-mode-moved-up-the-stack-tenzai-dec-2025-5-tools">Tenzai §1.1</a> · Dec 2025 · ●●○○ Reported</td>
+<td><a href="index.html#the-failure-mode-moved-up-the-stack-tenzai-dec-2025-5-tools">Tenzai §4.1</a> · Dec 2025 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Correct-and-secure</td>
 <td>Best agent–model pair <strong>23.8%</strong> correct-and-secure; <strong>23.0%</strong> correct but exploitable</td>
 <td><em>No human baseline published</em> — see the selection-trap note above</td>
-<td><a href="index.html#best-agent-238-correct-and-secure-23-correct-but">SecureVibeBench §1.6</a> · ACL 2026 · ●●●○ Corroborated</td>
+<td><a href="index.html#best-agent-238-correct-and-secure-23-correct-but">SecureVibeBench §4.5</a> · ACL 2026 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Correct-and-secure</td>
 <td>Claude Code <strong>74.0%</strong> functional pass, <strong>18.4%</strong> secure; <strong>55.6%</strong> passed every test while a working exploit succeeded</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#556-passed-every-test-while-a-working-exploit-succeeded-ase">A.S.E 2.0 §1.6</a> · 4 Nov 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#556-passed-every-test-while-a-working-exploit-succeeded-ase">A.S.E 2.0 §4.5</a> · 4 Nov 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Correct-and-secure</td>
 <td>Best model <strong>25.1%</strong> functional-and-secure on 450 tasks, 7 languages</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#best-agent-writes-working-and-secure-code-on-only-251-of">LSCBench §1.6</a> · Oct 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#best-agent-writes-working-and-secure-code-on-only-251-of">LSCBench §4.5</a> · Oct 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Vulnerability reintroduction</td>
 <td><strong>45–70%</strong> of working agent solutions reintroduce the original vulnerability</td>
 <td><em>No human baseline published</em> — see the selection-trap note above</td>
-<td><a href="index.html#4570-of-working-agent-solutions-bring-the-original">BugLedger §1.6</a> · 2 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#4570-of-working-agent-solutions-bring-the-original">BugLedger §4.5</a> · 2 Nov 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Flaw propagation</td>
 <td>Insecure neighbouring code cuts correct-and-secure output by <strong>35.4 points</strong> on average in C/C++</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#agents-copy-the-flaws-already-in-a-codebase-insecure-code">Sun et al. §2.1</a> · 8 Nov 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#agents-copy-the-flaws-already-in-a-codebase-insecure-code">Sun et al. §3.5</a> · 8 Nov 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Remediation accuracy</td>
 <td>Leading remediation agents <strong>~68%</strong> pass@1; the leader fails 19% of tasks on every attempt</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2">CWE-bench v2 §1.6</a> · 3 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2">CWE-bench v2 §3.5</a> · 3 Nov 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Review recall</td>
 <td>Agentic pre-merge review recall <strong>32.5–78.1%</strong> across eight frontier models</td>
 <td><em>No human baseline published</em> — human reviewers are the incumbent control, and their miss rate on the same 265 commits is unpublished</td>
-<td><a href="index.html#best-agentic-reviewers-catch-3-in-4-vuln-introducing">SecPRBench §1.6</a> · 24 Oct 2026 · preprint · ●●○○ Reported</td>
+<td><a href="index.html#best-agentic-reviewers-catch-3-in-4-vuln-introducing">SecPRBench §4.5</a> · 24 Oct 2026 · preprint · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Vulnerabilities per codebase</td>
 <td><strong>15</strong> confirmed vulnerabilities per AI-generated codebase, 4.3 severe</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#15-confirmed-vulnerabilities-per-codebase-43-severe-secure">Secure Code Warrior §2.1</a> · Jul 2026 · ●●○○ Reported</td>
+<td><a href="index.html#15-confirmed-vulnerabilities-per-codebase-43-severe-secure">Secure Code Warrior §3.1</a> · Jul 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Flaws in AI-built apps</td>
 <td><strong>2,038</strong> critical vulnerabilities in 5,600+ publicly deployed AI-built apps</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#2038-critical-vulnerabilities-in-5600-publicly-deployed-ai">Escape.tech §2.1</a> · 2026 · vendor research · ●●○○ Reported</td>
+<td><a href="index.html#2038-critical-vulnerabilities-in-5600-publicly-deployed-ai">Escape.tech §3.1</a> · 2026 · vendor research · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>CVEs attributed to AI tools</td>
 <td><strong>74</strong> CVEs traced directly to AI coding tools</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#74-cves-traced-directly-to-ai-coding-tools-georgia-tech">Georgia Tech §2.1</a> · Sep 2026 · ●●○○ Reported</td>
+<td><a href="index.html#74-cves-traced-directly-to-ai-coding-tools-georgia-tech">Georgia Tech §3.1</a> · Sep 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Patch-to-exploit speed</td>
 <td>Working exploits generated <strong>within a day</strong> of disclosure (PaperCut zero-days, Aug 2026)</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#attackers-now-turn-patches-into-working-exploits-with-no">Google Threat Intelligence Group §3.4.3</a> · 16 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#attackers-now-turn-patches-into-working-exploits-with-no">Google Threat Intelligence Group §2.6</a> · 16 Nov 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Documentation quality</td>
-<td><em>No figure</em> — nothing in the report measures documentation quality of CI vs EI code</td>
+<td><em>No figure</em> — nothing in CILAK measures documentation quality of CI vs EI code</td>
 <td><em>No human baseline published</em></td>
 <td>No source — no figure published</td>
 </tr>
@@ -431,7 +431,7 @@
 </table>
 <h2 id="operations">Operations</h2>
 <h3 id="complete-pairs_1">Complete pairs</h3>
-<p>No complete pair yet. Every agent-reliability figure in the report is measured against the task, never against a human doing the same task.</p>
+<p>No complete pair yet. Every agent-reliability figure in CILAK is measured against the task, never against a human doing the same task.</p>
 <h3 id="partial-comparisons_1">Partial comparisons</h3>
 <table class="pair-table">
 <thead>
@@ -447,13 +447,13 @@
 <td>Task time horizon</td>
 <td>50%-reliability horizon doubles <strong>~every 7 months</strong>; the 80% horizon is far shorter; measurements above 16h flagged unreliable</td>
 <td>Human time is the yardstick for task length (an "X-hour task" is X hours of human work) — but no human success rate on the same tasks is published as a control</td>
-<td><a href="index.html#36-evaluation">METR §3.6</a> · 2026 · public tracker frozen (last model added 8 May) · ●●●○ Corroborated</td>
+<td><a href="index.html#28-evaluation">METR §2.8</a> · 2026 · public tracker frozen (last model added 8 May) · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>R&amp;D acceleration</td>
 <td>Capability improving <strong>~1.9×</strong> the Mar 2024–Oct 2025 rate (95% CI 1.5–2.8×), ~80% of the acceleration judged attributable to AI doing R&amp;D</td>
 <td>The Mar 2024–Oct 2025 rate (mostly human R&amp;D) — a time-series rate comparison; the ~80% attribution is METR's judgment, not a measurement</td>
-<td><a href="index.html#36-evaluation">METR §3.6</a> · 5 Nov 2026 · 11 weeks inside Anthropic · ●●○○ Reported</td>
+<td><a href="index.html#28-evaluation">METR §2.8</a> · 5 Nov 2026 · 11 weeks inside Anthropic · ●●○○ Reported</td>
 </tr>
 </tbody>
 </table>
@@ -472,43 +472,43 @@
 <td>Reliability (pass^k)</td>
 <td>ThinkingBox: Claude Opus 5.5 pass@1 <strong>67.16%</strong>, yet only <strong>241 of 507</strong> workflows pass on all 20 attempts; <strong>67.24%</strong> of failures terminate cleanly, then report done</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#36-evaluation">ThinkingBox §3.6</a> · Oct 2026 · ●●●○ Corroborated</td>
+<td><a href="index.html#28-evaluation">ThinkingBox §2.8</a> · Oct 2026 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Reliability (pass^k)</td>
 <td>tau-bench: GPT-4o pass^8 <strong>below 25%</strong> on retail despite a much higher pass@1</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#36-evaluation">§3.6</a> · prose, not an article — no rating</td>
+<td><a href="index.html#28-evaluation">§2.8</a> · prose, not an article — no rating</td>
 </tr>
 <tr>
 <td>Framework failure rate</td>
 <td>Failure rates of <strong>41%–86.7%</strong> across seven popular frameworks</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#33-orchestration-patterns">MAST §3.3</a> · reported via a Medium technical report, not independently verified</td>
+<td><a href="index.html#23-orchestration-patterns">MAST §2.3</a> · reported via a Medium technical report, not independently verified</td>
 </tr>
 <tr>
 <td>Self-reported completion</td>
 <td><strong>Half</strong> of self-asserted "PASS" fix claims fail independent mechanical verification</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#36-evaluation">§3.6</a> · 2026 digest, reported, not independently verified</td>
+<td><a href="index.html#28-evaluation">§2.8</a> · 2026 digest, reported, not independently verified</td>
 </tr>
 <tr>
 <td>Incident rate</td>
 <td><strong>188</strong> documented cases of autonomous AI damaging production systems, no attacker involved (late 2023–mid-2026)</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#188-documented-cases-of-autonomous-ai-damaging-production">Cyera §3.4.3</a> · 2023–mid-2026 · ●●○○ Reported</td>
+<td><a href="index.html#188-documented-cases-of-autonomous-ai-damaging-production">Cyera §2.6</a> · 2023–mid-2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Incident rate</td>
 <td><strong>46%</strong> of systemically important banks reported an AI-related issue or incident in the past 12 months</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#73-of-systemically-important-banks-permit-agents-in">BCG §3.4.3</a> · 13 Nov 2026 · 26 banks · ●●○○ Reported</td>
+<td><a href="index.html#73-of-systemically-important-banks-permit-agents-in">BCG §2.6</a> · 13 Nov 2026 · 26 banks · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Detection time</td>
 <td>WorkOS: a benchmark agent's bulk extraction ran <strong>5 days</strong> before detection</td>
 <td><em>No human baseline published</em></td>
-<td><a href="index.html#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer">WorkOS §3.4.3</a> · 6 Nov 2026 · ●●●○ Corroborated</td>
+<td><a href="index.html#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer">WorkOS §2.6</a> · 6 Nov 2026 · ●●●○ Corroborated</td>
 </tr>
 <tr>
 <td>Escalation rate</td>
@@ -542,19 +542,19 @@
 <td>Review cost</td>
 <td>A post-hoc security review lifts working-and-secure output to 47–56% at <strong>~2.5×</strong> the cost of generation alone</td>
 <td>The human is the intervention (the review), not a baseline for generation — and the review still leaves about half of tasks insecure</td>
-<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes re-run §1.6</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
+<td><a href="index.html#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25">SusVibes re-run §4.5</a> · 2 Nov 2026 · vendor-commissioned · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Cost per flaw found</td>
 <td>One agent pipeline: 948 working Linux kernel exploits at <strong>~$1,279</strong> per flaw, $1.21M end-to-end</td>
 <td><em>No human cost per flaw published</em> — and the fix loop lags by an order of magnitude (61 patched in 10 days), its cost unpriced</td>
-<td><a href="index.html#one-agent-pipeline-produced-948-working-linux-kernel-root">OpenAI §1.6</a> · 4 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#one-agent-pipeline-produced-948-working-linux-kernel-root">OpenAI §3.1</a> · 4 Nov 2026 · ●●○○ Reported</td>
 </tr>
 <tr>
 <td>Cost per finding</td>
 <td>Embedded-stack audit: 99 validated flaws for $935 in model spend, <strong>$2.58</strong> per finding</td>
 <td><em>No human cost per finding published</em> — and the $935 is the marginal cost of running a finished harness, not of building it</td>
-<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §2.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
+<td><a href="index.html#ai-cut-an-embedded-stack-audit-from-nine-months-to-90-hours">Forescout §3.1</a> · 12 Nov 2026 · ●●○○ Reported</td>
 </tr>
 </tbody>
 </table>
@@ -571,7 +571,7 @@
 <tbody>
 <tr>
 <td>Total risk-adjusted cost per outcome</td>
-<td><em>No figure</em> — the dashboard's money panel states it honestly: no credible dollar figure exists yet for money saved or lost to AI code and agents</td>
+<td><em>No figure</em> — SITREP's money panel states it honestly: no credible dollar figure exists yet for money saved or lost to AI code and agents</td>
 <td><em>No human baseline published</em></td>
 <td>No source — no figure published</td>
 </tr>
@@ -688,7 +688,7 @@
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    if (h.id === 'situation-at-hand' || h.id === 'what-just-changed' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
