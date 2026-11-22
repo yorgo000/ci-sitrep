@@ -29,6 +29,13 @@ on a customer's behalf, without the customer executing each step. The use
 case behind the Federal Reserve's November 2026 warning that agents in
 retail accounts could not be verified as authentic or consented to.
 
+**agent instruction file** — A file in a repository (AGENTS.md, CLAUDE.md,
+.cursor/rules, .github/copilot-instructions.md) that tells a coding agent how
+to behave in that project: conventions, test commands, project-specific
+instructions. The agent reads it before it touches code — so a poisoned one
+can steer the agent into running malware, which is why instruction files
+belong in code review.
+
 **AI-BOM (AI bill of materials)** — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
 record you need to audit, patch, or roll back an agent.
@@ -55,6 +62,11 @@ intrusion to a model and lets it plan and run the attack in a loop. Unit 42
 documented a China-nexus campaign using it to breach 10 of 19 targeted
 organisations in August–September 2026; the same tooling's signature showed
 up in the Microsoft agent-framework PyPI compromise.
+
+**canary token** — A fake secret (a URL, an AWS key, a login) that exists in
+only one place — inside a prompt, a file, or a system. If anyone ever uses
+it, that place has been exposed. Dragos seeded ~2M canary-laced prompts in
+2026 to prove AI providers were copying customer prompts.
 
 **Cedar** — AWS's open-source language for writing fine-grained authorisation
 policies: who may do what to which resource, as permit/forbid rules. Dogwood
@@ -234,6 +246,11 @@ changing "order 123" to "order 124").
 **inference** — Running a trained AI model to produce an output — as opposed to
 training it. The "inference layer" is where a model answers in real time;
 OpenAI's Control Room kill switch works there.
+
+**inference provider** — A company that runs a trained AI model and answers
+requests for it — as opposed to the company that built the model. Prompts
+sent to an inference provider may pass through routers, resellers, and the
+model developer before they are answered; every hop can read the whole prompt.
 
 **IVO (independent verification organisation)** — A licensed outside body that
 tests a frontier AI developer's models against state-set safety standards and
@@ -423,6 +440,12 @@ call against — together with the user's original intent — before the call
 runs. Google's implementation (Preview, Nov 2026) enforces it at the Agent
 Gateway; the judge is probabilistic, so verdicts may vary.
 
+**session-start hook** — A command a coding agent runs automatically when a
+session starts in a repository — configured in a file such as
+.claude/settings.json. Because it fires on trust, not on a typed
+instruction, a malicious hook can run code the moment a developer opens a
+project.
+
 **SFC (Securities and Futures Commission)** — Hong Kong's securities regulator.
 Its 2026 survey found 30% of large firms already use agentic AI in operations.
 
@@ -488,6 +511,12 @@ script into a web page other people view — so the victim's browser runs the
 attacker's code.
 
 ## Z
+
+**Zero Data Retention (ZDR)** — A privacy setting on an AI API request that
+is supposed to mean the prompt and response are never stored. Canary-token
+research in November 2026 showed providers ignoring it — ZDR-flagged prompts
+were copied, resold, and read by people — so it is a claim to verify, not a
+boundary to rely on.
 
 **zero-day** — A software flaw nobody knew about until it is exploited or
 disclosed, so no patch exists yet — the "zero" is the number of days defenders
