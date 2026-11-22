@@ -190,7 +190,7 @@
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
-    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <p class="back"><a href="index.html">&larr; Back to CI SITREP</a></p>
     <h2>PAGE CONTENTS</h2>
     <div class="toc">
 <ul>
@@ -220,7 +220,7 @@
   </nav>
   <main>
     <h1 id="glossary">Glossary</h1>
-<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<p class="back-inline"><a href="index.html">&larr; Back to CI SITREP</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
 <p>The acronyms and jargon in the CI SITREP, in plain language. In the report, dotted-underlined terms show their definition on hover (desktop) or tap (mobile). Entries are never removed, so this dictionary only grows.</p>
 <h2 id="a">A</h2>
@@ -294,6 +294,11 @@ intelligence).</p>
 <p id="cii"><strong>CII (ci individual)</strong> — Confluence&lt;1&gt;'s term for an individual created
 intelligence: one AI system acting autonomously toward a goal. The
 field's word is "agent". Formerly CIA.</p>
+<p id="cilak"><strong>CILAK (CI Landscape Assessment Kit)</strong> — The report surface of CI SITREP:
+the full knowledge base of findings, sliced into the four sections —
+PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
+Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
+surface is What just changed.</p>
 <p id="circuit-breaker"><strong>circuit breaker</strong> — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.</p>
@@ -493,6 +498,9 @@ judging agents.</p>
 <p id="pen-test"><strong>pen test (penetration test)</strong> — Authorised hacking: security specialists
 attack a system the way a real attacker would, to find the holes before
 criminals do.</p>
+<p id="pnl"><strong>PNL (profit and loss)</strong> — The first section of CI SITREP: adoption,
+cost and liability — what AI code and agents mean for a firm's bottom
+line.</p>
 <p id="pr"><strong>PR (pull request)</strong> — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
 public relations.)</p>
@@ -715,7 +723,7 @@ have had to fix it.</p>
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    if (h.id === 'situation-at-hand' || h.id === 'what-just-changed' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
