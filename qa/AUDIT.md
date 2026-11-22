@@ -12,10 +12,10 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 |---|---|
 | Articles | 122 |
 | Source links (article + subsection) | 291 |
-| Total external links (incl. inline prose links) | 620 |
+| Total external links (incl. inline prose links) | 619 |
 | Unique source URLs | 231 |
-| Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new in the last 7 days | 68 |
+| Sections | 4 top-level · 29 subsections · 3 sub-subsections |
+| Items in What just changed | 68 |
 | Superseded entries in the archive | 21 |
 | Report live since | 2026-11-09 |
 
@@ -81,8 +81,8 @@ The rules the report is built and maintained under. These are not aspirations �
 
 ## Coverage — what we track and what we might be missing
 
-**Covered:** three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
+**Covered:** four sections, updated daily — (1) PNL: money, adoption, liability, (2) CIC (Agentic Staff): the agent workforce, (3) Codebase Certification: attesting what is already there, (4) Code Sanitizing Pre-commit: stopping bad code getting in. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
 
 **Known gaps — things we are watching for that have not arrived yet:** the live list is on the report's front page, in [What we're watching](index.html#what-were-watching) — the dated events on the horizon and the open questions the report is tracking. It is maintained in the open, in the same file as the report, so it never goes stale.
 
-**How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the three subjects every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
+**How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the four sections every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
