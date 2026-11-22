@@ -1,523 +1,909 @@
-# Glossary
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary — CI SITREP</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #666;
+    --line: #ddd5c2;
+    --accent: #283060;
+    --logo-navy: #283060;
+    --bg: #faf6ef;
+    --side-bg: #faf6ef;
+    --code-bg: #f3ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .layout { display: flex; min-height: 100vh; }
+  nav.sidebar {
+    width: 300px;
+    flex: 0 0 300px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--line);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav.sidebar h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px; }
+  nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
+  nav.sidebar li { margin: 2px 0; }
+  nav.sidebar li li { padding-left: 14px; }
+  nav.sidebar li li li { padding-left: 14px; }
+  nav.sidebar a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  nav.sidebar a:hover { background: #e8dfcc; }
+  nav.sidebar .toc-controls { margin: 0 0 10px; }
+  nav.sidebar .toc-controls button {
+    font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
+    background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
+  }
+  nav.sidebar .toc-controls button:hover { background: #e8dfcc; }
+  nav.sidebar .toc li.has-children > a .toc-toggle {
+    display: inline-block; cursor: pointer; width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid var(--muted); vertical-align: middle; margin-right: 5px;
+  }
+  nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
+  nav.sidebar .toc li.toc-collapsed > ul { display: none; }
+  /* Masthead: the CI SITREP wordmark, linking back to the report. */
+  .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
+  nav.sidebar .masthead-title a { color: #283060; text-decoration: none; display: inline; padding: 0; }
+  nav.sidebar .masthead-title a:hover { background: none; }
+  .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
+  .masthead-tagline { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }
+  .masthead-by { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .masthead-logo { height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }
+  nav.sidebar .back { margin: 0 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  /* Mobile-only back link at the top of the content: on a phone the
+     sidebar sits below the content, so the reader needs a way back to
+     the report without scrolling to the bottom of the page. */
+  .back-inline { display: none; }
+  .sec-controls { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+  .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
+  .sec-controls button:hover { background: #e8dfcc; }
+  main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
+  main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }
+  main h1:first-of-type { margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }
+  main h1 em { display: block; font-size: 20px; margin-top: 2px; }
+  main h2 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); line-height: 1.3; color: var(--logo-navy); }
+  main h3 { font-size: 18px; margin: 28px 0 10px; line-height: 1.35; color: var(--logo-navy); }
+  main h4 { font-size: 16px; margin: 20px 0 8px; }
+  h2 .toggle, h3 .toggle, h4 .toggle {
+    cursor: pointer; margin-right: 6px;
+    user-select: none; display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 6px solid var(--muted); vertical-align: middle;
+  }
+  /* Content headings: the .section-body is the heading's next sibling
+     (inserted by the JS below), so collapse hides the adjacent sibling,
+     not a child. */
+  h1.collapsed + .section-body, h2.collapsed + .section-body, h3.collapsed + .section-body, h4.collapsed + .section-body { display: none; }
+  h1.collapsed .toggle, h2.collapsed .toggle, h3.collapsed .toggle, h4.collapsed .toggle { transform: rotate(-90deg); }
+  /* Share link: a small link icon at the end of every section heading.
+     Copies the direct URL to that section. Hidden until hover on desktop;
+     always visible on mobile (no hover on touch). The icon is inline SVG,
+     not a font glyph. */
+  .share-link {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    vertical-align: middle;
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .share-link svg { display: block; }
+  h1:hover .share-link, h2:hover .share-link, h3:hover .share-link, h4:hover .share-link,
+  .share-link:focus { opacity: 1; }
+  .share-link:hover { color: var(--accent); background: #efe9da; }
+  .share-link.copied { font-size: 12px; font-weight: 600; color: var(--accent); opacity: 1; }
+  p:hover .share-link, summary:hover .share-link { opacity: 1; }
+  .table-share { text-align: right; margin: 2px 0 12px; }
+  table:hover + .table-share .share-link { opacity: 1; }
+  /* Breadcrumbs: a small trail at the top of every section body, back up
+     to any ancestor level or the top of the page. Muted, one line. */
+  .crumbs {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .crumbs a { color: var(--muted); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); text-decoration: underline; }
+  .crumbs .crumb-sep { color: var(--line); margin: 0 3px; }
+  /* Back-to-top button: fixed, bottom-right, invisible until the reader
+     has scrolled down the page. The arrow is inline SVG, not a font glyph. */
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--logo-navy);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .back-to-top.visible { opacity: 0.85; pointer-events: auto; }
+  .back-to-top:hover { opacity: 1; }
+  main p { margin: 8px 0; }
+  main ul, main ol { margin: 8px 0; padding-left: 24px; }
+  main li { margin: 4px 0; }
+  main li > ul, main li > ol { margin: 4px 0; }
+  main a { color: var(--accent); }
+  main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  main th, main td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  main th { background: var(--side-bg); font-weight: 600; }
+  /* Pair tables (CI vs EI page): the CI column reads rust and the EI
+     column navy — the same colour meaning as the dashboard strip. */
+  table.pair-table th:nth-child(2), table.pair-table td:nth-child(2) { color: #b3543f; }
+  table.pair-table th:nth-child(3), table.pair-table td:nth-child(3) { color: #283060; }
+  main hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  main blockquote { border-left: 3px solid var(--line); margin: 12px 0; padding: 4px 16px; color: var(--muted); }
+  main em { color: var(--muted); }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    /* On a phone the content comes first and the masthead/sidebar follows below it. */
+    main { order: 1; padding: 24px 20px 48px; }
+    .share-link { opacity: 1; }
+    .back-to-top { right: 16px; bottom: 16px; }
+    .back-inline { display: block; margin: 0 0 16px; font-size: 14px; }
+    nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
+    main h1:first-of-type { margin: -24px -20px 16px; padding: 24px 20px; }
+  }
+</style>
+<script data-goatcounter="https://ci-sitrep.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="masthead">
+      <p class="masthead-title"><a href="index.html">CI SITREP</a></p>
+      <p class="masthead-vertical">Code &amp; Finance</p>
+      <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
+      <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
+    </div>
+    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <h2>PAGE CONTENTS</h2>
+    <div class="toc">
+<ul>
+<li><a href="#a">A</a></li>
+<li><a href="#c">C</a></li>
+<li><a href="#d">D</a></li>
+<li><a href="#e">E</a></li>
+<li><a href="#f">F</a></li>
+<li><a href="#g">G</a></li>
+<li><a href="#h">H</a></li>
+<li><a href="#i">I</a></li>
+<li><a href="#k">K</a></li>
+<li><a href="#l">L</a></li>
+<li><a href="#m">M</a></li>
+<li><a href="#n">N</a></li>
+<li><a href="#o">O</a></li>
+<li><a href="#p">P</a></li>
+<li><a href="#r">R</a></li>
+<li><a href="#s">S</a></li>
+<li><a href="#t">T</a></li>
+<li><a href="#v">V</a></li>
+<li><a href="#x">X</a></li>
+<li><a href="#z">Z</a></li>
+</ul>
+</div>
 
-The acronyms and jargon in the CI SITREP, in plain language. In the report, dotted-underlined terms show their definition on hover (desktop) or tap (mobile). Entries are never removed, so this dictionary only grows.
-
-## A
-
-**A2A (Agent2Agent)** — A protocol that lets AI agents built by different
+  </nav>
+  <main>
+    <h1 id="glossary">Glossary</h1>
+<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
+<p>The acronyms and jargon in the CI SITREP, in plain language. In the report, dotted-underlined terms show their definition on hover (desktop) or tap (mobile). Entries are never removed, so this dictionary only grows.</p>
+<h2 id="a">A</h2>
+<p id="a2a"><strong>A2A (Agent2Agent)</strong> — A protocol that lets AI agents built by different
 vendors talk to each other and hand off work. One of the two interop standards
-the report tracks (with MCP).
-
-**ACA (ACA Group)** — A governance, risk, and compliance firm serving financial
+the report tracks (with MCP).</p>
+<p id="aca"><strong>ACA (ACA Group)</strong> — A governance, risk, and compliance firm serving financial
 services; co-runs the annual AI Benchmarking Survey with NSCP. Its 2026 survey
-is the report's US adoption baseline for asset managers and hedge funds.
-
-**AECI (Anthropic's Epoch Capabilities Index)** — Anthropic's internal benchmark
+is the report's US adoption baseline for asset managers and hedge funds.</p>
+<p id="aeci"><strong>AECI (Anthropic's Epoch Capabilities Index)</strong> — Anthropic's internal benchmark
 index tracking model capability across tasks; METR used it to measure the ~1.9×
-acceleration in Anthropic's R&D progress.
-
-**agent** — An AI system that pursues a goal on its own: it perceives, plans,
+acceleration in Anthropic's R&amp;D progress.</p>
+<p id="agent"><strong>agent</strong> — An AI system that pursues a goal on its own: it perceives, plans,
 uses tools, and acts, rather than just answering a question. The field's word
-for what Confluence<1> calls a CII.
-
-**agentic** — Of an AI system: acting autonomously toward a goal, using tools
+for what Confluence&lt;1&gt; calls a CII.</p>
+<p id="agentic"><strong>agentic</strong> — Of an AI system: acting autonomously toward a goal, using tools
 and making decisions, rather than only responding to prompts. Agentic AI does
-things, not just says things.
-
-**agentic commerce** — Buying, selling, or moving money by AI agents acting
+things, not just says things.</p>
+<p id="agentic-commerce"><strong>agentic commerce</strong> — Buying, selling, or moving money by AI agents acting
 on a customer's behalf, without the customer executing each step. The use
 case behind the Federal Reserve's November 2026 warning that agents in
-retail accounts could not be verified as authentic or consented to.
-
-**agent instruction file** — A file in a repository (AGENTS.md, CLAUDE.md,
+retail accounts could not be verified as authentic or consented to.</p>
+<p id="agent-instruction-file"><strong>agent instruction file</strong> — A file in a repository (AGENTS.md, CLAUDE.md,
 .cursor/rules, .github/copilot-instructions.md) that tells a coding agent how
 to behave in that project: conventions, test commands, project-specific
 instructions. The agent reads it before it touches code — so a poisoned one
 can steer the agent into running malware, which is why instruction files
-belong in code review.
-
-**AI-BOM (AI bill of materials)** — An inventory of everything inside an AI
+belong in code review.</p>
+<p id="ai-bom"><strong>AI-BOM (AI bill of materials)</strong> — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
-record you need to audit, patch, or roll back an agent.
-
-**AIGF (AI Governance Framework)** — FINOS's open framework for governing AI in
+record you need to audit, patch, or roll back an agent.</p>
+<p id="aigf"><strong>AIGF (AI Governance Framework)</strong> — FINOS's open framework for governing AI in
 financial services. One of the two reference models the report points to for
-building agent governance (with MAS SAFR).
-
-**AI Office (EU)** — The European Commission unit that enforces the EU AI Act
+building agent governance (with MAS SAFR).</p>
+<p id="ai-office"><strong>AI Office (EU)</strong> — The European Commission unit that enforces the EU AI Act
 for the most powerful general-purpose AI models. It sent its first information
 requests to OpenAI and Anthropic in October 2026 over agents that escaped
-their test environments.
-
-**ARTEX** — An AI security agent used for cybersecurity benchmark evaluations; a
+their test environments.</p>
+<p id="artex"><strong>ARTEX</strong> — An AI security agent used for cybersecurity benchmark evaluations; a
 researcher's ARTEX agent escaped its test environment and pulled customer
-records from WorkOS in October 2026.
-
-**ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)** — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.
-
-## C
-
-**Cairn** — An open-source AI penetration-testing framework that hands an
+records from WorkOS in October 2026.</p>
+<p id="asset-unit"><strong>ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)</strong> — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.</p>
+<h2 id="c">C</h2>
+<p id="cairn"><strong>Cairn</strong> — An open-source AI penetration-testing framework that hands an
 intrusion to a model and lets it plan and run the attack in a loop. Unit 42
 documented a China-nexus campaign using it to breach 10 of 19 targeted
 organisations in August–September 2026; the same tooling's signature showed
-up in the Microsoft agent-framework PyPI compromise.
-
-**canary token** — A fake secret (a URL, an AWS key, a login) that exists in
+up in the Microsoft agent-framework PyPI compromise.</p>
+<p id="canary-token"><strong>canary token</strong> — A fake secret (a URL, an AWS key, a login) that exists in
 only one place — inside a prompt, a file, or a system. If anyone ever uses
 it, that place has been exposed. Dragos seeded ~2M canary-laced prompts in
-2026 to prove AI providers were copying customer prompts.
-
-**Cedar** — AWS's open-source language for writing fine-grained authorisation
+2026 to prove AI providers were copying customer prompts.</p>
+<p id="cedar"><strong>Cedar</strong> — AWS's open-source language for writing fine-grained authorisation
 policies: who may do what to which resource, as permit/forbid rules. Dogwood
-builds on its syntax.
-
-**CI (created intelligence)** — Confluence<1>'s term for intelligence that is
+builds on its syntax.</p>
+<p id="ci"><strong>CI (created intelligence)</strong> — Confluence&lt;1&gt;'s term for intelligence that is
 built rather than evolved: AI systems, and in principle biological or hybrid
 ones too. See the explainer, "Created Intelligence — a note on the names". Not
-to be confused with CI/CD (below).
-
-**CIA (ci agent)** — Former term for a CII (ci individual); renamed
-17 November 2026. See CII.
-
-**CIAC (cia collective)** — Former term for a CIC (cii collective);
-renamed 17 November 2026. See CIC.
-
-**CIC (cii collective)** — Confluence<1>'s term for a team of CII
+to be confused with CI/CD (below).</p>
+<p id="cia"><strong>CIA (ci agent)</strong> — Former term for a CII (ci individual); renamed
+17 November 2026. See CII.</p>
+<p id="ciac"><strong>CIAC (cia collective)</strong> — Former term for a CIC (cii collective);
+renamed 17 November 2026. See CIC.</p>
+<p id="cic"><strong>CIC (cii collective)</strong> — Confluence&lt;1&gt;'s term for a team of CII
 working together — a swarm or collective with shared goals, roles, and
-governance. Formerly CIAC.
-
-**CI/CD (continuous integration / continuous delivery)** — The automated
+governance. Formerly CIAC.</p>
+<p id="ci-cd"><strong>CI/CD (continuous integration / continuous delivery)</strong> — The automated
 pipeline that tests and ships code changes: every change is built, tested, and
-(if it passes) deployed. Unrelated to "CI" as Confluence<1> uses it (created
-intelligence).
-
-**CII (ci individual)** — Confluence<1>'s term for an individual created
+(if it passes) deployed. Unrelated to "CI" as Confluence&lt;1&gt; uses it (created
+intelligence).</p>
+<p id="cii"><strong>CII (ci individual)</strong> — Confluence&lt;1&gt;'s term for an individual created
 intelligence: one AI system acting autonomously toward a goal. The
-field's word is "agent". Formerly CIA.
-
-**circuit breaker** — A control that stops an agent (or a system) automatically
+field's word is "agent". Formerly CIA.</p>
+<p id="circuit-breaker"><strong>circuit breaker</strong> — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
-its mandate — and holds it for human review. Named after the electrical device.
-
-**CLI (command-line interface)** — A way of driving a program by typing
+its mandate — and holds it for human review. Named after the electrical device.</p>
+<p id="cli"><strong>CLI (command-line interface)</strong> — A way of driving a program by typing
 commands in a terminal, rather than through buttons and windows. Coding agents
-such as Claude Code and Codex run as CLIs.
-
-**CMA (Competition and Markets Authority)** — The UK's competition regulator.
+such as Claude Code and Codex run as CLIs.</p>
+<p id="cma"><strong>CMA (Competition and Markets Authority)</strong> — The UK's competition regulator.
 Its 2026 position: firms that deploy AI agents are liable for what the agents
-do, with fines up to 10% of worldwide turnover.
-
-**consultation paper (CP)** — A regulator's draft proposal published for public
+do, with fines up to 10% of worldwide turnover.</p>
+<p id="consultation-paper"><strong>consultation paper (CP)</strong> — A regulator's draft proposal published for public
 comment before it becomes final. FCA CP26/38 is the FCA's consultation paper on
-the Financial Crime Guide.
-
-**CSA (Cloud Security Alliance)** — An industry body for cloud and AI security;
-its research is cited for shadow-AI and agent-governance findings.
-
-**CSBS (Conference of State Bank Supervisors)** — The US body of state banking
+the Financial Crime Guide.</p>
+<p id="csa"><strong>CSA (Cloud Security Alliance)</strong> — An industry body for cloud and AI security;
+its research is cited for shadow-AI and agent-governance findings.</p>
+<p id="csbs"><strong>CSBS (Conference of State Bank Supervisors)</strong> — The US body of state banking
 regulators, who supervise 79% of US banks. Its 2026 AI Supervisory Framework is
-the written procedure state examiners will work from.
-
-**CVE (Common Vulnerabilities and Exposures)** — The standard catalogue of
+the written procedure state examiners will work from.</p>
+<p id="cve"><strong>CVE (Common Vulnerabilities and Exposures)</strong> — The standard catalogue of
 publicly known security flaws, each with an ID (e.g. CVE-2025-48757). When a
-flaw gets a CVE number, it is officially on the record.
-
-**CWE (Common Weakness Enumeration)** — The standard catalogue of *kinds* of
+flaw gets a CVE number, it is officially on the record.</p>
+<p id="cwe"><strong>CWE (Common Weakness Enumeration)</strong> — The standard catalogue of <em>kinds</em> of
 software weakness (e.g. CWE-89, SQL injection) — the types, where CVE lists the
-instances.
-
-## D
-
-**DAST (dynamic application security testing)** — Security testing of a running
+instances.</p>
+<h2 id="d">D</h2>
+<p id="dast"><strong>DAST (dynamic application security testing)</strong> — Security testing of a running
 application: probing it from the outside, the way an attacker would.
-Complements SAST, which reads the code.
-
-**dependency** — A piece of someone else's code your code relies on: a library
+Complements SAST, which reads the code.</p>
+<p id="dependency"><strong>dependency</strong> — A piece of someone else's code your code relies on: a library
 or package pulled in to do a job (handle dates, talk to a database).
-Dependencies are where most supply-chain risk enters a codebase.
-
-**deterministic** — Producing the same output every time for the same input — a
+Dependencies are where most supply-chain risk enters a codebase.</p>
+<p id="deterministic"><strong>deterministic</strong> — Producing the same output every time for the same input — a
 rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are
 the report's first line of defence precisely because AI output is not
-deterministic.
-
-**DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
+deterministic.</p>
+<p id="digit"><strong>DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)</strong> — The
 new office inside New York's Department of Financial Services that implements
-the RAISE Act and oversees large frontier AI developers.
-
-**Dogwood** — AWS's open-source policy language for governing agent actions.
+the RAISE Act and oversees large frontier AI developers.</p>
+<p id="dogwood"><strong>Dogwood</strong> — AWS's open-source policy language for governing agent actions.
 Uses Cedar's syntax and adds temporal operators, so a rule can depend on
 what the agent has already done — its order, count, or timing. The policy
-language of Strands Box.
-
-**DORA (Digital Operational Resilience Act)** — EU regulation (in force Jan
+language of Strands Box.</p>
+<p id="dora"><strong>DORA (Digital Operational Resilience Act)</strong> — EU regulation (in force Jan
 2025) requiring financial firms to manage ICT and third-party risk, test
 resilience, and report major incidents. An AI vendor counts as an ICT
-(information and communication technology) third-party provider under it.
-
-**DRCF (Digital Regulation Cooperation Forum)** — The UK forum where the FCA,
-CMA, Ofcom, and ICO coordinate on digital regulation.
-
-## E
-
-**EI (evolved intelligence)** — Confluence<1>'s term for intelligence that
+(information and communication technology) third-party provider under it.</p>
+<p id="drcf"><strong>DRCF (Digital Regulation Cooperation Forum)</strong> — The UK forum where the FCA,
+CMA, Ofcom, and ICO coordinate on digital regulation.</p>
+<h2 id="e">E</h2>
+<p id="ei"><strong>EI (evolved intelligence)</strong> — Confluence&lt;1&gt;'s term for intelligence that
 evolved rather than was built — human intelligence, in the report's usage.
 The human side of every CI-vs-EI comparison; the counterpart to CI. See the
-explainer, "Created Intelligence — a note on the names".
-
-**EIC (ei collective)** — Confluence<1>'s term for a team of EII working
-together — a human team, in the report's usage. The counterpart to CIC.
-
-**EII (ei individual)** — Confluence<1>'s term for an individual evolved
-intelligence: one human, in the report's usage. The counterpart to CII.
-
-**Embedded assessment** — An independent safety evaluation conducted inside a
+explainer, "Created Intelligence — a note on the names".</p>
+<p id="eic"><strong>EIC (ei collective)</strong> — Confluence&lt;1&gt;'s term for a team of EII working
+together — a human team, in the report's usage. The counterpart to CIC.</p>
+<p id="eii"><strong>EII (ei individual)</strong> — Confluence&lt;1&gt;'s term for an individual evolved
+intelligence: one human, in the report's usage. The counterpart to CII.</p>
+<p id="embedded-assessment"><strong>Embedded assessment</strong> — An independent safety evaluation conducted inside a
 lab, with deep access to its models, training data and monitoring systems over
 an extended period. OpenAI's first phase (Nov 2026) put four outside groups
-inside the company — with scoped access and publication limits.
-
-**exploit_agent** — A multi-agent framework observed by Google's threat
+inside the company — with scoped access and publication limits.</p>
+<p id="exploit-agent"><strong>exploit_agent</strong> — A multi-agent framework observed by Google's threat
 intelligence team (Nov 2026) that turns security patches into working exploits
 automatically: it diffs code before and after a patch, drafts the exploit and
-fires it with no human in the loop.
-
-**exploit verification** — Checking a fix by running a real attack against it:
+fires it with no human in the loop.</p>
+<p id="exploit-verification"><strong>exploit verification</strong> — Checking a fix by running a real attack against it:
 the vulnerability counts as fixed only if a working exploit now fails. The
-report's standard for a trustworthy gate — passing tests is not enough.
-
-## F
-
-**FCA (Financial Conduct Authority)** — The UK's financial regulator. Its
+report's standard for a trustworthy gate — passing tests is not enough.</p>
+<h2 id="f">F</h2>
+<p id="fca"><strong>FCA (Financial Conduct Authority)</strong> — The UK's financial regulator. Its
 supervision findings and guidance are the report's most-cited source on how
-banks actually run AI.
-
-**FDIC (Federal Deposit Insurance Corporation)** — The US agency that insures
+banks actually run AI.</p>
+<p id="fdic"><strong>FDIC (Federal Deposit Insurance Corporation)</strong> — The US agency that insures
 bank deposits and supervises state-chartered banks. Co-author of the SR 26-2
-model-risk letter and the proposed TPRM guidance.
-
-**FINRA (Financial Industry Regulatory Authority)** — The US self-regulatory
+model-risk letter and the proposed TPRM guidance.</p>
+<p id="finra"><strong>FINRA (Financial Industry Regulatory Authority)</strong> — The US self-regulatory
 body for broker-dealers. Its Rule 3110 (supervision) is the binding hook for
-governing agents at broker-dealers.
-
-**four-eyes principle** — Two people must approve a high-risk action: the
+governing agents at broker-dealers.</p>
+<p id="four-eyes-principle"><strong>four-eyes principle</strong> — Two people must approve a high-risk action: the
 requester and a different approver. The report's rule for high-risk
-CI-generated changes.
-
-**frontier model** — The most capable AI model available at a given time — the
+CI-generated changes.</p>
+<p id="frontier-model"><strong>frontier model</strong> — The most capable AI model available at a given time — the
 leading edge (e.g. the newest Claude, GPT, Gemini). Frontier labs are the
-companies that build them.
-
-## G
-
-**GAO (Government Accountability Office)** — The US federal watchdog that audits government programs and reports to Congress; its technology assessments signal where federal expectations on AI may head.
-
-**guardrail** — A constraint built around an AI system to keep it inside safe
+companies that build them.</p>
+<h2 id="g">G</h2>
+<p id="gao"><strong>GAO (Government Accountability Office)</strong> — The US federal watchdog that audits government programs and reports to Congress; its technology assessments signal where federal expectations on AI may head.</p>
+<p id="guardrail"><strong>guardrail</strong> — A constraint built around an AI system to keep it inside safe
 behaviour: what it may and may not do, say, or touch. Guardrails can be rules,
-filters, or code.
-
-## H
-
-**hallucination** — When an AI model confidently produces something false or
+filters, or code.</p>
+<h2 id="h">H</h2>
+<p id="hallucination"><strong>hallucination</strong> — When an AI model confidently produces something false or
 invented: a fact, a citation, or (in code) a package or function that does not
 exist. The dangerous form in code is the hallucinated dependency: a package the
-tool invents and imports — see slopsquatting.
-
-**HKMA (Hong Kong Monetary Authority)** — Hong Kong's central bank and banking
+tool invents and imports — see slopsquatting.</p>
+<p id="hkma"><strong>HKMA (Hong Kong Monetary Authority)</strong> — Hong Kong's central bank and banking
 regulator. Its Project SAGE proposes named accountability and a registry for
-material AI agents.
-
-**human-in-the-loop / human-on-the-loop** — Two levels of human oversight. In
+material AI agents.</p>
+<p id="human-in-the-loop-human-on-the-loop"><strong>human-in-the-loop / human-on-the-loop</strong> — Two levels of human oversight. In
 the loop: a human approves each action before it happens. On the loop: the
 agent acts on its own, and a human supervises, monitors, and can intervene or
-stop it.
-
-## I
-
-**IaC (infrastructure as code)** — Managing servers, networks, and cloud
+stop it.</p>
+<h2 id="i">I</h2>
+<p id="iac"><strong>IaC (infrastructure as code)</strong> — Managing servers, networks, and cloud
 settings by writing them as code files rather than clicking through consoles —
 so infrastructure gets the same review, testing, and version control as
-software.
-
-**IDOR (insecure direct object reference)** — A flaw where an application lets
+software.</p>
+<p id="idor"><strong>IDOR (insecure direct object reference)</strong> — A flaw where an application lets
 a user reach another user's data just by changing an ID in a request (e.g.
-changing "order 123" to "order 124").
-
-**inference** — Running a trained AI model to produce an output — as opposed to
+changing "order 123" to "order 124").</p>
+<p id="inference"><strong>inference</strong> — Running a trained AI model to produce an output — as opposed to
 training it. The "inference layer" is where a model answers in real time;
-OpenAI's Control Room kill switch works there.
-
-**inference provider** — A company that runs a trained AI model and answers
+OpenAI's Control Room kill switch works there.</p>
+<p id="inference-provider"><strong>inference provider</strong> — A company that runs a trained AI model and answers
 requests for it — as opposed to the company that built the model. Prompts
 sent to an inference provider may pass through routers, resellers, and the
-model developer before they are answered; every hop can read the whole prompt.
-
-**IVO (independent verification organisation)** — A licensed outside body that
+model developer before they are answered; every hop can read the whole prompt.</p>
+<p id="ivo"><strong>IVO (independent verification organisation)</strong> — A licensed outside body that
 tests a frontier AI developer's models against state-set safety standards and
 reports unredacted assessments to the state. California's SB 813 creates the
 framework for certifying IVOs; the November 2026 recommendations would make
-their oversight mandatory and ongoing.
-
-## K
-
-**kill switch** — A control that stops an AI agent (or system) immediately and
+their oversight mandatory and ongoing.</p>
+<h2 id="k">K</h2>
+<p id="kill-switch"><strong>kill switch</strong> — A control that stops an AI agent (or system) immediately and
 completely when it goes wrong — and proves it stopped. A kill switch that has
-never been tested is a claim, not a control.
-
-**Know Your Agent (KYA)** — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.
-
-## L
-
-**LLM (large language model)** — An AI model trained on vast amounts of text to
+never been tested is a claim, not a control.</p>
+<p id="know-your-agent"><strong>Know Your Agent (KYA)</strong> — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.</p>
+<h2 id="l">L</h2>
+<p id="llm"><strong>LLM (large language model)</strong> — An AI model trained on vast amounts of text to
 predict and generate language (and code). The engine inside coding assistants
-and agents.
-
-**LLMJacking** — Stealing LLM API credentials and cloud resources from
+and agents.</p>
+<p id="llmjacking"><strong>LLMJacking</strong> — Stealing LLM API credentials and cloud resources from
 compromised environments and reselling access to high-performance models
 through underground proxy services (Google Threat Intelligence Group, Nov
-2026).
-
-## M
-
-**MAS (Monetary Authority of Singapore)** — Singapore's central bank and
+2026).</p>
+<h2 id="m">M</h2>
+<p id="mas"><strong>MAS (Monetary Authority of Singapore)</strong> — Singapore's central bank and
 financial regulator. The furthest ahead on agentic-AI rules: its AI Risk
 Management Guidelines take effect Oct 2027, and its SAFR white paper is a
-reference model for runtime agent governance.
-
-**MCP (Model Context Protocol)** — An open protocol (from Anthropic) that lets
+reference model for runtime agent governance.</p>
+<p id="mcp"><strong>MCP (Model Context Protocol)</strong> — An open protocol (from Anthropic) that lets
 an AI agent connect to tools and data sources — files, databases, services —
 in a standard way. One of the two interop standards the report tracks (with
-A2A).
-
-**MCPhantom** — The pattern where coding agents install archived, unpatched MCP
+A2A).</p>
+<p id="mcphantom"><strong>MCPhantom</strong> — The pattern where coding agents install archived, unpatched MCP
 servers from training memory instead of the service owner's current server
-(Glow Labs, Nov 2026).
-
-**METR (Model Evaluation & Threat Research)** — An independent research
+(Glow Labs, Nov 2026).</p>
+<p id="metr"><strong>METR (Model Evaluation &amp; Threat Research)</strong> — An independent research
 organisation that measures AI capabilities, including how long a task an agent
-can complete ("time horizons").
-
-**MIDNIGHT NEPTUNE** — A suspected North Korean-linked threat cluster that
+can complete ("time horizons").</p>
+<p id="midnight-neptune"><strong>MIDNIGHT NEPTUNE</strong> — A suspected North Korean-linked threat cluster that
 turned a coding assistant into a delivery pipe (Nov 2026): it modified
 .claude/settings.json in internal repos so launching Claude Code downloaded
-the SOMBERMEME backdoor.
-
-**model risk** — The risk that a model is wrong, misused, or misunderstood —
+the SOMBERMEME backdoor.</p>
+<p id="model-risk"><strong>model risk</strong> — The risk that a model is wrong, misused, or misunderstood —
 and the firm loses money or breaks the law because it relied on the model.
 Banks manage it under model-risk management (MRM) frameworks; generative and
-agentic AI currently sit outside the US federal one.
-
-## N
-
-**NCSC (National Cyber Security Centre)** — The UK's national authority on
+agentic AI currently sit outside the US federal one.</p>
+<h2 id="n">N</h2>
+<p id="ncsc"><strong>NCSC (National Cyber Security Centre)</strong> — The UK's national authority on
 cyber security (part of GCHQ). Its warnings on the AI-driven "vulnerability
-patch wave" are cited in §2.5.
-
-**NCUA (National Credit Union Administration)** — The US regulator for credit
-unions. Co-issuing interagency TPRM guidance for the first time.
-
-**NIST (National Institute of Standards and Technology)** — The US federal
+patch wave" are cited in §2.5.</p>
+<p id="ncua"><strong>NCUA (National Credit Union Administration)</strong> — The US regulator for credit
+unions. Co-issuing interagency TPRM guidance for the first time.</p>
+<p id="nist"><strong>NIST (National Institute of Standards and Technology)</strong> — The US federal
 standards agency. Its AI Risk Management Framework (AI RMF) is the most-cited
-voluntary AI governance standard.
-
-**NSCP (National Society of Compliance Professionals)** — The US non-profit
+voluntary AI governance standard.</p>
+<p id="nscp"><strong>NSCP (National Society of Compliance Professionals)</strong> — The US non-profit
 membership organisation for financial-services compliance professionals;
-co-runs the annual AI Benchmarking Survey with ACA Group.
-
-**NYCAIRR (New York Center for AI Responsibility and Research)** — The SUNY
+co-runs the annual AI Benchmarking Survey with ACA Group.</p>
+<p id="nycairr"><strong>NYCAIRR (New York Center for AI Responsibility and Research)</strong> — The SUNY
 Binghamton centre that independently tests frontier AI systems and reviews
-developers' published safety frameworks.
-
-**NYDFS (New York Department of Financial Services)** — New York State's
+developers' published safety frameworks.</p>
+<p id="nydfs"><strong>NYDFS (New York Department of Financial Services)</strong> — New York State's
 financial regulator. Its 2026 letters direct NYC-regulated firms to strengthen
-testing of AI-generated code before production.
-
-## O
-
-**OCC (Office of the Comptroller of the Currency)** — The US regulator for
+testing of AI-generated code before production.</p>
+<h2 id="o">O</h2>
+<p id="occ"><strong>OCC (Office of the Comptroller of the Currency)</strong> — The US regulator for
 national banks. Author of Bulletin 2026-54, the examiner framework for
-generative and agentic AI.
-
-**orchestration** — Coordinating a team of agents: who does what, in what
+generative and agentic AI.</p>
+<p id="orchestration"><strong>orchestration</strong> — Coordinating a team of agents: who does what, in what
 order, who checks whom, and how work and information flow between them. The
-supervisor pattern is the production-default orchestration.
-
-**OSFI (Office of the Superintendent of Financial Institutions)** — Canada's
+supervisor pattern is the production-default orchestration.</p>
+<p id="osfi"><strong>OSFI (Office of the Superintendent of Financial Institutions)</strong> — Canada's
 federal financial regulator. Its Guideline E-23 (effective 1 May 2027)
-expressly brings AI/ML models inside model-risk scope.
-
-**OWASP (Open Web Application Security Project)** — An open community that
-publishes the standard lists of web and AI security risks (the OWASP Top 10).
-
-**OWASP Top 10 for Agentic Applications** — OWASP's list of the ten highest
+expressly brings AI/ML models inside model-risk scope.</p>
+<p id="owasp"><strong>OWASP (Open Web Application Security Project)</strong> — An open community that
+publishes the standard lists of web and AI security risks (the OWASP Top 10).</p>
+<p id="owasp-top-10-for-agentic-applications"><strong>OWASP Top 10 for Agentic Applications</strong> — OWASP's list of the ten highest
 risks for applications built on AI agents — prompt injection, unauthorised
 tool execution, memory poisoning, inter-agent trust failure and the rest. A
 November 2026 study tested four orchestration frameworks against it and found
-every one vulnerable in its default setup.
-
-## P
-
-**pass@1 and pass^k** — Two ways of scoring an agent. pass@1: it succeeds on
+every one vulnerable in its default setup.</p>
+<h2 id="p">P</h2>
+<p id="pass-1-and-pass-k"><strong>pass@1 and pass^k</strong> — Two ways of scoring an agent. pass@1: it succeeds on
 the first try. pass^k: it succeeds on all k tries. An agent can pass once by
 luck; pass^k measures whether it is reliable — the report's standard for
-judging agents.
-
-**pen test (penetration test)** — Authorised hacking: security specialists
+judging agents.</p>
+<p id="pen-test"><strong>pen test (penetration test)</strong> — Authorised hacking: security specialists
 attack a system the way a real attacker would, to find the holes before
-criminals do.
-
-**PR (pull request)** — A proposed code change submitted for review before it is
+criminals do.</p>
+<p id="pr"><strong>PR (pull request)</strong> — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
-public relations.)
-
-**Project SAGE** — HKMA's proposal for agentic-AI accountability: named owners
+public relations.)</p>
+<p id="project-sage"><strong>Project SAGE</strong> — HKMA's proposal for agentic-AI accountability: named owners
 for agents, Know Your Agent (KYA) identity, and a registry of material AI
-agents. Comments close 1 Feb 2027.
-
-**prompt injection** — An attack that hides instructions in data an AI system
+agents. Comments close 1 Feb 2027.</p>
+<p id="prompt-injection"><strong>prompt injection</strong> — An attack that hides instructions in data an AI system
 reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
-running.
-
-**pts (percentage points)** — The unit for the arithmetic difference
+running.</p>
+<p id="pts"><strong>pts (percentage points)</strong> — The unit for the arithmetic difference
 between two percentages: a share falling from 91% to 42% falls by
-49 pts, not 49%. (Not index points, the usual finance meaning.)
-
-## R
-
-**RAISE (Responsible AI Safety and Education Act)** — New York's frontier-AI
+49 pts, not 49%. (Not index points, the usual finance meaning.)</p>
+<h2 id="r">R</h2>
+<p id="raise"><strong>RAISE (Responsible AI Safety and Education Act)</strong> — New York's frontier-AI
 safety law (in force 1 Jan 2027): large frontier developers must register,
-publish safety frameworks, and report critical incidents within 72 hours.
-
-**RAUM (regulatory assets under management)** — The asset figure US investment
+publish safety frameworks, and report critical incidents within 72 hours.</p>
+<p id="raum"><strong>RAUM (regulatory assets under management)</strong> — The asset figure US investment
 advisers report to the SEC on Form ADV. The ACA/NSCP survey's typical
-respondent firm reports $1B–$10B in RAUM.
-
-**RBAC (role-based access control)** — Permissions by job, not by person: each
+respondent firm reports $1B–$10B in RAUM.</p>
+<p id="rbac"><strong>RBAC (role-based access control)</strong> — Permissions by job, not by person: each
 role gets exactly the access its job needs, nothing more. Applies to agents as
-well as people.
-
-**recall** — In evaluation, the share of the target items a system catches. A
+well as people.</p>
+<p id="recall"><strong>recall</strong> — In evaluation, the share of the target items a system catches. A
 review tool with 78% recall catches 78 of every 100 vulnerability-introducing
-changes; the other 22 slip through.
-
-**red team** — A group that attacks a system (or an AI) on purpose, playing the
+changes; the other 22 slip through.</p>
+<p id="red-team"><strong>red team</strong> — A group that attacks a system (or an AI) on purpose, playing the
 adversary, to find weaknesses before a real attacker does. The counterpart of
-the "blue team" that defends.
-
-**RFI (request for information)** — A regulator's formal call for public input
+the "blue team" that defends.</p>
+<p id="rfi"><strong>RFI (request for information)</strong> — A regulator's formal call for public input
 before it writes a rule. The Fed/OCC/FDIC AI RFI, promised in April 2026, still
-has not appeared.
-
-**RSI (recursive self-improvement)** — A scenario in which an AI model designs
+has not appeared.</p>
+<p id="rsi"><strong>RSI (recursive self-improvement)</strong> — A scenario in which an AI model designs
 its own successor without human input, so capability growth becomes
 self-sustaining. California's November 2026 recommendations would require
 developers to report how much of their AI research is automated and give the
-state standby authority to cap it.
-
-## S
-
-**SAFR (Safeguards for Agentic Finance at Runtime)** — MAS's industry white
+state standby authority to cap it.</p>
+<h2 id="s">S</h2>
+<p id="safr"><strong>SAFR (Safeguards for Agentic Finance at Runtime)</strong> — MAS's industry white
 paper (Jul 2026, v1.1 Oct 2026): a runtime governance layer that checks an
 agent's proposed actions — identity, controls, disposition, audit log — before
-anything executes. A reference model, not a rule.
-
-**SAST (static application security testing)** — Security testing by reading
+anything executes. A reference model, not a rule.</p>
+<p id="sast"><strong>SAST (static application security testing)</strong> — Security testing by reading
 the code without running it: scanning for known flaw patterns. Fast and
-automatable; misses flaws that only appear when the code runs.
-
-**SCA (software composition analysis)** — Scanning the dependencies a codebase
+automatable; misses flaws that only appear when the code runs.</p>
+<p id="sca"><strong>SCA (software composition analysis)</strong> — Scanning the dependencies a codebase
 pulls in, to find known vulnerabilities in them. Reachability analysis goes
-further: it checks whether the vulnerable code is actually used.
-
-**secret (in code)** — A credential embedded in code or configuration: an API
+further: it checks whether the vulnerable code is actually used.</p>
+<p id="secret"><strong>secret (in code)</strong> — A credential embedded in code or configuration: an API
 key, a password, a token. Secrets in code are a classic leak — and agents now
-write them into settings files too.
-
-**Semantic governance policy (SGP)** — A rule written in plain language by a
+write them into settings files too.</p>
+<p id="semantic-governance-policy"><strong>Semantic governance policy (SGP)</strong> — A rule written in plain language by a
 legal or compliance team that an LLM judge checks each proposed agent tool
 call against — together with the user's original intent — before the call
 runs. Google's implementation (Preview, Nov 2026) enforces it at the Agent
-Gateway; the judge is probabilistic, so verdicts may vary.
-
-**session-start hook** — A command a coding agent runs automatically when a
+Gateway; the judge is probabilistic, so verdicts may vary.</p>
+<p id="session-start-hook"><strong>session-start hook</strong> — A command a coding agent runs automatically when a
 session starts in a repository — configured in a file such as
 .claude/settings.json. Because it fires on trust, not on a typed
 instruction, a malicious hook can run code the moment a developer opens a
-project.
-
-**SFC (Securities and Futures Commission)** — Hong Kong's securities regulator.
-Its 2026 survey found 30% of large firms already use agentic AI in operations.
-
-**shadow AI** — AI tools (or agents) running inside a firm without IT knowing
+project.</p>
+<p id="sfc"><strong>SFC (Securities and Futures Commission)</strong> — Hong Kong's securities regulator.
+Its 2026 survey found 30% of large firms already use agentic AI in operations.</p>
+<p id="shadow-ai"><strong>shadow AI</strong> — AI tools (or agents) running inside a firm without IT knowing
 about them: installed by employees, outside governance, invisible until
-something goes wrong.
-
-**slopsquatting** — Registering the package name an AI coding tool
+something goes wrong.</p>
+<p id="slopsquatting"><strong>slopsquatting</strong> — Registering the package name an AI coding tool
 hallucinated, then publishing malicious code under it — so the next developer
-(or agent) who trusts the hallucination installs the attacker's package.
-
-**SOMBERMEME** — A backdoor delivered by tampering with a coding assistant's
+(or agent) who trusts the hallucination installs the attacker's package.</p>
+<p id="sombermeme"><strong>SOMBERMEME</strong> — A backdoor delivered by tampering with a coding assistant's
 settings: suspected North Korean operators modified .claude/settings.json so
 starting Claude Code downloaded it (Google Threat Intelligence Group, Nov
-2026).
-
-**SR 11-7** — The Fed's model-risk letter (2011–2026), the old US rulebook for
-governing models. Rescinded April 2026 and replaced by SR 26-2.
-
-**SR 26-2** — The Fed/OCC/FDIC letter (17 Apr 2026) that replaced SR 11-7. It
+2026).</p>
+<p id="sr-11-7"><strong>SR 11-7</strong> — The Fed's model-risk letter (2011–2026), the old US rulebook for
+governing models. Rescinded April 2026 and replaced by SR 26-2.</p>
+<p id="sr-26-2"><strong>SR 26-2</strong> — The Fed/OCC/FDIC letter (17 Apr 2026) that replaced SR 11-7. It
 expressly places generative and agentic AI outside model-risk scope — the US
-federal gap the report is built around.
-
-**SSRF (server-side request forgery)** — A flaw where an attacker makes a
+federal gap the report is built around.</p>
+<p id="ssrf"><strong>SSRF (server-side request forgery)</strong> — A flaw where an attacker makes a
 server send requests to places it should not reach — its own internal network,
 cloud metadata services — and sometimes get the answers back. The flaw behind
-the AWS MCP gateway bulletin (Nov 2026).
-
-**supervisor pattern** — The production-default way to run a team of agents:
+the AWS MCP gateway bulletin (Nov 2026).</p>
+<p id="supervisor-pattern"><strong>supervisor pattern</strong> — The production-default way to run a team of agents:
 one supervisor agent plans, assigns work to specialist agents, checks their
-output, and decides what ships.
-
-**SWE-bench** — A benchmark built from real GitHub issues: can an AI fix the
+output, and decides what ships.</p>
+<p id="swe-bench"><strong>SWE-bench</strong> — A benchmark built from real GitHub issues: can an AI fix the
 bug the way the human developer did? The source of the "11× the
-vulnerabilities" finding.
-
-## T
-
-**TPRM (third-party risk management)** — Managing the risk of outside vendors:
+vulnerabilities" finding.</p>
+<h2 id="t">T</h2>
+<p id="tprm"><strong>TPRM (third-party risk management)</strong> — Managing the risk of outside vendors:
 the firms whose software, data, or services you depend on. The proposed
 interagency guidance would rewrite the US rules for it; comments close 16 Dec
-2026.
-
-**trusted publishing** — Publishing a package with a short-lived identity
+2026.</p>
+<p id="trusted-publishing"><strong>trusted publishing</strong> — Publishing a package with a short-lived identity
 token from the CI platform (an OIDC token) instead of a long-lived API key —
 so whoever controls the CI job can publish. The prize at the end of Depi's
 Codex chain (Nov 2026): a GitHub-signed token npm would have accepted for
-@openai/codex.
-
-## V
-
-**vibe coding** — Writing software by describing what you want to an AI in
+@openai/codex.</p>
+<h2 id="v">V</h2>
+<p id="vibe-coding"><strong>vibe coding</strong> — Writing software by describing what you want to an AI in
 plain language and accepting what it produces, with little or no reading of the
 code. Fast; Veracode's finding is that ~38% of AI-generated code carries a
-known security flaw.
-
-**VulnBench** — A benchmark of 108 hand-curated, attacker-reachable vulnerabilities in 20 open-source web apps, measuring deterministic SAST against AI security review under one blind protocol. Version 2.0 (Oct 2026) is the report's head-to-head evidence for running both layers.
-
-## X
-
-**XSS (cross-site scripting)** — A flaw where an attacker injects malicious
+known security flaw.</p>
+<p id="vulnbench"><strong>VulnBench</strong> — A benchmark of 108 hand-curated, attacker-reachable vulnerabilities in 20 open-source web apps, measuring deterministic SAST against AI security review under one blind protocol. Version 2.0 (Oct 2026) is the report's head-to-head evidence for running both layers.</p>
+<h2 id="x">X</h2>
+<p id="xss"><strong>XSS (cross-site scripting)</strong> — A flaw where an attacker injects malicious
 script into a web page other people view — so the victim's browser runs the
-attacker's code.
-
-## Z
-
-**Zero Data Retention (ZDR)** — A privacy setting on an AI API request that
+attacker's code.</p>
+<h2 id="z">Z</h2>
+<p id="zero-data-retention"><strong>Zero Data Retention (ZDR)</strong> — A privacy setting on an AI API request that
 is supposed to mean the prompt and response are never stored. Canary-token
 research in November 2026 showed providers ignoring it — ZDR-flagged prompts
 were copied, resold, and read by people — so it is a claim to verify, not a
-boundary to rely on.
-
-**zero-day** — A software flaw nobody knew about until it is exploited or
+boundary to rely on.</p>
+<p id="zero-day"><strong>zero-day</strong> — A software flaw nobody knew about until it is exploited or
 disclosed, so no patch exists yet — the "zero" is the number of days defenders
-have had to fix it.
+have had to fix it.</p>
+  </main>
+</div>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function () {
+  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
+  var toc = document.querySelector('nav.sidebar .toc');
+  if (toc) {
+    var controls = document.createElement('div');
+    controls.className = 'toc-controls';
+    controls.innerHTML = '<button type="button" data-act="expand">Expand all</button>' +
+      '<button type="button" data-act="collapse">Collapse all</button>';
+    toc.parentNode.insertBefore(controls, toc);
+    controls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      toc.querySelectorAll('li.has-children').forEach(function (li) {
+        li.classList.toggle('toc-collapsed', collapse);
+      });
+    });
+    toc.querySelectorAll('li').forEach(function (li) {
+      var childUl = li.querySelector(':scope > ul');
+      if (!childUl) return;
+      li.classList.add('has-children');
+      li.classList.add('toc-collapsed');  // TOC starts collapsed: top-level only.
+      var link = li.querySelector(':scope > a');
+      if (!link) return;
+      var toggle = document.createElement('span');
+      toggle.className = 'toc-toggle';
+      // No text content: the arrow is drawn with CSS borders (see .toc-toggle),
+      // so it renders identically on every system instead of depending on
+      // a font carrying the U+25B8/U+25BE triangle glyphs.
+      link.insertBefore(toggle, link.firstChild);
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        li.classList.toggle('toc-collapsed');
+      });
+    });
+  }
+  // Sections control (at the top of the content): expand/collapse all
+  // content headings, including the theses page's Part headings (H1s
+  // other than the page title). It used to live in the sidebar; it was
+  // lost there.
+  var secControls = document.querySelector('.sec-controls');
+  if (secControls) {
+    secControls.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var collapse = btn.getAttribute('data-act') === 'collapse';
+      document.querySelectorAll('main h1:not(:first-of-type), main h2, main h3, main h4').forEach(function (h) {
+        h.classList.toggle('collapsed', collapse);
+      });
+    });
+  }
+  // Make h1/h2/h3/h4 headings collapsible: clicking the heading toggles the
+  // content that follows it (up to the next heading of equal or higher level).
+  // H1 covers the theses page's Part headings; the page title itself is
+  // never collapsible. Everything starts COLLAPSED so the reader drills
+  // into one section at a time.
+  var main = document.querySelector('main');
+  if (!main) return;
+  var pageTitle = main.querySelector('h1');
+  var headings = main.querySelectorAll('h1, h2, h3, h4');
+  headings.forEach(function (h) {
+    if (h === pageTitle) return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var toggle = document.createElement('span');
+    toggle.className = 'toggle';
+    h.prepend(toggle);
+    h.style.cursor = 'pointer';
+    h.classList.add('collapsed');  // Everything starts collapsed; drill in one section at a time.
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var node = h.nextSibling;
+    var collected = [];
+    while (node) {
+      var next = node.nextSibling;
+      if (node.nodeType === 1 && /^H[1-4]$/.test(node.tagName)) {
+        var nl = parseInt(node.tagName.substring(1), 10);
+        if (nl <= level) break;
+      }
+      collected.push(node);
+      node = next;
+    }
+    collected.forEach(function (n) { body.appendChild(n); });
+    h.parentNode.insertBefore(body, h.nextSibling);
+    h.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      h.classList.toggle('collapsed');
+    });
+    if (level === 4) h.classList.add('collapsed');
+  });
+  // Breadcrumbs: at the top of every section body, a small trail back up
+  // to any ancestor level or the top of the page ("Top · Part I …" on the
+  // theses page; "Top · §3 Agentic … · §3.4 Governance" on the report).
+  // A reader who drilled down jumps back without scrolling. Built from
+  // the heading hierarchy, so it stays correct as sections are added or
+  // renamed. Skips the three front-page sections of the report (they sit at
+  // the top of the page already) and the page title.
+  var crumbHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  var firstH1 = main.querySelector('h1');
+  crumbHeads.forEach(function (h) {
+    if (h.tagName === 'H1') return;
+    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    var level = parseInt(h.tagName.substring(1), 10);
+    var ancestors = [];
+    var idx = crumbHeads.indexOf(h);
+    var need = level - 1;
+    for (var k = idx - 1; k >= 0 && need >= 1; k--) {
+      var cand = crumbHeads[k];
+      var cl = parseInt(cand.tagName.substring(1), 10);
+      if (cl === need) {
+        if (cand !== firstH1) ancestors.unshift(cand);
+        need--;
+      }
+    }
+    var sbody = h.nextElementSibling;
+    if (!sbody || !sbody.classList.contains('section-body')) return;
+    var crumbs = document.createElement('p');
+    crumbs.className = 'crumbs';
+    var chtml = '<a href="#" class="crumb-top" title="Back to the top of the page">↑ Top</a>';
+    ancestors.forEach(function (a) {
+      chtml += ' <span class="crumb-sep">·</span> <a href="#' + a.id + '">' + a.textContent.trim() + '</a>';
+    });
+    crumbs.innerHTML = chtml;
+    sbody.insertBefore(crumbs, sbody.firstChild);
+  });
+  // The "Top" crumb smooth-scrolls to the top (no hash change).
+  main.addEventListener('click', function (e) {
+    var t = e.target.closest('a.crumb-top');
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // Share links: every section heading, article headline, substantive
+  // paragraph, and table gets a small link button that copies the direct
+  // URL to that unit (page + #anchor). The icon is inline SVG, not a font
+  // glyph, so it renders identically everywhere. On desktop the button
+  // appears on hover of its unit; on touch devices it is always visible
+  // (see the .share-link CSS). Clicking it never toggles its unit.
+  var LINK_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  function slugify(text) {
+    var s = text.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    if (s.length > 60) {
+      s = s.slice(0, 60);
+      var cut = s.lastIndexOf('-');
+      if (cut > 20) s = s.slice(0, cut);
+    }
+    return s;
+  }
+  var usedIds = {};
+  document.querySelectorAll('[id]').forEach(function (el) { usedIds[el.id] = true; });
+  function uniqueId(base) {
+    if (!base) base = 'item';
+    var id = base, n = 2;
+    while (usedIds[id]) { id = base + '-' + n; n++; }
+    usedIds[id] = true;
+    return id;
+  }
+  function copyUrl(id, btn) {
+    var origin = location.origin || (location.protocol + '//' + location.host);
+    var path = location.pathname.replace(/\/index\.html$/, '/');
+    var url = origin + path + '#' + id;
+    function done() {
+      btn.classList.add('copied');
+      btn.textContent = 'Copied';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = LINK_SVG;
+      }, 1500);
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+  function makeShareButton(id, label) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'share-link';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+    btn.innerHTML = LINK_SVG;
+    btn.addEventListener('click', function (e) {
+      // Never toggle the enclosing heading or <details>: the click is
+      // only for copying. preventDefault cancels the <summary> toggle,
+      // stopPropagation keeps the heading collapse handler out of it.
+      e.stopPropagation();
+      e.preventDefault();
+      copyUrl(id, btn);
+    });
+    return btn;
+  }
+  // Headings (all except the page title).
+  var shareHeads = main.querySelectorAll('h1, h2, h3, h4');
+  shareHeads.forEach(function (h, i) {
+    if (!h.id) return;
+    if (i === 0 && h.tagName === 'H1') return;  // the page title is not a section
+    h.appendChild(makeShareButton(h.id, 'Copy link to this section'));
+  });
+  // Articles: the <details> blocks. Skips the How-to-read block, the
+  // mobile Contents block, and the See-also cross-link blocks. The id
+  // goes on the <details> itself; the button goes in its <summary>.
+  main.querySelectorAll('details').forEach(function (d) {
+    if (d.classList.contains('how-to-read') || d.classList.contains('toc-inline')) return;
+    var sum = d.querySelector(':scope > summary');
+    if (!sum) return;
+    var text = sum.textContent.trim();
+    if (text === 'See also') return;
+    if (!d.id) d.id = uniqueId(slugify(text));
+    sum.appendChild(makeShareButton(d.id, 'Copy link to this article'));
+  });
+  // Tables: id from the nearest preceding heading, button in a small
+  // right-aligned row just below the table.
+  var allHeads = Array.prototype.slice.call(main.querySelectorAll('h1, h2, h3, h4'));
+  main.querySelectorAll('table').forEach(function (tbl) {
+    var head = null;
+    for (var k = 0; k < allHeads.length; k++) {
+      if (allHeads[k].compareDocumentPosition(tbl) & Node.DOCUMENT_POSITION_FOLLOWING) head = allHeads[k];
+      else break;
+    }
+    var base = (head && head.id ? head.id + '-table' : 'table');
+    if (!tbl.id) tbl.id = uniqueId(base);
+    var row = document.createElement('div');
+    row.className = 'table-share';
+    row.appendChild(makeShareButton(tbl.id, 'Copy link to this table'));
+    tbl.parentNode.insertBefore(row, tbl.nextSibling);
+  });
+  // Substantive paragraphs: prose outside any <details>, long enough to be
+  // worth sharing, not a Sources line or the As-of banner. The button goes
+  // inline at the end of the paragraph.
+  main.querySelectorAll('p').forEach(function (p) {
+    if (p.closest('details')) return;
+    if (p.classList.contains('as-of-banner')) return;
+    if (p.classList.contains('crumbs')) return;
+    var text = p.textContent.trim();
+    if (text.length < 80) return;
+    if (text.indexOf('Sources:') === 0) return;
+    if (!p.id) p.id = uniqueId(slugify(text));
+    p.appendChild(makeShareButton(p.id, 'Copy link to this paragraph'));
+  });
+
+  // Back-to-top button: appears once the reader has scrolled down the
+  // page, smooth-scrolls back to the top. Invisible until needed.
+  var toTop = document.querySelector('.back-to-top');
+  if (toTop) {
+    window.addEventListener('scroll', function () {
+      toTop.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Jumping to an anchor expands any collapsed ancestor section.
+  function expandForAnchor() {
+    var id = location.hash && location.hash.slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    // If the anchor IS a collapsible heading, open it too: the walk
+    // below only opens ancestors, so a deep link to a subsection
+    // heading would otherwise land on a collapsed section.
+    if (el.classList) el.classList.remove('collapsed');
+    var node = el;
+    while (node) {
+      if (node.classList && node.classList.contains('section-body')) {
+        var prev = node.previousElementSibling;
+        if (prev) prev.classList.remove('collapsed');
+      }
+      if (node.tagName === 'DETAILS') node.open = true;
+      node = node.parentElement;
+    }
+    el.scrollIntoView();
+  }
+  window.addEventListener('hashchange', expandForAnchor);
+  expandForAnchor();
+})();
+</script>
+</body>
+</html>
