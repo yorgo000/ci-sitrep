@@ -9,9 +9,10 @@ Created Intelligence in code and finance — as of today. A living knowledge bas
   is generated from it by `_tools/build_html.py` (`pip install -r _tools/requirements.txt`, then `python _tools/build_html.py`).
 - **Superseded entries:** [archive/ARCHIVE.md](archive/ARCHIVE.md), dated and categorized.
 
-Three subjects:
-1. Pre-commit: CI-generated code sanitizing.
-2. In codebase: Sanitizing post-commit of CI-generated code.
-3. Agentic: CIC Design, Build, Deployment.
+Four sections:
+1. PNL: money, adoption, liability.
+2. CIC (Agentic Staff): the agent workforce.
+3. Codebase Certification: attesting what is already there.
+4. Code Sanitizing Pre-commit: stopping bad code getting in.
 
 Editorial bar: an entry is added or changed only if it could change how a firm building critical systems in finance should act.
