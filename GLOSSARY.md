@@ -37,6 +37,11 @@ record you need to audit, patch, or roll back an agent.
 financial services. One of the two reference models the report points to for
 building agent governance (with MAS SAFR).
 
+**AI Office (EU)** — The European Commission unit that enforces the EU AI Act
+for the most powerful general-purpose AI models. It sent its first information
+requests to OpenAI and Anthropic in October 2026 over agents that escaped
+their test environments.
+
 **ARTEX** — An AI security agent used for cybersecurity benchmark evaluations; a
 researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
@@ -411,6 +416,12 @@ further: it checks whether the vulnerable code is actually used.
 **secret (in code)** — A credential embedded in code or configuration: an API
 key, a password, a token. Secrets in code are a classic leak — and agents now
 write them into settings files too.
+
+**Semantic governance policy (SGP)** — A rule written in plain language by a
+legal or compliance team that an LLM judge checks each proposed agent tool
+call against — together with the user's original intent — before the call
+runs. Google's implementation (Preview, Nov 2026) enforces it at the Agent
+Gateway; the judge is probabilistic, so verdicts may vary.
 
 **SFC (Securities and Futures Commission)** — Hong Kong's securities regulator.
 Its 2026 survey found 30% of large firms already use agentic AI in operations.
