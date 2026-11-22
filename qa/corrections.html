@@ -190,7 +190,7 @@
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
-    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <p class="back"><a href="index.html">&larr; Back to CI SITREP</a></p>
     <h2>PAGE CONTENTS</h2>
     <div class="toc">
 <ul></ul>
@@ -199,9 +199,9 @@
   </nav>
   <main>
     <h1 id="corrections">Corrections</h1>
-<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<p class="back-inline"><a href="index.html">&larr; Back to CI SITREP</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
-<p>Errors and omissions in the CI SITREP are corrected in public, on this page, newest first. A correction fixes the report and the dashboard together — the entry below says what was wrong, and what it is now. If you find an error or a material omission, report it to <a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a>.</p>
+<p>Errors and omissions in the CI SITREP are corrected in public, on this page, newest first. A correction fixes CILAK (CI Landscape Assessment Kit) and SITREP together — the entry below says what was wrong, and what it is now. If you find an error or a material omission, report it to <a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a>.</p>
 <ul>
 <li><strong>19 Nov 2026 — Omission: Strands Agents was missing from the report.</strong> AWS's open-source agent stack — the Strands Agents SDK, Strands harness, and Strands Box sandbox — had no coverage at all. Added after a reader pointed out the gap: <a href="index.html#awss-open-source-agent-harness-runs-the-same-models-for-28">the Strands harness article</a>, <a href="index.html#awss-agent-sandbox-enforces-rules-the-agent-cannot-see">the Strands Box article</a>, and <a href="index.html#a-prompt-could-switch-off-secret-masking-in-a-strands-tool">the CVE-2026-115415 article</a>.</li>
 <li><strong>19 Nov 2026 — Correction: the 109:1 machine-to-human identity ratio was attributed to SailPoint.</strong> It is Palo Alto Networks' 2026 Identity Security Landscape finding (109 machine identities per human, 79 of them AI agents). Re-attributed in <a href="index.html#for-every-human-identity-enterprises-now-manage-109-machine">the article</a> and in the dashboard figure and its time series.</li>
@@ -314,7 +314,7 @@
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    if (h.id === 'situation-at-hand' || h.id === 'what-just-changed' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
