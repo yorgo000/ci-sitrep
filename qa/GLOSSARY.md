@@ -96,6 +96,12 @@ intelligence).
 intelligence: one AI system acting autonomously toward a goal. The
 field's word is "agent". Formerly CIA.
 
+**CILAK (CI Landscape Assessment Kit)** — The report surface of CI SITREP:
+the full knowledge base of findings, sliced into the four sections —
+PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
+Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
+surface is What just changed.
+
 **circuit breaker** — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.
@@ -365,6 +371,10 @@ judging agents.
 **pen test (penetration test)** — Authorised hacking: security specialists
 attack a system the way a real attacker would, to find the holes before
 criminals do.
+
+**PNL (profit and loss)** — The first section of CI SITREP: adoption,
+cost and liability — what AI code and agents mean for a firm's bottom
+line.
 
 **PR (pull request)** — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
