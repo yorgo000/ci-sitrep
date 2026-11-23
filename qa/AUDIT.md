@@ -15,7 +15,7 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 | Total external links (incl. inline prose links) | 630 |
 | Unique source URLs | 234 |
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
-| Items in What just changed | 68 |
+| Items in DIFF | 68 |
 | Superseded entries in the archive | 21 |
 | Report live since | 2026-11-09 |
 
