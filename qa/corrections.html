@@ -43,19 +43,22 @@
   nav.sidebar li li li { padding-left: 14px; }
   nav.sidebar a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
   nav.sidebar a:hover { background: #e8dfcc; }
-  nav.sidebar .toc-controls { margin: 0 0 10px; }
-  nav.sidebar .toc-controls button {
+  /* Page-top TOC controls (2026-11-23 nav round): the TOC lives at
+     the top of the page now, inside the .toc-inline <details> — the
+     selectors follow it out of the sidebar. */
+  .toc-inline .toc-controls { margin: 0 0 10px; }
+  .toc-inline .toc-controls button {
     font-size: 12px; padding: 2px 8px; margin-right: 4px; cursor: pointer;
     background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
   }
-  nav.sidebar .toc-controls button:hover { background: #e8dfcc; }
-  nav.sidebar .toc li.has-children > a .toc-toggle {
+  .toc-inline .toc-controls button:hover { background: #e8dfcc; }
+  .toc-inline .toc li.has-children > a .toc-toggle {
     display: inline-block; cursor: pointer; width: 0; height: 0;
     border-left: 4px solid transparent; border-right: 4px solid transparent;
     border-top: 5px solid var(--muted); vertical-align: middle; margin-right: 5px;
   }
-  nav.sidebar .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
-  nav.sidebar .toc li.toc-collapsed > ul { display: none; }
+  .toc-inline .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
+  .toc-inline .toc li.toc-collapsed > ul { display: none; }
   /* Masthead: the CI SITREP wordmark, linking back to the report. */
   .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
   .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
@@ -70,8 +73,25 @@
   .masthead-tagline { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }
   .masthead-by { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
   .masthead-logo { height: 18px; width: auto; vertical-align: middle; margin-left: 2px; }
-  nav.sidebar .back { margin: 0 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
-  nav.sidebar .back a { color: var(--accent); font-weight: 600; }
+  /* Site-sections nav (2026-11-23): one TOC in the masthead — SITREP,
+     CILAK, DIFF, BACKGROUND. SITREP and BACKGROUND are <details>
+     groups (the report's apparatus / the reference pages); CILAK and
+     DIFF are direct links. Groups start closed: four lines. The
+     SITREP summary carries its link — clicking the name navigates,
+     clicking the marker expands the group (native <details>
+     behaviour: a click on interactive content inside a summary does
+     not toggle). The summary matches the link's box so the four
+     lines align. Same rules in build_html.py; keep the two in sync.
+     (The old sidebar "Back to CI SITREP" link is gone — SITREP links
+     home; the phones-only .back-inline link at the top of the content
+     stays, because on a phone the sidebar sits below the content.) */
+  .masthead-nav { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .masthead-nav h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }
+  .masthead-nav a { font-weight: 600; }
+  .masthead-nav .nav-group summary { font-size: 14px; font-weight: 600; line-height: 1.45; padding: 3px 6px; cursor: pointer; border-radius: 4px; }
+  .masthead-nav .nav-group summary:hover { background: #e8dfcc; }
+  .masthead-nav .nav-group summary a { display: inline; padding: 0; }
+  .masthead-nav .nav-group summary a:hover { background: none; }
   /* Mobile-only back link at the top of the content: on a phone the
      sidebar sits below the content, so the reader needs a way back to
      the report without scrolling to the bottom of the page. */
@@ -79,6 +99,17 @@
   .sec-controls { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
   .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
   .sec-controls button:hover { background: #e8dfcc; }
+  /* Page-top TOC (2026-11-23 nav round): the page contents live at
+     the top of the page on every viewport — the sidebar carries the
+     site sections now. The <details> starts closed; the reader opens
+     it. Same rules as build_html.py. */
+  .toc-inline { display: block; }
+  .toc-inline ul { list-style: none; padding: 0; margin: 0; }
+  .toc-inline li { margin: 2px 0; }
+  .toc-inline li li { padding-left: 14px; }
+  .toc-inline li li li { padding-left: 14px; }
+  .toc-inline a { color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.45; display: block; padding: 3px 6px; border-radius: 4px; }
+  .toc-inline a:hover { background: #e8dfcc; }
   main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
   main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: 64px 0 8px; line-height: 1.25; color: var(--logo-navy); }
   main h1:first-of-type { margin: -32px -48px 16px; padding: 28px 48px; color: #fff; background: var(--logo-navy); }
@@ -195,17 +226,48 @@
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
-    <p class="back"><a href="index.html">&larr; Back to CI SITREP</a></p>
-    <h2>PAGE CONTENTS</h2>
-    <div class="toc">
-<ul></ul>
-</div>
-
+    <div class="masthead-nav">
+      <h3>Sections</h3>
+      <ul class="site-nav">
+        <li>
+          <details class="nav-group">
+            <summary><a href="index.html#executive-dashboard">SITREP</a></summary>
+            <ul>
+              <li><a href="audit.html">Self-Audit</a></li>
+              <li><a href="corrections.html">Corrections</a></li>
+              <li><a href="archive.html">Archive</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="index.html#report">CILAK</a></li>
+        <li><a href="index.html#diff">DIFF</a></li>
+        <li>
+          <details class="nav-group">
+            <summary>BACKGROUND</summary>
+            <ul>
+              <li><a href="glossary.html">Glossary</a></li>
+              <li><a href="theses.html">Foundational theses</a></li>
+              <li><a href="ci-vs-ei.html">CI vs EI</a></li>
+              <li><a href="explainer.html">The names: CI, CII, CIC</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
   </nav>
   <main>
     <h1 id="corrections">Corrections</h1>
 <p class="back-inline"><a href="index.html">&larr; Back to CI SITREP</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
+<details class="toc-inline">
+<summary>PAGE CONTENTS</summary>
+<div class="toc">
+<ul></ul>
+</div>
+
+</details>
+
 <p>Errors and omissions in the CI SITREP are corrected in public, on this page, newest first. A correction fixes CILAK (CI Landscape Assessment Kit) and SITREP together — the entry below says what was wrong, and what it is now. If you find an error or a material omission, report it to <a href="mailto:ci-sitrep@confluence1.com">ci-sitrep@confluence1.com</a>.</p>
 <ul>
 <li><strong>19 Nov 2026 — Omission: Strands Agents was missing from the report.</strong> AWS's open-source agent stack — the Strands Agents SDK, Strands harness, and Strands Box sandbox — had no coverage at all. Added after a reader pointed out the gap: <a href="index.html#awss-open-source-agent-harness-runs-the-same-models-for-28">the Strands harness article</a>, <a href="index.html#awss-agent-sandbox-enforces-rules-the-agent-cannot-see">the Strands Box article</a>, and <a href="index.html#a-prompt-could-switch-off-secret-masking-in-a-strands-tool">the CVE-2026-115415 article</a>.</li>
@@ -219,8 +281,10 @@
 <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
 <script>
 (function () {
-  // Sidebar TOC: make every section collapsible (drill-down / roll-up).
-  var toc = document.querySelector('nav.sidebar .toc');
+  // Page-top TOC (2026-11-23 nav round): the page contents live at the
+  // top of the page, not in the sidebar. Make every section
+  // collapsible (drill-down / roll-up).
+  var toc = document.querySelector('.toc-inline .toc');
   if (toc) {
     var controls = document.createElement('div');
     controls.className = 'toc-controls';
@@ -319,7 +383,7 @@
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'situation-at-hand' || h.id === 'what-just-changed' || h.id === 'what-were-watching') return;
+    if (h.id === 'situation-at-hand' || h.id === 'diff' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
