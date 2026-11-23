@@ -1,6 +1,6 @@
 {
- "as_of": "2026-11-20",
- "as_of_label": "Friday, November 20, 2026",
+ "as_of": "2026-11-23",
+ "as_of_label": "Monday, November 23, 2026",
  "bottom_line": [
   {
    "chart": {
@@ -863,7 +863,7 @@
        "display": "67.16%",
        "kind": "stat",
        "label": "succeed on the first attempt — but only 241 of 507 workflows pass on all 20 attempts",
-       "link": "#36-evaluation",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
        "pie_split": "positive",
        "rating": "corroborated",
        "sentiment": "neutral",
@@ -877,7 +877,7 @@
        "display": "67.24%",
        "kind": "stat",
        "label": "of failures terminate cleanly, then report done",
-       "link": "#36-evaluation",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
        "pie_split": "negative",
        "rating": "corroborated",
        "sentiment": "negative",
@@ -890,7 +890,7 @@
        "display": "~7 months",
        "kind": "stat",
        "label": "for agents to handle tasks twice as long, half the time",
-       "link": "#36-evaluation",
+       "link": "#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
        "note": "at 80% success, the task length is far shorter",
        "rating": "corroborated",
        "sentiment": "neutral",
