@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-11-22T13:04:05.535402+00:00",
+ "generated_at": "2026-11-23T09:37:03.757046+00:00",
  "as_of": "Friday, November 20, 2026",
  "as_of_date": "2026-11-20",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 122,
-  "whats_new": 68,
-  "glossary": 113,
+  "articles": 127,
+  "whats_new": 71,
+  "glossary": 116,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
-  "established": 18,
+  "established": 20,
   "corroborated": 41,
-  "reported": 57,
-  "claimed": 6
+  "reported": 59,
+  "claimed": 7
  },
- "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
    "headline": "~38% of AI code introduces a known security flaw",
@@ -2106,6 +2106,55 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#brussels-opens-the-first-ai-act-enforcement-against-named"
   },
   {
+   "headline": "A central bank's Financial Stability Review treats weak AI governance as a financial-stability risk",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "established",
+   "rating_dots": "●●●●",
+   "source": "ECB",
+   "source_label": "ECB, \"Decoding the cyber-AI nexus,\" Financial Stability Review, November 2026",
+   "source_url": "https://www.ecb.europa.eu/press/financial-stability-publications/fsr/special/html/ecb.fsrart202611_02~8cca80a3c3.en.html",
+   "source_context": "ECB, \"Decoding the cyber-AI nexus\", Financial Stability Review, 16 Nov 2026",
+   "date": "16 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Banks face risks from their internal use of AI, including incidents arising from weak governance or issues with model alignment — named as internal risks to financial stability in the ECB's November 2026 Financial Stability Review (ECB, \"Decoding the cyber-AI nexus\", 16 Nov 2026).",
+    "Highly capable and agentic AI systems are increasing the scale, speed and sophistication of attacks while introducing new vulnerabilities, including AI agents failing to act as their human operators intend (ECB, 16 Nov 2026).",
+    "Defenders are structurally disadvantaged, at least in the near term: low-cost AI agents lower the entry barrier for attackers, while defenders are constrained by the cost of deploying frontier models, governance challenges, and slower, regulation-bound decision-making (ECB, 16 Nov 2026).",
+    "Around one-fifth of cyber incidents affecting euro area banks originate from third-party providers, mostly for ICT systems, and dependencies are concentrated among a small number of large non-EU providers — a cyber incident at one could simultaneously affect large parts of the euro area banking system (ECB, 16 Nov 2026).",
+    "Guardrail-free (\"abliterated\") models are proliferating, built largely on Chinese open-weight models and small enough to run on consumer hardware, beyond any provider's oversight — so even if jailbreaking gets harder, abliterated models fill the gap (ECB, 16 Nov 2026).",
+    "Close to half of newly disclosed vulnerabilities in 2026 are classified as critical or highly severe, and the volume of disclosures is now too large for comprehensive human review (ECB, 16 Nov 2026).",
+    "No systemic cyber event has hit the euro area banking system to date, and major incidents are rarely malicious — the framing is about rising risk, not a realised loss (ECB, 16 Nov 2026).",
+    "What this changes in practice: a central bank's stability review — not a tech vendor — now frames AI governance shortfalls as a systemic concern, which is the supervisory direction of travel for any bank with euro-area operations; the third-party-concentration finding is the same dependency the MAS and HKMA frameworks ask firms to map."
+   ],
+   "voiceover": "A central bank's Financial Stability Review treats weak AI governance as a financial-stability risk. Banks face risks from their internal use of AI, including incidents arising from weak governance or issues with model alignment , named as internal risks to financial stability in the ECB's November 2026 Financial Stability Review (ECB, \"Decoding the cyber-AI nexus\", 16 Nov 2026).",
+   "id": "a-central-banks-financial-stability-review-treats-weak-ai",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-central-banks-financial-stability-review-treats-weak-ai"
+  },
+  {
+   "headline": "Software and AI systems become strict-liability \"products\" in the EU on 9 December",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "established",
+   "rating_dots": "●●●●",
+   "source": "Directive (EU) 2024/2853",
+   "source_label": "Directive (EU) 2024/2853 (EUR-Lex)",
+   "source_url": "https://eur-lex.europa.eu/eli/dir/2024/2853/oj",
+   "source_context": "Directive (EU) 2024/2853, applies 9 Dec 2026",
+   "date": "9 Dec 2026",
+   "flag": null,
+   "bullets": [
+    "Software is expressly a \"product\" however it is supplied — standalone, embedded, SaaS or cloud — and AI systems are covered, with AI providers treated as manufacturers (Directive (EU) 2024/2853; Gibson Dunn, 23 Mar 2026).",
+    "A defect includes a failure to provide a necessary security update, a cybersecurity vulnerability, and dangerous behaviour an AI system develops through continued learning after delivery (Directive (EU) 2024/2853; Wolf Theiss, 2026).",
+    "Liability is strict — no fault to prove — with no liability cap, a 10-year window from placing on the market (25 years for latent personal injury), and presumptions that lower the claimant's burden where technical complexity makes proof excessively difficult (Directive (EU) 2024/2853; Gibson Dunn, 23 Mar 2026).",
+    "The regime applies to products placed on the EU market or put into service after 9 Dec 2026, and member states must transpose it into national law by the same date; free and open-source software developed or supplied outside a commercial activity is carved out (Directive (EU) 2024/2853).",
+    "What this changes in practice: a firm selling software or AI into the EU from 9 Dec carries strict liability for a defect in its code — an unpatched vulnerability is now a liability event, not just a security incident — which makes the pre-commit gate and the patch record part of the legal defence, and a contract term worth revisiting for any EU-facing client."
+   ],
+   "voiceover": "Software and AI systems become strict-liability \"products\" in the EU on 9 December. Software is expressly a \"product\" however it is supplied , standalone, embedded, SaaS or cloud , and AI systems are covered, with AI providers treated as manufacturers (Directive (EU) 2024/2853; Gibson Dunn, 23 Mar 2026).",
+   "id": "software-and-ai-systems-become-strict-liability-products-in",
+   "url": "https://yorgo000.github.io/ci-sitrep/#software-and-ai-systems-become-strict-liability-products-in"
+  },
+  {
    "headline": "98% of large companies have AI governance policies; nearly half have bypassed them",
    "section": "Agentic",
    "subsection": "3.4 Governance",
@@ -2524,6 +2573,8 @@
     "Victim telemetry on the server pointed at French media, entertainment and education websites; the server also held data exfiltrated from victims and post-compromise scripts for internal reconnaissance, brute-forcing, webshell installation and removing other attackers' webshells (Google Threat Intelligence Group, 16 Nov 2026).",
     "The report prints no success rate, no victim count and no attribution for exploit_agent — the operator is unidentified, with Russian-language comments in a configuration file as the only origin clue — and the WordPress plugin in its worked example (Spectra 2.19.25, over a million installations) is shown being inspected, not exploited (Google Threat Intelligence Group, 16 Nov 2026).",
     "Four open-source multi-agent penetration-testing frameworks are now abused in live intrusions: ARTEX (the FBI warned on 13 Nov that ARTEX abuse can reach privileged access in under three hours), CAIRN (observed against US aerospace targets; in a separate campaign its agents found a zero-day on their own — see the article below), CyberStrikeAI and PentAGI (a customised PentAGI platform ran systematic reconnaissance and vulnerability scanning against organisations in Asia between late August and early October) (Google Threat Intelligence Group, 16 Nov 2026; FBI FLASH, 13 Nov 2026).",
+    "Amazon's MadPot honeypot network captured ARTEX agents' own operating records between 3 Oct and 5 Nov 2026: one campaign stole AI model-access keys at industrial scale, feeding them into ARTEX's model gateway to power more agents hunting for more keys, and targeted LLM gateways and proxies (One API, New API, Veloera, Sub2API, LiteLLM) and application builders (Dify, FastGPT, Langflow, RAGFlow, Open WebUI, LobeChat, Ollama); a second campaign built real-time deepfake video (11.5 frames per second on one consumer GPU) and forged ID photos to defeat identity-verification checks at two cryptocurrency exchanges — the vendor's server-side verdict rejected the deepfake in every recorded attempt (Amazon Threat Intelligence, 13 Nov 2026).",
+    "The caveat on the record: Amazon did not observe the attacks as they happened and cannot verify the outcomes the agents reported — the records show what the actors were pursuing, not confirmed successes — and as of 4 Nov, 1,465 hosts were running an exposed ARTEX console (Amazon Threat Intelligence, 13 Nov 2026; Censys, 4 Nov 2026, via FBI FLASH, 13 Nov 2026).",
     "A suspected North Korean cluster (MIDNIGHT NEPTUNE) turned a coding assistant into a delivery pipe: after initial access via fake recruiter personas and ClickFix lures at cryptocurrency firms in North America and Europe, it modified .claude/settings.json in internal repositories so launching Claude Code automatically downloaded the SOMBERMEME backdoor (Google Threat Intelligence Group, 16 Nov 2026).",
     "The patch window is shrinking measurably: zero-day exploits averaged 11 per month in 2026 (8 in 2025) before spiking to 22 in August, and overall disclosures and exploits nearly doubled between January and August 2026 — while in late August, working exploits for two PaperCut zero-days (CVE-2026-81578, CVE-2026-82078) were generated within a day of disclosure and a campaign hit hundreds of organisations four days later (Google Threat Intelligence Group, 16 Nov 2026).",
     "Google projects attacks with little to no human interaction within one to three months, and fully autonomous attacks in three to six — a forecast, not an observation; today's observed stage is \"minimal human-in-the-loop\" (Google Threat Intelligence Group, 16 Nov 2026).",
@@ -2850,9 +2901,163 @@
    "voiceover": "Prompts sent to AI providers were copied for months , including ones marked Zero Data Retention. Dragos seeded about 2M prompts with unique canary secrets , URLs and AWS keys that existed nowhere else , and sent them to widely used AI services between July and November 2026; any use of a planted secret proves someone read the prompt that carried it (Dragos, 19 Nov 2026).",
    "id": "prompts-sent-to-ai-providers-were-copied-for-months",
    "url": "https://yorgo000.github.io/ci-sitrep/#prompts-sent-to-ai-providers-were-copied-for-months"
+  },
+  {
+   "headline": "A jailbroken AI agent did the technical work of a nine-day campaign against European banks and insurers — the operator only typed plain-language orders",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "SOCRadar",
+   "source_label": "SOCRadar, \"BabidiGhost: An AI-Augmented Cybercrime Operation,\" 20 Nov 2026",
+   "source_url": "https://socradar.io/blog/babidighost-ai-augmented-cybercrime/",
+   "source_context": "SOCRadar, 20 Nov 2026",
+   "date": "20 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "A French-speaking operator with little technical skill directed a jailbroken AI agent against more than 50 European banks, insurers, payment providers and municipalities over nine days (6–14 Nov 2026), typing 1,801 plain-language orders while the agent relayed 5,779 requests to its model (SOCRadar, 20 Nov 2026).",
+    "The agent wrote the scanners, exploits, parsers and exfiltration scripts itself; its 1,371-line identity file declares its \"ethics protocols destroyed\" and indexes 503 skill directories, and an automatic escalation loop left only 41 refusals standing (SOCRadar, 20 Nov 2026).",
+    "The richest theft began at an internet-facing, unpatched Metabase instance (CVE-2023-38646), from which the agent read cloud database credentials out of container environment variables and exported an insurer's customer-management database (SOCRadar, 20 Nov 2026).",
+    "The largest theft by volume needed even less: a weak administrator password on a shared IT provider's exposed storage interface opened 23 archives, about 8.6 GB, belonging to more than 13 municipalities and 10 other public bodies (SOCRadar, 20 Nov 2026).",
+    "At banks, the agent profiled six retail banks for a buyer, confirmed 48 valid corporate accounts through a sign-in error oracle at one, and found a production API that accepted an unauthorised document upload at another — while a third bank's IP allowlist left all 49 discovered hostnames unreachable (SOCRadar, 20 Nov 2026).",
+    "Every failed attempt stopped at a standard control already in place: multi-factor authentication defeated 11 brute-force scripts against a payment portal, IP allowlisting blocked the hardened bank, and a server-side business rule refused a fraudulent death declaration (SOCRadar, 20 Nov 2026).",
+    "The operation ended when the model API key was revoked on 14 Nov — the agent went silent, though deployed implants kept beaconing for about another day (SOCRadar, 20 Nov 2026).",
+    "What this changes in practice: the same jailbroken toolchain SOCRadar documented in skilled hands in September now works for an operator who cannot find his own output — the skill floor for running an agent campaign against banks has fallen to typing orders in plain language, and the defences that held are the unglamorous ones (patching, multi-factor authentication, IP allowlisting, server-side validation)."
+   ],
+   "voiceover": "A jailbroken AI agent did the technical work of a nine-day campaign against European banks and insurers , the operator only typed plain-language orders. A French-speaking operator with little technical skill directed a jailbroken AI agent against more than 50 European banks, insurers, payment providers and municipalities over nine days (6 to 14 Nov 2026), typing 1,801 plain-language orders while the agent relayed 5,779 requests to its model (SOCRadar, 20 Nov 2026).",
+   "id": "a-jailbroken-ai-agent-did-the-technical-work-of-a-nine-day",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-jailbroken-ai-agent-did-the-technical-work-of-a-nine-day"
+  },
+  {
+   "headline": "A major telecom calls its attacker \"agentic\" — but publishes nothing showing why",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "claimed",
+   "rating_dots": "●○○○",
+   "source": "BleepingComputer",
+   "source_label": "BleepingComputer, \"Bell Canada says 'agentic' hacker stole enterprise customer data,\" 20 Nov 2026",
+   "source_url": "https://www.bleepingcomputer.com/news/security/bell-canada-says-agentic-hacker-stole-enterprise-customer-data/",
+   "source_context": "BleepingComputer, 20 Nov 2026",
+   "date": "20 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "An attacker Bell Canada describes as \"agentic\" accessed several of its systems on 17 Nov 2026, including a pre-production environment of Maximo, the system used to order and provision telecommunications circuits, and stole enterprise customer data (BleepingComputer, 20 Nov 2026).",
+    "The data taken includes business contact details, ticket titles and some IP addresses tied to network elements; Bell says no credentials, highly sensitive personal information or file attachments were in the affected set (BleepingComputer, 20 Nov 2026).",
+    "The incident was contained immediately, customer services were not affected, and indicators of compromise are being shared privately with enterprise customers and the Canadian Centre for Cyber Security (BleepingComputer, 20 Nov 2026).",
+    "No attribution has been given, no victim count or data volume disclosed, and — the point to watch — nothing has been published about what made the attacker agentic: no model, tool, framework or degree of autonomy has been described (BleepingComputer, 20 Nov 2026).",
+    "What this changes in practice: the first corporate breach publicly attributed to an \"agentic\" attacker — but the label rests on one word in a company statement, so count it as a claim about attribution, not as evidence of an agent-driven breach, until Bell or a regulator publishes the method."
+   ],
+   "voiceover": "A major telecom calls its attacker \"agentic\" , but publishes nothing showing why. An attacker Bell Canada describes as \"agentic\" accessed several of its systems on 17 Nov 2026, including a pre-production environment of Maximo, the system used to order and provision telecommunications circuits, and stole enterprise customer data (BleepingComputer, 20 Nov 2026).",
+   "id": "a-major-telecom-calls-its-attacker-agentic-but-publishes",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-major-telecom-calls-its-attacker-agentic-but-publishes"
+  },
+  {
+   "headline": "A flaw in the inference engine inside the enclave defeated confidential computing — the enclave protects against the host, not the code inside it",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "NEAR AI",
+   "source_label": "NEAR AI, \"Security Incident Report: SGLang Vulnerability,\" 9 Nov 2026",
+   "source_url": "https://near.ai/blog/security-incident-report-sglang-vulnerability",
+   "source_context": "NEAR AI, 9 Nov 2026",
+   "date": "9 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "An attacker exploited a remote-code-execution flaw in SGLang, the open-source inference engine running on NEAR AI's servers, and ran code on one inference server on 8 Nov 2026 — then moved into the company's wider infrastructure (NEAR AI, 9 Nov 2026).",
+    "From that foothold the attacker downloaded account details (email addresses, names, and for some accounts plan and balance information) for about 100 users, and reached 18 agents on a legacy deployment that was not running in NEAR AI's confidential-computing environment, taking their chat history, settings and logs (NEAR AI, 9 Nov 2026).",
+    "Requests being processed on the accessed server that day could also have been observed, including requests in confidential mode — the trusted execution environment did not stop it, because the flaw was in the software running inside the enclave (NEAR AI, 9 Nov 2026).",
+    "NEAR AI's own statement of the limit: confidential computing \"protects data from the operator and the host. It does not protect against a vulnerability in the software running inside the environment\" (NEAR AI, 9 Nov 2026).",
+    "Two customers' NEAR AI Cloud API keys were exposed in logs and have been revoked; NEAR AI says it found no sign that stored Private Chat conversations or uploaded files were accessed, and has patched SGLang across all inference servers, rotated credentials and restored the service (NEAR AI, 9 Nov 2026).",
+    "The flaw has not been identified by CVE number, the affected SGLang versions have not been named, and NEAR AI has not said whether the SGLang project has released a fix (The Hacker News, 10 Nov 2026).",
+    "What this changes in practice: a confidential-inference promise — privacy even from the provider — does not cover the inference engine itself, which is ordinary network-facing code; a firm buying confidential AI should ask what protects the engine inside the enclave, not just the enclave."
+   ],
+   "voiceover": "A flaw in the inference engine inside the enclave defeated confidential computing , the enclave protects against the host, not the code inside it. An attacker exploited a remote-code-execution flaw in SGLang, the open-source inference engine running on NEAR AI's servers, and ran code on one inference server on 8 Nov 2026 , then moved into the company's wider infrastructure (NEAR AI, 9 Nov 2026).",
+   "id": "a-flaw-in-the-inference-engine-inside-the-enclave-defeated",
+   "url": "https://yorgo000.github.io/ci-sitrep/#a-flaw-in-the-inference-engine-inside-the-enclave-defeated"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-23",
+   "title": "A central bank's Financial Stability Review treats weak AI governance as a financial-stability risk",
+   "source": "ECB",
+   "source_url": "https://www.ecb.europa.eu/press/financial-stability-publications/fsr/special/html/ecb.fsrart202611_02~8cca80a3c3.en.html",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "\"Decoding the cyber-AI nexus\" names weak governance and model alignment failures as internal bank risks, finds defenders structurally disadvantaged against low-cost agents, and puts about a fifth of euro area bank cyber incidents at third-party providers.",
+   "sections": [
+    {
+     "label": "3.4 Governance",
+     "anchor": "34-governance"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "title": "A jailbroken AI agent did the technical work of a nine-day campaign against European banks and insurers — the operator only typed plain-language orders",
+   "source": "SOCRadar",
+   "source_url": "https://socradar.io/blog/babidighost-ai-augmented-cybercrime/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "BabidiGhost's agent wrote the scanners, exploits and exfiltration scripts across 50+ targets, stealing an insurer's customer database and 8.6 GB of municipal archives; the controls that stopped it were ordinary — multi-factor authentication, IP allowlisting, server-side validation.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "title": "A major telecom calls its attacker \"agentic\" — but publishes nothing showing why",
+   "source": "BleepingComputer",
+   "source_url": "https://www.bleepingcomputer.com/news/security/bell-canada-says-agentic-hacker-stole-enterprise-customer-data/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "Bell Canada confirmed an \"agentic threat actor\" accessed systems on 17 Nov and stole enterprise customer data from a circuit-ordering system; no credentials or sensitive personal data were in the affected set, and no attribution or technical detail has been published.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "title": "A flaw in the inference engine inside the enclave defeated confidential computing — the enclave protects against the host, not the code inside it",
+   "source": "NEAR AI",
+   "source_url": "https://near.ai/blog/security-incident-report-sglang-vulnerability",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "a remote-code-execution flaw in SGLang gave an attacker code execution on a NEAR AI inference server and a path to ~100 users' account details and 18 agents' chat history and logs, including requests processed in confidential mode.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "title": "Software and AI systems become strict-liability \"products\" in the EU on 9 December",
+   "source": "Directive (EU) 2024/2853",
+   "source_url": "https://eur-lex.europa.eu/eli/dir/2024/2853/oj",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "the revised Product Liability Directive treats software — including SaaS and AI systems — as a product, makes AI providers manufacturers, and counts a missing security update or an exploitable vulnerability as a defect; it applies to products placed on the market after 9 Dec 2026.",
+   "sections": [
+    {
+     "label": "3.4 Governance",
+     "anchor": "34-governance"
+    }
+   ]
+  },
   {
    "date": "2026-11-22",
    "title": "Prompts sent to AI providers were copied for months — including ones marked Zero Data Retention",
@@ -3928,44 +4133,6 @@
      "anchor": "16-benchmarks--evidence"
     }
    ]
-  },
-  {
-   "date": "2026-11-15",
-   "title": "Agents copy the flaws already in a codebase",
-   "source": "Sun et al.",
-   "source_url": "https://arxiv.org/abs/2611.11455",
-   "tags": [
-    "In codebase",
-    "Pre-commit"
-   ],
-   "summary": "insecure neighbouring code cut correct-and-secure output by 35.4 points on average in C/C++ (GPT-5.6 Sol fell 91%",
-   "sections": [
-    {
-     "label": "2.1 How big the problem is",
-     "anchor": "21-how-big-the-problem-is"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-15",
-   "title": "45–70% of working agent solutions bring the original vulnerability back",
-   "source": "BugLedger",
-   "source_url": "https://www.bugledger.com/benchmarks",
-   "tags": [
-    "In codebase",
-    "Pre-commit"
-   ],
-   "summary": "a new execution-graded benchmark (51 real advisories, 7 models, 1,428 attempts) replays the attack instead of asking a judge; one line of security instruction roughly doubled secure output (Claude Opus 5.5: 0.35",
-   "sections": [
-    {
-     "label": "1.6 Benchmarks",
-     "anchor": "16-benchmarks--evidence"
-    },
-    {
-     "label": "2.1 How big the problem is",
-     "anchor": "21-how-big-the-problem-is"
-    }
-   ]
   }
  ],
  "glossary": [
@@ -4015,7 +4182,11 @@
   },
   {
    "term": "ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)",
-   "definition": "The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime. ## C"
+   "definition": "The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime. ## B"
+  },
+  {
+   "term": "BlackHatSect0r",
+   "definition": "A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'. ## C"
   },
   {
    "term": "Cairn",
@@ -4195,7 +4366,11 @@
   },
   {
    "term": "IVO (independent verification organisation)",
-   "definition": "A licensed outside body that tests a frontier AI developer's models against state-set safety standards and reports unredacted assessments to the state. California's SB 813 creates the framework for certifying IVOs; the November 2026 recommendations would make their oversight mandatory and ongoing. ## K"
+   "definition": "A licensed outside body that tests a frontier AI developer's models against state-set safety standards and reports unredacted assessments to the state. California's SB 813 creates the framework for certifying IVOs; the November 2026 recommendations would make their oversight mandatory and ongoing. ## J"
+  },
+  {
+   "term": "jailbreak (agent)",
+   "definition": "Stripping an AI agent of its refusal and safety behaviour — through a persona file, an anti-refusal protocol, or an escalation loop that re-sends refused orders — so it carries out instructions it would otherwise decline. BabidiGhost's agent ran with its \"ethics protocols destroyed\" and only 41 refusals surviving. ## K"
   },
   {
    "term": "kill switch",
@@ -4292,6 +4467,10 @@
   {
    "term": "PR (pull request)",
    "definition": "A proposed code change submitted for review before it is merged into the main codebase. The point where pre-commit checks run. (Not public relations.)"
+  },
+  {
+   "term": "Product Liability Directive (PLD)",
+   "definition": "Directive (EU) 2024/2853, the EU's revised product-liability law: from 9 Dec 2026 software and AI systems count as \"products\" under strict liability, AI providers count as manufacturers, and a missing security update or an exploitable vulnerability can count as a defect."
   },
   {
    "term": "Project SAGE",
