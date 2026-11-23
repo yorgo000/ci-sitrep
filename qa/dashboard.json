@@ -188,7 +188,7 @@
    "date": "2026-12-16",
    "display": "Wed 16 Dec 2026",
    "label": "TPRM guidance comments close",
-   "subject": "cic"
+   "subject": "pnl"
   },
   {
    "bullet": 4,
@@ -197,7 +197,7 @@
    "display": "Thu 24 Dec 2026",
    "label": "FCA CP26/38 comments close",
    "link": "#firms-stay-accountable-for-ai-in-financial-crime-controls",
-   "subject": "cic"
+   "subject": "pnl"
   },
   {
    "bullet": 1,
@@ -206,13 +206,13 @@
    "display": "1 Jan 2027",
    "label": "NY RAISE Act takes effect; registration due",
    "link": "#new-york-opens-frontier-ai-registration-a-financial",
-   "subject": "cic"
+   "subject": "pnl"
   },
   {
    "date": "2027-05-01",
    "display": "1 May 2027",
    "label": "OSFI E-23 takes effect",
-   "subject": "cic"
+   "subject": "pnl"
   }
  ],
  "note": "The dashboard shows the numbered findings, sliced the same four ways as the report: PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. Every number below links to the evidence behind it — usually its article; the article's Source line takes you to the primary source. Pie colours follow the split: rust is the AI side where the split is AI versus human; otherwise blue is favourable, rust adverse, grey the unclassified rest.",
@@ -524,7 +524,7 @@
        "value": 38
       },
       {
-       "article_section": "§2.6",
+       "article_section": "§2.5",
        "bullet": 1,
        "date": "4 Nov 2026",
        "display": "47%",
@@ -540,7 +540,7 @@
        "value": 47
       },
       {
-       "article_section": "§2.6",
+       "article_section": "§2.5",
        "bullet": 1,
        "date": "5 Nov 2026",
        "display": "59%",
