@@ -228,11 +228,11 @@
 </tr>
 <tr>
 <td>Total external links (incl. inline prose links)</td>
-<td>664</td>
+<td>690</td>
 </tr>
 <tr>
 <td>Unique source URLs</td>
-<td>245</td>
+<td>267</td>
 </tr>
 <tr>
 <td>Sections</td>
@@ -295,7 +295,7 @@
 <hr />
 <h2 id="source-review-funnel">Source review funnel</h2>
 <p>The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.</p>
-<p>Since tracking began on 2026-11-12, the daily watch has reviewed <strong>635</strong> sources and added <strong>79</strong> new articles (updating <strong>13</strong> existing ones). That is a 12.4% acceptance rate — most of what is reviewed does not clear the bar for entry.</p>
+<p>Since tracking began on 2026-11-12, the daily watch has reviewed <strong>659</strong> sources and added <strong>79</strong> new articles (updating <strong>27</strong> existing ones). That is a 12.0% acceptance rate — most of what is reviewed does not clear the bar for entry.</p>
 <table>
 <thead>
 <tr>
@@ -307,6 +307,13 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2026-11-23</td>
+<td>24</td>
+<td>0</td>
+<td>14</td>
+<td>Citation sweep (Yorgo item 20): linked second sources in 21 bullets across 14 articles (25 insertions; Pearce/Fu also linked in a prose line citing them). Date corrections: Register 6 Nov-&gt;2 Oct 2026; Transluce 13 Nov-&gt;16 Nov 2026. FINOS 23 vs 46 is a counting difference, not a disagreement (bullet reworded). Kiteworks PDF contradicts itself (chart 27% can vs prose 50% cannot); bullet uses the chart figures, corroborated by Kiteworks blog. FBI FLASH is public (IC3); Censys 1,465 is Censys own count (FLASH says over 1,600). Verify: 55 pass, 0 fail; 11 warnings reviewed (10 verb-opener flags pre-existing; 23 curl failures = 21 pre-existing bot-protected + Axios/Rapporteur, both verified live by other means).</td>
+</tr>
 <tr>
 <td>2026-11-23</td>
 <td>2</td>
@@ -356,13 +363,6 @@
 <td>0</td>
 <td>Morning catch-up: 3 new §2.1 articles — Depi/Codex prompt-injection-to-npm-publish chain (11 Nov, corroborated, critical), MCP reference Git server RCE via .git/config (GHSA-6hqx-gqrx-c5r2, 11 Nov, CVSS 7.8, fixed 2026.11.11), AWS MCP gateway registry SSRF CVE-2026-125926 (11 Nov, fixed 1.35.0, stored configs survive patch) — all 11 Nov disclosures the daily scan missed. Glossary +2 (SSRF, trusted publishing). Dashboard unchanged (no headline number moved); CI-vs-EI unchanged (no new human baseline). Verify: 53 pass, 0 fail; 11 warnings reviewed (10 verb-opener flags incl. 1 new — false positive; 24 curl link failures all pre-existing bot-protected, new links 200 + browser-verified). Reviewed but below bar: Java4Shell secondary (CVE already referenced via Devin article), LiteLLM CVE-2026-40217 KEV listing (LLM gateway, outside the three subjects), OCC 2026-54 secondaries (no new facts; bulletin already a §3.4.2 article), bank-liability secondaries (already covered), Meta Muse data leak (consumer chatbot, outside subjects), Ruby flaws (not AI). No new reader mail. Fed AI RFI re-checked by main run 20 Nov (still unpublished).</td>
 </tr>
-<tr>
-<td>2026-11-20</td>
-<td>48</td>
-<td>13</td>
-<td>2</td>
-<td>13 new articles: VulnBench 2.0 (Snyk, 28 Oct - SAST 89/108 vs AI review 85/108, together 101/108; first blind head-to-head, stacking rule now measured) in §1.6; Codename MDASH (GitHub/Microsoft, 17 Nov - 9,791 flagged to 99 verified reports, 55 fixed; first measured finding-to-fix funnel) + Chainstack (10 Nov - unauthenticated MCP server with cluster-admin as ARTEX command executor) + VS Code MCP flaws (10 Nov - CVE-2026-120779 CVSS 9.6, fixed 1.145.3) + Mittwald (7 Nov - customer MCP server let one new account act on 56 projects; tokens read, no passwords; server still offline) + WinGet/Cycode (18 Nov - single PR could hand over a moderator's full-identity GitHub token, CVSS 10.0, patched) in §2.1; Arizona criminal investigation (Reuters, 18 Nov - first criminal probe of AI firms over agents in bank accounts) + NY ASSET Unit (17 Nov - dedicated RAISE enforcer) + MAS Know Your Agent protocol + Agentic Money Sandbox (19 Nov) + SAFE AI Act outline (Beyer, 19 Nov) + AUDIT AI Act (Warner, 19 Nov) in §3.4.2; OpenAI misalignment report (10 Nov - eval agents ran root commands in OpenAI's own CI) + HYPR AgentPass (18 Nov, vendor claim) in §3.4.3. Devin Security Threats (Cognition, 18 Nov) as §2.3 table row (NTW entry stays unfiltered - table rows have no article headline, same as Microsoft Perception). In-place: bank-liability article enriched (BofA 27 Oct email, JPMorgan Digital Services Agreement eff. 1 Jan 2027, Dimon liability-transfer quote; tags +JPMorgan,Bank of America) + CA kill-switch article (McNerney bill planned next month per 18 Nov press release; Becerra 'move quickly' per 19 Nov Governor statement - corrected from a guessed sd10 URL that 404'd; correct primaries sd05.senate.ca.gov + gov.ca.gov) + §1.6.1 + §2.3 stacking line + §2.4 remediation funnel + §3.4.2 synthesis + Changed 20 Nov + WWW (CA dates corrected; 3 new open questions: Arizona charges, SAFE/AUDIT progress, MAS KYA requirements) + State of the market (criminal investigation sentence). Glossary +3 (ASSET Unit, Know Your Agent, VulnBench). Link maintenance: CWE-bench v2 repointed from dead ai-evolution.com.au mirror to Hugging Face primary (5 occurrences). Fed/OCC/FDIC AI RFI still unpublished - re-checked 20 Nov (Federal Register API: 0 docs Nov 1-20). NTW: 7 entries from 12 Nov aged out; 14 new entries dated 20 Nov. Dashboard unchanged (no headline number moved); CI-vs-EI unchanged (no new human baseline). Verify: 53 pass, 0 fail; 10 warnings reviewed (9 verb-opener flags all pre-existing; link failures all known bot-protected or pre-existing, new links 200 + Reuters 401 browser-confirmed). Design-editor review clean (full + follow-up for late additions). Deferred: NEAR AI SGLang TEE flaw, SAS/FT Longitude + OvationCXM banking surveys, IBM watsonx Orchestrate Agent Identity, EU AI Office RFIs to OpenAI/Anthropic, Apiiro secrets count (corroboration only), Morphisec MCP demo (lab only), PHP 19 Nov release (no AI angle).</td>
-</tr>
 </tbody>
 </table>
 <hr />
@@ -371,7 +371,7 @@
 <ul>
 <li><strong>Last full link audit:</strong> 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).</li>
 <li><strong>New links:</strong> every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.</li>
-<li><strong>Current unique URLs:</strong> 245 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).</li>
+<li><strong>Current unique URLs:</strong> 267 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).</li>
 </ul>
 <hr />
 <h2 id="how-we-vet">How we vet</h2>
