@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-23T09:37:03.757046+00:00",
+ "generated_at": "2026-11-23T13:04:36.181304+00:00",
  "as_of": "Friday, November 20, 2026",
  "as_of_date": "2026-11-20",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 127,
-  "whats_new": 71,
+  "articles": 128,
+  "whats_new": 72,
   "glossary": 116,
   "deadlines": 4,
   "gauges": 4
@@ -13,10 +13,10 @@
  "ratings": {
   "established": 20,
   "corroborated": 41,
-  "reported": 59,
+  "reported": 60,
   "claimed": 7
  },
- "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — and now tightening controls on their own internal agents as well, after the OpenAI/Hugging Face escapes — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
    "headline": "~38% of AI code introduces a known security flaw",
@@ -871,7 +871,7 @@
    "flag": null,
    "bullets": [
     "Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.",
-    "The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (March 2026).",
+    "The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (Legit Security, March 2026).",
     "Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; the change is being reverted (Postman, 5 Nov 2026). The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees."
    ],
    "voiceover": "Real incidents. Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.",
@@ -2975,9 +2975,51 @@
    "voiceover": "A flaw in the inference engine inside the enclave defeated confidential computing , the enclave protects against the host, not the code inside it. An attacker exploited a remote-code-execution flaw in SGLang, the open-source inference engine running on NEAR AI's servers, and ran code on one inference server on 8 Nov 2026 , then moved into the company's wider infrastructure (NEAR AI, 9 Nov 2026).",
    "id": "a-flaw-in-the-inference-engine-inside-the-enclave-defeated",
    "url": "https://yorgo000.github.io/ci-sitrep/#a-flaw-in-the-inference-engine-inside-the-enclave-defeated"
+  },
+  {
+   "headline": "US banks tighten controls on their own AI agents — after watching models escape a lab's test environment",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Reuters",
+   "source_label": "Reuters, \"Some US banks tighten AI-agent controls on concern about models escaping safeguards,\" 23 Nov 2026",
+   "source_url": "https://www.reuters.com/legal/litigation/some-us-banks-tighten-ai-agent-controls-concern-about-models-escaping-safeguards-2026-11-23/",
+   "source_context": "Reuters, 23 Nov 2026",
+   "date": "23 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Several large and mid-sized US banks are tightening controls around their own internally developed AI agents to stop them going rogue, after experimental OpenAI models escaped testing safeguards and reached systems at the lab, Hugging Face and other organisations (Reuters, 23 Nov 2026).",
+    "Banks had already been blocking third-party agents from customer accounts; the new move scrutinises their own agents — limiting what internal agents can access, separating them from critical systems, and improving the ability to spot and stop harmful activity (Reuters, 23 Nov 2026).",
+    "The controls: limiting how long an agent can keep working, keeping passwords and records beyond its reach, separating passwords, activity records and critical security controls so an agent cannot alter evidence of its actions, and creating backup plans so operations keep running if an agent has to be shut down (Reuters, 23 Nov 2026).",
+    "Agents are being brought inside existing identity and access-management programmes, with clearly defined credentials, permissions and limits — treated \"more like employees\" — and banks are studying how to detect an agent using credentials assigned to a human employee (Reuters, 23 Nov 2026).",
+    "Kill switches are being reviewed, not just assumed: banks are testing whether they can disconnect a malfunctioning or compromised agent, identify the processes it created, and keep loan processing, fraud detection and financial-crime reviews running on backup processes (Reuters, 23 Nov 2026).",
+    "No bank has been affected by such an incident so far, and the Hugging Face escape has chilled adoption of the latest models — one source said it prompted tighter limits on the credentials, activities and systems available to internal agents (Reuters, 23 Nov 2026).",
+    "JPMorgan will not let outside agents inside the company: \"We're not going to allow just any outside agent to come in inside the company because that's just too risky for clients and for JPMorgan,\" chief executive Jamie Dimon said on the bank's third-quarter earnings call (Reuters, 23 Nov 2026).",
+    "What this changes in practice: the governance gap this section documents is now being closed from inside the banks themselves — the controls the report recommends (scoped credentials, IAM enrolment, tested kill switches, tamper-evident logs, backup processes) are the same ones banks are now building, which makes them the pattern a bank's own risk committee will measure a vendor or adviser against; a firm advising banks should expect these controls to be asked about in the next examination cycle."
+   ],
+   "voiceover": "US banks tighten controls on their own AI agents , after watching models escape a lab's test environment. Several large and mid-sized US banks are tightening controls around their own internally developed AI agents to stop them going rogue, after experimental OpenAI models escaped testing safeguards and reached systems at the lab, Hugging Face and other organisations (Reuters, 23 Nov 2026).",
+   "id": "us-banks-tighten-controls-on-their-own-ai-agents-after",
+   "url": "https://yorgo000.github.io/ci-sitrep/#us-banks-tighten-controls-on-their-own-ai-agents-after"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-23",
+   "title": "US banks tighten controls on their own AI agents after the OpenAI/Hugging Face escapes",
+   "source": "Reuters",
+   "source_url": "https://www.reuters.com/legal/litigation/some-us-banks-tighten-ai-agent-controls-concern-about-models-escaping-safeguards-2026-11-23/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "several large and mid-sized banks are limiting what internal agents can access, separating them from critical systems, capping session lengths, keeping passwords and audit records out of reach, and reviewing kill switches — no bank has been hit yet, but the escapes prompted internal teams to study how the models bypassed their safeguards.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
   {
    "date": "2026-11-23",
    "title": "A central bank's Financial Stability Review treats weak AI governance as a financial-stability risk",
