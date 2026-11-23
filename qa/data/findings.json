@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-22T22:37:55.583331+00:00",
+ "generated_at": "2026-11-23T13:24:46.987692+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
   "articles": 122,
-  "whats_new": 68,
+  "whats_new": 66,
   "glossary": 115,
   "deadlines": 4,
   "gauges": 4
@@ -2077,7 +2077,7 @@
    "flag": null,
    "bullets": [
     "Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.",
-    "The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (March 2026).",
+    "The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (Legit Security, March 2026).",
     "Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; the change is being reverted (Postman, 5 Nov 2026). The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees."
    ],
    "voiceover": "Real incidents. Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.",
@@ -3947,40 +3947,6 @@
     "Pre-commit"
    ],
    "summary": "450 tasks from 150 real vulnerabilities, 7 languages; 57 of 150 scenarios secured by no model at all.",
-   "sections": [
-    {
-     "label": "4.5 Benchmarks & evidence",
-     "anchor": "45-benchmarks--evidence"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-15",
-   "title": "Agents copy the flaws already in a codebase",
-   "source": "Sun et al.",
-   "source_url": "https://arxiv.org/abs/2611.11455",
-   "tags": [
-    "Certification",
-    "Pre-commit"
-   ],
-   "summary": "insecure neighbouring code cut correct-and-secure output by 35.4 points on average in C/C++ (GPT-5.6 Sol fell 91%",
-   "sections": [
-    {
-     "label": "3.5 Techniques & the fix loop",
-     "anchor": "35-techniques--the-fix-loop"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-15",
-   "title": "45–70% of working agent solutions bring the original vulnerability back",
-   "source": "BugLedger",
-   "source_url": "https://www.bugledger.com/benchmarks",
-   "tags": [
-    "Certification",
-    "Pre-commit"
-   ],
-   "summary": "a new execution-graded benchmark (51 real advisories, 7 models, 1,428 attempts) replays the attack instead of asking a judge; one line of security instruction roughly doubled secure output (Claude Opus 5.5: 0.35",
    "sections": [
     {
      "label": "4.5 Benchmarks & evidence",
