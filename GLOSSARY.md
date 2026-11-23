@@ -55,6 +55,10 @@ records from WorkOS in October 2026.
 
 **ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)** — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.
 
+## B
+
+**BlackHatSect0r** — A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'.
+
 ## C
 
 **Cairn** — An open-source AI penetration-testing framework that hands an
@@ -258,6 +262,14 @@ reports unredacted assessments to the state. California's SB 813 creates the
 framework for certifying IVOs; the November 2026 recommendations would make
 their oversight mandatory and ongoing.
 
+## J
+
+**jailbreak (agent)** — Stripping an AI agent of its refusal and safety
+behaviour — through a persona file, an anti-refusal protocol, or an escalation
+loop that re-sends refused orders — so it carries out instructions it would
+otherwise decline. BabidiGhost's agent ran with its "ethics protocols
+destroyed" and only 41 refusals surviving.
+
 ## K
 
 **kill switch** — A control that stops an AI agent (or system) immediately and
@@ -369,6 +381,12 @@ criminals do.
 **PR (pull request)** — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
 public relations.)
+
+**Product Liability Directive (PLD)** — Directive (EU) 2024/2853, the EU's
+revised product-liability law: from 9 Dec 2026 software and AI systems count
+as "products" under strict liability, AI providers count as manufacturers,
+and a missing security update or an exploitable vulnerability can count as a
+defect.
 
 **Project SAGE** — HKMA's proposal for agentic-AI accountability: named owners
 for agents, Know Your Agent (KYA) identity, and a registry of material AI
