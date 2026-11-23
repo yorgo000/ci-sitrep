@@ -11,10 +11,12 @@ This file is a **state of affairs**, not a log: each section states the current 
 
 1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [CILAK](#report) gives you the evidence, both sliced the same four ways: PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit.
 2. First time? Read [SITREP](#executive-dashboard) — the bottom line; if that's enough, you're done — or read the whole landscape report, [CILAK](#report). Then you know what's going on.
-3. Every day after, just look at what's changed: read [What just changed](#what-just-changed) for everything that's new, or follow the red dots — every figure, article, and section the news touched carries one.
+3. Every day after, just look at what's changed: read [DIFF](#diff) for everything that's new, or follow the red dots — every figure, article, and section the news touched carries one.
 4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
 5. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC — the terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
 6. Keep opening until you've got what you need; hit back and you're at the top again.
+
+**Short on time?** Get the [bottom line SITREP](#executive-dashboard), or see what's changed at [DIFF](#diff).
 
 In the report, dotted-underlined terms show their definition on hover or tap.
 
@@ -39,7 +41,7 @@ In the report, dotted-underlined terms show their definition on hover or tap.
 
 **Pre-commit:** [More than a third of AI-written code still carries a known security flaw](#41-the-flaw-rate-at-generation) — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones. The work, for now, is building your own gates.
 
-## What just changed
+## DIFF
 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
