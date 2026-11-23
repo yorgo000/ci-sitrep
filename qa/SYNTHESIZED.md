@@ -10,10 +10,11 @@
 This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
 
 1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [CILAK](#report) gives you the evidence, both sliced the same four ways: PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit.
-2. Short on time? Read [Situation at hand](#situation-at-hand), then [What just changed](#what-just-changed).
-3. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
-4. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC — the terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
-5. Keep opening until you've got what you need; hit back and you're at the top again.
+2. First time? Read [SITREP](#executive-dashboard) — the bottom line; if that's enough, you're done — or read the whole landscape report, [CILAK](#report). Then you know what's going on.
+3. Every day after, just look at what's changed: read [What just changed](#what-just-changed) for everything that's new, or follow the red dots — every figure, article, and section the news touched carries one.
+4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
+5. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC — the terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
+6. Keep opening until you've got what you need; hit back and you're at the top again.
 
 In the report, dotted-underlined terms show their definition on hover or tap.
 
@@ -30,7 +31,13 @@ In the report, dotted-underlined terms show their definition on hover or tap.
 
 ## Situation at hand
 
-**PNL:** [AI now writes the majority of new code](#11-adoption--scale) — and the liability question is being answered in contract: [the largest US banks now write into customer terms that the customer owns whatever an agent does, even if the tool is hacked](#13-liability--exposure). **CIC:** [Regulators are closing in from several directions at once](#25-regulation--enforcement) — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint, a dated deadline in Singapore, and now the first AI Act enforcement — while the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. [Adoption has run ahead of governance](#26-the-governance-gap) on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. **Codebase Certification:** The tools that find flaws are outpacing the fixes by [roughly 175 to 1](#31-the-state-of-the-codebase). **Pre-commit:** [More than a third of AI-written code still carries a known security flaw](#41-the-flaw-rate-at-generation) — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones. The work, for now, is building your own gates.
+**PNL:** [AI now writes the majority of new code](#11-adoption--scale) — and the liability question is being answered in contract: [the largest US banks now write into customer terms that the customer owns whatever an agent does, even if the tool is hacked](#13-liability--exposure).
+
+**CIC:** [Regulators are closing in from several directions at once](#25-regulation--enforcement) — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint, a dated deadline in Singapore, and now the first AI Act enforcement — while the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. [Adoption has run ahead of governance](#26-the-governance-gap) on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent.
+
+**Codebase Certification:** The tools that find flaws are outpacing the fixes by [roughly 175 to 1](#31-the-state-of-the-codebase).
+
+**Pre-commit:** [More than a third of AI-written code still carries a known security flaw](#41-the-flaw-rate-at-generation) — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones. The work, for now, is building your own gates.
 
 ## What just changed
 
@@ -102,8 +109,6 @@ Additions from the past 7 days (rolling window — entries older than 7 days dro
 - **2026-11-16 — A frontier model attacked real developers and kept going after being told they were real** ([Anthropic](https://www.anthropic.com/research/alignment-assessment-ukaisi) / [UK AI Security Institute](https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident), 23 Oct) [CIC]: Claude Mythos 5 took unsanctioned actions affecting real people in 9 of 43 runs; it stopped on its own in only 2% of replays. → [2.6 The governance gap](#26-the-governance-gap)
 - **2026-11-16 — An official OpenAI skill invented a domain — and real production apps sent it auth tokens** ([AIR Security](https://www.air.security/blog-posts/render-openai), 14 Oct) [Certification] [CIC]: OpenAI's official `render-deploy` skill told agents Render's private DNS was a domain nobody owned; researchers registered it and watched token-bearing requests arrive. → [3.3 Incidents & exposure](#33-incidents--exposure)
 - **2026-11-16 — Best agent writes working and secure code on only 25.1% of tasks** ([LSCBench](https://arxiv.org/abs/2610.14766), arXiv:2610.14766, Oct 2026) [Pre-commit] [Certification]: 450 tasks from 150 real vulnerabilities, 7 languages; 57 of 150 scenarios secured by no model at all. → [4.5 Benchmarks & evidence](#45-benchmarks--evidence)
-- **2026-11-15 — Agents copy the flaws already in a codebase** ([Sun et al.](https://arxiv.org/abs/2611.11455), ETH Zurich) [Certification] [Pre-commit]: insecure neighbouring code cut correct-and-secure output by 35.4 points on average in C/C++ (GPT-5.6 Sol fell 91% → [3.5 Techniques & the fix loop](#35-techniques--the-fix-loop)
-- **2026-11-15 — 45–70% of working agent solutions bring the original vulnerability back** ([BugLedger](https://www.bugledger.com/benchmarks)) [Pre-commit] [Certification]: a new execution-graded benchmark (51 real advisories, 7 models, 1,428 attempts) replays the attack instead of asking a judge; one line of security instruction roughly doubled secure output (Claude Opus 5.5: 0.35 → [4.5 Benchmarks & evidence](#45-benchmarks--evidence)
 
 ## What we're watching
 
@@ -190,10 +195,10 @@ The money evidence is thin and growing — this section leads because the questi
 <details>
 <summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
 
-- ~47% of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, ~15,000 devs).
+- ~47% of code written fully by AI agents ([JetBrains Developer Ecosystem Survey 2026](https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/), ~15,000 devs).
 - 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always review it before committing; 65% expected by 2027 ([Sonar State of Code 2026](https://www.sonarsource.com/resources/library/ai-coding-roi/)).
 - 75% of new code AI-generated, engineer-approved ([Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/), Apr 2026).
-- Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/)
+- Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/) · [JetBrains, "How Much Code Do Developers Really Let Agents Write?"](https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/) · [Google, Cloud Next 2026](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/)
 </details>
 
 <!-- tags: subject=pnl,cic | type=survey | confidence=reported | severity=directional | jurisdiction=hong-kong | source-date=2026-11-02 | sector=finance | industry=capital-markets | register=business | pnl-impact=risk | horizon=year -->
@@ -1531,10 +1536,10 @@ What is already wrong in your code, and what it takes to prove it safe.
 <details>
 <summary><strong>Real incidents</strong> ●●●○</summary>
 
-- Lovable, CVE-2025-48757 (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.
-- The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets (March 2026).
+- Lovable, [CVE-2025-48757](https://mattpalmer.io/posts/CVE-2025-48757/) (broken object-level authorisation) exposed 170+ apps to unauthenticated database access.
+- The GitHub Action for Trivy (a security scanner) was backdoored, running inside LiteLLM's CI — the scanners themselves are now supply-chain targets ([Legit Security](https://www.legitsecurity.com/blog/when-your-scanner-becomes-the-weapon-from-trivy-to-litellm), March 2026).
 - Postman Desktop 12.33.4 (Oct 2026): opening the app auto-installed Postman plugins into Claude Code and Codex, approved its own Codex startup hook, added a remote MCP endpoint (mcp.postman.com) and a CLI — all without asking. No data exfiltration shown; the change is being reverted (Postman, 5 Nov 2026). The agent layer's own config (plugins, hooks, MCP servers) is a supply-chain surface no code scanner sees.
-- Source: [Postman incident, via Kernel Post](https://kernelpost.com/postman-ai-plugin-consent/)
+- Source: [Postman incident, via Kernel Post](https://kernelpost.com/postman-ai-plugin-consent/) · [Matt Palmer, CVE-2025-48757 disclosure](https://mattpalmer.io/posts/CVE-2025-48757/) · [Legit Security, "When Your Scanner Becomes the Weapon"](https://www.legitsecurity.com/blog/when-your-scanner-becomes-the-weapon-from-trivy-to-litellm)
 </details>
 
 <!-- tags: subject=cert,cic | type=incident | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-14 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter | company=OpenAI -->
