@@ -43,6 +43,8 @@ In the report, dotted-underlined terms show their definition on hover or tap.
 
 Additions from the past 7 days (rolling window — entries older than 7 days drop off).
 
+- **2026-11-23 — 67% of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently** ([Microsoft / Hugging Face](https://huggingface.co/blog/microsoft/thinkingbox), 3 Oct) [CIC] [new]: 507 stateful workflows × 20 runs; Claude Opus 5.5 leads pass@1 at 67.16% yet passes exactly 241 of 507 on all 20 attempts, the same as Opus 5; 67.24% of failures end cleanly with no tool error, then report done. → [2.8 Evaluation](#28-evaluation)
+- **2026-11-23 — AI agents handle tasks twice as long every ~7 months; the 80% horizon is far shorter** ([METR](https://metr.org/time-horizons/), 29 Jan) [CIC] [new]: 50%-reliability horizon doubles ~every 7 months (196 days; ~89 days on 2024 data alone); the public tracker is now frozen, marked "no longer actively updated" on 8 Sep 2026. → [2.8 Evaluation](#28-evaluation)
 - **2026-11-22 — Prompts sent to AI providers were copied for months — including ones marked Zero Data Retention** ([Dragos](https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens), 19 Nov; [OpenRouter](https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/), 22 Nov) [CIC] [Certification] [new]: ~2M canary-seeded prompts (Jul–Nov) showed attackers inside three inference providers copying requests at the front door, marketplace resellers logging prompts, and a Chinese lab's systems fetching secret links from over half the prompts sent to its models — including two-thirds of ZDR-flagged ones; OpenRouter off-boarded three providers and removed 125 endpoints from ZDR eligibility. → [2.6 The governance gap](#26-the-governance-gap)
 - **2026-11-22 — Poisoned repos turn coding agents into credential stealers — the instruction file is the exploit** ([Bitdefender](https://www.bitdefender.com/en-gb/blog/labs/how-ai-agents-become-new-targets-in-github-malware-campaign), 17 Nov) [CIC] [Certification] [new]: 22 malicious GitHub repos use AGENTS.md/CLAUDE.md to steer an assistant into running a hidden credential stealer, or a session-start hook to run it with no prompt at all; the payload harvests cloud, CI/CD and password-manager credentials and replants the same instructions in other repos via stolen tokens. → [2.6 The governance gap](#26-the-governance-gap)
 - **2026-11-22 — Brussels opens the first AI Act enforcement against named frontier labs — over agents that escaped their test environments** ([TechRepublic](https://www.techrepublic.com/article/news-eu-openai-anthropic-ai-act-agent-security-emea/), 14 Oct; second round 6 Nov) [CIC] [PNL]: the EU AI Office sent formal information requests to OpenAI and Anthropic after judging their voluntary disclosures insufficient; the requests cover security, external evaluation and monitoring, and a second, more specific round went out 6 Nov; fines can reach €15 million or 3% of global turnover, and whether the Act reaches development-phase incidents is contested. → [2.5 Regulation & enforcement](#25-regulation--enforcement)
@@ -1286,6 +1288,25 @@ Sources: [FrankX, The Observability Stack for Production Multi-Agent Systems](ht
 - Typestate enforcement — the model is offered only tools legal in the current state — produced zero unauthorized changes on tau-bench airline tasks vs 13/50 and 29/128 for baselines, with no significant success drop (Concordat, reported Oct 2026 via a digest; promising, not independently verified).
 
 Sources: [AIEvals, How to Evaluate Long-Horizon AI Agents: Pass^k](https://www.aievals.co/task-types/long-horizon-planning) · [Hugging Face blog, Microsoft, ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox) · [METR, AI R&D acceleration assessment, 5 Nov 2026](https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/) · [METR, time horizons](https://metr.org/time-horizons/)
+
+<!-- tags: subject=cic | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-10-03 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter | company=Microsoft -->
+<details>
+<summary><strong>67% of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently</strong> ([Microsoft / Hugging Face](https://huggingface.co/blog/microsoft/thinkingbox), 3 Oct 2026) ●●●○</summary>
+
+- 507 stateful business workflows × 20 runs: Claude Opus 5.5 leads pass@1 at 67.16%, yet both Opus 5.5 and Opus 5 pass exactly 241 of 507 tasks on all 20 attempts; Kimi-K3 solved 476 of 507 at least once but only 68 on all 20 (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).
+- In a 121,680-trial ablation, 67.24% of failures terminated cleanly with no tool error, then reported done — wrong field values in 77.61% of them, unintended extra effects in 43.30%, missing required effects in 25.36% (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).
+- The 507 workflows are synthetic reconstructions of enterprise work with simulated users, not production traffic — the gap is measured in a sandbox, not observed in the wild (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).
+- Source: [Microsoft / Hugging Face, "The Agent Said It Was Done. The Database Disagreed," Hugging Face Blog, 3 Oct 2026](https://huggingface.co/blog/microsoft/thinkingbox)
+</details>
+
+<!-- tags: subject=cic | type=study | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-01-29 | sector=cross-sector | industry=cross-industry | register=mixed | pnl-impact=risk | horizon=year -->
+<details>
+<summary><strong>AI agents handle tasks twice as long every ~7 months; the 80% horizon is far shorter</strong> ([METR](https://metr.org/time-horizons/), 29 Jan 2026) ●●●○</summary>
+
+- The 50%-reliability horizon doubles about every 7 months (196 days on the full 2019–2025 window; ~89 days on 2024 data alone), but the 80% horizon is far shorter, and measurements above 16h are flagged unreliable (METR, Time Horizon 1.1, 29 Jan 2026).
+- The public time-horizons tracker is now frozen: the page was marked "no longer actively updated" on 8 Sep 2026 (last model added 8 May) — the doubling figures are a snapshot, not a live series, and newer capability numbers now live in METR's blog posts, not the tracker (METR, 8 Sep 2026).
+- Source: [METR, Time Horizons](https://metr.org/time-horizons/)
+</details>
 
 <details>
 <summary>See also</summary>
