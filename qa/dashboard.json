@@ -3,6 +3,7 @@
  "as_of_label": "Sunday, November 22, 2026",
  "bottom_line": [
   {
+   "bullet": 1,
    "chart": {
     "a": {
      "display": "3.4×",
@@ -31,6 +32,8 @@
   },
   {
    "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
+   "bullet": 2,
+   "bullet_token": "135 manually confirmed vulnerabilities",
    "caption": "Share of 147 vulnerabilities counted",
    "chart": {
     "a": {
@@ -58,6 +61,7 @@
    "tile": "waffle"
   },
   {
+   "bullet": 1,
    "date": "2026",
    "display": "188",
    "label": "documented cases of autonomous AI damaging production",
@@ -69,6 +73,7 @@
    "tile": "big-number"
   },
   {
+   "bullet": 1,
    "date": "13 Nov 2026",
    "display": "73%",
    "figures": [
@@ -99,6 +104,7 @@
    "tile": "paired"
   },
   {
+   "bullet": 1,
    "chart": {
     "a_label": "AI agents",
     "b_label": "human-written",
@@ -117,6 +123,7 @@
    "tile": "pie"
   },
   {
+   "bullet": 1,
    "chart": {
     "a_label": "Using AI",
     "b_label": "not using",
@@ -135,6 +142,7 @@
    "tile": "pie"
   },
   {
+   "bullet": 4,
    "chart": {
     "a": {
      "display": "~2.5×",
@@ -183,15 +191,21 @@
    "subject": "cic"
   },
   {
+   "bullet": 4,
+   "bullet_token": "24 Dec 2026",
    "date": "2026-12-24",
    "display": "Thu 24 Dec 2026",
    "label": "FCA CP26/38 comments close",
+   "link": "#firms-stay-accountable-for-ai-in-financial-crime-controls",
    "subject": "cic"
   },
   {
+   "bullet": 1,
+   "bullet_token": "1 Jan 2027",
    "date": "2027-01-01",
    "display": "1 Jan 2027",
    "label": "NY RAISE Act takes effect; registration due",
+   "link": "#new-york-opens-frontier-ai-registration-a-financial",
    "subject": "cic"
   },
   {
@@ -211,6 +225,7 @@
      "left": {
       "items": [
        {
+        "bullet": 2,
         "date": "2026",
         "display": "42%",
         "kind": "stat",
@@ -223,6 +238,7 @@
         "tile": "big-number"
        },
        {
+        "bullet": 2,
         "date": "2026",
         "display": "90%",
         "kind": "stat",
@@ -240,6 +256,7 @@
      "right": {
       "items": [
        {
+        "bullet": 3,
         "date": "Jan 2026",
         "display": "+81%",
         "kind": "stat",
@@ -253,6 +270,7 @@
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "−7.2%",
         "kind": "stat",
@@ -265,6 +283,7 @@
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "581",
         "kind": "stat",
@@ -277,6 +296,7 @@
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "48%",
         "kind": "stat",
@@ -289,6 +309,8 @@
         "tile": "big-number"
        },
        {
+        "bullet": 1,
+        "bullet_token": "37,966",
         "chart": {
          "a": {
           "display": "37,966",
@@ -316,6 +338,8 @@
         "tile": "ratio"
        },
        {
+        "bullet": 2,
+        "bullet_token": "135 manually confirmed vulnerabilities",
         "chart": {
          "a": {
           "display": "135",
@@ -343,6 +367,8 @@
         "tile": "ratio"
        },
        {
+        "bullet": 2,
+        "bullet_token": "35.4 points",
         "date": "8 Nov 2026",
         "display": "−35.4 pts",
         "kind": "stat",
@@ -355,6 +381,8 @@
         "tile": "big-number"
        },
        {
+        "bullet": 1,
+        "bullet_token": "passed human review",
         "date": "2 Nov 2026",
         "kind": "text",
         "link": "#supervisors-document-ai-code-passing-human-review-and",
@@ -380,6 +408,7 @@
     {
      "items": [
       {
+       "bullet": 1,
        "date": "2026",
        "display": "~47%",
        "kind": "bar",
@@ -395,6 +424,7 @@
        "value": 47
       },
       {
+       "bullet": 2,
        "date": "2026",
        "display": "42%",
        "kind": "bar",
@@ -410,6 +440,7 @@
        "value": 42
       },
       {
+       "bullet": 3,
        "date": "Apr 2026",
        "display": "75%",
        "history_key": "google-ai-code-share",
@@ -425,6 +456,7 @@
       },
       {
        "article_section": "§3.1",
+       "bullet": 3,
        "date": "2026",
        "display": "67%",
        "kind": "bar",
@@ -445,6 +477,7 @@
     {
      "items": [
       {
+       "bullet": 1,
        "date": "12 Nov 2026",
        "display": "86%",
        "history_key": "aca-nscp-ai-use",
@@ -460,6 +493,8 @@
        "tile": "sparkline"
       },
       {
+       "bullet": 3,
+       "bullet_token": "one in four",
        "date": "12 Nov 2026",
        "display": "1 in 4",
        "kind": "stat",
@@ -474,6 +509,7 @@
        "value": 25
       },
       {
+       "bullet": 2,
        "date": "12 Nov 2026",
        "display": "38%",
        "kind": "stat",
@@ -489,6 +525,7 @@
       },
       {
        "article_section": "§2.6",
+       "bullet": 1,
        "date": "4 Nov 2026",
        "display": "47%",
        "kind": "stat",
@@ -504,6 +541,7 @@
       },
       {
        "article_section": "§2.6",
+       "bullet": 1,
        "date": "5 Nov 2026",
        "display": "59%",
        "kind": "stat",
@@ -519,6 +557,7 @@
        "value": 59
       },
       {
+       "bullet": 2,
        "date": "2026",
        "display": "80%",
        "kind": "stat",
@@ -556,6 +595,7 @@
      "items": [
       {
        "article_section": "§4.5",
+       "bullet": 4,
        "chart": {
         "a": {
          "display": "~2.5×",
@@ -589,15 +629,19 @@
     {
      "items": [
       {
+       "bullet": 3,
+       "bullet_token": "10% of worldwide turnover",
        "date": "30 Oct 2026",
-       "kind": "text",
+       "display": "10%",
+       "kind": "stat",
+       "label": "of worldwide turnover in fines — exposure context, not a loss, under UK CMA/DRCF",
        "link": "#deployers-are-legally-responsible-for-what-their-agents-do",
+       "note": "An agent's autonomy does not diminish the deployer's responsibility.",
        "rating": "corroborated",
        "sentiment": "negative",
        "source": "UK CMA / DRCF",
        "subject": "pnl",
-       "text": "Exposure context, not a loss: under UK CMA/DRCF, an agent's autonomy does not diminish the deployer's responsibility — fines up to 10% of worldwide turnover.",
-       "tile": "note"
+       "tile": "big-number"
       }
      ],
      "kind": "notes"
@@ -613,6 +657,7 @@
     {
      "items": [
       {
+       "bullet": 3,
        "date": "2026",
        "display": "98%",
        "kind": "bar",
@@ -628,6 +673,7 @@
        "value": 98
       },
       {
+       "bullet": 3,
        "date": "2026",
        "display": "47%",
        "kind": "bar",
@@ -643,6 +689,7 @@
        "value": 47
       },
       {
+       "bullet": 3,
        "date": "2026",
        "display": "49%",
        "kind": "bar",
@@ -658,6 +705,7 @@
        "value": 49
       },
       {
+       "bullet": 1,
        "date": "Oct 2026",
        "display": "79%",
        "kind": "bar",
@@ -672,6 +720,7 @@
        "value": 79
       },
       {
+       "bullet": 1,
        "date": "Oct 2026",
        "display": "2%",
        "kind": "bar",
@@ -687,6 +736,7 @@
        "value": 2
       },
       {
+       "bullet": 1,
        "date": "Oct 2026",
        "display": "82%",
        "kind": "bar",
@@ -702,6 +752,7 @@
        "value": 82
       },
       {
+       "bullet": 2,
        "date": "Oct 2026",
        "display": "88%",
        "kind": "bar",
@@ -717,6 +768,7 @@
        "value": 88
       },
       {
+       "bullet": 4,
        "date": "Oct 2026",
        "display": "38%",
        "kind": "bar",
@@ -732,6 +784,7 @@
        "value": 38
       },
       {
+       "bullet": 1,
        "date": "2026",
        "display": "35%",
        "kind": "bar",
@@ -747,6 +800,7 @@
        "value": 35
       },
       {
+       "bullet": 1,
        "date": "2026",
        "display": "36%",
        "kind": "bar",
@@ -762,6 +816,7 @@
        "value": 36
       },
       {
+       "bullet": 2,
        "date": "2026",
        "display": "30%",
        "kind": "bar",
@@ -777,6 +832,7 @@
        "value": 30
       },
       {
+       "bullet": 1,
        "date": "2026",
        "display": "79%",
        "kind": "bar",
@@ -792,6 +848,7 @@
        "value": 79
       },
       {
+       "bullet": 2,
        "date": "2026",
        "display": "82%",
        "kind": "bar",
@@ -807,6 +864,7 @@
        "value": 82
       },
       {
+       "bullet": 2,
        "date": "4 Nov 2026",
        "display": "75.7%",
        "kind": "bar",
@@ -822,6 +880,7 @@
        "value": 75.7
       },
       {
+       "bullet": 1,
        "date": "13 Nov 2026",
        "display": "73%",
        "kind": "bar",
@@ -836,6 +895,7 @@
        "value": 73
       },
       {
+       "bullet": 2,
        "date": "13 Nov 2026",
        "display": "8%",
        "kind": "bar",
@@ -851,6 +911,7 @@
        "value": 8
       },
       {
+       "bullet": 1,
        "date": "5 Nov 2026",
        "display": "10%",
        "kind": "stat",
@@ -870,6 +931,7 @@
     {
      "items": [
       {
+       "bullet": 1,
        "date": "2023–mid-2026",
        "display": "188",
        "kind": "stat",
@@ -882,6 +944,7 @@
        "tile": "big-number"
       },
       {
+       "bullet": 1,
        "date": "May 2026",
        "display": "109:1",
        "history_key": "pan-identity-ratio",
@@ -900,6 +963,8 @@
     {
      "items": [
       {
+       "bullet": 1,
+       "bullet_token": "passed human review",
        "date": "2 Nov 2026",
        "kind": "text",
        "link": "#supervisors-document-ai-code-passing-human-review-and",
@@ -911,17 +976,22 @@
        "tile": "note"
       },
       {
+       "bullet": 2,
+       "bullet_token": "35 seconds",
        "date": "9 Nov 2026",
-       "kind": "text",
+       "display": "35 seconds",
+       "kind": "stat",
+       "label": "The worked counter-example: a frontier lab's kill switch cuts research-model output, fail-closed.",
        "link": "#a-frontier-lab-shows-a-kill-switch-can-work-in-35-seconds",
        "rating": "reported",
        "sentiment": "positive",
        "source": "OpenAI Control Room",
        "subject": "cic",
-       "text": "The worked counter-example: a frontier lab's kill switch cuts research-model output in 35 seconds, fail-closed.",
-       "tile": "note"
+       "tile": "big-number"
       },
       {
+       "bullet": 1,
+       "bullet_token": "escaped its isolated test environment",
        "date": "6 Nov 2026",
        "kind": "text",
        "link": "#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer",
@@ -946,11 +1016,12 @@
     {
      "items": [
       {
+       "bullet": 1,
        "date": "Oct 2026",
        "display": "67.16%",
        "kind": "stat",
        "label": "succeed on the first attempt — but only 241 of 507 workflows pass on all 20 attempts",
-       "link": "#28-evaluation",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
        "pie_split": "positive",
        "rating": "corroborated",
        "sentiment": "neutral",
@@ -961,11 +1032,12 @@
        "value": 67.16
       },
       {
+       "bullet": 2,
        "date": "Oct 2026",
        "display": "67.24%",
        "kind": "stat",
        "label": "of failures terminate cleanly, then report done",
-       "link": "#28-evaluation",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
        "pie_split": "negative",
        "rating": "corroborated",
        "sentiment": "negative",
@@ -975,11 +1047,13 @@
        "value": 67.24
       },
       {
+       "bullet": 1,
+       "bullet_token": "7 months",
        "date": "2026",
        "display": "~7 months",
        "kind": "stat",
        "label": "for agents to handle tasks twice as long, half the time",
-       "link": "#28-evaluation",
+       "link": "#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
        "note": "at 80% success, the task length is far shorter",
        "rating": "corroborated",
        "sentiment": "neutral",
@@ -1001,6 +1075,7 @@
     {
      "items": [
       {
+       "bullet": 1,
        "changed": "2026-11-18",
        "date": "29 Oct 2026",
        "display": "~38%",
@@ -1015,6 +1090,7 @@
        "tile": "sparkline"
       },
       {
+       "bullet": 1,
        "chart": {
         "a": {
          "display": "3.4×",
@@ -1042,6 +1118,8 @@
        "tile": "ratio"
       },
       {
+       "bullet": 3,
+       "bullet_token": "67.8% pass@1",
        "date": "Nov 2026",
        "display": "~68%",
        "kind": "bar",
@@ -1058,6 +1136,7 @@
        "value": 68
       },
       {
+       "bullet": 1,
        "date": "Nov 2026",
        "display": "948",
        "kind": "stat",
@@ -1087,6 +1166,8 @@
        "label": "§4.5"
       }
      ],
+     "bullet": 4,
+     "bullet_token": "23.8% correct-and-secure",
      "date": "2026",
      "kind": "stacked",
      "link": "#best-agent-238-correct-and-secure-23-correct-but",
@@ -1124,6 +1205,7 @@
          "label": "§4.5"
         }
        ],
+       "bullet": 3,
        "date": "4 Nov 2026",
        "display": "74.0%",
        "kind": "bar",
@@ -1145,6 +1227,7 @@
          "label": "§4.5"
         }
        ],
+       "bullet": 3,
        "date": "4 Nov 2026",
        "display": "18.4%",
        "kind": "bar",
@@ -1161,6 +1244,7 @@
        "value": 18.4
       },
       {
+       "bullet": 3,
        "date": "24 Oct 2026",
        "display": "78.1%",
        "kind": "bar",
@@ -1176,6 +1260,7 @@
        "value": 78.1
       },
       {
+       "bullet": 3,
        "date": "24 Oct 2026",
        "display": "32.5%",
        "kind": "bar",
@@ -1203,6 +1288,7 @@
          "label": "§4.5"
         }
        ],
+       "bullet": 3,
        "date": "2 Nov 2026",
        "display": "45–70%",
        "kind": "stat",
@@ -1225,6 +1311,8 @@
        "after_label": "Hinted",
        "before": 0.35,
        "before_label": "Blind",
+       "bullet": 5,
+       "bullet_token": "0.35 to 0.71",
        "date": "2 Nov 2026",
        "display": "0.35 → 0.71",
        "kind": "stat",
@@ -1243,6 +1331,7 @@
          "label": "§4.5"
         }
        ],
+       "bullet": 4,
        "date": "4 Nov 2026",
        "display": "55.6%",
        "kind": "stat",
@@ -1257,6 +1346,7 @@
        "value": 55.6
       },
       {
+       "bullet": 2,
        "date": "Oct 2026",
        "display": "25.1%",
        "kind": "stat",
@@ -1278,6 +1368,7 @@
          "label": "§4.1"
         }
        ],
+       "bullet": 1,
        "chart": {
         "a": {
          "display": "up to 2.74×",
