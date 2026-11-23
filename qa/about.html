@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — CI SITREP</title>
+<title>About</title>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -59,6 +59,11 @@
   /* Masthead: the CI SITREP wordmark, linking back to the report. */
   .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
   .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
+  /* "Preview" (2026-11-23, Yorgo's pick over "Pre-release"): a small,
+     quiet status marker next to the title — 13px muted, plain, the
+     tagline's size and colour. Same rule in build_html.py (the index
+     page carries its own template); keep the two in sync. */
+  .masthead-preview { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 8px; }
   nav.sidebar .masthead-title a { color: #283060; text-decoration: none; display: inline; padding: 0; }
   nav.sidebar .masthead-title a:hover { background: none; }
   .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
@@ -185,7 +190,7 @@
 <div class="layout">
   <nav class="sidebar">
     <div class="masthead">
-      <p class="masthead-title"><a href="index.html">CI SITREP</a></p>
+      <p class="masthead-title"><a href="index.html">CI SITREP</a><span class="masthead-preview">Preview</span></p>
       <p class="masthead-vertical">Code &amp; Finance</p>
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
@@ -214,7 +219,7 @@
 <p>Every article carries a confidence rating — a dots score for how much confidence you can place in its finding. See the legend on the main page for what each level means.</p>
 <h2 id="how-this-is-made">How this is made</h2>
 <p>CI SITREP is a Right-Time Situational Awareness Tool, published by Confluence&lt;1&gt;. It exists so that we only need to monitor one SITREP — and now we're letting you in on it too.</p>
-<p>It takes a lot to put together. Since tracking began on 12 November we have reviewed 559 sources and kept 71 of them — a 12.7% acceptance rate. Most of what we review doesn't clear the bar. The result is 122 findings, every one confidence-rated (48% Established or Corroborated), drawn from 291 source links, every one verified live. Before anything publishes, it passes 59 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.</p>
+<p>It takes a lot to put together. Since tracking began on 12 November we have reviewed 559 sources and kept 71 of them — a 12.7% acceptance rate. Most of what we review doesn't clear the bar. The result is 124 findings, every one confidence-rated (49% Established or Corroborated), drawn from 293 source links, every one verified live. Before anything publishes, it passes 60 automated checks. The work is done by 6 CII's (AI agents) — research, editing, publishing — working under an editing team with 39 years of cumulative experience building critical systems for finance.</p>
 <p><strong>How we choose what to look at.</strong> There is no fixed list of sources to defend. The radar runs fresh every morning across the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit — and everything found is judged against one bar: would it change what our clients need to do? Vetting happens on the fly, at intake. Reader suggestions are open: write to ci-sitrep@confluence1.com.</p>
 <p><strong>What it is for.</strong> Advising the finance industry on critical technologies and building the critical systems that they depend on. It is designed to be useful to elite operators — people with profit-and-loss responsibility who need the information that sits behind the good calls - and nothing they don't need.</p>
 <h2 id="contact">Contact</h2>
