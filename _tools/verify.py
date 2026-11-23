@@ -188,6 +188,34 @@ def check_articles(md):
         fail("headline parenthetical source is hyperlinked",
              f"{len(unlinked)} unlinked: {unlinked[:3]}")
 
+    # Multi-source articles (headline parenthetical legitimately plain):
+    # every bullet must link its source inline, or be about the primary
+    # source named in the Source line. Added 2026-11-23 (JetBrains miss):
+    # the 47% bullet named a source nothing linked to, and the headline
+    # exception removed the only link check that could have caught it.
+    bad_bullets = []
+    for summary, body in articles:
+        plain = strip_tags(summary)
+        if not any(e in plain for e in UNLINKED_HEADLINE_EXCEPTIONS):
+            continue
+        sl = re.search(r"- Source: \[([^\]]+)\]", body)
+        primary = sl.group(1).split(",")[0].strip().split()[0] if sl else ""
+        for ln in body.splitlines():
+            ln = ln.strip()
+            if not ln.startswith("- ") or ln.startswith("- Source:"):
+                continue
+            if "](" in ln:
+                continue
+            if primary and primary in ln:
+                continue
+            bad_bullets.append(f"{plain[:50]}: {ln[:80]}")
+    if not bad_bullets:
+        ok("multi-source articles: every bullet links its source",
+           f"{len(UNLINKED_HEADLINE_EXCEPTIONS)} multi-source articles checked")
+    else:
+        fail("multi-source articles: every bullet links its source",
+             f"{len(bad_bullets)} unlinked: {bad_bullets[:3]}")
+
     # Duplicate headlines
     heads = [strip_tags(s).strip() for s, _ in articles]
     dupes = sorted({h for h in heads if heads.count(h) > 1})
