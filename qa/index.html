@@ -3603,13 +3603,18 @@
       if (!btn) return;
       var collapse = btn.getAttribute('data-act') === 'collapse';
       document.querySelectorAll('main h2, main h3, main h4').forEach(function (h) {
-        // Collapse all returns the page to its initial state: everything
-        // closes except the two top-level sections, the four SITREP
-        // slices, and net-impact, which stay open. Expand all
-        // still opens everything.
-        if (collapse && (h.id === 'executive-dashboard' || h.id === 'report'
-            || h.id === 'net-impact'
-            || h.classList.contains('dash-slice'))) return;
+        // Collapse all closes every content heading; Expand all opens
+        // every content heading. The two buttons are inverses. Neither
+        // button touches <details> elements (articles, "What this is",
+        // the Search/Filter/Sort panel, "How to read this", the
+        // confidence scale) — those keep their own open/closed state.
+        // (2026-11-23, Option A: the old "returns the page to its
+        // initial state" contract exempted everything that starts open,
+        // and the exemption list grew until the button changed nothing
+        // visible in SITREP — a recurrence of the 2026-11-15 defect.
+        // The initial-open set is declared in site_config.py and is
+        // the initial-collapse loop's business only; the handler
+        // skips nothing.)
         h.classList.toggle('collapsed', collapse);
       });
     });
