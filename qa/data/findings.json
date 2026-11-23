@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T22:05:56.389243+00:00",
+ "generated_at": "2026-11-23T23:47:00.852971+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -4115,7 +4115,7 @@
   },
   {
    "term": "CILAK (CI Landscape Assessment Kit)",
-   "definition": "The report surface of CI SITREP: the full knowledge base of findings, sliced into the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is What just changed."
+   "definition": "The report surface of CI SITREP: the full knowledge base of findings, sliced into the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is DIFF."
   },
   {
    "term": "circuit breaker",
@@ -4598,6 +4598,7 @@
   }
  ],
  "warnings": [
+  "index.html yields 126 article ids, the export has 124 — regenerate the site and re-export.",
   "4 article(s) with no parseable date: an-open-governance-standard-for-agentic-ai-in-finance-finos, 322-more-privilege-escalation-paths-in-ai-assisted-repos, 2038-critical-vulnerabilities-in-5600-publicly-deployed-ai, real-incidents"
  ]
 }
