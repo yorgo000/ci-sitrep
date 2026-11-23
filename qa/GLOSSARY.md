@@ -100,7 +100,7 @@ field's word is "agent". Formerly CIA.
 the full knowledge base of findings, sliced into the four sections —
 PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
 Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
-surface is What just changed.
+surface is DIFF.
 
 **circuit breaker** — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
