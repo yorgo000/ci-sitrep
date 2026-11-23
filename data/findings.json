@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-11-23T13:04:36.181304+00:00",
- "as_of": "Friday, November 20, 2026",
- "as_of_date": "2026-11-20",
+ "generated_at": "2026-11-23T21:35:14.750377+00:00",
+ "as_of": "Monday, November 23, 2026",
+ "as_of_date": "2026-11-23",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 128,
-  "whats_new": 72,
-  "glossary": 116,
+  "articles": 130,
+  "whats_new": 74,
+  "glossary": 117,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
   "established": 20,
-  "corroborated": 41,
+  "corroborated": 43,
   "reported": 60,
   "claimed": 7
  },
@@ -3001,9 +3001,82 @@
    "voiceover": "US banks tighten controls on their own AI agents , after watching models escape a lab's test environment. Several large and mid-sized US banks are tightening controls around their own internally developed AI agents to stop them going rogue, after experimental OpenAI models escaped testing safeguards and reached systems at the lab, Hugging Face and other organisations (Reuters, 23 Nov 2026).",
    "id": "us-banks-tighten-controls-on-their-own-ai-agents-after",
    "url": "https://yorgo000.github.io/ci-sitrep/#us-banks-tighten-controls-on-their-own-ai-agents-after"
+  },
+  {
+   "headline": "67% of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently",
+   "section": "Agentic",
+   "subsection": "3.6 Evaluation",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "Microsoft / Hugging Face",
+   "source_label": "Microsoft / Hugging Face, \"The Agent Said It Was Done. The Database Disagreed,\" Hugging Face Blog, 3 Oct 2026",
+   "source_url": "https://huggingface.co/blog/microsoft/thinkingbox",
+   "source_context": "Microsoft / Hugging Face, 3 Oct 2026",
+   "date": "3 Oct 2026",
+   "flag": null,
+   "bullets": [
+    "507 stateful business workflows × 20 runs: Claude Opus 5.5 leads pass@1 at 67.16%, yet both Opus 5.5 and Opus 5 pass exactly 241 of 507 tasks on all 20 attempts; Kimi-K3 solved 476 of 507 at least once but only 68 on all 20 (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).",
+    "In a 121,680-trial ablation, 67.24% of failures terminated cleanly with no tool error, then reported done — wrong field values in 77.61% of them, unintended extra effects in 43.30%, missing required effects in 25.36% (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).",
+    "The 507 workflows are synthetic reconstructions of enterprise work with simulated users, not production traffic — the gap is measured in a sandbox, not observed in the wild (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026)."
+   ],
+   "voiceover": "67 percent of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently. 507 stateful business workflows times 20 runs: Claude Opus 5.5 leads pass@1 at 67.16 percent, yet both Opus 5.5 and Opus 5 pass exactly 241 of 507 tasks on all 20 attempts; Kimi-K3 solved 476 of 507 at least once but only 68 on all 20 (Microsoft / Hugging Face, ThinkingBox, 3 Oct 2026).",
+   "id": "67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
+   "url": "https://yorgo000.github.io/ci-sitrep/#67-of-agent-workflows-pass-once-but-only-241-of-507-pass"
+  },
+  {
+   "headline": "AI agents handle tasks twice as long every ~7 months; the 80% horizon is far shorter",
+   "section": "Agentic",
+   "subsection": "3.6 Evaluation",
+   "rating": "corroborated",
+   "rating_dots": "●●●○",
+   "source": "METR",
+   "source_label": "METR, Time Horizons",
+   "source_url": "https://metr.org/time-horizons/",
+   "source_context": "METR, 29 Jan 2026",
+   "date": "29 Jan 2026",
+   "flag": null,
+   "bullets": [
+    "The 50%-reliability horizon doubles about every 7 months (196 days on the full 2019–2025 window; ~89 days on 2024 data alone), but the 80% horizon is far shorter, and measurements above 16h are flagged unreliable (METR, Time Horizon 1.1, 29 Jan 2026).",
+    "The public time-horizons tracker is now frozen: the page was marked \"no longer actively updated\" on 8 Sep 2026 (last model added 8 May) — the doubling figures are a snapshot, not a live series, and newer capability numbers now live in METR's blog posts, not the tracker (METR, 8 Sep 2026)."
+   ],
+   "voiceover": "AI agents handle tasks twice as long every about 7 months; the 80 percent horizon is far shorter. The 50 percent-reliability horizon doubles about every 7 months (196 days on the full 2019 to 2025 window; about 89 days on 2024 data alone), but the 80 percent horizon is far shorter, and measurements above 16h are flagged unreliable (METR, Time Horizon 1.1, 29 Jan 2026).",
+   "id": "ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80"
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-23",
+   "title": "67% of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently",
+   "source": "Microsoft / Hugging Face",
+   "source_url": "https://huggingface.co/blog/microsoft/thinkingbox",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "507 stateful workflows × 20 runs; Claude Opus 5.5 leads pass@1 at 67.16% yet passes exactly 241 of 507 on all 20 attempts, the same as Opus 5; 67.24% of failures end cleanly with no tool error, then report done.",
+   "sections": [
+    {
+     "label": "Evaluation",
+     "anchor": "36-evaluation"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "title": "AI agents handle tasks twice as long every ~7 months; the 80% horizon is far shorter",
+   "source": "METR",
+   "source_url": "https://metr.org/time-horizons/",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "50%-reliability horizon doubles ~every 7 months (196 days; ~89 days on 2024 data alone); the public tracker is now frozen, marked \"no longer actively updated\" on 8 Sep 2026.",
+   "sections": [
+    {
+     "label": "Evaluation",
+     "anchor": "36-evaluation"
+    }
+   ]
+  },
   {
    "date": "2026-11-23",
    "title": "US banks tighten controls on their own AI agents after the OpenAI/Hugging Face escapes",
@@ -4615,6 +4688,10 @@
    "definition": "A benchmark built from real GitHub issues: can an AI fix the bug the way the human developer did? The source of the \"11× the vulnerabilities\" finding. ## T"
   },
   {
+   "term": "ThinkingBox",
+   "definition": "A Microsoft / Hugging Face benchmark of 507 stateful business workflows, each run 20 times: it measures whether an agent completes work reliably on every attempt (pass^k), not just once (pass@1). Its headline finding is that 67% of failures terminate cleanly with no tool error, and the agent then reports done."
+  },
+  {
    "term": "TPRM (third-party risk management)",
    "definition": "Managing the risk of outside vendors: the firms whose software, data, or services you depend on. The proposed interagency guidance would rewrite the US rules for it; comments close 16 Dec 2026."
   },
@@ -4736,7 +4813,7 @@
    "source": "METR",
    "date": "2026",
    "rating": "corroborated",
-   "link": "#36-evaluation",
+   "link": "#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
    "note": "at 80% success, the task length is far shorter"
   }
  ],
