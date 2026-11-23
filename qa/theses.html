@@ -59,6 +59,11 @@
   /* Masthead: the CI SITREP wordmark, linking back to the report. */
   .masthead { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
   .masthead-title { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 26px; font-weight: 700; margin: 0; line-height: 1.2; }
+  /* "Preview" (2026-11-23, Yorgo's pick over "Pre-release"): a small,
+     quiet status marker next to the title — 13px muted, plain, the
+     tagline's size and colour. Same rule in build_html.py (the index
+     page carries its own template); keep the two in sync. */
+  .masthead-preview { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 8px; }
   nav.sidebar .masthead-title a { color: #283060; text-decoration: none; display: inline; padding: 0; }
   nav.sidebar .masthead-title a:hover { background: none; }
   .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
@@ -185,12 +190,12 @@
 <div class="layout">
   <nav class="sidebar">
     <div class="masthead">
-      <p class="masthead-title"><a href="index.html">CI SITREP</a></p>
+      <p class="masthead-title"><a href="index.html">CI SITREP</a><span class="masthead-preview">Preview</span></p>
       <p class="masthead-vertical">Code &amp; Finance</p>
       <p class="masthead-tagline">Created Intelligence in code and finance — as of today.</p>
       <p class="masthead-by">by <img src="confluence-wordmark.png" alt="Confluence&lt;1&gt;" class="masthead-logo"></p>
     </div>
-    <p class="back"><a href="index.html">&larr; Back to the report</a></p>
+    <p class="back"><a href="index.html">&larr; Back to CI SITREP</a></p>
     <h2>PAGE CONTENTS</h2>
     <div class="toc">
 <ul>
@@ -232,7 +237,7 @@
   </nav>
   <main>
     <h1 id="from-evolved-intelligence-to-created-intelligence">From Evolved Intelligence to Created Intelligence</h1>
-<p class="back-inline"><a href="index.html">&larr; Back to the report</a></p>
+<p class="back-inline"><a href="index.html">&larr; Back to CI SITREP</a></p>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
 <h2 id="a-conceptual-framework-for-the-emergence-diversification-and-recursive-development-of-intelligence">A conceptual framework for the emergence, diversification, and recursive development of intelligence</h2>
 <p><strong>Working paper — version 0.1</strong><br />
@@ -712,7 +717,7 @@
   var firstH1 = main.querySelector('h1');
   crumbHeads.forEach(function (h) {
     if (h.tagName === 'H1') return;
-    if (h.id === 'situation-at-hand' || h.id === 'new-in-the-last-7-days' || h.id === 'what-were-watching') return;
+    if (h.id === 'situation-at-hand' || h.id === 'what-just-changed' || h.id === 'what-were-watching') return;
     var level = parseInt(h.tagName.substring(1), 10);
     var ancestors = [];
     var idx = crumbHeads.indexOf(h);
