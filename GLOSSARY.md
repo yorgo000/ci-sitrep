@@ -502,6 +502,8 @@ vulnerabilities" finding.
 
 ## T
 
+**ThinkingBox** — A Microsoft / Hugging Face benchmark of 507 stateful business workflows, each run 20 times: it measures whether an agent completes work reliably on every attempt (pass^k), not just once (pass@1). Its headline finding is that 67% of failures terminate cleanly with no tool error, and the agent then reports done.
+
 **TPRM (third-party risk management)** — Managing the risk of outside vendors:
 the firms whose software, data, or services you depend on. The proposed
 interagency guidance would rewrite the US rules for it; comments close 16 Dec
