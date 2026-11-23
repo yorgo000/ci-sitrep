@@ -1001,6 +1001,7 @@
     {
      "items": [
       {
+       "changed": "2026-11-18",
        "date": "29 Oct 2026",
        "display": "~38%",
        "history_key": "veracode-flaw-rate",
