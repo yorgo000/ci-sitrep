@@ -349,7 +349,12 @@ live with the content they support, as hyperlinks, so the reader verifies
 each claim at the point where they read it. When adding a new article,
 always include its Source line with a real, verified URL (the primary
 source: the paper, report, or official document — not a secondary summary
-unless the primary is unavailable).
+unless the primary is unavailable). When an article draws on more than
+one source, the Source bullet lists every source, separated by ·,
+primary first — the Source line is the article's complete source list,
+not just its primary. (Added 2026-11-23 — the JetBrains miss: the
+Adoption article's Source line named Sonar only while its bullets drew
+on JetBrains and Google too.)
 
 **Inline links.** When prose mentions a source, benchmark, regulation,
 framework, or product by name, link the FIRST mention in each subsection
@@ -358,7 +363,13 @@ Sources line uses, or the authoritative page for it). Do not link every
 occurrence — once per subsection is enough. Inside article `<details>`
 blocks: the headline parenthetical source IS linked (see above); do not
 add further links inside the article body bullets (they already have
-Source lines). Do not link inside Sources lines. This keeps every section
+Source lines) — EXCEPT in a multi-source article (headline parenthetical
+plain because no single source exists): there, every bullet MUST link its
+source inline, unless the bullet is about the primary source named in the
+Source line. verify.py FAILs a multi-source bullet that does neither, and
+the headline exceptions list in verify.py is the registry of multi-source
+articles — an article joins it the moment a second source is added.
+Do not link inside Sources lines. This keeps every section
 self-contained for a reader who jumps straight to it.
 
 **Link verification.** Every source link on the site must be a LIVE link
@@ -993,6 +1004,11 @@ closing the miss.
     2026-11-20): the design editor's verdict — pass, or findings
     fixed and re-verified — is recorded in the release note; no
     written verdict, no release.
+15. Multi-source articles (added 2026-11-23 — the JetBrains miss):
+    every bullet in an article whose headline parenthetical is plain
+    links its source inline or names the primary source; the Source
+    line lists every source the article draws on. verify.py enforces
+    the bullet rule.
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
@@ -1421,3 +1437,11 @@ years change. verify.py warns when its pass count differs from
   entries are needed for them. `build_dashboard.validate()` passes
   ≥2-dot figures on a headline mismatch silently; the FAIL tier
   still binds Claimed figures.
+- **2026-11-23** — Multi-source article rule (the JetBrains miss,
+  found by Yorgo): an article drawing on more than one source lists
+  every source in its Source bullet, separated by ·, primary first;
+  every bullet in a multi-source article links its source inline
+  unless it is about the primary source named in the Source line.
+  `verify.py` gains the enforcing check (54→55 checks) and the
+  pre-release checklist gains line 15. The GTIG/MadPot article's
+  three-source Source line (23 Nov) is the pattern.
