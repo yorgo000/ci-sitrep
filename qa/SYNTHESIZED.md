@@ -9,8 +9,8 @@
 
 This file is a **state of affairs**, not a log: each section states the current picture, kept up to date in place. When new information arrives, the relevant section is updated and the superseded text moves to [ARCHIVE.md](archive/ARCHIVE.md), dated and categorized. Nothing is silently deleted. The pre-restructure append-only version is preserved at [archive/SYNTHESIZED-2026-11-11-append-only.md](archive/SYNTHESIZED-2026-11-11-append-only.md).
 
-1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [CILAK](#report) gives you the evidence, both sliced the same four ways: PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit.
-2. First time? Read [SITREP](#executive-dashboard) — the bottom line; if that's enough, you're done — or read the whole landscape report, [CILAK](#report). Then you know what's going on.
+1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [Landscape](#report) gives you the evidence, both sliced the same four ways: PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit.
+2. First time? Read [SITREP](#executive-dashboard) — the bottom line; if that's enough, you're done — or read the whole report, [Landscape](#report). Then you know what's going on.
 3. Every day after, just look at what's changed: read [DIFF](#diff) for everything that's new, or follow the red dots — every figure, article, and section the news touched carries one.
 4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
 5. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC — the terms come from the foundational paper [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html) — [download the Markdown source](created_intelligence_foundational_theses_v0.1.md).
