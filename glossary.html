@@ -274,6 +274,7 @@ prompt-injection benchmarks such as FrontierBreach, where hidden
 instructions succeeded in 34.9% of realistic enterprise workflows.</p>
 <h2 id="b">B</h2>
 <p id="blackhatsect0r"><strong>BlackHatSect0r</strong> — A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'.</p>
+<p id="bod"><strong>BOD (Binding Operational Directive)</strong> — A directive from CISA compelling federal civilian agencies to act on a cybersecurity requirement by a set date — for example, remediating a vulnerability listed in the Known Exploited Vulnerabilities catalog.</p>
 <h2 id="c">C</h2>
 <p id="cairn"><strong>Cairn</strong> — An open-source AI penetration-testing framework that hands an
 intrusion to a model and lets it plan and run the attack in a loop. Unit 42
@@ -308,6 +309,13 @@ field's word is "agent". Formerly CIA.</p>
 <p id="circuit-breaker"><strong>circuit breaker</strong> — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.</p>
+<p id="claude-approvals"><strong>Claude Approvals</strong> — The Claude Ship agent that approves routine pull
+requests under an approval policy the team writes as a file in the repository
+— described by Anthropic as a smarter CODEOWNERS file. Anthropic recommends
+running it in observe-only mode first.</p>
+<p id="claude-ship"><strong>Claude Ship</strong> — Anthropic's suite of three agents (Code Review, PR Steward,
+Claude Approvals) that take a GitHub pull request through review, fixes and an
+approval decision, launched in beta in November 2026.</p>
 <p id="cli"><strong>CLI (command-line interface)</strong> — A way of driving a program by typing
 commands in a terminal, rather than through buttons and windows. Coding agents
 such as Claude Code and Codex run as CLIs.</p>
@@ -437,6 +445,9 @@ loop that re-sends refused orders — so it carries out instructions it would
 otherwise decline. BabidiGhost's agent ran with its "ethics protocols
 destroyed" and only 41 refusals surviving.</p>
 <h2 id="k">K</h2>
+<p id="kev"><strong>KEV (Known Exploited Vulnerabilities)</strong> — CISA's catalog of vulnerabilities
+confirmed to have been exploited in the wild. Federal civilian agencies must
+remediate listed flaws by the catalog's due date.</p>
 <p id="kill-switch"><strong>kill switch</strong> — A control that stops an AI agent (or system) immediately and
 completely when it goes wrong — and proves it stopped. A kill switch that has
 never been tested is a claim, not a control.</p>
@@ -530,6 +541,9 @@ agents. Comments close 1 Feb 2027.</p>
 reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.</p>
+<p id="pr-steward"><strong>PR Steward</strong> — The Claude Ship agent that keeps a pull request green by
+fixing failing checks, merge conflicts and review feedback. It is designed not
+to approve or merge pull requests.</p>
 <p id="pts"><strong>pts (percentage points)</strong> — The unit for the arithmetic difference
 between two percentages: a share falling from 91% to 42% falls by
 49 pts, not 49%. (Not index points, the usual finance meaning.)</p>
