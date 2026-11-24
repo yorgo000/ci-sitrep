@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-11-24T09:37:51.047667+00:00",
+ "generated_at": "2026-11-24T13:15:36.148774+00:00",
  "as_of": "Monday, November 23, 2026",
  "as_of_date": "2026-11-23",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
-  "articles": 132,
-  "whats_new": 61,
-  "glossary": 120,
+  "articles": 133,
+  "whats_new": 63,
+  "glossary": 125,
   "deadlines": 4,
   "gauges": 4
  },
  "ratings": {
   "established": 20,
   "corroborated": 43,
-  "reported": 62,
+  "reported": 63,
   "claimed": 7
  },
  "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — and now tightening controls on their own internal agents as well, after the OpenAI/Hugging Face escapes — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
@@ -2839,7 +2839,7 @@
    "bullets": [
     "A China-nexus actor gave Cairn agents one goal — \"obtain shell access\" — and the agents planned, executed and adjusted their approach without the operator choosing each next step, across a 48-hour campaign against universities in East Asia outside mainland China, 8–10 Sep 2026 (Amazon Threat Intelligence, 20 Nov 2026).",
     "Against a server running MONAI Label, an open-source medical-imaging application, the agents mapped the API, found an upload endpoint with an unsanitised filename parameter, and went from mapping the application's API to arbitrary file write in about 11 minutes; in a later session they wrote a reverse shell into sitecustomize.py and triggered a training endpoint to spawn a root shell (Amazon Threat Intelligence, 20 Nov 2026).",
-    "The flaw was a genuine zero-day — no fix, issue, advisory or vulnerability-database mention existed when the agents found it (Amazon Threat Intelligence, 20 Nov 2026); it is now tracked as CVE-2026-133968 (CVSS 9.8), a path-traversal flaw in MONAI Label through 0.8.5, fixed in the source with an advisory published 18 Nov but no patched release yet, and authentication disabled by default (GHSA-qc22-rmgc-vg94, 18 Nov 2026).",
+    "The flaw was a genuine zero-day — no fix, issue, advisory or vulnerability-database mention existed when the agents found it (Amazon Threat Intelligence, 20 Nov 2026); it is now tracked as CVE-2026-133968 (CVSS 9.8), a path-traversal flaw in MONAI Label through 0.8.5, with an advisory published 18 Nov and authentication disabled by default (GHSA-qc22-rmgc-vg94, 18 Nov 2026). MONAI Label 0.8.6, released 22 Nov, carries the fix — and CISA added the flaw to its Known Exploited Vulnerabilities catalog on 23 Nov, requiring federal civilian agencies to remediate by 26 Nov under Binding Operational Directive 26-04 (CISA KEV, 23 Nov 2026).",
     "Two other operations in the same campaign failed after long autonomous runs — 148 actions over roughly 16 hours against an unauthenticated Redis instance, and 30,000+ credential combinations against a GPU server — but the agents kept adapting for nearly a full day without human direction (Amazon Threat Intelligence, 20 Nov 2026).",
     "The same framework is behind the Unit 42 campaign above (25 operations, 10 of 19 organisations breached) — this disclosure moves Cairn from exploiting known flaws to discovering unknown ones (Amazon Threat Intelligence, 20 Nov 2026).",
     "Implication: the patch window is no longer the only exposure — an agent can find a flaw nobody knew existed and weaponise it in minutes, so exposed services with authentication disabled by default are live targets even with no CVE on the books; Amazon's advice is high-confidence detections that trigger automated response, with humans overseeing outcomes rather than reviewing every action."
@@ -3028,6 +3028,29 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#us-banks-tighten-controls-on-their-own-ai-agents-after"
   },
   {
+   "headline": "An agent can now approve the pull request — under a policy the team writes, with observe-only mode first",
+   "section": "Agentic",
+   "subsection": "3.4 Governance",
+   "rating": "reported",
+   "rating_dots": "●●○○",
+   "source": "Anthropic",
+   "source_label": "Anthropic, \"Introducing Claude Ship,\" 23 Nov 2026",
+   "source_url": "https://claude.com/resources/articles/introducing-claude-ship",
+   "source_context": "Anthropic, Claude Ship, 23 Nov 2026",
+   "date": "23 Nov 2026",
+   "flag": null,
+   "bullets": [
+    "Claude Ship, in beta for Claude Team and Enterprise plans on GitHub, takes a pull request through three agents: Code Review (generally available) reviews the change against the wider codebase, adversarially verifies its findings and posts them ranked Important, Nit or Pre-existing, at Quick, Standard or Deep level; PR Steward (beta) fixes failing CI checks, merge conflicts and review feedback, and is designed not to approve or merge; Claude Approvals (beta) approves routine changes under an approval policy the team writes as a file in the repository — \"a smarter CODEOWNERS file\" (Anthropic, 23 Nov 2026).",
+    "The approval gate is now delegable: an agent can green-light a merge if the policy allows it, and Anthropic recommends running the policy in observe-only mode first to build confidence before branch protection requires its approval (Anthropic, 23 Nov 2026).",
+    "Anthropic's own numbers, from the Claude Code team where Claude writes most of the code: merged pull requests more than doubled from June to September 2026 while the share reverted fell by more than 40% — vendor-reported, with no independent measurement (Anthropic, 23 Nov 2026).",
+    "The limits that matter for a regulated firm: Claude Ship is not available to organisations using Zero Data Retention, the HIPAA configuration or customer-managed encryption keys; usage is billed on tokens, with spend limits the admin sets; and Anthropic's own warning is that \"Claude Ship uses AI and may miss bugs, security vulnerabilities, or other issues\" (Anthropic, 23 Nov 2026).",
+    "What this changes in practice: the human-approval control the report's best practice relies on can now be delegated to an agent by policy — so a firm's merge gate needs a written rule for which changes an agent may approve and which still need a person, an observe-only trial before the policy binds, and an audit record of approvals the agent granted; and a firm on Zero Data Retention or HIPAA configuration cannot use it at all."
+   ],
+   "voiceover": "An agent can now approve the pull request , under a policy the team writes, with observe-only mode first. Claude Ship, in beta for Claude Team and Enterprise plans on GitHub, takes a pull request through three agents: Code Review (generally available) reviews the change against the wider codebase, adversarially verifies its findings and posts them ranked Important, Nit or Pre-existing, at Quick, Standard or Deep level; PR Steward (beta) fixes failing CI checks, merge conflicts and review feedback, and is designed not to approve or merge; Claude Approvals (beta) approves routine changes under an approval policy the team writes as a file in the repository , \"a smarter CODEOWNERS file\" (Anthropic, 23 Nov 2026).",
+   "id": "an-agent-can-now-approve-the-pull-request-under-a-policy",
+   "url": "https://yorgo000.github.io/ci-sitrep/#an-agent-can-now-approve-the-pull-request-under-a-policy"
+  },
+  {
    "headline": "67% of agent workflows pass once, but only 241 of 507 pass all 20 attempts; two-thirds of failures end silently",
    "section": "Agentic",
    "subsection": "3.6 Evaluation",
@@ -3094,6 +3117,39 @@
   }
  ],
  "whats_new": [
+  {
+   "date": "2026-11-24",
+   "title": "An agent can now approve the pull request — under a policy the team writes, with observe-only mode first",
+   "source": "Anthropic",
+   "source_url": "https://claude.com/resources/articles/introducing-claude-ship",
+   "tags": [
+    "Agentic",
+    "Pre-commit"
+   ],
+   "summary": "Code Review (generally available) reviews against the wider codebase and adversarially verifies its findings; PR Steward (beta) fixes failing checks and conflicts but cannot approve; Claude Approvals (beta) approves routine changes under a team-written policy file; not available to Zero Data Retention, HIPAA or customer-managed-key organisations.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-24",
+   "title": "The agent-found MONAI Label zero-day now has a patch — and CISA has put it in the Known Exploited Vulnerabilities catalog",
+   "source": "CISA",
+   "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+   "tags": [
+    "Agentic"
+   ],
+   "summary": "MONAI Label 0.8.6, released 22 Nov, carries the fix for CVE-2026-133968 (CVSS 9.8); CISA added it to KEV on 23 Nov, with federal civilian agencies required to remediate by 26 Nov.",
+   "sections": [
+    {
+     "label": "3.4.3 The governance gap",
+     "anchor": "343-the-governance-gap"
+    }
+   ]
+  },
   {
    "date": "2026-11-24",
    "title": "Hidden instructions succeed in a third of realistic enterprise agent workflows — and in nearly half when hidden in skills",
@@ -4147,7 +4203,11 @@
   },
   {
    "term": "BlackHatSect0r",
-   "definition": "A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'. ## C"
+   "definition": "A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'."
+  },
+  {
+   "term": "BOD (Binding Operational Directive)",
+   "definition": "A directive from CISA compelling federal civilian agencies to act on a cybersecurity requirement by a set date — for example, remediating a vulnerability listed in the Known Exploited Vulnerabilities catalog. ## C"
   },
   {
    "term": "Cairn",
@@ -4188,6 +4248,14 @@
   {
    "term": "circuit breaker",
    "definition": "A control that stops an agent (or a system) automatically when something looks wrong — too many errors, unusual volume, an action outside its mandate — and holds it for human review. Named after the electrical device."
+  },
+  {
+   "term": "Claude Approvals",
+   "definition": "The Claude Ship agent that approves routine pull requests under an approval policy the team writes as a file in the repository — described by Anthropic as a smarter CODEOWNERS file. Anthropic recommends running it in observe-only mode first."
+  },
+  {
+   "term": "Claude Ship",
+   "definition": "Anthropic's suite of three agents (Code Review, PR Steward, Claude Approvals) that take a GitHub pull request through review, fixes and an approval decision, launched in beta in November 2026."
   },
   {
    "term": "CLI (command-line interface)",
@@ -4338,6 +4406,10 @@
    "definition": "Stripping an AI agent of its refusal and safety behaviour — through a persona file, an anti-refusal protocol, or an escalation loop that re-sends refused orders — so it carries out instructions it would otherwise decline. BabidiGhost's agent ran with its \"ethics protocols destroyed\" and only 41 refusals surviving. ## K"
   },
   {
+   "term": "KEV (Known Exploited Vulnerabilities)",
+   "definition": "CISA's catalog of vulnerabilities confirmed to have been exploited in the wild. Federal civilian agencies must remediate listed flaws by the catalog's due date."
+  },
+  {
    "term": "kill switch",
    "definition": "A control that stops an AI agent (or system) immediately and completely when it goes wrong — and proves it stopped. A kill switch that has never been tested is a claim, not a control."
   },
@@ -4444,6 +4516,10 @@
   {
    "term": "prompt injection",
    "definition": "An attack that hides instructions in data an AI system reads (a web page, a document, a code comment) so the model follows the attacker's orders instead of its own. OWASP's #1 GenAI risk three years running."
+  },
+  {
+   "term": "PR Steward",
+   "definition": "The Claude Ship agent that keeps a pull request green by fixing failing checks, merge conflicts and review feedback. It is designed not to approve or merge pull requests."
   },
   {
    "term": "pts (percentage points)",
