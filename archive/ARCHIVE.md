@@ -117,3 +117,8 @@ The original version of the report (9 November 2026, plus the 10 and 11 November
 
 - **Old text (§3.4.2, California article, and What we're watching):** "not publicly released as of 17 Nov".
 - **Superseded by:** still not publicly released as of 18 Nov; the Fed/OCC/FDIC AI request for information has still not appeared — both re-checked 18 Nov 2026. Current entry lives in [SYNTHESIZED.md §3.4.2](../SYNTHESIZED.md#342-regulation).
+
+### 2026-11-24 — MONAI Label "no patched release yet" (superseded)
+
+- **Old text (§3.4.3, Cairn article, added 2026-11-21):** "it is now tracked as CVE-2026-133968 (CVSS 9.8), a path-traversal flaw in MONAI Label through 0.8.5, fixed in the source with an advisory published 18 Nov but no patched release yet".
+- **Superseded by:** MONAI Label 0.8.6, released 22 Nov 2026, carries the fix; CISA added CVE-2026-133968 to its Known Exploited Vulnerabilities catalog on 23 Nov 2026, requiring federal civilian agencies to remediate by 26 Nov under Binding Operational Directive 26-04. Current entry lives in [SYNTHESIZED.md §3.4.3](../SYNTHESIZED.md#343-the-governance-gap).
