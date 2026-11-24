@@ -70,6 +70,8 @@ instructions succeeded in 34.9% of realistic enterprise workflows.
 
 **BlackHatSect0r** — A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'.
 
+**BOD (Binding Operational Directive)** — A directive from CISA compelling federal civilian agencies to act on a cybersecurity requirement by a set date — for example, remediating a vulnerability listed in the Known Exploited Vulnerabilities catalog.
+
 ## C
 
 **Cairn** — An open-source AI penetration-testing framework that hands an
@@ -114,6 +116,15 @@ field's word is "agent". Formerly CIA.
 **circuit breaker** — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.
+
+**Claude Approvals** — The Claude Ship agent that approves routine pull
+requests under an approval policy the team writes as a file in the repository
+— described by Anthropic as a smarter CODEOWNERS file. Anthropic recommends
+running it in observe-only mode first.
+
+**Claude Ship** — Anthropic's suite of three agents (Code Review, PR Steward,
+Claude Approvals) that take a GitHub pull request through review, fixes and an
+approval decision, launched in beta in November 2026.
 
 **CLI (command-line interface)** — A way of driving a program by typing
 commands in a terminal, rather than through buttons and windows. Coding agents
@@ -289,6 +300,10 @@ destroyed" and only 41 refusals surviving.
 
 ## K
 
+**KEV (Known Exploited Vulnerabilities)** — CISA's catalog of vulnerabilities
+confirmed to have been exploited in the wild. Federal civilian agencies must
+remediate listed flaws by the catalog's due date.
+
 **kill switch** — A control that stops an AI agent (or system) immediately and
 completely when it goes wrong — and proves it stopped. A kill switch that has
 never been tested is a claim, not a control.
@@ -413,6 +428,10 @@ agents. Comments close 1 Feb 2027.
 reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.
+
+**PR Steward** — The Claude Ship agent that keeps a pull request green by
+fixing failing checks, merge conflicts and review feedback. It is designed not
+to approve or merge pull requests.
 
 **pts (percentage points)** — The unit for the arithmetic difference
 between two percentages: a share falling from 91% to 42% falls by
