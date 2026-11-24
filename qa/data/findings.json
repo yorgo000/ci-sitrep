@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24T00:30:05.189290+00:00",
+ "generated_at": "2026-11-24T03:50:10.990647+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -4114,10 +4114,6 @@
    "definition": "Confluence<1>'s term for an individual created intelligence: one AI system acting autonomously toward a goal. The field's word is \"agent\". Formerly CIA."
   },
   {
-   "term": "CILAK (CI Landscape Assessment Kit)",
-   "definition": "The report surface of CI SITREP: the full knowledge base of findings, sliced into the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is DIFF."
-  },
-  {
    "term": "circuit breaker",
    "definition": "A control that stops an agent (or a system) automatically when something looks wrong — too many errors, unusual volume, an action outside its mandate — and holds it for human review. Named after the electrical device."
   },
@@ -4268,6 +4264,10 @@
   {
    "term": "Know Your Agent (KYA)",
    "definition": "A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts. ## L"
+  },
+  {
+   "term": "Landscape",
+   "definition": "The report surface of CI SITREP: the full knowledge base of findings, sliced into the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is DIFF."
   },
   {
    "term": "LLM (large language model)",
