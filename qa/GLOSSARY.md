@@ -96,12 +96,6 @@ intelligence).
 intelligence: one AI system acting autonomously toward a goal. The
 field's word is "agent". Formerly CIA.
 
-**CILAK (CI Landscape Assessment Kit)** — The report surface of CI SITREP:
-the full knowledge base of findings, sliced into the four sections —
-PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
-Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
-surface is DIFF.
-
 **circuit breaker** — A control that stops an agent (or a system) automatically
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.
@@ -273,6 +267,12 @@ never been tested is a claim, not a control.
 **Know Your Agent (KYA)** — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.
 
 ## L
+
+**Landscape** — The report surface of CI SITREP:
+the full knowledge base of findings, sliced into the four sections —
+PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
+Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
+surface is DIFF.
 
 **LLM (large language model)** — An AI model trained on vast amounts of text to
 predict and generate language (and code). The engine inside coding assistants
