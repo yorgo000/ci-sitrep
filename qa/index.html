@@ -4682,17 +4682,21 @@
   // is active (they would no longer describe the tiles under them);
   // pinned tiles (the full-width bignote, the untaggable §2.8 figures)
   // keep their editorial positions and the sorted tiles fill the
-  // remaining slots. Share links open unfiltered: filter state is
-  // per-page-load only, and any in-page jump into the dashboard or the
-  // report clears the filters first so the target is always visible
-  // (this covers search-result clicks too).
+  // remaining slots. Filter and sort state PERSISTS (Yorgo,
+  // 2026-11-24): the reader's filters are theirs — nothing clears
+  // them or changes the sort except the reader's own Clear all /
+  // Clear sort. The state is cached in localStorage, so a returning
+  // reader finds the same filters and sort they left. In-page jumps
+  // (tile deep-links, search results, TOC) never touch the filters —
+  // a jump to a target the reader's filter hides lands on a hidden
+  // element, and that is the filter doing its job, not a defect to
+  // work around. (Before 2026-11-24 every such jump cleared the
+  // filters first — the Nov 20 review's G1; Yorgo ended it.)
   var bar = document.getElementById('dash-filters');
   if (!bar) return;
   var embed = document.querySelector('.dash-embed');
   if (!embed) return;
   var report = document.querySelector('.report-embed');
-  var diffHead = document.getElementById('diff');
-  var wwwHead = document.getElementById('what-were-watching');
   var tiles = Array.prototype.slice.call(embed.querySelectorAll('.tile-grid .tile'));
   var grids = Array.prototype.slice.call(embed.querySelectorAll('.tile-grid'));
   var articles = report
@@ -4737,6 +4741,53 @@
     try { window.localStorage.setItem('ci-sitrep-match-mode', mode); } catch (e) { /* no storage */ }
   }
   var matchMode = loadMatchMode();
+  // Filter + sort persistence (Yorgo, 2026-11-24): the reader's
+  // filters and sort are cached in localStorage and restored on load,
+  // so a returning reader finds the same slice. Only the reader's own
+  // Clear all / Clear sort changes them. Stored values are validated
+  // on restore: a select value the current build no longer offers
+  // self-clears (setting .value to a non-option value leaves the
+  // select empty); a checkbox value that matches no box checks
+  // nothing; a sort key must be a known key or 'panel'; a stored
+  // dimension the page no longer has is never read (restore iterates
+  // the controls, not the stored keys). Corrupt or missing storage
+  // (private mode, a non-browser run) restores nothing.
+  var FILTER_KEY = 'ci-sitrep-filters';
+  var SORT_KEY = 'ci-sitrep-sort';
+  function loadStored(key) {
+    try {
+      var raw = window.localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function saveStored(key, val) {
+    try { window.localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* no storage */ }
+  }
+  function saveFilterState() {
+    saveStored(FILTER_KEY, activeFilters());
+    saveStored(SORT_KEY, {key: sortSel.value, dir: sortDir});
+  }
+  function restoreFilterState() {
+    var saved = loadStored(FILTER_KEY);
+    if (saved && typeof saved === 'object') {
+      selects.forEach(function (s) {
+        var dim = s.getAttribute('data-filter');
+        var vals = saved[dim];
+        if (Array.isArray(vals) && vals.length && typeof vals[0] === 'string') s.value = vals[0];
+      });
+      checkBoxes.forEach(function (b) {
+        var dim = b.getAttribute('data-filter');
+        var vals = saved[dim];
+        if (Array.isArray(vals)) b.checked = vals.indexOf(b.value) !== -1;
+      });
+    }
+    var sort = loadStored(SORT_KEY);
+    if (sort && typeof sort === 'object' && typeof sort.key === 'string' &&
+        (sort.key === 'panel' || SORT_DEFAULT_DIR[sort.key])) {
+      sortSel.value = sort.key;
+      setSortDir(sort.dir === 'asc' ? 'asc' : 'desc');
+    }
+  }
   var sortSel = document.getElementById('dash-sort');
   var sortDirBtn = document.getElementById('dash-sort-dir');
   var sortDirLabel = sortDirBtn ? sortDirBtn.querySelector('.sort-dir-label') : null;
@@ -4983,6 +5034,10 @@
     }
     updateLabels();
     updateIndicator(filters);
+    // Cache the reader's slice as they change it (Yorgo, 2026-11-24)
+    // — including the cleared state after Clear all, which is also
+    // the reader's choice and persists like any other.
+    saveFilterState();
   }
   function sortValue(tile, key) {
     if (key === 'date') {
@@ -5036,6 +5091,8 @@
       });
     });
     updateLabels();
+    // Cache the sort with the filters (Yorgo, 2026-11-24).
+    saveFilterState();
   }
   function setSortDir(dir) {
     sortDir = dir;
@@ -5056,7 +5113,10 @@
     // to editorial order), panels back to their defaults (Filters
     // open, Sort closed). The match mode is NOT reset — it is a
     // persisted preference, not filter state. The count line, the
-    // cap note, and the header indicator update via applyFilters.
+    // cap note, and the header indicator update via applyFilters,
+    // which also caches the cleared state — the reader chose it.
+    // This is the ONLY way the filters clear (Yorgo, 2026-11-24):
+    // no jump, search, or navigation calls it.
     selects.forEach(function (s) { s.value = ''; });
     checkBoxes.forEach(function (b) { b.checked = false; });
     sortSel.value = 'panel';
@@ -5073,7 +5133,7 @@
     // Sort only: back to Panel order (and the tiles restored to
     // editorial order). The filters are untouched — the count line
     // and the header indicator do not change, because sorting never
-    // changes what matches.
+    // changes what matches. The reset is cached via applySort.
     sortSel.value = 'panel';
     setSortDir('desc');
     syncSortDirState();
@@ -5111,37 +5171,15 @@
   // present) and the labels start in their unfiltered state. The
   // match-mode radios sync to the stored mode (the server renders
   // Match any checked — the default — and a stored Match all flips
-  // it here, before first paint in practice).
+  // it here, before first paint in practice). The reader's cached
+  // filters + sort restore the same way (Yorgo, 2026-11-24), then
+  // applySort reorders for a restored sort and applyFilters applies
+  // the restored slice.
   matchRadios.forEach(function (r) { r.checked = (r.value === matchMode); });
+  restoreFilterState();
   syncSortDirState();
+  applySort();
   applyFilters();
-  // A shared tile/article link, a search result, or a TOC jump into
-  // the dashboard, the report, or the DIFF section must land on a
-  // visible target: clear the filters before the browser follows the
-  // anchor (this runs before hashchange). The DIFF section is a peer
-  // surface (2026-11-23 hoist) — its H2 and section-body are neither
-  // in the embed nor in the report, so they get their own disjunct
-  // (the section-body exists by click time: the collapse JS wraps
-  // every H2 at load). What we're watching is DIFF's second part
-  // (2026-11-23) — its H2 is a sibling after the DIFF section-body,
-  // so it gets its own disjunct too (before the move it sat inside
-  // the report and the report disjunct covered it — the TPRM/OSFI
-  // countdowns link to it).
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
-    if (!a) return;
-    var id = a.getAttribute('href').slice(1);
-    if (!id) return;
-    var target = document.getElementById(id);
-    if (target && (embed.contains(target) ||
-                   (report && report.contains(target)) ||
-                   (diffHead && (target === diffHead ||
-                     (diffHead.nextElementSibling &&
-                      diffHead.nextElementSibling.contains(target)))) ||
-                   (wwwHead && (target === wwwHead ||
-                     (wwwHead.nextElementSibling &&
-                      wwwHead.nextElementSibling.contains(target)))))) clearFilters();
-  });
 })();
 </script>
 
