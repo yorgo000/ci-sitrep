@@ -4406,6 +4406,20 @@
     el.scrollIntoView();
   }
   window.addEventListener('hashchange', expandForAnchor);
+  // A click on a link whose hash is already current fires no
+  // hashchange, so expandForAnchor would never run and a collapsed
+  // target would stay collapsed (countdown → watchlist, 2026-11-23
+  // — the TOC jump had already set the hash). Schedule the expansion
+  // after the browser follows the anchor; for a changed-hash click
+  // the hashchange listener also fires, and expandForAnchor is
+  // idempotent, so the double run is harmless. This must live here,
+  // inside the IIFE: expandForAnchor is not global, so the filter
+  // script cannot call it.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a || !a.getAttribute('href').slice(1)) return;
+    setTimeout(expandForAnchor, 0);
+  });
   expandForAnchor();
 
   // Changed dots (2026-11-23): the build emits a dot on every article
@@ -5103,14 +5117,6 @@
                    (wwwHead && (target === wwwHead ||
                      (wwwHead.nextElementSibling &&
                       wwwHead.nextElementSibling.contains(target)))))) clearFilters();
-    // A click on a link whose hash is already current fires no
-    // hashchange, so expandForAnchor would never run and a collapsed
-    // target would stay collapsed (countdown → watchlist, 2026-11-23
-    // — the TOC jump had already set the hash). Schedule the
-    // expansion after the browser follows the anchor; for a
-    // changed-hash click the hashchange listener also fires, and
-    // expandForAnchor is idempotent, so the double run is harmless.
-    if (typeof expandForAnchor === 'function') setTimeout(expandForAnchor, 0);
   });
 })();
 </script>
