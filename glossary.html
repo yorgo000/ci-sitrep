@@ -249,6 +249,11 @@ to behave in that project: conventions, test commands, project-specific
 instructions. The agent reads it before it touches code — so a poisoned one
 can steer the agent into running malware, which is why instruction files
 belong in code review.</p>
+<p id="agent-skill"><strong>Agent Skill</strong> — A packaged bundle of instructions (and sometimes scripts)
+an agent loads to do a recurring task, such as building a document or
+deploying an app. Third-party skills run with the agent's own permissions, so
+a poisoned skill steers the agent — the report's measurements name skills
+the riskiest entry point for hidden instructions.</p>
 <p id="ai-bom"><strong>AI-BOM (AI bill of materials)</strong> — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
 record you need to audit, patch, or roll back an agent.</p>
@@ -263,6 +268,10 @@ their test environments.</p>
 researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.</p>
 <p id="asset-unit"><strong>ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)</strong> — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.</p>
+<p id="attack-success-rate"><strong>Attack success rate (ASR)</strong> — The share of test cases in which an attack
+achieves its goal against an agent — the headline metric of agent
+prompt-injection benchmarks such as FrontierBreach, where hidden
+instructions succeeded in 34.9% of realistic enterprise workflows.</p>
 <h2 id="b">B</h2>
 <p id="blackhatsect0r"><strong>BlackHatSect0r</strong> — A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'.</p>
 <h2 id="c">C</h2>
@@ -344,6 +353,11 @@ resilience, and report major incidents. An AI vendor counts as an ICT
 <p id="drcf"><strong>DRCF (Digital Regulation Cooperation Forum)</strong> — The UK forum where the FCA,
 CMA, Ofcom, and ICO coordinate on digital regulation.</p>
 <h2 id="e">E</h2>
+<p id="ebpf"><strong>eBPF (extended Berkeley Packet Filter)</strong> — A Linux kernel technology that
+runs small, sandboxed programs at set points inside the kernel, letting a
+tool observe or block system activity without changing kernel code or
+restarting. Shirudo uses it to load exploit-blocking shields onto running
+systems.</p>
 <p id="ei"><strong>EI (evolved intelligence)</strong> — Confluence&lt;1&gt;'s term for intelligence that
 evolved rather than was built — human intelligence, in the report's usage.
 The human side of every CI-vs-EI comparison; the counterpart to CI. See the
