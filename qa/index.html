@@ -5103,6 +5103,14 @@
                    (wwwHead && (target === wwwHead ||
                      (wwwHead.nextElementSibling &&
                       wwwHead.nextElementSibling.contains(target)))))) clearFilters();
+    // A click on a link whose hash is already current fires no
+    // hashchange, so expandForAnchor would never run and a collapsed
+    // target would stay collapsed (countdown → watchlist, 2026-11-23
+    // — the TOC jump had already set the hash). Schedule the
+    // expansion after the browser follows the anchor; for a
+    // changed-hash click the hashchange listener also fires, and
+    // expandForAnchor is idempotent, so the double run is harmless.
+    if (typeof expandForAnchor === 'function') setTimeout(expandForAnchor, 0);
   });
 })();
 </script>
