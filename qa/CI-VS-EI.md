@@ -2,13 +2,13 @@
 
 **As of Wednesday, November 18, 2026 · Version 1.1**
 
-Every CI figure in CILAK (CI Landscape Assessment Kit), set against its human equivalent — [EI, evolved intelligence](glossary.html#ei) — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.
+Every CI figure in the Landscape, set against its human equivalent — [EI, evolved intelligence](glossary.html#ei) — where one exists, and marked plainly where none does. A benchmark score on its own tells an executive nothing: 74.0 on one benchmark, 25.1% on another — good or bad? The answer only exists against the human baseline for the same task.
 
-A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: **3 complete pairs, 12 partial comparisons, 27 gaps**, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in CILAK is measured against the task, never against a human doing the same task.
+A comparison counts only on the same task with the same metric, with the baseline population stated. A CI number from one study set against a human number from another is not a comparison. As of this edition: **3 complete pairs, 12 partial comparisons, 27 gaps**, across 42 classified items. Operations has no complete pair at all — every agent-reliability figure in the Landscape is measured against the task, never against a human doing the same task.
 
-The strongest pair: AI patches introduce **135** confirmed vulnerabilities against **12** for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in CILAK measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.
+The strongest pair: AI patches introduce **135** confirmed vulnerabilities against **12** for developers on the same issues (Sajadi, preprint). The largest gap: no benchmark in the Landscape measures a human reviewer against the same commits the agentic reviewers were tested on — so the 32.5–78.1% recall range has nothing to be judged against.
 
-CI figures read in rust, human figures in navy — the same colours as SITREP. Every row links to the CILAK article that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.
+CI figures read in rust, human figures in navy — the same colours as SITREP. Every row links to the article in the Landscape that evidences it; the article's Source line takes you to the primary source. Rows are ordered: complete pairs first, then partial comparisons, then figures with no human baseline published.
 
 ## Development
 
@@ -52,7 +52,7 @@ Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from case
 | Flaws in AI-built apps | **2,038** critical vulnerabilities in 5,600+ publicly deployed AI-built apps | *No human baseline published* | [Escape.tech §3.1](index.html#2038-critical-vulnerabilities-in-5600-publicly-deployed-ai) · 2026 · vendor research · ●●○○ Reported |
 | CVEs attributed to AI tools | **74** CVEs traced directly to AI coding tools | *No human baseline published* | [Georgia Tech §3.1](index.html#74-cves-traced-directly-to-ai-coding-tools-georgia-tech) · Sep 2026 · ●●○○ Reported |
 | Patch-to-exploit speed | Working exploits generated **within a day** of disclosure (PaperCut zero-days, Aug 2026) | *No human baseline published* | [Google Threat Intelligence Group §2.6](index.html#attackers-now-turn-patches-into-working-exploits-with-no) · 16 Nov 2026 · ●●○○ Reported |
-| Documentation quality | *No figure* — nothing in CILAK measures documentation quality of CI vs EI code | *No human baseline published* | No source — no figure published |
+| Documentation quality | *No figure* — nothing in the Landscape measures documentation quality of CI vs EI code | *No human baseline published* | No source — no figure published |
 | Test quality | *No figure* — nothing compares test quality (coverage, mutation score) of CI-written vs human-written tests | *No human baseline published* | No source — no figure published |
 | Architectural foresight | *No figure* — nothing measures it | *No human baseline published* | No source — no figure published |
 
@@ -60,7 +60,7 @@ Two gaps carry a trap: SecureVibeBench and BugLedger build their tasks from case
 
 ### Complete pairs
 
-No complete pair yet. Every agent-reliability figure in CILAK is measured against the task, never against a human doing the same task.
+No complete pair yet. Every agent-reliability figure in the Landscape is measured against the task, never against a human doing the same task.
 
 ### Partial comparisons
 
