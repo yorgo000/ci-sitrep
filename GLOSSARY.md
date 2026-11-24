@@ -36,6 +36,12 @@ instructions. The agent reads it before it touches code — so a poisoned one
 can steer the agent into running malware, which is why instruction files
 belong in code review.
 
+**Agent Skill** — A packaged bundle of instructions (and sometimes scripts)
+an agent loads to do a recurring task, such as building a document or
+deploying an app. Third-party skills run with the agent's own permissions, so
+a poisoned skill steers the agent — the report's measurements name skills
+the riskiest entry point for hidden instructions.
+
 **AI-BOM (AI bill of materials)** — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
 record you need to audit, patch, or roll back an agent.
@@ -54,6 +60,11 @@ researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
 
 **ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)** — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.
+
+**Attack success rate (ASR)** — The share of test cases in which an attack
+achieves its goal against an agent — the headline metric of agent
+prompt-injection benchmarks such as FrontierBreach, where hidden
+instructions succeeded in 34.9% of realistic enterprise workflows.
 
 ## B
 
@@ -164,6 +175,12 @@ resilience, and report major incidents. An AI vendor counts as an ICT
 CMA, Ofcom, and ICO coordinate on digital regulation.
 
 ## E
+
+**eBPF (extended Berkeley Packet Filter)** — A Linux kernel technology that
+runs small, sandboxed programs at set points inside the kernel, letting a
+tool observe or block system activity without changing kernel code or
+restarting. Shirudo uses it to load exploit-blocking shields onto running
+systems.
 
 **EI (evolved intelligence)** — Confluence<1>'s term for intelligence that
 evolved rather than was built — human intelligence, in the report's usage.
