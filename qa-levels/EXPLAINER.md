@@ -58,6 +58,18 @@ This report tracks the state of the art in CII and CIC, for critical systems in 
 
 "AI" is still used colloquially, and the terms overlap. CI is the more precise category; CII and CIC are the working units.
 
+## The grid — how this report is organized
+
+Everything in this report sits in a three-dimensional grid — a pyramid. The names for its three dimensions describe **what you are getting**, not how the tool behind it is built. There are two ways to name a system like this: descriptors of the tool (if it's a satellite: the sensor arrays, the processor, the screens), or descriptors of what the tool is analyzing (points of the compass, height over ground, movement over time, zoom level). A good tool goes unnoticed, so we use the second.
+
+**Levels** (zoom levels) — how distilled the information is, from the base up: **Evidence** (the sourced findings in the database) → **Analysis** (our composed, distilled articles) → **Dashboards** (the figures, as tiles) → **Situation at hand** (the comprehensive situational picture in figures: the strip, the countdowns, the ledger) → **The bottom line** (the most distilled takeaway: the prose abstract — you can't get any more distilled than the bottom line) → **The heatmap** (the future top-level view).
+
+**Domains** — what you are looking at, at the various zoom levels: the areas of concern, expertise, and influence regarding the surge itself. For the CI surge: **PNL** (Profit and Loss), **CIC** (Agentic Staff), **Codebase** (Certification), and **Pre-commit** (Code Sanitizing).
+
+**Verticals** — the "business end" of your life: what you studied, what you pursued in your career, what you are impacting. Finance is the current vertical; Health, Defense, and Public Sector are future verticals.
+
+In one sentence: we collect data about your vertical, across the domains of the surge that are impacting you right now, and we give it to you in multiple zoom levels.
+
 ## The basis
 
 These terms come from a foundational working paper, [*From Evolved Intelligence to Created Intelligence* (v0.1)](theses.html), which develops the full argument: that biological evolution produced intelligence capable of understanding and manipulating the mechanisms of intelligence itself; that this makes possible a second mode of intelligence generation — deliberate creation; and that, once autonomous CI can create further CI, recursive development and adaptive diversification follow, producing an ecosystem of intelligences across substrates and environments.
