@@ -601,7 +601,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
 
       <!-- Action Toolbar -->
       <div class="flex flex-wrap items-center gap-2">
-        <button id="methodologyToggleBtn" class="px-3 py-2 rounded-lg text-xs font-medium bg-indigo-950/60 hover:bg-indigo-900/70 text-indigo-300 border border-indigo-500/30 transition flex items-center gap-1.5" title="Inspect the 6 theoretical frameworks and their exact bounds">
+        <button id="methodologyToggleBtn" class="px-3 py-2 rounded-lg text-xs font-medium bg-indigo-950/60 hover:bg-indigo-900/70 text-indigo-300 border border-indigo-500/30 transition flex items-center gap-1.5" title="Inspect the 7 theoretical frameworks and their exact bounds">
           <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
           </svg>
@@ -685,11 +685,11 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
 
         <div class="exec-tip">
           <span tabindex="0" class="cursor-help px-2 py-0.5 rounded bg-gray-900 border border-amber-500/30 font-mono text-[10.5px] text-amber-300">
-            VETO 2: Turning Point Unsettled (No Regulatory Framework)
+            VETO 2: Shakeout Unsettled (No Regulatory Framework)
           </span>
           <div class="exec-tip-bubble exec-tip-bottom-right">
             <strong class="text-amber-400 block mb-1">Active Instrument Veto #2 (§II.2.5)</strong>
-            <p><strong class="text-white">Rule:</strong> No turning-point-completed call is permitted while the institutional and regulatory framework remains unsettled.</p>
+            <p><strong class="text-white">Rule:</strong> No shakeout-completed call is permitted while the institutional and regulatory framework remains unsettled.</p>
             <p class="mt-1"><strong class="text-amber-300">Board implication:</strong> Keep compliance, liability, and audit architectures modular; regulatory rules are still in flux.</p>
           </div>
         </div>
@@ -708,14 +708,14 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
     </button>
   </div>
 
-  <!-- F6–F11: Collapsible Methodology & Theoretical Lineage Drawer (6 Frameworks: 2 Bedrock + 4 Complementary) -->
+  <!-- F6–F11: Collapsible Methodology & Theoretical Lineage Drawer (7 Frameworks: 2 Bedrock + 5 Complementary) -->
   <section id="methodologyDrawer" class="hidden border-b border-indigo-500/30 bg-[#0C1220]/95 backdrop-blur-md shadow-2xl">
     <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-5">
       <div class="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-gray-800">
         <div>
           <div class="flex flex-wrap items-center gap-2">
             <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-indigo-400">THEORETICAL ARCHITECTURE & LINEAGE</span>
-            <span class="px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 font-mono text-[10px] text-indigo-300">6 FRAMEWORKS — 2 BEDROCK (PEREZ, SOLOW) + 4 COMPLEMENTARY (J-CURVE, WARDLEY, INFRA-APP CYCLE, DIFFUSION)</span>
+            <span class="px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 font-mono text-[10px] text-indigo-300">7 FRAMEWORKS — 2 BEDROCK (PEREZ, SOLOW) + 5 COMPLEMENTARY (J-CURVE, WARDLEY, INFRA-APP CYCLE, DIFFUSION, CEILING)</span>
           </div>
           <h3 class="text-base font-bold text-white mt-0.5">Perez · Solow · Brynjolfsson · Rogers / Moore · Wardley · Dixon · Acemoglu</h3>
         </div>
@@ -741,7 +741,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
             </p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-sky-300">
-            Tool mapping: The 4 zones merge irruption+frenzy and synergy+maturity as this tool’s simplification; numeric % boundaries are illustrative (Perez gives almost no numeric thresholds).
+            Tool mapping: The four stages are named for what the parameters measure — Buildout (α), Governance Tax (β), The Shakeout (γ, δ), Deployment (projected); numeric % boundaries are illustrative (Perez gives almost no numeric thresholds).
           </div>
         </div>
 
@@ -827,6 +827,23 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-emerald-300">
             Maps to: Stage 2–4 buildout of verification & audit infrastructure (located, not sized).
+          </div>
+        </div>
+
+        <!-- 7. Daron Acemoglu (Complementary 5) -->
+        <div class="rounded-xl bg-[#111827]/90 border border-rose-500/30 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-rose-400">COMPLEMENTARY 05 // CEILING CASE</span>
+              <span class="font-mono text-[10px] text-gray-400">Daron Acemoglu (2024/2025)</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">Acemoglu — The Ceiling Case</div>
+            <p class="text-[11px] text-gray-300 leading-relaxed">
+              Acemoglu’s arithmetic caps the macro gain: only <strong class="text-white">~4.6% of GDP</strong> is in tasks AI can profitably automate at current cost savings, so aggregate Total Factor Productivity (TFP) gains may cap at <strong class="text-white">≤0.66% over 10 years</strong> — explicitly an upper bound. The gap mostly persists even after diffusion.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-rose-300">
+            Tool mapping: The fork strip + KPI 2 — the instrument displays both the J-curve lag and Acemoglu’s ceiling rather than choosing (§II.2.5).
           </div>
         </div>
       </div>
@@ -982,19 +999,18 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
           </div>
         </div>
 
-        <!-- F7: Stage Legend — explicitly labelled as this tool's 4-zone simplification of Perez's 5 phases -->
+        <!-- F7: Stage Legend — the four stages, named for what the parameters measure (Yorgo, 2026-11-25) -->
         <div class="px-5 py-3 border-t border-gray-800/80 bg-[#0D1424]">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
             <p class="font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400">
-              The four tool zones (this tool’s simplification merging Perez’s 5 phases; numeric % boundaries are illustrative)
+              The four stages
             </p>
-            <span class="font-mono text-[10px] text-gray-500">Perez phases: Irruption → Frenzy → Turning Point → Synergy → Maturity</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-1.5 text-[11.5px] leading-snug">
-            <p><span class="font-mono font-bold text-sky-400">1. Installation — Irruption & Frenzy (Perez)</span> <span class="text-gray-500">[tool label: “Shipyard Boom”]</span> <span class="text-gray-300">— capital-frenzy buildout: capability scales fast, spending runs ahead of returns.</span></p>
-            <p><span class="font-mono font-bold text-amber-400">2. Governance Tax</span> <span class="text-gray-500">(Tool label: Scanning & Guardrails)</span> <span class="text-gray-300">— verification and guardrails are bolted on; net P&L dips while the tax is paid.</span></p>
-            <p><span class="font-mono font-bold text-purple-400">3. Turning Point — Regulatory Recomposition</span> <span class="text-gray-500">(Perez: a process, not a phase; length indeterminate)</span> <span class="text-gray-300">— pendulum swing toward collective well-being and institutional rules; outcome not guaranteed.</span></p>
-            <p><span class="font-mono font-bold text-emerald-400">4. Deployment — Synergy & Maturity (Perez)</span> <span class="text-gray-500">(Tool label: True P&L Capture)</span> <span class="text-gray-300">— institutional rules settle and returns land in the P&L (projected right half).</span></p>
+            <p><span class="font-mono font-bold text-sky-400">1. Buildout</span> <span class="text-gray-300">— capital scales ahead of returns; spending runs ahead of what it earns. (α governs how much rail must be built.)</span></p>
+            <p><span class="font-mono font-bold text-amber-400">2. Governance Tax</span> <span class="text-gray-300">— verification and guardrails are bolted on; net P&L dips while the tax is paid. (β governs the trough’s depth.)</span></p>
+            <p><span class="font-mono font-bold text-purple-400">3. The Shakeout</span> <span class="text-gray-300">— the field consolidates; weak players and thin wrappers are squeezed out, and the rules recompose while it happens. (γ governs how concentrated the survivors are; δ governs how long the recomposition takes.)</span></p>
+            <p><span class="font-mono font-bold text-emerald-400">4. Deployment</span> <span class="text-gray-300">— the rules have settled and the returns land in the P&L. (Projected — the dashed right half.)</span></p>
           </div>
           <p class="mt-2 text-[11.5px] text-gray-400">
             <span class="font-mono font-bold text-amber-300">WE ARE HERE BAND (45–50%, midpoint 48%)</span> — the model’s judgment band for where the cycle stands today (“late frenzy, turning point beginning”; §II.8.1). Shown as a band, never a point (§II.2.5).
@@ -1443,33 +1459,33 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         return dip + (surge - surgeZero);
       }
 
-      // F3, F7: Zone definitions (explicitly labelled as tool's mapping of Perez's 5 phases)
+      // F3, F7: Stage definitions (the four stages, named for what the parameters measure)
       function getStageInfo(p) {
         if (p < 22) {
           return {
             stageNum: 'ZONE 1',
-            name: 'Installation — Irruption & Frenzy (Perez)',
+            name: 'Buildout',
             mandateTitle: 'Ring-Fence Experimental Spend',
             mandateDesc: 'Toolmakers capture early CapEx. Cap unverified pilots as R&D; keep unvalidated workflows out of core opex.'
           };
         } else if (p < 45) {
           return {
             stageNum: 'ZONE 2',
-            name: 'Governance Tax (Tool Label: Scanning & Guardrails)',
+            name: 'Governance Tax',
             mandateTitle: 'Budget ~$2.50 Verification per $1 Generation',
             mandateDesc: 'β ≈ 2.5× (code domain, single study): budget ~$2.50 for scanning, guardrails & QA for every $1 spent on generation (rule of thumb: at least $1:$1).'
           };
         } else if (p < 68) {
           return {
             stageNum: 'ZONE 3',
-            name: 'Turning Point — Regulatory Recomposition (Perez)',
-            mandateTitle: 'Keep Architecture Modular During Recomposition',
-            mandateDesc: 'Perez’s turning point is a process of institutional & regulatory recomposition (not a fixed phase; outcome not guaranteed). Avoid brittle lock-in while rules settle.'
+            name: 'The Shakeout',
+            mandateTitle: 'Keep Architecture Modular During the Shakeout',
+            mandateDesc: 'The field consolidates; weak players and thin wrappers are squeezed out, and the rules recompose while it happens. Avoid brittle lock-in while rules settle.'
           };
         } else {
           return {
             stageNum: 'ZONE 4',
-            name: 'Deployment — Synergy & Maturity (Perez · Projected)',
+            name: 'Deployment (Projected)',
             mandateTitle: 'Re-Architect Core Workflows for Net Margin',
             mandateDesc: 'Projected right half: once institutional rules settle, shift capital from point tools to end-to-end process redesign.'
           };
@@ -1603,12 +1619,12 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
           targetCtx.fillText('by Yorgo P. Bougás · Confluence<1> · Heatmap Verdict: 23 lagging / 5 getting there / 0 in place / 2 unclear · Ceiling case (Acemoglu): ≤0.66% TFP / 10y', 28, 70);
         }
 
-        // 1. Draw 4 Stage Background Zones (F7: labelled as tool zones / Perez phases)
+        // 1. Draw 4 Stage Background Zones (F7: the four stages, named for what the parameters measure)
         const stages = [
-          { start: 0, end: 22, label: '1. INSTALLATION (PEREZ)', sub: 'Irruption & Frenzy', color: 'rgba(56, 189, 248, 0.035)' },
+          { start: 0, end: 22, label: '1. BUILDOUT', sub: 'Capital ahead of returns', color: 'rgba(56, 189, 248, 0.035)' },
           { start: 22, end: 45, label: '2. GOVERNANCE TAX', sub: 'β ≈ 2.5× Verification Drag', color: 'rgba(245, 158, 11, 0.055)' },
-          { start: 45, end: 68, label: '3. TURNING POINT (PEREZ)', sub: 'Regulatory Recomposition', color: 'rgba(168, 85, 247, 0.04)' },
-          { start: 68, end: 100, label: '4. DEPLOYMENT (PROJECTED)', sub: 'Synergy & Maturity', color: 'rgba(16, 185, 129, 0.04)' }
+          { start: 45, end: 68, label: '3. THE SHAKEOUT', sub: 'Consolidation — rules recompose', color: 'rgba(168, 85, 247, 0.04)' },
+          { start: 68, end: 100, label: '4. DEPLOYMENT (PROJECTED)', sub: 'Returns land in the P&L', color: 'rgba(16, 185, 129, 0.04)' }
         ];
 
         stages.forEach((st, idx) => {
