@@ -5,7 +5,7 @@
 <details class="how-to-read">
 <summary>How to read this</summary>
 
-1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [Landscape](#report) gives you the evidence, both sliced the same four ways.
+1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [Landscape](#report) gives you the evidence, both across the same four domains.
 2. First time? Read [the bottom line](#bottom-line) in [SITREP](#executive-dashboard); if that's enough, you're done — or read the whole [Landscape](#report). Then you know what's going on.
 3. Short on time, or back for the day? Read [the bottom line](#bottom-line), then [DIFF](#diff) — or follow the red dots: everything the news touched carries one.
 4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
