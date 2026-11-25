@@ -10,9 +10,9 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 124 |
-| Source links (article + subsection) | 293 |
-| Total external links (incl. inline prose links) | 649 |
+| Articles | 117 |
+| Source links (article + subsection) | 288 |
+| Total external links (incl. inline prose links) | 637 |
 | Unique source URLs | 262 |
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
 | Items in DIFF | 46 |
@@ -28,11 +28,11 @@ Every article carries a dots rating for how much confidence a reader can place i
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
 | ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 18 | 15% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 43 | 35% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 57 | 46% |
-| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 6 | 5% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 40 | 34% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 54 | 46% |
+| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 5 | 4% |
 
-**49% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
+**50% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
 ---
 
