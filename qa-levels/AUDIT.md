@@ -17,7 +17,6 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
 | Items in DIFF | 46 |
 | Superseded entries in the archive | 21 |
-| First published | 2026-11-09 |
 | Opened to the public | November 12, 2026 |
 
 ---
