@@ -957,13 +957,31 @@
      estimator's _FOOTER 18px. Expanded, the footer grows the tile
      (min-height, never fixed height). As a <details> in main,
      Expand all / Collapse all open and close it with everything
-     else (setAllCollapsed). */
-  .tile-foot { margin-top: auto; padding-top: 2px; }
-  .tile-foot summary { font-size: 12px; line-height: 1.35; color: var(--muted); cursor: pointer; list-style: none; }
+     else (setAllCollapsed).
+     Footer restyle (Yorgo, 2026-11-25): the footer is ONE line —
+     the word "source" + chevron — under a hairline separator that
+     spans the text column (inset from the tile's edges by the
+     tile's own 14px side padding, never touching the card border)
+     and costs no layout height (an absolutely-positioned ::before
+     inside the 2px top pad, so the collapsed footer stays exactly
+     the estimator's 18px). The resets below exist because the
+     generic article <details> styling in build_html.py (border +
+     radius + 10px margins, summary padding 10px 14px, a ::before
+     triangle, hover wash, open-state rule, details > p padding)
+     otherwise bleeds into every tile footer — that bleed is what
+     rendered the footer as a ~48px rounded box (Yorgo's
+     screenshot, 2026-11-25). Class selectors outrank the generic
+     element rules, so these resets hold wherever DASH_CSS lands. */
+  .tile-foot { position: relative; margin: auto 0 0; border: none; border-radius: 0; padding-top: 2px; }
+  .tile-foot::before { content: ""; position: absolute; top: 0; left: 0; right: 0; border-top: 1px solid var(--line); }
+  .tile-foot summary { font-size: 12px; line-height: 1.35; font-weight: 400; color: var(--muted); cursor: pointer; list-style: none; padding: 0; border-radius: 0; }
+  .tile-foot summary::before { display: none; }
   .tile-foot summary::-webkit-details-marker { display: none; }
+  .tile-foot summary:hover { background: none; }
+  .tile-foot[open] summary { border-bottom: none; border-radius: 0; }
   .tile-foot-chev { display: inline-block; width: 0; height: 0; margin-left: 4px; vertical-align: middle; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: transform 0.15s; }
   .tile-foot[open] .tile-foot-chev { transform: rotate(180deg); }
-  .tile-foot .fig-source { margin-top: 2px; }
+  .tile-foot .fig-source { margin: 2px 0 0; padding: 3px 0 0; }
   /* The source line itself (inside the footer since the tile
      round): 13px muted, the traceability text. Its old pin-to-
      bottom margin is inert inside the <details> (auto margins
