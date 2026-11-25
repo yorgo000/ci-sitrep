@@ -3645,7 +3645,6 @@
   var modal = document.getElementById('howto-modal');
   if (!modal) return;
   var KEY = 'ci-sitrep-howto-never';
-  var LEGACY_KEY = 'ci-sitrep-howto-dismissed';
   var never = document.getElementById('howto-modal-never');
   function closeModal() { modal.hidden = true; }
   function openModal() {
@@ -3654,14 +3653,12 @@
     if (btn) btn.focus();
   }
   function dismissedForGood() {
-    try {
-      return !!(localStorage.getItem(KEY)
-                || localStorage.getItem(LEGACY_KEY));
-    } catch (e) { return false; }
+    try { return !!localStorage.getItem(KEY); }
+    catch (e) { return false; }
   }
   if (!window.__ciSwapNav && !dismissedForGood()) openModal();
-  // The checkbox shows the reader's standing choice when the modal
-  // is opened manually after a dismissal.
+  // The checkbox shows the reader's standing choice (never-flag
+  // only) when the modal is opened manually after a dismissal.
   if (never && dismissedForGood()) never.checked = true;
   var openBtn = document.getElementById('howto-open');
   if (openBtn) openBtn.addEventListener('click', openModal);
@@ -3674,10 +3671,7 @@
   if (never) never.addEventListener('change', function () {
     try {
       if (never.checked) localStorage.setItem(KEY, '1');
-      else {
-        localStorage.removeItem(KEY);
-        localStorage.removeItem(LEGACY_KEY);
-      }
+      else localStorage.removeItem(KEY);
     } catch (e) {}
   });
 })();
