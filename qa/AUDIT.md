@@ -12,8 +12,8 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 |---|---|
 | Articles | 124 |
 | Source links (article + subsection) | 293 |
-| Total external links (incl. inline prose links) | 607 |
-| Unique source URLs | 234 |
+| Total external links (incl. inline prose links) | 649 |
+| Unique source URLs | 262 |
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
 | Items in DIFF | 46 |
 | Superseded entries in the archive | 21 |
@@ -61,7 +61,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 234 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 262 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
