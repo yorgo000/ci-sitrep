@@ -193,21 +193,25 @@
      desktop, underneath the title on phones. The H1 is a flex
      line of exactly two items (.surface-title + .sec-controls).
      Same rule in build_html.py (there the title is the surface
-     H2). */
-  main h1 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+     H2). Residual fix (2026-11-25): the line does NOT wrap on
+     desktop — the title span shrinks and wraps its own text
+     (flex: 1 1 auto; min-width: 0), so the controls stay ON the
+     title line, right-justified. */
+  main h1 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  main h1 .surface-title { flex: 1 1 auto; min-width: 0; }
   /* The controls sit FLUSH RIGHT as one unit with the copy-link
      icon (Yorgo, 2026-11-25): space-between alone spread the flex
      items and left the controls floating mid-line. margin-left:
      auto absorbs the free space before the controls, so the group
-     sits at the row's right edge; when a long title forces a wrap,
-     the wrapped controls stay right-aligned. The icon's own
-     margin-left is zeroed inside the heading so the unit spacing
-     is the row gap alone. (Twin of build_html.py.) */
+     sits at the row's right edge. The icon's own margin-left is
+     zeroed inside the heading so the unit spacing is the row gap
+     alone. (Twin of build_html.py.) */
   main h1 .sec-controls { flex: none; margin: 0 0 0 auto; }
   main h1 .share-link { margin-left: 0; }
   /* Phones: the title takes its own line; the controls sit
-     underneath it, still right-aligned. */
-  @media (max-width: 600px) { main h1 { gap: 6px 12px; } main h1 .surface-title { flex: 1 1 100%; } }
+     underneath it, still right-aligned (the wrap the desktop
+     line no longer does happens only here). */
+  @media (max-width: 600px) { main h1 { gap: 6px 12px; flex-wrap: wrap; } main h1 .surface-title { flex: 1 1 100%; } }
   .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
   .sec-controls button svg { vertical-align: -2px; margin-right: 4px; }
   .sec-controls button:hover { background: #e8dfcc; }
@@ -410,7 +414,15 @@
   .hud-rail svg { width: 24px; height: 24px; }
   .hud-rail a:hover, .hud-rail button:hover { background: #e8dfcc; }
   .hud-rail a.hud-rail-current { background: #EFE9D8; }
-  .hud-rail .hud-condense-btn { margin-left: 0; }
+  /* The rail's expand button wears the SAME small rounded box as
+     the sidebar's condense button (2026-11-25, Yorgo, from his
+     screenshot of the sidebar «): one control, one look in both
+     homes — and the box distinguishes it from the rail's bare
+     page-navigation icons. Metrics identical to the base
+     .hud-condense-btn + .minimap-head svg rules above; the 44px
+     rail slot becomes auto-sized around the box. */
+  .hud-rail .hud-condense-btn { margin-left: 0; width: auto; height: auto; padding: 2px 6px; border: 1px solid #ddd5c2; border-radius: 4px; background: #fdfbf7; }
+  .hud-rail .hud-condense-btn svg { width: 14px; height: 14px; }
   .minimap-head { display: flex; justify-content: space-between; align-items: center; padding: 2px 0 6px; }
   .minimap-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #666; margin: 0; }
   #minimap-close { width: 44px; height: 44px; border: none; background: none; cursor: pointer; position: relative; flex: none; }
@@ -585,7 +597,7 @@
 
 </details>
 </div>
-<div class="hud-rail" aria-label="Navigation (condensed)"><a href="sitrep.html" aria-label="SITREP" title="SITREP"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="5.5"/><path d="M12 4v4.5M12 15.5V20M4 12h4.5M15.5 12H20"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="diff.html" aria-label="Diff" title="Diff"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v13M7 17l-3-3M7 17l3-3"/><path d="M17 20V7M17 7l-3 3M17 7l3 3"/></svg></a><a href="landscape.html" aria-label="Landscape" title="Landscape"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></a><a href="background.html" class="hud-rail-current" aria-label="Background" title="Background"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 0 2 2h13"/></svg></a><button type="button" class="hud-condense-btn" aria-label="Expand navigation" title="Expand navigation"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5l6 7-6 7"/><path d="M13 5l6 7-6 7"/></svg></button></div>
+<div class="hud-rail" aria-label="Navigation (condensed)"><a href="sitrep.html" aria-label="SITREP" title="SITREP"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="5.5"/><path d="M12 4v4.5M12 15.5V20M4 12h4.5M15.5 12H20"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="diff.html" aria-label="Diff" title="Diff"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v8M8 9h8"/><path d="M8 18h8"/></svg></a><a href="landscape.html" aria-label="Landscape" title="Landscape"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></a><a href="background.html" class="hud-rail-current" aria-label="Background" title="Background"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 0 2 2h13"/></svg></a><button type="button" class="hud-condense-btn" aria-label="Expand navigation" title="Expand navigation"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5l6 7-6 7"/><path d="M13 5l6 7-6 7"/></svg></button></div>
 </div>
     <details class="masthead-legend" id="confidence-rating-scale">
       <summary>Confidence rating scale</summary>
@@ -1686,10 +1698,21 @@
       navigating = false;
       location.assign(url);
     }
-    if (cache[url]) { done(cache[url]); return; }
+    // Freshness (2026-11-25, Countdown live-check residuals): the
+    // fetch revalidates (cache: 'no-cache' — a 304 when unchanged)
+    // and there is NO in-memory short-circuit. The old code served
+    // the first-fetched copy for the tab's whole life, and the
+    // default cache mode let the HTTP cache serve a pre-deploy
+    // copy inside the Pages max-age window — so after a deploy the
+    // swap path ran the OLD page (unguarded filter JS hid the
+    // Countdown; old title-line CSS left-aligned the Diff
+    // controls) while a direct load got the new build. The memory
+    // cache remains only as the offline fallback: if the fetch
+    // fails and a copy was fetched earlier this session, swap to
+    // it instead of a hard navigation that would fail too.
     var ctrl = ('AbortController' in window) ? new AbortController() : null;
     var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 20000) : null;
-    fetch(url, { credentials: 'same-origin',
+    fetch(url, { credentials: 'same-origin', cache: 'no-cache',
                  signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1700,6 +1723,7 @@
         done(html);
       }).catch(function () {
         if (timer) clearTimeout(timer);
+        if (cache[url]) { done(cache[url]); return; }
         fail();
       });
   }
