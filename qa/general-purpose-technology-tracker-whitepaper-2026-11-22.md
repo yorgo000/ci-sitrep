@@ -1,4 +1,6 @@
-# The Surge Monitor — A General Purpose Technology Tracker by Yorgo P. Bougás, Confluence<1>
+# Diffusion Gauge — A General Purpose Technology Tracker
+
+<p><small>Yorgo P. Bougás · Confluence<1></small></p>
 
 **Status:** v3 WHITE PAPER for Yorgo's review — 22 November 2026. Draft only. Not published, not on the site, not a finding of the report.
 **Predecessor:** v2, *The Surge Monitor — A General Purpose Technology Tracker* (general-purpose-technology-tracker-2026-11-22.md) — the model document this whitepaper is drawn from. The v1 clock draft (solow-perez-clock-2026-11-22.md) is the research predecessor.
