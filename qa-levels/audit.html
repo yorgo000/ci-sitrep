@@ -195,8 +195,19 @@
      Same rule in build_html.py (there the title is the surface
      H2). */
   main h1 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  main h1 .sec-controls { flex: none; margin: 0; }
-  @media (max-width: 600px) { main h1 { flex-direction: column; align-items: flex-start; gap: 6px; } }
+  /* The controls sit FLUSH RIGHT as one unit with the copy-link
+     icon (Yorgo, 2026-11-25): space-between alone spread the flex
+     items and left the controls floating mid-line. margin-left:
+     auto absorbs the free space before the controls, so the group
+     sits at the row's right edge; when a long title forces a wrap,
+     the wrapped controls stay right-aligned. The icon's own
+     margin-left is zeroed inside the heading so the unit spacing
+     is the row gap alone. (Twin of build_html.py.) */
+  main h1 .sec-controls { flex: none; margin: 0 0 0 auto; }
+  main h1 .share-link { margin-left: 0; }
+  /* Phones: the title takes its own line; the controls sit
+     underneath it, still right-aligned. */
+  @media (max-width: 600px) { main h1 { gap: 6px 12px; } main h1 .surface-title { flex: 1 1 100%; } }
   .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
   .sec-controls button svg { vertical-align: -2px; margin-right: 4px; }
   .sec-controls button:hover { background: #e8dfcc; }
@@ -628,10 +639,6 @@
 <tr>
 <td>Superseded entries in the archive</td>
 <td>21</td>
-</tr>
-<tr>
-<td>First published</td>
-<td>2026-11-09</td>
 </tr>
 <tr>
 <td>Opened to the public</td>
