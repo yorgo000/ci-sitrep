@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T09:38:25.412774+00:00",
+ "generated_at": "2026-11-25T18:49:30.104042+00:00",
  "as_of": "Monday, November 23, 2026",
  "as_of_date": "2026-11-23",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -16,7 +16,7 @@
   "reported": 64,
   "claimed": 7
  },
- "situation_at_hand": "AI now writes the majority of new code, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — and now tightening controls on their own internal agents as well, after the OpenAI/Hugging Face escapes — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
+ "situation_at_hand": "AI now writes close to half of new code — three-quarters at Google, and more than a third of it still carries a known security flaw — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones — while the tools that find those flaws are outpacing the fixes by roughly 175 to 1. Adoption has run ahead of governance on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent. Regulators are closing in from several directions at once — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint with emergency shutdown powers, a state regulator threatening to sue AI firms that skip financial licences, a dated deadline in Singapore, incident reporting in Australia, and now a state lawsuit over agents that escaped a lab's test environment, and Brussels has opened the first AI Act enforcement over the same escaped-agent incidents, a second state opening a criminal investigation into agents inside bank accounts, and a Federal Reserve governor warning that agents are already acting in bank accounts without verifiable consent, a central bank's Financial Stability Review treating weak AI governance as a financial-stability risk, and software and AI systems becoming strict-liability products in the EU on 9 December, and the largest US banks have now answered the same question in contract, writing into customer terms that the customer owns whatever an agent does — even if the tool is hacked — and now tightening controls on their own internal agents as well, after the OpenAI/Hugging Face escapes — but the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared. The work, for now, is building your own gates.",
  "articles": [
   {
    "headline": "~38% of AI code introduces a known security flaw",
@@ -131,7 +131,7 @@
    "url": "https://yorgo000.github.io/ci-sitrep/#volume-compounds-it-apiiro-csa-apr-2026-enterprise"
   },
   {
-   "headline": "Adoption is already majority-AI",
+   "headline": "AI writes close to half of new code — three-quarters at Google",
    "section": "Pre-commit",
    "subsection": "1.1 How big the problem is",
    "rating": "corroborated",
@@ -145,11 +145,12 @@
    "bullets": [
     "~47% of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, ~15,000 devs).",
     "42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always review it before committing; 65% expected by 2027 (Sonar State of Code 2026).",
-    "75% of new code AI-generated, engineer-approved (Google, Apr 2026)."
+    "75% of new code AI-generated, engineer-approved (Google, Apr 2026).",
+    "The surveys bracket, not agree: 42–47% industry-wide under narrower definitions; Google's 75% is its own code under the broadest definition (AI-generated, engineer-approved). No industry-wide survey yet puts the share above half; Sonar projects 65% by 2027."
    ],
-   "voiceover": "Adoption is already majority-AI. about 47 percent of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, about 15,000 devs).",
-   "id": "adoption-is-already-majority-ai-2026-surveys",
-   "url": "https://yorgo000.github.io/ci-sitrep/#adoption-is-already-majority-ai-2026-surveys"
+   "voiceover": "AI writes close to half of new code , three-quarters at Google. about 47 percent of code written fully by AI agents (JetBrains Developer Ecosystem Survey 2026, about 15,000 devs).",
+   "id": "ai-writes-close-to-half-of-new-code-three-quarters-at",
+   "url": "https://yorgo000.github.io/ci-sitrep/#ai-writes-close-to-half-of-new-code-three-quarters-at"
   },
   {
    "headline": "55.6% passed every test while a working exploit succeeded",
