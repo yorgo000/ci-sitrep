@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T06:49:32.365472+00:00",
+ "generated_at": "2026-11-25T07:46:34.212301+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -4130,7 +4130,8 @@
    "date": "2026-12-16",
    "display": "Wed 16 Dec 2026",
    "label": "TPRM guidance comments close",
-   "subject": "pnl"
+   "subject": "pnl",
+   "link": "#what-were-watching"
   },
   {
    "bullet": 4,
@@ -4154,7 +4155,8 @@
    "date": "2027-05-01",
    "display": "1 May 2027",
    "label": "OSFI E-23 takes effect",
-   "subject": "pnl"
+   "subject": "pnl",
+   "link": "#what-were-watching"
   }
  ],
  "gauges": [
@@ -4173,7 +4175,7 @@
     "display": "12"
    },
    "headline": "~11× more vulnerabilities in AI patches than in human patches",
-   "source": "Sajadi et al., SWE-bench study v4",
+   "source": "Sajadi, SWE-bench v4",
    "date": "1 Nov 2026",
    "rating": "reported",
    "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of"
