@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CI SITREP — Parametric Technology Adoption & P&L Cycle</title>
+  <!-- Open Graph / Twitter Card (M1, 2026-11-25): canonical prod URLs. -->
+  <meta property="og:title" content="The Surge Monitor — A General Purpose Technology Tracker">
+  <meta property="og:description" content="Technical diffusion is compressed 10–50×. Institutional absorption runs at roughly 1×. Move the knobs; watch the cycle move.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yorgo000.github.io/ci-sitrep/tracker.html">
+  <meta property="og:image" content="https://yorgo000.github.io/ci-sitrep/cards/tool.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Surge Monitor — A General Purpose Technology Tracker">
+  <meta name="twitter:description" content="Technical diffusion is compressed 10–50×. Institutional absorption runs at roughly 1×. Move the knobs; watch the cycle move.">
+  <meta name="twitter:image" content="https://yorgo000.github.io/ci-sitrep/cards/tool.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,6 +150,14 @@
           </svg>
           <span>Download PNG</span>
         </button>
+
+        <button id="copyScenarioBtn" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition flex items-center gap-1.5" title="Copy a link that opens the tool on this exact scenario">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+          </svg>
+          <span id="copyScenarioLabel">Copy link to this scenario</span>
+        </button>
       </div>
     </div>
   </header>
@@ -220,7 +240,7 @@
             </p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-amber-300">
-            Maps to: Stage 2 Trough &amp; β Knob
+            Maps to: Stage 2 Trough &amp; β Knob — β ≈ 2.5× the cost of generation (SusVibes re-run, code domain; verification ≈ 71% of generation + verification cost). Code-only: β% sets trough depth, not a cost ratio in the tool.
           </div>
         </div>
 
@@ -233,7 +253,7 @@
             </div>
             <div class="text-xs font-bold text-white mb-1">Rail Complementarity &amp; Friction</div>
             <p class="text-[11px] text-gray-400 leading-relaxed">
-              Contrasts <span class="text-gray-200 font-medium">installed digital rails (α)</span>—compressing a 40-yr railroad buildout into ~8 yrs—against <span class="text-gray-200 font-medium">organizational &amp; regulatory friction (δ)</span> that moves at human speed.
+              α is two numbers: α_distribution ≈ 0.05–0.10 (distribution rides existing rails — the old 90% default) vs α_compute ≈ 0.7–0.9 (compute is being built now at railroad scale — the binding value, tool α = 20%). Working assumption δ ≈ 3–5 yrs (optimistic end; unmeasured — no governance gap has been surveyed twice yet).
             </p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-purple-300">
@@ -254,7 +274,7 @@
             </p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-emerald-300">
-            Maps to: γ Knob &amp; Stage 3–4
+            Maps to: γ Knob &amp; Stage 3–4 — γ₁ accelerator HHI ≈ 5,750 → 57.5%; γ₂ cloud HHI ≈ 1,360 → 13.6%.
           </div>
         </div>
       </div>
@@ -265,7 +285,7 @@
   <main class="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 py-5 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
 
     <!-- LEFT / MAIN VISUALIZATION STAGE (8 cols in normal mode, 12 cols in presentation mode) -->
-    <section id="chartSection" class="lg:col-span-8 flex flex-col gap-4">
+    <section id="chartSection" class="lg:col-span-8 flex flex-col gap-4 lg:sticky lg:top-[92px]">
 
       <!-- Canvas Card -->
       <div id="captureFrame" class="rounded-2xl bg-[#0E1420] border border-gray-800/90 shadow-2xl overflow-hidden flex flex-col">
@@ -275,7 +295,7 @@
             <div class="flex items-center gap-2">
               <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
               <span id="chartSubtitleBadge" class="font-mono text-[11px] font-semibold tracking-wider uppercase text-amber-400">
-                CI SITREP DIAGNOSTIC // CREATED INTELLIGENCE (2023–2031 EST.)
+                CI SITREP DIAGNOSTIC // CREATED INTELLIGENCE (2023–2060 EST.)
               </span>
             </div>
             <h2 id="chartMainTitle" class="text-lg sm:text-xl font-bold text-white mt-0.5">
@@ -301,7 +321,7 @@
         </div>
 
         <!-- Interactive Canvas Container -->
-        <div id="canvasWrapper" class="relative w-full h-[430px] sm:h-[490px] grid-bg select-none">
+        <div id="canvasWrapper" class="relative w-full h-[430px] sm:h-[490px] lg:h-[340px] xl:h-[min(490px,calc(100vh-380px))] grid-bg select-none">
           <canvas id="cycleCanvas" class="w-full h-full block cursor-crosshair"></canvas>
 
           <!-- Interactive Hover Tooltip -->
@@ -347,55 +367,14 @@
         <!-- Parameter Footnote Strip inside Chart Card (Great for LinkedIn Screenshots) -->
       <div class="px-5 py-2.5 bg-[#0B101B] border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-gray-400">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <span>α Rail Readiness: <strong id="stripAlpha" class="text-sky-400">90%</strong></span>
+          <span>α Rail Readiness: <strong id="stripAlpha" class="text-sky-400">20%</strong></span>
           <span>β Verification Tax: <strong id="stripBeta" class="text-amber-400">72%</strong></span>
           <span>δ Institutional Lag: <strong id="stripDelta" class="text-purple-400">4.5 Yrs</strong></span>
-          <span>γ Concentration: <strong id="stripGamma" class="text-emerald-400">High (82%)</strong></span>
+          <span>γ Concentration: <strong id="stripGamma" class="text-emerald-400">58%</strong></span>
         </div>
-        <button id="footnoteLineageLink" class="text-left sm:text-right text-[10.5px] text-indigo-300/90 hover:text-indigo-200 transition flex items-center gap-1.5 group">
-          <span class="underline decoration-dotted underline-offset-4">Lineage: Perez · Solow · Brynjolfsson · Rogers · Wardley/Dixon</span>
-          <span class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 group-hover:bg-indigo-500/25">Expand</span>
-        </button>
       </div>
     </div>
 
-    <!-- Live Executive KPI & P&L Mandate Strip below Chart -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-      <!-- KPI 1: Cycle Duration -->
-      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Compressed Cycle Span</span>
-          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">α + δ</span>
-        </div>
-        <div id="kpiDuration" class="text-2xl font-bold font-mono text-white mt-1.5">8.1 Years</div>
-        <div id="kpiDurationSub" class="text-xs text-gray-400 mt-1">4.9x faster than Railroads (40y)</div>
-      </div>
-
-      <!-- KPI 2: Governance Tax Trough & Breakeven -->
-      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Governance Tax Trough</span>
-          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">J-CURVE</span>
-        </div>
-        <div class="flex items-baseline gap-2.5 mt-1.5">
-          <span id="kpiTrough" class="text-2xl font-bold font-mono text-rose-400">-26.4%</span>
-          <span class="text-xs font-mono text-gray-400">Breakeven: <strong id="kpiBreakeven" class="text-emerald-400">~2027.5</strong></span>
-        </div>
-        <div id="kpiBreakevenSub" class="text-xs text-gray-400 mt-1">At 55% cycle progress</div>
-      </div>
-
-      <!-- KPI 3: Active Stage P&L Mandate -->
-      <div class="rounded-xl bg-gradient-to-br from-[#131C2E] to-[#0F172A] border border-amber-500/35 p-4 flex flex-col justify-between shadow-lg shadow-amber-500/5">
-        <div class="flex items-center justify-between">
-          <span class="font-mono text-[10.5px] font-bold uppercase tracking-wider text-amber-400">Executive P&amp;L Mandate</span>
-          <span id="kpiStageTag" class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">STAGE 2 · ~2025.8</span>
-        </div>
-        <div id="kpiMandateTitle" class="text-sm font-bold text-white mt-1.5">Audit TCO, Not Seat Price</div>
-        <p id="kpiMandateDesc" class="text-[11.5px] text-gray-300 mt-1 leading-snug">
-          Budget $1 for code scanning, guardrails &amp; outage prevention for every $1 spent on CI generation.
-        </p>
-      </div>
-    </div>
   </section>
 
   <!-- RIGHT / EXECUTIVE CONTROL SIDEBAR (4 cols) -->
@@ -410,7 +389,7 @@
       <div class="grid grid-cols-3 gap-2">
         <button data-preset="ci_current" class="preset-btn px-2.5 py-2 rounded-xl border border-sky-500/60 bg-sky-500/10 text-left transition hover:border-sky-400">
           <div class="text-[11px] font-bold text-white">CI (2026)</div>
-          <div class="text-[10px] font-mono text-sky-400 mt-0.5">~8 Yr Cycle</div>
+          <div class="text-[10px] font-mono text-sky-400 mt-0.5">~36 Yr Cycle</div>
         </button>
         <button data-preset="pc_internet" class="preset-btn px-2.5 py-2 rounded-xl border border-gray-700/80 bg-gray-800/40 text-left transition hover:border-gray-600">
           <div class="text-[11px] font-bold text-gray-200">PC / Web</div>
@@ -422,101 +401,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Reality Knobs Panel -->
-    <div class="rounded-2xl bg-[#111827] border border-gray-800 p-4 space-y-5">
-      <div class="border-b border-gray-800 pb-2.5 flex items-center justify-between">
-        <div>
-          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Parametric Reality Knobs</h3>
-          <p class="text-[11px] text-gray-400 mt-0.5">Adjust structural friction vs. physical buildout eras</p>
-        </div>
-        <button id="resetKnobsBtn" class="text-[11px] font-mono text-sky-400 hover:text-sky-300 underline">Reset</button>
-      </div>
-
-      <!-- Knob 1: Rail Readiness -->
-      <div>
-        <div class="flex justify-between items-baseline mb-1">
-          <label for="sliderAlpha" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
-            <span>1. Rail Readiness <span class="font-mono text-sky-400">(α)</span></span>
-            <span class="group relative inline-flex items-center cursor-help">
-              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-sky-300/90 group-hover:border-sky-500/50 transition">Perez / Installed Base</span>
-              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
-                <strong class="text-sky-400 block mb-0.5">Carlota Perez / Installed Base:</strong> Measures existing digital rails (cloud, fiber, endpoints) vs. greenfield physical capex (tracks, power grids).
-              </span>
-            </span>
-          </label>
-          <span id="valAlpha" class="font-mono text-xs font-bold text-sky-400">90% (Digital/API)</span>
-        </div>
-        <input id="sliderAlpha" type="range" min="10" max="100" value="90" />
-        <p class="text-[11px] text-gray-400 mt-1">
-          Existing cloud &amp; fiber rails compress a 40-yr physical buildout into ~7–10 years.
-        </p>
-      </div>
-
-      <!-- Knob 2: Verification Overhead -->
-      <div>
-        <div class="flex justify-between items-baseline mb-1">
-          <label for="sliderBeta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
-            <span>2. Verification Overhead <span class="font-mono text-amber-400">(β)</span></span>
-            <span class="group relative inline-flex items-center cursor-help">
-              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-amber-300/90 group-hover:border-amber-500/50 transition">Brynjolfsson / J-Curve Drag</span>
-              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
-                <strong class="text-amber-400 block mb-0.5">Erik Brynjolfsson / Productivity J-Curve:</strong> Intangible complementary capital drag—code scanning, guardrails, and QA remediation depress net P&amp;L before gains materialize.
-              </span>
-            </span>
-          </label>
-          <span id="valBeta" class="font-mono text-xs font-bold text-amber-400">72% (Heavy Scan)</span>
-        </div>
-        <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" value="72" />
-        <p class="text-[11px] text-gray-400 mt-1">
-          Code scanning, agentic guardrails &amp; outage prevention deepen the Stage 2 P&amp;L trough.
-        </p>
-      </div>
-
-      <!-- Knob 3: Institutional Absorption Lag -->
-      <div>
-        <div class="flex justify-between items-baseline mb-1">
-          <label for="sliderDelta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
-            <span>3. Institutional Lag <span class="font-mono text-purple-400">(δ)</span></span>
-            <span class="group relative inline-flex items-center cursor-help">
-              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-purple-300/90 group-hover:border-purple-500/50 transition">Rogers / Org Friction</span>
-              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
-                <strong class="text-purple-400 block mb-0.5">Everett Rogers / Diffusion Friction:</strong> Models human-speed organizational, legal, and regulatory absorption lag against silicon-speed model deployment.
-              </span>
-            </span>
-          </label>
-          <span id="valDelta" class="font-mono text-xs font-bold text-purple-400">4.5 Years</span>
-        </div>
-        <input id="sliderDelta" class="purple-slider" type="range" min="1" max="15" step="0.5" value="4.5" />
-        <p class="text-[11px] text-gray-400 mt-1">
-          Tech scales at silicon speed; legal liability, auditability &amp; org redesign move at human speed.
-        </p>
-      </div>
-
-      <!-- Knob 4: Vendor Concentration -->
-      <div>
-        <div class="flex justify-between items-baseline mb-1">
-          <label for="sliderGamma" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
-            <span>4. Vendor Concentration <span class="font-mono text-emerald-400">(γ)</span></span>
-            <span class="group relative inline-flex items-center cursor-help">
-              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-emerald-300/90 group-hover:border-emerald-500/50 transition">Wardley / Value Chain</span>
-              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
-                <strong class="text-emerald-400 block mb-0.5">Simon Wardley / Chris Dixon:</strong> Value-chain commoditization and Infra-App cycles. Hyperscaler concentration buffers collapse while squeezing middleware wrappers.
-              </span>
-            </span>
-          </label>
-          <span id="valGamma" class="font-mono text-xs font-bold text-emerald-400">82% (Oligopoly)</span>
-        </div>
-        <input id="sliderGamma" class="emerald-slider" type="range" min="15" max="95" value="82" />
-        <p class="text-[11px] text-gray-400 mt-1">
-          Hyperscaler concentration buffers total collapse while squeezing middleware wrapper margins.
-        </p>
-      </div>
-          <button id="footnoteLineageLink" class="text-left sm:text-right text-[10.5px] text-gray-400 hover:text-indigo-300 transition underline decoration-dotted underline-offset-4">
-            Lineage: Perez (Cycles) · Solow (Paradox) · Brynjolfsson (J-Curve) · Rogers (Diffusion) · Wardley (Commoditization)
-          </button>
-        </div>
-      </div>
 
       <!-- Reality Knobs Panel -->
       <div class="rounded-2xl bg-[#111827] border border-gray-800 p-4 space-y-5">
@@ -540,11 +424,11 @@
                 </span>
               </span>
             </label>
-            <span id="valAlpha" class="font-mono text-xs font-bold text-sky-400">90% (Digital/API)</span>
+            <span id="valAlpha" class="font-mono text-xs font-bold text-sky-400">20% (Heavy Physical)</span>
           </div>
-          <input id="sliderAlpha" type="range" min="10" max="100" value="90" />
+          <input id="sliderAlpha" type="range" min="10" max="100" value="20" />
           <p class="text-[11px] text-gray-400 mt-1">
-            Existing cloud &amp; fiber rails compress a 40-yr physical buildout into ~7–10 years.
+            Compute rails are being built now at railroad scale; only ~20% of the needed build is already in place.
           </p>
         </div>
 
@@ -564,7 +448,7 @@
           </div>
           <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" value="72" />
           <p class="text-[11px] text-gray-400 mt-1">
-            Code scanning, agentic guardrails &amp; outage prevention deepen the Stage 2 P&amp;L trough.
+            Code scanning, agentic guardrails &amp; outage prevention deepen the Stage 2 P&amp;L trough. β ≈ 2.5× the cost of generation (SusVibes re-run, code domain; verification ≈ 71% of generation + verification cost).
           </p>
         </div>
 
@@ -584,7 +468,7 @@
           </div>
           <input id="sliderDelta" class="purple-slider" type="range" min="1" max="15" step="0.5" value="4.5" />
           <p class="text-[11px] text-gray-400 mt-1">
-            Tech scales at silicon speed; legal liability, auditability &amp; org redesign move at human speed.
+            Tech scales at silicon speed; legal liability, auditability &amp; org redesign move at human speed. Working assumption δ ≈ 3–5 yrs (optimistic end; unmeasured — no governance gap has been surveyed twice yet).
           </p>
         </div>
 
@@ -600,11 +484,11 @@
                 </span>
               </span>
             </label>
-            <span id="valGamma" class="font-mono text-xs font-bold text-emerald-400">82% (Oligopoly)</span>
+            <span id="valGamma" class="font-mono text-xs font-bold text-emerald-400">58% (Consolidating)</span>
           </div>
-          <input id="sliderGamma" class="emerald-slider" type="range" min="15" max="95" value="82" />
+          <input id="sliderGamma" class="emerald-slider" type="range" min="15" max="95" value="58" />
           <p class="text-[11px] text-gray-400 mt-1">
-            Hyperscaler concentration buffers total collapse while squeezing middleware wrapper margins.
+            Hyperscaler concentration buffers total collapse while squeezing middleware wrapper margins. γ₁ accelerator HHI ≈ 5,750 → 57.5%; γ₂ cloud HHI ≈ 1,360 → 13.6% (moderately concentrated; below the slider minimum of 15, shown here for reference only).
           </p>
         </div>
 
@@ -633,6 +517,44 @@
         </button>
       </div>
     </aside>
+
+    <!-- Live Executive KPI & P&L Mandate Strip below Chart -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 lg:col-span-12">
+      <!-- KPI 1: Cycle Duration -->
+      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Compressed Cycle Span</span>
+          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">α + δ</span>
+        </div>
+        <div id="kpiDuration" class="text-2xl font-bold font-mono text-white mt-1.5">36.5 Years</div>
+        <div id="kpiDurationSub" class="text-xs text-gray-400 mt-1">1.1x faster than Railroads (40y)</div>
+      </div>
+
+      <!-- KPI 2: Governance Tax Trough & Breakeven -->
+      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Governance Tax Trough</span>
+          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">J-CURVE</span>
+        </div>
+        <div class="flex items-baseline gap-2.5 mt-1.5">
+          <span id="kpiTrough" class="text-2xl font-bold font-mono text-rose-400">-22.5%</span>
+          <span class="text-xs font-mono text-gray-400">Breakeven: <strong id="kpiBreakeven" class="text-emerald-400">~2039.1</strong></span>
+        </div>
+        <div id="kpiBreakevenSub" class="text-xs text-gray-400 mt-1">At 55% cycle progress</div>
+      </div>
+
+      <!-- KPI 3: Active Stage P&L Mandate -->
+      <div class="rounded-xl bg-gradient-to-br from-[#131C2E] to-[#0F172A] border border-amber-500/35 p-4 flex flex-col justify-between shadow-lg shadow-amber-500/5">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-bold uppercase tracking-wider text-amber-400">Executive P&amp;L Mandate</span>
+          <span id="kpiStageTag" class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">STAGE 2 · ~2025.8</span>
+        </div>
+        <div id="kpiMandateTitle" class="text-sm font-bold text-white mt-1.5">Audit TCO, Not Seat Price</div>
+        <p id="kpiMandateDesc" class="text-[11.5px] text-gray-300 mt-1 leading-snug">
+          Budget $1 for code scanning, guardrails &amp; outage prevention for every $1 spent on CI generation.
+        </p>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -649,27 +571,27 @@
 
       // State
       const state = {
-        alpha: 90,        // Rail Readiness (10..100%)
+        alpha: 20,        // Rail Readiness (10..100%)
         beta: 72,         // Verification Overhead (10..100%)
         delta: 4.5,       // Institutional Lag (1..15 yrs)
-        gamma: 82,        // Vendor Concentration (15..95%)
+        gamma: 58,        // Vendor Concentration (15..95%)
         position: 34,     // Current Cycle % (5..95%)
         baselineType: 'railroads', // 'railroads' (40y) or 'pc' (20y)
         startYear: 2023,
-        eraName: 'CREATED INTELLIGENCE (2023–2031 EST.)',
+        eraName: 'CREATED INTELLIGENCE (2023–2060 EST.)',
         presentationMode: false,
         hoverX: null
       };
 
       const presets = {
         ci_current: {
-          alpha: 90,
+          alpha: 20,
           beta: 72,
           delta: 4.5,
-          gamma: 82,
+          gamma: 58,
           position: 34,
           startYear: 2023,
-          eraName: 'CREATED INTELLIGENCE (2023–2031 EST.)'
+          eraName: 'CREATED INTELLIGENCE (2023–2060 EST.)'
         },
         ci_friction: {
           alpha: 88,
@@ -710,7 +632,7 @@
       // Compute derived cycle metrics
       function getCycleMetrics() {
         // Total duration in years:
-        // Heavy physical rails (alpha=10) -> ~42 yrs; Full digital rails (alpha=100) -> ~6.5 yrs, adjusted slightly by institutional lag
+        // Heavy physical rails (alpha=10) -> ~40 yrs; Full digital rails (alpha=100) -> ~6.5 yrs, adjusted slightly by institutional lag
         const baseYears = 44 - (state.alpha / 100) * 37.5;
         const lagFactor = (state.delta - 4.5) * 0.35;
         const totalYears = Math.max(5.5, Math.min(45, baseYears + lagFactor));
@@ -1397,7 +1319,6 @@
 
       document.getElementById('methodologyToggleBtn').addEventListener('click', () => toggleMethodologyDrawer());
       document.getElementById('closeMethodologyBtn').addEventListener('click', () => toggleMethodologyDrawer(false));
-      document.getElementById('footnoteLineageLink').addEventListener('click', () => toggleMethodologyDrawer());
       document.getElementById('sidebarLineageBtn').addEventListener('click', () => toggleMethodologyDrawer(true));
 
       // Clean Presentation / Screenshot Mode Toggle
@@ -1413,6 +1334,7 @@
           header.classList.add('hidden');
           sidebar.classList.add('hidden');
           chartSection.classList.remove('lg:col-span-8');
+          chartSection.classList.remove('lg:sticky', 'lg:top-[92px]');
           chartSection.classList.add('lg:col-span-12', 'max-w-5xl', 'mx-auto', 'w-full', 'pt-4');
           exitBar.classList.remove('hidden');
         } else {
@@ -1420,6 +1342,7 @@
           sidebar.classList.remove('hidden');
           chartSection.classList.remove('lg:col-span-12', 'max-w-5xl', 'mx-auto', 'w-full', 'pt-4');
           chartSection.classList.add('lg:col-span-8');
+          chartSection.classList.add('lg:sticky', 'lg:top-[92px]');
           exitBar.classList.add('hidden');
         }
         setTimeout(() => drawChart(), 50);
@@ -1448,15 +1371,101 @@
       document.getElementById('downloadPngBtn').addEventListener('click', downloadHighResPNG);
       document.getElementById('downloadPngFloatingBtn').addEventListener('click', downloadHighResPNG);
 
+      // Share-your-settings links (M3, 2026-11-25): the tool's scenario
+      // lives in the URL query string, so a copied link reopens the
+      // exact knobs, position, and baseline. Param names are short and
+      // stable — record them in the spec; Gemini v2 must not rename
+      // them:
+      //   a    alpha % (10–100, default 20)
+      //   b    beta % (10–100, default 72)
+      //   g    gamma % (15–95, default 58)
+      //   d    delta years (1–15, default 4.5)
+      //   pos  position % (5–95, default 34)
+      //   base baseline: 'railroads' (40y) or 'pc' (20y), default railroads
+      // Invalid, malformed, or out-of-range values are ignored (the
+      // aligned default applies); unknown params are ignored. A plain
+      // visit (no params) keeps the aligned defaults.
+      const SCENARIO_RANGES = {
+        a: [10, 100], b: [10, 100], g: [15, 95], d: [1, 15], pos: [5, 95]
+      };
+      const SCENARIO_NUM_RE = /^-?\d+(\.\d+)?$/;
+
+      function parseScenarioParams(search) {
+        const q = new URLSearchParams(search);
+        const out = {};
+        for (const [key, range] of Object.entries(SCENARIO_RANGES)) {
+          const raw = q.get(key);
+          if (raw === null || raw === '' || !SCENARIO_NUM_RE.test(raw)) continue;
+          const v = parseFloat(raw);
+          if (v >= range[0] && v <= range[1]) out[key] = v;
+        }
+        const base = q.get('base');
+        if (base === 'railroads' || base === 'pc') out.base = base;
+        return out;
+      }
+
+      function buildScenarioQuery() {
+        const q = new URLSearchParams();
+        q.set('a', String(state.alpha));
+        q.set('b', String(state.beta));
+        q.set('g', String(state.gamma));
+        q.set('d', String(state.delta));
+        q.set('pos', String(state.position));
+        q.set('base', state.baselineType);
+        return q.toString();
+      }
+
+      function syncScenarioURL() {
+        // The URL always reflects the current scenario (no reload, no
+        // new history entry). A plain visit gains the query string on
+        // load, so the address bar is always a shareable link.
+        history.replaceState(null, '', `${location.pathname}?${buildScenarioQuery()}`);
+      }
+
+      function applyScenarioParams() {
+        const p = parseScenarioParams(location.search);
+        if (p.a !== undefined) { state.alpha = p.a; sliderAlpha.value = p.a; }
+        if (p.b !== undefined) { state.beta = p.b; sliderBeta.value = p.b; }
+        if (p.d !== undefined) { state.delta = p.d; sliderDelta.value = p.d; }
+        if (p.g !== undefined) { state.gamma = p.g; sliderGamma.value = p.g; }
+        if (p.pos !== undefined) { state.position = p.pos; sliderPosition.value = p.pos; }
+        if (p.base !== undefined) state.baselineType = p.base;
+      }
+
+      // Copy link to this scenario (M3): the URL already carries the
+      // scenario (syncScenarioURL runs on every refresh), so copy the
+      // address bar. Clipboard API with a textarea fallback.
+      document.getElementById('copyScenarioBtn').addEventListener('click', async () => {
+        const label = document.getElementById('copyScenarioLabel');
+        syncScenarioURL();
+        const url = location.href;
+        let ok = false;
+        try {
+          await navigator.clipboard.writeText(url);
+          ok = true;
+        } catch (e) {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          document.body.appendChild(ta);
+          ta.select();
+          try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+          document.body.removeChild(ta);
+        }
+        label.textContent = ok ? 'Link copied ✓' : 'Copy failed — copy the URL';
+        setTimeout(() => { label.textContent = 'Copy link to this scenario'; }, 2500);
+      });
+
       function refreshAll() {
         updateUI();
         drawChart();
+        syncScenarioURL();
       }
 
       // Initialize
       window.addEventListener('resize', () => drawChart());
       window.onload = function () {
         bindSliders();
+        applyScenarioParams();
         refreshAll();
       };
     })();
