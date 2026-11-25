@@ -703,7 +703,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
             </p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-amber-300">
-            Tool mapping: The ~25% trough shown on Line B is this tool’s schematic quantification, governed by β ≈ 2.5× (code domain only).
+            Tool mapping: The ≈−17% trough shown on Line B at defaults is this tool’s schematic quantification, governed by β ≈ 2.5× (code domain only).
           </div>
         </div>
 
@@ -1039,6 +1039,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
                   <span class="block"><strong class="text-white">What it is:</strong> Cost of verifying, scanning, and guarding AI output relative to generating it.</span>
                   <span class="block mt-1"><strong class="text-white">What the number means:</strong> <span class="text-amber-300">β ≈ 2.5×</span> means verification costs ~2.5× generation, or ~71–72% of combined (generation + verification) spend (2.5 / 3.5).</span>
                   <span class="block mt-1"><strong class="text-white">Source & Confidence:</strong> Single vendor-commissioned study (SusVibes re-run via Checkmarx, ●●○○ Reported, code domain only). Review still leaves ~half of tasks insecure; fully-verified β is unmeasured; no β exists outside code.</span>
+                  <span class="block mt-1"><strong class="text-white">What brings β toward 1:</strong> Verification automation — deterministic guardrails and audit layers (Infrastructure 2) that cut the cost of checking AI output toward parity with generating it (§II.8.3.3).</span>
                   <span class="block mt-1"><strong class="text-amber-300">Decision:</strong> Budget ~$2.50 for verification & guardrails per $1 of code generation.</span>
                 </span>
               </span>
@@ -1240,6 +1241,11 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         hoverX: null
       };
 
+      // γ₁ HHI display mapping: linear in γ, calibrated to the paper point (58% → HHI ≈ 5,750; paper band 5,450–6,650)
+      function gammaToHHI(g) {
+        return Math.round(g * 5750 / 58);
+      }
+
       const presets = {
         ci_current: {
           alpha: 20,
@@ -1419,7 +1425,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         if (state.presetKey === 'railroads') {
           document.getElementById('valGamma').textContent = `High (Qualitative · No HHI)`;
         } else {
-          const hhiApprox = Math.round(state.gamma * 100);
+          const hhiApprox = gammaToHHI(state.gamma);
           document.getElementById('valGamma').textContent = `${state.gamma}% (γ₁ HHI ≈ ${hhiApprox.toLocaleString()})`;
         }
 
@@ -1432,7 +1438,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         document.getElementById('stripBeta').textContent = `~${metrics.betaRatio}× (${state.beta}% share)`;
         document.getElementById('stripDelta').textContent = `${state.delta.toFixed(1)} Yrs (Unmeasured)`;
         document.getElementById('stripGamma').textContent =
-          state.presetKey === 'railroads' ? 'High (No HHI)' : `${Math.round(state.gamma * 100).toLocaleString()} (${state.gamma}%)`;
+          state.presetKey === 'railroads' ? 'High (No HHI)' : `${gammaToHHI(state.gamma).toLocaleString()} (${state.gamma}%)`;
 
         // Chart header badge
         document.getElementById('chartSubtitleBadge').textContent =
@@ -1822,7 +1828,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         targetCtx.stroke();
 
         // "WE ARE HERE BAND" Badge Box
-        const badgeText = `WE ARE HERE BAND: ${bandLowP.toFixed(0)}–${bandHighP.toFixed(0)}% (LATE FRENZY / TURNING POINT)`;
+        const badgeText = `WE ARE HERE BAND: ${bandLowP.toFixed(1)}–${bandHighP.toFixed(1)}% (MID ${state.position.toFixed(0)}%)`;
         targetCtx.font = '700 10px "JetBrains Mono", monospace';
         const badgeW = targetCtx.measureText(badgeText).width + 16;
         const badgeH = 22;
@@ -1852,6 +1858,45 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
           targetCtx.restore();
         }
 
+        // Export-only line legend (on-page uses HTML legend pills; the PNG must name all three lines itself)
+        if (isExport) {
+          const legendItems = [
+            { color: '#38BDF8', dash: [], label: 'Line A: CapEx & Capability' },
+            { color: '#10B981', dash: [], label: 'Line B: Enterprise Net P&L (Solid = Observed · Dashed = Projected)' },
+            { color: 'rgba(156, 163, 175, 0.85)', dash: [5, 5], label: state.baselineType === 'railroads' ? 'Railroads Schematic (30–40y Install)' : 'PC / Web Schematic (~25y Payoff Lag)' }
+          ];
+          targetCtx.font = '600 11px "JetBrains Mono", monospace';
+          const legendTextW = Math.max(...legendItems.map((it) => targetCtx.measureText(it.label).width));
+          const legendBoxW = 38 + legendTextW + 14;
+          const legendBoxH = legendItems.length * 18 + 14;
+          const legendX = pad.left + 10;
+          const legendY = pad.top + 40;
+          targetCtx.save();
+          targetCtx.fillStyle = 'rgba(11, 16, 27, 0.85)';
+          targetCtx.strokeStyle = 'rgba(75, 85, 99, 0.55)';
+          targetCtx.lineWidth = 1;
+          targetCtx.beginPath();
+          targetCtx.roundRect(legendX, legendY, legendBoxW, legendBoxH, 6);
+          targetCtx.fill();
+          targetCtx.stroke();
+          legendItems.forEach((it, i) => {
+            const ly = legendY + 16 + i * 18;
+            targetCtx.strokeStyle = it.color;
+            targetCtx.lineWidth = 3;
+            targetCtx.setLineDash(it.dash);
+            targetCtx.beginPath();
+            targetCtx.moveTo(legendX + 10, ly);
+            targetCtx.lineTo(legendX + 30, ly);
+            targetCtx.stroke();
+            targetCtx.setLineDash([]);
+            targetCtx.fillStyle = '#E5E7EB';
+            targetCtx.textAlign = 'left';
+            targetCtx.textBaseline = 'middle';
+            targetCtx.fillText(it.label, legendX + 38, ly + 0.5);
+          });
+          targetCtx.restore();
+        }
+
         // Export Footer Watermark (F6: Canonical lineage string)
         if (isExport) {
           targetCtx.fillStyle = '#0B101B';
@@ -1868,7 +1913,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
           targetCtx.textAlign = 'left';
           targetCtx.textBaseline = 'middle';
           targetCtx.fillText(
-            `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist 8% build (92% ready) | β ≈ ${metrics.betaRatio}× (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | γ₁ HHI ≈ ${Math.round(state.gamma * 100)}`,
+            `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist 8% build (92% ready) | β ≈ ${metrics.betaRatio}× (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | γ₁ HHI ≈ ${gammaToHHI(state.gamma).toLocaleString()}`,
             28,
             H - 34
           );
@@ -2026,7 +2071,10 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
       });
 
-      document.getElementById('resetKnobsBtn').addEventListener('click', () => applyPreset('ci_current'));
+      document.getElementById('resetKnobsBtn').addEventListener('click', () => {
+        state.baselineType = 'railroads'; // Reset also restores the default baseline (curve, legend text, button label via refreshAll)
+        applyPreset('ci_current');
+      });
 
       // Toggle Historical Baseline
       document.getElementById('toggleBaselineBtn').addEventListener('click', () => {
