@@ -159,6 +159,11 @@ instances.
 application: probing it from the outside, the way an attacker would.
 Complements SAST, which reads the code.
 
+**DBHub** — Bytebase's MCP database server: it lets an AI agent query
+databases through tools such as read-only `execute_sql`. Its read-only mode
+was bypassed twice in late 2026 by SQL parser mismatches — the checker and
+the database read the same string differently.
+
 **dependency** — A piece of someone else's code your code relies on: a library
 or package pulled in to do a job (handle dates, talk to a database).
 Dependencies are where most supply-chain risk enters a codebase.
@@ -312,6 +317,11 @@ never been tested is a claim, not a control.
 
 ## L
 
+**LiteLLM** — An open-source proxy/gateway that sits in front of model
+providers and MCP servers, holding provider keys and issuing per-team
+virtual keys. Because everything routes through it, its key-scoping and
+MCP configuration are security controls in their own right.
+
 **LLM (large language model)** — An AI model trained on vast amounts of text to
 predict and generate language (and code). The engine inside coding assistants
 and agents.
@@ -327,6 +337,11 @@ through underground proxy services (Google Threat Intelligence Group, Nov
 financial regulator. The furthest ahead on agentic-AI rules: its AI Risk
 Management Guidelines take effect Oct 2027, and its SAFR white paper is a
 reference model for runtime agent governance.
+
+**MCC (Matthews correlation coefficient)** — A detection-quality score
+between −1 and 1 that stays honest when most cases are negative (most code
+is not vulnerable). 0 is chance; the best LLM detector in SECR-Eval scored
+0.562.
 
 **MCP (Model Context Protocol)** — An open protocol (from Anthropic) that lets
 an AI agent connect to tools and data sources — files, databases, services —
@@ -487,6 +502,12 @@ further: it checks whether the vulnerable code is actually used.
 **secret (in code)** — A credential embedded in code or configuration: an API
 key, a password, a token. Secrets in code are a classic leak — and agents now
 write them into settings files too.
+
+**SECR-Eval (Structured Evidence-Centred Review Evaluation)** — A
+peer-reviewed protocol (MDPI *Information*, Nov 2026) that grades LLM
+security review end to end: detection, evidence localisation, explanation,
+and whether proposed repairs survive compile/test/rescan validation. Only
+13.5% of repairs passed every gate.
 
 **Semantic governance policy (SGP)** — A rule written in plain language by a
 legal or compliance team that an LLM judge checks each proposed agent tool
