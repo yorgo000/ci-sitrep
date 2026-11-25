@@ -728,9 +728,13 @@
 
 </style>
 <meta name="robots" content="noindex, nofollow">
+<style>/* QA banner offset: fixed overlays start below the in-flow QA banner while it is visible (--qa-banner-h, set by the banner script; 0 once scrolled past). QA-only. */
+.tools-drawer{top:var(--qa-banner-h,0px);height:calc(100vh - var(--qa-banner-h,0px));height:calc(100dvh - var(--qa-banner-h,0px))}
+</style>
 </head>
 <body>
-<div style="position:sticky;top:0;z-index:9999;background:#b3543f;color:#fff;font:600 15px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">QA &mdash; review copy, not the live report &middot; single-page build &middot; <a href="../index.html" style="color:#fff;text-decoration:underline">live report &rarr;</a></div>
+<div id="qa-banner" style="position:static;background:#b3543f;color:#fff;font:600 15px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">QA &mdash; review copy, not the live report &middot; single-page build &middot; <a href="../index.html" style="color:#fff;text-decoration:underline">live report &rarr;</a></div>
+<script>(function(){var b=document.getElementById("qa-banner");if(!b)return;var q=false;function s(){q=false;document.documentElement.style.setProperty("--qa-banner-h",Math.max(0,b.getBoundingClientRect().bottom)+"px");}function r(){if(!q){q=true;requestAnimationFrame(s);}}s();window.addEventListener("scroll",r,{passive:true});window.addEventListener("resize",r);window.addEventListener("load",r);})();</script>
 
 <div class="layout">
   <nav class="sidebar">
