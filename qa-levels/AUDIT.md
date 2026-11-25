@@ -17,7 +17,8 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
 | Items in DIFF | 46 |
 | Superseded entries in the archive | 21 |
-| Report live since | 2026-11-09 |
+| First published | 2026-11-09 |
+| Opened to the public | November 12, 2026 |
 
 ---
 
@@ -40,7 +41,7 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **559** sources and added **71** new articles (updating **12** existing ones). That is a 12.7% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Source-review tracking runs from November 12, 2026, when the report opened to the public. In that window the daily watch has reviewed **559** sources and added **71** new articles (updating **12** existing ones). That is a 12.7% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
