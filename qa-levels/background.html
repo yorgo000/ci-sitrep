@@ -197,6 +197,16 @@
      headings are <p>, not headings, so the collapse JS never gives
      them toggles. */
   main h1 .tools-btn { float: right; margin: 2px 0 0 12px; display: inline-flex; align-items: center; gap: 6px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 600; color: #fff; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.55); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+  /* One-click switch (fix round, 2026-11-25): while the minimap
+     is open its scrim (z 990) covers this banner button, so a tap
+     on it hit the scrim and only closed the minimap. Lifting the
+     button above the scrim (and the panel, 1000) while the minimap
+     is open makes one tap close the minimap AND open the drawer.
+     The H1 carries no positioning or stacking context, so the
+     button's z-index joins the root context. closePanel() removes
+     minimap-open synchronously, so the lift drops as the minimap
+     closes. */
+  body.minimap-open main h1 .tools-btn { position: relative; z-index: 1005; }
   main h1 .tools-btn:hover { background: rgba(255, 255, 255, 0.22); }
   main h1 .tools-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
   main h1 .tools-btn svg { flex: none; }
@@ -826,9 +836,21 @@
      the back-to-top button, below the scrim (990) / panel (1000) /
      float-close (1010) and the howto modal (10000). While the panel
      is open the toggle sits under it (panel z-1000) — the panel's
-     own close controls are the exit then; mutual exclusion (see
-     openPanel) means the Tools drawer never competes with it. */
+     own close controls are the exit then. But the Tools drawer's
+     scrim (990) also covers the toggle, so a tap on it while the
+     drawer is open hits the scrim and only closes the drawer — the
+     one-click switch (fix round, 2026-11-25) lifts the toggle above
+     the scrim and the drawer while the drawer is open (the
+     body.tools-open rule below); the lift drops the moment the
+     drawer closes. */
   #minimap-toggle { position: fixed; left: 24px; bottom: 24px; width: 48px; height: 48px; padding: 0; border: none; border-radius: 50%; background: #283060; cursor: pointer; z-index: 500; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+  /* One-click switch (fix round, 2026-11-25): while the Tools
+     drawer is open, lift the toggle above its scrim (990) and the
+     drawer itself (1000), so one tap closes the drawer AND opens
+     the Contents. closeTools() removes tools-open synchronously,
+     so the lift drops as the drawer closes and the toggle never
+     paints above its own panel. */
+  body.tools-open #minimap-toggle { z-index: 1005; }
   #minimap-toggle span { display: block; width: 20px; height: 2px; background: #fff; }
   @media (max-width: 900px) { #minimap-toggle { left: 16px; bottom: 16px; } }
   #minimap-scrim { position: fixed; inset: 0; background: rgba(26,26,26,0.45); z-index: 990; }
