@@ -183,7 +183,7 @@
   .toc-inline .toc li.toc-collapsed > a .toc-toggle { transform: rotate(-90deg); }
   .toc-inline .toc li.toc-collapsed > ul { display: none; }
   main { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
-  main h1 { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: -32px -48px 16px; padding: 28px 48px; line-height: 1.25; color: #fff; background: var(--logo-navy); }
+  main h1 { position: relative; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 28px; margin: -32px -48px 16px; padding: 28px 48px; line-height: 1.25; color: #fff; background: var(--logo-navy); }
   main h1 em { display: block; font-size: 20px; margin-top: 2px; }
   /* The as-of date rides the title line (Yorgo, 2026-11-24): on the
      same line as "CI SITREP", single line — the bottom-right corner
@@ -192,11 +192,17 @@
      banner. Sans, so it reads as metadata, not title.
      HUD round (2026-11-25): the date and the Tools button used to
      float right as two separate floats and collided (the button
-     over the "As of" text — Yorgo's screenshot). They now ride in
-     one right-floated flex unit (.h1-meta) with a fixed gap, so
-     they can never overlap at any width; on a phone the unit drops
-     below the title as one piece. */
-  main h1 .h1-meta { float: right; display: inline-flex; align-items: center; gap: 12px; margin-top: 4px; }
+     over the "As of" text — Yorgo's screenshot). They then rode in
+     one right-floated flex unit (.h1-meta) with a fixed gap.
+     Corrective round (2026-11-25, Yorgo): the button still crowded
+     the date side by side — the unit is now a right-hand column
+     pinned to the banner's corners: the date at the top right, the
+     Tools button at the bottom right, clear of each other at every
+     width. position:relative on the h1 (no z-index, so no stacking
+     context — the one-click lift below still joins the root
+     context) makes the h1 the column's containing block; the
+     column's top/right/bottom match the banner's padding. */
+  main h1 .h1-meta { position: absolute; top: 28px; right: 48px; bottom: 28px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
   main h1 .h1-date { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 400; color: rgba(255, 255, 255, 0.85); white-space: nowrap; }
   /* Tools button + drawer (round 2, 2026-11-25): the top tools gather
      behind a small button in the H1 banner. Quiet treatment:
@@ -509,6 +515,7 @@
     #def-tip { max-width: calc(100vw - 32px); }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1 { margin: -24px -20px 16px; padding: 24px 20px; }
+    main h1 .h1-meta { top: 24px; right: 20px; bottom: 24px; }
     main h1 .h1-date { font-size: 12px; }
   }
   /* H1 one-line fit at 360px (fix-up round, Design F2; expert
@@ -524,7 +531,7 @@
   @media (max-width: 600px) {
     main h1 { font-size: 22px; padding: 20px 20px; }
     main h1 em { font-size: 17px; }
-    main h1 .h1-meta { gap: 8px; margin-top: 2px; }
+    main h1 .h1-meta { top: 20px; right: 20px; bottom: 20px; }
     main h1 .h1-date { font-size: 11px; }
     main h1 .tools-btn { font-size: 12px; padding: 4px 8px; }
   }
@@ -967,6 +974,25 @@
   .minimap-foot { font-size: 12px; color: #666; padding: 10px 0 16px; margin: auto 0 0; }
   .minimap-foot .changed-dot { margin: 0 2px 0 0; vertical-align: middle; }
   .minimap-read-demo { display: inline-block; width: 12px; height: 12px; vertical-align: middle; }
+  /* Corrective round (2026-11-25, Yorgo): in the sidebar the tree
+     rendered "spread out all over the place, vast space between
+     lines, rust dots hovering in weird spaces, font anemic". Root
+     cause: the templates' base rules (nav.sidebar a { display:
+     block }, specificity 0,1,2) beat the tree's own .minimap-row
+     { display: flex } (0,1,0) once the tree moved into the
+     sidebar — rows stacked block-wise with the dot on its own
+     line above the title. In the overlay (outside nav.sidebar)
+     the flex rules applied and the tree rendered compactly.
+     These sidebar-scoped rules (0,2,1) restore the previous
+     rendering: flex rows, the changed dot inline at the row
+     start, compact pitch — with the previous sidebar typography
+     (600-weight rows, as the masthead-nav links had; read rows
+     stay quiet: 400 grey). The icon rail's links get the same
+     treatment (their inline-flex centring lost to the base rule
+     the same way). */
+  nav.sidebar .minimap-row { display: flex; font-weight: 600; }
+  nav.sidebar .minimap-row.minimap-read-row .minimap-row-title { font-weight: 400; }
+  nav.sidebar .hud-rail a { display: inline-flex; padding: 0; }
 
 </style>
 <script type="speculationrules">
