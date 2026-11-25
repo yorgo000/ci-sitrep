@@ -1,8 +1,8 @@
-# The Surge Monitor — A General Purpose Technology Tracker by Yorgo P. Bougás
+# The Surge Monitor — A General Purpose Technology Tracker by Yorgo P. Bougás, Confluence<1>
 
 **Status:** v3 WHITE PAPER for Yorgo's review — 22 November 2026. Draft only. Not published, not on the site, not a finding of the report.
 **Predecessor:** v2, *The Surge Monitor — A General Purpose Technology Tracker* (general-purpose-technology-tracker-2026-11-22.md) — the model document this whitepaper is drawn from. The v1 clock draft (solow-perez-clock-2026-11-22.md) is the research predecessor.
-**Attribution rule (Yorgo, 22 November 2026):** the tracker is his personal work, not Confluence<1> intellectual property — it becomes the firm's only when it is useful and verified. Every byline carries his name, not the firm's.
+**Attribution rule (Yorgo, 22 November 2026):** the tracker is his personal work, not Confluence<1> intellectual property — it becomes the firm's only when it is useful and verified. Every byline carries his name, not the firm's. **Attribution update (Yorgo, 25 November 2026):** Confluence<1> is the affiliation on the byline — "Yorgo P. Bougás, Confluence<1>" — and nothing more. The tracker remains Yorgo P. Bougás's personal work, not Confluence<1> intellectual property; it becomes the firm's only when it is useful and verified, by his decision.
 **Report base:** CI SITREP (created intelligence situation report), 122 articles (18 Established / 41 Corroborated / 57 Reported / 6 Claimed) as of 22 Nov 2026; dashboard as-of 20 Nov 2026. Report figures below carry the report's own confidence ratings.
 **Acronym rule:** every acronym in this document is expanded in full on first use, per Yorgo's standing rule (22 November 2026). No unexplained acronym survives.
 
@@ -138,9 +138,9 @@ Part II substantiates every thesis point from Part I, with the evidence, the cav
 
 *Substantiates T12.*
 
-**Recommendation: The Surge Monitor**, subtitle **"A General Purpose Technology Tracker by Yorgo P. Bougás"**.
+**Recommendation: The Surge Monitor**, subtitle **"A General Purpose Technology Tracker by Yorgo P. Bougás, Confluence<1>"**.
 
-**Reasoning.** The unit that recurs across technological revolutions is Perez's *great surge* — the 40-to-60-year process by which a revolution and its paradigm propagate across the economy. A name built on "surge" applies to the current revolution and to any future one, whether it is a new surge or (as with AI) a leap inside an existing surge; it does not tie the product to AI, to code, or to this decade. "Monitor" says what the instrument does: it watches continuously, it does not pronounce once. A clock implies a face and a needle; a monitor implies an instrument panel with readings that update — which is what the heatmap, the parametric curve, and the dated log actually are. The subtitle carries the product category (General Purpose Technology Tracker) and the author (Yorgo P. Bougás) without putting either in the name itself. **Attribution rule (Yorgo, 22 November 2026):** the tracker is his personal work, not Confluence<1> intellectual property — it becomes the firm's only when it is useful and verified. Until then, every byline, subtitle, and page carries his name, not the firm's.
+**Reasoning.** The unit that recurs across technological revolutions is Perez's *great surge* — the 40-to-60-year process by which a revolution and its paradigm propagate across the economy. A name built on "surge" applies to the current revolution and to any future one, whether it is a new surge or (as with AI) a leap inside an existing surge; it does not tie the product to AI, to code, or to this decade. "Monitor" says what the instrument does: it watches continuously, it does not pronounce once. A clock implies a face and a needle; a monitor implies an instrument panel with readings that update — which is what the heatmap, the parametric curve, and the dated log actually are. The subtitle carries the product category (General Purpose Technology Tracker) and the author (Yorgo P. Bougás) without putting either in the name itself. **Attribution rule (Yorgo, 22 November 2026):** the tracker is his personal work, not Confluence<1> intellectual property — it becomes the firm's only when it is useful and verified. Until then, every byline, subtitle, and page carries his name, not the firm's. **Attribution update (Yorgo, 25 November 2026):** Confluence<1> is the affiliation on the byline — "Yorgo P. Bougás, Confluence<1>" — and nothing more. The tracker remains Yorgo P. Bougás's personal work, not Confluence<1> intellectual property; it becomes the firm's only when it is useful and verified, by his decision.
 
 **Alternatives recorded:**
 - **The Paradigm Tracker** — the techno-economic paradigm is the other recurring unit in Perez. Accurate, but "paradigm" is the more abstract term and the less evocative one; it also collides with the word's loose everyday use.
@@ -977,4 +977,4 @@ Every conflict, discrepancy, or correction between Gemini's research and the v1 
 
 ---
 
-*End of document. v2 (general-purpose-technology-tracker-2026-11-22.md) is the model document this whitepaper is drawn from; the v1 clock draft (solow-perez-clock-2026-11-22.md) is the research predecessor. The Surge Monitor — A General Purpose Technology Tracker, by Yorgo P. Bougás.*
+*End of document. v2 (general-purpose-technology-tracker-2026-11-22.md) is the model document this whitepaper is drawn from; the v1 clock draft (solow-perez-clock-2026-11-22.md) is the research predecessor. The Surge Monitor — A General Purpose Technology Tracker, by Yorgo P. Bougás, Confluence<1>.*
