@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI SITREP — Parametric Technology Adoption & P&L Cycle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#0B0F17',
+            panel: '#111827',
+            panelBorder: '#1F2937',
+            cyanGlow: '#38BDF8',
+            amberAlert: '#F59E0B',
+            crimsonDrag: '#EF4444',
+            emeraldGain: '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0B0F17;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Custom Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #1E293B;
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #38BDF8;
+      cursor: pointer;
+      border: 2px solid #0B0F17;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #7DD3FC;
+    }
+    input[type="range"].amber-slider::-webkit-slider-thumb {
+      background: #F59E0B;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    }
+    input[type="range"].purple-slider::-webkit-slider-thumb {
+      background: #A855F7;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+    }
+    input[type="range"].emerald-slider::-webkit-slider-thumb {
+      background: #10B981;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    .grid-bg {
+      background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="min-h-screen flex flex-col bg-obsidian text-gray-100 selection:bg-sky-500 selection:text-white">
+<div style="position:static;top:0;z-index:9999;background:#b3543f;color:#fff;font:600 15px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">QA &mdash; review copy, not the live report &middot; <a href="../index.html" style="color:#fff;text-decoration:underline">live report &rarr;</a></div>
+
+
+  <!-- Top Navigation / Intelligence Header -->
+  <header id="appHeader" class="border-b border-gray-800/90 bg-[#0D131F]/95 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold tracking-widest uppercase text-sky-400">CI SITREP // TELEMETRY MODEL</span>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              PEREZ · SOLOW · BRYNJOLFSSON · ROGERS · WARDLEY
+            </span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Parametric Technology Adoption &amp; Enterprise P&amp;L Cycle</h1>
+          <p class="text-xs text-gray-400 mt-0.5">by Yorgo P. Bougás</p>
+        </div>
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <a href="sitrep.html" class="px-3 py-2 rounded-lg text-xs font-medium bg-gray-800/80 hover:bg-gray-700 text-gray-200 border border-gray-700 transition flex items-center gap-1.5" title="Back to the CI SITREP report">
+          <span>&larr; CI SITREP</span>
+        </a>
+        <button id="methodologyToggleBtn" class="px-3 py-2 rounded-lg text-xs font-medium bg-indigo-950/60 hover:bg-indigo-900/70 text-indigo-300 border border-indigo-500/30 transition flex items-center gap-1.5" title="View Academic & Theoretical Lineage">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+          <span>Methodology &amp; Lineage</span>
+        </button>
+
+        <button id="toggleBaselineBtn" class="px-3 py-2 rounded-lg text-xs font-medium bg-gray-800/80 hover:bg-gray-700 text-gray-200 border border-gray-700 transition flex items-center gap-1.5" title="Switch Historical Reference Curve">
+          <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+          <span id="baselineBtnLabel">Baseline: Railroads (40 Yr)</span>
+        </button>
+
+        <button id="presentationToggleBtn" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-gray-800 hover:bg-gray-700 text-sky-300 border border-sky-500/30 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+          </svg>
+          <span id="presentationBtnText">Clean Export View</span>
+        </button>
+
+        <button id="downloadPngBtn" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-lg shadow-sky-500/20 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          <span>Download PNG</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating Exit Presentation Mode Banner (Hidden by default) -->
+  <div id="exitPresentationBar" class="hidden fixed top-4 right-4 z-50 flex items-center gap-2 bg-gray-900/90 backdrop-blur border border-gray-700 px-3.5 py-2 rounded-xl shadow-2xl">
+    <span class="text-xs font-mono text-gray-400">Clean Screenshot Mode</span>
+    <button id="downloadPngFloatingBtn" class="px-2.5 py-1 rounded bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold transition">
+      Save PNG
+    </button>
+    <button id="exitPresentationBtn" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-medium border border-gray-600 transition">
+      Exit View
+    </button>
+  </div>
+
+  <!-- Collapsible Methodology & Theoretical Lineage Drawer -->
+  <section id="methodologyDrawer" class="hidden border-b border-indigo-500/30 bg-[#0C1220]/95 backdrop-blur-md shadow-2xl">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-5">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-indigo-400">THEORETICAL ARCHITECTURE &amp; LINEAGE</span>
+            <span class="px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 font-mono text-[10px] text-indigo-300">5-FRAMEWORK SYNTHESIS</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-0.5">How CI SITREP Translates Economic &amp; Diffusion Theory into Executive P&amp;L Telemetry</h3>
+        </div>
+        <button id="closeMethodologyBtn" class="px-3 py-1.5 rounded-lg bg-gray-800/90 hover:bg-gray-700 text-xs font-medium text-gray-300 border border-gray-700 transition flex items-center gap-1.5">
+          <span>Close Lineage</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3">
+        <!-- 1. Carlota Perez -->
+        <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-sky-400">01 // MACRO STAGES (1–4)</span>
+              <span class="font-mono text-[10px] text-gray-500">Perez (2002)</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">Installation vs. Deployment</div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              Derived from <span class="text-gray-200 font-medium">Carlota Perez’s</span> <em>Technological Revolutions and Financial Capital</em>. Separates the capital-frenzy buildout ("Shipyard Boom") from the Turning Point shakeout and broad enterprise Deployment.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-sky-300">
+            Maps to: 4 Cycle Zones
+          </div>
+        </div>
+
+        <!-- 2. Robert Solow -->
+        <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-400">02 // DUAL-CURVE GAP</span>
+              <span class="font-mono text-[10px] text-gray-500">Solow (1987)</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">The Productivity Paradox</div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              Operationalizes <span class="text-gray-200 font-medium">Robert Solow’s</span> observation that capability and CapEx appear everywhere long before showing up in net productivity or corporate margin statistics.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-cyan-300">
+            Maps to: CapEx vs. P&amp;L Spread
+          </div>
+        </div>
+
+        <!-- 3. Erik Brynjolfsson -->
+        <div class="rounded-xl bg-[#111827]/90 border border-amber-500/30 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-400">03 // GOVERNANCE TAX (β)</span>
+              <span class="font-mono text-[10px] text-gray-500">Brynjolfsson (2021)</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">The Productivity J-Curve</div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              Models <span class="text-gray-200 font-medium">Brynjolfsson, Rock &amp; Syverson’s</span> intangible complementary investment drag: code scanning, agentic guardrails, and QA overhead depress net P&amp;L below 0% before yielding returns.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-amber-300">
+            Maps to: Stage 2 Trough &amp; β Knob
+          </div>
+        </div>
+
+        <!-- 4. Everett Rogers -->
+        <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-purple-400">04 // TIMELINE &amp; LAG (α, δ)</span>
+              <span class="font-mono text-[10px] text-gray-500">Rogers / Diffusion</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">Rail Complementarity &amp; Friction</div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              Contrasts <span class="text-gray-200 font-medium">installed digital rails (α)</span>—compressing a 40-yr railroad buildout into ~8 yrs—against <span class="text-gray-200 font-medium">organizational &amp; regulatory friction (δ)</span> that moves at human speed.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-purple-300">
+            Maps to: α &amp; δ Reality Knobs
+          </div>
+        </div>
+
+        <!-- 5. Simon Wardley & Chris Dixon -->
+        <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-400">05 // SHAKEOUT &amp; MOATS (γ)</span>
+              <span class="font-mono text-[10px] text-gray-500">Wardley / Dixon</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1">Commoditization &amp; Infra-App Cycle</div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              Integrates <span class="text-gray-200 font-medium">Simon Wardley’s</span> value-chain evolution and <span class="text-gray-200 font-medium">Chris Dixon’s</span> Infra-App loop: base models commoditize while orchestration and deterministic audit layers capture durable margin.
+            </p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 font-mono text-[10px] text-emerald-300">
+            Maps to: γ Knob &amp; Stage 3–4
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 py-5 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+    <!-- LEFT / MAIN VISUALIZATION STAGE (8 cols in normal mode, 12 cols in presentation mode) -->
+    <section id="chartSection" class="lg:col-span-8 flex flex-col gap-4">
+
+      <!-- Canvas Card -->
+      <div id="captureFrame" class="rounded-2xl bg-[#0E1420] border border-gray-800/90 shadow-2xl overflow-hidden flex flex-col">
+        <!-- Chart Top Title Bar (Included in Export) -->
+        <div class="px-5 pt-4 pb-3 border-b border-gray-800/80 flex flex-wrap items-center justify-between gap-3 bg-[#101726]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              <span id="chartSubtitleBadge" class="font-mono text-[11px] font-semibold tracking-wider uppercase text-amber-400">
+                CI SITREP DIAGNOSTIC // CREATED INTELLIGENCE (2023–2031 EST.)
+              </span>
+            </div>
+            <h2 id="chartMainTitle" class="text-lg sm:text-xl font-bold text-white mt-0.5">
+              Installation vs. P&amp;L Deployment: The Governance Tax J-Curve
+            </h2>
+          </div>
+
+          <!-- Legend Pills -->
+          <div class="flex flex-wrap items-center gap-3 text-xs font-medium">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3.5 h-1 rounded-full bg-sky-400 inline-block"></span>
+              <span class="text-gray-200">CapEx &amp; Capability Velocity</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3.5 h-1 rounded-full bg-emerald-400 inline-block"></span>
+              <span class="text-gray-200">Enterprise Net P&amp;L Capture</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3.5 h-0.5 border-t-2 border-dashed border-gray-400 inline-block"></span>
+              <span id="legendBaselineText" class="text-gray-400">Railroads Baseline (40 Yr)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Canvas Container -->
+        <div id="canvasWrapper" class="relative w-full h-[430px] sm:h-[490px] grid-bg select-none">
+          <canvas id="cycleCanvas" class="w-full h-full block cursor-crosshair"></canvas>
+
+          <!-- Interactive Hover Tooltip -->
+          <div id="chartTooltip" class="pointer-events-none hidden absolute z-20 w-64 rounded-xl bg-gray-950/95 border border-gray-700/90 p-3 shadow-2xl backdrop-blur-md text-xs">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-1.5 mb-2">
+              <span id="ttStage" class="font-mono font-bold text-amber-400 uppercase text-[10px]">STAGE 2: GOVERNANCE TAX</span>
+              <span id="ttProgress" class="font-mono text-gray-400">34% · ~2026.2</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex justify-between">
+                <span class="text-gray-400">Capability / CapEx Index:</span>
+                <span id="ttCap" class="font-mono font-semibold text-sky-400">+68%</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-400">Enterprise Net P&amp;L:</span>
+                <span id="ttPnl" class="font-mono font-semibold text-rose-400">-22%</span>
+              </div>
+              <div class="flex justify-between">
+                <span id="ttBaseLabel" class="text-gray-400">Railroads P&amp;L (40y):</span>
+                <span id="ttBase" class="font-mono text-gray-300">-8%</span>
+              </div>
+            </div>
+            <p id="ttNote" class="mt-2 pt-1.5 border-t border-gray-800/80 text-[11px] text-gray-400 leading-snug">
+              Scanning &amp; guardrail overhead depresses net margin despite rapid output gains.
+            </p>
+          </div>
+        </div>
+
+        <!-- Parameter Footnote Strip inside Chart Card (Great for LinkedIn Screenshots) -->
+      <div class="px-5 py-2.5 bg-[#0B101B] border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-gray-400">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span>α Rail Readiness: <strong id="stripAlpha" class="text-sky-400">90%</strong></span>
+          <span>β Verification Tax: <strong id="stripBeta" class="text-amber-400">72%</strong></span>
+          <span>δ Institutional Lag: <strong id="stripDelta" class="text-purple-400">4.5 Yrs</strong></span>
+          <span>γ Concentration: <strong id="stripGamma" class="text-emerald-400">High (82%)</strong></span>
+        </div>
+        <button id="footnoteLineageLink" class="text-left sm:text-right text-[10.5px] text-indigo-300/90 hover:text-indigo-200 transition flex items-center gap-1.5 group">
+          <span class="underline decoration-dotted underline-offset-4">Lineage: Perez · Solow · Brynjolfsson · Rogers · Wardley/Dixon</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 group-hover:bg-indigo-500/25">Expand</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Executive KPI & P&L Mandate Strip below Chart -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+      <!-- KPI 1: Cycle Duration -->
+      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Compressed Cycle Span</span>
+          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">α + δ</span>
+        </div>
+        <div id="kpiDuration" class="text-2xl font-bold font-mono text-white mt-1.5">8.1 Years</div>
+        <div id="kpiDurationSub" class="text-xs text-gray-400 mt-1">4.9x faster than Railroads (40y)</div>
+      </div>
+
+      <!-- KPI 2: Governance Tax Trough & Breakeven -->
+      <div class="rounded-xl bg-[#111827]/90 border border-gray-800 p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-gray-400">Governance Tax Trough</span>
+          <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">J-CURVE</span>
+        </div>
+        <div class="flex items-baseline gap-2.5 mt-1.5">
+          <span id="kpiTrough" class="text-2xl font-bold font-mono text-rose-400">-26.4%</span>
+          <span class="text-xs font-mono text-gray-400">Breakeven: <strong id="kpiBreakeven" class="text-emerald-400">~2027.5</strong></span>
+        </div>
+        <div id="kpiBreakevenSub" class="text-xs text-gray-400 mt-1">At 55% cycle progress</div>
+      </div>
+
+      <!-- KPI 3: Active Stage P&L Mandate -->
+      <div class="rounded-xl bg-gradient-to-br from-[#131C2E] to-[#0F172A] border border-amber-500/35 p-4 flex flex-col justify-between shadow-lg shadow-amber-500/5">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10.5px] font-bold uppercase tracking-wider text-amber-400">Executive P&amp;L Mandate</span>
+          <span id="kpiStageTag" class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">STAGE 2 · ~2025.8</span>
+        </div>
+        <div id="kpiMandateTitle" class="text-sm font-bold text-white mt-1.5">Audit TCO, Not Seat Price</div>
+        <p id="kpiMandateDesc" class="text-[11.5px] text-gray-300 mt-1 leading-snug">
+          Budget $1 for code scanning, guardrails &amp; outage prevention for every $1 spent on CI generation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT / EXECUTIVE CONTROL SIDEBAR (4 cols) -->
+  <aside id="controlSidebar" class="lg:col-span-4 flex flex-col gap-4">
+
+    <!-- Historical Era Presets -->
+    <div class="rounded-2xl bg-[#111827] border border-gray-800 p-4">
+      <div class="flex items-center justify-between mb-2.5">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-300">Historical Era Calibration</span>
+        <span class="text-[10px] font-mono text-gray-500">PRESETS</span>
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <button data-preset="ci_current" class="preset-btn px-2.5 py-2 rounded-xl border border-sky-500/60 bg-sky-500/10 text-left transition hover:border-sky-400">
+          <div class="text-[11px] font-bold text-white">CI (2026)</div>
+          <div class="text-[10px] font-mono text-sky-400 mt-0.5">~8 Yr Cycle</div>
+        </button>
+        <button data-preset="pc_internet" class="preset-btn px-2.5 py-2 rounded-xl border border-gray-700/80 bg-gray-800/40 text-left transition hover:border-gray-600">
+          <div class="text-[11px] font-bold text-gray-200">PC / Web</div>
+          <div class="text-[10px] font-mono text-gray-400 mt-0.5">1995 · 20 Yr</div>
+        </button>
+        <button data-preset="railroads" class="preset-btn px-2.5 py-2 rounded-xl border border-gray-700/80 bg-gray-800/40 text-left transition hover:border-gray-600">
+          <div class="text-[11px] font-bold text-gray-200">Railroads</div>
+          <div class="text-[10px] font-mono text-gray-400 mt-0.5">1840s · 40 Yr</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reality Knobs Panel -->
+    <div class="rounded-2xl bg-[#111827] border border-gray-800 p-4 space-y-5">
+      <div class="border-b border-gray-800 pb-2.5 flex items-center justify-between">
+        <div>
+          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Parametric Reality Knobs</h3>
+          <p class="text-[11px] text-gray-400 mt-0.5">Adjust structural friction vs. physical buildout eras</p>
+        </div>
+        <button id="resetKnobsBtn" class="text-[11px] font-mono text-sky-400 hover:text-sky-300 underline">Reset</button>
+      </div>
+
+      <!-- Knob 1: Rail Readiness -->
+      <div>
+        <div class="flex justify-between items-baseline mb-1">
+          <label for="sliderAlpha" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
+            <span>1. Rail Readiness <span class="font-mono text-sky-400">(α)</span></span>
+            <span class="group relative inline-flex items-center cursor-help">
+              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-sky-300/90 group-hover:border-sky-500/50 transition">Perez / Installed Base</span>
+              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                <strong class="text-sky-400 block mb-0.5">Carlota Perez / Installed Base:</strong> Measures existing digital rails (cloud, fiber, endpoints) vs. greenfield physical capex (tracks, power grids).
+              </span>
+            </span>
+          </label>
+          <span id="valAlpha" class="font-mono text-xs font-bold text-sky-400">90% (Digital/API)</span>
+        </div>
+        <input id="sliderAlpha" type="range" min="10" max="100" value="90" />
+        <p class="text-[11px] text-gray-400 mt-1">
+          Existing cloud &amp; fiber rails compress a 40-yr physical buildout into ~7–10 years.
+        </p>
+      </div>
+
+      <!-- Knob 2: Verification Overhead -->
+      <div>
+        <div class="flex justify-between items-baseline mb-1">
+          <label for="sliderBeta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
+            <span>2. Verification Overhead <span class="font-mono text-amber-400">(β)</span></span>
+            <span class="group relative inline-flex items-center cursor-help">
+              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-amber-300/90 group-hover:border-amber-500/50 transition">Brynjolfsson / J-Curve Drag</span>
+              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                <strong class="text-amber-400 block mb-0.5">Erik Brynjolfsson / Productivity J-Curve:</strong> Intangible complementary capital drag—code scanning, guardrails, and QA remediation depress net P&amp;L before gains materialize.
+              </span>
+            </span>
+          </label>
+          <span id="valBeta" class="font-mono text-xs font-bold text-amber-400">72% (Heavy Scan)</span>
+        </div>
+        <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" value="72" />
+        <p class="text-[11px] text-gray-400 mt-1">
+          Code scanning, agentic guardrails &amp; outage prevention deepen the Stage 2 P&amp;L trough.
+        </p>
+      </div>
+
+      <!-- Knob 3: Institutional Absorption Lag -->
+      <div>
+        <div class="flex justify-between items-baseline mb-1">
+          <label for="sliderDelta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
+            <span>3. Institutional Lag <span class="font-mono text-purple-400">(δ)</span></span>
+            <span class="group relative inline-flex items-center cursor-help">
+              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-purple-300/90 group-hover:border-purple-500/50 transition">Rogers / Org Friction</span>
+              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                <strong class="text-purple-400 block mb-0.5">Everett Rogers / Diffusion Friction:</strong> Models human-speed organizational, legal, and regulatory absorption lag against silicon-speed model deployment.
+              </span>
+            </span>
+          </label>
+          <span id="valDelta" class="font-mono text-xs font-bold text-purple-400">4.5 Years</span>
+        </div>
+        <input id="sliderDelta" class="purple-slider" type="range" min="1" max="15" step="0.5" value="4.5" />
+        <p class="text-[11px] text-gray-400 mt-1">
+          Tech scales at silicon speed; legal liability, auditability &amp; org redesign move at human speed.
+        </p>
+      </div>
+
+      <!-- Knob 4: Vendor Concentration -->
+      <div>
+        <div class="flex justify-between items-baseline mb-1">
+          <label for="sliderGamma" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5 flex-wrap">
+            <span>4. Vendor Concentration <span class="font-mono text-emerald-400">(γ)</span></span>
+            <span class="group relative inline-flex items-center cursor-help">
+              <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-emerald-300/90 group-hover:border-emerald-500/50 transition">Wardley / Value Chain</span>
+              <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-64 p-2.5 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                <strong class="text-emerald-400 block mb-0.5">Simon Wardley / Chris Dixon:</strong> Value-chain commoditization and Infra-App cycles. Hyperscaler concentration buffers collapse while squeezing middleware wrappers.
+              </span>
+            </span>
+          </label>
+          <span id="valGamma" class="font-mono text-xs font-bold text-emerald-400">82% (Oligopoly)</span>
+        </div>
+        <input id="sliderGamma" class="emerald-slider" type="range" min="15" max="95" value="82" />
+        <p class="text-[11px] text-gray-400 mt-1">
+          Hyperscaler concentration buffers total collapse while squeezing middleware wrapper margins.
+        </p>
+      </div>
+          <button id="footnoteLineageLink" class="text-left sm:text-right text-[10.5px] text-gray-400 hover:text-indigo-300 transition underline decoration-dotted underline-offset-4">
+            Lineage: Perez (Cycles) · Solow (Paradox) · Brynjolfsson (J-Curve) · Rogers (Diffusion) · Wardley (Commoditization)
+          </button>
+        </div>
+      </div>
+
+      <!-- Reality Knobs Panel -->
+      <div class="rounded-2xl bg-[#111827] border border-gray-800 p-4 space-y-5">
+        <div class="border-b border-gray-800 pb-2.5 flex items-center justify-between">
+          <div>
+            <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Parametric Reality Knobs</h3>
+            <p class="text-[11px] text-gray-400 mt-0.5">Adjust structural friction vs. physical buildout eras</p>
+          </div>
+          <button id="resetKnobsBtn" class="text-[11px] font-mono text-sky-400 hover:text-sky-300 underline">Reset</button>
+        </div>
+
+        <!-- Knob 1: Rail Readiness -->
+        <div>
+          <div class="flex justify-between items-baseline mb-1">
+            <label for="sliderAlpha" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5">
+              <span>1. Rail Readiness <span class="font-mono text-sky-400">(α)</span></span>
+              <span class="group relative inline-flex items-center cursor-help">
+                <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-gray-400 group-hover:text-sky-300 group-hover:border-sky-500/40 transition">Installed Base</span>
+                <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-60 p-2 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                  <strong class="text-sky-400 block mb-0.5">Academic Equivalent:</strong> Infrastructural Complementarity (Perez / Rogers). Measures existing digital rails vs. greenfield physical capex.
+                </span>
+              </span>
+            </label>
+            <span id="valAlpha" class="font-mono text-xs font-bold text-sky-400">90% (Digital/API)</span>
+          </div>
+          <input id="sliderAlpha" type="range" min="10" max="100" value="90" />
+          <p class="text-[11px] text-gray-400 mt-1">
+            Existing cloud &amp; fiber rails compress a 40-yr physical buildout into ~7–10 years.
+          </p>
+        </div>
+
+        <!-- Knob 2: Verification Overhead -->
+        <div>
+          <div class="flex justify-between items-baseline mb-1">
+            <label for="sliderBeta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5">
+              <span>2. Verification Overhead <span class="font-mono text-amber-400">(β)</span></span>
+              <span class="group relative inline-flex items-center cursor-help">
+                <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-gray-400 group-hover:text-amber-300 group-hover:border-amber-500/40 transition">J-Curve Drag</span>
+                <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-60 p-2 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                  <strong class="text-amber-400 block mb-0.5">Academic Equivalent:</strong> Intangible Complementary Capital (Brynjolfsson J-Curve) &amp; Asymmetric Verification Cost.
+                </span>
+              </span>
+            </label>
+            <span id="valBeta" class="font-mono text-xs font-bold text-amber-400">72% (Heavy Scan)</span>
+          </div>
+          <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" value="72" />
+          <p class="text-[11px] text-gray-400 mt-1">
+            Code scanning, agentic guardrails &amp; outage prevention deepen the Stage 2 P&amp;L trough.
+          </p>
+        </div>
+
+        <!-- Knob 3: Institutional Absorption Lag -->
+        <div>
+          <div class="flex justify-between items-baseline mb-1">
+            <label for="sliderDelta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5">
+              <span>3. Institutional Lag <span class="font-mono text-purple-400">(δ)</span></span>
+              <span class="group relative inline-flex items-center cursor-help">
+                <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-gray-400 group-hover:text-purple-300 group-hover:border-purple-500/40 transition">Org Friction</span>
+                <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-60 p-2 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                  <strong class="text-purple-400 block mb-0.5">Academic Equivalent:</strong> Organizational &amp; Regulatory Diffusion Friction (Rogers / Moore). Human-speed governance lag.
+                </span>
+              </span>
+            </label>
+            <span id="valDelta" class="font-mono text-xs font-bold text-purple-400">4.5 Years</span>
+          </div>
+          <input id="sliderDelta" class="purple-slider" type="range" min="1" max="15" step="0.5" value="4.5" />
+          <p class="text-[11px] text-gray-400 mt-1">
+            Tech scales at silicon speed; legal liability, auditability &amp; org redesign move at human speed.
+          </p>
+        </div>
+
+        <!-- Knob 4: Vendor Concentration -->
+        <div>
+          <div class="flex justify-between items-baseline mb-1">
+            <label for="sliderGamma" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5">
+              <span>4. Vendor Concentration <span class="font-mono text-emerald-400">(γ)</span></span>
+              <span class="group relative inline-flex items-center cursor-help">
+                <span class="px-1.5 py-0.2 rounded bg-gray-800 border border-gray-700 font-mono text-[9.5px] text-gray-400 group-hover:text-emerald-300 group-hover:border-emerald-500/40 transition">Value Chain</span>
+                <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full left-0 mb-1.5 w-60 p-2 rounded-lg bg-gray-950 border border-gray-700 shadow-xl text-[10.5px] font-normal text-gray-300 z-30 leading-snug">
+                  <strong class="text-emerald-400 block mb-0.5">Academic Equivalent:</strong> Oligopolistic CapEx &amp; Commoditization Axis (Wardley Mapping / Dixon Infra-App Cycle).
+                </span>
+              </span>
+            </label>
+            <span id="valGamma" class="font-mono text-xs font-bold text-emerald-400">82% (Oligopoly)</span>
+          </div>
+          <input id="sliderGamma" class="emerald-slider" type="range" min="15" max="95" value="82" />
+          <p class="text-[11px] text-gray-400 mt-1">
+            Hyperscaler concentration buffers total collapse while squeezing middleware wrapper margins.
+          </p>
+        </div>
+
+        <!-- Knob 5: Current Market Position Marker -->
+        <div class="pt-3 border-t border-gray-800">
+          <div class="flex justify-between items-baseline mb-1">
+            <label for="sliderPosition" class="text-xs font-semibold text-amber-300">
+              "WE ARE HERE" Telemetry Marker
+            </label>
+            <span id="valPosition" class="font-mono text-xs font-bold text-amber-300">34% (Late Stage 2)</span>
+          </div>
+          <input id="sliderPosition" class="amber-slider" type="range" min="5" max="95" value="34" />
+          <p class="text-[11px] text-gray-400 mt-1">
+            Slide to simulate executive P&amp;L mandates across each stage of the cycle.
+          </p>
+        </div>
+      </div>
+
+      <!-- Synthesis Methodology Note -->
+      <div class="rounded-xl bg-[#0E1420] border border-gray-800/80 p-3.5 text-[11px] text-gray-400 leading-relaxed flex flex-col gap-2">
+        <div>
+          <strong class="text-gray-200">Model Architecture:</strong> Synthesizes <span class="text-gray-200">Carlota Perez’s</span> Installation/Deployment phases, <span class="text-gray-200">Robert Solow’s</span> Productivity Paradox, <span class="text-gray-200">Erik Brynjolfsson’s</span> Productivity J-Curve, <span class="text-gray-200">Everett Rogers’</span> Diffusion Friction, and <span class="text-gray-200">Simon Wardley’s</span> Commoditization Axis.
+        </div>
+        <button id="sidebarLineageBtn" class="self-start text-[11px] font-mono text-indigo-400 hover:text-indigo-300 underline underline-offset-2">
+          Inspect full parameter-to-theory mapping →
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    /**
+     * CI SITREP Parametric Technology Adoption & Enterprise P&L Cycle Engine
+     * Renders an interactive, high-DPI HTML5 Canvas chart with real-time parameter adjustments,
+     * historical baseline overlays, hover diagnostics, and clean PNG export.
+     */
+    (function () {
+      const canvas = document.getElementById('cycleCanvas');
+      const ctx = canvas.getContext('2d');
+      const canvasWrapper = document.getElementById('canvasWrapper');
+      const tooltip = document.getElementById('chartTooltip');
+
+      // State
+      const state = {
+        alpha: 90,        // Rail Readiness (10..100%)
+        beta: 72,         // Verification Overhead (10..100%)
+        delta: 4.5,       // Institutional Lag (1..15 yrs)
+        gamma: 82,        // Vendor Concentration (15..95%)
+        position: 34,     // Current Cycle % (5..95%)
+        baselineType: 'railroads', // 'railroads' (40y) or 'pc' (20y)
+        startYear: 2023,
+        eraName: 'CREATED INTELLIGENCE (2023–2031 EST.)',
+        presentationMode: false,
+        hoverX: null
+      };
+
+      const presets = {
+        ci_current: {
+          alpha: 90,
+          beta: 72,
+          delta: 4.5,
+          gamma: 82,
+          position: 34,
+          startYear: 2023,
+          eraName: 'CREATED INTELLIGENCE (2023–2031 EST.)'
+        },
+        ci_friction: {
+          alpha: 88,
+          beta: 92,
+          delta: 7.0,
+          gamma: 86,
+          position: 38,
+          startYear: 2023,
+          eraName: 'CI: HIGH GOVERNANCE FRICTION SCENARIO'
+        },
+        pc_internet: {
+          alpha: 52,
+          beta: 42,
+          delta: 8.5,
+          gamma: 48,
+          position: 55,
+          startYear: 1982,
+          eraName: 'PERSONAL COMPUTERS & WEB (1982–2002)'
+        },
+        railroads: {
+          alpha: 15,
+          beta: 28,
+          delta: 13.5,
+          gamma: 25,
+          position: 48,
+          startYear: 1840,
+          eraName: 'RAILROAD INFRASTRUCTURE ERA (1840–1880)'
+        }
+      };
+
+      // DOM References
+      const sliderAlpha = document.getElementById('sliderAlpha');
+      const sliderBeta = document.getElementById('sliderBeta');
+      const sliderDelta = document.getElementById('sliderDelta');
+      const sliderGamma = document.getElementById('sliderGamma');
+      const sliderPosition = document.getElementById('sliderPosition');
+
+      // Compute derived cycle metrics
+      function getCycleMetrics() {
+        // Total duration in years:
+        // Heavy physical rails (alpha=10) -> ~42 yrs; Full digital rails (alpha=100) -> ~6.5 yrs, adjusted slightly by institutional lag
+        const baseYears = 44 - (state.alpha / 100) * 37.5;
+        const lagFactor = (state.delta - 4.5) * 0.35;
+        const totalYears = Math.max(5.5, Math.min(45, baseYears + lagFactor));
+
+        const baselineYears = state.baselineType === 'railroads' ? 40 : 20;
+        const speedMultiplier = (baselineYears / totalYears).toFixed(1);
+
+        // Calculate P&L breakeven % (where P&L curve crosses 0% after Stage 2 trough)
+        let breakevenPct = 100;
+        let maxTrough = 0;
+        for (let p = 15; p <= 95; p += 0.5) {
+          const pnl = evalPnlCurve(p);
+          if (pnl < maxTrough) maxTrough = pnl;
+          if (p > 25 && pnl >= 0 && breakevenPct === 100) {
+            breakevenPct = p;
+          }
+        }
+
+        const breakevenYear = (state.startYear + (breakevenPct / 100) * totalYears).toFixed(1);
+
+        return {
+          totalYears,
+          baselineYears,
+          speedMultiplier,
+          maxTrough,
+          breakevenPct: Math.round(breakevenPct),
+          breakevenYear
+        };
+      }
+
+      // Curve Evaluation Functions (p in 0..100)
+      function evalCapabilityCurve(p) {
+        // Rapid S-curve driven by Rail Readiness (alpha)
+        const steepness = 0.085 + (state.alpha / 100) * 0.045;
+        const midpoint = 36 - (state.alpha / 100) * 10;
+        const raw = 1 / (1 + Math.exp(-steepness * (p - midpoint)));
+        // Normalize 0..100 -> 0..142%
+        const minVal = 1 / (1 + Math.exp(-steepness * (0 - midpoint)));
+        const maxVal = 1 / (1 + Math.exp(-steepness * (100 - midpoint)));
+        const norm = (raw - minVal) / (maxVal - minVal);
+        return norm * 142;
+      }
+
+      function evalPnlCurve(p) {
+        // Brynjolfsson J-Curve + Governance Tax + Shakeout Volatility + Deployment Surge
+        const t = p / 100;
+
+        // 1. Initial small pilot bump (0..15%)
+        const pilotBump = 7 * Math.exp(-Math.pow((p - 10) / 7, 2));
+
+        // 2. Governance Tax / Verification Trough centered around p = 32..42%
+        const troughCenter = 32 + (state.delta / 15) * 12;
+        const troughWidth = 13 + (state.delta / 15) * 7;
+        const troughDepth = 8 + (state.beta / 100) * 32; // -8% to -40%
+        const governanceDip = -troughDepth * Math.exp(-Math.pow((p - troughCenter) / troughWidth, 2));
+
+        // 3. Stage 3 Shakeout ripple around p = 52..62% (inversely damped by vendor concentration or sharpened as margin squeeze)
+        const shakeoutCenter = 56;
+        const shakeoutAmp = (1 - state.gamma / 120) * 9;
+        const shakeoutWave = -shakeoutAmp * Math.sin(((p - 48) / 16) * Math.PI) * Math.exp(-Math.pow((p - shakeoutCenter) / 9, 2));
+
+        // 4. Stage 4 Deployment Surge (delayed by institutional lag delta)
+        const inflection = 52 + (state.delta / 15) * 16;
+        const surgeSlope = 0.11 + (state.alpha / 100) * 0.03;
+        const surge = 132 / (1 + Math.exp(-surgeSlope * (p - inflection)));
+        const surgeZero = 132 / (1 + Math.exp(-surgeSlope * (0 - inflection)));
+
+        return pilotBump + governanceDip + shakeoutWave + (surge - surgeZero);
+      }
+
+      function evalBaselineCurve(p) {
+        // Historical reference curve (Railroads or PCs)
+        const isRail = state.baselineType === 'railroads';
+        const troughDepth = isRail ? 16 : 21;
+        const troughCenter = isRail ? 42 : 38;
+        const inflection = isRail ? 64 : 58;
+
+        const dip = -troughDepth * Math.exp(-Math.pow((p - troughCenter) / 16, 2));
+        const surge = 115 / (1 + Math.exp(-0.10 * (p - inflection)));
+        const surgeZero = 115 / (1 + Math.exp(-0.10 * (0 - inflection)));
+        return dip + (surge - surgeZero);
+      }
+
+      function getStageInfo(p) {
+        if (p < 22) {
+          return {
+            stageNum: 'STAGE 1',
+            name: 'Shipyard Boom (Installation)',
+            mandateTitle: 'Ring-Fence R&D Spend',
+            mandateDesc: 'Toolmakers capture all the profit. Cap experimental spend as R&D; keep unverified licenses out of core opex.'
+          };
+        } else if (p < 48) {
+          return {
+            stageNum: 'STAGE 2',
+            name: 'The Governance Tax (J-Curve Trough)',
+            mandateTitle: 'Audit TCO, Not Seat Price',
+            mandateDesc: 'Budget $1 for code scanning, guardrails & outage prevention for every $1 spent on CI generation.'
+          };
+        } else if (p < 68) {
+          return {
+            stageNum: 'STAGE 3',
+            name: 'The Shakeout (Turning Point)',
+            mandateTitle: 'Avoid Multi-Year Vendor Lock-In',
+            mandateDesc: 'Infrastructure outruns near-term cash flow. Preserve liquidity as point tools commoditize and prices drop.'
+          };
+        } else {
+          return {
+            stageNum: 'STAGE 4',
+            name: 'True P&L Capture (Deployment)',
+            mandateTitle: 'Re-Architect Core Workflows',
+            mandateDesc: 'Shift capital from buying tools to redesigning operations—eliminating legacy process friction for margin expansion.'
+          };
+        }
+      }
+
+      // Update UI Readouts & KPI Cards
+      function updateUI() {
+        const metrics = getCycleMetrics();
+        const stageInfo = getStageInfo(state.position);
+        const currentYear = (state.startYear + (state.position / 100) * metrics.totalYears).toFixed(1);
+
+        // Slider value labels
+        document.getElementById('valAlpha').textContent =
+          `${state.alpha}% (${state.alpha >= 75 ? 'Digital/API' : state.alpha >= 40 ? 'Hybrid' : 'Heavy Physical'})`;
+        document.getElementById('valBeta').textContent =
+          `${state.beta}% (${state.beta >= 65 ? 'Heavy Scan' : state.beta >= 35 ? 'Moderate' : 'Low Audit'})`;
+        document.getElementById('valDelta').textContent = `${state.delta.toFixed(1)} Years`;
+        document.getElementById('valGamma').textContent =
+          `${state.gamma}% (${state.gamma >= 70 ? 'Oligopoly' : state.gamma >= 40 ? 'Consolidating' : 'Fragmented'})`;
+        document.getElementById('valPosition').textContent = `${state.position}% (${stageInfo.stageNum})`;
+
+        // Strip labels
+        document.getElementById('stripAlpha').textContent = `${state.alpha}%`;
+        document.getElementById('stripBeta').textContent = `${state.beta}%`;
+        document.getElementById('stripDelta').textContent = `${state.delta.toFixed(1)} Yrs`;
+        document.getElementById('stripGamma').textContent = `${state.gamma}%`;
+
+        // Chart header badge
+        document.getElementById('chartSubtitleBadge').textContent =
+          `CI SITREP DIAGNOSTIC // ${state.eraName}`;
+
+        const baseLabel = state.baselineType === 'railroads' ? 'Railroads Baseline (40 Yr)' : 'PC / Internet Baseline (20 Yr)';
+        document.getElementById('legendBaselineText').textContent = baseLabel;
+        document.getElementById('baselineBtnLabel').textContent =
+          state.baselineType === 'railroads' ? 'Baseline: Railroads (40 Yr)' : 'Baseline: PC / Web (20 Yr)';
+
+        // KPI Cards
+        document.getElementById('kpiDuration').textContent = `${metrics.totalYears.toFixed(1)} Years`;
+        document.getElementById('kpiDurationSub').textContent =
+          state.baselineType === 'railroads'
+            ? `${metrics.speedMultiplier}x faster than Railroads (40y)`
+            : `${metrics.speedMultiplier}x faster than PC/Web (20y)`;
+
+        document.getElementById('kpiTrough').textContent = `${metrics.maxTrough.toFixed(1)}%`;
+        document.getElementById('kpiBreakeven').textContent = `~${metrics.breakevenYear}`;
+        document.getElementById('kpiBreakevenSub').textContent = `At ${metrics.breakevenPct}% cycle progress`;
+
+        document.getElementById('kpiStageTag').textContent = `${stageInfo.stageNum} · ~${currentYear}`;
+        document.getElementById('kpiMandateTitle').textContent = stageInfo.mandateTitle;
+        document.getElementById('kpiMandateDesc').textContent = stageInfo.mandateDesc;
+      }
+
+      // Render Canvas
+      function drawChart(targetCtx = ctx, width = null, height = null, isExport = false) {
+        const rect = canvasWrapper.getBoundingClientRect();
+        const W = width || rect.width;
+        const H = height || rect.height;
+
+        if (!isExport) {
+          const dpr = window.devicePixelRatio || 1;
+          canvas.width = Math.floor(W * dpr);
+          canvas.height = Math.floor(H * dpr);
+          targetCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        // Clear background
+        targetCtx.fillStyle = '#0E1420';
+        targetCtx.fillRect(0, 0, W, H);
+
+        // Chart padding
+        const pad = {
+          top: isExport ? 96 : 44,
+          right: 36,
+          bottom: isExport ? 84 : 52,
+          left: 62
+        };
+        const plotW = W - pad.left - pad.right;
+        const plotH = H - pad.top - pad.bottom;
+
+        // Y-axis range: -50% to +150% (total span = 200)
+        const yMin = -50;
+        const yMax = 150;
+        const toX = (p) => pad.left + (p / 100) * plotW;
+        const toY = (val) => pad.top + ((yMax - val) / (yMax - yMin)) * plotH;
+
+        const metrics = getCycleMetrics();
+
+        // If exporting PNG, draw header branding directly onto canvas
+        if (isExport) {
+          targetCtx.fillStyle = '#101726';
+          targetCtx.fillRect(0, 0, W, 74);
+          targetCtx.strokeStyle = '#1F2937';
+          targetCtx.lineWidth = 1;
+          targetCtx.beginPath();
+          targetCtx.moveTo(0, 74);
+          targetCtx.lineTo(W, 74);
+          targetCtx.stroke();
+
+          targetCtx.fillStyle = '#F59E0B';
+          targetCtx.font = '700 11px "JetBrains Mono", monospace';
+          targetCtx.fillText(`CI SITREP TELEMETRY // ${state.eraName}`, 28, 26);
+
+          targetCtx.fillStyle = '#FFFFFF';
+          targetCtx.font = '700 20px "Inter", sans-serif';
+          targetCtx.fillText('Installation vs. P&L Deployment: The Governance Tax J-Curve', 28, 54);
+
+          // Top-right Legend in Export
+          const legX = W - 490;
+          targetCtx.fillStyle = '#38BDF8';
+          targetCtx.fillRect(legX, 38, 16, 4);
+          targetCtx.fillStyle = '#E5E7EB';
+          targetCtx.font = '500 12px "Inter", sans-serif';
+          targetCtx.fillText('CapEx & Capability', legX + 22, 44);
+
+          targetCtx.fillStyle = '#10B981';
+          targetCtx.fillRect(legX + 150, 38, 16, 4);
+          targetCtx.fillStyle = '#E5E7EB';
+          targetCtx.fillText('Enterprise Net P&L', legX + 172, 44);
+
+          targetCtx.strokeStyle = '#9CA3AF';
+          targetCtx.setLineDash([4, 4]);
+          targetCtx.beginPath();
+          targetCtx.moveTo(legX + 300, 40);
+          targetCtx.lineTo(legX + 318, 40);
+          targetCtx.stroke();
+          targetCtx.setLineDash([]);
+          targetCtx.fillStyle = '#9CA3AF';
+          targetCtx.fillText(state.baselineType === 'railroads' ? 'Railroads (40y)' : 'PC / Web (20y)', legX + 324, 44);
+        }
+
+        // 1. Draw 4 Stage Background Zones
+        const stages = [
+          { start: 0, end: 22, label: '1. SHIPYARD BOOM', sub: 'Installation', color: 'rgba(56, 189, 248, 0.035)' },
+          { start: 22, end: 48, label: '2. GOVERNANCE TAX', sub: 'Scanning & Guardrails', color: 'rgba(245, 158, 11, 0.055)' },
+          { start: 48, end: 68, label: '3. THE SHAKEOUT', sub: 'Consolidation', color: 'rgba(168, 85, 247, 0.035)' },
+          { start: 68, end: 100, label: '4. TRUE P&L CAPTURE', sub: 'Deployment ROI', color: 'rgba(16, 185, 129, 0.045)' }
+        ];
+
+        stages.forEach((st, idx) => {
+          const x1 = toX(st.start);
+          const x2 = toX(st.end);
+          targetCtx.fillStyle = st.color;
+          targetCtx.fillRect(x1, pad.top, x2 - x1, plotH);
+
+          // Vertical stage divider
+          if (idx > 0) {
+            targetCtx.strokeStyle = 'rgba(75, 85, 99, 0.35)';
+            targetCtx.setLineDash([4, 4]);
+            targetCtx.lineWidth = 1;
+            targetCtx.beginPath();
+            targetCtx.moveTo(x1, pad.top);
+            targetCtx.lineTo(x1, pad.top + plotH);
+            targetCtx.stroke();
+            targetCtx.setLineDash([]);
+          }
+
+          // Stage Header Labels at top of plot
+          const centerX = (x1 + x2) / 2;
+          targetCtx.textAlign = 'center';
+          targetCtx.fillStyle = idx === 1 ? '#FBBF24' : '#9CA3AF';
+          targetCtx.font = '700 10px "JetBrains Mono", monospace';
+          targetCtx.fillText(st.label, centerX, pad.top + 16);
+
+          if (x2 - x1 > 85) {
+            targetCtx.fillStyle = 'rgba(156, 163, 175, 0.65)';
+            targetCtx.font = '400 10px "Inter", sans-serif';
+            targetCtx.fillText(st.sub, centerX, pad.top + 30);
+          }
+        });
+
+        // 2. Horizontal Gridlines & Y-Axis Labels
+        const yTicks = [-50, -25, 0, 25, 50, 75, 100, 125, 150];
+        targetCtx.textAlign = 'right';
+        targetCtx.textBaseline = 'middle';
+
+        yTicks.forEach((val) => {
+          const y = toY(val);
+          const isZero = val === 0;
+
+          targetCtx.strokeStyle = isZero ? 'rgba(243, 244, 246, 0.45)' : 'rgba(55, 65, 81, 0.35)';
+          targetCtx.lineWidth = isZero ? 1.5 : 1;
+          targetCtx.beginPath();
+          targetCtx.moveTo(pad.left, y);
+          targetCtx.lineTo(pad.left + plotW, y);
+          targetCtx.stroke();
+
+          targetCtx.fillStyle = isZero ? '#F9FAFB' : '#6B7280';
+          targetCtx.font = isZero ? '700 11px "JetBrains Mono", monospace' : '500 11px "JetBrains Mono", monospace';
+          targetCtx.fillText(`${val > 0 ? '+' : ''}${val}%`, pad.left - 10, y);
+        });
+
+        // Zero-line Tag ("P&L BREAKEVEN")
+        targetCtx.textAlign = 'left';
+        targetCtx.fillStyle = 'rgba(243, 244, 246, 0.65)';
+        targetCtx.font = '600 9.5px "JetBrains Mono", monospace';
+        targetCtx.fillText('NET P&L BREAKEVEN (0%)', pad.left + 8, toY(0) - 7);
+
+        // 3. X-Axis Ticks (Cycle % + Mapped Calendar Year)
+        targetCtx.textAlign = 'center';
+        targetCtx.textBaseline = 'top';
+        for (let p = 0; p <= 100; p += 20) {
+          const x = toX(p);
+          const mappedYear = Math.round(state.startYear + (p / 100) * metrics.totalYears);
+
+          targetCtx.strokeStyle = 'rgba(75, 85, 99, 0.4)';
+          targetCtx.beginPath();
+          targetCtx.moveTo(x, pad.top + plotH);
+          targetCtx.lineTo(x, pad.top + plotH + 5);
+          targetCtx.stroke();
+
+          targetCtx.fillStyle = '#9CA3AF';
+          targetCtx.font = '600 11px "JetBrains Mono", monospace';
+          targetCtx.fillText(`${p}%`, x, pad.top + plotH + 9);
+
+          targetCtx.fillStyle = '#6B7280';
+          targetCtx.font = '400 10px "JetBrains Mono", monospace';
+          targetCtx.fillText(`~${mappedYear}`, x, pad.top + plotH + 24);
+        }
+
+        // 4. Shaded Negative P&L Area (The Governance Tax J-Curve Trough)
+        targetCtx.save();
+        targetCtx.beginPath();
+        const zeroY = toY(0);
+        targetCtx.moveTo(toX(0), zeroY);
+        for (let p = 0; p <= 100; p += 0.5) {
+          const val = Math.min(0, evalPnlCurve(p));
+          targetCtx.lineTo(toX(p), toY(val));
+        }
+        targetCtx.lineTo(toX(100), zeroY);
+        targetCtx.closePath();
+        const negGrad = targetCtx.createLinearGradient(0, zeroY, 0, toY(-45));
+        negGrad.addColorStop(0, 'rgba(239, 68, 68, 0.05)');
+        negGrad.addColorStop(1, 'rgba(239, 68, 68, 0.34)');
+        targetCtx.fillStyle = negGrad;
+        targetCtx.fill();
+        targetCtx.restore();
+
+        // 5. Shaded Positive P&L Capture Area (Deployment ROI)
+        targetCtx.save();
+        targetCtx.beginPath();
+        targetCtx.moveTo(toX(0), zeroY);
+        for (let p = 0; p <= 100; p += 0.5) {
+          const val = Math.max(0, evalPnlCurve(p));
+          targetCtx.lineTo(toX(p), toY(val));
+        }
+        targetCtx.lineTo(toX(100), zeroY);
+        targetCtx.closePath();
+        const posGrad = targetCtx.createLinearGradient(0, toY(130), 0, zeroY);
+        posGrad.addColorStop(0, 'rgba(16, 185, 129, 0.28)');
+        posGrad.addColorStop(1, 'rgba(16, 185, 129, 0.02)');
+        targetCtx.fillStyle = posGrad;
+        targetCtx.fill();
+        targetCtx.restore();
+
+        // 6. Historical Baseline Dashed Curve
+        targetCtx.save();
+        targetCtx.strokeStyle = 'rgba(156, 163, 175, 0.65)';
+        targetCtx.lineWidth = 2;
+        targetCtx.setLineDash([6, 5]);
+        targetCtx.beginPath();
+        for (let p = 0; p <= 100; p += 1) {
+          const x = toX(p);
+          const y = toY(evalBaselineCurve(p));
+          if (p === 0) targetCtx.moveTo(x, y);
+          else targetCtx.lineTo(x, y);
+        }
+        targetCtx.stroke();
+        targetCtx.restore();
+
+        // 7. Curve A: Capital & Capability Velocity (Cyan/Sky)
+        targetCtx.save();
+        targetCtx.strokeStyle = '#38BDF8';
+        targetCtx.lineWidth = 3;
+        targetCtx.shadowColor = 'rgba(56, 189, 248, 0.35)';
+        targetCtx.shadowBlur = 10;
+        targetCtx.beginPath();
+        for (let p = 0; p <= 100; p += 0.5) {
+          const x = toX(p);
+          const y = toY(evalCapabilityCurve(p));
+          if (p === 0) targetCtx.moveTo(x, y);
+          else targetCtx.lineTo(x, y);
+        }
+        targetCtx.stroke();
+        targetCtx.restore();
+
+        // 8. Curve B: Enterprise Net P&L Capture (J-Curve: Crimson below 0, Emerald above 0)
+        targetCtx.save();
+        targetCtx.lineWidth = 3.5;
+        for (let p = 0.5; p <= 100; p += 0.5) {
+          const prevP = p - 0.5;
+          const v1 = evalPnlCurve(prevP);
+          const v2 = evalPnlCurve(p);
+          const avg = (v1 + v2) / 2;
+
+          targetCtx.strokeStyle = avg < 0 ? '#F87171' : '#10B981';
+          targetCtx.shadowColor = avg < 0 ? 'rgba(248, 113, 113, 0.35)' : 'rgba(16, 185, 129, 0.35)';
+          targetCtx.shadowBlur = 8;
+
+          targetCtx.beginPath();
+          targetCtx.moveTo(toX(prevP), toY(v1));
+          targetCtx.lineTo(toX(p), toY(v2));
+          targetCtx.stroke();
+        }
+        targetCtx.restore();
+
+        // 9. Callout Annotation on Trough Depth
+        let minPnl = 0;
+        let minP = 35;
+        for (let p = 15; p <= 60; p += 0.5) {
+          const v = evalPnlCurve(p);
+          if (v < minPnl) {
+            minPnl = v;
+            minP = p;
+          }
+        }
+        if (minPnl < -6) {
+          const tx = toX(minP);
+          const ty = toY(minPnl);
+          targetCtx.fillStyle = '#FCA5A5';
+          targetCtx.font = '600 10.5px "JetBrains Mono", monospace';
+          targetCtx.textAlign = 'center';
+          targetCtx.fillText(`GOVERNANCE TAX TROUGH (${minPnl.toFixed(0)}%)`, tx, ty + 16);
+        }
+
+        // 10. "WE ARE HERE" Vertical Marker & Telemetry Callout
+        const curX = toX(state.position);
+        const curCapY = toY(evalCapabilityCurve(state.position));
+        const curPnlVal = evalPnlCurve(state.position);
+        const curPnlY = toY(curPnlVal);
+
+        targetCtx.save();
+        targetCtx.strokeStyle = '#F59E0B';
+        targetCtx.lineWidth = 1.75;
+        targetCtx.setLineDash([4, 3]);
+        targetCtx.beginPath();
+        targetCtx.moveTo(curX, pad.top + 36);
+        targetCtx.lineTo(curX, pad.top + plotH);
+        targetCtx.stroke();
+        targetCtx.restore();
+
+        // Glowing nodes on both curves at current position
+        targetCtx.fillStyle = '#38BDF8';
+        targetCtx.beginPath();
+        targetCtx.arc(curX, curCapY, 5, 0, Math.PI * 2);
+        targetCtx.fill();
+
+        targetCtx.fillStyle = curPnlVal < 0 ? '#EF4444' : '#10B981';
+        targetCtx.beginPath();
+        targetCtx.arc(curX, curPnlY, 6, 0, Math.PI * 2);
+        targetCtx.fill();
+        targetCtx.strokeStyle = '#FFFFFF';
+        targetCtx.lineWidth = 2;
+        targetCtx.stroke();
+
+        // "WE ARE HERE" Badge Box
+        const badgeText = `WE ARE HERE (${state.position}%)`;
+        targetCtx.font = '700 10.5px "JetBrains Mono", monospace';
+        const badgeW = targetCtx.measureText(badgeText).width + 18;
+        const badgeH = 22;
+        let badgeX = curX - badgeW / 2;
+        badgeX = Math.max(pad.left + 4, Math.min(pad.left + plotW - badgeW - 4, badgeX));
+        const badgeY = pad.top + 40;
+
+        targetCtx.fillStyle = '#F59E0B';
+        targetCtx.beginPath();
+        targetCtx.roundRect(badgeX, badgeY, badgeW, badgeH, 5);
+        targetCtx.fill();
+
+        targetCtx.fillStyle = '#0B0F17';
+        targetCtx.textAlign = 'center';
+        targetCtx.textBaseline = 'middle';
+        targetCtx.fillText(badgeText, badgeX + badgeW / 2, badgeY + badgeH / 2 + 0.5);
+
+        // 11. Hover Crosshair (Interactive mode only)
+        if (!isExport && state.hoverX !== null && state.hoverX >= pad.left && state.hoverX <= pad.left + plotW) {
+          targetCtx.save();
+          targetCtx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+          targetCtx.lineWidth = 1;
+          targetCtx.beginPath();
+          targetCtx.moveTo(state.hoverX, pad.top);
+          targetCtx.lineTo(state.hoverX, pad.top + plotH);
+          targetCtx.stroke();
+          targetCtx.restore();
+        }
+
+        // Export Footer Watermark
+        if (isExport) {
+          targetCtx.fillStyle = '#0B101B';
+          targetCtx.fillRect(0, H - 46, W, 46);
+          targetCtx.strokeStyle = '#1F2937';
+          targetCtx.lineWidth = 1;
+          targetCtx.beginPath();
+          targetCtx.moveTo(0, H - 46);
+          targetCtx.lineTo(W, H - 46);
+          targetCtx.stroke();
+
+          targetCtx.fillStyle = '#9CA3AF';
+          targetCtx.font = '500 11px "JetBrains Mono", monospace';
+          targetCtx.textAlign = 'left';
+          targetCtx.textBaseline = 'middle';
+          targetCtx.fillText(
+            `PARAMETERS: α Rail Readiness ${state.alpha}% | β Verification Tax ${state.beta}% | δ Institutional Lag ${state.delta.toFixed(1)}y | γ Concentration ${state.gamma}%`,
+            28,
+            H - 29
+          );
+
+          targetCtx.fillStyle = '#6B7280';
+          targetCtx.font = '400 10px "Inter", sans-serif';
+          targetCtx.fillText(
+            'Theoretical Lineage: Carlota Perez (Tech Cycles) · Robert Solow (Productivity Paradox) · Erik Brynjolfsson (J-Curve) · Everett Rogers (Diffusion) · Simon Wardley (Value Chain)',
+            28,
+            H - 13
+          );
+
+          targetCtx.textAlign = 'right';
+          targetCtx.fillStyle = '#38BDF8';
+          targetCtx.font = '700 11px "JetBrains Mono", monospace';
+          targetCtx.fillText('CI SITREP // PARAMETRIC CYCLE', W - 28, H - 22);
+        }
+      }
+
+      // Mouse / Touch Hover Tooltip Handler
+      function handlePointerMove(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        const padLeft = 62;
+        const padRight = 36;
+        const plotW = rect.width - padLeft - padRight;
+
+        if (x < padLeft || x > padLeft + plotW || y < 20 || y > rect.height - 30) {
+          state.hoverX = null;
+          tooltip.classList.add('hidden');
+          drawChart();
+          return;
+        }
+
+        state.hoverX = x;
+        const p = Math.max(0, Math.min(100, ((x - padLeft) / plotW) * 100));
+        const metrics = getCycleMetrics();
+        const stage = getStageInfo(p);
+        const capVal = evalCapabilityCurve(p);
+        const pnlVal = evalPnlCurve(p);
+        const baseVal = evalBaselineCurve(p);
+        const yr = (state.startYear + (p / 100) * metrics.totalYears).toFixed(1);
+
+        document.getElementById('ttStage').textContent = `${stage.stageNum}: ${stage.name.split('(')[0].trim()}`;
+        document.getElementById('ttProgress').textContent = `${Math.round(p)}% · ~${yr}`;
+        document.getElementById('ttCap').textContent = `+${capVal.toFixed(1)}%`;
+
+        const ttPnl = document.getElementById('ttPnl');
+        ttPnl.textContent = `${pnlVal >= 0 ? '+' : ''}${pnlVal.toFixed(1)}%`;
+        ttPnl.className = `font-mono font-semibold ${pnlVal < 0 ? 'text-rose-400' : 'text-emerald-400'}`;
+
+        document.getElementById('ttBaseLabel').textContent =
+          state.baselineType === 'railroads' ? 'Railroads P&L (40y):' : 'PC / Web P&L (20y):';
+        document.getElementById('ttBase').textContent = `${baseVal >= 0 ? '+' : ''}${baseVal.toFixed(1)}%`;
+        document.getElementById('ttNote').textContent = stage.mandateDesc;
+
+        // Position tooltip cleanly inside wrapper
+        tooltip.classList.remove('hidden');
+        const ttW = 256;
+        const leftPos = x + 16 + ttW > rect.width ? x - ttW - 16 : x + 16;
+        const topPos = Math.max(12, Math.min(rect.height - 170, y - 40));
+        tooltip.style.left = `${leftPos}px`;
+        tooltip.style.top = `${topPos}px`;
+
+        drawChart();
+      }
+
+      canvas.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+      canvas.addEventListener('mouseleave', () => {
+        state.hoverX = null;
+        tooltip.classList.add('hidden');
+        drawChart();
+      });
+      canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+      canvas.addEventListener('touchend', () => {
+        state.hoverX = null;
+        tooltip.classList.add('hidden');
+        drawChart();
+      });
+
+      // Slider Event Listeners
+      function bindSliders() {
+        sliderAlpha.addEventListener('input', (e) => {
+          state.alpha = parseFloat(e.target.value);
+          clearPresetHighlight();
+          refreshAll();
+        });
+        sliderBeta.addEventListener('input', (e) => {
+          state.beta = parseFloat(e.target.value);
+          clearPresetHighlight();
+          refreshAll();
+        });
+        sliderDelta.addEventListener('input', (e) => {
+          state.delta = parseFloat(e.target.value);
+          clearPresetHighlight();
+          refreshAll();
+        });
+        sliderGamma.addEventListener('input', (e) => {
+          state.gamma = parseFloat(e.target.value);
+          clearPresetHighlight();
+          refreshAll();
+        });
+        sliderPosition.addEventListener('input', (e) => {
+          state.position = parseFloat(e.target.value);
+          refreshAll();
+        });
+      }
+
+      function clearPresetHighlight() {
+        document.querySelectorAll('.preset-btn').forEach((btn) => {
+          btn.classList.remove('border-sky-500/60', 'bg-sky-500/10');
+          btn.classList.add('border-gray-700/80', 'bg-gray-800/40');
+        });
+      }
+
+      function applyPreset(key) {
+        const p = presets[key];
+        if (!p) return;
+        state.alpha = p.alpha;
+        state.beta = p.beta;
+        state.delta = p.delta;
+        state.gamma = p.gamma;
+        state.position = p.position;
+        state.startYear = p.startYear;
+        state.eraName = p.eraName;
+
+        sliderAlpha.value = p.alpha;
+        sliderBeta.value = p.beta;
+        sliderDelta.value = p.delta;
+        sliderGamma.value = p.gamma;
+        sliderPosition.value = p.position;
+
+        clearPresetHighlight();
+        const activeBtn = document.querySelector(`[data-preset="${key}"]`);
+        if (activeBtn) {
+          activeBtn.classList.remove('border-gray-700/80', 'bg-gray-800/40');
+          activeBtn.classList.add('border-sky-500/60', 'bg-sky-500/10');
+        }
+        refreshAll();
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+      });
+
+      document.getElementById('resetKnobsBtn').addEventListener('click', () => applyPreset('ci_current'));
+
+      // Toggle Historical Baseline (Railroads 40y vs PC/Web 20y)
+      document.getElementById('toggleBaselineBtn').addEventListener('click', () => {
+        state.baselineType = state.baselineType === 'railroads' ? 'pc' : 'railroads';
+        refreshAll();
+      });
+
+      // Methodology & Theoretical Lineage Drawer Toggle
+      const methodologyDrawer = document.getElementById('methodologyDrawer');
+      function toggleMethodologyDrawer(forceState = null) {
+        const isCurrentlyHidden = methodologyDrawer.classList.contains('hidden');
+        const shouldOpen = forceState !== null ? forceState : isCurrentlyHidden;
+        if (shouldOpen) {
+          methodologyDrawer.classList.remove('hidden');
+          methodologyDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          methodologyDrawer.classList.add('hidden');
+        }
+      }
+
+      document.getElementById('methodologyToggleBtn').addEventListener('click', () => toggleMethodologyDrawer());
+      document.getElementById('closeMethodologyBtn').addEventListener('click', () => toggleMethodologyDrawer(false));
+      document.getElementById('footnoteLineageLink').addEventListener('click', () => toggleMethodologyDrawer());
+      document.getElementById('sidebarLineageBtn').addEventListener('click', () => toggleMethodologyDrawer(true));
+
+      // Clean Presentation / Screenshot Mode Toggle
+      function setPresentationMode(enabled) {
+        state.presentationMode = enabled;
+        const header = document.getElementById('appHeader');
+        const sidebar = document.getElementById('controlSidebar');
+        const chartSection = document.getElementById('chartSection');
+        const exitBar = document.getElementById('exitPresentationBar');
+
+        if (enabled) {
+          methodologyDrawer.classList.add('hidden');
+          header.classList.add('hidden');
+          sidebar.classList.add('hidden');
+          chartSection.classList.remove('lg:col-span-8');
+          chartSection.classList.add('lg:col-span-12', 'max-w-5xl', 'mx-auto', 'w-full', 'pt-4');
+          exitBar.classList.remove('hidden');
+        } else {
+          header.classList.remove('hidden');
+          sidebar.classList.remove('hidden');
+          chartSection.classList.remove('lg:col-span-12', 'max-w-5xl', 'mx-auto', 'w-full', 'pt-4');
+          chartSection.classList.add('lg:col-span-8');
+          exitBar.classList.add('hidden');
+        }
+        setTimeout(() => drawChart(), 50);
+      }
+
+      document.getElementById('presentationToggleBtn').addEventListener('click', () => setPresentationMode(true));
+      document.getElementById('exitPresentationBtn').addEventListener('click', () => setPresentationMode(false));
+
+      // High-Resolution PNG Export (1600x920 LinkedIn-ready graphic)
+      function downloadHighResPNG() {
+        const exportCanvas = document.createElement('canvas');
+        const exportW = 1600;
+        const exportH = 920;
+        exportCanvas.width = exportW;
+        exportCanvas.height = exportH;
+        const exportCtx = exportCanvas.getContext('2d');
+
+        drawChart(exportCtx, exportW, exportH, true);
+
+        const link = document.createElement('a');
+        link.download = `CI-SITREP-Parametric-Cycle-${new Date().toISOString().slice(0, 10)}.png`;
+        link.href = exportCanvas.toDataURL('image/png', 1.0);
+        link.click();
+      }
+
+      document.getElementById('downloadPngBtn').addEventListener('click', downloadHighResPNG);
+      document.getElementById('downloadPngFloatingBtn').addEventListener('click', downloadHighResPNG);
+
+      function refreshAll() {
+        updateUI();
+        drawChart();
+      }
+
+      // Initialize
+      window.addEventListener('resize', () => drawChart());
+      window.onload = function () {
+        bindSliders();
+        refreshAll();
+      };
+    })();
+  </script>
+</body>
+</html>
