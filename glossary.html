@@ -340,6 +340,10 @@ instances.</p>
 <p id="dast"><strong>DAST (dynamic application security testing)</strong> — Security testing of a running
 application: probing it from the outside, the way an attacker would.
 Complements SAST, which reads the code.</p>
+<p id="dbhub"><strong>DBHub</strong> — Bytebase's MCP database server: it lets an AI agent query
+databases through tools such as read-only <code>execute_sql</code>. Its read-only mode
+was bypassed twice in late 2026 by SQL parser mismatches — the checker and
+the database read the same string differently.</p>
 <p id="dependency"><strong>dependency</strong> — A piece of someone else's code your code relies on: a library
 or package pulled in to do a job (handle dates, talk to a database).
 Dependencies are where most supply-chain risk enters a codebase.</p>
@@ -453,6 +457,10 @@ completely when it goes wrong — and proves it stopped. A kill switch that has
 never been tested is a claim, not a control.</p>
 <p id="know-your-agent"><strong>Know Your Agent (KYA)</strong> — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.</p>
 <h2 id="l">L</h2>
+<p id="litellm"><strong>LiteLLM</strong> — An open-source proxy/gateway that sits in front of model
+providers and MCP servers, holding provider keys and issuing per-team
+virtual keys. Because everything routes through it, its key-scoping and
+MCP configuration are security controls in their own right.</p>
 <p id="llm"><strong>LLM (large language model)</strong> — An AI model trained on vast amounts of text to
 predict and generate language (and code). The engine inside coding assistants
 and agents.</p>
@@ -465,6 +473,10 @@ through underground proxy services (Google Threat Intelligence Group, Nov
 financial regulator. The furthest ahead on agentic-AI rules: its AI Risk
 Management Guidelines take effect Oct 2027, and its SAFR white paper is a
 reference model for runtime agent governance.</p>
+<p id="mcc"><strong>MCC (Matthews correlation coefficient)</strong> — A detection-quality score
+between −1 and 1 that stays honest when most cases are negative (most code
+is not vulnerable). 0 is chance; the best LLM detector in SECR-Eval scored
+0.562.</p>
 <p id="mcp"><strong>MCP (Model Context Protocol)</strong> — An open protocol (from Anthropic) that lets
 an AI agent connect to tools and data sources — files, databases, services —
 in a standard way. One of the two interop standards the report tracks (with
@@ -585,6 +597,11 @@ further: it checks whether the vulnerable code is actually used.</p>
 <p id="secret"><strong>secret (in code)</strong> — A credential embedded in code or configuration: an API
 key, a password, a token. Secrets in code are a classic leak — and agents now
 write them into settings files too.</p>
+<p id="secr-eval"><strong>SECR-Eval (Structured Evidence-Centred Review Evaluation)</strong> — A
+peer-reviewed protocol (MDPI <em>Information</em>, Nov 2026) that grades LLM
+security review end to end: detection, evidence localisation, explanation,
+and whether proposed repairs survive compile/test/rescan validation. Only
+13.5% of repairs passed every gate.</p>
 <p id="semantic-governance-policy"><strong>Semantic governance policy (SGP)</strong> — A rule written in plain language by a
 legal or compliance team that an LLM judge checks each proposed agent tool
 call against — together with the user's original intent — before the call
