@@ -1332,6 +1332,9 @@ What is already wrong in your code, and what it takes to prove it safe.
 - The gain is concentrated in XSS, up from 15% to 18%, while log injection barely moved (12% → ~13%) — the XSS gain is attributed by Veracode's chief security evangelist to models adopting safer framework defaults rather than mastering secure coding logic (Veracode, Fall 2026). <!-- changed 2026-11-18 -->
 - 18 models this round, 4 languages, 4 CWE classes; 100+ models tracked across the series. <!-- changed 2026-11-18 -->
 - Vendor-run but consistent methodology — the best longitudinal dataset available.
+- Java riskiest (69% failure rate). The leaders are frontier-class models with frontier-class price tags — the safest code costs the most tokens. <!-- changed 2026-11-18 -->
+- Syntax correctness is 100% for the leading models while the security pass rate moved for the first time in the series. <!-- changed 2026-11-18 -->
+- *[Vendor-published benchmark, methodology disclosed.]*
 - Source: [Veracode, Fall 2026 GenAI Code Security Update](https://www.veracode.com/blog/fall-2026-genai-code-security/)
 </details>
 
@@ -1380,18 +1383,6 @@ What is already wrong in your code, and what it takes to prove it safe.
 - Ten days on, 61 patched upstream, 43 staging, 299 in public discussion — the fix loop lags the discovery run by an order of magnitude.
 - Implication: AI vulnerability discovery now has a unit price (~$1,279 per working exploit, $2.58 per finding in the Forescout run) — the scarce part is verified remediation, and previously audited code is not settled code.
 - Source: [OpenAI, A thousand fewer paths to root](https://openai.com/index/a-thousand-fewer-paths-to-root/)
-</details>
-
-<!-- tags: subject=cert,san | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-10-29 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Veracode -->
-<details>
-<summary><strong>~38% of AI code introduces a known flaw</strong> ([Veracode](https://www.veracode.com/blog/fall-2026-genai-code-security/), Fall 2026) ●●●○</summary>
-
-- Same benchmark as [§4.5](#45-benchmarks--evidence): only ~62% of AI code-generation tasks produce output free of a known flaw — up from ~56% in July 2026, the first movement in the series. <!-- changed 2026-11-18 -->
-- XSS handled securely 18% of the time (up from 15%); log injection ~13% (flat). <!-- changed 2026-11-18 -->
-- Java riskiest (69% failure rate). The leaders are frontier-class models with frontier-class price tags — the safest code costs the most tokens. <!-- changed 2026-11-18 -->
-- Syntax correctness is 100% for the leading models while the security pass rate moved for the first time in the series. <!-- changed 2026-11-18 -->
-- *[Vendor-published benchmark, methodology disclosed.]*
-- Source: [Veracode, Fall 2026 GenAI Code Security Update](https://www.veracode.com/blog/fall-2026-genai-code-security/)
 </details>
 
 <!-- tags: subject=cert | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-07-22 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=Secure Code Warrior -->
@@ -1856,6 +1847,7 @@ Catching bad AI code before it is committed — while it is written and at the p
 - The "slopsquatting" attack: attacker registers the invented name (term coined by Seth Michael Larson, Python Software Foundation).
 - Open-weight models hallucinate ~22% vs ~5% for commercial models.
 - 16 models, 576k samples, 2.23M package references.
+- This is the hallucinated-dependency supply-chain vector.
 - Source: [Spracklen et al., 'We Have a Package for You!', USENIX Security 2025](https://arxiv.org/abs/2406.10279)
 </details>
 
@@ -1865,7 +1857,9 @@ Catching bad AI code before it is committed — while it is written and at the p
 
 - AI-generated code had 1.7× more major issues and up to 2.74× the security-vulnerability rate of human-written code for equivalent tasks (2.74× is the maximum across vulnerability categories — worst is cross-site scripting).
 - CodeRabbit's own analysis — treat as a vendor claim.
+- *[Secondary reporting; indicative, not a named primary study.]*
 - Source: [CodeRabbit, State of AI vs Human Code Generation Report, Dec 2025](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)
+- Source: [The Register, on the CodeRabbit study](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263)
 </details>
 
 <!-- tags: subject=san,cert | type=study | confidence=reported | severity=material | jurisdiction=global | source-date=2025-12 | sector=technology | industry=software | register=mixed | pnl-impact=risk | horizon=quarter -->
@@ -1876,24 +1870,6 @@ Catching bad AI code before it is committed — while it is written and at the p
 - Failures were business logic and authorisation: missing ownership checks, admin endpoints without admin checks, negative pricing.
 - Older peer-reviewed base rates agree: [Pearce et al.](https://arxiv.org/abs/2108.09293v3) (IEEE S&P 2022) ~40% of Copilot programs vulnerable in high-risk scenarios; [Fu et al.](https://arxiv.org/abs/2310.02059v4) (ACM TOSEM 2025) 29.5% of Python / 24.2% of JS AI-assisted snippets had weaknesses. (Models tested 2021–2024.)
 - Source: [InfoWorld, on Tenzai's Dec 2025 study](https://www.infoworld.com/article/4116937/output-from-vibe-coding-tools-prone-to-critical-security-flaws-study-finds-2.html)
-</details>
-
-<!-- tags: subject=san,cert | type=benchmark | confidence=claimed | severity=directional | jurisdiction=global | source-date=2025-12-17 | sector=technology | industry=software | register=mixed | pnl-impact=cost,risk | horizon=quarter | company=CodeRabbit -->
-<details>
-<summary><strong>AI code carries up to 2.74× the vulnerabilities</strong> ([The Register](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263), on the CodeRabbit study, 470 GitHub PRs, Dec 2025) ●○○○</summary>
-
-- AI-written code carries **up to 2.74× the vulnerabilities** of human-written code and 1.7× more major issues (2.74× is the maximum across vulnerability categories).
-- *[Secondary reporting; indicative, not a named primary study.]*
-- Source: [The Register, on the CodeRabbit study](https://www.theregister.com/software/2025/12/17/ai-authored-code-needs-more-attention-contains-worse-bugs/2576263)
-</details>
-
-<!-- tags: subject=san,cert | type=study | confidence=corroborated | severity=material | jurisdiction=global | source-date=2025-08 | sector=technology | industry=software | register=technical | pnl-impact=risk | horizon=quarter -->
-<details>
-<summary><strong>19.7% of package references don't exist</strong> ([UTSA / Virginia Tech / Oklahoma](https://arxiv.org/abs/2406.10279), academic, 576,000 samples) ●●●○</summary>
-
-- **19.7% referenced a package that does not exist**, 205,000+ unique fictional names.
-- This is the hallucinated-dependency supply-chain vector.
-- Source: [Spracklen et al., 'We Have a Package for You!', USENIX Security 2025](https://arxiv.org/abs/2406.10279)
 </details>
 
 ### 4.2 Product landscape
@@ -2005,7 +1981,9 @@ Sources: [Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable
 - When the safeguard was put in context, secure output roughly doubled (24.8% vs 12.6% with the target file alone).
 - Security guidance appears in only 36.3% of AGENTS.md files and 29.9% of CLAUDE.md files ([Shanto et al., Toward an Evidence-Based Template for Agent Instruction Files](https://arxiv.org/abs/2611.02383), Nov 2026).
 - Implication: functional tests are a poor proxy for security in agent-written code — exploit-verification, not test-passing, is the gate — and annotating safeguards in agent context (AGENTS.md / CLAUDE.md, retrieval) is a cheap, high-leverage control.
+- The audit must include exploit-verification (or equivalent adversarial validation) on AI-authored modules, and remediation should include annotating safeguards in agent context so future agent edits see them.
 - Source: [Yu et al., A.S.E 2.0 / CASE-Bench, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
+- Source: [Yu et al., A.S.E 2.0, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
 </details>
 
 <!-- tags: subject=san,cert | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-07 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
@@ -2021,6 +1999,10 @@ Sources: [Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable
 - Agents introduced **new CWE types not present in the original vulnerabilities** (e.g. CWE-14 compiler removal of buffer-clearing code, CWE-319 cleartext transmission).
 - Implication for the pre-commit gate: the "correct but vulnerable" 23% is the class that passes every test and ships; it is only catchable by exploit-verification or security review, never by the test suite.
 - A second independent, peer-reviewed confirmation of the A.S.E 2.0 finding, with a different methodology.
+- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the quantification of what's already in there.
+- Memory safety dominates (71.6% of suspicious findings; heap buffer overflows 46.7% of the original vulnerabilities).
+- Audit implication: a codebase audit cannot sample only failing or suspicious code — the vulnerable population is disproportionately inside the code that passes tests.
+- Prioritise exploit-verification (dynamic proof-of-vulnerability harness) on AI-authored modules, memory-unsafe languages first.
 - Source: [Chen et al., SecureVibeBench, arXiv:2509.22097](https://arxiv.org/abs/2509.22097)
 </details>
 
@@ -2048,6 +2030,8 @@ Sources: [Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable
 - New tasks are added continuously from newly published advisories (500+ available), so the set stays fresh against training-data leakage — unlike the static benchmarks above.
 - Implication for the pre-commit gate: the hinted-vs-blind gap is a cheap, measurable control — security instruction in the agent's ticket or context is worth roughly doubling secure output — and the benchmark's execution-graded method is the one to use when a client asks which model writes safer code.
 - *[Independent research practice; the tasks are also sold as RL training data.]*
+- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the quantification of reintroduction — when an agent rebuilds a feature that once carried a vulnerability, the old bug comes back in 45–70% of working solutions.
+- Audit implication: a module whose vulnerability was fixed is not safe from its own history — any agent asked to rework that area reintroduces the flaw unless the fix's reasoning is in the agent's context; the remediation should include annotating the safeguard (see [§3.5](#35-techniques--the-fix-loop)).
 - Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
 </details>
 
@@ -2061,6 +2045,9 @@ Sources: [Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable
 - **68% of misses are wrong-mechanism reasoning, not oversights**: the agent reports on the file holding the flaw but argues a different mechanism.
 - Security-focused harnesses move recall both ways: OpenAI's Codex Security lowers it 8.3 points (mostly by abstaining); Anthropic's Defending Code raises it 7.7 points, at higher cost and report volume.
 - Implication for the pre-commit gate: agentic review as a sole gate misses 22–68% of vulnerability-introducing changes — it is a layer, not a control — and harness choice is a measurable design decision (±8 points).
+- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the measured miss rate of the review layer itself.
+- 68% of misses are wrong-mechanism reasoning — the reviewer looked at the right file and argued the wrong flaw — so a clean review is weak evidence, and location-based scoring would overstate detection.
+- Audit implication: a codebase audit cannot rely on agentic PR review as the control; exploit-verification and deterministic scanning remain the backstop, and the review layer needs sampling of what it let through.
 - Source: [Yang et al., SecPRBench, arXiv:2610.33509](https://arxiv.org/abs/2610.33509)
 </details>
 
@@ -2129,51 +2116,6 @@ Sources: [Bugni Labs, How Engineering Teams Can Make AI-Generated Code Auditable
 - Vendor-run — all five authors are Snyk, and Snyk Code is one of the tools tested — but the protocol was blind, nine productised configurations were tested under it, the harness, fixtures and all run data are public, and the result flatters the competitor nearly as much as Snyk itself (Snyk, Oct 2026).
 - Implication for the pre-commit gate: the stacking rule in [§3.4](#34-audit--remediation-tools) is now measured — run both layers, and audit what your review harness's policy excludes.
 - Source: [Snyk, VulnBench 2.0, arXiv:2610.38617](https://arxiv.org/abs/2610.38617)
-</details>
-
-<!-- tags: subject=san,cert | type=benchmark | confidence=corroborated | severity=material | jurisdiction=global | source-date=2026-07 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
-<details>
-<summary><strong>Roughly half of test-passing AI code is vulnerable</strong> ([SecureVibeBench](https://arxiv.org/abs/2509.22097), Chen et al., ACL 2026, peer-reviewed) ●●●○</summary>
-
-- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the quantification of what's already in there.
-- Of agent-written code: 23.0% of all tasks were functionally correct but exploitable, against only 23.8% correct-and-secure.
-- Memory safety dominates (71.6% of suspicious findings; heap buffer overflows 46.7% of the original vulnerabilities).
-- Audit implication: a codebase audit cannot sample only failing or suspicious code — the vulnerable population is disproportionately inside the code that passes tests.
-- Prioritise exploit-verification (dynamic proof-of-vulnerability harness) on AI-authored modules, memory-unsafe languages first.
-- Source: [Chen et al., SecureVibeBench, arXiv:2509.22097](https://arxiv.org/abs/2509.22097)
-</details>
-
-<!-- tags: subject=san,cert | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-04 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
-<details>
-<summary><strong>A green test suite on AI-written code is weak evidence of security</strong> ([A.S.E 2.0](https://arxiv.org/abs/2611.06294), arXiv:2611.06294, Nov 2026; preprint) ●●○○</summary>
-
-- 145 repo-level tasks from real CVEs; secure = tests pass **and** a validated proof-of-concept exploit fails.
-- Claude Code (Sonnet 4.5): 74.0% functional pass, 18.4% secure — **55.6% passed every test while a working exploit still succeeded**.
-- Agents saw the relevant safeguard in only 27–36% of trajectories; putting it in context roughly doubled secure output (24.8% vs 12.6%).
-- The audit must include exploit-verification (or equivalent adversarial validation) on AI-authored modules, and remediation should include annotating safeguards in agent context so future agent edits see them.
-- Source: [Yu et al., A.S.E 2.0, arXiv:2611.06294](https://arxiv.org/abs/2611.06294)
-</details>
-
-<!-- tags: subject=san,cert | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-11-02 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter | company=BugLedger -->
-<details>
-<summary><strong>Fixed vulnerabilities come back when agents rebuild the feature</strong> ([BugLedger](https://www.bugledger.com/benchmarks) Bench, results 2 Nov 2026) ●●○○</summary>
-
-- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the quantification of reintroduction — when an agent rebuilds a feature that once carried a vulnerability, the old bug comes back in 45–70% of working solutions.
-- Execution-graded (a hidden test replays the advisory's attack), not LLM-judged; a grader audit reproduced 72 of 72 vulnerable verdicts.
-- Audit implication: a module whose vulnerability was fixed is not safe from its own history — any agent asked to rework that area reintroduces the flaw unless the fix's reasoning is in the agent's context; the remediation should include annotating the safeguard (see [§3.5](#35-techniques--the-fix-loop)).
-- *[Independent research practice; the tasks are also sold as RL training data.]*
-- Source: [BugLedger Bench](https://www.bugledger.com/benchmarks)
-</details>
-
-<!-- tags: subject=san,cert | type=benchmark | confidence=reported | severity=material | jurisdiction=global | source-date=2026-10-24 | sector=technology | industry=software | register=technical | pnl-impact=cost,risk | horizon=quarter -->
-<details>
-<summary><strong>Agentic review misses 22–68% of vulnerability-introducing changes</strong> ([SecPRBench](https://arxiv.org/abs/2610.33509), arXiv:2610.33509, 24 Oct 2026; preprint) ●●○○</summary>
-
-- Same benchmark as [§4.5](#45-benchmarks--evidence); for an audit of an existing codebase this is the measured miss rate of the review layer itself.
-- Best agents (Grok 4.6, GPT-6 sol, GLM 5.3, Claude Opus 5.5) find ~3 in 4 vuln-introducing changes; the weakest finds ~1 in 3.
-- 68% of misses are wrong-mechanism reasoning — the reviewer looked at the right file and argued the wrong flaw — so a clean review is weak evidence, and location-based scoring would overstate detection.
-- Audit implication: a codebase audit cannot rely on agentic PR review as the control; exploit-verification and deterministic scanning remain the backstop, and the review layer needs sampling of what it let through.
-- Source: [Yang et al., SecPRBench, arXiv:2610.33509](https://arxiv.org/abs/2610.33509)
 </details>
 
 <!-- tags: subject=san | type=survey | confidence=reported | severity=directional | jurisdiction=global | source-date=2026-01-08 | sector=technology | industry=software | register=business | pnl-impact=risk | horizon=year -->
