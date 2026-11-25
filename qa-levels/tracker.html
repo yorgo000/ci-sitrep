@@ -2221,7 +2221,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
         drawChart(exportCtx, exportW, exportH, true);
 
         const link = document.createElement('a');
-        link.download = `The-Surge-Monitor-v2-${new Date().toISOString().slice(0, 10)}.png`;
+        link.download = `Diffusion-Gauge-v2-${new Date().toISOString().slice(0, 10)}.png`;
         link.href = exportCanvas.toDataURL('image/png', 1.0);
         link.click();
       }
