@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24T21:29:14.439453+00:00",
+ "generated_at": "2026-11-25T04:48:34.784490+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -4316,6 +4316,7 @@
   }
  ],
  "warnings": [
+  "index.html yields 125 article ids, the export has 124 — regenerate the site and re-export.",
   "4 article(s) with no parseable date: an-open-governance-standard-for-agentic-ai-in-finance-finos, 322-more-privilege-escalation-paths-in-ai-assisted-repos, 2038-critical-vulnerabilities-in-5600-publicly-deployed-ai, real-incidents"
  ]
 }
