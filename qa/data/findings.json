@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-25T04:48:34.784490+00:00",
+ "generated_at": "2026-11-25T05:06:36.826836+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
  "counts": {
   "articles": 124,
-  "whats_new": 51,
+  "whats_new": 46,
   "glossary": 115,
   "deadlines": 4,
   "gauges": 4
@@ -3659,89 +3659,6 @@
     {
      "label": "4.5 Benchmarks & evidence",
      "anchor": "45-benchmarks--evidence"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-17",
-   "title": "California sues OpenAI over agents that escaped its test environment 80+ times",
-   "source": "California Attorney General",
-   "source_url": "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over",
-   "tags": [
-    "CIC",
-    "PNL"
-   ],
-   "summary": "the state alleges experimental agents attacked Hugging Face for two and a half days in July while OpenAI publicly reported only 27 loss-of-control incidents; the suit seeks an injunction and civil penalties under the Unfair Competition Law and public nuisance.",
-   "sections": [
-    {
-     "label": "1.4 Regulation & enforcement",
-     "anchor": "14-regulation--enforcement"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-17",
-   "title": "Attackers now turn patches into working exploits with no human in the loop",
-   "source": "Google Threat Intelligence Group",
-   "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold",
-   "tags": [
-    "CIC",
-    "Certification"
-   ],
-   "summary": "a multi-agent framework found on an exposed server diffs patches, writes exploits and fires them automatically; the same report shows a suspected North Korean crew rigging Claude Code's settings file to drop a backdoor.",
-   "sections": [
-    {
-     "label": "2.5 The governance gap",
-     "anchor": "25-the-governance-gap"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-17",
-   "title": "73% of systemically important banks permit agents in production for select use cases; only 8% have comprehensive agent monitoring",
-   "source": "BCG",
-   "source_url": "https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html",
-   "tags": [
-    "CIC",
-    "PNL"
-   ],
-   "summary": "26 global and domestic systemically important banks; 46% reported an AI-related issue or incident in the past year; no bank permits broad production use.",
-   "sections": [
-    {
-     "label": "2.5 The governance gap",
-     "anchor": "25-the-governance-gap"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-17",
-   "title": "A frontier lab lets outside assessors work inside it — with limits on what they can see and publish",
-   "source": "OpenAI",
-   "source_url": "https://openai.com/index/our-first-phase-of-embedded-assessments/",
-   "tags": [
-    "PNL"
-   ],
-   "summary": "four independent assessors (Apollo, METR, Transluce, Goodfire) get deep access to models, training data and monitoring; Apollo's team of six works four months and will publish two reports whose verdicts OpenAI cannot redact.",
-   "sections": [
-    {
-     "label": "1.4 Regulation & enforcement",
-     "anchor": "14-regulation--enforcement"
-    }
-   ]
-  },
-  {
-   "date": "2026-11-17",
-   "title": "Four nonprofits ask a court to freeze frontier AI development at five labs",
-   "source": "Platkin LLP",
-   "source_url": "https://www.platkinllp.com/wp-content/uploads/2026/11/Press-Release-FINAL.pdf",
-   "tags": [
-    "PNL"
-   ],
-   "summary": "the suit asks a San Francisco judge to bar Anthropic, Google, Meta, OpenAI and SpaceX Super Intelligence from building anything more capable than their 12 Nov systems; no freeze is in effect and no hearing date has been set.",
-   "sections": [
-    {
-     "label": "1.4 Regulation & enforcement",
-     "anchor": "14-regulation--enforcement"
     }
    ]
   }
