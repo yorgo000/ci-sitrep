@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T15:07:39.401298+00:00",
+ "generated_at": "2026-11-25T16:24:37.293570+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -3902,7 +3902,7 @@
   },
   {
    "term": "Landscape",
-   "definition": "The report surface of CI SITREP: the full knowledge base of findings, sliced into the four sections — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is DIFF."
+   "definition": "The report surface of CI SITREP: the full knowledge base of findings, split across the four domains — PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing Pre-commit. The numbers-at-a-glance surface is SITREP; the changes surface is DIFF."
   },
   {
    "term": "LLM (large language model)",
