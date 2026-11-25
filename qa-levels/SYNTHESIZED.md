@@ -6,10 +6,11 @@
 <summary>How to read this</summary>
 
 1. Start at the top — [SITREP](#executive-dashboard) gives you the numbers, [Landscape](#report) gives you the evidence, both across the same four domains.
-2. First time? Read [the bottom line](#bottom-line) in [SITREP](#executive-dashboard); if that's enough, you're done — or read the whole [Landscape](#report). Then you know what's going on.
+2. First time? Read [the bottom line](#bottom-line) in [SITREP](#executive-dashboard); if that's enough, you're done — or read the [SITREP](#executive-dashboard), and then the whole [Landscape](#report). Now you know what's going on.
 3. Short on time, or back for the day? Read [the bottom line](#bottom-line), then [DIFF](#diff) — or follow the red dots: everything the news touched carries one.
 4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
 5. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC. Keep opening until you've got what you need; hit back and you're at the top again.
+6. Want the foundations? [BACKGROUND](background.html#research) holds our R&D — the [theses](background.html#theses) this report is built on, and the tools that came out of them.
 
 What gets in, and what the confidence dots mean: [Self-Audit](audit.html) and the [Confidence rating scale](#confidence-rating-scale).
 
@@ -17,7 +18,7 @@ What gets in, and what the confidence dots mean: [Self-Audit](audit.html) and th
 
 ## Situation at hand
 
-**PNL:** [AI now writes the majority of new code](#11-adoption--scale) — and the liability question is being answered in contract: [the largest US banks now write into customer terms that the customer owns whatever an agent does, even if the tool is hacked](#13-liability--exposure). [Regulators are closing in from several directions at once](#14-regulation--enforcement) — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint, a dated deadline in Singapore, and now the first AI Act enforcement — while the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared.
+**PNL:** [AI now writes close to half of new code — three-quarters at Google](#11-adoption--scale) — and the liability question is being answered in contract: [the largest US banks now write into customer terms that the customer owns whatever an agent does, even if the tool is hacked](#13-liability--exposure). [Regulators are closing in from several directions at once](#14-regulation--enforcement) — examiner frameworks in the US, a state registration regime in New York, a state kill-switch blueprint, a dated deadline in Singapore, and now the first AI Act enforcement — while the US federal gap remains: generative and agentic AI still sit outside model-risk scope, and the promised AI request for information has still not appeared.
 
 **CIC:** [Adoption has run ahead of governance](#25-the-governance-gap) on every measure that matters: policies exist but are bypassed, agent identities are ungoverned, and a third of companies cannot stop a rogue agent.
 
@@ -158,11 +159,12 @@ The money evidence is thin and growing — this section leads because the questi
 
 <!-- tags: subject=pnl | type=survey | confidence=corroborated | severity=directional | jurisdiction=global | source-date=2026-08 | sector=technology | industry=software | register=business | pnl-impact=cost,risk | horizon=year -->
 <details>
-<summary><strong>Adoption is already majority-AI</strong> (2026 surveys) ●●●○</summary>
+<summary><strong>AI writes close to half of new code — three-quarters at Google</strong> (2026 surveys) ●●●○</summary>
 
 - ~47% of code written fully by AI agents ([JetBrains Developer Ecosystem Survey 2026](https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/), ~15,000 devs).
 - 42% of committed code AI-generated/assisted; 96% of developers don't fully trust AI code, yet only 48% always review it before committing; 65% expected by 2027 ([Sonar State of Code 2026](https://www.sonarsource.com/resources/library/ai-coding-roi/)).
 - 75% of new code AI-generated, engineer-approved ([Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/), Apr 2026).
+- The surveys bracket, not agree: 42–47% industry-wide under narrower definitions; Google's 75% is its own code under the broadest definition (AI-generated, engineer-approved). No industry-wide survey yet puts the share above half; Sonar projects 65% by 2027.
 - Source: [Sonar, 2026 State of Code Developer Survey](https://www.sonarsource.com/resources/library/ai-coding-roi/) · [JetBrains, "How Much Code Do Developers Really Let Agents Write?"](https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/) · [Google, Cloud Next 2026](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/)
 </details>
 
