@@ -39,7 +39,7 @@ RATINGS = ["\u25cf\u25cf\u25cf\u25cf", "\u25cf\u25cf\u25cf\u25cb",
            "\u25cf\u25cf\u25cb\u25cb", "\u25cf\u25cb\u25cb\u25cb"]
 # Headlines whose parenthetical legitimately carries no link.
 UNLINKED_HEADLINE_EXCEPTIONS = [
-    "Adoption is already majority-AI",
+    "AI writes close to half of new code — three-quarters at Google",
     "Real incidents",
 ]
 # The one bare "Confluence" that is correct: the Atlassian product, in the
