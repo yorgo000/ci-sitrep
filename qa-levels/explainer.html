@@ -367,6 +367,25 @@
   .minimap-foot { font-size: 12px; color: #666; padding: 10px 0 16px; margin: auto 0 0; }
   .minimap-foot .changed-dot { margin: 0 2px 0 0; vertical-align: middle; }
   .minimap-read-demo { display: inline-block; width: 12px; height: 12px; vertical-align: middle; }
+  /* Corrective round (2026-11-25, Yorgo): in the sidebar the tree
+     rendered "spread out all over the place, vast space between
+     lines, rust dots hovering in weird spaces, font anemic". Root
+     cause: the templates' base rules (nav.sidebar a { display:
+     block }, specificity 0,1,2) beat the tree's own .minimap-row
+     { display: flex } (0,1,0) once the tree moved into the
+     sidebar — rows stacked block-wise with the dot on its own
+     line above the title. In the overlay (outside nav.sidebar)
+     the flex rules applied and the tree rendered compactly.
+     These sidebar-scoped rules (0,2,1) restore the previous
+     rendering: flex rows, the changed dot inline at the row
+     start, compact pitch — with the previous sidebar typography
+     (600-weight rows, as the masthead-nav links had; read rows
+     stay quiet: 400 grey). The icon rail's links get the same
+     treatment (their inline-flex centring lost to the base rule
+     the same way). */
+  nav.sidebar .minimap-row { display: flex; font-weight: 600; }
+  nav.sidebar .minimap-row.minimap-read-row .minimap-row-title { font-weight: 400; }
+  nav.sidebar .hud-rail a { display: inline-flex; padding: 0; }
 
 </style>
 <script type="speculationrules">
