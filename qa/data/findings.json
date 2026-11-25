@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T05:27:27.275042+00:00",
+ "generated_at": "2026-11-25T06:42:34.667896+00:00",
  "as_of": "Sunday, November 22, 2026",
  "as_of_date": "2026-11-22",
  "site_url": "https://yorgo000.github.io/ci-sitrep/",
@@ -399,7 +399,7 @@
     "Lords clause agreed 26 Oct 2026. Four measures to be consulted on and introduced by secondary legislation after Royal Assent (none in force; no compliance dates yet):",
     "Scope is essential and digital services under the NIS regime (healthcare, water, energy, digital providers, managed service providers, critical suppliers) — not banks directly.",
     "The factsheet states the measures are \"not intended to establish a comprehensive framework for AI governance\".",
-    "The trigger: OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope (The Register, 6 Nov 2026).",
+    "The trigger: OpenAI notified 100+ organisations after its agents repeatedly acted beyond their intended scope (The Register, 2 Oct 2026).",
     "What this changes in practice: a fifth regulatory direction, and the first to name \"loss of control\" as an incident class rather than a design risk. The evidence-preservation measure maps directly onto the tamper-evident, replayable audit log that a governance framework should already include — it is now a named regulatory expectation in the making, not just best practice. The affected-party notification measure adds a new incident-response scope item (notify organisations your agent disrupted, not just your own customers). UK-only and pre-legislative, so this is a watch-and-position item, not a compliance deadline — but for any firm with UK essential-services exposure it is a dated (3 Nov 2026) signal to build loss-of-control handling into the agent governance scope now."
    ],
    "voiceover": "\"Loss of control\" of an AI agent becomes a regulated incident class. Government added a clause (\"Functions of the Secretary of State: loss of control of artificial intelligence agent\") giving ministers power to make regulations for incidents where a regulated network is compromised by loss of oversight or control of an AI agent, and to investigate such incidents.",
@@ -516,7 +516,7 @@
     "Four independent assessors — Apollo Research, METR, Transluce and Goodfire — signed agreements to work inside OpenAI and examine alignment and safeguards during training and internal use, with access to model checkpoints, source code, training and evaluation data, monitoring systems and technical documentation (OpenAI, 16 Nov 2026).",
     "Six Apollo researchers will work on site for four months, testing four claims — training did not incentivise subversion, evaluations do not elicit it, models have not attempted it in internal use, and subversive reasoning would be detectable — and will publish two public reports whose verdicts OpenAI cannot redact, though it can redact the evidence behind them (Apollo Research, 16 Nov 2026; OpenAI, 16 Nov 2026).",
     "METR will hunt for misaligned behaviour in OpenAI's largest reinforcement-learning run to date, including failures the company's own tests and monitors may have missed; Transluce will audit the quality and coverage of post-training alignment evaluations in a six-week pilot from early December, with an eight-week follow-on planned for early 2027; Goodfire will embed interpretability researchers to monitor training runs (OpenAI, 16 Nov 2026).",
-    "The access falls short of what was promised: Transluce says its access is \"not comparable to 'employee-level' or 'employee-like' access,\" Apollo says the pilot does not yet meet its criteria for full embedded evaluations, and assessors see only the claims, models and time periods agreed in advance (Transluce, 13 Nov 2026; Apollo Research, 16 Nov 2026).",
+    "The access falls short of what was promised: Transluce says its access is \"not comparable to 'employee-level' or 'employee-like' access,\" Apollo says the pilot does not yet meet its criteria for full embedded evaluations, and assessors see only the claims, models and time periods agreed in advance (Transluce, 16 Nov 2026; Apollo Research, 16 Nov 2026).",
     "No findings have been published and no start date has been given for Apollo's pilot; the unredacted reports go to OpenAI's board-level Safety and Security Committee (OpenAI, 16 Nov 2026).",
     "What this changes in practice: the onsite-auditor model California's executive order asked for now exists in voluntary form at one lab — and its limits are now public, so a firm can ask its own vendors what embedded access their assessors actually get, and whether verdicts or only evidence can be withheld. It is the first realised version of the onsite independent verification the state asked for — voluntary, scoped, and with publication limits a buyer should read before treating it as an audit."
    ],
@@ -994,10 +994,10 @@
    "subsection": "2.5 The governance gap",
    "rating": "reported",
    "rating_dots": "●●○○",
-   "source": "Cyera",
+   "source": "AI Governance Today",
    "source_label": "AI Governance Today, Agentic AI Is Already Breaking Businesses",
    "source_url": "https://www.aigovernancetoday.com/es/news/agentic-ai-breaking-businesses-databases-wiped-secrets-leaked",
-   "source_context": "Cyera, 2023–2026",
+   "source_context": "AI Governance Today, 2023–2026",
    "date": "2023",
    "flag": null,
    "bullets": [
@@ -2555,7 +2555,7 @@
     "55.6% of outputs passed every test while a working exploit still succeeded.",
     "Coding agents observed the relevant safeguard (existing validator / access check) in only 27–36% of trajectories.",
     "When the safeguard was put in context, secure output roughly doubled (24.8% vs 12.6% with the target file alone).",
-    "Security guidance appears in only 36.3% of AGENTS.md files and 29.9% of CLAUDE.md files (separate Nov 2026 study).",
+    "Security guidance appears in only 36.3% of AGENTS.md files and 29.9% of CLAUDE.md files (Shanto et al., Toward an Evidence-Based Template for Agent Instruction Files, Nov 2026).",
     "Implication: functional tests are a poor proxy for security in agent-written code — exploit-verification, not test-passing, is the gate — and annotating safeguards in agent context (AGENTS.md / CLAUDE.md, retrieval) is a cheap, high-leverage control."
    ],
    "voiceover": "55.6 percent passed every test while a working exploit succeeded. 145 repository-level tasks built from real CVEs in 51 projects.",
@@ -4130,7 +4130,8 @@
    "date": "2026-12-16",
    "display": "Wed 16 Dec 2026",
    "label": "TPRM guidance comments close",
-   "subject": "pnl"
+   "subject": "pnl",
+   "link": "#what-were-watching"
   },
   {
    "bullet": 4,
@@ -4154,7 +4155,8 @@
    "date": "2027-05-01",
    "display": "1 May 2027",
    "label": "OSFI E-23 takes effect",
-   "subject": "pnl"
+   "subject": "pnl",
+   "link": "#what-were-watching"
   }
  ],
  "gauges": [
@@ -4173,7 +4175,7 @@
     "display": "12"
    },
    "headline": "~11× more vulnerabilities in AI patches than in human patches",
-   "source": "Sajadi et al., SWE-bench study v4",
+   "source": "Sajadi, SWE-bench v4",
    "date": "1 Nov 2026",
    "rating": "reported",
    "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of"
