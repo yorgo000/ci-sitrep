@@ -1,0 +1,173 @@
+/* CI SITREP broadcast scene (F-19) — 1920×1080, OBS browser source.
+   Visual family of the site, adapted for broadcast legibility on a dark
+   stage: navy #283060, warm paper #faf6ef for text. The strip's colour
+   rule holds — rust is the AI/CI side, blue the human/EI side — with both
+   brightened one step for contrast on navy (site rust #b3543f -> #d96a4e
+   here; site navy #283060 -> #8a93cc for the EI bars). */
+:root {
+  --navy: #283060;
+  --navy-deep: #141a33;
+  --navy-mid: #1d2447;
+  --paper: #faf6ef;
+  --muted: #b9b3a4;
+  --rust: #d96a4e;
+  --ei-blue: #8a93cc;
+  --line: rgba(250, 246, 239, 0.14);
+  --card: rgba(250, 246, 239, 0.05);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 1920px; height: 1080px; overflow: hidden; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--paper);
+  background: var(--navy-deep);
+}
+body.transparent { background: transparent; }
+body.transparent #ambient { display: none; }
+
+/* Ambient footage slot: dimmed dark gradient for the MVP. */
+#ambient {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(1200px 700px at 78% -10%, rgba(40, 48, 96, 0.9), transparent 70%),
+    radial-gradient(900px 600px at 8% 110%, rgba(217, 106, 78, 0.12), transparent 60%),
+    linear-gradient(160deg, #1a2148 0%, var(--navy-deep) 55%, #10142a 100%);
+}
+body.dev #ambient { outline: 2px dashed rgba(250, 246, 239, 0.4); outline-offset: -6px; }
+body.dev #ambient::after {
+  content: "AMBIENT FOOTAGE SLOT";
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-size: 28px; letter-spacing: 6px; color: rgba(250, 246, 239, 0.35);
+}
+
+#stage { position: relative; z-index: 1; width: 1920px; height: 1080px; display: flex; flex-direction: column; }
+
+/* ---- top band ---- */
+#topband {
+  height: 118px; flex: none; display: flex; align-items: center;
+  gap: 48px; padding: 0 44px;
+  background: linear-gradient(90deg, rgba(20, 26, 51, 0.92), rgba(40, 48, 96, 0.85));
+  border-bottom: 2px solid var(--line);
+}
+.masthead .wordmark {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 44px; font-weight: 700; letter-spacing: 1px; line-height: 1;
+}
+.masthead .vertical {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px; font-style: italic; color: var(--muted); margin-top: 2px;
+}
+.masthead .site-url { font-size: 14px; color: var(--muted); margin-top: 4px; letter-spacing: 0.5px; }
+.asof { margin-left: 24px; }
+.asof-label { font-size: 13px; letter-spacing: 3px; color: var(--muted); }
+.asof-date { font-family: Georgia, serif; font-size: 26px; margin-top: 2px; }
+.clocks { margin-left: auto; text-align: right; }
+.clock { font-size: 24px; font-variant-numeric: tabular-nums; line-height: 1.5; }
+.clock-label { font-size: 14px; letter-spacing: 2px; color: var(--muted); margin-right: 8px; }
+.deadline-chip {
+  border: 1px solid var(--line); border-left: 4px solid var(--rust);
+  background: var(--card); padding: 10px 16px; max-width: 560px;
+}
+.deadline-label { display: block; font-size: 12px; letter-spacing: 3px; color: var(--muted); }
+.deadline-text { display: block; font-size: 20px; margin-top: 2px; }
+.deadline-days { display: block; font-size: 15px; color: var(--rust); margin-top: 2px; }
+
+/* ---- main ---- */
+#main { flex: 1; display: flex; gap: 32px; padding: 32px 44px 24px; min-height: 0; }
+
+#finding {
+  flex: 1; display: flex; flex-direction: column; position: relative;
+  background: var(--card); border: 1px solid var(--line);
+  padding: 36px 44px 28px;
+}
+.finding-body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+.finding-body #headline { margin-top: 0; }
+.finding-head { display: flex; align-items: center; gap: 20px; }
+.section-chip {
+  font-size: 15px; font-weight: 700; letter-spacing: 2px;
+  border: 1px solid var(--line); padding: 6px 12px; color: var(--paper);
+}
+.rating { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.rating .dots { letter-spacing: 2px; color: var(--rust); font-size: 22px; }
+#rating-label { color: var(--muted); font-size: 17px; text-transform: capitalize; }
+.counter { margin-left: auto; font-size: 18px; color: var(--muted); font-variant-numeric: tabular-nums; }
+#headline {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 56px; line-height: 1.15; margin: 28px 0 0; font-weight: 700;
+}
+#finding.sotm #headline { font-size: 44px; }
+.summary { font-size: 27px; line-height: 1.45; color: #e8e2d4; margin: 24px 0 0; }
+#finding.sotm .summary { font-size: 29px; }
+.source-line { margin-top: auto; padding-top: 20px; font-size: 21px; color: var(--muted); }
+.source-line b { color: var(--paper); font-weight: 600; }
+.flag { color: var(--rust); font-weight: 700; }
+.vo-caption {
+  margin-top: 14px; padding: 10px 14px; font-size: 16px; line-height: 1.4;
+  color: var(--muted); border: 1px dashed rgba(250, 246, 239, 0.35);
+}
+.vo-caption::before { content: "VOICEOVER: "; font-weight: 700; color: var(--paper); letter-spacing: 1px; }
+.progress { height: 6px; background: rgba(250, 246, 239, 0.12); margin-top: 20px; }
+.progress-bar { height: 100%; width: 0%; background: var(--rust); }
+
+/* ---- right rail: CI vs EI gauges ---- */
+#rail {
+  width: 560px; flex: none; display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--line); padding: 20px 30px;
+  overflow: hidden;
+}
+#rail h2 {
+  font-family: Georgia, serif; font-size: 34px; margin: 0; letter-spacing: 1px;
+}
+#rail h2 .vs { color: var(--rust); font-style: italic; font-size: 26px; }
+.rail-sub { font-size: 16px; color: var(--muted); margin: 6px 0 14px; line-height: 1.4; }
+#gauges { display: flex; flex-direction: column; gap: 12px; }
+.gauge-title { font-size: 17px; font-weight: 700; margin-bottom: 5px; }
+.gauge-headline { font-size: 15px; color: var(--muted); margin-bottom: 4px; line-height: 1.35; }
+.bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 2px; }
+.bar-value { width: 92px; flex: none; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.bar-track { flex: 1; height: 22px; background: rgba(250, 246, 239, 0.08); }
+.bar-fill { display: block; height: 100%; }
+.bar-fill.ci { background: var(--rust); }
+.bar-fill.ei { background: var(--ei-blue); }
+.bar-label { width: 150px; flex: none; font-size: 15px; color: var(--muted); }
+.gauge-stat { display: flex; align-items: baseline; gap: 14px; }
+.gauge-stat .stat-value { font-size: 44px; font-weight: 700; color: var(--rust); line-height: 1; }
+.gauge-stat .stat-label { font-size: 17px; color: #e8e2d4; line-height: 1.3; }
+.gauge-note { font-size: 14px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.gauge-src { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.gauge-src .dots { color: var(--rust); letter-spacing: 1px; }
+.rail-foot {
+  margin-top: auto; padding-top: 12px; font-size: 14px; line-height: 1.45;
+  color: var(--muted); border-top: 1px solid var(--line);
+}
+
+/* ---- glossary band + ticker ---- */
+#glossary-band, #ticker {
+  flex: none; display: flex; align-items: center; gap: 20px;
+  height: 62px; padding: 0 44px; border-top: 1px solid var(--line);
+  background: rgba(20, 26, 51, 0.85); overflow: hidden;
+}
+#ticker { height: 58px; background: rgba(16, 20, 42, 0.92); }
+.band-label {
+  flex: none; font-size: 14px; font-weight: 700; letter-spacing: 3px;
+  color: var(--rust); white-space: nowrap;
+}
+.marquee { flex: 1; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-block; white-space: nowrap; animation: scroll linear infinite; }
+#glossary-track { animation-duration: 240s; }
+#ticker-track { animation-duration: 300s; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track span.item { font-size: 19px; color: #e8e2d4; }
+.marquee-track span.item b { color: var(--paper); }
+.marquee-track span.sep { color: var(--rust); padding: 0 26px; font-size: 19px; }
+.byline { flex: none; font-size: 16px; color: var(--muted); white-space: nowrap; }
+
+/* ---- data error ---- */
+#data-error {
+  position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  background: var(--navy-deep); padding: 60px;
+}
+#data-error[hidden] { display: none; }
+#data-error p { font-size: 24px; line-height: 1.5; max-width: 1100px; }
+#data-error code { background: rgba(250, 246, 239, 0.1); padding: 2px 8px; }
