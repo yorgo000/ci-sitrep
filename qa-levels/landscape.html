@@ -457,8 +457,8 @@
      empty (role="img" + aria-label); it carries no text, so it
      leaks nothing into slugs, search titles, or breadcrumbs. On
      tiles it is absolutely positioned in the top-left corner (the
-     share button owns top-right), centred in the 26px top padding
-     — zero layout shift, so the 250px tile-height estimator is
+     share button owns top-right), centred in the 20px top padding
+     — zero layout shift, so the 205px tile-height estimator is
      untouched. Elsewhere it sits inline after the text, beside the
      headline or heading. A consumed dot hides (the .consumed class
      is set by the runtime JS from localStorage); an un-consumed dot
@@ -470,7 +470,7 @@
      definition, here: the dashboard embeds in this page, so its
      numerals share it (no second copy in DASH_CSS to drift). Wash
      only — no padding/border/font-weight, so zero layout impact and
-     the 250px tile budget cannot move. box-decoration-break: clone
+     the 205px tile budget cannot move. box-decoration-break: clone
      washes each wrapped line of a multi-line span separately
      (-webkit- prefix for Safari). Consumed (dot dismissed) reads as
      un-highlighted — the JS toggles .consumed on the highlight with
@@ -754,12 +754,13 @@
      its modifier.
      Unit sizes (Round 4 §2, uniform-size round 2026-11-19): ONE tile
      size — the unit is a fixed card, 1 unit wide (one grid column) by
-     250px tall (tile round 2026-11-25; was 280px until the
-     provenance line collapsed into the footer and the padding
-     tightened 32/12 → 26/10); a 2-unit tile is two columns wide and
-     250px tall. The height is a MINIMUM (tile round 2026-11-25 —
+     205px tall (tightening round 2026-11-25; was 250px in the tile
+     round and 280px before it — Yorgo: shorter tiles, more rows on
+     screen; the padding tightened 26/10 → 20/8 and the graphic
+     slot 72 → 60px with it); a 2-unit tile is two columns wide and
+     205px tall. The height is a MINIMUM (tile round 2026-11-25 —
      was a fixed `height`): every 1-unit and 2-unit tile is at
-     least 250px tall at every multi-column width, so rows align
+     least 205px tall at every multi-column width, so rows align
      top and bottom in the default (collapsed-footer) view; an
      EXPANDED footer grows its tile (and its grid row) instead of
      spilling over the row below — expansion is user-initiated, so
@@ -767,7 +768,7 @@
      (estimate_tile_height) guards the collapsed height so no tile
      exceeds the minimum unbidden. Height on the tile, not
      grid-auto-rows on the grid — block-labels are grid items too,
-     and a fixed auto-row would stretch every label row to 250px.
+     and a fixed auto-row would stretch every label row to 205px.
      No overflow: hidden on tiles — keep it that way. 3-unit tiles
      (money bignote, profitability) and countdown tiles keep their own
      natural height (min-height: 0). Fixed columns — 3 above 1100px, 2 at 601–1100px, 1
@@ -784,7 +785,7 @@
      restores the 24px rhythm exactly. Only the ledger ever produces
      adjacent grids. */
   .tile-grid + .tile-grid { margin-top: 16px; }
-  .tile { border: 1px solid var(--line); border-radius: 6px; padding: 26px 14px 10px; background: #fdfbf7; display: flex; flex-direction: column; min-width: 0; min-height: 250px; }
+  .tile { border: 1px solid var(--line); border-radius: 6px; padding: 20px 14px 8px; background: #fdfbf7; display: flex; flex-direction: column; min-width: 0; min-height: 205px; }
   .tile-span-2 { grid-column: span 2; }
   .tile-span-3 { grid-column: 1 / -1; min-height: 0; }
   .countdown-strip .tile { min-height: 0; }
@@ -799,27 +800,27 @@
   .tile-graphic-row .stat-value { margin: 0; }
   /* svg-qualified: .tile-pie / .tile-sparkline are also tile TYPE classes
      on the tile div — the graphic sizing must not apply to the div. */
-  svg.tile-pie { width: 72px; height: 72px; flex: 0 0 auto; }
-  svg.tile-question { width: 72px; height: 72px; flex: 0 0 auto; }
+  svg.tile-pie { width: 60px; height: 60px; flex: 0 0 auto; }
+  svg.tile-question { width: 60px; height: 60px; flex: 0 0 auto; }
   .tile-question-mark { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 52px; font-weight: 700; fill: #283060; }
   svg.tile-sparkline { width: 100%; height: auto; display: block; margin: 4px 0 2px; }
   .tile-caption, .waffle-caption { font-size: 12px; color: var(--muted); margin: 0 0 6px; }
-  /* Waffle (Job B test): a 10x10 grid of 6px squares, 1px gaps = 69px,
-     centred in the 72px graphic slot so waffle tiles align with pies.
+  /* Waffle (Job B test): a 10x10 grid of 5px squares, 1px gaps = 59px,
+     centred in the 60px graphic slot so waffle tiles align with pies.
      Scoped to the graphic row: .tile-waffle is also the tile TYPE class
      on the tile div — unscoped, this rule constrained the TILE to 72px
      (Round 5 phone review: the Sajadi tile rendered 72px wide, value
      spilling outside the tint). Same guard as the svg-qualified pie /
      sparkline rules above. */
-  .tile-graphic-row .tile-waffle { width: 72px; flex: 0 0 auto; }
-  .tile-waffle-grid { display: grid; grid-template-columns: repeat(10, 6px); grid-auto-rows: 6px; gap: 1px; width: 69px; height: 69px; margin: 0 auto; }
-  .waffle-sq { display: block; width: 6px; height: 6px; }
+  .tile-graphic-row .tile-waffle { width: 60px; flex: 0 0 auto; }
+  .tile-waffle-grid { display: grid; grid-template-columns: repeat(10, 5px); grid-auto-rows: 5px; gap: 1px; width: 59px; height: 59px; margin: 0 auto; }
+  .waffle-sq { display: block; width: 5px; height: 5px; }
   .waffle-sq.rust { background: #b3543f; }
   .waffle-sq.blue { background: #283060; }
   .waffle-sq.muted { background: #c9c2b0; }
   /* Paired tile (strip only): two pie figures side by side in one DOUBLE
      (2-unit) card — figures[0] left. Each half is a self-contained pie
-     figure at the standard 72px pie size (the 48px shrink died with the
+     figure at the standard 60px pie size (the 48px shrink died with the
      overstuffed 1-unit card). A vertical hairline divider marks the halves
      as two findings, not a comparison: no "vs" connector, no gap marker
      (the second figure is of the same population, not a subset of the
@@ -901,22 +902,31 @@
      The link also extends the click target over the tile's empty
      space — the whole tile body navigates, not just the text. */
   .tile-grid .tile a.tile-body-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; flex: 1; min-width: 0; }
-  /* The tile footer (tile round, 2026-11-25): the provenance line
-     (source · date · rating dots) collapsed into a <details> at the
-     tile's bottom, closed by default. The footer pins to the tile's
-     bottom (margin-top: auto — the tile is a flex column, and the
-     body link is a flex column with flex: 1). On centred tiles the
-     body wrapper (flex: 1) takes the free space, so this margin
-     computes to 0 and the content block sits centred above the
-     footer; on uncentred tiles the margin holds the footer at the
-     bottom with the finding at the top. The summary is one compact
-     line (12px × 1.5 + 3px top pad = the estimator's _FOOTER 21px);
-     the native disclosure marker stays (no font glyphs). Expanded,
-     the footer grows the tile (min-height, never fixed height).
-     As a <details> in main, Expand all / Collapse all open and
-     close it with everything else (setAllCollapsed). */
-  .tile-foot { margin-top: auto; padding-top: 3px; }
-  .tile-foot summary { font-size: 12px; line-height: 1.5; color: var(--muted); cursor: pointer; }
+  /* The tile footer (tile round, 2026-11-25; tightening round,
+     2026-11-25): the provenance line (source · date · rating dots)
+     collapsed into a <details> at the tile's bottom, closed by
+     default. The footer pins to the tile's bottom (margin-top:
+     auto — the tile is a flex column, and the body link is a flex
+     column with flex: 1). On centred tiles the body wrapper
+     (flex: 1) takes the free space, so this margin computes to 0
+     and the content block sits centred above the footer; on
+     uncentred tiles the margin holds the footer at the bottom
+     with the finding at the top. The toggle is ONE tight line —
+     the word "source" + a chevron (Yorgo, tightening round: just
+     the word, with a down/up arrow, as tight as possible). The
+     native disclosure marker is hidden; the chevron is a CSS
+     triangle (the house style — .sfp-chevron / .sort-tri, no font
+     glyphs) pointing down when collapsed and rotating up when
+     open. The summary line is 12px × 1.35 + 2px top pad = the
+     estimator's _FOOTER 18px. Expanded, the footer grows the tile
+     (min-height, never fixed height). As a <details> in main,
+     Expand all / Collapse all open and close it with everything
+     else (setAllCollapsed). */
+  .tile-foot { margin-top: auto; padding-top: 2px; }
+  .tile-foot summary { font-size: 12px; line-height: 1.35; color: var(--muted); cursor: pointer; list-style: none; }
+  .tile-foot summary::-webkit-details-marker { display: none; }
+  .tile-foot-chev { display: inline-block; width: 0; height: 0; margin-left: 4px; vertical-align: middle; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: transform 0.15s; }
+  .tile-foot[open] .tile-foot-chev { transform: rotate(180deg); }
   .tile-foot .fig-source { margin-top: 2px; }
   /* The source line itself (inside the footer since the tile
      round): 13px muted, the traceability text. Its old pin-to-
