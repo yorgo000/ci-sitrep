@@ -31,14 +31,25 @@
   .sec-controls { font-size: 13px; color: var(--muted); white-space: nowrap; }
   .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
   .sec-controls button:hover { background: #e8dfcc; }
-  /* "How to read this" in row 1 is the phones-only copy (FIX 2): the
-     masthead copy is the control on desktop, so this one is hidden
-     above 900px and restored in the media query below. On phones it
-     sits centered between the As-of banner and the Sections controls;
-     when opened it drops to a full-width line below the row (the row
-     wraps). */
-  .top-row details.how-to-read { flex: 1 1 auto; text-align: center; display: none; }
-  .top-row details.how-to-read[open] { flex-basis: 100%; text-align: left; }
+  /* How-to-read modal (2026-11-25): the entry greeting — a floating
+     dialog on arrival, with a "Don't show this again" checkbox. The
+     sidebar <details> is the reference copy; the modal is the greeting.
+     z-index above the QA banner (9999) so the modal is never hidden
+     behind it. The top-row phones-only copy is gone (the modal covers
+     entry on phones) — no .top-row how-to-read rules remain. */
+  .howto-modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+  .howto-modal[hidden] { display: none; }
+  .howto-modal-backdrop { position: absolute; inset: 0; background: rgba(26, 26, 26, 0.55); }
+  .howto-modal-dialog { position: relative; background: var(--bg); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); max-width: 560px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 24px 28px 20px; box-sizing: border-box; }
+  .howto-modal-dialog h2 { font-size: 20px; color: var(--accent); margin: 0 0 12px; }
+  .howto-modal-close { position: absolute; top: 8px; right: 12px; border: none; background: none; font-size: 26px; line-height: 1; color: var(--muted); cursor: pointer; padding: 4px 8px; }
+  .howto-modal-close:hover { color: var(--ink); }
+  .howto-modal-body { font-size: 15px; line-height: 1.55; color: var(--ink); }
+  .howto-modal-body ol { margin: 0 0 12px; padding-left: 20px; }
+  .howto-modal-body li { margin: 0 0 8px; }
+  .howto-modal-body p { margin: 0 0 8px; }
+  .howto-modal-dismiss { display: block; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); cursor: pointer; }
+  .howto-modal-dismiss input { margin-right: 6px; }
   details.how-to-read { width: fit-content; max-width: 100%; }
   details.how-to-read[open] { width: 100%; }
   .search-box { margin: 0 0 16px; position: relative; }
@@ -396,10 +407,6 @@
     .share-link { opacity: 1; }
     .back-to-top { right: 16px; bottom: 16px; }
     #def-tip { max-width: calc(100vw - 32px); }
-    /* FIX 2: the phones-only row-1 "How to read this" copy is visible
-       here (hidden on desktop); the masthead copy also renders below
-       the content, inside the sidebar. */
-    .top-row details.how-to-read { display: block; }
     nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static; border-right: none; border-bottom: none; border-top: 1px solid var(--line); }
     main h1 { margin: -24px -20px 16px; padding: 24px 20px; }
     main h1 .h1-date { font-size: 12px; }
@@ -803,17 +810,6 @@
 <p><strong>Pre-commit:</strong> <a href="#41-the-flaw-rate-at-generation">More than a third of AI-written code still carries a known security flaw</a> — the flaw rate moved for the first time in the series, from ~44% to ~38%, driven by easier flaws rather than harder ones. The work, for now, is building your own gates.</p></div>
 </details>
 <div class="top-row">
-<details class="how-to-read">
-<summary>How to read this</summary>
-<ol>
-<li>Start at the top — <a href="#executive-dashboard">SITREP</a> gives you the numbers, <a href="#report">Landscape</a> gives you the evidence, both sliced the same four ways.</li>
-<li>First time? Read the bottom line in <a href="#executive-dashboard">SITREP</a>; if that's enough, you're done — or read the whole <a href="#report">Landscape</a>. Then you know what's going on.</li>
-<li>Short on time, or back for the day? Read the bottom line, then <a href="#diff">DIFF</a> — or follow the red dots: everything the news touched carries one.</li>
-<li>Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.</li>
-<li>New to the terms? The <a href="glossary.html">Glossary</a> defines every acronym; the <a href="explainer.html">explainer</a> explains CI, CII, CIC. Keep opening until you've got what you need; hit back and you're at the top again.</li>
-</ol>
-<p>What gets in, and what the confidence dots mean: <a href="audit.html">Self-Audit</a> and the <a href="#confidence-rating-scale">Confidence rating scale</a>.</p>
-</details>
 <div class="sec-controls">Sections: <button type="button" data-act="expand">Expand all</button><button type="button" data-act="collapse">Collapse all</button></div>
 </div>
 <details class="search-filter-panel">
@@ -4600,6 +4596,23 @@
   refreshDots();
 })();
 </script>
+<div class="howto-modal" id="howto-modal" hidden>
+<div class="howto-modal-backdrop" data-act="close"></div>
+<div class="howto-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="howto-modal-title">
+<button type="button" class="howto-modal-close" data-act="close" aria-label="Close">&times;</button>
+<h2 id="howto-modal-title">How to read this</h2>
+<div class="howto-modal-body"><ol>
+<li>Start at the top — <a href="#executive-dashboard">SITREP</a> gives you the numbers, <a href="#report">Landscape</a> gives you the evidence, both sliced the same four ways.</li>
+<li>First time? Read the bottom line in <a href="#executive-dashboard">SITREP</a>; if that's enough, you're done — or read the whole <a href="#report">Landscape</a>. Then you know what's going on.</li>
+<li>Short on time, or back for the day? Read the bottom line, then <a href="#diff">DIFF</a> — or follow the red dots: everything the news touched carries one.</li>
+<li>Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.</li>
+<li>New to the terms? The <a href="glossary.html">Glossary</a> defines every acronym; the <a href="explainer.html">explainer</a> explains CI, CII, CIC. Keep opening until you've got what you need; hit back and you're at the top again.</li>
+</ol>
+<p>What gets in, and what the confidence dots mean: <a href="audit.html">Self-Audit</a> and the <a href="#confidence-rating-scale">Confidence rating scale</a>.</p></div>
+<label class="howto-modal-dismiss"><input type="checkbox" id="howto-modal-never"> Don't show this again</label>
+</div>
+</div>
+
 
 <script>
 (function () {
@@ -5161,6 +5174,38 @@
   syncSortDirState();
   applySort();
   applyFilters();
+})();
+</script>
+
+
+<script>
+(function () {
+  var modal = document.getElementById('howto-modal');
+  if (!modal) return;
+  var KEY = 'ci-sitrep-howto-dismissed';
+  var SEEN = 'ci-sitrep-howto-shown';
+  var never = document.getElementById('howto-modal-never');
+  function closeModal() { modal.hidden = true; }
+  try {
+    if (!localStorage.getItem(KEY) && !sessionStorage.getItem(SEEN)) {
+      modal.hidden = false;
+      sessionStorage.setItem(SEEN, '1');
+      var btn = modal.querySelector('.howto-modal-close');
+      if (btn) btn.focus();
+    }
+  } catch (e) { modal.hidden = false; }
+  modal.addEventListener('click', function (ev) {
+    if (ev.target === modal || ev.target.hasAttribute('data-act')) closeModal();
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && !modal.hidden) closeModal();
+  });
+  if (never) never.addEventListener('change', function () {
+    try {
+      if (never.checked) localStorage.setItem(KEY, '1');
+      else localStorage.removeItem(KEY);
+    } catch (e) {}
+  });
 })();
 </script>
 
