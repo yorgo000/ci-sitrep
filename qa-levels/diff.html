@@ -36,8 +36,21 @@
      title + .sec-controls). Same rule in build_page.py (there the
      title is the page H1). */
   main h2.surface-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  main h2.surface-heading .sec-controls { flex: none; }
-  @media (max-width: 600px) { main h2.surface-heading { flex-direction: column; align-items: flex-start; gap: 6px; } }
+  /* The controls sit FLUSH RIGHT as one unit with the copy-link
+     icon the share JS appends after them (Yorgo, 2026-11-25):
+     space-between alone spread the three flex items (title /
+     controls / icon) and left the controls floating mid-line.
+     margin-left: auto absorbs the free space before the controls,
+     so controls + icon group at the row's right edge; when the
+     long DIFF title forces a wrap, the wrapped controls stay
+     right-aligned instead of dropping to the left. The icon's own
+     margin-left is zeroed inside the heading so the unit spacing
+     is the row gap alone. */
+  main h2.surface-heading .sec-controls { flex: none; margin-left: auto; }
+  main h2.surface-heading .share-link { margin-left: 0; }
+  /* Phones: the title takes its own line; the controls + icon sit
+     underneath it, still right-aligned as one unit. */
+  @media (max-width: 600px) { main h2.surface-heading { gap: 6px 12px; } main h2.surface-heading .surface-title { flex: 1 1 100%; } }
   .sec-controls button { font-size: 12px; padding: 2px 8px; margin-left: 4px; cursor: pointer; background: #fdfbf7; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
   .sec-controls button svg { vertical-align: -2px; margin-right: 4px; }
   .sec-controls button:hover { background: #e8dfcc; }
@@ -2770,14 +2783,20 @@
     }
     // Feed groups hide when all their entries filter out (a group
     // with any untagged entry never hides — untagged entries are
-    // always visible). The groups live under #diff (a peer surface
-    // since the 2026-11-23 hoist), not inside .report-embed — select
-    // document-wide.
+    // always visible). A peer section with NO feed entries at all
+    // (the Countdown section: tiles, not entries) is not governed
+    // by this rule — the same no-content guard updateSections
+    // applies to report headings. Without it, the Countdown
+    // heading and strip hid on every load (2026-11-25 fix). The
+    // groups live under #diff (a peer surface since the 2026-11-23
+    // hoist), not inside .report-embed — select document-wide.
     document.querySelectorAll('h3.feed-group').forEach(function (h) {
       var body = h.nextElementSibling;
       if (!body || !body.classList.contains('section-body')) return;
+      var lis = body.querySelectorAll('li');
+      if (!lis.length) return;
       var anyVisible = false;
-      body.querySelectorAll('li').forEach(function (li) {
+      lis.forEach(function (li) {
         if (li.style.display !== 'none') anyVisible = true;
       });
       h.style.display = anyVisible ? '' : 'none';
