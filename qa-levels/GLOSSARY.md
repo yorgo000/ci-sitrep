@@ -269,7 +269,7 @@ never been tested is a claim, not a control.
 ## L
 
 **Landscape** — The report surface of CI SITREP:
-the full knowledge base of findings, sliced into the four sections —
+the full knowledge base of findings, split across the four domains —
 PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
 Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
 surface is DIFF.
