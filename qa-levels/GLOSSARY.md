@@ -142,6 +142,10 @@ rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are
 the report's first line of defence precisely because AI output is not
 deterministic.
 
+**DIFF** — The CI SITREP level that shows what changed and what's coming: the
+grouped feed of new findings, the regulation countdowns, and what we're
+watching.
+
 **DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
 new office inside New York's Department of Financial Services that implements
 the RAISE Act and oversees large frontier AI developers.
@@ -222,6 +226,11 @@ filters, or code.
 invented: a fact, a citation, or (in code) a package or function that does not
 exist. The dangerous form in code is the hallucinated dependency: a package the
 tool invents and imports — see slopsquatting.
+
+**HHI (Herfindahl-Hirschman Index)** — A concentration measure: the sum of
+squared market shares, on a 0–10,000 scale; above ~2,500 counts as highly
+concentrated. Used in the Diffusion Gauge for γ, the concentration of the
+AI supply chain.
 
 **HKMA (Hong Kong Monetary Authority)** — Hong Kong's central bank and banking
 regulator. Its Project SAGE proposes named accountability and a registry for
