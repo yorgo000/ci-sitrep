@@ -55,10 +55,6 @@ for the most powerful general-purpose AI models. It sent its first information
 requests to OpenAI and Anthropic in October 2026 over agents that escaped
 their test environments.
 
-**AISI (AI Security Institute)** — The UK government's institute for testing
-frontier AI models for safety and security risks. Its cyber evaluations
-measure how models behave when they can act, not just answer.
-
 **ARTEX** — An AI security agent used for cybersecurity benchmark evaluations; a
 researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
@@ -88,10 +84,6 @@ up in the Microsoft agent-framework PyPI compromise.
 only one place — inside a prompt, a file, or a system. If anyone ever uses
 it, that place has been exposed. Dragos seeded ~2M canary-laced prompts in
 2026 to prove AI providers were copying customer prompts.
-
-**CBEST** — The Bank of England's threat-led penetration-testing framework
-for UK financial firms: authorised attackers test a firm's defences against
-realistic threat scenarios. Being enhanced for frontier-AI-enabled attacks.
 
 **Cedar** — AWS's open-source language for writing fine-grained authorisation
 policies: who may do what to which resource, as permit/forbid rules. Dogwood
@@ -145,10 +137,6 @@ do, with fines up to 10% of worldwide turnover.
 **consultation paper (CP)** — A regulator's draft proposal published for public
 comment before it becomes final. FCA CP26/38 is the FCA's consultation paper on
 the Financial Crime Guide.
-
-**CORST (Cyber and Operational Resilience Stress Test)** — The Bank of
-England's system-wide exercise testing how UK finance withstands a severe
-operational disruption. Its 2027 run uses a frontier-AI scenario.
 
 **CSA (Cloud Security Alliance)** — An industry body for cloud and AI security;
 its research is cited for shadow-AI and agent-governance findings.
@@ -225,8 +213,6 @@ together — a human team, in the report's usage. The counterpart to CIC.
 **EII (ei individual)** — Confluence<1>'s term for an individual evolved
 intelligence: one human, in the report's usage. The counterpart to CII.
 
-**Elicitation (MCP)** — The Model Context Protocol feature that lets a server pause mid-call to ask the user for input — a form or a link — before a consequential action, then continue where it left off. Generally available in Claude and Claude Code since 24 Nov 2026; the protocol's native human sign-off gate.
-
 **Embedded assessment** — An independent safety evaluation conducted inside a
 lab, with deep access to its models, training data and monitoring systems over
 an extended period. OpenAI's first phase (Nov 2026) put four outside groups
@@ -243,10 +229,6 @@ report's standard for a trustworthy gate — passing tests is not enough.
 
 ## F
 
-**FAISF (Frontier AI Information Sharing Forum)** — A Bank of England forum,
-launched July 2026, where systemically important UK financial firms share
-experience on using frontier AI for cyber defence.
-
 **FCA (Financial Conduct Authority)** — The UK's financial regulator. Its
 supervision findings and guidance are the report's most-cited source on how
 banks actually run AI.
@@ -262,10 +244,6 @@ governing agents at broker-dealers.
 **four-eyes principle** — Two people must approve a high-risk action: the
 requester and a different approver. The report's rule for high-risk
 CI-generated changes.
-
-**FPC (Financial Policy Committee)** — The Bank of England committee that
-sets UK financial-stability policy. Its Financial Stability Report judges
-systemic risks, including those from frontier AI.
 
 **frontier model** — The most capable AI model available at a given time — the
 leading edge (e.g. the newest Claude, GPT, Gemini). Frontier labs are the
@@ -389,8 +367,6 @@ A2A).
 servers from training memory instead of the service owner's current server
 (Glow Labs, Nov 2026).
 
-**MemHarmBench** — A benchmark (Wang et al., arXiv:2611.01700, Nov 2026) of cross-session prompt injection in agents with persistent memory: an instruction planted in external content, retained in memory, then steering a later session's decisions after the source is gone. Retained rules redirected decisions in 59–76% of eligible cases, usually with no visible anomaly.
-
 **METR (Model Evaluation & Threat Research)** — An independent research
 organisation that measures AI capabilities, including how long a task an agent
 can complete ("time horizons").
@@ -404,8 +380,6 @@ the SOMBERMEME backdoor.
 and the firm loses money or breaks the law because it relied on the model.
 Banks manage it under model-risk management (MRM) frameworks; generative and
 agentic AI currently sit outside the US federal one.
-
-**MOSAIC-Bench** — A benchmark (Steinberg & Gal, arXiv:2605.03952) of compositional vulnerability induction: a malicious end-state split into three routine-looking engineering tickets, each harmless alone, that compose into exploitable code. Production coding agents composed the tickets at 53–86% success; reviewer agents approved about a quarter of the vulnerable cumulative diffs.
 
 ## N
 
@@ -474,10 +448,6 @@ line.
 merged into the main codebase. The point where pre-commit checks run. (Not
 public relations.)
 
-**PRA (Prudential Regulation Authority)** — The Bank of England's prudential
-regulator for banks and insurers. Co-issues UK cyber-resilience expectations
-with the Bank and the FCA.
-
 **Product Liability Directive (PLD)** — Directive (EU) 2024/2853, the EU's
 revised product-liability law: from 9 Dec 2026 software and AI systems count
 as "products" under strict liability, AI providers count as manufacturers,
@@ -532,8 +502,6 @@ its own successor without human input, so capability growth becomes
 self-sustaining. California's November 2026 recommendations would require
 developers to report how much of their AI research is automated and give the
 state standby authority to cap it.
-
-**ruflo** — An open-source agent meta-harness for Claude Code and Codex (swarms, MCP bridge, AgentDB learning store). Its default docker-compose deployment shipped an unauthenticated MCP bridge (CVE-2026-59726, fixed in 3.16.3) that exposed provider keys and let an attacker poison the learning store.
 
 ## S
 
