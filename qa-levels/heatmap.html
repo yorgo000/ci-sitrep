@@ -737,8 +737,8 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
   </div>
 
   <div class="tabs" role="tablist" aria-label="Diagnostic Suite Views">
-    <button id="tab-btn-curve" class="tab-btn active" role="tab" aria-selected="true" aria-controls="view-curve" onclick="switchTab('curve')">1. Parametric Cycle</button>
-    <button id="tab-btn-matrix" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-matrix" onclick="switchTab('matrix')">2. P&amp;L Heatmap Matrix (6×5)</button>
+    <button id="tab-btn-matrix" class="tab-btn active" role="tab" aria-selected="true" aria-controls="view-matrix" onclick="switchTab('matrix')">1. P&amp;L Heatmap Matrix (6×5)</button>
+    <button id="tab-btn-curve" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-curve" onclick="switchTab('curve')">2. Parametric Cycle</button>
     <button id="tab-btn-gauge" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-gauge" onclick="switchTab('gauge')">3. P&amp;L Heatmap Generator</button>
   </div>
 
@@ -801,7 +801,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
 
 <main>
   <!-- TAB 1: PARAMETRIC CYCLE -->
-  <section id="view-curve" class="view active" role="tabpanel" aria-labelledby="tab-btn-curve">
+  <section id="view-curve" class="view" role="tabpanel" aria-labelledby="tab-btn-curve">
     <div class="layout-2col">
       <div class="card">
         <div class="card-header">
@@ -905,7 +905,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
   </section>
 
   <!-- TAB 2: 6x5 P&L HEATMAP MATRIX -->
-  <section id="view-matrix" class="view" role="tabpanel" aria-labelledby="tab-btn-matrix">
+  <section id="view-matrix" class="view active" role="tabpanel" aria-labelledby="tab-btn-matrix">
     <div class="layout-2col">
       <div class="card">
         <div class="card-header">
@@ -1100,7 +1100,7 @@ const CURVE_PRESETS = {
   rail: { alpha: 15, alphaDist: 15, beta: 30, gamma: 75, delta: 12.0, pos: 22, label: "Railroads (1845) — illustrative" }
 };
 
-let activeTab = "curve";
+let activeTab = "matrix";
 let activePresetKey = "ci";
 let activeMatrixPreset = "q4_2026";
 let alphaDistCurrent = 92;
@@ -1893,7 +1893,7 @@ updateCurve();
 buildMatrixTable();
 updateInspector();
 renderAllGauges();
-if (activeTab !== 'curve') switchTab(activeTab);
+if (activeTab !== 'matrix') switchTab(activeTab);
 </script>
 
 <!-- /P&L Heatmap diagnostic suite -->
