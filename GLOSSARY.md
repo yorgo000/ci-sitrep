@@ -173,6 +173,10 @@ rule, a test, a check. Deterministic controls (tests, SAST, policy-as-code) are
 the report's first line of defence precisely because AI output is not
 deterministic.
 
+**DIFF** — The CI SITREP level that shows what changed and what's coming: the
+grouped feed of new findings, the regulation countdowns, and what we're
+watching.
+
 **DIGIT (Office of Digital Innovation, Governance, Integrity, and Trust)** — The
 new office inside New York's Department of Financial Services that implements
 the RAISE Act and oversees large frontier AI developers.
@@ -260,6 +264,11 @@ invented: a fact, a citation, or (in code) a package or function that does not
 exist. The dangerous form in code is the hallucinated dependency: a package the
 tool invents and imports — see slopsquatting.
 
+**HHI (Herfindahl-Hirschman Index)** — A concentration measure: the sum of
+squared market shares, on a 0–10,000 scale; above ~2,500 counts as highly
+concentrated. Used in the Diffusion Gauge for γ, the concentration of the
+AI supply chain.
+
 **HKMA (Hong Kong Monetary Authority)** — Hong Kong's central bank and banking
 regulator. Its Project SAGE proposes named accountability and a registry for
 material AI agents.
@@ -316,6 +325,12 @@ never been tested is a claim, not a control.
 **Know Your Agent (KYA)** — A protocol, being developed under MAS's SAFR work, for trusted exchange of an agent's identity, whom it represents, its authority, mandate, provenance and reliability — so a bank can verify an agent before it transacts.
 
 ## L
+
+**Landscape** — The report surface of CI SITREP:
+the full knowledge base of findings, split across the four domains —
+PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
+Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
+surface is DIFF.
 
 **LiteLLM** — An open-source proxy/gateway that sits in front of model
 providers and MCP servers, holding provider keys and issuing per-team
@@ -424,6 +439,10 @@ judging agents.
 **pen test (penetration test)** — Authorised hacking: security specialists
 attack a system the way a real attacker would, to find the holes before
 criminals do.
+
+**PNL (profit and loss)** — The first section of CI SITREP: adoption,
+cost and liability — what AI code and agents mean for a firm's bottom
+line.
 
 **PR (pull request)** — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
