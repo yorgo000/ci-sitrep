@@ -156,6 +156,10 @@
   @view-transition { navigation: auto; }
   nav.sidebar { view-transition-name: hud; }
   main h1:first-of-type { view-transition-name: page-title; }
+  /* Fenced code blocks (WP-04 YAML schema, 2026-11-26): line-broken
+     monospace on the code wash; long lines scroll, never wrap. */
+  main pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  main pre code { background: none; padding: 0; }
   .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
   .masthead-tagline { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }
   .masthead-by { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
