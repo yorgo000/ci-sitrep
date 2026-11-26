@@ -10,14 +10,14 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 138 |
-| Source links (article + subsection) | 329 |
-| Total external links (incl. inline prose links) | 725 |
-| Unique source URLs | 284 |
-| Sections | 3 top-level · 22 subsections · 9 sub-subsections |
-| Items new in the last 7 days | 63 |
-| Superseded entries in the archive | 22 |
-| Report live since | 2026-11-09 |
+| Articles | 131 |
+| Source links (article + subsection) | 314 |
+| Total external links (incl. inline prose links) | 719 |
+| Unique source URLs | 291 |
+| Sections | 4 top-level · 29 subsections · 3 sub-subsections |
+| Items in DIFF | 63 |
+| Superseded entries in the archive | 21 |
+| Opened to the public | November 12, 2026 |
 
 ---
 
@@ -27,10 +27,10 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 22 | 16% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 45 | 33% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 64 | 46% |
-| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 7 | 5% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 22 | 17% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 42 | 32% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 61 | 47% |
+| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 6 | 5% |
 
 **49% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
@@ -40,7 +40,7 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 The daily watch reviews far more than it publishes. The bar for entry is whether a finding could change how a firm building critical systems in finance should act — routine news, vendor marketing, and minor updates do not qualify.
 
-Since tracking began on 2026-11-12, the daily watch has reviewed **800** sources and added **88** new articles (updating **29** existing ones). That is a 11.0% acceptance rate — most of what is reviewed does not clear the bar for entry.
+Source-review tracking runs from November 12, 2026, when the report opened to the public. In that window the daily watch has reviewed **800** sources and added **88** new articles (updating **29** existing ones). That is a 11.0% acceptance rate — most of what is reviewed does not clear the bar for entry.
 
 | Date | Sources reviewed | Articles added | Articles updated | Notes |
 |---|---|---|---|---|
@@ -61,7 +61,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 284 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 291 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
@@ -81,8 +81,8 @@ The rules the report is built and maintained under. These are not aspirations �
 
 ## Coverage — what we track and what we might be missing
 
-**Covered:** three subjects, updated daily — (1) Pre-commit: CI-generated code sanitizing, (2) In codebase: Sanitizing post-commit of CI-generated code, (3) Agentic: CIC Design, Build, Deployment. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
+**Covered:** four sections, updated daily — (1) PNL: money, adoption, liability, (2) CIC (Agentic Staff): the agent workforce, (3) Codebase Certification: attesting what is already there, (4) Code Sanitizing Pre-commit: stopping bad code getting in. Focus is critical systems in finance, with the regulatory landscape that governs them (US federal and state, EU, UK, Hong Kong, Singapore, Canada).
 
 **Known gaps — things we are watching for that have not arrived yet:** the live list is on the report's front page, in [What we're watching](index.html#what-were-watching) — the dated events on the horizon and the open questions the report is tracking. It is maintained in the open, in the same file as the report, so it never goes stale.
 
-**How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the three subjects every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
+**How sure are we that we are not missing anything?** Honestly: not certain, and no honest report can claim otherwise. What we can say is that the daily watch runs against the four sections every morning, the review funnel above shows how much is being looked at, and the known-gaps list is maintained in the open. If a reader finds a material development we have missed, that is a defect in the report — the contact address is [ci-sitrep@confluence1.com](mailto:ci-sitrep@confluence1.com).
