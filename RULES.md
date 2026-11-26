@@ -10,8 +10,8 @@ A rule changes only on his word. Record the change in §7 (changelog) with
 the date.
 
 **Scope:** this file governs the report itself (SYNTHESIZED.md and the
-generated site). The publication's future features live in FUTURE.md. The
-tagging taxonomy lives in TAXONOMY_DRAFT.md (approved v2, 2026-11-18).
+generated website). The publication's future features live in FUTURE.md. The
+tagging taxonomy lives in TAXONOMY_DRAFT.md (approved v3, 2026-11-25).
 
 ---
 
@@ -22,19 +22,66 @@ firm building critical systems in finance should act — its offerings, its
 controls, its budget, its risk posture. Routine news, vendor marketing,
 and minor updates do not qualify.
 
-**The three subjects.**
+**The grid — how the report names what it covers (2026-11-25).** The
+governing principle: name what the user is GETTING (descriptors of what
+is analyzed), never the tool's structure; a good tool goes unnoticed.
+All information sits in a three-dimensional grid: **Levels** (zoom
+levels — from Evidence at the base through Analysis, Dashboards,
+Situation at hand, The bottom line, to The heatmap at the top),
+**Domains** (the areas of concern regarding the surge itself), and
+**Verticals** (the business end of the reader's life — Finance now;
+Health, Defense, Public Sector later). The internal word "slice" is
+never reader-facing; the reader word is "domain". **The bottom line**
+is the most distilled takeaway (the prose abstract — you can't get
+more distilled than the bottom line); **Situation at hand** is the
+more comprehensive situational picture (the strip, the countdowns, the
+ledger). The two names were inverted on 2026-11-25 to match what they
+describe; anchors follow their labels. The site is a **website**, not
+a "file".
 
-1. Pre-commit: CI-generated code sanitizing — tools and best practices
-   for addressing the problem of CI-generated code before it is committed,
-   while it is being written and at the point of commit. Commercial
-   products, open-source tools, and the practices that make them effective.
-   Confluence<1> builds its own tools in this space as well as advising on
-   and deploying others'.
-2. In codebase: Sanitizing post-commit of CI-generated code — tools,
-   techniques, and best practices for detecting and remediating the
-   defects CI-generated code has already left in an existing codebase.
-3. Agentic: CIC Design, Build, Deployment — the creation, governance,
-   and management of cii collectives.
+**The four domains** (in this order on every surface):
+
+1. **PNL (profit and loss)** — money, adoption, liability: what AI
+   costs, what it returns, how fast it is spreading, and who pays when
+   it goes wrong. The reader's question is "what does this do to my
+   numbers?" An article is PNL-primary when its headline finding is a
+   dollar figure or ratio of dollars, a quantified business outcome, an
+   adoption or scale figure, a liability or exposure ruling, or a dated
+   obligation with a cost consequence. **The boundary:** "everything
+   has P&L implications" is NOT the test — the finding itself must be
+   stated in business terms (money, share, outcome, liability), not
+   have a business consequence derived from it. A rate ratio of
+   vulnerabilities is not PNL; a ratio of costs is. **Regulation lives
+   in PNL (§1.4 Regulation & enforcement), not CIC** (Option B,
+   Yorgo's verdict 2026-11-23): CIC keeps the governance firms build
+   themselves; PNL holds the governance regulators impose. The seven
+   frontier-lab regulation articles moved with the cluster.
+2. **CIC (Agentic Staff)** — the agent workforce: how agents are
+   designed, built, deployed, governed, managed, and evaluated, and
+   what happens when they act, fail, or are attacked. The reader's
+   question is "how do I run this workforce, and what is it doing?"
+   Incidents where the agent is the actor — or the exploited party —
+   are CIC, even when the damage lands on code. **Boundary with
+   Certification:** an incident about a *poisoned artifact* (a bad
+   skill, a backdoored package, a CVE in shipped code) is
+   Certification; an incident about *agent behaviour* (an agent
+   installing from memory, an agent exploited through its instructions,
+   an agent escaping its sandbox) is CIC. When both are true, the
+   primary follows the finding's lead.
+3. **Codebase Certification** — attesting what is already there:
+   measuring, attesting, and verifying the state of code already
+   written, shipped, or deployed, and the fix loop that changes that
+   state (measure → attest → fix → re-verify → re-attest). The
+   reader's question is "what is the state of my codebase, and can I
+   prove it?" The line against Pre-commit is *when* the code is judged:
+   already in the codebase (Certification) vs at generation
+   (Pre-commit).
+4. **Code Sanitizing Pre-commit** — stopping bad code getting in:
+   cleaning CI-generated code before it enters the codebase — while the
+   agent writes it and at the point of commit (agent-time enforcement,
+   PR/CI gates, LLM review). The reader's question is "how do I stop
+   bad code getting in?" Confluence<1> builds its own tools in this
+   space as well as advising on and deploying others'.
 
 **Geography and audience focus (2026-11-15).** The report's focus is the
 US — New York City in particular — and the firms Confluence<1> serves:
@@ -52,12 +99,15 @@ and to seek, not a reason to lead with a UK one.
 the section headings, and the culture framework. The field's own words
 stay as the sources say them: quoted statistics (Sonar, Google, Gartner)
 keep "AI-generated" because that is what the sources say. Never rewrite a
-source's wording to fit our framing.
+source's wording to fit our framing. CIC always appears as "CIC
+(Agentic Staff)" in full on first use per page. The product is always
+"CI SITREP"; bare "SITREP" is the dashboard surface only.
 
-**Agent reliability** is covered inside §3 (the §3 intro names reliability
-as "the binding constraint, not capability"; §3.6 Evaluation covers
-pass^k vs pass@1, METR time horizons, ThinkingBox, "never trust an
-agent's self-reported PASS"). It is not a separate watch.
+**Agent reliability** is covered inside the CIC domain (the CIC intro
+names reliability as "the binding constraint, not capability"; the
+Evaluation subsection covers pass^k vs pass@1, METR time horizons,
+ThinkingBox, "never trust an agent's self-reported PASS"). It is not a
+separate watch.
 
 **Nothing is silently deleted.** Superseded text moves to
 archive/ARCHIVE.md, dated and categorized by subject, with a pointer to
@@ -76,62 +126,106 @@ archived with the superseded text.
 The report is a **knowledge base**, not a log. Sections update in place;
 the file is hierarchical, with a table of contents.
 
-**Front page, in order:**
+**The site structure — levels as pages (2026-11-25).** The levels
+variant is THE site structure: four level pages — SITREP, DIFF,
+Landscape, BACKGROUND — plus the BACKGROUND sub-pages. Articles do not
+have separate pages; they all live on the Landscape page. (The
+single-page build is retained for the record; its verify bar is 81 —
+the release bar is the variant's 85, §5.)
 
-**Row 1** — the As-of banner and the Sections expand/collapse controls,
-on one row (banner left, controls right). On phones, "How to read this"
-also sits centered in row 1 — a phones-only copy of the masthead
-control (§4); on desktop it is hidden.
-**Row 2** — the Search/Filter/Sort panel (§4): one collapsed block
-holding the search box, the filters, and the sort control. Collapsed
-by default.
-The mobile inline PAGE CONTENTS sits between row 2 and the dashboard section
-(hidden on desktop); the sidebar PAGE CONTENTS lives in the masthead (§4).
+**SITREP page, in order:** the H1 banner (with the as-of date, §4);
+**The bottom line** — the prose abstract, a standalone expandable box
+first below the header, starting collapsed (§4); the dashboard
+(F-01, embedded from `dashboard.json`): the "What this is" explainer
+(collapsed by default — the reader needs to know what the surface IS
+before any content), then **Situation at hand** — the comprehensive
+situational picture in figures: the bottom-line strip (eight items in
+nine units, three full rows of three, in domain order PNL 4 / CIC 2 /
+Certification 1 / Pre-commit 1; the WHOLE strip tile is one link to
+its evidencing article) and the net-impact ledger last; then the four
+**domain dashboards** (PNL dashboard, CIC (Agentic Staff) dashboard,
+Codebase Certification dashboard, Code Sanitizing Pre-commit
+dashboard) in that order, every figure linked to the article that
+evidences it (§4 tile→bullet deep link). The SITREP level opens as a
+standard collapsed view: only the surface H2 starts open; The bottom
+line, Situation at hand, Net impact, the four domain dashboards and
+their panels all start collapsed (§4).
 
-Then the two top-level sections, both starting OPEN:
+**The bottom line (the abstract).** The markdown source keeps
+`## Situation at hand` as four paragraphs, one per domain in domain
+order; only the render moves it into the box labelled "The bottom
+line" (the names were inverted 2026-11-25 — §1). Every claim in it is
+grounded in the report's own findings and traceable via an internal
+link to the section that evidences it. Revise it whenever a material
+shift lands that changes the macro picture; never let it go stale or
+contradict the sections below it. No generic marketing claims — every
+sentence must be defensible from the report. A fixed fifth paragraph
+follows the four domain paragraphs — "**Researcher, scientist, deep
+diver?** BACKGROUND holds the research and development this is derived
+from." — generator-appended after the four abstract paragraphs; the
+watch owns only the four domain paragraphs and cannot touch it.
 
-1. **EXECUTIVE DASHBOARD** — the F-01 dashboard, embedded from
-   `dashboard.json`: the bottom-line strip (seven items in a 3+3+1
-   grid — six charted tiles occupying seven units in three rows (three
-   1-unit tiles; the 2.5× tile plus the paired double tile; the 188
-   tile alone, the trailing hole consolidated bottom-right), then the
-   profitability item full-width, reading "Insufficient data" and
-   linking to the money panel; pie tiles for the percentages, a ratio
-   tile for the multiplier, a waffle tile for the count-share, a
-   big-number tile for the count, a paired double tile for the two BCG
-   figures; pie colours follow the split, §4;
-   the WHOLE strip tile is one link
-   to its evidencing article, like the countdown tiles), the countdown strip (labelled
-   "COUNTDOWN") and the five panels,
-   every figure linked to the report article that evidences it. (The
-   standalone dashboard page is gone; `dashboard.html` redirects to
-   `index.html#executive-dashboard`.)
-2. **REPORT** — the report itself, in this order:
-   - **Situation at hand** — a 2–4 sentence macro synthesis, the first
-     thing a new reader actually reads. Every claim in it is grounded in
-     the report's own findings and traceable via an internal link to the
-     section that evidences it (the flaw rate to §1.6, the governance gap
-     to §3.4.3, the regulatory picture to §3.4.2). Revise it whenever a
-     material shift lands that changes the macro picture; never let it go
-     stale or contradict the sections below it. No generic marketing
-     claims — every sentence must be defensible from the report.
-   - **New in the last 7 days** — a rolling 7-day window. Entries older than 7 days
-     drop off. Every entry is dated with the date it was ADDED to the
-     report, carries a finding-first title (§3), carries plain-English
-     section tags ([Pre-commit], [In codebase], [Agentic] — one per
-     section the entry touches, never the old "(subject 1/2/3)"
-     parentheticals), and links to the section where the article lives.
-     Entries are in strict newest-first order.
-   - **What we're watching** — dated upcoming events (comment deadlines,
-     effective dates) and open questions the report is tracking (things
-     promised but not yet published, benchmarks that don't exist yet,
-     regulatory language that may harden). Dated items are in soonest-first
-     order. Every item links to its section. Maintain it every run: add a
-     new item when research surfaces one; remove an item the day it lands
-     (it becomes an article and a "New in the last 7 days" entry instead). A past
-     date or a landed item still listed is a defect.
-   - **§1, §2, §3** — the three content sections, in that order.
-   - **Archive** — a pointer to the archive page.
+**DIFF page — "what happened and what's coming".** DIFF is the changes
+surface: the feed (what happened) + the watchlist (what's coming),
+one surface with one toggle; the watchlist is an H3 inside the DIFF
+body (never a peer H2 — §6 DOM-vs-rendered lesson). The heading
+carries its tagline in the heading itself: "DIFF — What changed and
+what's coming (N entries)". The feed is a rolling 7-day window;
+entries older than 7 days drop off. Every entry is dated with the date
+it was ADDED to the report, carries a finding-first title (§3), and
+links to where the article lives. Entries are in strict newest-first
+order in the markdown (flat); grouping happens at render time: a
+**Today (N)** group first (entries dated today, America/New_York —
+moved out of their domain groups, not duplicated; the heading gains
+"· N new today" only when N>0), then the four domain groups in domain
+order, then the Countdown block, then **What we're watching**. Feed
+tags (`[PNL]` / `[CIC]` / `[Certification]` / `[Pre-commit]` and
+`[new]` / `[updated]`) are internal bookkeeping only — stripped at
+build time, never rendered (§4). **What we're watching** — dated
+upcoming events (comment deadlines, effective dates) and open
+questions the report is tracking. Dated items are in soonest-first
+order. Every item links to its section. Maintain it every run: add a
+new item when research surfaces one; remove an item the day it lands
+(it becomes an article and a DIFF feed entry instead). A past date or
+a landed item still listed is a defect. The watch keeps writing
+`## What we're watching` in the markdown as before; the build places
+it inside DIFF. The regulation countdown tiles live in the watchlist
+(first block under the Countdown heading); countdowns are undotted
+(§4).
+
+**Landscape page** — the full knowledge base of findings ("Landscape —
+the complete picture"): the four domains (§1 PNL, §2 CIC, §3
+Codebase Certification, §4 Code Sanitizing Pre-commit) with all
+articles in their subsections. Section headings and article-bearing
+subsection headings carry build-time counts ("PNL (36 articles)") —
+in the body and in the masthead map. Generator-only — the markdown
+stays clean. Heading counts never leak into breadcrumbs or
+search-index titles/paths (`cleanText` strips `.section-count`).
+Feed-group headings and domain-dashboard headings carry counts the
+same way. One-line definitional intros per domain; the PNL heading
+carries the honesty note ("The money evidence is thin and growing —
+this section leads because the question matters most, not because the
+evidence is thickest.").
+
+**BACKGROUND page** — the consolidated reference page: About,
+Self-Audit, The names, Glossary, R&D, Archive in that order (anchor-first
+nav; each standalone page carries an "In BACKGROUND →" return link).
+R&D is a BACKGROUND subsection holding the research: the Diffusion
+Gauge tool (tracker.html) and The Surge Monitor white paper
+(tracker-whitepaper.html), plus CI vs EI and the Foundational
+theses. Self-Audit sits in BACKGROUND, second after About — never
+buried under SITREP.
+
+**How to use the SITREP** (the five lines, navigation only): (1) the
+map (SITREP numbers / Landscape evidence, same four domains); (2)
+first time (the bottom line, or the whole Landscape); (3) short on
+time or back for the day (the bottom line, then DIFF, or follow the
+red dots); (4) pick-and-open; (5) terms + keep-opening. Plus the
+pointer line to Self-Audit and the Confidence rating scale. The bar
+lives on Self-Audit; the rating definitions live in the masthead
+legend (the fullest wording + action guidance). The block renders as
+the entry modal (§4) and as the sidebar reference copy — one source,
+emitted twice, so the copies cannot drift.
 
 **Articles.** Each article is a collapsible headline (`<details>` /
 `<summary>`) with one fact per bullet inside. The headline carries the
@@ -145,21 +239,50 @@ company). Set dimensions are multi-value: no tie-breaks — use both
 values where both fit. Level dimensions (confidence, severity,
 register, horizon) are single-value; when in doubt, pick the lower /
 less alarming. Multi-value fields list values in taxonomy-table
-order. **Mirrored pairs:** the same finding mirrored in two sections
-carries both subjects on both instances; distinct findings from the
-same source stay section-pure. **Company** is the item's subject, not
-its source: a named recurring benchmark, instrument, or report counts
-its maker; one-off studies and surveys of third parties do not tag
-their measurer or publisher. **Dates:** the headline source's date
-when one exists, else the most-recent constituent. The tag join
-parses SYNTHESIZED.md directly (`build_dashboard.py`'s shared parser
-— one parser, never duplicated): articles and tiles carry `data-*`
-attributes from their tag lines for the filter panel (§4).
-`data-company` is comma-joined — company values contain spaces — all
-other dimensions space-joined.
+order. **Subject (taxonomy v3, 2026-11-25):** values are the four
+domain words `pnl`, `cic`, `cert`, `san`, **primary-first** — the
+first value is the article's home (the generator uses it for
+placement; both values are used for filtering). `0` (cross-cutting)
+is dropped. Feed tags are `[PNL]` / `[CIC]` / `[Certification]` /
+`[Pre-commit]` (internal only — §4). **Mirrored pairs:** the same
+finding mirrored in two domains carries both subjects on both
+instances; distinct findings from the same source stay domain-pure.
+**Company** is the item's subject, not its source: a named recurring
+benchmark, instrument, or report counts its maker; one-off studies
+and surveys of third parties do not tag their measurer or publisher.
+**Dates:** the headline source's date when one exists, else the
+most-recent constituent. The tag join parses SYNTHESIZED.md directly
+(`build_dashboard.py`'s shared parser — one parser, never
+duplicated): articles and tiles carry `data-*` attributes from their
+tag lines for the filter panel (§4). `data-company` is comma-joined
+— company values contain spaces — all other dimensions space-joined.
+
+**Changed-part marking (2026-11-23).** When the watch changes an
+article because of news, it marks the changed part at edit time; the
+build renders the highlight (§4) and enforces the marking. Three
+marker forms: `<!-- changed YYYY-MM-DD -->` appended to a bullet line
+(the whole bullet is the part); `<span data-changed="YYYY-MM-DD">…</span>`
+for prose or a partial bullet (exactly the wrapped text); `"changed":
+"YYYY-MM-DD"` on a dashboard figure (the numeral only). Mark
+**substantive** changes only (new fact, corrected number, changed
+conclusion) — cosmetic fixes (grammar, clarity, a fixed link) are not
+marked; only the editor can make that call. **New articles: dot only**
+(the whole article being new is what the dot says); **updated
+articles: dot + per-part highlight**. Feed entries carry `[new]` or
+`[updated]` after the domain tags (build-only — §4): an `[updated]`
+entry whose article has no live marker (and no figure with a live
+`changed` date) FAILS the build; a post-launch entry with neither tag
+also FAILS. The watch runs `clean_changed_markers.py` at run start
+(strips expired markers; expiry is render-time, so a skipped cleanup
+costs source clutter, never a wrong render). A weekly git-diff audit
+(Monday ~07:00 ET) diffs the week's SYNTHESIZED.md versions after
+stripping markers from both, flags content changes with no marker,
+and reports to Barnaby — it never writes to SYNTHESIZED.md. The
+highlight lives and dies with the dot: same 7-day window
+(`CHANGE_WINDOW_DAYS = 7`, America/New_York), same consumption (§4).
 
 **See also cross-links.** One-line collapsible blocks at the end of
-sub-sections, linking related sections across the three subjects. When a
+sub-sections, linking related sections across the four domains. When a
 new item is cross-cutting — the same evidence, control, regulation, or
 watch item in two places — add a See also line in BOTH places. Link only
 where the related section changes a decision, not for mere topic
@@ -168,6 +291,7 @@ similarity.
 **The audit page** (Self-Audit) is generated from the live files by
 `_tools/build_audit.py` — never hand-edit it. Its Coverage section links
 to "What we're watching" rather than maintaining its own known-gaps list.
+Self-Audit sits in BACKGROUND, second after About (§2 above).
 
 **Corrections page.** `CORRECTIONS.md` (built to `corrections.html`
 via `build_page.py`) lists every correction and omission fix, newest
@@ -185,15 +309,17 @@ text that referred to a term drops out of the report, the entry stays,
 so the dictionary only grows. The daily watch adds any new term or
 acronym a new article introduces, as part of its editorial pass, in
 alphabetical place under the right letter heading. Changing
-`GLOSSARY.md` means regenerating BOTH `glossary.html` and `index.html`
-(the tooltip data is generated from it at build time).
+`GLOSSARY.md` means regenerating `glossary.html` and every page that
+inlines the tooltip data (the tooltip data is generated from it at
+build time).
 
 **Dashboard.** `dashboard.json` is the single source of truth for the
-executive dashboard (F-01): five panels of at-a-glance figures, every
+SITREP dashboard (F-01): the Situation at hand strip + net-impact
+ledger, then the four domain dashboards of at-a-glance figures, every
 figure carrying its value, label, source, rating, date,
 and a link to the report article that evidences it, plus a `bottom_line`
-list (eight items in nine units — three full rows of three — rendered
-as a strip above the countdown; rating and
+list (eight items in nine units — three full rows of three, in domain
+order; rating and
 date optional, since the profitability item has neither; each item
 carries a tile where its figure has one — a pie tile for a percentage
 (number next to the pie, block-level legend rows), a ratio tile for a
@@ -202,7 +328,7 @@ count, a paired tile for two figures from one finding, a question mark
 in a circle for the profitability item, which
 has no data — pie colours follow the split, §4; and the profitability
 item is full-width, last, with `"full": true`) and a deadlines
-list for the countdown strip. Tile ids derive from the figure's stable
+list for the countdown tiles (rendered in DIFF, §2 above). Tile ids derive from the figure's stable
 `key`, never from its label slug — a label reword must not break a
 shared tile link. (Decided 2026-11-18; migration pending — no figure
 carries a `key` yet, and ids still derive from label slugs until it
@@ -236,30 +362,62 @@ the repo (D3). Numbered figures render as
 visual tiles, never bare notes (§4). Where a conclusion draws on a
 second headline article in another subsection, the figure carries an
 "also" list ({anchor, label})
-rendered after the source name. The one exception is §3.6 (Evaluation),
-which is prose, not articles: its figures link to the section anchor
-until the content becomes articles. The dashboard intro carries a
+rendered after the source name. The dashboard intro carries a
 second paragraph, `tint_note`, stating what the tile background tint
-means (§4). It is embedded in the report page as the first
-top-level section (EXECUTIVE DASHBOARD): `build_html.py` imports
+means (§4). It renders on the SITREP page: `build_html.py` imports
 `_tools/build_dashboard.py` to render it, and validates every figure
-against the generated `index.html` (required fields, rating in the
+against the generated pages (required fields, rating in the
 four levels, `pie_split` in its six values, waffle figures count-vs-count
-with a minority share ≥ 2%, history join rules, link anchors exist in
-`index.html` or among the computed article ids) —
+with a minority share ≥ 2%, history join rules, link anchors exist
+among the computed article ids) —
 a bad entry exits 1; fix the data, never weaken the check.
 `compute_article_ids()` in `_tools/build_dashboard.py` replicates the
 share JS's slugify + uniqueId — the two implementations must stay in
 sync, or dashboard links will point at ids the page never assigns.
-The standalone `dashboard.html` is a redirect to
-`index.html#executive-dashboard`. **Never add a figure the report does not
+**Never add a figure the report does not
 evidence, and never invent a dollar figure for the money panel** — its
 honest statement is "no credible dollar figure exists yet". The daily
 watch updates a figure when a new article moves a headline number, and
 updates the deadlines list the day a What-we're-watching date lands, so
-the countdown strip never shows a passed date. Panel order is editorial
+the countdown tiles never show a passed date. Panel order is editorial
 (audience-first), not numeric. `as_of_label` rolls to the release date
 whenever dashboard content changes.
+
+**Figure-section rule (2026-11-22).** Every dashboard figure carries
+its own `subject` (pnl/cic/cert/san) — the domain its content belongs
+to, which may diverge from its evidencing article's primary subject.
+Tiles filter by figure subject; articles filter by article subject.
+A figure whose evidencing article lives in another domain than the
+figure's dashboard carries `article_section` ("§x.y"), rendered as
+`in §x.y` on the fig-source line, so the cross-domain landing is
+signposted, not silent. Known behavior (not a bug): a tile carries
+only its single figure subject, so under a filter for its article's
+secondary domain the tile hides while the article shows.
+
+**Panel-placement rule (2026-11-22).** Multi-domain panels dissolve
+into the domain dashboards; single-domain panels stay whole;
+net-impact is the one cross-domain panel (inside Situation at hand,
+last — splitting it would kill the ledger framing, which is the
+panel's whole point). The Situation at hand strip stays unsliced (a
+recorded exception: an at-a-glance layer whose job is temporal, not
+domainal). The countdown tiles live in DIFF (the deadlines carry
+`subject: pnl`; the figure-section rule governs filtering, not
+render position, for the countdown).
+
+**Domain-alignment check (2026-11-25).** `check_dashboard_domain_alignment`
+(in `build_dashboard.py`, called by `validate()` at build time and by
+verify.py) enforces: figure subject = panel domain (net-impact
+exempt); panel domain ∈ the evidencing article's tag-subject set or
+a registry entry; panel domain = the article's primary domain or a
+correct `article_section` / registry entry; strip-tile subject =
+panel-twin subject; every countdown has a link and all share one
+declared domain; net-impact subjects in article tag sets and the
+ledger spans ≥2 domains. The `divergences` registry (figure, reason,
+`article_section`) and `panel_homes` (the subsections each panel
+legitimately draws from) live in `dashboard.json` — a divergence not
+in the registry FAILS the build. The **domain kicker** on strip
+tiles is internal bookkeeping only — never rendered (removed from
+rendering 2026-11-25; the reader must never see it).
 
 **Dashboard history.** `dashboard-history.json` is the append-only log
 of dated values behind the sparkline tiles, keyed by figure; a figure
@@ -279,8 +437,8 @@ incidents, and counts with no repeated measurement never get a series.
 
 **CI vs EI page.** `CI-VS-EI.md` builds to `ci-vs-ei.html` via
 `build_page.py` — the dedicated always-on view of every CI figure
-against its human (EI, evolved intelligence) equivalent, and the third
-surface alongside the executive dashboard and the report (F-17, built
+against its human (EI, evolved intelligence) equivalent, a companion
+view alongside SITREP and Landscape (F-17, built
 2026-11-17; "ATAK" is design analogy only — the view is named "CI vs
 EI"). It presents, in three family sections (Development, Operations,
 Business-composite), the complete pairs, the partial comparisons (with
@@ -299,7 +457,7 @@ with the old and new values. The working audit behind it lives at
 publishes a human baseline on a task the report already measures, or a
 new benchmark arrives with a human control arm, update the audit and
 the page the same run — a gap that gains a baseline is a material
-change, and the "New in the last 7 days" entry says so.
+change, and the DIFF feed entry says so.
 
 ---
 
@@ -326,12 +484,13 @@ change, and the "New in the last 7 days" entry says so.
   found…", no "The UK AI Security Institute reported…". Dates lead only
   for dated calendar items (the "What we're watching" list); in article
   bullets, a date goes at the end with the attribution.
-- "New in the last 7 days" entry titles are findings, never names — "First
-  benchmark of agentic pre-merge security review (SecPRBench)
-  [Pre-commit] [In codebase]", never "SecPRBench [Pre-commit] [In
-  codebase]: the first benchmark…". Link the source name in the entry to
-  its primary source URL. Tag every entry with plain-English section
-  tags — [Pre-commit], [In codebase], [Agentic] — never the old
+- DIFF feed entry titles are findings, never names — "First
+  benchmark of agentic pre-merge security review (SecPRBench)", never
+  "SecPRBench: the first benchmark…". Link the source name in the entry to
+  its primary source URL. Tag every entry in the markdown with the
+  domain tags — [PNL], [CIC], [Certification], [Pre-commit] — plus
+  `[new]` / `[updated]` (§2); all tags are internal bookkeeping only,
+  stripped at build time, never rendered (§4). Never the old
   "(subject 1/2/3)" parentheticals.
 - Exceptions (the only ones): lists organized BY verification status
   (§1.6.1, §2.6, §3.8) where the source's reliability IS the point;
@@ -356,19 +515,27 @@ not just its primary. (Added 2026-11-23 — the JetBrains miss: the
 Adoption article's Source line named Sonar only while its bullets drew
 on JetBrains and Google too.)
 
-**Inline links.** When prose mentions a source, benchmark, regulation,
-framework, or product by name, link the FIRST mention in each subsection
-to its source (the same URL the article's Source line or the subsection's
-Sources line uses, or the authoritative page for it). Do not link every
-occurrence — once per subsection is enough. Inside article `<details>`
-blocks: the headline parenthetical source IS linked (see above); do not
-add further links inside the article body bullets (they already have
-Source lines) — EXCEPT in a multi-source article (headline parenthetical
-plain because no single source exists): there, every bullet MUST link its
-source inline, unless the bullet is about the primary source named in the
-Source line. verify.py FAILs a multi-source bullet that does neither, and
-the headline exceptions list in verify.py is the registry of multi-source
-articles — an article joins it the moment a second source is added.
+**Inline links — bullet attributions hyperlinked everywhere
+(2026-11-25).** Every bullet attribution is hyperlinked to the
+attributed source's own page wherever a URL exists, in every article —
+not only multi-source ones. Hyperlink the source name inside the
+existing end-of-bullet parenthetical; where the link text names source
+X, the URL target must belong to X (compare the URL TARGET, never the
+link text — an aggregator URL under a publisher's name FAILS). The
+Source line is the article-level bibliography, not a substitute for
+bullet-level links — it still lists every source the article draws on,
+primary first (the 2026-11-23 JetBrains rule). In prose, link the
+FIRST mention of a source, benchmark, regulation, framework, or
+product in each subsection to its source; once per subsection is
+enough. Inside article `<details>` blocks the headline parenthetical
+source IS linked (above). `verify.py`'s `check_bullet_citations`
+enforces the bullet rule: every bullet's named source must be in the
+article's own-source set (the publishers named in its Source line)
+and hyperlinked in that bullet to that source's own page, or be in
+the adjudicated leave set (people-statements, letters, cross-references
+to the report's own articles, bare dates, CVE IDs, model names, bill
+numbers). An attribution gap with no verifiable URL stays unlinked —
+never invent a link; it warns on every run until the URL is supplied.
 Do not link inside Sources lines. This keeps every section
 self-contained for a reader who jumps straight to it.
 
@@ -406,17 +573,22 @@ high-paying subscribers, alongside tags and timestamps.
 **Company name.** The company is **Confluence<1>** — the "<1>" is part of
 the brand. Never "Confluence 1", never bare "Confluence" in new content.
 The only correct bare "Confluence" on the site is the Atlassian product
-in the §2.3 AWS Security Agent table row. The domain (confluence1.com)
+in the AWS Security Agent table row. The domain (confluence1.com)
 and the email (ci-sitrep@confluence1.com) are correctly without brackets.
+
+**Tools are proprietary (2026-11-25).** Never name or attribute the
+tools used to produce the work in anything reader-facing. What is
+produced with tools can have versions and names; the tools themselves
+are not disclosed.
 
 **No internal process detail on the public page.** The reader sees the
 report, not how it is made. No mention of the watch, the cron, the
 maintenance process, or Barnaby.
 
 **Timestamps.** The Markdown carries a "Last updated" line; the
-generator turns it into a prominent "As of [weekday, Month D, YYYY]"
-banner directly under the H1. The "Last updated" line is stripped from
-the rendered body (the date lives only in the banner).
+generator turns it into the as-of date inside the H1 banner (§4). The
+"Last updated" line is stripped from the rendered body (the date
+lives only in the banner).
 
 **Numbers carry their basis.** A percentage without its sample, date, and
 source is a vibe. When a figure comes from a survey, say who was surveyed
@@ -437,89 +609,136 @@ H1 is a full-width navy masthead band with white serif text; "Code &
 Finance" sits on its own line under "CI SITREP", italic. H1 and masthead
 title use a serif stack to match the Confluence<1> logo font. Body text
 is sans-serif. The design is FT-inspired: upscale, quiet, paper-like.
+The as-of date lives inside the H1 banner, right-justified, floating
+right on the title line ("As of {date}", single line, zero added
+height — the date span must precede the subtitle `<em>` or the float
+cannot rise to the title line); the date + View Manager button form
+one right-hand unit pinned to the banner's corners (date top-right,
+button bottom-right) so they never crowd each other. The banner is
+identical on every level page.
 
-**Masthead.** The left sidebar is a publication masthead. The heading
-is identical on every page: the CI SITREP / Code & Finance wordmark +
-tagline ("Created Intelligence in code and finance — as of today."),
-and the "by Confluence<1>" wordmark (the "Confluence <1>" text from
-the logo, cube cropped out) — the logo stays in the masthead
-everywhere, all the time. On the report page the heading is followed,
-in this order: "How to read this" (a collapsed `<details>`, summary
-in the masthead-header treatment — 13px, uppercase, letter-spaced,
-muted, not italic — mirroring the confidence legend; body 13px muted;
-its inline links need an explicit inline override, since sidebar links
-are block-level nav rows); the nav, headed "SITREP sections", with
-the links in this order: Self-Audit, Corrections, Glossary, CI vs
-EI, The names: CI, CII, CIC, Foundational theses, Archive, About;
-the page
-Contents, titled "PAGE CONTENTS"; the confidence rating legend (a
-collapsed `<details>`, summary "Confidence rating scale";
-starts closed — the dots are also explained in "How to read this" and
-carry their words in the dashboard; its padding-bottom and the
-summary's margin apply only when open, so the closed line has no
-blank space under it); the Contact section (heading "Contact":
-errors, omissions, and feature requests to
+**Masthead — the HUD (2026-11-25).** One navigation surface: the left
+sidebar is the masthead HUD. The heading is identical on every page:
+the CI SITREP / Code & Finance wordmark + tagline ("Created
+Intelligence in code and finance — as of today.") — the masthead title
+is a home link to sitrep.html — and the "by Confluence<1>" wordmark
+(the "Confluence <1>" text from the logo, cube cropped out) — the
+logo stays in the masthead everywhere, all the time. Below the
+heading, the sidebar carries the minimap tree statically (site map +
+page contents + changed dots + read state + search + Sections / All
+articles tabs) — the sidebar tree IS the map, rendered compactly
+(flex rows, the dot inline at the row start, 600-weight rows; read
+rows 400 grey). The four surface groups are SITREP / Diff /
+Landscape / Background (masthead capitalisation; page headings keep
+their own caps), each a link-in-summary group (the name navigates,
+the triangle expands): SITREP's children are its apparatus
+(Corrections); DIFF's children are the four feed groups + Countdown +
+What we're watching; Landscape's children are the four domains;
+Background's children are About, Self-Audit, The names, Glossary,
+R&D (Technology Tracker, The Surge Monitor, CI vs EI, Foundational
+theses), Archive. The current page's group starts open and marked;
+the current-position marker (wash #EFE9D8 + 3px navy bar + bold
+title) updates on scroll AND immediately when a section is opened;
+the sidebar keeps the current row in view without scrolling the
+page; HUD row clicks open the target section + collapsed ancestors.
+Expand/Collapse all live in the HUD (one home, every page). Condense
+mode: a 64px desktop icon rail (home + 4 surfaces + View Manager +
+expand), persisted in `ci-sitrep-hud-condensed`. On phones the
+sidebar itself is the slide-out panel (same DOM node) behind a
+floating HUD button bottom-left; mutual exclusion with the View
+Manager drawer is preserved on phones (one tap switches panels).
+Opening the map never moves focus into the search box (no autofocus —
+the keyboard must not pop; tapping the search box still focuses it).
+The confidence rating legend (collapsed `<details>`, summary
+"Confidence rating scale", fullest wording + action guidance), the
+Contact section (errors, omissions, and feature requests to
 ci-sitrep@confluence1.com; working with Confluence<1> to
-hello@confluence1.com — both mailto links); and the copyright line
-"© 2026 Confluence<1> Corp. All rights reserved." No CTAs inside the
-content (see F-12, Dropped). On the sub-pages the heading is followed
-by a "← Back to the report" link and the PAGE CONTENTS index (see
-Navigation). "How to read this" also renders as a phones-only copy in
-row 1 (§2) — one source, emitted twice, so the copies cannot drift;
-on phones the page looks unchanged by design.
+hello@confluence1.com — both mailto links), the "How to use the
+SITREP" sidebar reference copy, and the copyright line "© 2026
+Confluence<1> Corp. All rights reserved." complete the sidebar. No
+CTAs inside the content (see F-12, Dropped).
 
-**Section headings.** The two top-level sections (EXECUTIVE DASHBOARD,
-REPORT) are the visual top of the hierarchy, their heading text in
-all-caps so they read as different from their constituents (title case
-until 2026-11-15, when Yorgo asked for caps); the three content
-sections (§1, §2, §3) sit inside Report. The meta-section headings
-("Situation at hand", "New in the last 7 days", "What we're watching",
-"Archive") are de-emphasized: smaller, lighter weight, muted color.
+**View Manager (2026-11-25).** The Filters + Sort drawer (the
+"Tools" hamburger, renamed): a button in the H1 banner (and in the
+HUD) opens a slide-over drawer holding Filters (+ Match any/all,
+Clear all) with the count line, and Sort (SITREP only). The button
+badge reads "View Manager · N filters active" when filters are
+active. The drawer is Filters + Sort only — search lives in the HUD
+tree. Background has no drawer. The slim sticky bar (title + date +
+View Manager button, mirroring the H1 banner) appears once the H1
+banner scrolls away; same-site level switches hold the current page
+with a loading indicator rather than blanking (the swap).
 
-**Collapse behaviour.** Only the two top-level sections start OPEN;
-everything inside them — the three front-page sections ("State of the
-market", "New in the last 7 days", "What we're watching"), the dashboard panels,
-the content sections — starts collapsed, as one line each. (Before
-2026-11-15 the front-page sections and dashboard panels also started
-open; Yorgo reversed that — the page opens as a clean outline, and the
-reader drills in.) Article headlines are native `<details>` and
-start collapsed. Jumping to an anchor auto-expands its ancestors —
-including the target heading itself. "Collapse all" returns the page to
-its initial state: it closes everything except the two top-level
-sections. "How to read this" lives in the masthead (see Masthead);
-its phones-only row-1 copy is regular weight, italic, muted — not
-attracting attention — sits centered in row 1, between the As-of
-banner and the Sections controls, and drops to a full-width line when
-opened. The Search/Filter/Sort panel (§4) starts collapsed.
-On the content pages (About, Explainer, Theses, Archive,
-Self-Audit, Glossary) everything starts collapsed, including the theses
-page's Part headings (H1s other than the page title). The Sections
-expand/collapse control lives in the main content — row 1 on the
-report page, under the H1 on the content pages — never in the
-sidebar, where it was lost.
+**Section headings + hierarchy scale.** Every level is smaller and
+less prominent than the one above, with a relative indent of ~8px
+per level. The heading colour ladder, one system every level:
+surface H2 navy #283060 22px/700 (SITREP, DIFF, Landscape,
+BACKGROUND); domain/section headings dark rust-brown #8a3f2e
+(Landscape report H2s 20px, BACKGROUND sections 20px, Situation at
+hand 19px, DIFF feed groups + SITREP domain dashboards 17px);
+panel/subsection headings navy (base H3 18px, SITREP panels
+15px/600); tile content 13–15px. The rust-brown (not plain rust
+#b3543f) keeps the changed-dot visible as a brighter spot on those
+same headings. Feed-group H3s sit under 17px muted meta H2s, so they
+step down to 16px/600. The four surface H2s are NOT collapsible
+(`surface-heading` class; the collapse JS gives them no toggle).
+"Archive" and "What we're watching" keep their muted de-emphasis.
+SITREP heading ladder: 22 / 19 / 17 / 15 — SITREP H2 22px/700 navy →
+"Situation at hand" 19px/700 dark rust-brown with a hairline above →
+domain dashboard H3 17px/700 navy → panel H3 15px/600 navy.
+
+**Collapse behaviour.** The SITREP level opens as a standard
+collapsed view: only the surface H2 starts open; The bottom line
+box, Situation at hand, Net impact, the four domain dashboards and
+their panels all start collapsed — one uniform list of collapsed
+headings. DIFF, Landscape, and BACKGROUND match the pattern (surface
+H2 open, everything below collapsed). Article headlines are native
+`<details>` and start collapsed. Jumping to an anchor auto-expands
+its ancestors — including the target heading itself.
+**Collapse-all / Expand-all semantics (Option A, 2026-11-23):**
+Collapse all closes every content heading (main h2/h3/h4) — the four
+surface H2s are the one exemption (declared in
+`site_config.COLLAPSE_HANDLER_EXEMPT_CLASSES`) — and every
+`<details>` in main (the bottom-line box, articles, filter/sort
+panels); Expand all opens every content heading. The two buttons
+are true inverses. TOC tree groups (the sidebar map) STAY open —
+navigation chrome whose state the map JS manages; folding the map
+would hide where the reader is. The initial-open set is separate:
+what starts open on a fresh page is declared in site_config.py as
+COLLAPSE_INITIAL_OPEN_* and is the initial-collapse loop's business
+only; the handler's skip set is declared as
+COLLAPSE_HANDLER_EXEMPT_* . The two sets deliberately differ — do
+not "fix" them into agreement. No fix round adds an exemption
+silently: any new always-open element or new handler exemption is a
+product decision, recorded here, in the §7 changelog, and in the
+declared set. The Expand/Collapse controls live on the page title
+lines (surface H2s / sub-page H1s, right-justified) and in the HUD.
+On the content pages everything starts collapsed, including the
+theses page's Part headings (H1s other than the page title).
 
 **Mobile.** Content comes before the masthead (CSS `order`: main first,
-sidebar second). A native `<details>` "PAGE CONTENTS" line sits in the main
-content between the Search/Filter/Sort panel (row 2) and the dashboard section;
-it is hidden on desktop and shown on mobile, and sits outside every
-section-body so collapsing a section never hides it.
+sidebar second). On phones the sidebar is the slide-out HUD panel
+behind the floating HUD button bottom-left; the back-to-top button
+stays bottom-right (rust #b3543f). One tap switches between the HUD
+panel and the View Manager drawer (mutual exclusion).
 
 **Navigation.** Three mechanisms, all unobtrusive (2026-11-14):
 - **Breadcrumbs.** At the top of every section body, a small muted trail
-  back up to any ancestor level or the top of the page — "↑ Top · §3
-  Agentic … · §3.4 Governance". Built in JS from the heading hierarchy,
-  so it stays correct as sections are added or renamed. Skipped on the
-  three front-page sections (they sit at the top of the page already) and
-  on the page title; the current section is not repeated (its heading is
-  directly above). Breadcrumb paragraphs never get share buttons.
-- **Back-to-top button.** A small round navy button, fixed bottom-right,
+  back up to any ancestor level or the top of the page — "↑ Top · §2
+  CIC (Agentic Staff) … · §2.5 The governance gap". Built in JS from the
+  heading hierarchy, so it stays correct as sections are added or
+  renamed. Skipped on the top-level sections (they sit at the top of
+  the page already) and on the page title; the current section is not
+  repeated (its heading is directly above). Breadcrumb paragraphs
+  never get share buttons.
+- **Back-to-top button.** A small round rust button, fixed bottom-right,
   invisible until the reader has scrolled 500px down, then smooth-scrolls
   to the top. The arrow is inline SVG. On every page.
 - **Back to the report.** On the content pages (About, Explainer,
   Theses, Archive, Self-Audit, Glossary): the sidebar opens with the
-  same masthead heading as the report page (linked "CI SITREP / Code
-  & Finance" wordmark + tagline + "by Confluence<1>" logo), followed
-  by a "← Back to the report" link above the PAGE CONTENTS list. On mobile
+  same masthead heading as the level pages (linked "CI SITREP / Code
+  & Finance" wordmark + tagline + "by Confluence<1>" logo — the title
+  is the home link to sitrep.html), followed by the HUD map. On mobile
   the sidebar sits below the content, so those pages also carry a
   mobile-only back link at the top of the main content, right under
   the page title.
@@ -540,18 +759,17 @@ bl-<article-slug> (bl-money for the profitability tile), countdown
 ids cd-<deadline-slug>, panel tile ids derive from the figure's
 stable `key` (§2; migration pending — label slugs until it lands). Clicking an article's button never toggles
 the article; a shared article link opens the article expanded.
-Excluded: See also blocks, the How-to-read block, the mobile
-PAGE CONTENTS block.
+Excluded: See also blocks, the How-to block, the map tree.
 
-**Search.** A search box inside the Search/Filter/Sort panel (§4) — the
-report is reference material, and readers need to find their way back
-to information they saw. It indexes the live page
+**Search.** Search lives in the HUD tree (headings/articles across
+all pages) — the report is reference material, and readers need to
+find their way back to information they saw. It indexes the live page
 at runtime on first keystroke: no build step, no index file, no
 backend, no cost, and always in sync with the daily watch (it reads the
 page, so it needs no cron step). Searchable units are the share-button
 units (articles, headings, substantive paragraphs, tables) plus
 standalone list items in a section body — the best-practice bullets and
-the "New in the last 7 days" / "What we're watching" entries (top-level `<li>`
+the DIFF feed / "What we're watching" entries (top-level `<li>`
 outside `<details>`, ≥80 chars; nested items are covered by their
 parent's text; items inside an article are covered by the article).
 List items have no share-button id, so the indexer assigns one with the
@@ -559,68 +777,93 @@ same deterministic slugify. Results link to the same stable anchors and
 open expanded. Ranking: title matches above body matches, all-token
 matches above partial; top 10 shown with a count. Minimum 2 characters;
 Escape closes; arrow keys + Enter navigate; clear button; click-outside
-closes; aria-live result status. V1 searches the report page only.
-Acronyms a reader would search for (e.g. TPRM) must be defined in the
-prose at first mention — the search matches literal text, and an
-acronym that never appears returns nothing. Icons are inline SVG.
-Search-result clicks clear the filters first, so the target is always
-visible on landing.
+closes; aria-live result status. Opening the map never autofocuses the
+search box (§4 Masthead). Acronyms a reader would search for (e.g.
+TPRM) must be defined in the prose at first mention — the search
+matches literal text, and an acronym that never appears returns
+nothing. Icons are inline SVG. Jumps never touch the filters (§4
+filter persistence).
 
-**Search, filter & sort panel.** One collapsed `<details>` at the top
-of the page (row 2), holding the search box, the filters, and the sort
-control. Collapsed by default. The header is a full-width navy bar —
-"Search, filter & sort" in white, a CSS chevron (no font glyph) — with
-an active-filter indicator after the label: count + dimension names,
-capped at three names ("2 filters active: Severity, Industry"). One
-active dimension counts once, however many values it holds; sort and
-search are not counted (sort hides nothing; search has its own results
-count). The panel filters the WHOLE report page — dashboard tiles AND
-report articles, one model, one count line — from the tags (§2).
-Sort applies to dashboard tiles within panels only: articles filter
-but never sort, or the report's editorial structure scrambles. The
-strips are never filtered and never counted. "New in the last 7 days",
-"Situation at hand", and "What we're watching" stay unfiltered (not
-tagged content). Shared links land unfiltered: a landing clears the
-filters and the panel stays collapsed.
-**Controls, in order.** Top line: Industry, Severity, P&L impact,
-Horizon, Technical level (register), then Sort + the asc/desc toggle.
-More filters: Section (subject), Type, Confidence, Jurisdiction,
-Company. There is no Sector control — sector becomes a separate
-product; sector tags stay in the data and `data-sector` stays on tiles
-and articles as the hook. Type is a checkbox group, multiple choice:
-OR within the dimension, AND across dimensions; none checked means no
-constraint. Company is a select derived from the distinct company
-values in the tag data at build time (open vocabulary — a newly tagged
-company appears on the next build); controlled-vocabulary dimensions
-list the full taxonomy vocabulary even at zero articles (EU, Greece),
-so the option exists the day the first article lands. Sort offers
-twelve keys — panel order, date, confidence, severity, horizon,
-section, type, industry, P&L impact, tech level, jurisdiction, company
-— each option labelled with its default direction; the asc/desc toggle
-is a text button ("Ascending"/"Descending", CSS triangle, no glyph
-characters), disabled for Panel order. Sort-key orders: severity and
-confidence in their natural taxonomy order; horizon chronological;
-register technical → mixed → business (depth scale); set dimensions
+**Search, filter & sort (the View Manager drawer).** Search stays in
+the HUD. Filters and Sort live in the View Manager drawer (above):
+the **Filters** section (open by default) holds every filter control
+— the Match any / Match all toggle first, then the controls in two
+rows, then Clear all filters; the **Sort** section (SITREP only,
+closed by default) holds the sort select + direction toggle + its
+own Clear sort button (resets the sort alone). The count line
+("Showing N of N figures · N of N articles") sits inside Filters and
+surfaces as the badge on the View Manager button. One active
+dimension counts once, however many values it holds; sort and search
+are not counted (sort hides nothing; search has its own results
+count). Filters are per-page by content type with SHARED localStorage
+keys (`ci-sitrep-filters`, `ci-sitrep-sort`, `ci-sitrep-match-mode`)
+— the reader's filters carry across pages: SITREP filters tiles,
+DIFF filters feed entries, Landscape filters articles; no Sort on
+tile-less pages. Sort applies to dashboard tiles within panels only:
+articles filter but never sort, or the report's editorial structure
+scrambles. The strips are never filtered and never counted. The DIFF
+feed, The bottom line, Situation at hand, and "What we're watching"
+stay unfiltered (not tagged content) — except DIFF feed entries,
+which filter by their domain tags. **Filters + sort persist; nothing
+clears them automatically (2026-11-24):** only the reader's own Clear
+all / Clear sort changes them; tile/article/TOC/search jumps never
+touch them; the state is cached per browser and restored on return
+(including the cleared state). A jump to a target the reader's
+filter hides lands on a hidden element — the filter doing its job,
+not a defect; Clear all is the way out.
+
+**Multi-select (F-24, implemented 2026-11-22 as ONE global toggle).**
+Five dimensions are multi-select checkbox fieldsets: Domain
+(Section), Industry, P&L impact, Jurisdiction, Type. The four
+ordered levels (Confidence, Severity, Horizon, Technical level) and
+Company stay single-select. The toggle governs how multiple values
+within a dimension combine: **Match any** (default) or **Match all**
+(the element must carry every selected value). The reader's choice
+persists in localStorage (`ci-sitrep-match-mode`), per browser. With
+Match all and more values selected than the tag cap allows (2 per
+dimension, 3 for P&L impact), the cap note says the intersection is
+empty by construction — never a silent empty result. The header
+indicator appends "· Match all" when the mode changes the result.
+Clear all filters resets the filters AND the sort and returns the
+panels to their defaults — it does NOT reset the match mode.
+**Controls, in order.** The Match any / Match all toggle first, then
+the controls in two rows (Industry, Severity, P&L impact, Horizon,
+Technical level (register), Domain (Section), Type, Confidence,
+Jurisdiction, Company), then Clear all filters; Sort holds the sort
+select + the asc/desc toggle + Clear sort. There is no Sector
+control — sector becomes a separate product; sector tags stay in the
+data and `data-sector` stays on tiles and articles as the hook.
+Within a dimension, values combine per the match mode (above); AND
+across dimensions; none checked means no constraint. Company is a
+select derived from the distinct company values in the tag data at
+build time (open vocabulary — a newly tagged company appears on the
+next build); controlled-vocabulary dimensions list the full taxonomy
+vocabulary even at zero articles (EU, Greece), so the option exists
+the day the first article lands. Sort offers twelve keys — panel
+order, date, confidence, severity, horizon, domain, type, industry,
+P&L impact, tech level, jurisdiction, company — each option labelled
+with its default direction; the asc/desc toggle is a text button
+("Ascending"/"Descending", CSS triangle, no glyph characters),
+disabled for Panel order. Sort-key orders: severity and confidence
+in their natural taxonomy order; horizon chronological; register
+technical → mixed → business (depth scale); set dimensions
 alphabetical by first value; ties keep editorial order (stable sort).
-**Count line.** "Showing X of 62 figures · Y of 85 articles", always
-visible, below Clear-all; figures are panel tiles only. When a
-subsection filters out entirely it hides, heading and all. The three
-report sections (§1 Pre-commit, §2 In codebase, §3 Agentic) NEVER
-hide under filtering — no matter what filter the reader uses, they
-always get all three sections; a section with no matching articles
-shows an empty-state line under its heading instead of vanishing
-(decided 2026-11-20; implementation pending — rides with the
-usability review). The REPORT and EXECUTIVE DASHBOARD headings stay
-visible, framing the per-area empty-state lines ("No figures match
-these filters." / "No articles match these filters.", each with its
-own Clear button).
-Only the four untaggable tiles — the three §3.6 figures and the money
-bignote — are never hidden and keep their editorial position under
-sorting; the interim untagged-visible rule is retired (the backfill is
-complete — an untagged article does not match a Company selection).
-**Clear-all** sits below More filters, at the bottom of the filter
-block; it resets the sort to Panel order and collapses More filters.
-Filter selects go full-width on phones (≤600px).
+**Count line.** "Showing X of 62 figures · Y of N articles" (per
+page: figures on SITREP, articles on Landscape, entries on DIFF);
+figures are panel tiles only. When a subsection filters out entirely
+it hides, heading and all. The surface H2s stay visible, framing the
+per-area empty-state lines ("No figures match these filters." / "No
+articles match these filters.", each with its own Clear button).
+Domain dashboards hide when empty under filtering (a dashboard
+heading surviving with zero visible panels is worse than a hidden
+one). Only the untaggable tiles (the money bignote) are never hidden
+and keep their editorial position under sorting; the interim
+untagged-visible rule is retired (the backfill is complete — an
+untagged article does not match a Company selection).
+**Clear-all** sits at the bottom of the Filters section; it resets
+the sort to Panel order and returns the panels to their defaults (it
+does not reset the match mode). Filter selects go full-width on
+phones (≤600px).
 
 **Tooltips.** The first mention of a glossary term in each subsection
 gets a dotted underline; hovering (desktop) or tapping (mobile) shows
@@ -631,7 +874,7 @@ and share buttons, and it never wraps the same term twice in one
 subsection. Two terms are in the glossary but never tooltip-wrapped:
 "agent" and "agentic" — too frequent; a marker on every first mention
 would be noise. The tooltip data is generated from `GLOSSARY.md`, so
-`index.html` must be regenerated whenever the glossary changes.
+every page inlining it must be regenerated whenever the glossary changes.
 
 **No font-glyph dependency for UI.** Expand/collapse arrows are pure CSS
 borders; icons are inline SVG. A glyph that renders as a weird character
@@ -640,6 +883,79 @@ on a reader's device is a defect, even if the behaviour works.
 **External links open in new tabs** (`target="_blank" rel="noopener"`) —
 following a source never replaces the sitrep. Internal links (anchors,
 .html pages, mailto) stay in the same tab.
+
+**The changed dot (2026-11-23).** Two reader stages: stage 1 = learn
+the landscape; stage 2 = every day after, watch what changes — via
+DIFF AND via the dots. The dot marks everything changed *because of
+news* (not everything conceivably affected), new-or-updated in the
+rolling 7-day window — the SAME window as DIFF
+(`site_config.CHANGE_WINDOW_DAYS = 7`, America/New_York explicit).
+The changed set derives from the FEED JOIN
+(`build_html.py::add_feed_data_attrs` via
+`build_dashboard.py::match_feed_entry_ids`) — NEVER from the tag
+line's `source-date=` (the source's publication date, not the
+report's change date). Inheritance: tiles inherit from their
+evidencing article; headings/map/search inherit from children
+(aggregate); The bottom line box carries one aggregate dot on its
+summary line (never at paragraph ends — dots sit at the end of
+headings, TOC entries, or tiles). Exclusions: NO dots on feed
+entries (everything there is changed by definition), countdown
+tiles, the money bignote, or the profitability strip card. Look:
+static rust `#b3543f`, 10px, 2px paper ring; top-left on tiles,
+beside headlines/headings/map rows; an empty span with `role="img"` +
+`aria-label="Changed in the last 7 days"` (text inside `<summary>`
+would leak into the slugify and break tile links). Reader state in
+localStorage `ci-sitrep-seen` ({tile:<id>/article:<id> → date}):
+**asymmetric hybrid clearing** — "Got it" (at the END of the article
+body, shown only while the article has an un-consumed dot) clears
+the article dot AND the tile dot(s); a tile click clears only the
+tile dot (share clicks excepted); aggregates are derived in JS
+(shown iff any descendant un-consumed); a new change date re-arms.
+**Standing rule (Yorgo, 2026-11-23): better to overstate what's new
+than let the user miss it — always.**
+
+**Changed-part highlight (2026-11-23).** While an article carries its
+dot, the page also identifies WHICH PART changed (§2 marking): a pale
+amber wash `rgba(201, 138, 45, 0.20)` over marked bullets, prose
+spans, and tile numerals (the numeral only — never the whole tile).
+New articles: dot only. The highlight lives and dies with the dot —
+same window, same consumption: consuming a tile's dot clears its
+numeral wash; "Got it" clears the article's washes with its dot.
+Headlines and headings never highlight (they get dots). Feed tags
+are internal only — stripped at build time, never rendered; the "in
+§" cross-domain labels on tiles are signposts, not tags, and stay.
+
+**Tile → article + bullet deep link (2026-11-23).** Every tile
+numeral/label, strip tile, and mapped countdown navigates to the
+evidencing article, EXPANDS it, and lands on the bullet containing
+the figure. Bullet ids `{article-id}-b{N}` are assigned at runtime
+(top-level `<li>` only, 1-based); the figure's `bullet` field (plus
+`bullet_token` when the display isn't verbatim in the bullet)
+appends `-bN` at render; the fig-note stays outside the link; the
+dot + share button stay siblings. The link field keeps the article
+anchor; `-bN` is appended at render. A `check_bullet_deep_links`
+failure means the mapping is stale — re-map, never work around the
+check. The bottom-line sentences keep subsection links (synthesis,
+no single article).
+
+**Entry modal — "How to use the SITREP" (2026-11-25).** The
+five-line block (§2) renders as a floating dialog on arrival, with
+the zoom-level pyramid at the top. **The modal auto-opens on EVERY
+arrival; the only suppression is the reader ticking "Don't ever
+show me again" in the modal (permanent, localStorage
+`ci-sitrep-howto-never`).** Closing the modal without ticking does
+NOT suppress the next arrival. Every fresh page load counts as an
+arrival; in-session level swaps do not re-pop. The sidebar copy is
+the reference (a button that opens the modal on demand). The modal
+sits outside `<main>`, so the search indexer and share JS never
+touch it.
+
+**Open Graph cards (2026-11-25).** Every built page carries OG +
+Twitter Card meta (og:title, og:description, og:image, og:url —
+absolute canonical prod URLs) with 1200×630 card images under
+`cards/` (paper #faf6ef, navy band, rust rule). `check_og_tags`
+asserts presence on every page and that og:image resolves to an
+existing file.
 
 **Dashboard tiles.** Every dashboard figure renders as a tile, one
 tile type per stat kind — nine types, no bars, no lines except
@@ -662,18 +978,18 @@ large companies have AI governance policies").
 - `note` — prose findings with no stat.
 - `waffle` — count-shares ONLY: both sides counts of the same thing,
   minority share ≥ 2% (a 1-square minority reads as a solid block). A
-  10×10 grid of 6px squares; the multiple stays the headline number;
+  10×10 grid of 5px squares; the multiple stays the headline number;
   side rows keep the exact counts (a rounded graphic is never the only
   record); the caption names the counted set ("Share of 147
   vulnerabilities counted"). Pure multipliers and rates are not shares
   of a whole and stay ratio tiles.
 - `paired` — two figures from one finding, one DOUBLE card (2 units
-  wide, 280px tall): the figures sit SIDE BY SIDE (figures[0] left),
-  each half carrying its own pie (standard 72px) + value, label, and
+  wide): the figures sit SIDE BY SIDE (figures[0] left),
+  each half carrying its own pie + value, label, and
   legend, separated by a vertical hairline divider, no "vs"
   connector; the whole tile links to the evidencing article;
   sentiment judges the combined finding, not either figure alone; one
-  source line below the halves. On phones the halves stack vertically
+  source footer below the halves. On phones the halves stack vertically
   with a horizontal hairline divider. Exactly 2 figures, each 0–100
   with a valid `pie_split`.
 
@@ -741,68 +1057,68 @@ in the dashboard intro (`tint_note`, §2) — one home per idea, no
 second legend. Sentiment judges the finding as stated in the label; a
 level-vs-direction conflict goes neutral.
 **Unit sizes.** Tiles are standardized 1/2/3-unit cards on ONE tile
-size (2026-11-19, Yorgo: same-size cards scan easiest). The unit is a
-fixed card: 1 unit wide (one grid column) by 280px tall. A 2-unit tile
-is two columns wide and 280px tall; a 3-unit tile spans the full width
-and keeps its own (natural) height — the money bignote and the
-profitability tile are framing elements, not stat cards, and are
-exempt from the 280px height, as are the countdown tiles (their own
-4→2→1 grid, uniform 3-line content). Height is fixed, not stretched:
-every 1-unit and 2-unit tile is exactly 280px tall at every
-multi-column width, so every row aligns top and bottom; the source
-line is pinned to the tile's bottom (`margin-top: auto`); short tiles
-vertically centre their content (the body sits centred between the top
-and the source line) so a short card reads finished rather than
-hollow. Content fits the unit by budget, not by truncation: labels
-≤ 84 chars, legend rows ≤ 36 chars, side rows ≤ 33 chars, source lines
-≤ 99 chars (1-unit) / ≤ 146 chars (2-unit), fig-notes ≤ 66 chars,
-note text ≤ 190 chars, sparkline captions ≤ 79 chars, waffle captions
-≤ 36 chars — and every tile's estimated height
-(`build_dashboard.py`'s estimator, desktop widths) must be ≤ 280px;
-the build FAILS above 290px and WARNS at 281–290px (tolerance band —
-the estimator runs conservative, so band cases are decided by the live
+size (2026-11-19, Yorgo: same-size cards scan easiest). The unit is
+1 unit wide (one grid column) by **205px min-height** (2026-11-25 —
+tightened from 280px fixed so three rows fit Yorgo's 1280×800 logical
+screen; min-height, not fixed, so an expanded footer grows the tile
+instead of spilling). A 2-unit tile is two columns wide; a 3-unit
+tile spans the full width and keeps its own (natural) height — the
+money bignote and the profitability tile are framing elements, not
+stat cards, and are exempt from the unit height, as are the countdown
+tiles (their own 4→2→1 grid, uniform 3-line content). Rows align top
+and bottom at multi-column widths; the source footer is pinned to
+the tile's bottom (`margin-top: auto`); short tiles vertically
+centre their content (the body sits centred between the top and the
+footer) so a short card reads finished rather than hollow. Every
+tile card carries an expandable footer — one tight line, the word
+`source` (lowercase) + a CSS chevron — holding source link · date ·
+rating dots (collapsed by default; footer clicks don't navigate;
+Expand all/Collapse all cover footers). The rating WORD is off every
+tile (dots only; the word survives in a visually-hidden span for
+assistive tech). Countdown tiles and bignote tiles get NO footer (the
+deadline date is content, not provenance). Content fits the unit by
+budget, not by truncation: labels ≤ 84 chars, legend rows ≤ 36
+chars, side rows ≤ 33 chars, source lines ≤ 99 chars (1-unit) / ≤ 146
+chars (2-unit), fig-notes ≤ 66 chars, note text ≤ 190 chars,
+sparkline captions ≤ 79 chars, waffle captions ≤ 36 chars — and
+every tile's estimated height (`build_dashboard.py`'s estimator,
+desktop widths) must be ≤ 205px; the build FAILS above 245px (the
+fail line guards runaway content in the min-height era) and WARNS at
+206–245px (tolerance band — band cases are decided by the live
 whole-row check, not by trimming). Underfill is enforced the same
-way, NOTE-ONLY: a `note` tile estimating under 110px FAILS the build —
-convert the figure to a visual tile or enrich the note text. Other tile
-types are never underfill-checked (a big-number carries a stat block;
-the 188 strip tile estimates ~150px and is legitimate). The floor is
-calibrated, not guessed: the estimator quantizes span-2 notes into
-~98/~122/~146px buckets, and legitimate prose notes occupy the 122px
-and 146px buckets alongside the defect cards, so no higher floor
-separates the two — 110px sits midway between the 1-line and 2-line
-buckets and catches only the worst offenders; the §6 line-13 human
-check covers the rest. No WARN band: every legitimate note sits in
-it, and a standing warning trains the reader to ignore warnings.
-(2026-11-20 — the Net impact miss: ten note cards, content 98–146px
-by the estimator, passed every check.) A single tile's overflow is fixed by
-trimming that tile, never by raising the unit height; the height moves
-only on systematic evidence from the live whole-row check. Fixed
-columns: 3 above 1100px, 2 at 601–1100px, 1 at ≤600px. On phones
-(≤600px, single column) the fixed height is lifted — tiles are natural
-height, since there are no row neighbours to align with and full-width
-content wraps short; a double tile's content stacks (the paired tile's
-halves stack vertically, each ~1 unit of content). Span collapse is
-explicit (a span-2 item in a 1-column grid creates an implicit track
-and overflows): span-3 is always `1 / -1`; span-2 becomes `1 / -1` at
-≤600px. Mapping: pie (single/range), ratio, big-number, waffle,
-no-data, flag = 1 unit; segmented pie, note, sparkline, paired = 2
-units; money bignote, profitability = 3 units (full-width, natural
-height). The bottom-line strip is 3+3+1 in the same system (see §2);
-the countdown strip keeps its own 4→2→1 grid (four tiles do not pack
-into a 3-column unit grid). `.tile-grid` uses dense flow: a later
-1-unit tile backfills a hole a 2-unit tile leaves — visual order may
-differ from DOM order by one slot; DOM order stays editorial. The
-ledger is the exception to one-grid-per-panel (2026-11-20): its two
-sides are semantically disjoint (output up vs cleanup up) and must
-never interleave, even under sort — each side renders in its own
-`.tile-grid`, with its block-label as the grid's first child, and the
-panel footnote below the second grid. The sort/filter JS is
-grid-generic (it reorders within each grid, labels per grid, counts
-per panel body), so two grids are safe. The second grid carries
-`margin-top: 16px`, restoring the 24px inter-side gap of the
-single-grid layout (12px row gap + 12px label margin; the split would
-otherwise leave the 8px grid margin-bottom alone). The square variant
-is one aspect-ratio rule on 1-unit tiles, not adopted.
+way, NOTE-ONLY: a `note` tile estimating under 88px FAILS the build —
+convert the figure to a visual tile or enrich the note text. Other
+tile types are never underfill-checked. The floor is calibrated, not
+guessed — it catches only the worst offenders; the §6 line-13 human
+check covers the rest. A single tile's overflow is fixed by trimming
+that tile, never by raising the unit height; the height moves only
+on systematic evidence from the live whole-row check. Fixed columns:
+3 above 1100px, 2 at 601–1100px, 1 at ≤600px. On phones (≤600px,
+single column) the unit height is lifted — tiles are natural height,
+since there are no row neighbours to align with and full-width
+content wraps short; a double tile's content stacks (the paired
+tile's halves stack vertically, each ~1 unit of content). Span
+collapse is explicit (a span-2 item in a 1-column grid creates an
+implicit track and overflows): span-3 is always `1 / -1`; span-2
+becomes `1 / -1` at ≤600px. Mapping: pie (single/range), ratio,
+big-number, waffle, no-data, flag = 1 unit; segmented pie, note,
+sparkline, paired = 2 units; money bignote, profitability = 3 units
+(full-width, natural height). The Situation at hand strip is three
+full rows of three units in the same system (see §2); the countdown
+tiles keep their own 4→2→1 grid. `.tile-grid` uses dense flow: a
+later 1-unit tile backfills a hole a 2-unit tile leaves — visual
+order may differ from DOM order by one slot; DOM order stays
+editorial. The ledger is the exception to one-grid-per-panel
+(2026-11-20): its two sides are semantically disjoint (output up vs
+cleanup up) and must never interleave, even under sort — each side
+renders in its own `.tile-grid`, with its block-label as the grid's
+first child, and the panel footnote below the second grid. The
+sort/filter JS is grid-generic (it reorders within each grid, labels
+per grid, counts per panel body), so two grids are safe. The second
+grid carries `margin-top: 16px`, restoring the 24px inter-side gap
+of the single-grid layout (12px row gap + 12px label margin; the
+split would otherwise leave the 8px grid margin-bottom alone). The
+square variant is one aspect-ratio rule on 1-unit tiles, not adopted.
 **Graphic-slot scoping.** Any CSS rule targeting a tile's inner graphic
 must be scoped or qualified so it can never match the tile div:
 tile-type classes are also tile-div classes — an unscoped
@@ -842,20 +1158,29 @@ python3 _tools/verify.py SYNTHESIZED.md index.html
 
 It checks structure (every article has a Source bullet and exactly one
 confidence rating; every headline parenthetical links its source, with
-the documented exceptions; no duplicate headlines; no literal Markdown
+the documented exceptions; every bullet attribution hyperlinked to its
+source's own page (§3); no duplicate headlines; no literal Markdown
 links in the HTML; all internal anchors resolve — article ids
 assigned at runtime by the share JS are accepted via the computed id
-set, see §2 Dashboard), freshness (no "New this
-week" entry older than 7 days; no past date in "What we're watching";
-"Last updated" not in the future), order ("New in the last 7 days" newest first;
-"What we're watching" soonest first; section and subsection order),
-naming (Confluence<1> everywhere, with the one documented Atlassian
-exception; brand all-caps CI SITREP; current section names), hygiene
-(no internal-process strings on the public page), and layout markers
-(As-of banner, mobile PAGE CONTENTS, confidence legend, copyright line,
-share buttons, How-to-read block, the two top-level sections, the
-Sections control in the main content, the embedded dashboard panels).
-It also curl-checks every external link.
+set, see §2 Dashboard), freshness (no DIFF feed entry older than 7 days;
+no past date in "What we're watching"; "Last updated" not in the
+future), order (DIFF feed newest first; "What we're watching" soonest
+first; section and subsection order; DIFF group order incl. the Today
+group first when present), naming (Confluence<1> everywhere, with the
+one documented Atlassian exception; brand all-caps CI SITREP; current
+section names; zero visible "slice"), hygiene (no internal-process
+strings on the public page), layout markers (H1 date, HUD map,
+confidence legend, copyright line, share buttons, How-to modal,
+surface headings, the embedded dashboard panels), collapse semantics
+(the declared initial-open and handler-exempt sets, §4), the changed
+dots + markers (feed-join consistency, dot placement — never in
+paragraphs), tile→bullet deep links, nav (four surface groups in
+order on every page), the DIFF single-surface property (the next H2
+after DIFF is Landscape), OG tags, and domain alignment (§2). It
+also curl-checks every external link. **Verify bars: 81 checks
+(single-page build, for the record) / 85 checks (levels variant —
+the release bar).** Run under `TZ=America/New_York` — the freshness
+checks are ET-relative and the VM clock is UTC (§6).
 
 - A **FAIL blocks the push.** Fix the cause, regenerate, re-run until it
   passes. Do not push a failing build.
@@ -869,28 +1194,27 @@ It also curl-checks every external link.
 **Proposed verify.py extensions (not implemented — record, do not
 assume):** a tile-count check as a DERIVED data-vs-render check
 (figures in `dashboard.json` vs tiles rendered — never a hard-coded
-count, the watch adds figures); a masthead-order assertion batch
-(How-to-read before SITREP sections, Contact above ©, PAGE CONTENTS
-below the sections nav). The sentiment re-point is moot: verify.py
-does not count pills (verified 2026-11-18) — tint counts are checked
-statically instead.
+count, the watch adds figures). The sentiment re-point is moot:
+verify.py does not count pills (verified 2026-11-18) — tint counts
+are checked statically instead.
 
-**Filter JS harness.** `_tools/tests/` holds the filter/sort JS test
-harness (`r4b-test.js` + `r4b-fixture.json` + `r4b-filter-js.txt`): a
-Node DOM shim running the real FILTER_JS from the generator against a
-fixture parsed from the built `index.html`, expectations computed
-independently — 69/69 pass (2026-11-18). Re-run it (`node
-_tools/tests/r4b-test.js`) after any filter or sort JS change; the
-fixture and the filter-JS extract are snapshots of the 2026-11-18
-build — regenerate them from the current built page and generator
-when either changes.
+**Test harnesses.** `_tools/tests/` holds the JS harnesses: the
+filter/sort harness (`r4b-test.js` + fixture + FILTER_JS extract —
+202 checks), the collapse harness (77 checks, incl. the regression
+scenario "Collapse-all changes SITREP on a fresh page"), the
+cold-load landing harness (13 checks), and the swap harnesses
+(predicate 19 + bar 17). Each runs the real generator JS against a
+fixture parsed from the built pages, expectations computed
+independently. Re-run them after any filter, sort, collapse, or swap
+JS change; regenerate fixtures and extracts from the current built
+pages and generator when either changes.
 
 **What automation cannot check — the worker's pre-publish re-read.**
 Before publishing, re-read every new or revised segment and confirm:
 
 1. **Necessary content is in there, and only that.** Every item from the
    day's research that passed the bar (§1) is in the report, in the right
-   section; every "New in the last 7 days" entry points to content that exists;
+   section; every DIFF feed entry points to content that exists;
    nothing stale remains (no superseded text left in place, no entry
    promising content that isn't there).
 2. **Ratings are accurate.** The rating matches the source type and
@@ -901,7 +1225,7 @@ Before publishing, re-read every new or revised segment and confirm:
    odd.
 3. **Information first.** Does the segment lead with information? Is the
    source at the end, hyperlinked? Fix any segment that doesn't.
-4. **Content order.** "New in the last 7 days" newest first; "What we're watching"
+4. **Content order.** DIFF feed newest first; "What we're watching"
    soonest first; the new article sits in the right sub-section.
 
 **UX and design editor — a dedicated review on every release
@@ -944,12 +1268,15 @@ the release note to Yorgo.
 
 **Tier 2 — visual review (when the generators or the design change, or
 weekly).** Open the live site in a browser, desktop and mobile, and
-check it against §4: masthead and H1 band render correctly; content
-before masthead on mobile; the inline PAGE CONTENTS line is present on mobile
-and absent on desktop; share buttons work (clicking one copies the link
-and, for an article, does not toggle it); a shared article URL opens the
-article expanded; no glyph renders as a weird character. A design change
-is not done until the live site has been seen rendering correctly.
+check it against §4: masthead HUD and H1 band render correctly;
+content before masthead on mobile; the HUD map renders compactly
+(dots inline, current row marked); share buttons work (clicking one
+copies the link and, for an article, does not toggle it); a shared
+article URL opens the article expanded; tile clicks land on the
+evidencing bullet; the entry modal auto-opens on arrival; filters
+persist across pages and reloads; no glyph renders as a weird
+character. A design change is not done until the live site has been
+seen rendering correctly.
 
 **Link health.** The daily verify run curl-checks all external links.
 The Self-Audit page records the date of the last full manual link audit
@@ -1004,11 +1331,36 @@ closing the miss.
     2026-11-20): the design editor's verdict — pass, or findings
     fixed and re-verified — is recorded in the release note; no
     written verdict, no release.
-15. Multi-source articles (added 2026-11-23 — the JetBrains miss):
-    every bullet in an article whose headline parenthetical is plain
-    links its source inline or names the primary source; the Source
-    line lists every source the article draws on. verify.py enforces
-    the bullet rule.
+15. Bullet citations (added 2026-11-23 — the JetBrains miss; extended
+    2026-11-25): every bullet attribution links its source's own page
+    (§3); the Source line lists every source the article draws on.
+    verify.py enforces the bullet rule.
+16. Changed dots sit at the end of headings, never at the end of a
+    paragraph or block: The bottom line dot sits at the end of its
+    summary line; every other dot sits at the end of its heading,
+    TOC entry, or tile (added 2026-11-25 — the SOTM paragraph-dot miss).
+17. Collapse-all / Expand-all (added 2026-11-23): click both on the
+    QA build and confirm the behavior matches the RULES.md §4
+    semantics (surface H2s exempt; Collapse-all on a fresh page must
+    visibly collapse everything below the surfaces). A round that
+    changes what starts open must re-check this line.
+18. DOM-vs-rendered (added 2026-11-24): DOM placement ≠ rendered
+    placement — a heading that terminates a section-body renders as
+    a peer section. Verify the rendered heading count (a phone
+    screenshot counts), not just the DOM order.
+19. Timezone (added 2026-11-23): build_qa.py/build_audit.py inherit
+    the caller's TZ, so past midnight UTC the freshness check fails
+    and AUDIT.md stamps tomorrow's date — always run builds and
+    verify under `TZ=America/New_York`.
+20. Reslice/page-split checks (added 2026-11-22/25): after any
+    reslice or page split, diff the unique-URL set old vs new (a
+    dropped subsection-level Sources line is silent); every
+    article's first subject value matches its subsection; no old
+    section anchors remain; anchor check on every page; cold-load
+    landing test on every rebuild; staleness guards must name a
+    fix-build-only marker (the About check count cannot be trusted
+    as the front-page staleness marker — CDN edges go stale
+    independently).
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
@@ -1018,9 +1370,10 @@ closing the miss.
    step, so new articles never arrive untagged.
 2. Sync the changed files into the staging repo.
 3. Regenerate the HTML with the repo's generators (`build_html.py` for
-   the report; `build_page.py` for the other pages; `build_audit.py`
+   the level pages; `build_page.py` for the other pages; `build_audit.py`
    then `build_page.py` for the Self-Audit page, title "Self-Audit —
-   CI SITREP"). `build_html.py` is always invoked with explicit
+   CI SITREP"; pipeline order is build_audit → refresh_about →
+   build_page). `build_html.py` is always invoked with explicit
    input/output args — with no args it writes to
    `watches/SYNTHESIZED.html` WITHOUT the dashboard or tooltips. If
    ARCHIVE.md changed, rebuild archive.html too
@@ -1445,3 +1798,170 @@ years change. verify.py warns when its pass count differs from
   `verify.py` gains the enforcing check (54→55 checks) and the
   pre-release checklist gains line 15. The GTIG/MadPot article's
   three-source Source line (23 Nov) is the pattern.
+- **2026-11-22** — Four-section reslice (Yorgo's decision, built in
+  QA): all three surfaces sliced by the same four sections in order —
+  PNL (profit and loss), CIC (Agentic Staff), Codebase Certification,
+  Code Sanitizing Pre-commit. Surfaces renamed: "What just changed",
+  SITREP, CILAK (later Landscape). §1 definitions + the PNL boundary
+  rule; figure-section rule (every figure carries its own subject);
+  panel-placement rule (multi-domain panels dissolve; net-impact the
+  one cross-domain panel); taxonomy v3 values `pnl/cic/cert/san`
+  primary-first, `0` dropped; feed grouping at render time; counts
+  on headings; Situation at hand as four paragraphs in section
+  order. (Spec: four-section-reslice-spec-2026-11-22.md.)
+- **2026-11-22 (Addendum)** — Situation at hand moved into SITREP
+  (open by default); dashboard explainer is a collapsible "What this
+  is"; ratio side rows (.tile-side) added to the orphan guard.
+- **2026-11-22 (Addendum 2)** — SITREP hierarchy rebuild: "What this
+  is" first; Situation at hand folded into the bottom line as its
+  abstract (four paragraphs, one per section); countdown + net impact
+  folded into the bottom line (abstract → strip → countdown →
+  net-impact last); hierarchy scale (22/20/18/16, ~8px indents; the
+  bottom-line heading is a `<p>`, never collapsible); filter panels
+  (Sort separated with its own Clear sort; Filters panel; count line
+  outside, always visible); multi-select + F-24 as ONE global Match
+  any / Match all toggle (five checkbox dimensions, localStorage
+  `ci-sitrep-match-mode`, cap note — never a silent empty result).
+- **2026-11-23** — Collapse-all Option A (Yorgo): Collapse all closes
+  every content heading (main h2/h3/h4); Expand all its true inverse;
+  neither touches `<details>`; the initial-open set and the
+  handler-exempt set declared separately in site_config.py and
+  deliberately different; new verify.py collapse check (56 checks)
+  + collapse harness (16 checks); initial state unchanged.
+- **2026-11-23** — Changed dot: static rust #b3543f, 10px, new-or-
+  updated in the rolling 7-day window derived from the feed join
+  (never `source-date=`); tiles inherit from their evidencing
+  article, headings/map/search from children; no dots on feed
+  entries, countdowns, money bignote, profitability card; reader
+  state in localStorage `ci-sitrep-seen`; new verify.py
+  `check_changed_dots` (57 checks); "How to read this" rewritten
+  with the two workflows. (Clearing + "Got it" placement superseded
+  the same day — see tile→bullet entry below.)
+- **2026-11-23** — Changed-part highlight: watch-time marking
+  (`<!-- changed YYYY-MM-DD -->` bullets, `<span data-changed>`
+  prose/partial, `"changed"` on figures — numeral only); new
+  articles dot-only; pale amber wash rgba(201,138,45,0.20); all feed
+  tags internal only ([new]/[updated] build-only); expiry lives/dies
+  with the dot; `clean_changed_markers.py` at run start; weekly
+  git-diff audit cron Monday ~07:00 ET; verify bar 59.
+- **2026-11-23** — Tile → article + bullet deep link (Yorgo
+  priority): every tile lands on the bullet containing its figure
+  (`{article-id}-b{N}`, `bullet` + `bullet_token`); new
+  `check_bullet_deep_links` (60 checks). Folded in: "Got it" moved
+  to the END of articles; asymmetric hybrid clearing ("Got it"
+  clears article + tile dots; tile click clears only the tile dot);
+  two notes → big-number tiles; "Preview" masthead marker;
+  ThinkingBox + METR minted (figures re-pointed + bullet-mapped).
+- **2026-11-23** — Option B re-map (Yorgo's verdict Q1): regulation
+  moves from CIC to a new PNL subsection §1.4 "Regulation &
+  enforcement" (28 articles; CIC renumbers with no gap); tag retags
+  primary-first; countdown subjects → pnl; "Regulation lives in PNL,
+  not CIC — CIC keeps the governance firms build themselves; PNL
+  holds the governance regulators impose."
+- **2026-11-23** — Masthead navigation — four sections: one nav
+  headed "SECTIONS" (SITREP, CILAK, DIFF, BACKGROUND — nav order
+  matched to page order the same day: SITREP, DIFF, Landscape,
+  BACKGROUND); page-specific contents at the top of each page; the
+  feed renamed DIFF ("What's changed", in coder lingo); "Short on
+  time?" restored; verify bar 69.
+- **2026-11-23** — DIFF hoisted out of CILAK into a peer surface
+  (page order SITREP → DIFF → Landscape); DIFF heading takes the
+  base 22px navy H2; verify bar 71.
+- **2026-11-23** — "What we're watching" moved into DIFF: DIFF is
+  "what happened and what's coming" (feed + watchlist); the watch
+  keeps writing `## What we're watching` in the markdown; the build
+  places it inside DIFF. Same-hash anchor fix (expand on click).
+- **2026-11-23** — CILAK renamed to Landscape (Yorgo): "Landscape —
+  the complete picture"; the anchor stays `#report`; the glossary
+  CILAK entry retitled "Landscape" and moved to the L section.
+- **2026-11-24** — Single DIFF surface: the watchlist demoted to an
+  H3 inside the DIFF body (one toggle opens the whole surface); the
+  DIFF gloss is "What happened and what's coming." §6 gains the
+  DOM-vs-rendered lesson (line 18).
+- **2026-11-24** — Heading-level hues + DIFF tagline in the heading:
+  section H2s in dark rust-brown #8a3f2e (dots stay bright rust);
+  the DIFF heading carries "DIFF — What changed and what's coming
+  (N entries)".
+- **2026-11-24** — Masthead nav second levels: DIFF + Landscape
+  grouped (DIFF's children: the four feed groups + What we're
+  watching; Landscape's: the four domains); verify bar 73.
+- **2026-11-24** — As-of date into the H1 banner, right-justified,
+  floating right on the title line (the span must precede the
+  subtitle `<em>`); no pill below the banner, no added line.
+- **2026-11-24** — Filters + sort persist; nothing clears them
+  automatically (Yorgo): the jump-clear handler deleted; state
+  cached in localStorage (`ci-sitrep-filters`, `ci-sitrep-sort`);
+  only Clear all / Clear sort changes them; jumps never touch them.
+- **2026-11-24** — How to read cut to five lines (149 words,
+  navigation only); the bar lives on Self-Audit, the rating
+  definitions in the masthead legend (fullest wording + action
+  guidance).
+- **2026-11-24/25** — Nav + header round: Self-Audit in BACKGROUND,
+  second after About; BACKGROUND order About, Self-Audit, The names,
+  Glossary, R&D, Archive; dashboard slices named as dashboards with
+  panel-figure counts; Situation at hand as a standalone expandable
+  box first below the header.
+- **2026-11-25** — How-to-read as an entry modal: floating dialog on
+  arrival (the sidebar copy is the reference). Strengthened the same
+  day: the modal auto-opens on EVERY arrival; the only suppression
+  is the "Don't ever show me again" tick (localStorage
+  `ci-sitrep-howto-never`); closing without ticking does not
+  suppress. Renamed "How to use the SITREP" (item 42).
+- **2026-11-25** — Levels-as-pages variant (the levels variant is
+  THE site structure): four level pages (sitrep.html, diff.html,
+  landscape.html, background.html); masthead nav as page links;
+  minimap TOC (floating toggle, current-position highlight, read
+  state, changed dots); per-page filters with SHARED localStorage
+  keys; countdowns in DIFF; BACKGROUND landing page; variant verify
+  bar 80 (later 85).
+- **2026-11-25** — Research as a BACKGROUND subsection (renamed R&D
+  the same day — see below): Technology Tracker (tracker.html) +
+  The Surge Monitor (tracker-whitepaper.html); verify bar 77
+  (single-page).
+- **2026-11-25** — Redistribution + dot placement: domain-alignment
+  check + `divergences` registry + `panel_homes`; strip in domain
+  order; SOTM dot on the summary line (never paragraph ends — §6
+  line 16); fixed fifth paragraph in The bottom line box
+  (generator-appended); tracker knobs-panel dedup (one panel, WE ARE
+  HERE kept). Single-page verify bar 81.
+- **2026-11-25** — Citation rule rewrite: bullet attributions
+  hyperlinked to the attributed source's own page wherever a URL
+  exists, in every article; the Source line is the bibliography, not
+  a substitute; new `check_bullet_citations`. OG tags on every page
+  + cards path `cards/`; "Today (N)" group first in DIFF + heading
+  count; tool share links (scenario params + replaceState + copy
+  button).
+- **2026-11-25** — Variant round 2: BACKGROUND consolidated page
+  (seven inlined sections + two linked cards; anchor-first nav;
+  H5/H6 collapse stack); R&D regroup (Tracker, Surge Monitor, CI vs
+  EI, theses); Tools hamburger drawer (later View Manager);
+  minimap no-autofocus; SITREP hierarchy ladder 22/19/17/15
+  (bottom-line rust-brown + hairline); floating buttons (Contents
+  bottom-left, back-to-top rust); one-click panel switch.
+- **2026-11-25** — R&D rename + tool-attribution scrub: "Research" →
+  "R&D" (anchors unchanged); tools are proprietary — never name the
+  tools used in reader-facing content; research attributed "Yorgo
+  P. Bougás, Confluence<1>" (affiliation only, not firm IP).
+- **2026-11-25** — Grid terminology (Yorgo): Levels / Domains /
+  Verticals; "slice" internal-only, never reader-facing; bottom
+  line ↔ situation at hand inverted ("The bottom line" = most
+  distilled abstract box; "Situation at hand" = fuller section);
+  the site is a website, not a file; canonical record
+  nomenclature-2026-11-25.md.
+- **2026-11-25** — Masthead HUD round (levels variant): one
+  navigation surface (the sidebar carries the minimap tree
+  statically; condense rail 64px, persisted); Tools drawer → View
+  Manager (Filters + Sort only; search in the HUD); entry modal
+  renamed "How to use the SITREP"; speed (content-visibility,
+  Speculation Rules, View Transitions); heading colour ladder
+  unified; SITREP opens as a standard collapsed view; surface H2s
+  not collapsible; DIFF Countdown + What we're watching as peer H3s;
+  level-switch swap (hold + loading indicator); slim sticky bar;
+  tool inside the standard container (siderail, same tab); tiles
+  tightened to 205px min-height with the `source` footer; verify
+  bar 85 (variant).
+- **2026-11-25** — Taxonomy v3 approved (release verdict Q9):
+  `subject` values `pnl/cic/cert/san`, primary-first, `0` dropped;
+  six worked examples re-tagged. Glossary canonical merge: 133
+  terms (staging base + Landscape, HHI, DIFF, PNL from the levels
+  copy; no CILAK entry); identical in both trees.
