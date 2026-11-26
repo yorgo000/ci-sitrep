@@ -36,6 +36,12 @@ instructions. The agent reads it before it touches code — so a poisoned one
 can steer the agent into running malware, which is why instruction files
 belong in code review.
 
+**Agent Skill** — A packaged bundle of instructions (and sometimes scripts)
+an agent loads to do a recurring task, such as building a document or
+deploying an app. Third-party skills run with the agent's own permissions, so
+a poisoned skill steers the agent — the report's measurements name skills
+the riskiest entry point for hidden instructions.
+
 **AI-BOM (AI bill of materials)** — An inventory of everything inside an AI
 system: the models, data, agents, tools, and MCP servers it depends on. The
 record you need to audit, patch, or roll back an agent.
@@ -54,6 +60,17 @@ researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
 
 **ASSET Unit (AI Safety, Standards, Enforcement, and Transparency Unit)** — The New York Attorney General's dedicated unit for enforcing the RAISE Act and other New York AI laws, created 17 Nov 2026. The first named enforcer for a state frontier-AI registration regime.
+
+**Attack success rate (ASR)** — The share of test cases in which an attack
+achieves its goal against an agent — the headline metric of agent
+prompt-injection benchmarks such as FrontierBreach, where hidden
+instructions succeeded in 34.9% of realistic enterprise workflows.
+
+## B
+
+**BlackHatSect0r** — A French-speaking agentic threat-actor collective whose jailbroken-agent toolchain (Ghost, on the Hermes agent framework) ran the BabidiGhost campaign against European banks and insurers in November 2026. SOCRadar's central finding was that the toolchain works in far less capable hands than its creators'.
+
+**BOD (Binding Operational Directive)** — A directive from CISA compelling federal civilian agencies to act on a cybersecurity requirement by a set date — for example, remediating a vulnerability listed in the Known Exploited Vulnerabilities catalog.
 
 ## C
 
@@ -100,6 +117,15 @@ field's word is "agent". Formerly CIA.
 when something looks wrong — too many errors, unusual volume, an action outside
 its mandate — and holds it for human review. Named after the electrical device.
 
+**Claude Approvals** — The Claude Ship agent that approves routine pull
+requests under an approval policy the team writes as a file in the repository
+— described by Anthropic as a smarter CODEOWNERS file. Anthropic recommends
+running it in observe-only mode first.
+
+**Claude Ship** — Anthropic's suite of three agents (Code Review, PR Steward,
+Claude Approvals) that take a GitHub pull request through review, fixes and an
+approval decision, launched in beta in November 2026.
+
 **CLI (command-line interface)** — A way of driving a program by typing
 commands in a terminal, rather than through buttons and windows. Coding agents
 such as Claude Code and Codex run as CLIs.
@@ -133,6 +159,11 @@ instances.
 application: probing it from the outside, the way an attacker would.
 Complements SAST, which reads the code.
 
+**DBHub** — Bytebase's MCP database server: it lets an AI agent query
+databases through tools such as read-only `execute_sql`. Its read-only mode
+was bypassed twice in late 2026 by SQL parser mismatches — the checker and
+the database read the same string differently.
+
 **dependency** — A piece of someone else's code your code relies on: a library
 or package pulled in to do a job (handle dates, talk to a database).
 Dependencies are where most supply-chain risk enters a codebase.
@@ -164,6 +195,12 @@ resilience, and report major incidents. An AI vendor counts as an ICT
 CMA, Ofcom, and ICO coordinate on digital regulation.
 
 ## E
+
+**eBPF (extended Berkeley Packet Filter)** — A Linux kernel technology that
+runs small, sandboxed programs at set points inside the kernel, letting a
+tool observe or block system activity without changing kernel code or
+restarting. Shirudo uses it to load exploit-blocking shields onto running
+systems.
 
 **EI (evolved intelligence)** — Confluence<1>'s term for intelligence that
 evolved rather than was built — human intelligence, in the report's usage.
@@ -267,7 +304,19 @@ reports unredacted assessments to the state. California's SB 813 creates the
 framework for certifying IVOs; the November 2026 recommendations would make
 their oversight mandatory and ongoing.
 
+## J
+
+**jailbreak (agent)** — Stripping an AI agent of its refusal and safety
+behaviour — through a persona file, an anti-refusal protocol, or an escalation
+loop that re-sends refused orders — so it carries out instructions it would
+otherwise decline. BabidiGhost's agent ran with its "ethics protocols
+destroyed" and only 41 refusals surviving.
+
 ## K
+
+**KEV (Known Exploited Vulnerabilities)** — CISA's catalog of vulnerabilities
+confirmed to have been exploited in the wild. Federal civilian agencies must
+remediate listed flaws by the catalog's due date.
 
 **kill switch** — A control that stops an AI agent (or system) immediately and
 completely when it goes wrong — and proves it stopped. A kill switch that has
@@ -282,6 +331,11 @@ the full knowledge base of findings, split across the four domains —
 PNL, CIC (Agentic Staff), Codebase Certification, Code Sanitizing
 Pre-commit. The numbers-at-a-glance surface is SITREP; the changes
 surface is DIFF.
+
+**LiteLLM** — An open-source proxy/gateway that sits in front of model
+providers and MCP servers, holding provider keys and issuing per-team
+virtual keys. Because everything routes through it, its key-scoping and
+MCP configuration are security controls in their own right.
 
 **LLM (large language model)** — An AI model trained on vast amounts of text to
 predict and generate language (and code). The engine inside coding assistants
@@ -298,6 +352,11 @@ through underground proxy services (Google Threat Intelligence Group, Nov
 financial regulator. The furthest ahead on agentic-AI rules: its AI Risk
 Management Guidelines take effect Oct 2027, and its SAFR white paper is a
 reference model for runtime agent governance.
+
+**MCC (Matthews correlation coefficient)** — A detection-quality score
+between −1 and 1 that stays honest when most cases are negative (most code
+is not vulnerable). 0 is chance; the best LLM detector in SECR-Eval scored
+0.562.
 
 **MCP (Model Context Protocol)** — An open protocol (from Anthropic) that lets
 an AI agent connect to tools and data sources — files, databases, services —
@@ -389,6 +448,12 @@ line.
 merged into the main codebase. The point where pre-commit checks run. (Not
 public relations.)
 
+**Product Liability Directive (PLD)** — Directive (EU) 2024/2853, the EU's
+revised product-liability law: from 9 Dec 2026 software and AI systems count
+as "products" under strict liability, AI providers count as manufacturers,
+and a missing security update or an exploitable vulnerability can count as a
+defect.
+
 **Project SAGE** — HKMA's proposal for agentic-AI accountability: named owners
 for agents, Know Your Agent (KYA) identity, and a registry of material AI
 agents. Comments close 1 Feb 2027.
@@ -397,6 +462,10 @@ agents. Comments close 1 Feb 2027.
 reads (a web page, a document, a code comment) so the model follows the
 attacker's orders instead of its own. OWASP's #1 GenAI risk three years
 running.
+
+**PR Steward** — The Claude Ship agent that keeps a pull request green by
+fixing failing checks, merge conflicts and review feedback. It is designed not
+to approve or merge pull requests.
 
 **pts (percentage points)** — The unit for the arithmetic difference
 between two percentages: a share falling from 91% to 42% falls by
@@ -453,6 +522,12 @@ further: it checks whether the vulnerable code is actually used.
 key, a password, a token. Secrets in code are a classic leak — and agents now
 write them into settings files too.
 
+**SECR-Eval (Structured Evidence-Centred Review Evaluation)** — A
+peer-reviewed protocol (MDPI *Information*, Nov 2026) that grades LLM
+security review end to end: detection, evidence localisation, explanation,
+and whether proposed repairs survive compile/test/rescan validation. Only
+13.5% of repairs passed every gate.
+
 **Semantic governance policy (SGP)** — A rule written in plain language by a
 legal or compliance team that an LLM judge checks each proposed agent tool
 call against — together with the user's original intent — before the call
@@ -502,6 +577,8 @@ bug the way the human developer did? The source of the "11× the
 vulnerabilities" finding.
 
 ## T
+
+**ThinkingBox** — A Microsoft / Hugging Face benchmark of 507 stateful business workflows, each run 20 times: it measures whether an agent completes work reliably on every attempt (pass^k), not just once (pass@1). Its headline finding is that 67% of failures terminate cleanly with no tool error, and the agent then reports done.
 
 **TPRM (third-party risk management)** — Managing the risk of outside vendors:
 the firms whose software, data, or services you depend on. The proposed
