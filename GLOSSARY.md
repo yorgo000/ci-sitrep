@@ -213,6 +213,8 @@ together — a human team, in the report's usage. The counterpart to CIC.
 **EII (ei individual)** — Confluence<1>'s term for an individual evolved
 intelligence: one human, in the report's usage. The counterpart to CII.
 
+**Elicitation (MCP)** — The Model Context Protocol feature that lets a server pause mid-call to ask the user for input — a form or a link — before a consequential action, then continue where it left off. Generally available in Claude and Claude Code since 24 Nov 2026; the protocol's native human sign-off gate.
+
 **Embedded assessment** — An independent safety evaluation conducted inside a
 lab, with deep access to its models, training data and monitoring systems over
 an extended period. OpenAI's first phase (Nov 2026) put four outside groups
@@ -367,6 +369,8 @@ A2A).
 servers from training memory instead of the service owner's current server
 (Glow Labs, Nov 2026).
 
+**MemHarmBench** — A benchmark (Wang et al., arXiv:2611.01700, Nov 2026) of cross-session prompt injection in agents with persistent memory: an instruction planted in external content, retained in memory, then steering a later session's decisions after the source is gone. Retained rules redirected decisions in 59–76% of eligible cases, usually with no visible anomaly.
+
 **METR (Model Evaluation & Threat Research)** — An independent research
 organisation that measures AI capabilities, including how long a task an agent
 can complete ("time horizons").
@@ -380,6 +384,8 @@ the SOMBERMEME backdoor.
 and the firm loses money or breaks the law because it relied on the model.
 Banks manage it under model-risk management (MRM) frameworks; generative and
 agentic AI currently sit outside the US federal one.
+
+**MOSAIC-Bench** — A benchmark (Steinberg & Gal, arXiv:2605.03952) of compositional vulnerability induction: a malicious end-state split into three routine-looking engineering tickets, each harmless alone, that compose into exploitable code. Production coding agents composed the tickets at 53–86% success; reviewer agents approved about a quarter of the vulnerable cumulative diffs.
 
 ## N
 
@@ -502,6 +508,8 @@ its own successor without human input, so capability growth becomes
 self-sustaining. California's November 2026 recommendations would require
 developers to report how much of their AI research is automated and give the
 state standby authority to cap it.
+
+**ruflo** — An open-source agent meta-harness for Claude Code and Codex (swarms, MCP bridge, AgentDB learning store). Its default docker-compose deployment shipped an unauthenticated MCP bridge (CVE-2026-59726, fixed in 3.16.3) that exposed provider keys and let an attacker poison the learning store.
 
 ## S
 
