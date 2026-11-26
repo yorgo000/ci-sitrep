@@ -369,10 +369,12 @@ A public Corrections page (`CORRECTIONS.md` → `corrections.html`): errors and 
 
 ---
 
-## F-23 — Grouped "New in the last 7 days"
+## F-23 — Grouped DIFF
 
-**Status:** Proposed
+**Status:** In progress
 **Proposed:** 2026-11-20 (Yorgo — from the 2026-11-18 rethink; the section keeps growing)
+
+**Implementation note (2026-11-25 release):** the feed is now DIFF, and it groups by domain at build (PNL / CIC / Certification / Pre-commit groups, newest-first within each; the regulation countdowns and What we're watching sit inside DIFF as peers of the groups). The remaining open question is whether grouping should go further (by type of change / consequence) or stay by domain — Yorgo's pick, below.
 
 "New in the last 7 days" is humongous — 71 entries as of 20 Nov 2026 (46 on 18 Nov) — and will only grow. A flat list that long stops being scannable: the reader can't see what's in it without scrolling the whole thing. Group the entries under collapsible headings that open to the article, categorized.
 
@@ -394,8 +396,10 @@ A public Corrections page (`CORRECTIONS.md` → `corrections.html`): errors and 
 
 ## F-24 — Subset / superset choice on multi-select filters
 
-**Status:** Proposed
+**Status:** Implemented
 **Proposed:** 2026-11-20 (Yorgo)
+
+**Implemented (2026-11-25 release):** one global Match any / Match all toggle governs within-dimension matching across all multi-select dimensions (AND across dimensions unchanged). Match all = intersection (the article must carry ALL selected values); Match any = union (today's behaviour). The mode persists in localStorage (`ci-sitrep-match-mode`); Clear all does NOT reset the match mode. Dashboard figures inherit their evidencing article's tags, so the same rule governs tiles.
 
 Today the filter panel matches AND across dimensions and union (ANY) within a dimension: an article matches if any of its values equals any selected value — and Type is the only multi-choice dimension. When a reader selects multiple values in a multi-select dimension — industries, sectors, and any other multi-select — the reader must choose the match mode: **subset** (intersection — the article must carry ALL selected values) or **superset** (union — the article carries ANY selected value, today's behaviour). No silent default: the choice is required when two or more values are selected.
 
@@ -429,6 +433,32 @@ For every report metric that exists as a time series, fit a curve to the verifie
 - Premium split: no premium version for now. The future premium tier will include forecasting, filtering, sorting, heatmaps, custom alerts, custom arrangements of dashboards, saved filters, etc. (Yorgo, 2026-11-21). What stays free vs premium — e.g. sparkline + headline milestone date free, full curve + bands + fit quality premium — gets decided when the tier is designed. Open: filtering/sorting exist free today, so the premium versions are presumably advanced tiers of the same, not the features moving behind the paywall — confirm at design time.
 - Confidence treatment: projections are not findings — they need their own rating or a fixed ●○○○ Claimed treatment, decided at build. Never a dashboard figure without the projection label.
 - Depends on: the historical-points audit (new research — same-source points for the candidate metrics, starting with JetBrains) and F-02 (the database stores dated values, which is what makes re-fitting automatic).
+
+---
+
+## F-26 — CI cycle gauge
+
+**Status:** Proposed
+**Proposed:** 2026-11-23 (Yorgo — "near future"; filed at the 2026-11-25 release)
+
+A proprietary graph/measure of where we stand in the CI cycle as a general purpose technology revolution — the Diffusion Gauge work (heat tally, two velocities) rendered as a gauge for the SITREP.
+
+**Notes / open questions:**
+- Blocked on the tracker framing decisions: Q1 (Perez third leap vs sixth surge) and Q5 (deployment bar).
+- Size M, Priority P2.
+
+---
+
+## F-27 — Seniority-ladder pyramid
+
+**Status:** Proposed
+**Proposed:** 2026-11-23 (Yorgo — "near future"; filed at the 2026-11-25 release)
+
+A pyramid showing how far up the seniority ladder CI has advanced "in your industry" — which rungs (junior → senior → staff → executive judgment) CI can already do, per industry.
+
+**Notes / open questions:**
+- Needs an industry-by-rung evidence base that does not exist yet; F-17 per-figure human baselines are the prerequisite.
+- Size L, Priority P2.
 
 ---
 
