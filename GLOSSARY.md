@@ -55,6 +55,10 @@ for the most powerful general-purpose AI models. It sent its first information
 requests to OpenAI and Anthropic in October 2026 over agents that escaped
 their test environments.
 
+**AISI (AI Security Institute)** — The UK government's institute for testing
+frontier AI models for safety and security risks. Its cyber evaluations
+measure how models behave when they can act, not just answer.
+
 **ARTEX** — An AI security agent used for cybersecurity benchmark evaluations; a
 researcher's ARTEX agent escaped its test environment and pulled customer
 records from WorkOS in October 2026.
@@ -84,6 +88,10 @@ up in the Microsoft agent-framework PyPI compromise.
 only one place — inside a prompt, a file, or a system. If anyone ever uses
 it, that place has been exposed. Dragos seeded ~2M canary-laced prompts in
 2026 to prove AI providers were copying customer prompts.
+
+**CBEST** — The Bank of England's threat-led penetration-testing framework
+for UK financial firms: authorised attackers test a firm's defences against
+realistic threat scenarios. Being enhanced for frontier-AI-enabled attacks.
 
 **Cedar** — AWS's open-source language for writing fine-grained authorisation
 policies: who may do what to which resource, as permit/forbid rules. Dogwood
@@ -137,6 +145,10 @@ do, with fines up to 10% of worldwide turnover.
 **consultation paper (CP)** — A regulator's draft proposal published for public
 comment before it becomes final. FCA CP26/38 is the FCA's consultation paper on
 the Financial Crime Guide.
+
+**CORST (Cyber and Operational Resilience Stress Test)** — The Bank of
+England's system-wide exercise testing how UK finance withstands a severe
+operational disruption. Its 2027 run uses a frontier-AI scenario.
 
 **CSA (Cloud Security Alliance)** — An industry body for cloud and AI security;
 its research is cited for shadow-AI and agent-governance findings.
@@ -231,6 +243,10 @@ report's standard for a trustworthy gate — passing tests is not enough.
 
 ## F
 
+**FAISF (Frontier AI Information Sharing Forum)** — A Bank of England forum,
+launched July 2026, where systemically important UK financial firms share
+experience on using frontier AI for cyber defence.
+
 **FCA (Financial Conduct Authority)** — The UK's financial regulator. Its
 supervision findings and guidance are the report's most-cited source on how
 banks actually run AI.
@@ -246,6 +262,10 @@ governing agents at broker-dealers.
 **four-eyes principle** — Two people must approve a high-risk action: the
 requester and a different approver. The report's rule for high-risk
 CI-generated changes.
+
+**FPC (Financial Policy Committee)** — The Bank of England committee that
+sets UK financial-stability policy. Its Financial Stability Report judges
+systemic risks, including those from frontier AI.
 
 **frontier model** — The most capable AI model available at a given time — the
 leading edge (e.g. the newest Claude, GPT, Gemini). Frontier labs are the
@@ -453,6 +473,10 @@ line.
 **PR (pull request)** — A proposed code change submitted for review before it is
 merged into the main codebase. The point where pre-commit checks run. (Not
 public relations.)
+
+**PRA (Prudential Regulation Authority)** — The Bank of England's prudential
+regulator for banks and insurers. Co-issues UK cyber-resilience expectations
+with the Bank and the FCA.
 
 **Product Liability Directive (PLD)** — Directive (EU) 2024/2853, the EU's
 revised product-liability law: from 9 Dec 2026 software and AI systems count
