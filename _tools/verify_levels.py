@@ -142,7 +142,7 @@ def hud_group_children(tree, group):
 # --- Variant checks -------------------------------------------------------
 
 def check_census(md_path, pages, data):
-    """Census preserved: 135 articles / 63 feed / 62 figures / 8 strip /
+    """Census preserved: 136 articles / 64 feed / 62 figures / 8 strip /
     4 countdowns, plus the live domain-heading counts (panel figures per
     domain: PNL 13, CIC 24, Cert 5, San 10 — after the 2026-11-25
     redistribution the panel-home counts equal the by-content counts:
@@ -152,8 +152,8 @@ def check_census(md_path, pages, data):
     count of `items` lists only would read PNL 12 / San 9 — it misses
     the money bignote and the right-vs-wrong stacked block, which are
     figures in themselves per iter_panel_figures; see the build note).
-    Release round 2026-11-25: articles 117→131 and feed 46→63 (2026-11-26 watch: 131→135) on the
-    new release content (direct-counted: 135 <details data-subject= in
+    Release round 2026-11-25: articles 117→131 and feed 46→63 (2026-11-26 watch: 131→135; 2026-11-26 catch-up: 135→136, feed 63→64) on the
+    new release content (direct-counted: 136 <details data-subject= in
     landscape.html, 63 <li> across the four whats-new-feed lists in
     diff.html); figures/strip/countdowns unchanged (dashboard.json
     untouched)."""
@@ -162,13 +162,13 @@ def check_census(md_path, pages, data):
     diff = pages["diff"]
     sit = pages["sitrep"]
     n_art = len(re.findall(r"<details data-subject=", land))
-    if n_art != 135:
-        problems.append(f"articles: {n_art} (expected 135)")
+    if n_art != 136:
+        problems.append(f"articles: {n_art} (expected 136)")
     n_feed = sum(len(re.findall(r"<li[^>]*>", ul))
                  for ul in re.findall(r'<ul class="whats-new-feed">(.*?)</ul>',
                                       diff, re.DOTALL))
-    if n_feed != 63:
-        problems.append(f"feed entries: {n_feed} (expected 63)")
+    if n_feed != 64:
+        problems.append(f"feed entries: {n_feed} (expected 64)")
     n_fig = len(list(bd.iter_figures(data)))
     if n_fig != 62:
         problems.append(f"figures: {n_fig} (expected 62)")
@@ -199,7 +199,7 @@ def check_census(md_path, pages, data):
         fail("variant census preserved", "; ".join(problems))
     else:
         ok("variant census preserved",
-           "135 articles / 63 feed / 62 figures / 8 strip / 4 countdowns; "
+           "136 articles / 64 feed / 62 figures / 8 strip / 4 countdowns; "
            "70 sitrep tiles; domain headings PNL 13 / CIC 24 / Cert 5 / San 10")
 
 
@@ -260,7 +260,7 @@ def check_page_order(pages):
         fail("diff page order",
              f"positions {dpos}; unexpected sections: {dabsent}")
 
-    # Landscape: Landscape H2 < report-embed < 135 articles; no SITREP,
+    # Landscape: Landscape H2 < report-embed < 136 articles; no SITREP,
     # no DIFF, no Archive section (round 2 — Archive moved to BACKGROUND).
     land = strip_scripts(pages["landscape"])
     lpos = {k: land.find(v) for k, v in (
@@ -270,9 +270,9 @@ def check_page_order(pages):
                if k in land]
     n_art = len(re.findall(r"<details data-subject=", land))
     if all(v != -1 for v in lpos.values()) and lpos["rep"] < lpos["embed"] \
-            and not labsent and n_art == 135 and 'id="archive"' not in land:
+            and not labsent and n_art == 136 and 'id="archive"' not in land:
         ok("landscape page order",
-           "Landscape < report-embed < 135 articles; no SITREP / DIFF / Archive")
+           "Landscape < report-embed < 136 articles; no SITREP / DIFF / Archive")
     else:
         fail("landscape page order",
              f"positions {lpos}; articles {n_art}; unexpected: {labsent}; "
@@ -371,7 +371,7 @@ def check_nav_levels(pages):
     four groups in order (SITREP / DIFF / Landscape / BACKGROUND),
     each group's children as page links; no index.html and no bare
     section anchors in the tree. Landscape's children are the four
-    sections + 29 subsections + 135 articles (168 rows); the other
+    sections + 29 subsections + 136 articles (169 rows); the other
     groups' child lists are exact."""
     sitrep_group = ["sitrep.html#bottom-line",
                     "sitrep.html#situation-at-hand",
@@ -445,8 +445,8 @@ def check_nav_levels(pages):
             ok(f"nav: {label} group links on every page", " · ".join(want))
         else:
             fail(f"nav: {label} group links on every page", "; ".join(bad))
-    # Landscape: the four sections in order among 168 rows
-    # (4 sections + 29 subsections + 135 articles).
+    # Landscape: the four sections in order among 169 rows
+    # (4 sections + 29 subsections + 136 articles).
     bad = []
     for name, page in pages.items():
         tree = hud_sections_tree(page)
@@ -454,15 +454,15 @@ def check_nav_levels(pages):
             bad.append(f"{name}: no HUD tree")
             continue
         got = hud_group_children(tree, "landscape")
-        if got is None or len(got) != 168:
-            bad.append(f"{name}: Landscape has {len(got) if got else 0} rows (expected 168)")
+        if got is None or len(got) != 169:
+            bad.append(f"{name}: Landscape has {len(got) if got else 0} rows (expected 169)")
             continue
         pos = [got.index(h) if h in got else -1 for h in land_sections]
         if any(p == -1 for p in pos) or pos != sorted(pos):
             bad.append(f"{name}: Landscape section order {pos}")
     if not bad:
         ok("nav: Landscape group links on every page",
-           "4 sections in order among 168 rows (sections + subsections + 135 articles)")
+           "4 sections in order among 169 rows (sections + subsections + 136 articles)")
     else:
         fail("nav: Landscape group links on every page", "; ".join(bad))
 
@@ -1041,12 +1041,12 @@ def check_toc_levels(pages):
     """HUD tree page-contents (HUD round, 2026-11-25): each main
     page's own group in the masthead HUD carries its page contents
     as rows (the former page-top TOCs): sitrep 14 (2 + 12), diff
-    5 (4 domains + watchlist), landscape 168 (4 sections + 29
-    subsections + 135 articles), background 9 (9 sections — the
+    5 (4 domains + watchlist), landscape 169 (4 sections + 29
+    subsections + 136 articles), background 9 (9 sections — the
     page-H2 landing row was removed in the TOC cleanup,
     2026-11-25). DIFF's group carries the watchlist row;
     BACKGROUND's carries the R&D sub-group."""
-    expected = {"sitrep": 14, "diff": 6, "landscape": 168,
+    expected = {"sitrep": 14, "diff": 6, "landscape": 169,
                 "background": 9}
     problems = []
     for name, want in expected.items():
@@ -1062,7 +1062,7 @@ def check_toc_levels(pages):
         fail("per-page TOCs", "; ".join(problems))
     else:
         ok("per-page TOCs",
-           "in the HUD tree: sitrep 14 / diff 6 (incl. countdown + watchlist) / landscape 168 / background 9 (incl. R&D)")
+           "in the HUD tree: sitrep 14 / diff 6 (incl. countdown + watchlist) / landscape 169 / background 9 (incl. R&D)")
 
 
 def check_current_levels(pages):
