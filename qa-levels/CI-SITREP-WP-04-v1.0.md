@@ -67,6 +67,7 @@ To prevent executives from making monolithic capital allocation errors ("buying 
 * **AMBER (`Inflection Cusp`):** Technical feasibility proven; institutional and governance plumbing actively locking in. *Mandate: Invest aggressively now to establish asymmetric advantage.*
 * **CRIMSON (`Governance Tax Trough` — the stage where the Governance Tax, β, is being paid):** High deployment velocity colliding with missing verification or data foundations, creating negative net margin and operational risk. *Mandate: Ring-fence spend; cap production scaling until guardrails close the gap.*
 * **SLATE (`Genesis / Pre-Payoff`):** Blocked by upstream bottlenecks or structurally unproven. *Mandate: Keep strictly inside ring-fenced R&D.*
+* **NO DATA (`No Evidence`):** No credible evidence exists for this cell — the evidence base is silent. *Mandate: None. This is not a fifth judgment but the absence of one: SLATE (Genesis) means we know something and have a start; no data means we know nothing. In the instrument, a no-data cell renders dark.*
 
 #### The Q4 2026 Matrix at a Glance
 
