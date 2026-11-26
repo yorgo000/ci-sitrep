@@ -156,6 +156,10 @@
   @view-transition { navigation: auto; }
   nav.sidebar { view-transition-name: hud; }
   main h1:first-of-type { view-transition-name: page-title; }
+  /* Fenced code blocks (WP-04 YAML schema, 2026-11-26): line-broken
+     monospace on the code wash; long lines scroll, never wrap. */
+  main pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  main pre code { background: none; padding: 0; }
   .masthead-vertical { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-weight: 600; font-style: italic; color: #283060; margin: 2px 0 0; }
   .masthead-tagline { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.45; }
   .masthead-by { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
@@ -619,7 +623,7 @@
 <ul>
 <li><a href="#executive-thesis">Executive Thesis</a></li>
 <li><a href="#part-i-theoretical-synthesis--empirical-premises">Part I: Theoretical Synthesis &amp; Empirical Premises</a></li>
-<li><a href="#part-ii-architecture-of-the-6-times-5-readiness--pl-matrix">Part II: Architecture of the $6 \times 5$ Readiness &amp; P&amp;L Matrix</a><ul>
+<li><a href="#part-ii-architecture-of-the-6--5-readiness--pl-matrix">Part II: Architecture of the 6 × 5 Readiness &amp; P&amp;L Matrix</a><ul>
 <li><a href="#x-axis-value-chain-stack-layers-bottom-up-dependency">X-Axis: Value Chain Stack Layers (Bottom-Up Dependency)</a></li>
 <li><a href="#y-axis-sequential-payoff-gates-bottom-up-progression">Y-Axis: Sequential Payoff Gates (Bottom-Up Progression)</a></li>
 <li><a href="#z-axis-chromatic-diagnostic-states">Z-Axis: Chromatic Diagnostic States</a></li>
@@ -671,7 +675,7 @@
 <p>Global capital markets are currently conflating <strong>infrastructure buildout</strong> with <strong>enterprise value capture</strong>. While hyperscaler capital expenditure reached $376.1 billion in 2025, with 2026 guidance of $720–745 billion (WP-03 §II.5.1), empirical enterprise telemetry demonstrates that operational speed has detached from bottom-line margin expansion. According to the CI SITREP evidence base, <strong>86% of United States financial firms formally use artificial intelligence, yet only 38% formally test what it produces</strong> (ACA/NSCP 2026 AI Benchmarking Survey, November 2026, 261 firms) ●●○○, and <strong>only 9% of organizations have redesigned workflows to safely accommodate agents</strong> (Optro, <em>Authority without oversight</em>, October 2026, 400+ governance, risk, and compliance leaders) ●●○○.</p>
 <p>The <strong>CI SITREP</strong> framework resolves this contradiction by replacing linear hype narratives with a two-part diagnostic system:
 1. <strong>The Parametric Adoption Curve:</strong> Models the macro divergence between silicon/capital velocity and human/institutional absorption.
-2. <strong>The $6 \times 5$ Readiness &amp; P&amp;L Heatmap (the P&amp;L Heatmap; technically, the Pure-Chromatic Telemetry Gauge):</strong> Deconstructs Created Intelligence (CI) into 30 discrete architectural and economic states, revealing precisely where margin is currently trapped (<em>The Governance Tax</em> — the verification overhead, β, that must be paid before returns land) and where asymmetric competitive advantage lies.</p>
+2. <strong>The 6 × 5 Readiness &amp; P&amp;L Heatmap (the P&amp;L Heatmap; technically, the Pure-Chromatic Telemetry Gauge):</strong> Deconstructs Created Intelligence (CI) into 30 discrete architectural and economic states, revealing precisely where margin is currently trapped (<em>The Governance Tax</em> — the verification overhead, β, that must be paid before returns land) and where asymmetric competitive advantage lies.</p>
 <p>In plain terms: the curve shows why the money is not landing yet; the 30-cell map shows where the margin is trapped.</p>
 <hr />
 <h3 id="part-i-theoretical-synthesis--empirical-premises">Part I: Theoretical Synthesis &amp; Empirical Premises</h3>
@@ -692,7 +696,7 @@
 <td style="text-align: left;"><strong>AX-01</strong></td>
 <td style="text-align: left;"><strong>Carlota Perez (2002)</strong> — <em>Buildout vs. Deployment</em> (Perez: Installation vs. Deployment)</td>
 <td style="text-align: left;">Technological revolutions bifurcate into a <em>Buildout</em> (financial capital building ahead of unit economics) and a <em>Deployment</em> (production capital harvesting returns after the Shakeout).</td>
-<td style="text-align: left;"><strong>Rail Readiness ($\alpha$):</strong> Distribution rides existing cloud/fiber rails; compute rails are being built now. Technical installation compresses to ~6–10 years for the technical half only (historical proxies: railways ~10–14 years, dynamo ~15–30 years, automobiles ~40 years — WP-03).</td>
+<td style="text-align: left;"><strong>Rail Readiness (α):</strong> Distribution rides existing cloud/fiber rails; compute rails are being built now. Technical installation compresses to ~6–10 years for the technical half only (historical proxies: railways ~10–14 years, dynamo ~15–30 years, automobiles ~40 years — WP-03).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>AX-02</strong></td>
@@ -704,19 +708,19 @@
 <td style="text-align: left;"><strong>AX-03</strong></td>
 <td style="text-align: left;"><strong>Erik Brynjolfsson (2021)</strong> — <em>The Productivity J-Curve</em></td>
 <td style="text-align: left;">Measured net productivity initially <strong>dips negative</strong> as firms divert capital and labor into intangible investments (data cleanup, security remediation, compliance) before harvesting returns.</td>
-<td style="text-align: left;"><strong>Verification Overhead ($\beta$ — the Governance Tax):</strong> ~38% of AI-generated code introduces a known security flaw (Veracode, Fall 2026 GenAI Code Security Update) ●●●○; monthly security findings rose ~10× (~1,000 → 10,000+) in enterprise telemetry (Apiiro via Cloud Security Alliance, April 2026) [VENDOR DATA] ●●○○ — creating net margin drag.</td>
+<td style="text-align: left;"><strong>Verification Overhead (β — the Governance Tax):</strong> ~38% of AI-generated code introduces a known security flaw (Veracode, Fall 2026 GenAI Code Security Update) ●●●○; monthly security findings rose ~10× (~1,000 → 10,000+) in enterprise telemetry (Apiiro via Cloud Security Alliance, April 2026) [VENDOR DATA] ●●○○ — creating net margin drag.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>AX-04</strong></td>
 <td style="text-align: left;"><strong>Everett Rogers &amp; Geoffrey Moore</strong> — <em>Institutional Friction</em></td>
 <td style="text-align: left;">Technical diffusion moves at network distribution speed; organizational adoption moves at the speed of legal liability, auditability, and human decision rights.</td>
-<td style="text-align: left;"><strong>Institutional Lag ($\delta$):</strong> 73% of systemically important banks permit agents in production for select use cases, yet only 8% have comprehensive agent monitoring (BCG, 13 November 2026) ●●○○; 38% of organizations authorise agents to approve or reject transactions (Optro, October 2026) ●●○○; 23% of firms with agents in production have never tested the termination capability they believe they have (Writer / Workplace Intelligence, 2026) ●●○○.</td>
+<td style="text-align: left;"><strong>Institutional Lag (δ):</strong> 73% of systemically important banks permit agents in production for select use cases, yet only 8% have comprehensive agent monitoring (BCG, 13 November 2026) ●●○○; 38% of organizations authorise agents to approve or reject transactions (Optro, October 2026) ●●○○; 23% of firms with agents in production have never tested the termination capability they believe they have (Writer / Workplace Intelligence, 2026) ●●○○.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>AX-05</strong></td>
 <td style="text-align: left;"><strong>Simon Wardley &amp; Chris Dixon</strong> — <em>Value Chain &amp; Infra-App Cycles</em></td>
-<td style="text-align: left;">Capabilities evolve from <em>Genesis $\rightarrow$ Custom $\rightarrow$ Product $\rightarrow$ Commodity</em>. Infra Wave 1 triggers reliability failures that require Infra Wave 2 (deterministic control planes).</td>
-<td style="text-align: left;"><strong>Vendor Concentration ($\gamma$):</strong> Hyperscaler oligopoly commoditizes models while shifting value upward to semantic context and verification.</td>
+<td style="text-align: left;">Capabilities evolve from <em>Genesis → Custom → Product → Commodity</em>. Infra Wave 1 triggers reliability failures that require Infra Wave 2 (deterministic control planes).</td>
+<td style="text-align: left;"><strong>Vendor Concentration (γ):</strong> Hyperscaler oligopoly commoditizes models while shifting value upward to semantic context and verification.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>AX-06</strong></td>
@@ -727,7 +731,7 @@
 </tbody>
 </table>
 <hr />
-<h3 id="part-ii-architecture-of-the-6-times-5-readiness--pl-matrix">Part II: Architecture of the $6 \times 5$ Readiness &amp; P&amp;L Matrix</h3>
+<h3 id="part-ii-architecture-of-the-6--5-readiness--pl-matrix">Part II: Architecture of the 6 × 5 Readiness &amp; P&amp;L Matrix</h3>
 <p>To prevent executives from making monolithic capital allocation errors ("buying AI" rather than funding specific readiness gates), the CI SITREP matrix maps <strong>6 Architectural Stack Layers (X-Axis)</strong> across <strong>5 Proven Adoption &amp; Payoff Gates (Y-Axis)</strong>.</p>
 <h4 id="x-axis-value-chain-stack-layers-bottom-up-dependency">X-Axis: Value Chain Stack Layers (Bottom-Up Dependency)</h4>
 <ol>
@@ -818,48 +822,48 @@
 <p><strong>A note on what EMERALD means here.</strong> These 30 cells are architectural states — 6 stack layers × 5 payoff gates — assigned by judgment against the evidence base, not 30 measured parameters. (WP-03's separate 30-parameter tally counts measured evidence parameters; the two sets are different instruments.) An EMERALD cell at Gate 1 or Gate 2 means the technology works and the plumbing exists — it does not mean deployment-level institutional conditions are in place. The 9 EMERALD cells sit mostly at the technical gates (G1/G2), plus hyperscaler infrastructure rents at L1×G5; the gates that govern enterprise P&amp;L capture (G4/G5) remain CRIMSON or SLATE across the agentic and workflow layers. Read the matrix gate by gate, not by its EMERALD count.</p>
 <hr />
 <h3 id="part-iii-q4-2026-baseline-telemetry-schema-machine---agent-readable">Part III: Q4 2026 Baseline Telemetry Schema (Machine- &amp; Agent-Readable)</h3>
-<p><code>yaml
-ci_sitrep_matrix:
-  snapshot_period: "2026-Q4"
+<pre><code class="language-yaml">ci_sitrep_matrix:
+  snapshot_period: &quot;2026-Q4&quot;
   dimensions:
-    x_layers: ["L1_Compute", "L2_Models", "L3_DataContext", "L4_AgenticExec", "L5_Governance", "L6_WorkflowPnL"]
-    y_gates: ["G1_Feasibility", "G2_Complementarity", "G3_Verification", "G4_Absorption", "G5_NetPnL"]
+    x_layers: [&quot;L1_Compute&quot;, &quot;L2_Models&quot;, &quot;L3_DataContext&quot;, &quot;L4_AgenticExec&quot;, &quot;L5_Governance&quot;, &quot;L6_WorkflowPnL&quot;]
+    y_gates: [&quot;G1_Feasibility&quot;, &quot;G2_Complementarity&quot;, &quot;G3_Verification&quot;, &quot;G4_Absorption&quot;, &quot;G5_NetPnL&quot;]
   cells:
     # Gate 5: Net P&amp;L &amp; Margin Expansion
-    L1_G5: { state: "EMERALD", note: "Hyperscalers capturing infrastructure rents" }
-    L2_G5: { state: "AMBER",   note: "Severe price compression; inference commoditizing" }
-    L3_G5: { state: "SLATE",   note: "Still treated as a capex/opex cost center" }
-    L4_G5: { state: "CRIMSON", note: "Pilot purgatory; no credible net return-on-investment figure published — profitability gained is a no-data gap in the evidence base" }
-    L5_G5: { state: "AMBER",   note: "High-margin niche for verification &amp; audit vendors" }
-    L6_G5: { state: "CRIMSON", note: "Solow productivity lag; un-redesigned legacy workflows" }
+    L1_G5: { state: &quot;EMERALD&quot;, note: &quot;Hyperscalers capturing infrastructure rents&quot; }
+    L2_G5: { state: &quot;AMBER&quot;,   note: &quot;Severe price compression; inference commoditizing&quot; }
+    L3_G5: { state: &quot;SLATE&quot;,   note: &quot;Still treated as a capex/opex cost center&quot; }
+    L4_G5: { state: &quot;CRIMSON&quot;, note: &quot;Pilot purgatory; no credible net return-on-investment figure published — profitability gained is a no-data gap in the evidence base&quot; }
+    L5_G5: { state: &quot;AMBER&quot;,   note: &quot;High-margin niche for verification &amp; audit vendors&quot; }
+    L6_G5: { state: &quot;CRIMSON&quot;, note: &quot;Solow productivity lag; un-redesigned legacy workflows&quot; }
     # Gate 4: Organizational Absorption
-    L1_G4: { state: "EMERALD", note: "Cloud procurement standardized" }
-    L2_G4: { state: "EMERALD", note: "API consumption culturally accepted" }
-    L3_G4: { state: "AMBER",   note: "Cross-silo data ownership slowly consolidating" }
-    L4_G4: { state: "CRIMSON", note: "73% of systemically important banks permit agents in production, only 8% monitor them comprehensively (BCG, Nov 2026); 38% of organizations authorise agents to approve or reject transactions (Optro, Oct 2026)" }
-    L5_G4: { state: "CRIMSON", note: "Security and compliance review backlogs exploding" }
-    L6_G4: { state: "SLATE",   note: "Only 9% of organizations have redesigned workflows to safely accommodate agents (Optro, Oct 2026)" }
+    L1_G4: { state: &quot;EMERALD&quot;, note: &quot;Cloud procurement standardized&quot; }
+    L2_G4: { state: &quot;EMERALD&quot;, note: &quot;API consumption culturally accepted&quot; }
+    L3_G4: { state: &quot;AMBER&quot;,   note: &quot;Cross-silo data ownership slowly consolidating&quot; }
+    L4_G4: { state: &quot;CRIMSON&quot;, note: &quot;73% of systemically important banks permit agents in production, only 8% monitor them comprehensively (BCG, Nov 2026); 38% of organizations authorise agents to approve or reject transactions (Optro, Oct 2026)&quot; }
+    L5_G4: { state: &quot;CRIMSON&quot;, note: &quot;Security and compliance review backlogs exploding&quot; }
+    L6_G4: { state: &quot;SLATE&quot;,   note: &quot;Only 9% of organizations have redesigned workflows to safely accommodate agents (Optro, Oct 2026)&quot; }
     # Gate 3: Verification &amp; Risk Containment
-    L1_G3: { state: "EMERALD", note: "Service Organization Control 2 (SOC 2) / International Organization for Standardization (ISO) cloud security mature" }
-    L2_G3: { state: "AMBER",   note: "Model-level guardrails improving but non-deterministic" }
-    L3_G3: { state: "AMBER",   note: "Lineage and access controls maturing" }
-    L4_G3: { state: "CRIMSON", note: "Ungoverned autonomous agents creating outage/security risk" }
-    L5_G3: { state: "AMBER",   note: "Inflection cusp: automated code/output verification scaling" }
-    L6_G3: { state: "SLATE",   note: "End-to-end P&amp;L auditability unproven" }
+    L1_G3: { state: &quot;EMERALD&quot;, note: &quot;Service Organization Control 2 (SOC 2) / International Organization for Standardization (ISO) cloud security mature&quot; }
+    L2_G3: { state: &quot;AMBER&quot;,   note: &quot;Model-level guardrails improving but non-deterministic&quot; }
+    L3_G3: { state: &quot;AMBER&quot;,   note: &quot;Lineage and access controls maturing&quot; }
+    L4_G3: { state: &quot;CRIMSON&quot;, note: &quot;Ungoverned autonomous agents creating outage/security risk&quot; }
+    L5_G3: { state: &quot;AMBER&quot;,   note: &quot;Inflection cusp: automated code/output verification scaling&quot; }
+    L6_G3: { state: &quot;SLATE&quot;,   note: &quot;End-to-end P&amp;L auditability unproven&quot; }
     # Gate 2: Infrastructural Complementarity
-    L1_G2: { state: "EMERALD", note: "Global fiber and cloud regions operational" }
-    L2_G2: { state: "EMERALD", note: "Standardized representational state transfer (REST) / Model Context Protocol (MCP) model interfaces" }
-    L3_G2: { state: "CRIMSON", note: "Fragmented silos; enterprise data remains split across disconnected systems with no unified schema or lineage" }
-    L4_G2: { state: "AMBER",   note: "Tool-use protocols emerging rapidly" }
-    L5_G2: { state: "AMBER",   note: "Continuous integration / continuous delivery scanning hooks actively integrating" }
-    L6_G2: { state: "SLATE",   note: "Enterprise resource planning (ERP) / core system hooks remain rigid" }
+    L1_G2: { state: &quot;EMERALD&quot;, note: &quot;Global fiber and cloud regions operational&quot; }
+    L2_G2: { state: &quot;EMERALD&quot;, note: &quot;Standardized representational state transfer (REST) / Model Context Protocol (MCP) model interfaces&quot; }
+    L3_G2: { state: &quot;CRIMSON&quot;, note: &quot;Fragmented silos; enterprise data remains split across disconnected systems with no unified schema or lineage&quot; }
+    L4_G2: { state: &quot;AMBER&quot;,   note: &quot;Tool-use protocols emerging rapidly&quot; }
+    L5_G2: { state: &quot;AMBER&quot;,   note: &quot;Continuous integration / continuous delivery scanning hooks actively integrating&quot; }
+    L6_G2: { state: &quot;SLATE&quot;,   note: &quot;Enterprise resource planning (ERP) / core system hooks remain rigid&quot; }
     # Gate 1: Technical Feasibility &amp; Cost
-    L1_G1: { state: "EMERALD", note: "Proven at hyperscale" }
-    L2_G1: { state: "EMERALD", note: "Frontier reasoning proven; token cost falling" }
-    L3_G1: { state: "EMERALD", note: "Vector, graph, and lakehouse engines mature" }
-    L4_G1: { state: "AMBER",   note: "Multi-step reliability improving rapidly" }
-    L5_G1: { state: "AMBER",   note: "Deterministic policy &amp; formal verification engines emerging" }
-    L6_G1: { state: "SLATE",   note: "Autonomous end-to-end P&amp;L optimization experimental" }</code></p>
+    L1_G1: { state: &quot;EMERALD&quot;, note: &quot;Proven at hyperscale&quot; }
+    L2_G1: { state: &quot;EMERALD&quot;, note: &quot;Frontier reasoning proven; token cost falling&quot; }
+    L3_G1: { state: &quot;EMERALD&quot;, note: &quot;Vector, graph, and lakehouse engines mature&quot; }
+    L4_G1: { state: &quot;AMBER&quot;,   note: &quot;Multi-step reliability improving rapidly&quot; }
+    L5_G1: { state: &quot;AMBER&quot;,   note: &quot;Deterministic policy &amp; formal verification engines emerging&quot; }
+    L6_G1: { state: &quot;SLATE&quot;,   note: &quot;Autonomous end-to-end P&amp;L optimization experimental&quot; }
+</code></pre>
 <hr />
 <h3 id="part-iv-reading-the-pl-heatmaps-chromatic-field">Part IV: Reading the P&amp;L Heatmap's Chromatic Field</h3>
 <p>For continuous executive monitoring, the 30-cell matrix compresses into the P&amp;L Heatmap's chromatic field — a borderless, label-free bilinearly interpolated visual field governed directly by the underlying cell states. The chromatic field is a compression of the labeled matrix, never a substitute for it: every field reading is paired with the 6×5 grid in Part II, whose cells carry text states — the color encoding is color-blind safe by pairing.</p>
@@ -874,18 +878,18 @@ ci_sitrep_matrix:
 <hr />
 <h3 id="references">References</h3>
 <ul>
-<li>Veracode. "Fall 2026 GenAI Code Security Update." Veracode, Fall 2026. https://www.veracode.com/blog/fall-2026-genai-code-security/ — ~38% of AI-generated code introduces a known security flaw (series: 45% Spring 2026 → 44% July 2026 → 38% Fall 2026) ●●●○</li>
-<li>Apiiro / Cloud Security Alliance. "CSA Research Note: AI-Generated Code Security (Vibe Coding)." Cloud Security Alliance, April 2026. https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/ — monthly security findings rose ~10× (~1,000 → 10,000+) [VENDOR DATA] ●●○○</li>
-<li>ACA Group / National Society of Compliance Professionals (NSCP). "2026 AI Benchmarking Survey." Business Wire, 12 November 2026 (261 firms). https://www.businesswire.com/news/home/20261112134673/en/ — 86% of US financial firms formally use AI; 38% formally test outputs ●●○○</li>
-<li>Optro. "Authority without oversight." Optro, October 2026 (400+ governance, risk, and compliance leaders). https://optro.ai/blog/one-in-three-organizations-say-they-have-acted-on-wrong-decisions-made-by-ai-agents-optro-research-finds — 38% authorise agents to approve or reject transactions; only 9% have redesigned workflows ●●○○</li>
-<li>Boston Consulting Group (BCG). "AI Safety and Governance in Banking 2026." PR Newswire, 13 November 2026 (26 global and domestic systemically important banks). https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html — 73% permit agents in production for select use cases; 8% have comprehensive agent monitoring ●●○○</li>
-<li>Writer / Workplace Intelligence. "Enterprise AI Adoption Survey." Writer, 2026 (2,400 global employees and C-suite leaders). https://writer.com/blog/enterprise-ai-adoption-survey-results-press-release/ — 23% of firms with agents in production have never tested the termination capability they believe they have ●●○○</li>
-<li>Bougás, Yorgo P. <em>Diffusion Gauge — A General Purpose Technology Tracker</em> (CI-SITREP-WP-03). CI SITREP Research Series, 22 November 2026 — hyperscaler capital expenditure $376.1 billion in 2025, 2026 guidance $720–745 billion (§II.5.1); Total Factor Productivity +0.8% in 2025, down from +1.5% (E2); Acemoglu ceiling ≤0.66% Total Factor Productivity over 10 years (upper bound); Correction 2 (distribution rails exist, compute rails being built now).</li>
+<li>Veracode. "Fall 2026 GenAI Code Security Update." Veracode, Fall 2026. <a href="https://www.veracode.com/blog/fall-2026-genai-code-security/" target="_blank" rel="noopener">https://www.veracode.com/blog/fall-2026-genai-code-security/</a> — ~38% of AI-generated code introduces a known security flaw (series: 45% Spring 2026 → 44% July 2026 → 38% Fall 2026) ●●●○</li>
+<li>Apiiro / Cloud Security Alliance. "CSA Research Note: AI-Generated Code Security (Vibe Coding)." Cloud Security Alliance, April 2026. <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/" target="_blank" rel="noopener">https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/</a> — monthly security findings rose ~10× (~1,000 → 10,000+) [VENDOR DATA] ●●○○</li>
+<li>ACA Group / National Society of Compliance Professionals (NSCP). "2026 AI Benchmarking Survey." Business Wire, 12 November 2026 (261 firms). <a href="https://www.businesswire.com/news/home/20261112134673/en/" target="_blank" rel="noopener">https://www.businesswire.com/news/home/20261112134673/en/</a> — 86% of US financial firms formally use AI; 38% formally test outputs ●●○○</li>
+<li>Optro. "Authority without oversight." Optro, October 2026 (400+ governance, risk, and compliance leaders). <a href="https://optro.ai/blog/one-in-three-organizations-say-they-have-acted-on-wrong-decisions-made-by-ai-agents-optro-research-finds" target="_blank" rel="noopener">https://optro.ai/blog/one-in-three-organizations-say-they-have-acted-on-wrong-decisions-made-by-ai-agents-optro-research-finds</a> — 38% authorise agents to approve or reject transactions; only 9% have redesigned workflows ●●○○</li>
+<li>Boston Consulting Group (BCG). "AI Safety and Governance in Banking 2026." PR Newswire, 13 November 2026 (26 global and domestic systemically important banks). <a href="https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html" target="_blank" rel="noopener">https://www.prnewswire.com/news-releases/operationalizing-ai-governance-gives-banks-an-advantage-in-scaling-ai-302938342.html</a> — 73% permit agents in production for select use cases; 8% have comprehensive agent monitoring ●●○○</li>
+<li>Writer / Workplace Intelligence. "Enterprise AI Adoption Survey." Writer, 2026 (2,400 global employees and C-suite leaders). <a href="https://writer.com/blog/enterprise-ai-adoption-survey-results-press-release/" target="_blank" rel="noopener">https://writer.com/blog/enterprise-ai-adoption-survey-results-press-release/</a> — 23% of firms with agents in production have never tested the termination capability they believe they have ●●○○</li>
+<li>Bougás, Yorgo P. <a href="tracker-whitepaper.html"><em>Diffusion Gauge — A General Purpose Technology Tracker</em></a> (CI-SITREP-WP-03). CI SITREP Research Series, 22 November 2026 — hyperscaler capital expenditure $376.1 billion in 2025, 2026 guidance $720–745 billion (§II.5.1); Total Factor Productivity +0.8% in 2025, down from +1.5% (E2); Acemoglu ceiling ≤0.66% Total Factor Productivity over 10 years (upper bound); Correction 2 (distribution rails exist, compute rails being built now).</li>
 </ul>
 <hr />
 <h3 id="versioning-protocol">Versioning Protocol</h3>
 <ul>
-<li><code>v1.0.0</code> (2026-11-26): Canonical baseline establishing the 6-framework axiomatic synthesis (<code>AX-01</code>–<code>AX-06</code>), the $6 \times 5$ matrix schema, and the P&amp;L Heatmap specification.</li>
+<li><code>v1.0.0</code> (2026-11-26): Canonical baseline establishing the 6-framework axiomatic synthesis (<code>AX-01</code>–<code>AX-06</code>), the 6 × 5 matrix schema, and the P&amp;L Heatmap specification.</li>
 <li>Subsequent revisions should increment minor versions (<code>v1.1.0</code>) for quarterly cell-state recalibrations and major versions (<code>v2.0.0</code>) for structural axis or parameter additions.</li>
 </ul>
   </main>
