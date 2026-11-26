@@ -2,7 +2,12 @@
 
 <p><small>Yorgo P. Bougás · Confluence<1></small></p>
 
-**Status:** v3 WHITE PAPER for Yorgo's review — 22 November 2026. Draft only. Not published, not on the site, not a finding of the report.
+**Document ID:** CI-SITREP-WP-03
+**Series:** CI SITREP Research Series
+**Version:** 3.0 (v3 whitepaper)
+**Date:** 22 November 2026
+**Author:** Yorgo P. Bougás · Confluence<1>
+**Status:** Published on CI SITREP (R&D), 25 November 2026.
 **Predecessor:** v2, *Diffusion Gauge — A General Purpose Technology Tracker* (general-purpose-technology-tracker-2026-11-22.md) — the model document this whitepaper is drawn from. The v1 clock draft (solow-perez-clock-2026-11-22.md) is the research predecessor.
 **Attribution rule (Yorgo, 22 November 2026):** the tracker is his personal work, not Confluence<1> intellectual property — it becomes the firm's only when it is useful and verified. Every byline carries his name, not the firm's. **Attribution update (Yorgo, 25 November 2026):** Confluence<1> is the affiliation on the byline — "Yorgo P. Bougás, Confluence<1>" — and nothing more. The tracker remains Yorgo P. Bougás's personal work, not Confluence<1> intellectual property; it becomes the firm's only when it is useful and verified, by his decision.
 **Report base:** CI SITREP (created intelligence situation report), 122 articles (18 Established / 41 Corroborated / 57 Reported / 6 Claimed) as of 22 Nov 2026; dashboard as-of 20 Nov 2026. Report figures below carry the report's own confidence ratings.
