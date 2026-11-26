@@ -2,7 +2,7 @@
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
-**As of:** 2026-11-25. **Report last updated:** 2026-11-22.
+**As of:** 2026-11-25. **Report last updated:** 2026-11-25.
 
 ---
 
@@ -10,12 +10,12 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 
 | Measure | Value |
 |---|---|
-| Articles | 117 |
-| Source links (article + subsection) | 288 |
-| Total external links (incl. inline prose links) | 637 |
-| Unique source URLs | 262 |
+| Articles | 131 |
+| Source links (article + subsection) | 314 |
+| Total external links (incl. inline prose links) | 719 |
+| Unique source URLs | 291 |
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
-| Items in DIFF | 46 |
+| Items in DIFF | 63 |
 | Superseded entries in the archive | 21 |
 | Opened to the public | November 12, 2026 |
 
@@ -27,12 +27,12 @@ Every article carries a dots rating for how much confidence a reader can place i
 
 | Rating | Meaning | Articles | Share |
 |---|---|---|---|
-| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 18 | 15% |
-| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 40 | 34% |
-| ●●○○ Reported | Single credible source, not yet independently verified | 54 | 46% |
-| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 5 | 4% |
+| ●●●● Established | Peer-reviewed and independently confirmed, or a primary regulatory/government document | 22 | 17% |
+| ●●●○ Corroborated | Peer-reviewed single study, or a credible primary source confirmed by independent reporting | 42 | 32% |
+| ●●○○ Reported | Single credible source, not yet independently verified | 61 | 47% |
+| ●○○○ Claimed | Vendor claim without disclosed methodology, or a single uncorroborated report | 6 | 5% |
 
-**50% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
+**49% of articles are Established or Corroborated.** The rest are directional — worth knowing, not yet a basis for a major commitment. When a rating is in doubt, the lower level is assigned.
 
 ---
 
@@ -61,7 +61,7 @@ Every source link on the site is a live link to the source — verified, not ass
 
 - **Last full link audit:** 2026-11-12. All 94 unique URLs then live were verified (86 returned HTTP 200; 7 confirmed in a real browser after automated checks failed on bot protection; 1 truncated URL found and fixed).
 - **New links:** every new source link is verified live (HTTP 200 or browser render) before publishing. Truncated or guessed URLs are never published.
-- **Current unique URLs:** 262 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
+- **Current unique URLs:** 291 (includes 7 authoritative reference URLs added for inline prose links on 2026-11-12).
 
 ---
 
