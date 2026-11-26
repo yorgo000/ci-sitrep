@@ -10,7 +10,7 @@
 3. Short on time, or back for the day? Read [the bottom line](#bottom-line), then [DIFF](#diff) — or follow the red dots: everything the news touched carries one.
 4. Pick anything and it opens: every figure links to the evidence behind it, every article ends in a Source link to the primary source.
 5. New to the terms? The [Glossary](glossary.html) defines every acronym; the [explainer](explainer.html) explains CI, CII, CIC. Keep opening until you've got what you need; hit back and you're at the top again.
-6. Want the foundations? [BACKGROUND](background.html#research) holds our R&D — the [theses](background.html#theses) this report is built on, and the tools that came out of them.
+6. Want the foundations? [BACKSTAGE](background.html#research) holds our R&D — the [theses](background.html#theses) this report is built on. The tools that came out of them live in [INSTRUMENTS](instruments.html).
 
 What gets in, and what the confidence dots mean: [Self-Audit](audit.html) and the [Confidence rating scale](#confidence-rating-scale).
 
