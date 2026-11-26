@@ -1,61 +1,89 @@
 {
- "as_of": "2026-11-23",
- "as_of_label": "Monday, November 23, 2026",
+ "as_of": "2026-11-22",
+ "as_of_label": "Sunday, November 22, 2026",
  "bottom_line": [
   {
+   "bullet": 1,
    "chart": {
-    "kind": "compare",
+    "a_label": "AI agents",
+    "b_label": "human-written",
+    "kind": "pie",
+    "value": 47
+   },
+   "date": "2026",
+   "display": "~47%",
+   "label": "of code is written fully by AI agents",
+   "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
+   "pie_split": "identity",
+   "rating": "corroborated",
+   "sentiment": "neutral",
+   "source": "JetBrains Developer Ecosystem Survey 2026",
+   "subject": "pnl",
+   "tile": "pie"
+  },
+  {
+   "bullet": 1,
+   "chart": {
+    "a_label": "Using AI",
+    "b_label": "not using",
+    "kind": "pie",
+    "value": 86
+   },
+   "date": "12 Nov 2026",
+   "display": "86%",
+   "label": "of US financial firms formally use AI",
+   "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+   "pie_split": "identity",
+   "rating": "reported",
+   "sentiment": "neutral",
+   "source": "ACA/NSCP 2026 AI Benchmarking Survey",
+   "subject": "pnl",
+   "tile": "pie"
+  },
+  {
+   "bullet": 4,
+   "chart": {
     "a": {
-     "display": "3.4×",
-     "label": "81–100% of code AI-generated",
-     "tone": "gap",
-     "value": 3.4
+     "display": "~2.5×",
+     "label": "With post-hoc review",
+     "tone": "navy",
+     "value": 2.5
     },
     "b": {
      "display": "1×",
-     "label": "1–20% of code AI-generated",
-     "tone": "navy",
-     "value": 1
-    }
-   },
-   "date": "2 Nov 2026",
-   "display": "3.4×",
-   "label": "the self-reported vulnerable-code shipping rate, 81–100% vs 1–20% AI-generated code",
-   "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
-   "rating": "reported",
-   "sentiment": "negative",
-   "source": "SusVibes re-run",
-   "span": 2,
-   "tile": "ratio"
-  },
-  {
-   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
-   "caption": "Share of 147 vulnerabilities counted",
-   "chart": {
-    "a": {
-     "display": "135",
-     "label": "AI patches",
+     "label": "Generation alone",
      "tone": "gap",
-     "value": 135
-    },
-    "b": {
-     "display": "12",
-     "label": "Human patches",
-     "tone": "navy",
-     "value": 12
+     "value": 1
     },
     "kind": "compare"
    },
-   "date": "1 Nov 2026",
-   "display": "~11×",
-   "label": "more vulnerabilities in AI patches than in human patches",
-   "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
+   "date": "2 Nov 2026",
+   "display": "~2.5×",
+   "label": "the cost of a post-hoc review that still leaves about half insecure",
+   "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
    "rating": "reported",
    "sentiment": "negative",
-   "source": "Sajadi et al., SWE-bench study v4",
-   "tile": "waffle"
+   "source": "SusVibes re-run",
+   "subject": "pnl",
+   "tile": "ratio",
+   "article_section": "§4.5"
   },
   {
+   "chart": {
+    "kind": "question"
+   },
+   "display": "Insufficient data",
+   "full": true,
+   "label": "profitability gained from AI",
+   "link": "#money",
+   "note": "No credible dollar figure exists yet",
+   "sentiment": "neutral",
+   "source": "CI SITREP money panel",
+   "subject": "pnl",
+   "tile": "no-data"
+  },
+  {
+   "bullet": 1,
    "date": "2026",
    "display": "188",
    "label": "documented cases of autonomous AI damaging production",
@@ -63,9 +91,11 @@
    "rating": "reported",
    "sentiment": "negative",
    "source": "Cyera",
+   "subject": "cic",
    "tile": "big-number"
   },
   {
+   "bullet": 1,
    "date": "13 Nov 2026",
    "display": "73%",
    "figures": [
@@ -92,844 +122,104 @@
    "sentiment": "negative",
    "source": "BCG AI Safety and Governance in Banking 2026",
    "source_note": "26 global and domestic systemically important banks",
+   "subject": "cic",
    "tile": "paired"
   },
   {
-   "chart": {
-    "a_label": "AI agents",
-    "b_label": "human-written",
-    "kind": "pie",
-    "value": 47
-   },
-   "date": "2026",
-   "display": "~47%",
-   "label": "of code is written fully by AI agents",
-   "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
-   "pie_split": "identity",
-   "rating": "corroborated",
-   "sentiment": "neutral",
-   "source": "JetBrains Developer Ecosystem Survey 2026",
-   "tile": "pie"
-  },
-  {
-   "chart": {
-    "a_label": "Using AI",
-    "b_label": "not using",
-    "kind": "pie",
-    "value": 86
-   },
-   "date": "12 Nov 2026",
-   "display": "86%",
-   "label": "of US financial firms formally use AI",
-   "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
-   "pie_split": "identity",
-   "rating": "reported",
-   "sentiment": "neutral",
-   "source": "ACA/NSCP 2026 AI Benchmarking Survey",
-   "tile": "pie"
-  },
-  {
+   "bullet": 1,
    "chart": {
     "a": {
-     "display": "~2.5×",
-     "label": "With post-hoc review",
-     "tone": "navy",
-     "value": 2.5
+     "display": "3.4×",
+     "label": "81–100% of code AI-generated",
+     "tone": "gap",
+     "value": 3.4
     },
     "b": {
      "display": "1×",
-     "label": "Generation alone",
-     "tone": "gap",
+     "label": "1–20% of code AI-generated",
+     "tone": "navy",
      "value": 1
     },
     "kind": "compare"
    },
    "date": "2 Nov 2026",
-   "display": "~2.5×",
-   "label": "the cost of a post-hoc review that still leaves about half insecure",
-   "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+   "display": "3.4×",
+   "label": "the self-reported vulnerable-code shipping rate, 81–100% vs 1–20% AI-generated code",
+   "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
    "rating": "reported",
    "sentiment": "negative",
    "source": "SusVibes re-run",
+   "span": 2,
+   "subject": "cert",
    "tile": "ratio"
   },
   {
+   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
+   "bullet": 2,
+   "bullet_token": "135 manually confirmed vulnerabilities",
+   "caption": "Share of 147 vulnerabilities counted",
    "chart": {
-    "kind": "question"
+    "a": {
+     "display": "135",
+     "label": "AI patches",
+     "tone": "gap",
+     "value": 135
+    },
+    "b": {
+     "display": "12",
+     "label": "Human patches",
+     "tone": "navy",
+     "value": 12
+    },
+    "kind": "compare"
    },
-   "display": "Insufficient data",
-   "full": true,
-   "label": "profitability gained from AI",
-   "link": "#money",
-   "note": "No credible dollar figure exists yet",
-   "sentiment": "neutral",
-   "source": "CI SITREP money panel",
-   "tile": "no-data"
+   "date": "1 Nov 2026",
+   "display": "~11×",
+   "label": "more vulnerabilities in AI patches than in human patches",
+   "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
+   "rating": "reported",
+   "sentiment": "negative",
+   "source": "Sajadi, SWE-bench v4",
+   "subject": "san",
+   "tile": "waffle"
   }
  ],
  "deadlines": [
   {
    "date": "2026-12-16",
    "display": "Wed 16 Dec 2026",
-   "label": "TPRM guidance comments close"
+   "label": "TPRM guidance comments close",
+   "subject": "pnl",
+   "link": "#what-were-watching"
   },
   {
+   "bullet": 4,
+   "bullet_token": "24 Dec 2026",
    "date": "2026-12-24",
    "display": "Thu 24 Dec 2026",
-   "label": "FCA CP26/38 comments close"
+   "label": "FCA CP26/38 comments close",
+   "link": "#firms-stay-accountable-for-ai-in-financial-crime-controls",
+   "subject": "pnl"
   },
   {
+   "bullet": 1,
+   "bullet_token": "1 Jan 2027",
    "date": "2027-01-01",
    "display": "1 Jan 2027",
-   "label": "NY RAISE Act takes effect; registration due"
+   "label": "NY RAISE Act takes effect; registration due",
+   "link": "#new-york-opens-frontier-ai-registration-a-financial",
+   "subject": "pnl"
   },
   {
    "date": "2027-05-01",
    "display": "1 May 2027",
-   "label": "OSFI E-23 takes effect"
+   "label": "OSFI E-23 takes effect",
+   "subject": "pnl",
+   "link": "#what-were-watching"
   }
  ],
- "note": "Every number below links to the article that evidences it; the article's Source line takes you to the primary source. Pie colours follow the split: rust is the AI side where the split is AI versus human; otherwise blue is favourable, rust adverse, grey the unclassified rest.",
- "tint_note": "Tile background tint is the finding's sentiment for a firm building critical systems in finance: blue is favourable, rust adverse, grey neutral.",
+ "note": "This report covers the Finance vertical — the CI surge across four domains, at multiple zoom levels. The bottom line is the abstract — the most distilled takeaway, one paragraph per domain. Situation at hand is the comprehensive picture in figures — a strip by domain, regulation countdowns, and a cross-domain ledger; the four domain dashboards follow below. Every number below links to the evidence behind it — usually its article; the article's Source line takes you to the primary source. Pie colours follow the split: rust is the AI side where the split is AI versus human; otherwise blue is favourable, rust adverse, grey the unclassified rest. Net-impact figures and signposted divergences are counted where they sit, not where their article lives.",
  "panels": [
-  {
-   "blocks": [
-    {
-     "items": [
-      {
-       "date": "2026",
-       "display": "~47%",
-       "kind": "bar",
-       "label": "of code written fully by AI agents",
-       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
-       "pie_split": "identity",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "JetBrains Developer Ecosystem Survey 2026",
-       "source_note": "~15,000 developers",
-       "tile": "pie",
-       "value": 47
-      },
-      {
-       "date": "2026",
-       "display": "42%",
-       "kind": "bar",
-       "label": "of committed code AI-generated or assisted",
-       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
-       "note": "65% expected by 2027",
-       "pie_split": "identity",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "Sonar State of Code 2026",
-       "tile": "pie",
-       "value": 42
-      },
-      {
-       "date": "Apr 2026",
-       "display": "75%",
-       "history_key": "google-ai-code-share",
-       "kind": "bar",
-       "label": "of new code AI-generated, engineer-approved",
-       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
-       "note": "Series closed: Google discontinued this metric in Oct 2026.",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "Google",
-       "tile": "sparkline"
-      },
-      {
-       "date": "2026",
-       "display": "67%",
-       "kind": "bar",
-       "label": "of organisations use AI-powered coding assistants",
-       "link": "#mean-vulnerabilities-per-codebase-581-up-107-year-on-year",
-       "pie_split": "identity",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "Black Duck OSSRA 2026",
-       "source_note": "947 codebases",
-       "tile": "pie",
-       "value": 67
-      }
-     ],
-     "kind": "bars"
-    },
-    {
-     "items": [
-      {
-       "date": "12 Nov 2026",
-       "display": "86%",
-       "history_key": "aca-nscp-ai-use",
-       "kind": "stat",
-       "label": "of US financial firms formally use AI",
-       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
-       "note": "2024/2025 values derived from the release's stated deltas.",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
-       "source_note": "261 firms",
-       "tile": "sparkline"
-      },
-      {
-       "date": "12 Nov 2026",
-       "display": "1 in 4",
-       "kind": "stat",
-       "label": "are experimenting with agentic AI",
-       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
-       "pie_split": "identity",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
-       "tile": "pie",
-       "value": 25
-      },
-      {
-       "date": "12 Nov 2026",
-       "display": "38%",
-       "kind": "stat",
-       "label": "have a formal program to test or validate AI outputs",
-       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
-       "pie_split": "positive-neutral",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
-       "tile": "pie",
-       "value": 38
-      },
-      {
-       "date": "4 Nov 2026",
-       "display": "47%",
-       "kind": "stat",
-       "label": "of finance functions piloting or deploying agentic AI",
-       "link": "#nearly-half-of-finance-functions-run-agentic-ai-fewer-than",
-       "pie_split": "identity",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "BDO 2026 Audit Innovation Survey",
-       "tile": "pie",
-       "value": 47
-      },
-      {
-       "date": "5 Nov 2026",
-       "display": "59%",
-       "kind": "stat",
-       "label": "of financial institutions piloting or deploying multi-agent AI",
-       "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
-       "pie_split": "identity",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "Capgemini World Cloud Report for Financial Services 2027",
-       "source_note": "1,100 financial-services executives, 14 markets",
-       "tile": "pie",
-       "value": 59
-      },
-      {
-       "date": "5 Nov 2026",
-       "display": "10%",
-       "kind": "stat",
-       "label": "have achieved enterprise-wide orchestration of multi-agent AI",
-       "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
-       "pie_split": "positive-neutral",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Capgemini World Cloud Report for Financial Services 2027",
-       "tile": "pie",
-       "value": 10
-      },
-      {
-       "date": "2026",
-       "display": "80%",
-       "kind": "stat",
-       "label": "of UK firms have deployed agents",
-       "link": "#86-of-uk-financial-firms-use-ai-80-have-deployed-agents-2",
-       "pie_split": "identity",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "Bank of England / FCA 2026 AI survey",
-       "source_note": "196 firms",
-       "tile": "pie",
-       "value": 80
-      }
-     ],
-     "kind": "stats",
-     "label": "Finance cut"
-    },
-    {
-     "items": [
-      {
-       "date": "29 Oct 2026",
-       "display": "~38%",
-       "history_key": "veracode-flaw-rate",
-       "kind": "stat",
-       "label": "of AI code introduces a known security flaw",
-       "link": "#38-of-ai-code-introduces-a-known-security-flaw-veracode",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "Veracode Fall 2026 GenAI Code Security Update",
-       "tile": "sparkline"
-      }
-     ],
-     "kind": "stats"
-    }
-   ],
-   "id": "code-share",
-   "lede": "How much code is AI-produced.",
-   "title": "AI code share"
-  },
-  {
-   "blocks": [
-    {
-     "items": [
-      {
-       "date": "2026",
-       "display": "98%",
-       "kind": "bar",
-       "label": "of large companies have AI governance policies",
-       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "positive",
-       "source": "EY US AI Risk and Governance Survey 2026",
-       "source_note": "202 decision-makers, ≥$1B revenue",
-       "tile": "pie",
-       "value": 98
-      },
-      {
-       "date": "2026",
-       "display": "47%",
-       "kind": "bar",
-       "label": "have bypassed those policies",
-       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "EY US AI Risk and Governance Survey 2026",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 47
-      },
-      {
-       "date": "2026",
-       "display": "49%",
-       "kind": "bar",
-       "label": "of policies not updated for agentic risk",
-       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "EY US AI Risk and Governance Survey 2026",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 49
-      },
-      {
-       "date": "Oct 2026",
-       "display": "79%",
-       "kind": "bar",
-       "label": "of enterprises run AI agents in production",
-       "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
-       "pie_split": "identity",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "SailPoint Horizons of Identity Security",
-       "tile": "pie",
-       "value": 79
-      },
-      {
-       "date": "Oct 2026",
-       "display": "2%",
-       "kind": "bar",
-       "label": "have the identity tools to govern them",
-       "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "SailPoint Horizons of Identity Security",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 2
-      },
-      {
-       "date": "Oct 2026",
-       "display": "82%",
-       "kind": "bar",
-       "label": "cannot reliably attribute agent actions",
-       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Whitfield",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 82
-      },
-      {
-       "date": "Oct 2026",
-       "display": "88%",
-       "kind": "bar",
-       "label": "cannot roll back agent actions without disruption",
-       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Rubrik",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 88
-      },
-      {
-       "date": "Oct 2026",
-       "display": "38%",
-       "kind": "bar",
-       "label": "authorise agents to approve or reject transactions",
-       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Optro",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 38
-      },
-      {
-       "date": "2026",
-       "display": "35%",
-       "kind": "bar",
-       "label": "not confident they could shut down a rogue agent",
-       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Writer / Workplace Intelligence",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 35
-      },
-      {
-       "date": "2026",
-       "display": "36%",
-       "kind": "bar",
-       "label": "have no formal supervision plan",
-       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Writer / Workplace Intelligence",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 36
-      },
-      {
-       "date": "2026",
-       "display": "30%",
-       "kind": "bar",
-       "label": "have a formally deployed, documented kill switch",
-       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
-       "note": "23% of firms with agents in production never tested kill switches",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Writer / Workplace Intelligence",
-       "tile": "pie",
-       "value": 30
-      },
-      {
-       "date": "2026",
-       "display": "79%",
-       "kind": "bar",
-       "label": "of IT leaders encountered unauthorised AI deployments",
-       "link": "#shadow-agents-four-in-five-it-leaders-have-found-ai",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Nutanix",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 79
-      },
-      {
-       "date": "2026",
-       "display": "82%",
-       "kind": "bar",
-       "label": "discovered at least one agent IT didn't know about in the past year",
-       "link": "#shadow-agents-four-in-five-it-leaders-have-found-ai",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Cloud Security Alliance",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 82
-      },
-      {
-       "date": "4 Nov 2026",
-       "display": "75.7%",
-       "kind": "bar",
-       "label": "restrict agents to read-only or approval-gated work",
-       "link": "#building-safe-guardrails-is-the-top-cited-agent-challenge",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "positive",
-       "source": "Komodor 2026 Agentic Operations Survey",
-       "source_note": "1,000+ engineering and technology leaders",
-       "tile": "pie",
-       "value": 75.7
-      },
-      {
-       "date": "13 Nov 2026",
-       "display": "73%",
-       "kind": "bar",
-       "label": "of systemically important banks permit agents in production for select use cases",
-       "link": "#73-of-systemically-important-banks-permit-agents-in",
-       "pie_split": "identity",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "BCG AI Safety and Governance in Banking 2026",
-       "tile": "pie",
-       "value": 73
-      },
-      {
-       "date": "13 Nov 2026",
-       "display": "8%",
-       "kind": "bar",
-       "label": "have comprehensive agent monitoring and controls",
-       "link": "#73-of-systemically-important-banks-permit-agents-in",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "BCG AI Safety and Governance in Banking 2026",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 8
-      }
-     ],
-     "kind": "bars"
-    },
-    {
-     "items": [
-      {
-       "date": "2023–mid-2026",
-       "display": "188",
-       "kind": "stat",
-       "label": "documented cases of autonomous AI damaging production systems, no attacker involved",
-       "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "Cyera analysis of 7,000+ public AI incidents",
-       "tile": "big-number"
-      },
-      {
-       "date": "May 2026",
-       "display": "109:1",
-       "history_key": "pan-identity-ratio",
-       "kind": "stat",
-       "label": "machine-to-human identity ratio",
-       "link": "#for-every-human-identity-enterprises-now-manage-109-machine",
-       "rating": "corroborated",
-       "sentiment": "negative",
-       "source": "Palo Alto Networks, 2026 Identity Security Landscape",
-       "tile": "sparkline"
-      }
-     ],
-     "kind": "stats"
-    },
-    {
-     "items": [
-      {
-       "date": "2 Nov 2026",
-       "kind": "text",
-       "link": "#supervisors-document-ai-code-passing-human-review-and",
-       "rating": "established",
-       "sentiment": "negative",
-       "source": "FCA Wholesale Banks Supervision Insights 3",
-       "text": "Supervisors document AI code passing human review and kill switches going untested at wholesale banks.",
-       "tile": "note"
-      },
-      {
-       "date": "9 Nov 2026",
-       "kind": "text",
-       "link": "#a-frontier-lab-shows-a-kill-switch-can-work-in-35-seconds",
-       "rating": "reported",
-       "sentiment": "positive",
-       "source": "OpenAI Control Room",
-       "text": "The worked counter-example: a frontier lab's kill switch cuts research-model output in 35 seconds, fail-closed.",
-       "tile": "note"
-      },
-      {
-       "date": "6 Nov 2026",
-       "kind": "text",
-       "link": "#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer",
-       "rating": "corroborated",
-       "sentiment": "negative",
-       "source": "WorkOS",
-       "text": "A benchmark agent escaped its sandbox and pulled customer records in bulk — the third escaped-agent case of 2026.",
-       "tile": "note"
-      }
-     ],
-     "kind": "notes"
-    }
-   ],
-   "id": "governance-gap",
-   "lede": "Policies exist. Control doesn't.",
-   "title": "The governance gap"
-  },
-  {
-   "blocks": [
-    {
-     "also": [
-      {
-       "anchor": "#roughly-half-of-test-passing-ai-code-is-vulnerable",
-       "label": "§2.1"
-      }
-     ],
-     "date": "2026",
-     "kind": "stacked",
-     "link": "#best-agent-238-correct-and-secure-23-correct-but",
-     "rating": "corroborated",
-     "segments": [
-      {
-       "label": "correct and secure",
-       "tone": "blue",
-       "value": 23.8
-      },
-      {
-       "label": "correct but exploitable",
-       "tone": "grey",
-       "value": 23.0
-      },
-      {
-       "label": "incorrect",
-       "tone": "rust",
-       "value": 53.3
-      }
-     ],
-     "sentiment": "negative",
-     "source": "SecureVibeBench",
-     "source_note": "peer-reviewed",
-     "tile": "pie",
-     "title": "Best agent–model pair on security tasks"
-    },
-    {
-     "items": [
-      {
-       "also": [
-        {
-         "anchor": "#a-green-test-suite-on-ai-written-code-is-weak-evidence-of",
-         "label": "§2.1"
-        }
-       ],
-       "date": "4 Nov 2026",
-       "display": "74.0%",
-       "kind": "bar",
-       "label": "functional pass — Claude Code (Sonnet 4.5), repo-level CVE tasks",
-       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "A.S.E 2.0 / CASE-Bench",
-       "source_note": "preprint, 145 tasks",
-       "tile": "pie",
-       "value": 74.0
-      },
-      {
-       "also": [
-        {
-         "anchor": "#a-green-test-suite-on-ai-written-code-is-weak-evidence-of",
-         "label": "§2.1"
-        }
-       ],
-       "date": "4 Nov 2026",
-       "display": "18.4%",
-       "kind": "bar",
-       "label": "secure — same model, same tasks",
-       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "A.S.E 2.0 / CASE-Bench",
-       "source_note": "preprint, 145 tasks",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 18.4
-      },
-      {
-       "date": "Nov 2026",
-       "display": "~68%",
-       "kind": "bar",
-       "label": "succeed on the first attempt — leading remediation agents",
-       "link": "#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2",
-       "note": "the leader still fails 19% of tasks on every attempt",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "neutral",
-       "source": "CWE-bench v2",
-       "source_note": "100 tasks, 91 CWE classes",
-       "tile": "pie",
-       "value": 68
-      },
-      {
-       "date": "24 Oct 2026",
-       "display": "78.1%",
-       "kind": "bar",
-       "label": "of vuln-introducing changes caught — best frontier model, agentic pre-merge review",
-       "link": "#best-agentic-reviewers-catch-3-in-4-vuln-introducing",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "positive",
-       "source": "SecPRBench",
-       "source_note": "preprint, 265 tasks",
-       "tile": "pie",
-       "value": 78.1
-      },
-      {
-       "date": "24 Oct 2026",
-       "display": "32.5%",
-       "kind": "bar",
-       "label": "of vuln-introducing changes caught — weakest frontier model, same benchmark",
-       "link": "#best-agentic-reviewers-catch-3-in-4-vuln-introducing",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "SecPRBench",
-       "source_note": "preprint, 265 tasks",
-       "tile": "pie",
-       "tone": "gap",
-       "value": 32.5
-      }
-     ],
-     "kind": "bars"
-    },
-    {
-     "items": [
-      {
-       "also": [
-        {
-         "anchor": "#fixed-vulnerabilities-come-back-when-agents-rebuild-the",
-         "label": "§2.1"
-        }
-       ],
-       "date": "2 Nov 2026",
-       "display": "45–70%",
-       "kind": "stat",
-       "label": "of working agent solutions reintroduce the original vulnerability",
-       "link": "#4570-of-working-agent-solutions-bring-the-original",
-       "pie_split": "negative",
-       "range": {
-        "high": 70,
-        "low": 45
-       },
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "BugLedger Bench",
-       "source_note": "51 real advisories, 7 models, 1,428 attempts; execution-graded",
-       "tile": "pie"
-      },
-      {
-       "after": 0.71,
-       "after_label": "Hinted",
-       "before": 0.35,
-       "before_label": "Blind",
-       "date": "2 Nov 2026",
-       "display": "0.35 → 0.71",
-       "kind": "stat",
-       "label": "secure output, Claude Opus 5.5, with one line of security instruction in the ticket",
-       "link": "#4570-of-working-agent-solutions-bring-the-original",
-       "rating": "reported",
-       "sentiment": "positive",
-       "source": "BugLedger Bench",
-       "tile": "ratio"
-      },
-      {
-       "also": [
-        {
-         "anchor": "#a-green-test-suite-on-ai-written-code-is-weak-evidence-of",
-         "label": "§2.1"
-        }
-       ],
-       "date": "4 Nov 2026",
-       "display": "55.6%",
-       "kind": "stat",
-       "label": "passed every test while a working exploit succeeded",
-       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
-       "pie_split": "negative",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "A.S.E 2.0 / CASE-Bench",
-       "tile": "pie",
-       "value": 55.6
-      },
-      {
-       "date": "Oct 2026",
-       "display": "67.16%",
-       "kind": "stat",
-       "label": "succeed on the first attempt — but only 241 of 507 workflows pass on all 20 attempts",
-       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
-       "pie_split": "positive",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "ThinkingBox",
-       "source_note": "Microsoft × Hugging Face",
-       "tile": "pie",
-       "value": 67.16
-      },
-      {
-       "date": "Oct 2026",
-       "display": "67.24%",
-       "kind": "stat",
-       "label": "of failures terminate cleanly, then report done",
-       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
-       "pie_split": "negative",
-       "rating": "corroborated",
-       "sentiment": "negative",
-       "source": "ThinkingBox",
-       "tile": "pie",
-       "value": 67.24
-      },
-      {
-       "date": "2026",
-       "display": "~7 months",
-       "kind": "stat",
-       "label": "for agents to handle tasks twice as long, half the time",
-       "link": "#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
-       "note": "at 80% success, the task length is far shorter",
-       "rating": "corroborated",
-       "sentiment": "neutral",
-       "source": "METR",
-       "tile": "big-number"
-      },
-      {
-       "date": "Oct 2026",
-       "display": "25.1%",
-       "kind": "stat",
-       "label": "functional-and-secure — best model on 450 tasks across 7 languages",
-       "link": "#best-agent-writes-working-and-secure-code-on-only-251-of",
-       "pie_split": "positive",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "LSCBench",
-       "source_note": "450 tasks, 7 languages, 24 CWEs",
-       "tile": "pie",
-       "value": 25.1
-      },
-      {
-       "date": "Nov 2026",
-       "display": "948",
-       "kind": "stat",
-       "label": "working Linux kernel privilege-escalation exploits from one agent pipeline",
-       "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "OpenAI GPT-6 Cyber",
-       "tile": "big-number"
-      }
-     ],
-     "kind": "stats"
-    }
-   ],
-   "id": "right-vs-wrong",
-   "lede": "How often agents get it right — and how often they get it wrong while reporting success.",
-   "title": "Agentic right vs wrong"
-  },
   {
    "blocks": [
     {
@@ -938,6 +228,7 @@
      "left": {
       "items": [
        {
+        "bullet": 2,
         "date": "2026",
         "display": "42%",
         "kind": "stat",
@@ -946,9 +237,11 @@
         "rating": "corroborated",
         "sentiment": "neutral",
         "source": "Sonar State of Code 2026",
+        "subject": "pnl",
         "tile": "big-number"
        },
        {
+        "bullet": 2,
         "date": "2026",
         "display": "90%",
         "kind": "stat",
@@ -957,6 +250,7 @@
         "rating": "corroborated",
         "sentiment": "neutral",
         "source": "Google DORA 2024–2026",
+        "subject": "pnl",
         "tile": "big-number"
        }
       ],
@@ -965,6 +259,7 @@
      "right": {
       "items": [
        {
+        "bullet": 3,
         "date": "Jan 2026",
         "display": "+81%",
         "kind": "stat",
@@ -974,9 +269,11 @@
         "sentiment": "negative",
         "source": "GitClear",
         "source_note": "623M code changes",
+        "subject": "cert",
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "−7.2%",
         "kind": "stat",
@@ -985,9 +282,11 @@
         "rating": "corroborated",
         "sentiment": "negative",
         "source": "Google DORA 2024–2026",
+        "subject": "pnl",
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "581",
         "kind": "stat",
@@ -996,9 +295,11 @@
         "rating": "corroborated",
         "sentiment": "negative",
         "source": "Black Duck OSSRA 2026",
+        "subject": "cert",
         "tile": "big-number"
        },
        {
+        "bullet": 1,
         "date": "2026",
         "display": "48%",
         "kind": "stat",
@@ -1007,9 +308,12 @@
         "rating": "reported",
         "sentiment": "negative",
         "source": "Sonar State of Code 2026",
+        "subject": "san",
         "tile": "big-number"
        },
        {
+        "bullet": 1,
+        "bullet_token": "37,966",
         "chart": {
          "a": {
           "display": "37,966",
@@ -1033,9 +337,12 @@
         "rating": "reported",
         "sentiment": "negative",
         "source": "VulnCheck / Anthropic Glasswing",
+        "subject": "cert",
         "tile": "ratio"
        },
        {
+        "bullet": 2,
+        "bullet_token": "135 manually confirmed vulnerabilities",
         "chart": {
          "a": {
           "display": "135",
@@ -1059,9 +366,12 @@
         "rating": "reported",
         "sentiment": "negative",
         "source": "Sajadi et al., SWE-bench study",
+        "subject": "san",
         "tile": "ratio"
        },
        {
+        "bullet": 2,
+        "bullet_token": "35.4 points",
         "date": "8 Nov 2026",
         "display": "−35.4 pts",
         "kind": "stat",
@@ -1070,15 +380,19 @@
         "rating": "reported",
         "sentiment": "negative",
         "source": "Sun et al., ETH Zurich",
+        "subject": "cert",
         "tile": "big-number"
        },
        {
+        "bullet": 1,
+        "bullet_token": "passed human review",
         "date": "2 Nov 2026",
         "kind": "text",
         "link": "#supervisors-document-ai-code-passing-human-review-and",
         "rating": "established",
         "sentiment": "negative",
         "source": "FCA Wholesale Banks Supervision Insights 3",
+        "subject": "cert",
         "text": "Supervisors document AI code passing human review and causing a loss of service; kill switches insufficiently tested; no list of authorised operators.",
         "tile": "note"
        }
@@ -1088,20 +402,203 @@
     }
    ],
    "id": "net-impact",
-   "lede": "Output is up. So is the debt. Here are both sides of the ledger.",
+   "lede": "Output is up. So is the debt. Here are both sides of the ledger: output up — PNL 2; cleanup up — Cert 5 · San 2 · PNL 1.",
+   "slice": null,
    "title": "Net impact: more code vs more cleanup"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      {
+       "bullet": 1,
+       "date": "2026",
+       "display": "~47%",
+       "kind": "bar",
+       "label": "of code written fully by AI agents",
+       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
+       "pie_split": "identity",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "JetBrains Developer Ecosystem Survey 2026",
+       "source_note": "~15,000 developers",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 47
+      },
+      {
+       "bullet": 2,
+       "date": "2026",
+       "display": "42%",
+       "kind": "bar",
+       "label": "of committed code AI-generated or assisted",
+       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
+       "note": "65% expected by 2027",
+       "pie_split": "identity",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "Sonar State of Code 2026",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 42
+      },
+      {
+       "bullet": 3,
+       "date": "Apr 2026",
+       "display": "75%",
+       "history_key": "google-ai-code-share",
+       "kind": "bar",
+       "label": "of new code AI-generated, engineer-approved",
+       "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
+       "note": "Series closed: Google discontinued this metric in Oct 2026.",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "Google",
+       "subject": "pnl",
+       "tile": "sparkline"
+      },
+      {
+       "article_section": "§3.1",
+       "bullet": 3,
+       "date": "2026",
+       "display": "67%",
+       "kind": "bar",
+       "label": "of organisations use AI-powered coding assistants",
+       "link": "#mean-vulnerabilities-per-codebase-581-up-107-year-on-year",
+       "pie_split": "identity",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "Black Duck OSSRA 2026",
+       "source_note": "947 codebases",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 67
+      }
+     ],
+     "kind": "bars"
+    },
+    {
+     "items": [
+      {
+       "bullet": 1,
+       "date": "12 Nov 2026",
+       "display": "86%",
+       "history_key": "aca-nscp-ai-use",
+       "kind": "stat",
+       "label": "of US financial firms formally use AI",
+       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+       "note": "2024/2025 values derived from the release's stated deltas.",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
+       "source_note": "261 firms",
+       "subject": "pnl",
+       "tile": "sparkline"
+      },
+      {
+       "bullet": 3,
+       "bullet_token": "one in four",
+       "date": "12 Nov 2026",
+       "display": "1 in 4",
+       "kind": "stat",
+       "label": "are experimenting with agentic AI",
+       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+       "pie_split": "identity",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 25
+      },
+      {
+       "bullet": 2,
+       "date": "12 Nov 2026",
+       "display": "38%",
+       "kind": "stat",
+       "label": "have a formal program to test or validate AI outputs",
+       "link": "#86-of-us-financial-firms-formally-use-ai-but-only-38",
+       "pie_split": "positive-neutral",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "ACA/NSCP 2026 AI Benchmarking Survey",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 38
+      },
+      {
+       "article_section": "§2.5",
+       "bullet": 1,
+       "date": "4 Nov 2026",
+       "display": "47%",
+       "kind": "stat",
+       "label": "of finance functions piloting or deploying agentic AI",
+       "link": "#nearly-half-of-finance-functions-run-agentic-ai-fewer-than",
+       "pie_split": "identity",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "BDO 2026 Audit Innovation Survey",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 47
+      },
+      {
+       "article_section": "§2.5",
+       "bullet": 1,
+       "date": "5 Nov 2026",
+       "display": "59%",
+       "kind": "stat",
+       "label": "of financial institutions piloting or deploying multi-agent AI",
+       "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
+       "pie_split": "identity",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "Capgemini World Cloud Report for Financial Services 2027",
+       "source_note": "1,100 financial-services executives, 14 markets",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 59
+      },
+      {
+       "bullet": 2,
+       "date": "2026",
+       "display": "80%",
+       "kind": "stat",
+       "label": "of UK firms have deployed agents",
+       "link": "#86-of-uk-financial-firms-use-ai-80-have-deployed-agents-2",
+       "pie_split": "identity",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "Bank of England / FCA 2026 AI survey",
+       "source_note": "196 firms",
+       "subject": "pnl",
+       "tile": "pie",
+       "value": 80
+      }
+     ],
+     "kind": "stats",
+     "label": "Finance cut"
+    }
+   ],
+   "id": "pnl-adoption",
+   "lede": "How much code AI writes — and how widely agents are deployed.",
+   "slice": "pnl",
+   "title": "Adoption & scale"
   },
   {
    "blocks": [
     {
      "kind": "bignote",
      "sentiment": "neutral",
+     "subject": "pnl",
      "text": "No credible dollar figure exists yet. The figures below are cost multipliers and rate ratios, not dollars.",
      "tile": "note"
     },
     {
      "items": [
       {
+       "article_section": "§4.5",
+       "bullet": 4,
        "chart": {
         "a": {
          "display": "~2.5×",
@@ -1126,9 +623,464 @@
        "sentiment": "negative",
        "source": "SusVibes re-run",
        "source_note": "vendor-commissioned",
+       "subject": "pnl",
        "tile": "ratio"
+      }
+     ],
+     "kind": "stats"
+    },
+    {
+     "items": [
+      {
+       "bullet": 3,
+       "bullet_token": "10% of worldwide turnover",
+       "date": "30 Oct 2026",
+       "display": "10%",
+       "kind": "stat",
+       "label": "of worldwide turnover in fines — exposure context, not a loss, under UK CMA/DRCF",
+       "link": "#deployers-are-legally-responsible-for-what-their-agents-do",
+       "note": "An agent's autonomy does not diminish the deployer's responsibility.",
+       "rating": "corroborated",
+       "sentiment": "negative",
+       "source": "UK CMA / DRCF",
+       "subject": "pnl",
+       "tile": "big-number"
+      }
+     ],
+     "kind": "notes"
+    }
+   ],
+   "id": "money",
+   "lede": "The thinnest panel — and the most honest one.",
+   "slice": "pnl",
+   "title": "Money saved vs lost"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      {
+       "bullet": 3,
+       "date": "2026",
+       "display": "98%",
+       "kind": "bar",
+       "label": "of large companies have AI governance policies",
+       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "positive",
+       "source": "EY US AI Risk and Governance Survey 2026",
+       "source_note": "202 decision-makers, ≥$1B revenue",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 98
       },
       {
+       "bullet": 3,
+       "date": "2026",
+       "display": "47%",
+       "kind": "bar",
+       "label": "have bypassed those policies",
+       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "EY US AI Risk and Governance Survey 2026",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 47
+      },
+      {
+       "bullet": 3,
+       "date": "2026",
+       "display": "49%",
+       "kind": "bar",
+       "label": "of policies not updated for agentic risk",
+       "link": "#98-of-large-companies-have-ai-governance-policies-nearly",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "EY US AI Risk and Governance Survey 2026",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 49
+      },
+      {
+       "bullet": 1,
+       "date": "Oct 2026",
+       "display": "79%",
+       "kind": "bar",
+       "label": "of enterprises run AI agents in production",
+       "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
+       "pie_split": "identity",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "SailPoint Horizons of Identity Security",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 79
+      },
+      {
+       "bullet": 1,
+       "date": "Oct 2026",
+       "display": "2%",
+       "kind": "bar",
+       "label": "have the identity tools to govern them",
+       "link": "#79-of-enterprises-run-ai-agents-in-production-only-2-have",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "SailPoint Horizons of Identity Security",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 2
+      },
+      {
+       "bullet": 1,
+       "date": "Oct 2026",
+       "display": "82%",
+       "kind": "bar",
+       "label": "cannot reliably attribute agent actions",
+       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Whitfield",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 82
+      },
+      {
+       "bullet": 2,
+       "date": "Oct 2026",
+       "display": "88%",
+       "kind": "bar",
+       "label": "cannot roll back agent actions without disruption",
+       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Rubrik",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 88
+      },
+      {
+       "bullet": 4,
+       "date": "Oct 2026",
+       "display": "38%",
+       "kind": "bar",
+       "label": "authorise agents to approve or reject transactions",
+       "link": "#most-organisations-cannot-say-what-their-agents-did-or-undo",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Optro",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 38
+      },
+      {
+       "bullet": 1,
+       "date": "2026",
+       "display": "35%",
+       "kind": "bar",
+       "label": "not confident they could shut down a rogue agent",
+       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Writer / Workplace Intelligence",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 35
+      },
+      {
+       "bullet": 1,
+       "date": "2026",
+       "display": "36%",
+       "kind": "bar",
+       "label": "have no formal supervision plan",
+       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Writer / Workplace Intelligence",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 36
+      },
+      {
+       "bullet": 2,
+       "date": "2026",
+       "display": "30%",
+       "kind": "bar",
+       "label": "have a formally deployed, documented kill switch",
+       "link": "#a-third-of-companies-cannot-stop-a-rogue-agent-and-a-third",
+       "note": "23% of firms with agents in production never tested kill switches",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Writer / Workplace Intelligence",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 30
+      },
+      {
+       "bullet": 1,
+       "date": "2026",
+       "display": "79%",
+       "kind": "bar",
+       "label": "of IT leaders encountered unauthorised AI deployments",
+       "link": "#shadow-agents-four-in-five-it-leaders-have-found-ai",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Nutanix",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 79
+      },
+      {
+       "bullet": 2,
+       "date": "2026",
+       "display": "82%",
+       "kind": "bar",
+       "label": "discovered at least one agent IT didn't know about in the past year",
+       "link": "#shadow-agents-four-in-five-it-leaders-have-found-ai",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Cloud Security Alliance",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 82
+      },
+      {
+       "bullet": 2,
+       "date": "4 Nov 2026",
+       "display": "75.7%",
+       "kind": "bar",
+       "label": "restrict agents to read-only or approval-gated work",
+       "link": "#building-safe-guardrails-is-the-top-cited-agent-challenge",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "positive",
+       "source": "Komodor 2026 Agentic Operations Survey",
+       "source_note": "1,000+ engineering and technology leaders",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 75.7
+      },
+      {
+       "bullet": 1,
+       "date": "13 Nov 2026",
+       "display": "73%",
+       "kind": "bar",
+       "label": "of systemically important banks permit agents in production for select use cases",
+       "link": "#73-of-systemically-important-banks-permit-agents-in",
+       "pie_split": "identity",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "BCG AI Safety and Governance in Banking 2026",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 73
+      },
+      {
+       "bullet": 2,
+       "date": "13 Nov 2026",
+       "display": "8%",
+       "kind": "bar",
+       "label": "have comprehensive agent monitoring and controls",
+       "link": "#73-of-systemically-important-banks-permit-agents-in",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "BCG AI Safety and Governance in Banking 2026",
+       "subject": "cic",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 8
+      },
+      {
+       "bullet": 1,
+       "date": "5 Nov 2026",
+       "display": "10%",
+       "kind": "stat",
+       "label": "have achieved enterprise-wide orchestration of multi-agent AI",
+       "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
+       "pie_split": "positive-neutral",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Capgemini World Cloud Report for Financial Services 2027",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 10
+      }
+     ],
+     "kind": "bars"
+    },
+    {
+     "items": [
+      {
+       "bullet": 1,
+       "date": "2023–mid-2026",
+       "display": "188",
+       "kind": "stat",
+       "label": "documented cases of autonomous AI damaging production systems, no attacker involved",
+       "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "Cyera analysis of 7,000+ public AI incidents",
+       "subject": "cic",
+       "tile": "big-number"
+      },
+      {
+       "bullet": 1,
+       "date": "May 2026",
+       "display": "109:1",
+       "history_key": "pan-identity-ratio",
+       "kind": "stat",
+       "label": "machine-to-human identity ratio",
+       "link": "#for-every-human-identity-enterprises-now-manage-109-machine",
+       "rating": "corroborated",
+       "sentiment": "negative",
+       "source": "Palo Alto Networks, 2026 Identity Security Landscape",
+       "subject": "cic",
+       "tile": "sparkline"
+      }
+     ],
+     "kind": "stats"
+    },
+    {
+     "items": [
+      {
+       "bullet": 2,
+       "bullet_token": "35 seconds",
+       "date": "9 Nov 2026",
+       "display": "35 seconds",
+       "kind": "stat",
+       "label": "The worked counter-example: a frontier lab's kill switch cuts research-model output, fail-closed.",
+       "link": "#a-frontier-lab-shows-a-kill-switch-can-work-in-35-seconds",
+       "rating": "reported",
+       "sentiment": "positive",
+       "source": "OpenAI Control Room",
+       "subject": "cic",
+       "tile": "big-number"
+      },
+      {
+       "bullet": 1,
+       "bullet_token": "escaped its isolated test environment",
+       "date": "6 Nov 2026",
+       "kind": "text",
+       "link": "#a-benchmark-agent-escaped-its-sandbox-and-pulled-customer",
+       "rating": "corroborated",
+       "sentiment": "negative",
+       "source": "WorkOS",
+       "subject": "cic",
+       "text": "A benchmark agent escaped its sandbox and pulled customer records in bulk — the third escaped-agent case of 2026.",
+       "tile": "note"
+      }
+     ],
+     "kind": "notes"
+    }
+   ],
+   "id": "governance-gap",
+   "lede": "Policies exist. Control doesn't.",
+   "slice": "cic",
+   "title": "The governance gap"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      {
+       "bullet": 1,
+       "date": "Oct 2026",
+       "display": "67.16%",
+       "kind": "stat",
+       "label": "succeed on the first attempt — but only 241 of 507 workflows pass on all 20 attempts",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
+       "pie_split": "positive",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "ThinkingBox",
+       "source_note": "Microsoft × Hugging Face",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 67.16
+      },
+      {
+       "bullet": 2,
+       "date": "Oct 2026",
+       "display": "67.24%",
+       "kind": "stat",
+       "label": "of failures terminate cleanly, then report done",
+       "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
+       "pie_split": "negative",
+       "rating": "corroborated",
+       "sentiment": "negative",
+       "source": "ThinkingBox",
+       "subject": "cic",
+       "tile": "pie",
+       "value": 67.24
+      },
+      {
+       "bullet": 1,
+       "bullet_token": "7 months",
+       "date": "2026",
+       "display": "~7 months",
+       "kind": "stat",
+       "label": "for agents to handle tasks twice as long, half the time",
+       "link": "#ai-agents-handle-tasks-twice-as-long-every-7-months-the-80",
+       "note": "at 80% success, the task length is far shorter",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "METR",
+       "subject": "cic",
+       "tile": "big-number"
+      }
+     ],
+     "kind": "stats"
+    }
+   ],
+   "id": "cic-evaluation",
+   "lede": "What the evaluations say about agent reliability.",
+   "slice": "cic",
+   "title": "Evaluation"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      {
+       "bullet": 1,
+       "changed": "2026-11-18",
+       "date": "29 Oct 2026",
+       "display": "~38%",
+       "history_key": "veracode-flaw-rate",
+       "kind": "stat",
+       "label": "of AI code introduces a known security flaw",
+       "link": "#38-of-ai-code-introduces-a-known-security-flaw-veracode",
+       "rating": "corroborated",
+       "sentiment": "neutral",
+       "source": "Veracode Fall 2026 GenAI Code Security Update",
+       "subject": "cert",
+       "tile": "sparkline"
+      },
+      {
+       "bullet": 1,
        "chart": {
         "a": {
          "display": "3.4×",
@@ -1152,15 +1104,238 @@
        "rating": "reported",
        "sentiment": "negative",
        "source": "SusVibes",
+       "subject": "cert",
        "tile": "ratio"
       },
       {
-       "also": [
-        {
-         "anchor": "#ai-code-carries-up-to-274-the-vulnerabilities-the-register",
-         "label": "§2.1"
-        }
-       ],
+       "bullet": 3,
+       "bullet_token": "67.8% pass@1",
+       "date": "Nov 2026",
+       "display": "~68%",
+       "kind": "bar",
+       "label": "succeed on the first attempt — leading remediation agents",
+       "link": "#remediation-agents-now-have-a-public-yardstick-cwe-bench-v2",
+       "note": "the leader still fails 19% of tasks on every attempt",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "CWE-bench v2",
+       "source_note": "100 tasks, 91 CWE classes",
+       "subject": "cert",
+       "tile": "pie",
+       "value": 68
+      },
+      {
+       "bullet": 1,
+       "date": "Nov 2026",
+       "display": "948",
+       "kind": "stat",
+       "label": "working Linux kernel privilege-escalation exploits from one agent pipeline",
+       "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "OpenAI GPT-6 Cyber",
+       "subject": "cert",
+       "tile": "big-number"
+      },
+      {
+       "bullet": 1,
+       "bullet_token": "passed human review",
+       "date": "2 Nov 2026",
+       "kind": "text",
+       "link": "#supervisors-document-ai-code-passing-human-review-and",
+       "rating": "established",
+       "sentiment": "negative",
+       "source": "FCA Wholesale Banks Supervision Insights 3",
+       "subject": "cert",
+       "text": "Supervisors document AI code passing human review and kill switches going untested at wholesale banks.",
+       "tile": "note"
+      }
+     ],
+     "kind": "stats"
+    }
+   ],
+   "id": "cert",
+   "lede": "The flaws already in the code — how many, and how many get fixed.",
+   "slice": "cert",
+   "title": "Flaws in the codebase — and the fix loop"
+  },
+  {
+   "blocks": [
+    {
+     "bullet": 4,
+     "bullet_token": "23.8% correct-and-secure",
+     "date": "2026",
+     "kind": "stacked",
+     "link": "#best-agent-238-correct-and-secure-23-correct-but",
+     "rating": "corroborated",
+     "segments": [
+      {
+       "label": "correct and secure",
+       "tone": "blue",
+       "value": 23.8
+      },
+      {
+       "label": "correct but exploitable",
+       "tone": "grey",
+       "value": 23.0
+      },
+      {
+       "label": "incorrect",
+       "tone": "rust",
+       "value": 53.3
+      }
+     ],
+     "sentiment": "negative",
+     "source": "SecureVibeBench",
+     "source_note": "peer-reviewed",
+     "subject": "san",
+     "tile": "pie",
+     "title": "Best agent–model pair on security tasks"
+    },
+    {
+     "items": [
+      {
+       "bullet": 3,
+       "date": "4 Nov 2026",
+       "display": "74.0%",
+       "kind": "bar",
+       "label": "functional pass — Claude Code (Sonnet 4.5), repo-level CVE tasks",
+       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "neutral",
+       "source": "A.S.E 2.0 / CASE-Bench",
+       "source_note": "preprint, 145 tasks",
+       "subject": "san",
+       "tile": "pie",
+       "value": 74.0
+      },
+      {
+       "bullet": 3,
+       "date": "4 Nov 2026",
+       "display": "18.4%",
+       "kind": "bar",
+       "label": "secure — same model, same tasks",
+       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "A.S.E 2.0 / CASE-Bench",
+       "source_note": "preprint, 145 tasks",
+       "subject": "san",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 18.4
+      },
+      {
+       "bullet": 3,
+       "date": "24 Oct 2026",
+       "display": "78.1%",
+       "kind": "bar",
+       "label": "of vuln-introducing changes caught — best frontier model, agentic pre-merge review",
+       "link": "#best-agentic-reviewers-catch-3-in-4-vuln-introducing",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "positive",
+       "source": "SecPRBench",
+       "source_note": "preprint, 265 tasks",
+       "subject": "san",
+       "tile": "pie",
+       "value": 78.1
+      },
+      {
+       "bullet": 3,
+       "date": "24 Oct 2026",
+       "display": "32.5%",
+       "kind": "bar",
+       "label": "of vuln-introducing changes caught — weakest frontier model, same benchmark",
+       "link": "#best-agentic-reviewers-catch-3-in-4-vuln-introducing",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "SecPRBench",
+       "source_note": "preprint, 265 tasks",
+       "subject": "san",
+       "tile": "pie",
+       "tone": "gap",
+       "value": 32.5
+      }
+     ],
+     "kind": "bars"
+    },
+    {
+     "items": [
+      {
+       "bullet": 3,
+       "date": "2 Nov 2026",
+       "display": "45–70%",
+       "kind": "stat",
+       "label": "of working agent solutions reintroduce the original vulnerability",
+       "link": "#4570-of-working-agent-solutions-bring-the-original",
+       "pie_split": "negative",
+       "range": {
+        "high": 70,
+        "low": 45
+       },
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "BugLedger Bench",
+       "source_note": "51 real advisories, 7 models, 1,428 attempts; execution-graded",
+       "subject": "san",
+       "tile": "pie"
+      },
+      {
+       "after": 0.71,
+       "after_label": "Hinted",
+       "before": 0.35,
+       "before_label": "Blind",
+       "bullet": 5,
+       "bullet_token": "0.35 to 0.71",
+       "date": "2 Nov 2026",
+       "display": "0.35 → 0.71",
+       "kind": "stat",
+       "label": "secure output, Claude Opus 5.5, with one line of security instruction in the ticket",
+       "link": "#4570-of-working-agent-solutions-bring-the-original",
+       "rating": "reported",
+       "sentiment": "positive",
+       "source": "BugLedger Bench",
+       "subject": "san",
+       "tile": "ratio"
+      },
+      {
+       "bullet": 4,
+       "date": "4 Nov 2026",
+       "display": "55.6%",
+       "kind": "stat",
+       "label": "passed every test while a working exploit succeeded",
+       "link": "#556-passed-every-test-while-a-working-exploit-succeeded-ase",
+       "pie_split": "negative",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "A.S.E 2.0 / CASE-Bench",
+       "subject": "san",
+       "tile": "pie",
+       "value": 55.6
+      },
+      {
+       "bullet": 2,
+       "date": "Oct 2026",
+       "display": "25.1%",
+       "kind": "stat",
+       "label": "functional-and-secure — best model on 450 tasks across 7 languages",
+       "link": "#best-agent-writes-working-and-secure-code-on-only-251-of",
+       "pie_split": "positive",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "LSCBench",
+       "source_note": "450 tasks, 7 languages, 24 CWEs",
+       "subject": "san",
+       "tile": "pie",
+       "value": 25.1
+      },
+      {
+       "bullet": 1,
        "chart": {
         "a": {
          "display": "up to 2.74×",
@@ -1186,30 +1361,76 @@
        "sentiment": "negative",
        "source": "CodeRabbit",
        "source_note": "own analysis of 470 PRs",
+       "subject": "san",
        "tile": "ratio"
       }
      ],
      "kind": "stats"
-    },
-    {
-     "items": [
-      {
-       "date": "30 Oct 2026",
-       "kind": "text",
-       "link": "#deployers-are-legally-responsible-for-what-their-agents-do",
-       "rating": "corroborated",
-       "sentiment": "negative",
-       "source": "UK CMA / DRCF",
-       "text": "Exposure context, not a loss: under UK CMA/DRCF, an agent's autonomy does not diminish the deployer's responsibility — fines up to 10% of worldwide turnover.",
-       "tile": "note"
-      }
-     ],
-     "kind": "notes"
     }
    ],
-   "id": "money",
-   "lede": "The thinnest panel — and the most honest one.",
-   "title": "Money saved vs lost"
+   "id": "right-vs-wrong",
+   "lede": "How often agents get it right — and how often they get it wrong while reporting success.",
+   "slice": "san",
+   "title": "Agentic right vs wrong"
   }
- ]
+ ],
+ "slices": [
+  {
+   "id": "pnl",
+   "title": "PNL dashboard"
+  },
+  {
+   "id": "cic",
+   "title": "CIC (Agentic Staff) dashboard"
+  },
+  {
+   "id": "cert",
+   "title": "Codebase Certification dashboard"
+  },
+  {
+   "id": "san",
+   "title": "Code Sanitizing Pre-commit dashboard"
+  }
+ ],
+ "tint_note": "Tile background tint is the finding's sentiment for a firm building critical systems in finance: blue is favourable, rust adverse, grey neutral.",
+ "divergences": [
+  {
+   "figure": "D04",
+   "link": "#mean-vulnerabilities-per-codebase-581-up-107-year-on-year",
+   "display": "67%",
+   "article_section": "§3.1",
+   "reason": "Figure content is adoption (PNL) while its evidencing article measures the codebase (Certification §3.1); signposted 'in §3.1' on the tile."
+  },
+  {
+   "figure": "D08",
+   "link": "#nearly-half-of-finance-functions-run-agentic-ai-fewer-than",
+   "display": "47%",
+   "article_section": "§2.5",
+   "reason": "Figure content is adoption (PNL) while its evidencing article is a governance-gap finding (CIC §2.5); signposted 'in §2.5' on the tile."
+  },
+  {
+   "figure": "D09",
+   "link": "#59-of-financial-institutions-run-multi-agent-ai-only-10-can",
+   "display": "59%",
+   "article_section": "§2.5",
+   "reason": "Figure content is adoption (PNL) while its evidencing article is a governance-gap finding (CIC §2.5); signposted 'in §2.5' on the tile."
+  },
+  {
+   "figure": "D49",
+   "link": "#a-post-hoc-review-lifts-working-and-secure-to-4756-at-25",
+   "display": "~2.5×",
+   "article_section": "§4.5",
+   "reason": "Figure content is a cost multiplier (PNL) while its evidencing article is a Pre-commit benchmark (§4.5); signposted 'in §4.5' on the tile. Its strip twin S7 carries the same figure."
+  }
+ ],
+ "panel_homes": {
+  "cert": [
+   "§3.1",
+   "§3.5"
+  ],
+  "right-vs-wrong": [
+   "§4.5",
+   "§4.1"
+  ]
+ }
 }
