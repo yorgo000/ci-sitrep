@@ -1571,7 +1571,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <p><span class="font-mono font-bold text-emerald-400">4. Deployment</span> <span class="text-gray-300">— the rules have settled and the returns land in the P&L. (Projected — the dashed right half.)</span></p>
  </div>
  <p class="mt-2 text-[11.5px] text-gray-400">
- <span class="font-mono font-bold text-amber-300">WE ARE HERE BAND (45–50%, midpoint 48%)</span> — the author's judgment band for where the cycle stands today; the numbers are Yorgo's judgment, not the paper's (WP-03 publishes no band numbers). The paper's verbal verdict is "late frenzy, turning point beginning" (§II.8.1); shown as a band, never a point — the paper's rule (§II.2.5). Zone boundaries on the chart (22/45/68) are illustrative; WP-03 gives no numeric boundaries.
+ <span class="font-mono font-bold text-amber-300">WE ARE HERE BAND (45–50%, midpoint 48%)</span> — the author's judgment band for where the cycle stands today; the numbers are Yorgo's judgment, not the paper's (WP-03 publishes no band numbers). The paper's verbal verdict is "late frenzy, turning point beginning" (§II.8.1); shown as a band, never a point — the paper's rule (§II.2.5). Zone boundaries on the chart (22/50/68) are illustrative; WP-03 gives no numeric boundaries.
  </p>
  </div>
 
@@ -1840,6 +1840,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  </div>
  <div id="kpiMandateTitle" class="text-sm font-bold text-white mt-1.5"></div>
  <p id="kpiMandateDesc" class="text-[11.5px] text-gray-300 mt-1 leading-snug"></p>
+<p class="text-[10.5px] text-gray-400 mt-2 leading-snug border-t border-gray-700/60 pt-2"><span class="font-mono font-semibold uppercase tracking-wider text-gray-300">Staffing translation — not yet measured:</span> the evidence base carries no review-time-per-unit figure, so the $2.50 is dollars, not hours. Convert it with your own reviewer cost. No owner is named here because the owner is your organisation’s to name.</p>
  </div>
  <div class="exec-tip-bubble exec-tip-top-right">
  <strong class="text-amber-400 block mb-1">Zone-Specific Executive Action</strong>
@@ -2848,7 +2849,7 @@ if (activeMatrixPreset === '2029_proj') {
  }
 
  // F3, F7: Stage definitions (the four stages, named for what the parameters measure).
- // Zone boundaries (22/45/68) are ILLUSTRATIVE — WP-03 gives no numeric boundaries;
+ // Zone boundaries (22/50/68) are ILLUSTRATIVE — WP-03 gives no numeric boundaries;
  // the paper's verdict is verbal ("late frenzy, turning point beginning", §II.8.1).
  function getStageInfo(p) {
  if (p < 22) {
@@ -2858,7 +2859,7 @@ if (activeMatrixPreset === '2029_proj') {
  mandateTitle: 'Ring-Fence Experimental Spend',
  mandateDesc: 'Toolmakers capture early CapEx. Cap unverified pilots as R&D; keep unvalidated workflows out of core opex.'
  };
- } else if (p < 45) {
+ } else if (p < 50) {
  return {
  stageNum: 'ZONE 2',
  name: 'Governance Tax',
@@ -3019,8 +3020,8 @@ if (activeMatrixPreset === '2029_proj') {
  // 1. Draw 4 Stage Background Zones (F7: the four stages, named for what the parameters measure)
  const stages = [
  { start: 0, end: 22, label: '1. BUILDOUT', sub: 'Capital ahead of returns', color: 'rgba(56, 189, 248, 0.035)' },
- { start: 22, end: 45, label: '2. GOVERNANCE TAX', sub: 'β ≈ 2.5× Verification Drag', color: 'rgba(245, 158, 11, 0.055)' },
- { start: 45, end: 68, label: '3. THE SHAKEOUT', sub: 'Consolidation — rules recompose', color: 'rgba(168, 85, 247, 0.04)' },
+ { start: 22, end: 50, label: '2. GOVERNANCE TAX', sub: 'β ≈ 2.5× Verification Drag', color: 'rgba(245, 158, 11, 0.055)' },
+ { start: 50, end: 68, label: '3. THE SHAKEOUT', sub: 'Consolidation — rules recompose', color: 'rgba(168, 85, 247, 0.04)' },
  { start: 68, end: 100, label: '4. DEPLOYMENT (PROJECTED)', sub: 'Returns land in the P&L', color: 'rgba(16, 185, 129, 0.04)' }
  ];
 
