@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>P&amp;L Heatmap — CI SITREP Diagnostic Suite</title>
-<!-- Diffusion Gauge Tab Dependencies (Tailwind CDN & Google Fonts, scoped to #gauge) -->
+<!-- Diffusion Gauge Tab Dependencies (Tailwind CDN & Google Fonts). NOTE: Tailwind utilities are GLOBAL, not scoped to #gauge — only the Gauge's custom CSS below is scoped. Preflight is OFF (see config); a scoped mini-reset under #gauge compensates. -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,6 +170,10 @@ tailwind.config = {
   .suite-lineage-card p { margin: 0; font-size: 12px; color: var(--muted); }
   .suite-main { padding: 20px 22px; max-width: 1480px; margin: 0 auto; }
   .suite-view { display: none; }
+  /* Local fallback if the Tailwind CDN fails: the Gauge's drawers/tooltips
+     hide via .hidden. Same specificity as Tailwind's utility, earlier in
+     the cascade — Tailwind's rule (and md: variants) still win when loaded. */
+  .hidden { display: none; }
   .suite-view.active { display: block; }
   .layout-2col {
     display: grid;
@@ -354,6 +358,19 @@ tailwind.config = {
  color: #F3F4F6;
  font-family: 'Inter', sans-serif;
  }
+ /* Scoped preflight compensation: Tailwind preflight is OFF in the suite,
+    but the Gauge markup was built with it ON (standalone). Zero-specificity
+    :where() rules so Tailwind utilities still win; these only neutralize
+    UA defaults (heading margins, button chrome/fonts, list markers, borders). */
+ :where(#gauge *, #gauge ::before, #gauge ::after) { border-width: 0; border-style: solid; }
+ :where(#gauge h1, #gauge h2, #gauge h3, #gauge h4, #gauge h5, #gauge h6) { font-size: inherit; font-weight: inherit; margin: 0; }
+ :where(#gauge p, #gauge figure, #gauge blockquote, #gauge dl, #gauge dd) { margin: 0; }
+ :where(#gauge ul, #gauge ol) { list-style: none; margin: 0; padding: 0; }
+ :where(#gauge a) { color: inherit; text-decoration: inherit; }
+ :where(#gauge button, #gauge input, #gauge select, #gauge textarea) { font: inherit; color: inherit; margin: 0; padding: 0; }
+ :where(#gauge button) { background: transparent; }
+ :where(#gauge img, #gauge svg, #gauge video, #gauge canvas) { display: block; vertical-align: middle; }
+ :where(#gauge img, #gauge video) { max-width: 100%; height: auto; }
  /* Custom Range Sliders */
  #gauge input[type="range"] {
  -webkit-appearance: none;
@@ -425,9 +442,9 @@ tailwind.config = {
  text-transform: none;
  letter-spacing: normal;
  }
- #gauge .exec-tip:hover #gauge .exec-tip-bubble,
- #gauge .exec-tip:focus-within #gauge .exec-tip-bubble,
- #gauge .exec-tip.tip-open #gauge .exec-tip-bubble {
+ #gauge .exec-tip:hover .exec-tip-bubble,
+ #gauge .exec-tip:focus-within .exec-tip-bubble,
+ #gauge .exec-tip.tip-open .exec-tip-bubble {
  visibility: visible;
  opacity: 1;
  pointer-events: auto;
@@ -898,7 +915,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
     </div>
     <button id="copyScenarioBtn" class="btn-outline" onclick="copyScenarioLink()">Copy Scenario Link</button>
     <button class="btn-outline" onclick="resetSuiteAll()">Reset All</button>
-    <button class="btn-outline" onclick="toggleDrawer()">Methodology &amp; Lineage</button>
+    <button class="btn-outline" onclick="toggleDrawer()">Methodology &amp; Lineage (Suite)</button>
   </div>
 </header>
 
@@ -1128,7 +1145,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
  </svg>
- <span>Methodology & Lineage</span>
+ <span>Methodology & Lineage (Gauge)</span>
  </button>
 
  <button id="caveatsToggleBtn" class="px-3 py-2 rounded-lg text-xs font-medium bg-amber-950/50 hover:bg-amber-900/60 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5" title="Review model measurement holes, single-study limits, and non-testability">
@@ -1193,20 +1210,30 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  VETO 1: No Deployment Call (TFP Flat/Falling)
  </span>
  <div class="exec-tip-bubble exec-tip-bottom-right">
- <strong class="text-rose-400 block mb-1">Active Instrument Veto #1 (§II.2.5)</strong>
- <p><strong class="text-white">Rule:</strong> No deployment call is permitted while aggregate Total Factor Productivity (TFP) remains flat or falling.</p>
+ <strong class="text-rose-400 block mb-1">Active Instrument Veto #1 (§II.2.5(a))</strong>
+ <p><strong class="text-white">Rule:</strong> No deployment (synergy) call while Total Factor Productivity (TFP) is flat or falling and the micro-macro gap is wide (WP-03 §II.2.5(a)).</p>
  <p class="mt-1"><strong class="text-amber-300">Board implication:</strong> Treat vendor "broad ROI achieved" claims as premature until macro and firm-level net margin series confirm it.</p>
  </div>
  </div>
 
  <div class="exec-tip">
  <span tabindex="0" class="cursor-help px-2 py-0.5 rounded bg-gray-900 border border-amber-500/30 font-mono text-[10.5px] text-amber-300">
- VETO 2: Shakeout Unsettled (No Regulatory Framework)
+ VETO 2: No Turning-Point-Completed Call (Framework Unsettled)
  </span>
  <div class="exec-tip-bubble exec-tip-bottom-right">
- <strong class="text-amber-400 block mb-1">Active Instrument Veto #2 (§II.2.5)</strong>
- <p><strong class="text-white">Rule:</strong> No shakeout-completed call is permitted while the institutional and regulatory framework remains unsettled.</p>
+ <strong class="text-amber-400 block mb-1">Active Instrument Veto #2 (§II.2.5(b))</strong>
+ <p><strong class="text-white">Rule:</strong> No turning-point-completed call while the institutional framework is unsettled (proposals and consultations are not law; first enforcement actions are not a settled regime) (WP-03 §II.2.5(b)).</p>
  <p class="mt-1"><strong class="text-amber-300">Board implication:</strong> Keep compliance, liability, and audit architectures modular; regulatory rules are still in flux.</p>
+ </div>
+ </div>
+
+ <div class="exec-tip">
+ <span tabindex="0" class="cursor-help px-2 py-0.5 rounded bg-gray-900 border border-gray-600/50 font-mono text-[10.5px] text-gray-300">
+ RULE (c): Crash = Confirmation, Not Requirement
+ </span>
+ <div class="exec-tip-bubble exec-tip-bottom-right">
+ <strong class="text-gray-200 block mb-1">Judgment Rule (c) (§II.2.5)</strong>
+ <p><strong class="text-white">Rule:</strong> A crash or funding contraction is a turning-point confirmation, not a requirement for the call — the turning point is a process, and its early markers (regulatory recomposition, liability crystallisation) can precede any crash (WP-03 §II.2.5(c)).</p>
  </div>
  </div>
  </div>
@@ -1552,7 +1579,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <p><span class="font-mono font-bold text-emerald-400">4. Deployment</span> <span class="text-gray-300">— the rules have settled and the returns land in the P&L. (Projected — the dashed right half.)</span></p>
  </div>
  <p class="mt-2 text-[11.5px] text-gray-400">
- <span class="font-mono font-bold text-amber-300">WE ARE HERE BAND (45–50%, midpoint 48%)</span> — the model’s judgment band for where the cycle stands today (“late frenzy, turning point beginning”; §II.8.1). Shown as a band, never a point (§II.2.5).
+ <span class="font-mono font-bold text-amber-300">WE ARE HERE BAND (45–50%, midpoint 48%)</span> — the author's judgment band for where the cycle stands today; the numbers are Yorgo's judgment, not the paper's (WP-03 publishes no band numbers). The paper's verbal verdict is "late frenzy, turning point beginning" (§II.8.1); shown as a band, never a point — the paper's rule (§II.2.5). Zone boundaries on the chart (22/45/68) are illustrative; WP-03 gives no numeric boundaries.
  </p>
  </div>
 
@@ -1560,8 +1587,8 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <div class="px-5 py-2.5 bg-[#0B101B] border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-gray-400">
  <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
  <span>α_comp Buildout: <strong id="stripAlphaComp" class="text-sky-400">80%</strong> <span class="text-gray-500">(Ready: <span id="stripAlphaReady">20%</span>)</span></span>
- <span>α_dist Buildout: <strong id="stripAlphaDist" class="text-sky-300">8%</strong> <span class="text-gray-500">(Ready: 92%)</span></span>
- <span>β Verification: <strong id="stripBeta" class="text-amber-400">~2.5× (72% share)</strong></span>
+ <span>α_dist Buildout: <strong id="stripAlphaDist" class="text-sky-300">8%</strong> <span class="text-gray-500">(Ready: <span id="stripAlphaDistReady">92%</span>)</span></span>
+ <span>β Verification: <strong id="stripBeta" class="text-amber-400">~2.5× (71.4% share)</strong></span>
  <span>δ Lag: <strong id="stripDelta" class="text-purple-400">4.5 Yrs (Unmeasured)</strong></span>
  <span>γ₁ Accel HHI: <strong id="stripGamma" class="text-emerald-400">5,750 (58%)</strong> · γ₂ Cloud: <strong class="text-emerald-300">1,360</strong></span>
  </div>
@@ -1587,7 +1614,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  </button>
  <div class="exec-tip-bubble exec-tip-bottom">
  <strong class="text-sky-400 block mb-1">Created Intelligence Preset (Nov 2022 Big-Bang)</strong>
- <p><strong class="text-white">Values:</strong> α_compute = 80% buildout (20% ready), α_dist = 8% buildout (92% ready), β ≈ 2.5× (72% share), δ = 4.5 yrs (working assumption), γ₁ HHI = 5,750 (58%), Band = 45–50%.</p>
+ <p><strong class="text-white">Values:</strong> α_compute = 80% buildout (20% ready), α_dist = 8% buildout (92% ready), β ≈ 2.5× (71.4% share), δ = 4.5 yrs (working assumption), γ₁ HHI = 5,750 (58%), Band = 45–50%.</p>
  <p class="mt-1"><strong class="text-amber-300">Decision:</strong> Sets the baseline two-velocity model (T_tech ~4.5y; full cycle ~18y at working assumption).</p>
  </div>
  </div>
@@ -1654,7 +1681,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  </p>
  </div>
 
- <!-- Knob 2: F3 — β Verification Overhead (Ratio 2.5× + 72% Share + Code-Only Caveats + Source Link + β->1 Mechanism) -->
+ <!-- Knob 2: F3 — β Verification Overhead (Ratio 2.5× + 71.4% Share + Code-Only Caveats + Source Link + β->1 Mechanism) -->
  <div>
  <div class="flex justify-between items-baseline mb-1">
  <label for="sliderBeta" class="text-xs font-semibold text-gray-200 flex items-center gap-1.5">
@@ -1669,9 +1696,9 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  </span>
  </span>
  </label>
- <span id="valBeta" class="font-mono text-xs font-bold text-amber-400">β ≈ 2.5× (72% Share)</span>
+ <span id="valBeta" class="font-mono text-xs font-bold text-amber-400">β ≈ 2.5× (71.4% Share)</span>
  </div>
- <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" value="72" />
+ <input id="sliderBeta" class="amber-slider" type="range" min="10" max="100" step="0.1" value="71.4" />
  <p class="text-[11px] text-gray-400 mt-1">
  <strong class="text-amber-300">β ≈ 2.5×</strong> (verification costs ~2.5× generation — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code). <a href="tracker-whitepaper.html#ii52-beta-verification-to-generation-cost-ratio" class="text-sky-400 underline underline-offset-2">Source: WP-03 §II.5.2</a>
  </p>
@@ -1742,9 +1769,9 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <span class="exec-tip">
  <span tabindex="0" class="cursor-help px-1.5 py-0.2 rounded bg-gray-800 border border-amber-500/40 font-mono text-[9.5px] text-amber-300">? Band Rule</span>
  <span class="exec-tip-bubble exec-tip-top">
- <strong class="text-amber-400 block mb-1">Judgment Band Rule (§II.2.5 & §II.8.1)</strong>
+ <strong class="text-amber-400 block mb-1">Judgment Band Rule — band, not a point (§II.2.5); the numbers are the author's judgment</strong>
  <span class="block"><strong class="text-white">What it is:</strong> A 5-point evidence spread (±2.5%) rather than a false point estimate.</span>
- <span class="block mt-1"><strong class="text-white">What sets it (45–50%, midpoint 48%):</strong> Paper verdict “late frenzy, turning point beginning” (multi-indicator judgment; for readiness by layer and gate, see the P&amp;L Heatmap). Never moves on a single parameter.</span>
+ <span class="block mt-1"><strong class="text-white">What sets it (45–50%, midpoint 48%):</strong> The author's multi-indicator judgment placing the paper's verbal verdict — "late frenzy, turning point beginning" (§II.8.1) — on the curve; WP-03 publishes no band numbers. Never moves on a single parameter. For readiness by layer and gate, see the P&amp;L Heatmap.</span>
  </span>
  </span>
  </label>
@@ -1825,7 +1852,7 @@ nav.sidebar { order: 2; width: 100%; flex: none; height: auto; position: static;
  <div class="exec-tip-bubble exec-tip-top-right">
  <strong class="text-amber-400 block mb-1">Zone-Specific Executive Action</strong>
  <p><strong class="text-white">What it is:</strong> Capital-allocation and governance guidance tied to the active zone on the cycle.</p>
- <p class="mt-1"><strong class="text-white">Current verdict (45–50% band):</strong> Late frenzy, turning point beginning. Institutional and regulatory rules are still recomposing (Perez); prioritize auditability and modular commitments.</p>
+ <p class="mt-1"><strong class="text-white">Current verdict (author's 45–50% judgment band):</strong> Late frenzy, turning point beginning. Institutional and regulatory rules are still recomposing (Perez); prioritize auditability and modular commitments.</p>
  </div>
  </div>
  </div>
@@ -1918,13 +1945,13 @@ const MATRIX_BASELINE_Q4_2026 = [
     {
       id: "L4_G4", state: "CRIMSON", noData: false,
       note: "73% of systemically important banks permit agents in production, only 8% monitor them comprehensively (BCG, Nov 2026); 38% of organizations authorise agents to approve or reject transactions (Optro, Oct 2026)",
-      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; SusVibes/Checkmarx ●●○○; review lifts secure output to 47–56%, ~half still insecure; Source: WP-03 §II.5.2) and close the permit-vs-monitor gap.",
+      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code — Source: WP-03 §II.5.2) and close the permit-vs-monitor gap.",
       whatToDo: "Owner: Risk, Compliance & Engineering — freeze new autonomous transaction approvals until continuous runtime monitoring covers 100% of production agents."
     },
     {
       id: "L5_G4", state: "CRIMSON", noData: false,
       note: "Security and compliance review backlogs are expanding faster than manual audit capacity.",
-      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; SusVibes/Checkmarx ●●○○; review leaves ~half insecure; Source: WP-03 §II.5.2) to clear review backlogs.",
+      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code — Source: WP-03 §II.5.2) to clear review backlogs.",
       whatToDo: "Owner: the verification layer (L5) — fund automated policy-as-code and static/dynamic scanning before scaling L4."
     },
     {
@@ -1957,13 +1984,13 @@ const MATRIX_BASELINE_Q4_2026 = [
     {
       id: "L4_G3", state: "CRIMSON", noData: false,
       note: "Ungoverned autonomy: ~38% AI code flaw rate (Veracode, Fall 2026); Writer reports 23% never tested the termination capability.",
-      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; SusVibes/Checkmarx ●●○○; review lifts secure output to 47–56%, ~half still insecure; Source: WP-03 §II.5.2) and mandate tested kill-switches.",
+      buyerMandate: "Ring-fence spend; cap production scaling until guardrails close the gap. Budget $2.50:$1 verification-to-generation in code (β ≈ 2.5× — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code — Source: WP-03 §II.5.2) and mandate tested kill-switches.",
       whatToDo: "Owner: the verification layer (L5) — fund deterministic code scanning and mandatory termination/circuit-breaker testing before scaling L4."
     },
     {
       id: "L5_G3", state: "AMBER", noData: false,
-      note: "Inflection cusp: automated code/output verification scaling ($2.50 verification per $1 generation in code).",
-      buyerMandate: "Invest aggressively now in automated verification and deterministic guardrails (β ≈ 2.5× — code domain only; SusVibes/Checkmarx ●●○○; review lifts secure output to 47–56%, ~half insecure; Source: WP-03 §II.5.2).",
+      note: "Inflection cusp: automated code/output verification scaling ($2.50 verification per $1 generation — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code — Source: WP-03 §II.5.2).",
+      buyerMandate: "Invest aggressively now in automated verification and deterministic guardrails (β ≈ 2.5× — code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○ Reported; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β exists outside code — Source: WP-03 §II.5.2).",
       whatToDo: "Owner: Platform & Security Engineering — deploy automated CI/CD verification gates to drive β toward 1."
     },
     {
@@ -2681,7 +2708,7 @@ if (activeMatrixPreset === '2029_proj') {
  const state = {
  alpha: 20, // Compute Rail Readiness % (10..100%; 20% ready = α_compute 0.80 new build)
  alphaDist: 92, // Fixed Distribution Rail Readiness % (92% ready = α_distribution 0.08 new build)
- beta: 72, // Verification Share % (10..100%; 72% share ≈ β 2.5x generation)
+ beta: 71.4, // Verification Share % (10..100%; 71.4% share = β 2.5× generation: 71.4/28.6 = 2.50, WP-03 §II.5.2)
  delta: 4.5, // Institutional Absorption Lag (1..15 yrs; working assumption 3–5y, unmeasured)
  gamma: 58, // Vendor Concentration % (15..95%; 58% = γ1 accelerator HHI ~5,750)
  position: 48, // "WE ARE HERE" Band Midpoint % (5..95%; 45–50% band for "late frenzy, turning point beginning")
@@ -2703,7 +2730,7 @@ if (activeMatrixPreset === '2029_proj') {
  ci_current: {
  alpha: 20,
  alphaDist: 92,
- beta: 72,
+ beta: 71.4,
  delta: 4.5,
  gamma: 58,
  position: 48,
@@ -2793,7 +2820,7 @@ if (activeMatrixPreset === '2029_proj') {
  // 2. Governance Tax / Verification Trough: depth governed by β, width & center governed by δ
  const troughCenter = 28 + (state.delta / 15) * 14;
  const troughWidth = 11 + (state.delta / 15) * 9;
- const troughDepth = 6 + (state.beta / 100) * 28; // ~-26% at β=72% (schematic illustration)
+ const troughDepth = 6 + (state.beta / 100) * 28; // ~-26% at β=71.4% (schematic illustration)
  const governanceDip = -troughDepth * Math.exp(-Math.pow((p - troughCenter) / troughWidth, 2));
 
  // 3. F4: Stage 3 Shakeout — HIGH γ CONCENTRATES THE SHAKEOUT (amplifies single-firm shock, does NOT buffer)
@@ -2824,7 +2851,9 @@ if (activeMatrixPreset === '2029_proj') {
  return dip + (surge - surgeZero);
  }
 
- // F3, F7: Stage definitions (the four stages, named for what the parameters measure)
+ // F3, F7: Stage definitions (the four stages, named for what the parameters measure).
+ // Zone boundaries (22/45/68) are ILLUSTRATIVE — WP-03 gives no numeric boundaries;
+ // the paper's verdict is verbal ("late frenzy, turning point beginning", §II.8.1).
  function getStageInfo(p) {
  if (p < 22) {
  return {
@@ -2889,6 +2918,8 @@ if (activeMatrixPreset === '2029_proj') {
  // Strip labels
  document.getElementById('stripAlphaComp').textContent = `${computeBuildPct}%`;
  document.getElementById('stripAlphaReady').textContent = `${state.alpha}%`;
+ document.getElementById('stripAlphaDist').textContent = `${100 - state.alphaDist}%`;
+ document.getElementById('stripAlphaDistReady').textContent = `${state.alphaDist}%`;
  document.getElementById('stripBeta').textContent = `~${metrics.betaRatio}× (${state.beta}% share)`;
  document.getElementById('stripDelta').textContent = `${state.delta.toFixed(1)} Yrs (Unmeasured)`;
  document.getElementById('stripGamma').textContent =
@@ -2907,21 +2938,22 @@ if (activeMatrixPreset === '2029_proj') {
  ? 'Baseline: Railroads (30–40y Install / ~65% Peak Drop)'
  : 'Baseline: PC / Web (~25y Computer Payoff Lag · Crafts)';
 
- // KPI 1: Two-Velocity Cycle Span (F1)
+ // KPI 1: Two-Velocity Cycle Span (F1) — the 10–20+ claim is the CI range;
+ // print it only when the computed span actually falls in it.
  document.getElementById('kpiDuration').textContent =
- `Full: ~${metrics.totalYears.toFixed(1)} Yrs (10–20+ Range)`;
+ `Full: ~${metrics.totalYears.toFixed(1)} Yrs${metrics.totalYears >= 10 && metrics.totalYears <= 25 ? ' (10–20+ Range)' : ' (outside the 10–20+ CI range)'}`;
  document.getElementById('kpiDurationSub').textContent =
- `Technical half: ~${metrics.tTech.toFixed(1)} yrs (α_dist) · Absorption half: ~${metrics.tInst.toFixed(1)} yrs (3×δ; δ unmeasured)`;
+ `Technical half: ~${metrics.tTech.toFixed(1)} yrs (α_dist) · Absorption half: ~${metrics.tInst.toFixed(1)} yrs (n=3 half-lives × δ — n=3 is a tool assumption; δ unmeasured)`;
 
  // KPI 2: J-Curve Trough & Acemoglu Ceiling (F12, F14 — NO breakeven date or trough-bottom date)
  document.getElementById('kpiTrough').textContent =
  `Illustrative trough: ${metrics.maxTrough.toFixed(1)}%`;
  document.getElementById('kpiBreakevenSub').textContent =
- `Schematic dip in net enterprise P&L capture (Line B), governed by β ≈ ${metrics.betaRatio}× (code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○; review leaves ~half insecure; no β outside code — Source: WP-03 §II.5.2). No breakeven or trough date projected until β and δ are measured as series.`;
+ `Schematic dip in net enterprise P&L capture (Line B), governed by β ≈ ${metrics.betaRatio}× (code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β outside code — Source: WP-03 §II.5.2). No breakeven or trough date projected until β and δ are measured as series.`;
 
  // KPI 3: Stage Mandate
  document.getElementById('kpiStageTag').textContent =
- `${stageInfo.stageNum} · BAND ${bandLow}–${bandHigh}%`;
+ `${stageInfo.stageNum} (illustrative zone) · BAND ${bandLow}–${bandHigh}%`;
  document.getElementById('kpiMandateTitle').textContent = stageInfo.mandateTitle;
  document.getElementById('kpiMandateDesc').textContent = stageInfo.mandateDesc;
  }
@@ -2982,7 +3014,7 @@ if (activeMatrixPreset === '2029_proj') {
 
  targetCtx.fillStyle = '#9CA3AF';
  targetCtx.font = '500 11px "Inter", sans-serif';
- targetCtx.fillText('by Yorgo P. Bougás · Confluence<1> · Ceiling case (Acemoglu): ≤0.66% TFP / 10y · Readiness by layer and gate: see the P&L Heatmap', 28, 70);
+ targetCtx.fillText(`by Yorgo P. Bougás · Confluence<1> · ${AS_OF_DATE} · Ceiling case (Acemoglu): ≤0.66% TFP / 10y · Readiness by layer and gate: see the P&L Heatmap`, 28, 70);
  }
 
  // 1. Draw 4 Stage Background Zones (F7: the four stages, named for what the parameters measure)
@@ -3367,7 +3399,7 @@ if (activeMatrixPreset === '2029_proj') {
  targetCtx.textAlign = 'left';
  targetCtx.textBaseline = 'middle';
  targetCtx.fillText(
- `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist 8% build (92% ready) | β ≈ ${metrics.betaRatio}× (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | γ₁ HHI ≈ ${gammaToHHI(state.gamma).toLocaleString()}`,
+ `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist ${100 - state.alphaDist}% build (${state.alphaDist}% ready) | β ≈ ${metrics.betaRatio}× (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | ${state.presetKey === 'railroads' ? 'γ High (No HHI)' : `γ₁ HHI ≈ ${gammaToHHI(state.gamma).toLocaleString()}`}`,
  28,
  H - 34
  );
