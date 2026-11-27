@@ -2776,7 +2776,10 @@ if (activeMatrixPreset === '2029_proj') {
  const tInst = absorptionHalfLives * state.delta;
 
  const totalYears = tTech + tInst;
- const betaRatio = (state.beta / (100 - state.beta)).toFixed(1);
+ // β multiple = verification share ÷ generation share; at 100% share no generation
+ // budget remains and the multiple is undefined — render ∞, never the string "Infinity"
+ const betaRatio = state.beta >= 100 ? '∞' : (state.beta / (100 - state.beta)).toFixed(1);
+ const betaRatioText = state.beta >= 100 ? '∞ (no generation budget remains)' : `${betaRatio}×`;
 
  // Compute schematic trough depth for display (never a trough-bottom date or breakeven date per F12)
  let maxTrough = 0;
@@ -2790,6 +2793,7 @@ if (activeMatrixPreset === '2029_proj') {
  tInst,
  totalYears,
  betaRatio,
+ betaRatioText,
  maxTrough
  };
  }
@@ -2898,8 +2902,9 @@ if (activeMatrixPreset === '2029_proj') {
  document.getElementById('valAlpha').textContent =
  `${state.alpha}% Ready (α_comp ≈ ${(computeBuildPct / 100).toFixed(2)})`;
 
- document.getElementById('valBeta').textContent =
- `β ≈ ${metrics.betaRatio}× (${state.beta}% Share)`;
+ document.getElementById('valBeta').textContent = state.beta >= 100
+ ? 'β → ∞ (100% Share — no generation budget remains)'
+ : `β ≈ ${metrics.betaRatio}× (${state.beta}% Share)`;
 
  document.getElementById('valDelta').textContent =
  `${state.delta.toFixed(1)} years (unmeasured)`;
@@ -2920,7 +2925,9 @@ if (activeMatrixPreset === '2029_proj') {
  document.getElementById('stripAlphaReady').textContent = `${state.alpha}%`;
  document.getElementById('stripAlphaDist').textContent = `${100 - state.alphaDist}%`;
  document.getElementById('stripAlphaDistReady').textContent = `${state.alphaDist}%`;
- document.getElementById('stripBeta').textContent = `~${metrics.betaRatio}× (${state.beta}% share)`;
+ document.getElementById('stripBeta').textContent = state.beta >= 100
+ ? '∞ (100% share — no generation budget remains)'
+ : `~${metrics.betaRatio}× (${state.beta}% share)`;
  document.getElementById('stripDelta').textContent = `${state.delta.toFixed(1)} Yrs (Unmeasured)`;
  document.getElementById('stripGamma').textContent =
  state.presetKey === 'railroads' ? 'High (No HHI)' : `${gammaToHHI(state.gamma).toLocaleString()} (${state.gamma}%)`;
@@ -2949,7 +2956,7 @@ if (activeMatrixPreset === '2029_proj') {
  document.getElementById('kpiTrough').textContent =
  `Illustrative trough: ${metrics.maxTrough.toFixed(1)}%`;
  document.getElementById('kpiBreakevenSub').textContent =
- `Schematic dip in net enterprise P&L capture (Line B), governed by β ≈ ${metrics.betaRatio}× (code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β outside code — Source: WP-03 §II.5.2). No breakeven or trough date projected until β and δ are measured as series.`;
+ `Schematic dip in net enterprise P&L capture (Line B), governed by β ≈ ${metrics.betaRatioText} (code domain only; single vendor-commissioned study, SusVibes re-run via Checkmarx, ●●○○; review lifts working-and-secure output to 47–56%, still leaving ~half insecure; fully-verified β unmeasured; no β outside code — Source: WP-03 §II.5.2). No breakeven or trough date projected until β and δ are measured as series.`;
 
  // KPI 3: Stage Mandate
  document.getElementById('kpiStageTag').textContent =
@@ -2979,7 +2986,7 @@ if (activeMatrixPreset === '2029_proj') {
  const pad = {
  top: isExport ? 104 : 46,
  right: 36,
- bottom: isExport ? 96 : 56,
+ bottom: isExport ? 148 : 56,
  left: 64
  };
  const plotW = W - pad.left - pad.right;
@@ -3269,7 +3276,7 @@ if (activeMatrixPreset === '2029_proj') {
  targetCtx.fillStyle = '#FCA5A5';
  targetCtx.font = '600 10px "JetBrains Mono", monospace';
  targetCtx.textAlign = 'center';
- targetCtx.fillText(`J-CURVE TROUGH (${minPnl.toFixed(0)}% ILLUSTRATIVE · β ≈ ${metrics.betaRatio}×)`, tx, ty + 16);
+ targetCtx.fillText(`J-CURVE TROUGH (${minPnl.toFixed(0)}% ILLUSTRATIVE · ${state.beta >= 100 ? 'β ≈ ∞' : `β ≈ ${metrics.betaRatio}×`})`, tx, ty + 16);
  }
 
  // 10. F13: "WE ARE HERE" BAND (never a point — §II.2.5)
@@ -3385,37 +3392,70 @@ if (activeMatrixPreset === '2029_proj') {
 
  // Export Footer Watermark (F6: Canonical lineage string)
  if (isExport) {
+ // Mandate sentence with caveats, verbatim from the face (Zone 2 mandate card)
+ const z2Mandate = getStageInfo(30);
+ const mandateText = `MANDATE: ${z2Mandate.mandateTitle} — ${z2Mandate.mandateDesc}`;
+ targetCtx.font = '400 10.5px "Inter", sans-serif';
+ const mandateLines = [];
+ {
+ const maxW = W - 56;
+ let line = '';
+ mandateText.split(' ').forEach((word) => {
+ const test = line ? `${line} ${word}` : word;
+ if (targetCtx.measureText(test).width > maxW && line) { mandateLines.push(line); line = word; }
+ else line = test;
+ });
+ if (line) mandateLines.push(line);
+ }
+ const footerH = 104 + Math.max(0, mandateLines.length - 2) * 17;
+
  targetCtx.fillStyle = '#0B101B';
- targetCtx.fillRect(0, H - 52, W, 52);
+ targetCtx.fillRect(0, H - footerH, W, footerH);
  targetCtx.strokeStyle = '#1F2937';
  targetCtx.lineWidth = 1;
  targetCtx.beginPath();
- targetCtx.moveTo(0, H - 52);
- targetCtx.lineTo(W, H - 52);
+ targetCtx.moveTo(0, H - footerH);
+ targetCtx.lineTo(W, H - footerH);
  targetCtx.stroke();
+
+ targetCtx.textAlign = 'left';
+ targetCtx.textBaseline = 'middle';
 
  targetCtx.fillStyle = '#9CA3AF';
  targetCtx.font = '500 11px "JetBrains Mono", monospace';
- targetCtx.textAlign = 'left';
- targetCtx.textBaseline = 'middle';
  targetCtx.fillText(
- `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist ${100 - state.alphaDist}% build (${state.alphaDist}% ready) | β ≈ ${metrics.betaRatio}× (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | ${state.presetKey === 'railroads' ? 'γ High (No HHI)' : `γ₁ HHI ≈ ${gammaToHHI(state.gamma).toLocaleString()}`}`,
+ `PARAMETERS: α_compute ${100 - state.alpha}% build (${state.alpha}% ready) | α_dist ${100 - state.alphaDist}% build (${state.alphaDist}% ready) | β ≈ ${metrics.betaRatioText} (${state.beta}% share) | δ ${state.delta.toFixed(1)}y (unmeasured) | ${state.presetKey === 'railroads' ? 'γ High (No HHI)' : `γ₁ HHI ≈ ${gammaToHHI(state.gamma).toLocaleString()}`}`,
  28,
- H - 34
+ H - footerH + 16
  );
+
+ // KPI values, formatted exactly as the KPI cards display them (F15)
+ targetCtx.fillStyle = '#E5E7EB';
+ targetCtx.font = '600 11px "JetBrains Mono", monospace';
+ targetCtx.fillText(
+ `KPI — SPAN: Full: ~${metrics.totalYears.toFixed(1)} Yrs${metrics.totalYears >= 10 && metrics.totalYears <= 25 ? ' (10–20+ Range)' : ' (outside the 10–20+ CI range)'} | TROUGH: Illustrative trough: ${metrics.maxTrough.toFixed(1)}% | CEILING: ≤0.66% TFP / 10y (Acemoglu)`,
+ 28,
+ H - footerH + 36
+ );
+
+ targetCtx.fillStyle = '#E5E7EB';
+ targetCtx.font = '400 10.5px "Inter", sans-serif';
+ mandateLines.forEach((ln, i) => {
+ targetCtx.fillText(ln, 28, H - footerH + 56 + i * 17);
+ });
 
  targetCtx.fillStyle = '#6B7280';
  targetCtx.font = '400 10.5px "Inter", sans-serif';
  targetCtx.fillText(
- 'β ≈ 2.5× (code only; SusVibes/Checkmarx ●●○○; review lifts secure output to 47–56%, ~half insecure; Source: WP-03 §II.5.2) | Perez · Solow · Brynjolfsson · Rogers/Moore · Wardley · Dixon · Acemoglu',
+ 'Perez · Solow · Brynjolfsson · Rogers/Moore · Wardley · Dixon · Acemoglu',
  28,
- H - 15
+ H - 13
  );
 
  targetCtx.textAlign = 'right';
  targetCtx.fillStyle = '#38BDF8';
  targetCtx.font = '700 11px "JetBrains Mono", monospace';
- targetCtx.fillText('CI SITREP // DIFFUSION GAUGE V2', W - 28, H - 24);
+ targetCtx.fillText('CI SITREP // DIFFUSION GAUGE V2', W - 28, H - footerH + 16);
  }
  }
 
