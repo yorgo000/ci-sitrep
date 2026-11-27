@@ -51,10 +51,10 @@ ok, fail, warn = V.ok, V.fail, V.warn
 results = V.results
 
 ROOT = Path(__file__).resolve().parent.parent  # ~/workspace/ci-sitrep-levels
-MAIN_PAGES = ["sitrep", "diff", "landscape", "background"]
+MAIN_PAGES = ["sitrep", "diff", "landscape", "instruments", "background"]
 SUB_PAGES = ["audit", "glossary", "corrections", "ci-vs-ei",
              "explainer", "theses", "archive", "about",
-             "tracker-whitepaper"]
+             "tracker-whitepaper", "heatmap-whitepaper"]
 # tracker.html is the tool page in the standard container
 # (2026-11-25, Yorgo: masthead header + sidebar condensed to the
 # siderail; same tab). It carries the chrome but is NOT a nav
@@ -64,14 +64,15 @@ SUB_PAGES = ["audit", "glossary", "corrections", "ci-vs-ei",
 # Its chrome + the no-new-tab rule are checked in
 # check_research_levels.
 NAV_PAGES = MAIN_PAGES + SUB_PAGES
-ALL_PAGES = NAV_PAGES + ["dashboard", "tracker"]
+ALL_PAGES = NAV_PAGES + ["dashboard", "tracker", "heatmap"]
 
 # The minimap-group <details> used to be picked up by
 # build_dashboard's article walkers as pseudo-articles (keys sitrep /
 # diff / landscape / background); the walkers now skip minimap-group
 # (the minimap lives outside <main>, like the runtime share JS).
 # The filter below is retained as a defensive no-op.
-MINIMAP_PSEUDO_IDS = ("sitrep", "diff", "landscape", "background")
+MINIMAP_PSEUDO_IDS = ("sitrep", "diff", "landscape", "instruments",
+                      "background")
 
 
 def strip_scripts(html):
@@ -142,7 +143,7 @@ def hud_group_children(tree, group):
 # --- Variant checks -------------------------------------------------------
 
 def check_census(md_path, pages, data):
-    """Census preserved: 136 articles / 64 feed / 62 figures / 8 strip /
+    """Census preserved: 137 articles / 52 feed / 62 figures / 8 strip /
     4 countdowns, plus the live domain-heading counts (panel figures per
     domain: PNL 13, CIC 24, Cert 5, San 10 — after the 2026-11-25
     redistribution the panel-home counts equal the by-content counts:
@@ -152,23 +153,34 @@ def check_census(md_path, pages, data):
     count of `items` lists only would read PNL 12 / San 9 — it misses
     the money bignote and the right-vs-wrong stacked block, which are
     figures in themselves per iter_panel_figures; see the build note).
-    Release round 2026-11-25: articles 117→131 and feed 46→63 (2026-11-26 watch: 131→135; 2026-11-26 catch-up: 135→136, feed 63→64) on the
-    new release content (direct-counted: 136 <details data-subject= in
+    Release round 2026-11-25: articles 117→131 and feed 46→63 on the
+    new release content (direct-counted: 131 <details data-subject= in
     landscape.html, 63 <li> across the four whats-new-feed lists in
     diff.html); figures/strip/countdowns unchanged (dashboard.json
-    untouched)."""
+    untouched).
+    Content-sync round 2026-11-26: articles 131→136 and feed 63→64 on
+    the 2026-11-26 watch (5 new articles — PNL +1, CIC +2, Cert +1,
+    San +1; feed +6 new 2026-11-26 entries, −5 stale 2026-11-18
+    entries pruned by the watch in canonical; direct-counted the
+    same way); figures/strip/countdowns unchanged (dashboard.json
+    untouched).
+    Daily watch 2026-11-27: articles 136→137 and feed 64→52 on the
+    2026-11-27 watch (1 new article — CIC +1; feed +2 new 2026-11-27
+    entries, −14 stale 2026-11-19 entries pruned by the watch in
+    canonical; direct-counted the same way); figures/strip/countdowns
+    unchanged (dashboard.json untouched)."""
     problems = []
     land = pages["landscape"]
     diff = pages["diff"]
     sit = pages["sitrep"]
     n_art = len(re.findall(r"<details data-subject=", land))
-    if n_art != 136:
-        problems.append(f"articles: {n_art} (expected 136)")
+    if n_art != 137:
+        problems.append(f"articles: {n_art} (expected 137)")
     n_feed = sum(len(re.findall(r"<li[^>]*>", ul))
                  for ul in re.findall(r'<ul class="whats-new-feed">(.*?)</ul>',
                                       diff, re.DOTALL))
-    if n_feed != 64:
-        problems.append(f"feed entries: {n_feed} (expected 64)")
+    if n_feed != 52:
+        problems.append(f"feed entries: {n_feed} (expected 52)")
     n_fig = len(list(bd.iter_figures(data)))
     if n_fig != 62:
         problems.append(f"figures: {n_fig} (expected 62)")
@@ -199,7 +211,7 @@ def check_census(md_path, pages, data):
         fail("variant census preserved", "; ".join(problems))
     else:
         ok("variant census preserved",
-           "136 articles / 64 feed / 62 figures / 8 strip / 4 countdowns; "
+           "137 articles / 52 feed / 62 figures / 8 strip / 4 countdowns; "
            "70 sitrep tiles; domain headings PNL 13 / CIC 24 / Cert 5 / San 10")
 
 
@@ -260,7 +272,7 @@ def check_page_order(pages):
         fail("diff page order",
              f"positions {dpos}; unexpected sections: {dabsent}")
 
-    # Landscape: Landscape H2 < report-embed < 136 articles; no SITREP,
+    # Landscape: Landscape H2 < report-embed < 137 articles; no SITREP,
     # no DIFF, no Archive section (round 2 — Archive moved to BACKGROUND).
     land = strip_scripts(pages["landscape"])
     lpos = {k: land.find(v) for k, v in (
@@ -270,9 +282,9 @@ def check_page_order(pages):
                if k in land]
     n_art = len(re.findall(r"<details data-subject=", land))
     if all(v != -1 for v in lpos.values()) and lpos["rep"] < lpos["embed"] \
-            and not labsent and n_art == 136 and 'id="archive"' not in land:
+            and not labsent and n_art == 137 and 'id="archive"' not in land:
         ok("landscape page order",
-           "Landscape < report-embed < 136 articles; no SITREP / DIFF / Archive")
+           "Landscape < report-embed < 137 articles; no SITREP / DIFF / Archive")
     else:
         fail("landscape page order",
              f"positions {lpos}; articles {n_art}; unexpected: {labsent}; "
@@ -280,7 +292,7 @@ def check_page_order(pages):
 
     # BACKGROUND (round 2): consolidated page — seven H2 sections in
     # BACKGROUND order (About, Self-Audit, The names, Glossary,
-    # Research, Archive), Research with its four H3 children in order.
+    # Research, Archive), Research with its five H3 children in order.
     # Scoped to <main> from the BACKGROUND H2: the drawer TOC, the
     # sidebar nav and the minimap repeat the same hrefs, so a
     # whole-page findall would count them too.
@@ -302,16 +314,17 @@ def check_page_order(pages):
                if k in (bg_nogloss if k == 'id="diff"' else bg)]
     if h2s == ["background", "about", "self-audit", "the-names",
                "glossary", "research", "archive"] and h3s == [
-            "technology-tracker", "the-surge-monitor", "ci-vs-ei",
-            "theses"] and not babsent:
+            "ci-vs-ei", "theses"] and not babsent \
+            and 'href="instruments.html"' in research_sec:
         ok("background page order",
-           "BACKGROUND + seven H2 sections in order (About, Self-Audit, "
+           "BACKSTAGE + seven H2 sections in order (About, Self-Audit, "
            "The names, Glossary, R&D, Archive) + R&D H3s "
-           "(Technology Tracker, Diffusion Gauge, CI vs EI, "
-           "Foundational theses)")
+           "(CI vs EI, Foundational theses) + Instruments pointer "
+           "(tool + paper cards moved to Instruments 2026-11-26)")
     else:
         fail("background page order",
-             f"h2s={h2s}, research h3s={h3s}, unexpected: {babsent}")
+             f"h2s={h2s}, research h3s={h3s}, unexpected: {babsent}, "
+             f"instruments pointer: {'instruments.html' in research_sec}")
 
 
 def _nav_group_body(nav, summary):
@@ -366,12 +379,12 @@ def _open_group_body(page):
 
 
 def check_nav_levels(pages):
-    """HUD navigation on all 13 nav pages (HUD round, 2026-11-25):
+    """HUD navigation on all 14 nav pages (HUD round, 2026-11-25):
     the masthead's one navigation surface — the Sections tree with
     four groups in order (SITREP / DIFF / Landscape / BACKGROUND),
     each group's children as page links; no index.html and no bare
     section anchors in the tree. Landscape's children are the four
-    sections + 29 subsections + 136 articles (169 rows); the other
+    sections + 29 subsections + 137 articles (170 rows); the other
     groups' child lists are exact."""
     sitrep_group = ["sitrep.html#bottom-line",
                     "sitrep.html#situation-at-hand",
@@ -393,9 +406,10 @@ def check_nav_levels(pages):
                   "diff.html#what-were-watching"]
     bg_group = ["background.html#about", "background.html#self-audit",
                 "background.html#the-names", "background.html#glossary",
-                "tracker.html", "tracker-whitepaper.html",
                 "background.html#ci-vs-ei", "background.html#theses",
                 "background.html#archive"]
+    inst_group = ["heatmap.html", "tracker.html",
+                  "tracker-whitepaper.html", "heatmap-whitepaper.html"]
     land_sections = ["landscape.html#1-pnl-money-adoption-liability",
                      "landscape.html#2-cic-agentic-staff-the-agent-workforce",
                      "landscape.html#3-codebase-certification-attesting-what-is-already-there",
@@ -407,7 +421,8 @@ def check_nav_levels(pages):
             bad_order.append(f"{name}: no single HUD tree")
             continue
         pos = [tree.find(f'data-minimap-group="{g}"')
-               for g in ("sitrep", "diff", "landscape", "background")]
+               for g in ("sitrep", "diff", "landscape", "instruments",
+                         "background")]
         if any(p == -1 for p in pos) or pos != sorted(pos):
             bad_order.append(f"{name}: group order {pos}")
         if "index.html" in tree:
@@ -417,20 +432,22 @@ def check_nav_levels(pages):
             if bare in tree:
                 bad_anchor.append(f"{name}: bare {bare} in HUD tree")
     if not bad_order:
-        ok("nav: four sections in order on every page",
-           "SITREP < DIFF < Landscape < BACKGROUND, 13 pages")
+        ok("nav: five sections in order on every page",
+           "SITREP < DIFF < Landscape < Instruments < BACKSTAGE, 15 pages")
     else:
-        fail("nav: four sections in order on every page", "; ".join(bad_order))
+        fail("nav: five sections in order on every page", "; ".join(bad_order))
     if bad_page or bad_anchor:
         fail("nav: page links only (no index.html, no bare anchors)",
              "; ".join(bad_page + bad_anchor))
     else:
         ok("nav: page links only (no index.html, no bare anchors)",
-           "13 pages")
-    # Group children, in tree order (full hrefs).
+           "15 pages")
+    # Group children, in tree order (full hrefs). The Instruments
+    # group's children are asserted inside the BACKSTAGE entry
+    # (the two groups the 2026-11-26 restructure split).
     for label, group, want in (
             ("SITREP", "sitrep", sitrep_group),
-            ("BACKGROUND", "background", bg_group),
+            ("BACKSTAGE", "background", bg_group),
             ("DIFF", "diff", diff_group)):
         bad = []
         for name, page in pages.items():
@@ -441,12 +458,16 @@ def check_nav_levels(pages):
             got = hud_group_children(tree, group)
             if got != want:
                 bad.append(f"{name}: {label} links {got}")
+            if group == "background":
+                got_inst = hud_group_children(tree, "instruments")
+                if got_inst != inst_group:
+                    bad.append(f"{name}: Instruments links {got_inst}")
         if not bad:
             ok(f"nav: {label} group links on every page", " · ".join(want))
         else:
             fail(f"nav: {label} group links on every page", "; ".join(bad))
-    # Landscape: the four sections in order among 169 rows
-    # (4 sections + 29 subsections + 136 articles).
+    # Landscape: the four sections in order among 170 rows
+    # (4 sections + 29 subsections + 137 articles).
     bad = []
     for name, page in pages.items():
         tree = hud_sections_tree(page)
@@ -454,15 +475,15 @@ def check_nav_levels(pages):
             bad.append(f"{name}: no HUD tree")
             continue
         got = hud_group_children(tree, "landscape")
-        if got is None or len(got) != 169:
-            bad.append(f"{name}: Landscape has {len(got) if got else 0} rows (expected 169)")
+        if got is None or len(got) != 170:
+            bad.append(f"{name}: Landscape has {len(got) if got else 0} rows (expected 170)")
             continue
         pos = [got.index(h) if h in got else -1 for h in land_sections]
         if any(p == -1 for p in pos) or pos != sorted(pos):
             bad.append(f"{name}: Landscape section order {pos}")
     if not bad:
         ok("nav: Landscape group links on every page",
-           "4 sections in order among 169 rows (sections + subsections + 136 articles)")
+           "4 sections in order among 170 rows (sections + subsections + 137 articles)")
     else:
         fail("nav: Landscape group links on every page", "; ".join(bad))
 
@@ -530,7 +551,8 @@ def check_collapse_levels(pages):
         ok("collapse: handler + initial-open sets match site_config",
            "handler skips nothing; per-page initial-open sets "
            "(sitrep ids executive-dashboard+net-impact + dash-slice, "
-           "diff ids diff, landscape ids report, background ids background)")
+           "diff ids diff, landscape ids report, instruments ids "
+           "instruments, background ids background)")
 
 
 def check_bullet_deep_links_levels(md_path, pages):
@@ -651,7 +673,8 @@ def check_minimap_levels(pages, md_path):
             problems.append(f"{name}: no minimap trees")
             continue
         body = "".join(trees)
-        for grp in ("sitrep", "diff", "landscape", "background"):
+        for grp in ("sitrep", "diff", "landscape", "instruments",
+                    "background"):
             if f'data-minimap-group="{grp}"' not in body:
                 problems.append(f"{name}: minimap missing {grp} group")
         if "minimap-self-audit" in body:
@@ -659,7 +682,9 @@ def check_minimap_levels(pages, md_path):
         if "dashboard — dashboard" in body:
             problems.append(f"{name}: doubled 'dashboard' in a domain label")
         if 'href="background.html"' not in body:
-            problems.append(f"{name}: minimap BACKGROUND group has no background.html landing")
+            problems.append(f"{name}: minimap BACKSTAGE group has no background.html landing")
+        if 'href="instruments.html"' not in body:
+            problems.append(f"{name}: minimap Instruments group has no instruments.html landing")
         # Minimap design pass (2026-11-25): explicit-level indent,
         # the row-end mark slot, group article lists for the
         # summary marks, and the new legend wording must all be
@@ -677,35 +702,51 @@ def check_minimap_levels(pages, md_path):
         if "new — changed in the last 7 days, not yet read" not in page \
                 or " started" not in page:
             problems.append(f"{name}: minimap legend wording stale")
-        # Research nested in BACKGROUND, last after Glossary, four
-        # children in order (round 2: Tracker, Diffusion Gauge, CI vs EI,
-        # Foundational theses), Archive last after Research. Positions
-        # of the bare hrefs — the row anchors carry class/data-title
-        # attributes, so the match is on the href value, not the full
-        # tag. SITREP must carry no archive.html row (Archive moved).
+        # Research nested in BACKSTAGE, last after Glossary, two
+        # children in order (2026-11-26 restructure: the tool +
+        # paper rows moved to Instruments; CI vs EI, Foundational
+        # theses remain), Archive last after Research. The
+        # Instruments group sits between Landscape and BACKSTAGE
+        # with its four children in order. Positions of the bare
+        # hrefs — the row anchors carry class/data-title
+        # attributes, so the match is on the href value, not the
+        # full tag. SITREP must carry no archive.html row (Archive
+        # moved).
         if 'data-minimap-group="research"' not in body:
             problems.append(f"{name}: minimap missing R&D subgroup")
         else:
             gloss = body.find('href="background.html#glossary"')
             res = body.find('data-minimap-group="research"')
-            tr = body.find('href="tracker.html"')
-            wp = body.find('href="tracker-whitepaper.html"')
             ci = body.find('href="background.html#ci-vs-ei"')
             th = body.find('href="background.html#theses"')
             arch = body.find('href="background.html#archive"')
-            if gloss == -1 or res == -1 or tr == -1 or wp == -1 \
-                    or ci == -1 or th == -1 or arch == -1 \
-                    or not (gloss < res < tr < wp < ci < th < arch):
+            if gloss == -1 or res == -1 or ci == -1 or th == -1 \
+                    or arch == -1 \
+                    or not (gloss < res < ci < th < arch):
                 problems.append(f"{name}: minimap R&D not after Glossary / children out of order")
+        inst = body.find('data-minimap-group="instruments"')
+        if inst == -1:
+            problems.append(f"{name}: minimap missing Instruments group")
+        else:
+            hmt = body.find('href="heatmap.html"', inst)
+            tr = body.find('href="tracker.html"', inst)
+            wp = body.find('href="tracker-whitepaper.html"', inst)
+            hm = body.find('href="heatmap-whitepaper.html"', inst)
+            bg = body.find('data-minimap-group="background"')
+            if hmt == -1 or tr == -1 or wp == -1 or hm == -1 \
+                    or bg == -1 \
+                    or not (inst < hmt < tr < wp < hm < bg):
+                problems.append(f"{name}: minimap Instruments group not before BACKSTAGE / children out of order")
         if 'href="archive.html"' in body:
             problems.append(f"{name}: stale archive.html row in minimap")
     if problems:
         fail("minimap present on every page", "; ".join(problems))
     else:
         ok("minimap present on every page",
-           "toggle + panel + scrim + float-close on every nav page; five groups; "
-           "BACKGROUND lands on background.html; R&D after Glossary; "
-           "Archive last in BACKGROUND; design-pass levels + mark slots + legend")
+           "toggle + panel + scrim + float-close on every nav page; six groups; "
+           "Instruments lands on instruments.html; "
+           "BACKSTAGE lands on background.html; R&D after Glossary; "
+           "Archive last in BACKSTAGE; design-pass levels + mark slots + legend")
 
     # Workstream 5 (Yorgo, 2026-11-25): opening the minimap must NOT
     # move focus into the search box — on a phone it pops the keyboard
@@ -812,12 +853,13 @@ def check_research_levels(pages):
     verify.py's check_research; renamed from "Research" 2026-11-25
     on Yorgo's word — the id/href anchors keep the name
     "research"): a nested <details> inside the
-    BACKGROUND group, after Glossary, with four children in order
-    (round 2: tracker tool, white paper, CI vs EI, Foundational
-    theses); Archive follows R&D as the last BACKGROUND row.
+    BACKGROUND group, after Glossary, with five children in order
+    (round 2: tracker tool, Diffusion Gauge white paper, P&L
+    Heatmap white paper, CI vs EI, Foundational theses); Archive
+    follows R&D as the last BACKGROUND row.
     Both tool/paper pages exist, the tool carries Yorgo's byline + a
     return link to the variant landing page (sitrep.html, F2 — not
-    index.html), the white paper carries his byline. Three results.
+    index.html), the white papers carry his byline. Four results.
     The R&D <details> may carry `open` (on the white-paper,
     CI-vs-EI or theses page) and the white-paper link may carry
     aria-current, so the match allows both."""
@@ -830,12 +872,6 @@ def check_research_levels(pages):
         r'data-minimap-group="research"[^>]*>\s*'
         r'<summary[^>]*>R&amp;D.*?</summary>\s*'
         r'<ul>\s*'
-        r'<li><a[^>]*href="tracker\.html"[^>]*>'
-        r'<span class="minimap-row-title">Technology Tracker</span>'
-        r'<span class="minimap-mark">(<span class="changed-dot"[^>]*></span>)?</span></a></li>\s*'
-        r'<li><a[^>]*href="tracker-whitepaper\.html"[^>]*>'
-        r'<span class="minimap-row-title">Diffusion Gauge</span>'
-        r'<span class="minimap-mark">(<span class="changed-dot"[^>]*></span>)?</span></a></li>\s*'
         r'<li><a[^>]*href="background\.html#ci-vs-ei"[^>]*>'
         r'<span class="minimap-row-title">CI vs EI</span>'
         r'<span class="minimap-mark">(<span class="changed-dot"[^>]*></span>)?</span></a></li>\s*'
@@ -843,8 +879,12 @@ def check_research_levels(pages):
         r'<span class="minimap-row-title">Foundational theses</span>'
         r'<span class="minimap-mark">(<span class="changed-dot"[^>]*></span>)?</span></a></li>\s*'
         r'</ul>\s*</details></li>', re.DOTALL)
-    # 1. R&D nested in BACKGROUND, after Glossary, four children
-    # in order, Archive last after R&D, on every nav page.
+    # 1. R&D nested in BACKSTAGE, after Glossary, two children
+    # in order (the tool + paper rows moved to Instruments,
+    # 2026-11-26), Archive last after R&D, on every nav page.
+    # The Instruments group carries the moved rows (suite, Gauge
+    # tool, the two whitepapers) in order; the instruments page
+    # itself carries its two sections in order with their cards.
     bad = []
     for name, page in pages.items():
         if name not in NAV_PAGES:
@@ -862,7 +902,7 @@ def check_research_levels(pages):
             bad.append(f"{name}: R&D not after Glossary")
         bg = tree.find('data-minimap-group="background"')
         if bg == -1 or bg > m.start():
-            bad.append(f"{name}: R&D not inside BACKGROUND")
+            bad.append(f"{name}: R&D not inside BACKSTAGE")
         tail = tree[m.end():]
         arch_re = re.compile(
             r'\s*<li><a[^>]*href="background\.html#archive"[^>]*>'
@@ -870,13 +910,33 @@ def check_research_levels(pages):
             r'<span class="minimap-mark">(<span class="changed-dot"[^>]*></span>)?</span></a></li>\s*'
             r'</ul>\s*</details>', re.DOTALL)
         if not arch_re.match(tail):
-            bad.append(f"{name}: Archive does not follow R&D as the last BACKGROUND row")
+            bad.append(f"{name}: Archive does not follow R&D as the last BACKSTAGE row")
+        got_inst = hud_group_children(tree, "instruments")
+        if got_inst != ["heatmap.html", "tracker.html",
+                        "tracker-whitepaper.html",
+                        "heatmap-whitepaper.html"]:
+            bad.append(f"{name}: Instruments group links {got_inst}")
+        if name == "instruments":
+            main = page[page.find('<h2 id="instruments"'):
+                        page.find("</main>")]
+            ts = main.find('id="tool-suite"')
+            wp = main.find('id="whitepapers"')
+            if ts == -1 or wp == -1 or ts > wp:
+                bad.append("instruments: sections missing or out of order")
+            for href in ('href="heatmap.html"',
+                         'href="tracker-whitepaper.html"',
+                         'href="heatmap-whitepaper.html"'):
+                if href not in main:
+                    bad.append(f"instruments: card link missing: {href}")
+            if "WP-01" not in main or "WP-02" not in main:
+                bad.append("instruments: WP-01/WP-02 series-record note missing")
     if not bad:
-        ok("r&d: subsection in BACKGROUND on every page",
-           "after Glossary; Tracker + white paper + CI vs EI + theses; "
-           "Archive last")
+        ok("r&d: subsection in BACKSTAGE on every page",
+           "after Glossary; CI vs EI + theses; Archive last; "
+           "Instruments group carries suite + Gauge + the two "
+           "whitepapers; instruments page sections in order")
     else:
-        fail("r&d: subsection in BACKGROUND on every page",
+        fail("r&d: subsection in BACKSTAGE on every page",
              "; ".join(bad))
 
     # 2. The tracker tool page: served, bylined, in the standard
@@ -938,6 +998,77 @@ def check_research_levels(pages):
     else:
         fail("r&d: white-paper page + byline", "; ".join(problems))
 
+    # 4. The P&L Heatmap white-paper page (WP-04, 2026-11-26):
+    # served, with the paper's title + Yorgo's byline.
+    paper = ROOT / "heatmap-whitepaper.html"
+    problems = []
+    if not paper.is_file():
+        problems.append("heatmap-whitepaper.html missing")
+    else:
+        text = paper.read_text()
+        if "by Yorgo P. Bougás · Confluence&lt;1&gt;" not in text:
+            problems.append("no byline (by Yorgo P. Bougás · "
+                            "Confluence<1>)")
+        if "The Structural Anatomy of Created Intelligence " \
+                "Adoption" not in text:
+            problems.append("no title")
+    if not problems:
+        ok("r&d: heatmap white-paper page + byline",
+           "The Structural Anatomy of Created Intelligence Adoption, "
+           "bylined Yorgo P. Bougás")
+    else:
+        fail("r&d: heatmap white-paper page + byline",
+             "; ".join(problems))
+
+    # 5. The P&L Heatmap tool page (2026-11-26): served, bylined,
+    # in the standard container (masthead + siderail + slim bar),
+    # NO swap JS, same-tab links site-wide; the aligned parameters
+    # on its face (α 20 ready, β 72, γ 58, δ 4.5 years) and none
+    # of the retired claims (no breakeven year, no Shipyard label).
+    tool = ROOT / "heatmap.html"
+    problems = []
+    if not tool.is_file():
+        problems.append("heatmap.html missing")
+    else:
+        text = tool.read_text()
+        if "by Yorgo P. Bougás · Confluence&lt;1&gt;" not in text:
+            problems.append("no byline (Yorgo P. Bougás · Confluence<1>)")
+        if 'href="sitrep.html"' not in text:
+            problems.append("no return link to sitrep.html")
+        if 'class="masthead-title"' not in text:
+            problems.append("no site masthead (container chrome)")
+        if 'class="hud-rail"' not in text:
+            problems.append("no siderail (container chrome)")
+        if 'id="slim-bar"' not in text:
+            problems.append("no slim bar (container chrome)")
+        if 'hud-condensed' not in text.split("<body", 1)[-1].split(">", 1)[0]:
+            problems.append("body does not default to the siderail "
+                            "(hud-condensed)")
+        if 'id="minimap-toggle"' not in text:
+            problems.append("no phone HUD trigger (container chrome)")
+        if "__ciSwap" in text:
+            problems.append("carries SWAP_JS — the tool page must "
+                            "stay a full load")
+        for needle in ("alpha: 20", "beta: 72", "gamma: 58",
+                       "delta: 4.5", "WE ARE HERE BAND"):
+            if needle not in text:
+                problems.append(f"aligned parameter missing: {needle}")
+        for banned in ("Shipyard", "breakeven", "Breakeven"):
+            if banned in text:
+                problems.append(f"retired claim present: {banned}")
+    for name, page in pages.items():
+        if re.search(r'href="heatmap\.html"[^>]*target="_blank"',
+                     page):
+            problems.append(f"{name}: heatmap.html opens in a new "
+                            "tab (same tab, like the tracker)")
+    if not problems:
+        ok("r&d: heatmap tool page served",
+           "byline + container chrome (masthead, siderail default, "
+           "slim bar, phone trigger), aligned parameters, no swap "
+           "JS, same-tab links site-wide")
+    else:
+        fail("r&d: heatmap tool page served", "; ".join(problems))
+
 
 def check_countdown_modal_levels(pages):
     """Countdowns on DIFF only (4 cards under their own peer H3,
@@ -964,7 +1095,8 @@ def check_countdown_modal_levels(pages):
             problems.append(f"countdown {label} link missing: {link}")
     if dif.count('href="#what-were-watching"') < 2:
         problems.append("TPRM/OSFI countdown links should stay #what-were-watching")
-    for name in ("sitrep", "diff", "landscape", "background"):
+    for name in ("sitrep", "diff", "landscape", "instruments",
+                 "background"):
         if 'id="howto-modal"' not in pages[name]:
             problems.append(f"no howto modal on {name}")
         if 'id="howto-open"' not in pages[name]:
@@ -985,7 +1117,7 @@ def check_countdown_modal_levels(pages):
     else:
         ok("countdown on DIFF, modal auto-opens every arrival",
            "4 countdown cards on diff (FCA/NY RAISE -> landscape bullets); "
-           "modal + sidebar open button on all four main pages; "
+           "modal + sidebar open button on all five main pages; "
            "never-flag opt-out on every page, no per-page gating")
 
 
@@ -1041,13 +1173,14 @@ def check_toc_levels(pages):
     """HUD tree page-contents (HUD round, 2026-11-25): each main
     page's own group in the masthead HUD carries its page contents
     as rows (the former page-top TOCs): sitrep 14 (2 + 12), diff
-    5 (4 domains + watchlist), landscape 169 (4 sections + 29
-    subsections + 136 articles), background 9 (9 sections — the
+    5 (4 domains + watchlist), landscape 170 (4 sections + 29
+    subsections + 137 articles), background 11 (11 rows — the
     page-H2 landing row was removed in the TOC cleanup,
-    2026-11-25). DIFF's group carries the watchlist row;
-    BACKGROUND's carries the R&D sub-group."""
-    expected = {"sitrep": 14, "diff": 6, "landscape": 169,
-                "background": 9}
+    2026-11-25; the P&L Heatmap tool row joined 2026-11-26).
+    DIFF's group carries the watchlist row; BACKGROUND's carries
+    the R&D sub-group."""
+    expected = {"sitrep": 14, "diff": 6, "landscape": 170,
+                "instruments": 4, "background": 7}
     problems = []
     for name, want in expected.items():
         tree = hud_sections_tree(pages[name])
@@ -1062,7 +1195,7 @@ def check_toc_levels(pages):
         fail("per-page TOCs", "; ".join(problems))
     else:
         ok("per-page TOCs",
-           "in the HUD tree: sitrep 14 / diff 6 (incl. countdown + watchlist) / landscape 169 / background 9 (incl. R&D)")
+           "in the HUD tree: sitrep 14 / diff 6 (incl. countdown + watchlist) / landscape 170 / instruments 4 / background 7 (incl. R&D)")
 
 
 def check_current_levels(pages):
@@ -1071,11 +1204,12 @@ def check_current_levels(pages):
     exactly one row carries aria-current="page", and the marked
     row is the page's own — the surface summary link on main
     pages, the sub-page's row on sub-pages — inside the open
-    group(s). The white paper, CI vs EI and theses sit in the
+    group(s). The white papers, CI vs EI and theses sit in the
     nested R&D group, so they open TWO groups (BACKGROUND + R&D)."""
     want = {"sitrep": "sitrep.html",
             "diff": "diff.html",
             "landscape": "landscape.html",
+            "instruments": "instruments.html",
             "background": "background.html",
             "audit": "background.html#self-audit",
             "glossary": "background.html#glossary",
@@ -1085,15 +1219,15 @@ def check_current_levels(pages):
             "theses": "background.html#theses",
             "archive": "background.html#archive",
             "about": "background.html#about",
-            "tracker-whitepaper": "tracker-whitepaper.html"}
+            "tracker-whitepaper": "tracker-whitepaper.html",
+            "heatmap-whitepaper": "heatmap-whitepaper.html"}
     problems = []
     for name, page in pages.items():
         if name not in NAV_PAGES:
             continue
         tree = hud_sections_tree(page)
         n_open = tree.count('<details class="minimap-group" open')
-        want_open = 2 if name in ("tracker-whitepaper", "ci-vs-ei",
-                                  "theses") else 1
+        want_open = 2 if name in ("ci-vs-ei", "theses") else 1
         if n_open != want_open:
             problems.append(f"{name}: {n_open} open HUD groups (expected {want_open})")
             continue
@@ -1113,8 +1247,8 @@ def check_current_levels(pages):
         fail("current page marked in nav", "; ".join(problems))
     else:
         ok("current page marked in nav",
-           "one open HUD group + one aria-current row on each of 13 pages "
-           "(white paper, CI vs EI and theses open BACKGROUND + R&D)")
+           "one open HUD group + one aria-current row on each of 15 pages "
+           "(CI vs EI and theses open BACKSTAGE + R&D)")
 
 
 # --- Entry point -----------------------------------------------------------
@@ -1153,9 +1287,10 @@ def check_hierarchy_levels(pages):
          r"color: #8a3f2e; \}",
          "DIFF feed-group H3 17px/700 rust-brown"),
         (r"main h2#about, main h2#self-audit, main h2#the-names, "
-         r"main h2#glossary, main h2#research \{ font-size: 20px; "
+         r"main h2#glossary, main h2#research, main h2#tool-suite, "
+         r"main h2#whitepapers \{ font-size: 20px; "
          r"color: #8a3f2e; \}",
-         "BACKGROUND section H2s 20px rust-brown"),
+         "BACKSTAGE + Instruments section H2s 20px rust-brown"),
         (r"\.dash-what-is > summary \{ font-weight: 400; "
          r"color: var\(--muted\); font-size: 14px; \}",
          "\"What this is\" 14px/400 muted"),
@@ -1188,7 +1323,7 @@ def check_hierarchy_levels(pages):
            "H2 22 navy > bottom line 19 rust-brown + hairline > "
            "domain 17 rust-brown + hairline > panel 15/600 navy; "
            "base H3 18 navy; feed-group 17 rust-brown; "
-           "BACKGROUND sections 20 rust-brown; "
+           "BACKSTAGE + Instruments sections 20 rust-brown; "
            "What-this-is 14 muted; SOTM 13 uppercase")
 
 
@@ -1292,9 +1427,9 @@ def check_buttons_levels(pages):
     panel closes the other (OBS-2 fix). Level-switch swap
     (2026-11-25, Yorgo): every page carries SWAP_JS (guard +
     predicate) and the loading-bar CSS, and the modal JS carries
-    the swap suppression — asserted on all 13 nav pages. Slim
+    the swap suppression — asserted on all 14 nav pages. Slim
     sticky bar (2026-11-25, Yorgo: "slim bar"): markup + JS + CSS
-    on all 13; the View Manager button only on the three pages
+    on all 14; the View Manager button only on the three pages
     with a drawer."""
     problems = []
     for name in NAV_PAGES:
@@ -1351,9 +1486,9 @@ def check_buttons_levels(pages):
     else:
         ok("floating buttons (WS7)",
            "HUD trigger phone-only bottom-left + back-to-top rust on "
-           "13 pages; float-close gone; mutual exclusion wired both ways; "
-           "swap JS + loading bar + modal suppression on all 13; "
-           "slim bar on all 13 (View Manager button on the 3 "
+           "15 pages; float-close gone; mutual exclusion wired both ways; "
+           "swap JS + loading bar + modal suppression on all 15; "
+           "slim bar on all 15 (View Manager button on the 3 "
            "dashboard pages)")
 
 
@@ -1367,7 +1502,7 @@ def main():
                           .replace("&gt;", ">").replace("&amp;", "&"))
     data = json.loads((ROOT / "dashboard.json").read_text())
 
-    print(f"Verifying levels variant {md_path} + 4 main pages "
+    print(f"Verifying levels variant {md_path} + 5 main pages "
           f"({datetime.now(ZoneInfo('America/New_York')).date()})\n")
     articles = V.check_articles(md)
     V.check_rating_consistency(articles)
