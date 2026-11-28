@@ -2,7 +2,7 @@
 
 A self-audit of this report: how comprehensive it is, how vetted, how solid. Every number on this page is computed from the live report files — nothing here is hand-written, so the audit cannot drift from what it audits.
 
-**As of:** 2026-11-27. **Report last updated:** 2026-11-27.
+**As of:** 2026-11-28. **Report last updated:** 2026-11-27.
 
 ---
 
@@ -12,10 +12,10 @@ A self-audit of this report: how comprehensive it is, how vetted, how solid. Eve
 |---|---|
 | Articles | 137 |
 | Source links (article + subsection) | 325 |
-| Total external links (incl. inline prose links) | 779 |
+| Total external links (incl. inline prose links) | 762 |
 | Unique source URLs | 304 |
 | Sections | 4 top-level · 29 subsections · 3 sub-subsections |
-| Items in DIFF | 52 |
+| Items in DIFF | 35 |
 | Superseded entries in the archive | 21 |
 | Opened to the public | November 12, 2026 |
 
