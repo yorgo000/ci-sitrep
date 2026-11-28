@@ -64,6 +64,7 @@
    "rating": "reported",
    "sentiment": "negative",
    "source": "SusVibes re-run",
+   "source_note": "vendor-commissioned",
    "subject": "pnl",
    "tile": "ratio",
    "article_section": "§4.5"
@@ -86,7 +87,7 @@
    "bullet": 1,
    "date": "2026",
    "display": "188",
-   "label": "documented cases of autonomous AI damaging production",
+   "label": "documented cases of autonomous AI damaging production systems, no attacker involved",
    "link": "#188-documented-cases-of-autonomous-ai-damaging-production",
    "rating": "reported",
    "sentiment": "negative",
@@ -154,14 +155,14 @@
    "tile": "ratio"
   },
   {
-   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in AI patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
+   "aria_label": "Waffle chart: 135 of 147 vulnerabilities counted were in Llama 3.3 70B patches, 91.8 percent, shown as 92 of 100 squares; 12 were in human patches, shown as 8 of 100 squares.",
    "bullet": 2,
    "bullet_token": "135 manually confirmed vulnerabilities",
    "caption": "Share of 147 vulnerabilities counted",
    "chart": {
     "a": {
      "display": "135",
-     "label": "AI patches",
+     "label": "Llama 3.3 70B patches",
      "tone": "gap",
      "value": 135
     },
@@ -175,7 +176,7 @@
    },
    "date": "1 Nov 2026",
    "display": "~11×",
-   "label": "more vulnerabilities in AI patches than in human patches",
+   "label": "more vulnerabilities in Llama 3.3 70B than human patches",
    "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
    "rating": "reported",
    "sentiment": "negative",
@@ -332,7 +333,7 @@
         "date": "9 Nov 2026",
         "display": "~175×",
         "kind": "stat",
-        "label": "AI-discovered vulnerabilities outpace fixes",
+        "label": "AI-discovered candidate findings outpace fixes",
         "link": "#ai-discovered-vulnerabilities-outpace-fixes-175-to-1",
         "rating": "reported",
         "sentiment": "negative",
@@ -346,7 +347,7 @@
         "chart": {
          "a": {
           "display": "135",
-          "label": "In AI patches",
+          "label": "In Llama 3.3 70B patches",
           "tone": "gap",
           "value": 135
          },
@@ -361,7 +362,7 @@
         "date": "1 Nov 2026",
         "display": "~11×",
         "kind": "stat",
-        "label": "vulnerabilities in AI patches vs developer patches",
+        "label": "vulnerabilities in Llama 3.3 70B patches vs developer patches",
         "link": "#ai-generated-patches-introduce-11-the-vulnerabilities-of",
         "rating": "reported",
         "sentiment": "negative",
@@ -448,7 +449,7 @@
        "display": "75%",
        "history_key": "google-ai-code-share",
        "kind": "bar",
-       "label": "of new code AI-generated, engineer-approved",
+       "label": "of Google's new code AI-generated, engineer-approved",
        "link": "#ai-writes-close-to-half-of-new-code-three-quarters-at",
        "note": "Series closed: Google discontinued this metric in Oct 2026.",
        "rating": "corroborated",
@@ -653,7 +654,7 @@
    "id": "money",
    "lede": "The thinnest panel — and the most honest one.",
    "slice": "pnl",
-   "title": "Money saved vs lost"
+   "title": "What AI costs — and what's at stake"
   },
   {
    "blocks": [
@@ -1010,7 +1011,7 @@
        "date": "Oct 2026",
        "display": "67.16%",
        "kind": "stat",
-       "label": "succeed on the first attempt — but only 241 of 507 workflows pass on all 20 attempts",
+       "label": "succeed on the first attempt — best model on synthetic workflows; only 241 of 507 pass all 20 attempts",
        "link": "#67-of-agent-workflows-pass-once-but-only-241-of-507-pass",
        "pie_split": "positive",
        "rating": "corroborated",
@@ -1050,6 +1051,19 @@
        "source": "METR",
        "subject": "cic",
        "tile": "big-number"
+      },
+      {
+       "bullet": 1,
+       "date": "Nov 2026",
+       "display": "948",
+       "kind": "stat",
+       "label": "distinct Linux kernel privilege-escalation flaws found by one agent pipeline",
+       "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
+       "rating": "reported",
+       "sentiment": "negative",
+       "source": "OpenAI GPT-6 Cyber",
+       "subject": "cic",
+       "tile": "big-number"
       }
      ],
      "kind": "stats"
@@ -1058,7 +1072,7 @@
    "id": "cic-evaluation",
    "lede": "What the evaluations say about agent reliability.",
    "slice": "cic",
-   "title": "Evaluation"
+   "title": "Agent reliability, measured"
   },
   {
    "blocks": [
@@ -1071,7 +1085,7 @@
        "display": "~38%",
        "history_key": "veracode-flaw-rate",
        "kind": "stat",
-       "label": "of AI code introduces a known security flaw",
+       "label": "of AI code introduces a known security flaw in Veracode's benchmark",
        "link": "#38-of-ai-code-introduces-a-known-security-flaw-veracode",
        "rating": "corroborated",
        "sentiment": "neutral",
@@ -1099,7 +1113,7 @@
        "date": "Nov 2026",
        "display": "3.4×",
        "kind": "stat",
-       "label": "vulnerable-code rate at 81–100% AI-generated code vs 1–20%",
+       "label": "self-reported vulnerable-code rate at 81–100% AI-generated code vs 1–20%",
        "link": "#organisations-where-81100-of-code-is-ai-generated-reported",
        "rating": "reported",
        "sentiment": "negative",
@@ -1124,19 +1138,6 @@
        "subject": "cert",
        "tile": "pie",
        "value": 68
-      },
-      {
-       "bullet": 1,
-       "date": "Nov 2026",
-       "display": "948",
-       "kind": "stat",
-       "label": "working Linux kernel privilege-escalation exploits from one agent pipeline",
-       "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
-       "rating": "reported",
-       "sentiment": "negative",
-       "source": "OpenAI GPT-6 Cyber",
-       "subject": "cert",
-       "tile": "big-number"
       },
       {
        "bullet": 1,
@@ -1421,6 +1422,13 @@
    "display": "~2.5×",
    "article_section": "§4.5",
    "reason": "Figure content is a cost multiplier (PNL) while its evidencing article is a Pre-commit benchmark (§4.5); signposted 'in §4.5' on the tile. Its strip twin S7 carries the same figure."
+  },
+  {
+   "figure": "D50",
+   "link": "#one-agent-pipeline-produced-948-working-linux-kernel-root",
+   "display": "948",
+   "article_section": "§3.1",
+   "reason": "Figure content is agent offensive output (CIC) while its evidencing article is a Certification §3.1 finding; signposted 'in §3.1' on the tile. Moved from the Certification panel to cic-evaluation 2026-11-28 (dashboard congruence audit); label corrected from exploits to flaws (1,169 exploits → 948 distinct flaws)."
   }
  ],
  "panel_homes": {
