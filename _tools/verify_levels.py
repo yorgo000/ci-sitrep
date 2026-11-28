@@ -34,6 +34,7 @@ Reuse rules, established by testing on the built variant (2026-11-25):
   glossary data lives on every page); the glossary.html anchor check
   reads from the repo root, unchanged.
 """
+import html
 import json
 import re
 import sys
@@ -52,17 +53,16 @@ results = V.results
 
 ROOT = Path(__file__).resolve().parent.parent  # ~/workspace/ci-sitrep-levels
 MAIN_PAGES = ["sitrep", "diff", "landscape", "instruments", "background"]
-SUB_PAGES = ["audit", "glossary", "corrections", "ci-vs-ei",
+SUB_PAGES = ["audit", "glossary", "corrections", "not-included",
+             "ci-vs-ei",
              "explainer", "theses", "archive", "about",
              "tracker-whitepaper", "heatmap-whitepaper"]
-# tracker.html is the tool page in the standard container
-# (2026-11-25, Yorgo: masthead header + sidebar condensed to the
-# siderail; same tab). It carries the chrome but is NOT a nav
-# page: no SWAP_JS (full loads both ways — the tool's Tailwind
-# CDN script is a src script the swap re-run skips, and the
-# tool's JS state does not survive a body swap), no slim bar.
-# Its chrome + the no-new-tab rule are checked in
-# check_research_levels.
+# tracker.html is a redirect to the suite's Diffusion Gauge tab
+# (Round 3 unification, 2026-11-27 — the standalone tool page in
+# the standard container is retired; the Gauge is Tab 2 of the
+# suite at heatmap.html?tab=gauge). It carries no chrome and is
+# NOT a nav page; the redirect + the no-new-tab rule are checked
+# in check_research_levels.
 NAV_PAGES = MAIN_PAGES + SUB_PAGES
 ALL_PAGES = NAV_PAGES + ["dashboard", "tracker", "heatmap"]
 
@@ -77,6 +77,25 @@ MINIMAP_PSEUDO_IDS = ("sitrep", "diff", "landscape", "instruments",
 
 def strip_scripts(html):
     return re.sub(r"<script>.*?</script>", "", html, flags=re.DOTALL)
+
+
+def strip_section(html, section_id):
+    """Remove the <section id=...> element (balanced tag counting).
+    Used to scope the heatmap retired-claim scan to the suite's own
+    tabs: the embedded Diffusion Gauge tab (#gauge) carries
+    the Gauge's own verified text (incl. its 'Why no breakeven date
+    is shown' explainer), which was never word-banned on
+    tracker.html. Fail-safe: section not found → html unchanged."""
+    m = re.search(r'<section[^>]*id="' + re.escape(section_id) + r'"',
+                  html)
+    if not m:
+        return html
+    depth = 0
+    for t in re.finditer(r"</?section\b[^>]*>", html[m.start():]):
+        depth += -1 if t.group(0).startswith("</") else 1
+        if depth == 0:
+            return html[:m.start()] + html[m.start() + t.end():]
+    return html
 
 
 def page_ids(html):
@@ -143,13 +162,16 @@ def hud_group_children(tree, group):
 # --- Variant checks -------------------------------------------------------
 
 def check_census(md_path, pages, data):
-    """Census preserved: 137 articles / 52 feed / 62 figures / 8 strip /
+    """Census preserved: 137 articles / 35 feed / 62 figures / 8 strip /
     4 countdowns, plus the live domain-heading counts (panel figures per
-    domain: PNL 13, CIC 24, Cert 5, San 10 — after the 2026-11-25
+    domain: PNL 13, CIC 25, Cert 4, San 10 — after the 2026-11-25
     redistribution the panel-home counts equal the by-content counts:
     the one Cert-subject figure that used to sit in the governance-gap
     panel (the FCA supervisors note) now sits in the Cert panel, so
-    CIC 25→24 and Cert 4→5; PNL 13 and San 10 unchanged. A naive
+    CIC 25→24 and Cert 4→5; PNL 13 and San 10 unchanged. Congruence
+    round 2026-11-28: the 948 kernel-flaws figure moved Cert →
+    cic-evaluation (agent offensive output, CIC by the §1 test), so
+    CIC 24→25 and Cert 5→4; total figures unchanged at 62. A naive
     count of `items` lists only would read PNL 12 / San 9 — it misses
     the money bignote and the right-vs-wrong stacked block, which are
     figures in themselves per iter_panel_figures; see the build note).
@@ -168,7 +190,10 @@ def check_census(md_path, pages, data):
     2026-11-27 watch (1 new article — CIC +1; feed +2 new 2026-11-27
     entries, −14 stale 2026-11-19 entries pruned by the watch in
     canonical; direct-counted the same way); figures/strip/countdowns
-    unchanged (dashboard.json untouched)."""
+    unchanged (dashboard.json untouched).
+    Share-link fix round 2026-11-28: feed 52→35 (−17 stale
+    2026-11-20 entries pruned at the midnight window rollover, ahead
+    of the 04:30 watch; articles unchanged at 137)."""
     problems = []
     land = pages["landscape"]
     diff = pages["diff"]
@@ -179,8 +204,8 @@ def check_census(md_path, pages, data):
     n_feed = sum(len(re.findall(r"<li[^>]*>", ul))
                  for ul in re.findall(r'<ul class="whats-new-feed">(.*?)</ul>',
                                       diff, re.DOTALL))
-    if n_feed != 52:
-        problems.append(f"feed entries: {n_feed} (expected 52)")
+    if n_feed != 35:
+        problems.append(f"feed entries: {n_feed} (expected 35)")
     n_fig = len(list(bd.iter_figures(data)))
     if n_fig != 62:
         problems.append(f"figures: {n_fig} (expected 62)")
@@ -200,8 +225,8 @@ def check_census(md_path, pages, data):
     # Domain headings split label and count across a <span>:
     # `PNL dashboard <span class="section-count">— 13 figures</span>`.
     for label, count in (("PNL dashboard", 13),
-                         ("CIC (Agentic Staff) dashboard", 24),
-                         ("Codebase Certification dashboard", 5),
+                         ("CIC (Agentic Staff) dashboard", 25),
+                         ("Codebase Certification dashboard", 4),
                          ("Code Sanitizing Pre-commit dashboard", 10)):
         if not re.search(re.escape(label)
                          + r'\s*<span class="section-count">— '
@@ -211,8 +236,8 @@ def check_census(md_path, pages, data):
         fail("variant census preserved", "; ".join(problems))
     else:
         ok("variant census preserved",
-           "137 articles / 52 feed / 62 figures / 8 strip / 4 countdowns; "
-           "70 sitrep tiles; domain headings PNL 13 / CIC 24 / Cert 5 / San 10")
+           "137 articles / 35 feed / 62 figures / 8 strip / 4 countdowns; "
+           "70 sitrep tiles; domain headings PNL 13 / CIC 25 / Cert 4 / San 10")
 
 
 def check_page_order(pages):
@@ -399,7 +424,7 @@ def check_nav_levels(pages):
                     "sitrep.html#cert",
                     "sitrep.html#slice-san",
                     "sitrep.html#right-vs-wrong",
-                    "corrections.html"]
+                    "corrections.html", "not-included.html"]
     diff_group = ["diff.html#diff-pnl", "diff.html#diff-cic",
                   "diff.html#diff-cert", "diff.html#diff-san",
                   "diff.html#countdown",
@@ -408,7 +433,7 @@ def check_nav_levels(pages):
                 "background.html#the-names", "background.html#glossary",
                 "background.html#ci-vs-ei", "background.html#theses",
                 "background.html#archive"]
-    inst_group = ["heatmap.html", "tracker.html",
+    inst_group = ["heatmap.html", "heatmap.html?tab=gauge",
                   "tracker-whitepaper.html", "heatmap-whitepaper.html"]
     land_sections = ["landscape.html#1-pnl-money-adoption-liability",
                      "landscape.html#2-cic-agentic-staff-the-agent-workforce",
@@ -433,7 +458,7 @@ def check_nav_levels(pages):
                 bad_anchor.append(f"{name}: bare {bare} in HUD tree")
     if not bad_order:
         ok("nav: five sections in order on every page",
-           "SITREP < DIFF < Landscape < Instruments < BACKSTAGE, 15 pages")
+           "SITREP < DIFF < Landscape < Instruments < BACKSTAGE, 16 pages")
     else:
         fail("nav: five sections in order on every page", "; ".join(bad_order))
     if bad_page or bad_anchor:
@@ -441,7 +466,7 @@ def check_nav_levels(pages):
              "; ".join(bad_page + bad_anchor))
     else:
         ok("nav: page links only (no index.html, no bare anchors)",
-           "15 pages")
+           "16 pages")
     # Group children, in tree order (full hrefs). The Instruments
     # group's children are asserted inside the BACKSTAGE entry
     # (the two groups the 2026-11-26 restructure split).
@@ -729,7 +754,7 @@ def check_minimap_levels(pages, md_path):
             problems.append(f"{name}: minimap missing Instruments group")
         else:
             hmt = body.find('href="heatmap.html"', inst)
-            tr = body.find('href="tracker.html"', inst)
+            tr = body.find('href="heatmap.html?tab=gauge"', inst)
             wp = body.find('href="tracker-whitepaper.html"', inst)
             hm = body.find('href="heatmap-whitepaper.html"', inst)
             bg = body.find('data-minimap-group="background"')
@@ -912,7 +937,7 @@ def check_research_levels(pages):
         if not arch_re.match(tail):
             bad.append(f"{name}: Archive does not follow R&D as the last BACKSTAGE row")
         got_inst = hud_group_children(tree, "instruments")
-        if got_inst != ["heatmap.html", "tracker.html",
+        if got_inst != ["heatmap.html", "heatmap.html?tab=gauge",
                         "tracker-whitepaper.html",
                         "heatmap-whitepaper.html"]:
             bad.append(f"{name}: Instruments group links {got_inst}")
@@ -939,47 +964,46 @@ def check_research_levels(pages):
         fail("r&d: subsection in BACKSTAGE on every page",
              "; ".join(bad))
 
-    # 2. The tracker tool page: served, bylined, in the standard
-    # container (2026-11-25, Yorgo: header + siderail, same tab):
-    # masthead + siderail + condensed default + phone trigger,
-    # NO swap JS (full loads both ways), and no page may open it
-    # in a new tab.
+    # 2. tracker.html: a redirect to the suite's Diffusion Gauge
+    # tab (Round 3 unification, 2026-11-27 — the standalone tool
+    # page is retired; the Gauge is Tab 2 of the suite). The
+    # redirect must forward the full query string (scenario links
+    # a/b/g/d/pos/base) via JS, carry the meta-refresh fallback,
+    # and carry NONE of the old tool page (no canvas, no
+    # container chrome). No page may open tracker.html in a new
+    # tab (same-tab rule, 2026-11-25).
     tool = ROOT / "tracker.html"
     problems = []
     if not tool.is_file():
         problems.append("tracker.html missing")
     else:
         text = tool.read_text()
-        if "by Yorgo P. Bougás · Confluence&lt;1&gt;" not in text:
-            problems.append("no byline (Yorgo P. Bougás · Confluence<1>)")
-        if 'href="sitrep.html"' not in text:
-            problems.append("no return link to sitrep.html")
-        if 'id="cycleCanvas"' not in text:
-            problems.append("no chart canvas")
-        if 'class="masthead-title"' not in text:
-            problems.append("no site masthead (container chrome)")
-        if 'class="hud-rail"' not in text:
-            problems.append("no siderail (container chrome)")
-        if 'hud-condensed' not in text.split("<body", 1)[-1].split(">", 1)[0]:
-            problems.append("body does not default to the siderail "
-                            "(hud-condensed)")
-        if 'id="minimap-toggle"' not in text:
-            problems.append("no phone HUD trigger (container chrome)")
-        if "__ciSwap" in text:
-            problems.append("carries SWAP_JS — the tool page must "
-                            "stay a full load")
+        if "heatmap.html?tab=gauge" not in text:
+            problems.append("no redirect target heatmap.html?tab=gauge")
+        if "location.replace" not in text \
+                or "location.search" not in text:
+            problems.append("no JS query-string forwarding "
+                            "(scenario links would break)")
+        if 'http-equiv="refresh"' not in text:
+            problems.append("no meta-refresh fallback")
+        if 'id="cycleCanvas"' in text \
+                or 'class="masthead-title"' in text:
+            problems.append("still carries the old tool page "
+                            "(canvas/container chrome) — the "
+                            "redirect must replace it")
     for name, page in pages.items():
         if re.search(r'href="tracker\.html"[^>]*target="_blank"',
                      page):
             problems.append(f"{name}: tracker.html opens in a new "
                             "tab (same tab since 2026-11-25)")
     if not problems:
-        ok("r&d: tracker tool page served",
-           "byline + return link + canvas + container chrome "
-           "(masthead, siderail default, phone trigger), no swap "
-           "JS, same-tab links site-wide")
+        ok("r&d: tracker.html redirect to the Gauge tab",
+           "JS forwards the full query string to "
+           "heatmap.html?tab=gauge, meta-refresh fallback, no "
+           "old tool page, same-tab links site-wide")
     else:
-        fail("r&d: tracker tool page served", "; ".join(problems))
+        fail("r&d: tracker.html redirect to the Gauge tab",
+             "; ".join(problems))
 
     # 3. The white-paper page: served, with Yorgo's byline.
     paper = ROOT / "tracker-whitepaper.html"
@@ -1023,7 +1047,8 @@ def check_research_levels(pages):
     # 5. The P&L Heatmap tool page (2026-11-26): served, bylined,
     # in the standard container (masthead + siderail + slim bar),
     # NO swap JS, same-tab links site-wide; the aligned parameters
-    # on its face (α 20 ready, β 72, γ 58, δ 4.5 years) and none
+    # on its face (α 20 ready, β 71.4 — 71.4/28.6 = 2.50, WP-03
+    # §II.5.2 — γ 58, δ 4.5 years) and none
     # of the retired claims (no breakeven year, no Shipyard label).
     tool = ROOT / "heatmap.html"
     problems = []
@@ -1049,18 +1074,23 @@ def check_research_levels(pages):
         if "__ciSwap" in text:
             problems.append("carries SWAP_JS — the tool page must "
                             "stay a full load")
-        for needle in ("alpha: 20", "beta: 72", "gamma: 58",
+        for needle in ("alpha: 20", "beta: 71.4", "gamma: 58",
                        "delta: 4.5", "WE ARE HERE BAND"):
             if needle not in text:
                 problems.append(f"aligned parameter missing: {needle}")
+        # Retired-claim scan, scoped to the suite's own tabs: the
+        # embedded Gauge tab's verified text explains why NO
+        # breakeven date is shown (the word itself is not a claim).
+        # The Gauge's JS sits outside its <section> — strip both.
+        suite_text = strip_scripts(strip_section(text, "gauge"))
         for banned in ("Shipyard", "breakeven", "Breakeven"):
-            if banned in text:
+            if banned in suite_text:
                 problems.append(f"retired claim present: {banned}")
     for name, page in pages.items():
         if re.search(r'href="heatmap\.html"[^>]*target="_blank"',
                      page):
             problems.append(f"{name}: heatmap.html opens in a new "
-                            "tab (same tab, like the tracker)")
+                            "tab (same tab)")
     if not problems:
         ok("r&d: heatmap tool page served",
            "byline + container chrome (masthead, siderail default, "
@@ -1172,14 +1202,15 @@ def check_xlinks_levels(pages):
 def check_toc_levels(pages):
     """HUD tree page-contents (HUD round, 2026-11-25): each main
     page's own group in the masthead HUD carries its page contents
-    as rows (the former page-top TOCs): sitrep 14 (2 + 12), diff
+    as rows (the former page-top TOCs): sitrep 15 (2 + 12 + the
+    What-didn't-make-it row, F-28 2026-11-27), diff
     5 (4 domains + watchlist), landscape 170 (4 sections + 29
     subsections + 137 articles), background 11 (11 rows — the
     page-H2 landing row was removed in the TOC cleanup,
     2026-11-25; the P&L Heatmap tool row joined 2026-11-26).
     DIFF's group carries the watchlist row; BACKGROUND's carries
     the R&D sub-group."""
-    expected = {"sitrep": 14, "diff": 6, "landscape": 170,
+    expected = {"sitrep": 15, "diff": 6, "landscape": 170,
                 "instruments": 4, "background": 7}
     problems = []
     for name, want in expected.items():
@@ -1195,7 +1226,7 @@ def check_toc_levels(pages):
         fail("per-page TOCs", "; ".join(problems))
     else:
         ok("per-page TOCs",
-           "in the HUD tree: sitrep 14 / diff 6 (incl. countdown + watchlist) / landscape 170 / instruments 4 / background 7 (incl. R&D)")
+           "in the HUD tree: sitrep 15 / diff 6 (incl. countdown + watchlist) / landscape 170 / instruments 4 / background 7 (incl. R&D)")
 
 
 def check_current_levels(pages):
@@ -1214,6 +1245,7 @@ def check_current_levels(pages):
             "audit": "background.html#self-audit",
             "glossary": "background.html#glossary",
             "corrections": "corrections.html",
+            "not-included": "not-included.html",
             "ci-vs-ei": "background.html#ci-vs-ei",
             "explainer": "background.html#the-names",
             "theses": "background.html#theses",
@@ -1247,7 +1279,7 @@ def check_current_levels(pages):
         fail("current page marked in nav", "; ".join(problems))
     else:
         ok("current page marked in nav",
-           "one open HUD group + one aria-current row on each of 15 pages "
+           "one open HUD group + one aria-current row on each of 16 pages "
            "(CI vs EI and theses open BACKSTAGE + R&D)")
 
 
@@ -1357,19 +1389,32 @@ def check_dashboard_sync_levels(pages, data):
                          + re.escape(label)
                          + r' — ' + str(n) + r' figures</span>', sit):
             problems.append(f'HUD "{label} — {n} figures" missing')
-    # Cert panel title rename. ("The state of the codebase" is ALSO
-    # the report §3.1 subsection title, so the stale check must be
-    # scoped to the panel heading and its TOC entry, not a bare
-    # substring — the section keeps its name.)
-    if "Flaws in the codebase — and the fix loop" not in sit:
-        problems.append("Cert panel title rename missing")
-    if re.search(r'<h3 id="cert" class="dash-panel">'
-                 r'The state of the codebase', sit):
-        problems.append("old Cert panel heading still present")
-    if re.search(r'href="sitrep\.html#cert"[^>]*>'
-                 r'<span class="minimap-row-title">'
-                 r'The state of the codebase', sit):
-        problems.append("old Cert panel title still in HUD tree")
+    # Panel titles render as declared (generalised 2026-11-28 from
+    # the one-off Cert-rename guard: every panel's H3 and HUD row
+    # must carry its dashboard.json title, so a rename can never
+    # silently revert in one surface only. The original guard was
+    # scoped to heading + HUD row because "The state of the
+    # codebase" is ALSO the report §3.1 subsection title — the
+    # section keeps its name, so a bare substring check would
+    # false-fire; the per-panel form keeps that scoping.)
+    for p in data.get("panels", []):
+        # The H3 escaper is quote=True (apostrophe → &#x27;) and a
+        # changed panel's H3 carries a changed-dot span after the
+        # title text; the HUD row escaper is quote=False (raw
+        # apostrophe). Match each surface as it renders.
+        h3_title = html.escape(p["title"], quote=True)
+        if not re.search(
+                r'<h3 id="' + re.escape(p["id"])
+                + r'" class="dash-panel">' + re.escape(h3_title)
+                + r'(?:</h3>|<span class="changed-dot")', sit):
+            problems.append(
+                f'panel H3 "{p["title"]}" missing or renamed')
+        hud_title = html.escape(p["title"], quote=False)
+        if not re.search(r'href="sitrep\.html#' + re.escape(p["id"])
+                         + r'"[^>]*><span class="minimap-row-title">'
+                         + re.escape(hud_title), sit):
+            problems.append(
+                f'panel HUD row "{p["title"]}" missing or renamed')
     # Net-impact lede carries the redistribution counts.
     if ("output up — PNL 2; cleanup up — Cert 5 · San 2 · PNL 1"
             not in sit):
@@ -1413,7 +1458,87 @@ def check_dashboard_sync_levels(pages, data):
            "H3/HUD " + " / ".join(
                f"{k.split()[0]} {v}" for k, v in expected.items())
            + "; no strip kickers (internal bookkeeping)"
-           + "; Cert title renamed; countdown labelled")
+           + "; panel titles as declared; countdown labelled")
+
+
+def check_panel_congruence_levels(data):
+    """Panel congruence (2026-11-28 — the "Agentic right vs wrong"
+    miss: a Pre-commit panel carrying a CIC-framed title for six
+    days while every structural check passed). Two guards the
+    structural checks never had:
+    1. HARD: every figure in a sliced panel carries subject ==
+       panel slice, unless the figure is a registered divergence
+       (dashboard.json `divergences`, matched on link+display) —
+       a figure can never silently land in the wrong dashboard.
+       Slice-less panels (the net-impact ledger) are exempt: the
+       sanctioned cross-domain panel.
+    2. WARN tripwire: panel titles carrying domain-suggestive
+       words inconsistent with the slice ("agentic"/"agent"
+       outside CIC, "codebase" outside Certification,
+       generation/gate words outside Pre-commit, money words
+       outside PNL). Heuristic — a warning is reviewed at release
+       (RULES.md §6 line 1), not a block; it converts "nobody
+       looked" into "somebody must consciously override". The
+       2026-11-28 miss trips it; the semantic gate is the §6
+       line 21 congruence read."""
+    diverged = {(dv.get("link"), dv.get("display"))
+                for dv in data.get("divergences", [])}
+    problems = []
+    n_fig = 0
+    for p in data.get("panels", []):
+        sl = p.get("slice")
+        if sl is None:
+            continue
+        for f in bd.iter_panel_figures(p):
+            n_fig += 1
+            if f.get("subject") == sl:
+                continue
+            if (f.get("link"), f.get("display")) in diverged:
+                continue
+            problems.append(
+                f'panel {p["id"]} ({sl}): figure '
+                f'{f.get("display", "?")!r} subject '
+                f'{f.get("subject")!r} != slice, not a registered '
+                f'divergence')
+    if problems:
+        fail("panel congruence: figure subject == panel slice",
+             "; ".join(problems[:6]))
+    else:
+        ok("panel congruence: figure subject == panel slice",
+           f"{n_fig} sliced-panel figures, divergences registered, "
+           f"net-impact ledger exempt")
+
+    keywords = {
+        "cic": (r"agentic", r"agents?"),
+        "cert": (r"codebase",),
+        "san": (r"generation", r"gate", r"pre-commit", r"pre-merge",
+                r"at commit"),
+        "pnl": (r"money", r"saved", r"lost", r"profit", r"costs?",
+                r"dollars?", r"revenue", r"paying"),
+    }
+    trips = []
+    for p in data.get("panels", []):
+        sl = p.get("slice")
+        if sl is None:
+            continue
+        title = p["title"].lower()
+        for dom, words in keywords.items():
+            if dom == sl:
+                continue
+            for w in words:
+                if re.search(r"\b" + w + r"\b", title):
+                    trips.append(
+                        f'panel {p["id"]} ({sl}): title '
+                        f'"{p["title"]}" carries {dom}-suggestive '
+                        f'word "{w}"')
+    if trips:
+        warn("panel title tripwire",
+             "; ".join(trips)
+             + " — review at release (§6 line 1); rename or record "
+               "the override")
+    else:
+        ok("panel title tripwire",
+           "no domain-suggestive title words outside their slice")
 
 
 def check_buttons_levels(pages):
@@ -1486,10 +1611,75 @@ def check_buttons_levels(pages):
     else:
         ok("floating buttons (WS7)",
            "HUD trigger phone-only bottom-left + back-to-top rust on "
-           "15 pages; float-close gone; mutual exclusion wired both ways; "
-           "swap JS + loading bar + modal suppression on all 15; "
-           "slim bar on all 15 (View Manager button on the 3 "
+           "16 pages; float-close gone; mutual exclusion wired both ways; "
+           "swap JS + loading bar + modal suppression on all 16; "
+           "slim bar on all 16 (View Manager button on the 3 "
            "dashboard pages)")
+
+
+def check_rejected_levels(pages):
+    """What didn't make it (F-28, 2026-11-27): the considered-and-
+    rejected page. The ledger (REJECTED.md, canonical in the watches
+    dir; the tree copy is the build snapshot) carries the intro —
+    the five-reason closed taxonomy, the start-date honesty line,
+    the contact — plus one line per rejected candidate, newest
+    first: `- **YYYY-MM-DD — [Title](URL)** (Source). **Reason** —
+    detail.` Three results: intro + taxonomy on the page; every
+    ledger entry well-formed (date, link, exactly one reason from
+    the closed set, newest-first); every entry renders on the
+    built page."""
+    reasons = ("Below the bar", "Already covered", "Superseded",
+               "Out of scope", "Not yet")
+    page = pages["not-included"]
+    missing = [m for m in (
+        "What didn't make it",
+        "This list starts 27 November 2026",
+        "Earlier decisions weren't recorded",
+        "ci-sitrep@confluence1.com",
+    ) + reasons if m not in page]
+    if missing:
+        fail("rejected page: intro + taxonomy",
+             f"missing: {', '.join(missing)}")
+    else:
+        ok("rejected page: intro + taxonomy",
+           "start-date honesty line, five closed reasons, contact")
+    ledger = (ROOT / "REJECTED.md").read_text(encoding="utf-8")
+    entries = re.findall(r"^- \*\*(\d{4}-\d{2}-\d{2}) — \[([^\]]+)\]"
+                         r"\((https?://[^)]+)\)\*\*.*$",
+                         ledger, re.MULTILINE)
+    entry_lines = [ln for ln in ledger.splitlines()
+                   if re.match(r"^- \*\*\d{4}-\d{2}-\d{2} — ", ln)]
+    problems = []
+    if len(entries) != len(entry_lines):
+        problems.append(
+            f"{len(entry_lines)} dated lines but {len(entries)} "
+            "parse as [Title](URL) entries")
+    dates = [e[0] for e in entries]
+    if dates != sorted(dates, reverse=True):
+        problems.append("entries not newest-first")
+    for ln in entry_lines:
+        hits = [r for r in reasons if f"**{r}**" in ln]
+        if len(hits) != 1:
+            problems.append(
+                f"entry carries {len(hits)} taxonomy reasons: "
+                f"{ln[:60]}…")
+    if problems:
+        fail("rejected ledger: entries well-formed",
+             "; ".join(problems[:6]))
+    else:
+        ok("rejected ledger: entries well-formed",
+           f"{len(entries)} entries, each dated + linked + one "
+           "closed-set reason, newest first")
+    def _on_page(text):
+        return text in page or text.replace("&", "&amp;") in page
+    unrendered = [t for _, t, u in entries
+                  if not (_on_page(t) or _on_page(u))]
+    if unrendered:
+        fail("rejected entries render",
+             f"not on the built page: {', '.join(unrendered[:5])}")
+    else:
+        ok("rejected entries render",
+           f"all {len(entries)} ledger entries on not-included.html")
 
 
 def main():
@@ -1511,6 +1701,7 @@ def main():
     check_census(md_path, pages, data)
     check_hierarchy_levels(pages)
     check_dashboard_sync_levels(pages, data)
+    check_panel_congruence_levels(data)
     check_buttons_levels(pages)
     check_page_order(pages)
     check_nav_levels({n: pages[n] for n in NAV_PAGES})
@@ -1529,6 +1720,7 @@ def main():
     check_xlinks_levels(pages)
     check_toc_levels(pages)
     check_current_levels(pages)
+    check_rejected_levels(pages)
     V.check_glossary(md_path, combined)
     V.check_source_first(md)
     V.check_links(md)
