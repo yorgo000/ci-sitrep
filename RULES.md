@@ -1361,6 +1361,15 @@ closing the miss.
     fix-build-only marker (the About check count cannot be trusted
     as the front-page staleness marker — CDN edges go stale
     independently).
+21. Panel congruence (added 2026-11-28 — the "Agentic right vs
+    wrong" miss): every new or changed panel's title and lede
+    describe its figures; every figure's subject matches its
+    panel's domain test or is a registered divergence; a panel
+    placed or moved by evidence-home gets its title and lede
+    re-read against its new home. verify_levels.py enforces the
+    mechanical half (figure subject == panel slice; a
+    title-keyword tripwire warns on domain-suggestive words
+    outside their slice) — this line is the semantic read.
 
 1. Edit the canonical Markdown at `~/workspace/your_files/watches/`
    (SYNTHESIZED.md, archive/ARCHIVE.md). The repo staging dir
@@ -1965,3 +1974,20 @@ years change. verify.py warns when its pass count differs from
   six worked examples re-tagged. Glossary canonical merge: 133
   terms (staging base + Landscape, HHI, DIFF, PNL from the levels
   copy; no CILAK entry); identical in both trees.
+- **2026-11-28** — Panel congruence (the "Agentic right vs wrong"
+  miss): §6 line 21 added — every new or changed panel's title
+  and lede describe its figures, and a panel placed by
+  evidence-home gets its title re-read against its home.
+  verify_levels.py gains the mechanical half (figure subject ==
+  panel slice, hard fail; title-keyword tripwire, warning) and
+  the Cert title guard generalises to every panel (H3 + HUD row
+  carry the declared title); variant bar 90 → 92. Dashboard:
+  "Money saved vs lost" → "What AI costs — and what's at
+  stake"; "Evaluation" → "Agent reliability, measured"; the 948
+  kernel-flaws figure moves Certification → cic-evaluation
+  (subject cic, divergence D50, label corrected exploits →
+  flaws); eight figure labels gain their scope qualifiers
+  (Google's own code; Llama 3.3 70B ×2; candidate findings;
+  Veracode benchmark; best model on synthetic workflows;
+  self-reported; vendor-commissioned) plus the strip 188
+  "no attacker involved". Census: CIC 24 → 25, Cert 5 → 4.
