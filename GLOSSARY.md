@@ -275,6 +275,8 @@ companies that build them.
 
 **GAO (Government Accountability Office)** — The US federal watchdog that audits government programs and reports to Congress; its technology assessments signal where federal expectations on AI may head.
 
+**GreenLight** — PyTorch's open-source rebuild of Meta's RADAR: a risk-gated system that auto-approves low-risk pull requests, but only for authors who already hold merge rights on the files; everyone else gets shadow-mode review that never becomes an approval.
+
 **guardrail** — A constraint built around an AI system to keep it inside safe
 behaviour: what it may and may not do, say, or touch. Guardrails can be rules,
 filters, or code.
@@ -467,6 +469,12 @@ the first try. pass^k: it succeeds on all k tries. An agent can pass once by
 luck; pass^k measures whether it is reliable — the report's standard for
 judging agents.
 
+**Pay by Bank** — Paying directly from a bank account through open-banking
+technology instead of a card. For agents, the customer sets a spending
+mandate with the bank (per merchant or over time, via variable recurring
+payment APIs); the bank enforces the limit and no credentials are shared
+with the agent.
+
 **pen test (penetration test)** — Authorised hacking: security specialists
 attack a system the way a real attacker would, to find the holes before
 criminals do.
@@ -507,6 +515,12 @@ between two percentages: a share falling from 91% to 42% falls by
 49 pts, not 49%. (Not index points, the usual finance meaning.)
 
 ## R
+
+**RADAR (Risk Aware Diff Auto Review)** — Meta's system for auto-approving
+low-risk code changes: author/source classification, hard eligibility
+limits, a machine-learned Diff Risk Score percentile gate, an LLM reviewer
+requiring high confidence, and a landing-queue delay. PyTorch's
+open-source rebuild is GreenLight.
 
 **RAISE (Responsible AI Safety and Education Act)** — New York's frontier-AI
 safety law (in force 1 Jan 2027): large frontier developers must register,
